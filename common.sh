@@ -14,6 +14,14 @@ regenerate_docs() {
 	local repo=$(readlink -f "$1")
 	local rootdir=$(readlink -f "$(dirname $0)")
 
+	# Save tracked files we need to overwrite for the Doxygen build so
+	# that an external --spdk-path checkout is left clean afterwards.
+	local tmpdir
+	tmpdir=$(mktemp -d)
+	cp "$repo/doc/header.html" "$tmpdir/"
+	cp "$repo/doc/footer.html" "$tmpdir/"
+	cp "$repo/doc/Doxyfile" "$tmpdir/"
+
 	# Build Doxygen header by concatenating: doc <head> template + <body>
 	# opener + static navbar. No Jekyll build required -- the navbar is
 	# plain HTML with root-relative paths and JS-based active highlighting.
@@ -32,4 +40,11 @@ regenerate_docs() {
 	mkdir -p "$rootdir/doc"
 	rm -rf "$rootdir/doc/"*
 	cp -R "$repo/doc/output/html/"* "$rootdir/doc"
+
+	# Restore originals and remove build artifacts from the spdk repo
+	mv "$tmpdir/header.html" "$repo/doc/header.html"
+	mv "$tmpdir/footer.html" "$repo/doc/footer.html"
+	mv "$tmpdir/Doxyfile" "$repo/doc/Doxyfile"
+	(cd "$repo/doc"; make clean)
+	rm -rf "$tmpdir"
 }
