@@ -5,7 +5,7 @@ author: John Kariuki
 categories: news
 ---
 
-The following SPDK 18.04 Performance Reports have been published in the [Documentation](http://www.spdk.io/doc/) tab on www.spdk.io.
+The following SPDK 18.04 Performance Reports have been published in the [Documentation](https://www.spdk.io/doc/) tab on www.spdk.io.
 
 [SPDK 18.04 NVMe BDEV Performance Report](https://review.spdk.io/download/performance-reports/SPDK_nvme_bdev_perf_report_18.04.pdf)
 
