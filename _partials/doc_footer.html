@@ -50,5 +50,48 @@ doxygen</a> $doxygenversion
   </div>
 </footer>
 
+<script>
+$(function(){
+  setTimeout(function(){
+    var outline=$('ul.page-outline');
+    if(!outline.length) return;
+    function getLevel(li){
+      var s=li.find('.arrow').first().attr('style')||'';
+      var m=s.match(/padding-left:\s*(\d+)/);
+      return m?parseInt(m[1],10):0;
+    }
+    function toggle(li){
+      var lvl=getLevel(li);
+      var ah=li.find('.arrowhead').first();
+      if(!ah.length) return;
+      var siblings=li.nextAll('li');
+      var children=[];
+      siblings.each(function(){
+        if(getLevel($(this))<=lvl) return false;
+        children.push(this);
+      });
+      if(!children.length) return;
+      if(ah.hasClass('opened')){
+        ah.removeClass('opened').addClass('closed');
+        $(children).each(function(){
+          $(this).find('.arrowhead.opened').removeClass('opened').addClass('closed');
+        });
+        $(children).slideUp(150);
+      } else {
+        ah.removeClass('closed').addClass('opened');
+        $(children).slideDown(150);
+      }
+    }
+    outline.find('.arrowhead').each(function(){
+      var arrow=$(this).closest('.arrow');
+      arrow.on('click',function(e){
+        e.preventDefault();
+        e.stopPropagation();
+        toggle($(this).closest('li'));
+      });
+    });
+  },0);
+});
+</script>
 </body>
 </html>
