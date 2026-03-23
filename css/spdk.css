@@ -230,10 +230,7 @@ div.header {
     min-width: 0;
     padding: 1rem 15px;
     max-width: 1296px;
-}
-
-.page-with-toc .page-content {
-    max-width: none;
+    margin: 0 auto;
 }
 
 /* ----------------------------------------------------------------
