@@ -14,6 +14,7 @@ markdown: kramdown
 highlighter: rouge  # codespell-ignore
 permalink: pretty
 include: [.well-known]
+exclude: [spdk, doc_header, vendor, Gemfile, Gemfile.lock, README.md]
 plugins:
   - jekyll-feed
 
