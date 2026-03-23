@@ -4,3 +4,6 @@ _site
 .jekyll*
 .vscode
 *.css.map
+spdk/
+doc/
+doc_header/
