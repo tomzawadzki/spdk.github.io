@@ -154,12 +154,23 @@ div.headertitle {
     overflow-x: hidden;
 }
 
-/* Hide the root PROJECT_NAME ("SPDK") node so the actual page entries
-   (Introduction, Concepts, ...) appear as top-level items. */
+/* Hide the root PROJECT_NAME ("SPDK") node. */
 #nav-tree-contents > ul > li > .item {
     display: none;
 }
 #nav-tree-contents > ul > li > .children_ul {
+    display: block !important;
+    padding-left: 0 !important;
+}
+
+/* The mainpage ("Storage Performance Development Kit") is the first
+   child of the hidden root.  Keep its label visible as a top-level
+   link but flatten its section children (Introduction, Concepts, …)
+   to the same visual level. */
+#nav-tree-contents > ul > li > .children_ul > li:first-child > .item .arrow {
+    display: none;
+}
+#nav-tree-contents > ul > li > .children_ul > li:first-child > .children_ul {
     display: block !important;
     padding-left: 0 !important;
 }
