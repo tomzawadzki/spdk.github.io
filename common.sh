@@ -27,7 +27,10 @@ regenerate_docs() {
 		cat "$rootdir/_includes/navbar.html"
 	} > "$repo/doc/header.html"
 
-	cp "$rootdir/_partials/doc_footer.html" "$repo/doc/footer.html"
+	{
+		cat "$rootdir/_includes/footer.html"
+		cat "$rootdir/_partials/doc_footer.html"
+	} > "$repo/doc/footer.html"
 
 	sed -i \
 		-e 's/^HTML_HEADER.*/HTML_HEADER            = header.html/' \

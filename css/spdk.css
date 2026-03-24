@@ -110,7 +110,7 @@ pre code {
 /* ----------------------------------------------------------------
    Page header -- shared between site (.page-header) and Doxygen
    (div.header).  Visual appearance lives here; Doxygen-specific
-   layout (overflow, max-width, padding) lives in doc_spdk.css.
+   layout (overflow, max-width, padding) lives in doc/spdk.css.
    ---------------------------------------------------------------- */
 .page-header,
 div.header {
@@ -264,7 +264,7 @@ div.header {
 /* ----------------------------------------------------------------
    Left sidebar -- shared between site (.site-toc) and Doxygen
    (#nav-tree).  Visual properties here; Doxygen tree layout
-   (arrows, indentation, selected state) in doc_spdk.css.
+   (arrows, indentation, selected state) in doc/spdk.css.
    ---------------------------------------------------------------- */
 .site-toc,
 #nav-tree {
@@ -360,14 +360,6 @@ div.header {
     font-weight: 400;
 }
 
-.page-heading {
-    background-color: #57863C;
-    text-align: center;
-    vertical-align: middle;
-    color: #FFFFFF;
-    padding: 30px;
-}
-
 /* ----------------------------------------------------------------
    Content
    ---------------------------------------------------------------- */
@@ -380,7 +372,6 @@ div.header {
 
 .content > p {
     text-indent: 0;
-    text-align: justify;
 }
 
 /* ----------------------------------------------------------------
