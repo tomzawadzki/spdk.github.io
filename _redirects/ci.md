@@ -1,5 +1,6 @@
 ---
 layout: none
+permalink: /ci/
 redirect_to: /doc/ci_tools.html
 ---
 <!DOCTYPE html>

@@ -1,5 +1,6 @@
 ---
 layout: none
+permalink: /releases/
 redirect_to: /doc/releases.html
 ---
 <!DOCTYPE html>

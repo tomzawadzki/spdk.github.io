@@ -11,9 +11,9 @@ The agenda was packed with a variety of activities, including technical
 presentations, open discussions, and collaborative whiteboard design work.
 Attendees had the opportunity to network, learn, and contribute to the growth of the SPDK community.
 
-![Group_shot](../../../../../img/blog/spdk_devmeetup_2024_1.jpg "Group shot")
+![Group_shot](/assets/img/blog/spdk_devmeetup_2024_1.jpg "Group shot")
 
-![Hard_at_work](../../../../../img/blog/spdk_devmeetup_2024_2.jpg "Hard at work")
+![Hard_at_work](/assets/img/blog/spdk_devmeetup_2024_2.jpg "Hard at work")
 
 Topics discussed this year are documented on the [SPDK DevMeetup '24](https://github.com/orgs/spdk/projects/6) board,
 and many already had follow-up discussions on the weekly [Community Meetings](https://spdk.io/community/#meetings).

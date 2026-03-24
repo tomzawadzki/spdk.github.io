@@ -3,9 +3,10 @@
 set -x
 set -e
 
-rootdir=$(readlink -f "$(dirname $0)")
+scriptdir=$(readlink -f "$(dirname $0)")
+rootdir=$(readlink -f "$scriptdir/..")
 repo="$rootdir/spdk"
-source "$rootdir/common.sh"
+source "$scriptdir/common.sh"
 
 TEST_MODE=0
 SERVE_MODE=0

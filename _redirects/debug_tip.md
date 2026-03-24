@@ -1,5 +1,6 @@
 ---
 layout: none
+permalink: /debug_tip/
 redirect_to: /doc/debugging.html
 ---
 <!DOCTYPE html>

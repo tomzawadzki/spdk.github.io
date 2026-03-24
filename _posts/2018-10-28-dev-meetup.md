@@ -9,7 +9,7 @@ This year NetApp hosted the SPDK Developer Meetup in beautiful Sunnyvale CA on 1
 John Meneghini and the rest of the NetApp crew.  We had community members from all over the world present with
 a record breaking attendance of over 30 developers!
 
-![Meetup](../../../../../img/blog/devwork.jpg "Work Time")
+![Meetup](/assets/img/blog/devwork.jpg "Work Time")
 
 We followed the same model we did last year, building our agenda dynamically based on the what everyone thought
 was most interesting to discuss.  Below are the topics we covered this year:

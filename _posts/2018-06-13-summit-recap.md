@@ -11,7 +11,7 @@ We had a successful event and achieved all of our goals.
 Thanks to the dedication and support of many contributors and great participation
 from SPDK community members.
 
-![Dolce Hayes Mansion](../../../../../img/summit-us-2018/dolce-hayes-mansion.jpg "Dolce Hayes Mansion")
+![Dolce Hayes Mansion](/assets/img/summit-us-2018/dolce-hayes-mansion.jpg "Dolce Hayes Mansion")
 
 # Executive Summary
 
@@ -62,7 +62,7 @@ Thanks for making time to provide actionable feedback on the Summit.
 - Nate Marushak, Director of Storage Acceleration Software at Intel, was the MC for the
   two-day event and did a magnificent job of keeping the speakers on time and
   well-stocked with questions from the audience. \\
-  ![Nate Marushak](../../../../../img/summit-us-2018/nate-marushak.jpg "Nate Marushak")
+  ![Nate Marushak](/assets/img/summit-us-2018/nate-marushak.jpg "Nate Marushak")
 
 ## Day 1
 
@@ -71,47 +71,47 @@ Thanks for making time to provide actionable feedback on the Summit.
   why optimizing storage software is becoming more critical.
   She highlighted the importance of Intel’s investment in Open Source Storage
   Acceleration Software like SPDK, ISA-L, PMDK, DPDK, etc. \\
-  ![Jennifer Huffstetler](../../../../../img/summit-us-2018/jennifer-keynote.jpg "Jennifer Huffstetler")
+  ![Jennifer Huffstetler](/assets/img/summit-us-2018/jennifer-keynote.jpg "Jennifer Huffstetler")
 - Jim Harris, Principal SPDK Architect, Intel Corp, presented on the state of
   the project, future plans and goals and why it’s important for SPDK community
   members to participate and contribute to the Project. \\
-  ![Jim Harris](../../../../../img/summit-us-2018/jim-harris-state-of-project.jpg "Jim Harris")
+  ![Jim Harris](/assets/img/summit-us-2018/jim-harris-state-of-project.jpg "Jim Harris")
 - Felipe Franciosi from Nutanix shared why Nutanix adopted SPDK and how it has
   helped extract maximum performance while reducing latency and improving CPU
   utilization. He showed performance testing result using Intel® Optane™ SSDs
   and how he could extract over 5 million IOPS while scaling VMs. \\
-  ![Nutanix presentation](../../../../../img/summit-us-2018/nutanix-presentation.jpg "SPDK and Nutanix AHV")
-  ![Felipe Franciosi](../../../../../img/summit-us-2018/nutanix-felipe.jpg "Felipe Franciosi")
+  ![Nutanix presentation](/assets/img/summit-us-2018/nutanix-presentation.jpg "SPDK and Nutanix AHV")
+  ![Felipe Franciosi](/assets/img/summit-us-2018/nutanix-felipe.jpg "Felipe Franciosi")
 - Changpeng Liu, Software engineer from Intel Corp, presented Vhost-NVMe deep dive
   followed by talk from Oracle on NVMe-oF and how Oracle has integrated SPDK in
   Oracle RDBMS and future work using SPDK. \\
-  ![Changpeng Liu](../../../../../img/summit-us-2018/changpeng.jpg "Changpeng Liu")
+  ![Changpeng Liu](/assets/img/summit-us-2018/changpeng.jpg "Changpeng Liu")
 - Ben Walker, Software Engineer, Intel Corp, presented deep-dive on NVMe-oF
   SPDK driver followed by much awaited talk from Ed Warnicke from Cisco and
   Tomasz from SPDK team, Intel Corp, on user-space VPP integration with SPDK. \\
-  ![Ben Walker](../../../../../img/summit-us-2018/ben.jpg)
-  ![Tomasz Zawadzki and Ed Warnicke](../../../../../img/summit-us-2018/tomasz-ed-vpp.jpg "Tomasz Zawadzki and Ed Warnicke")
+  ![Ben Walker](/assets/img/summit-us-2018/ben.jpg)
+  ![Tomasz Zawadzki and Ed Warnicke](/assets/img/summit-us-2018/tomasz-ed-vpp.jpg "Tomasz Zawadzki and Ed Warnicke")
 - After the break, Jim Harris, Principal Architect from Intel Corp and John Rudelic,
   Architect in Non-volatile SSD Group, Intel Corp, presented Open Channel SSD
   introduction and SPDK project plans to support Open Channel SSD. \\
-  ![Open Channel SSDs](../../../../../img/summit-us-2018/open-channel-presentation.jpg "Open Channel SSDs: Extending SPDK's Reach")
-  ![John Rudelic](../../../../../img/summit-us-2018/john-rudelic.jpg "John Rudelic")
-  ![Jim Harris](../../../../../img/summit-us-2018/jim-harris-open-channel.jpg "Jim Harris")
+  ![Open Channel SSDs](/assets/img/summit-us-2018/open-channel-presentation.jpg "Open Channel SSDs: Extending SPDK's Reach")
+  ![John Rudelic](/assets/img/summit-us-2018/john-rudelic.jpg "John Rudelic")
+  ![Jim Harris](/assets/img/summit-us-2018/jim-harris-open-channel.jpg "Jim Harris")
 - Ming Lin and Sheng Qiu from Alibaba gave a talk highlighting good, bad and ugly
   side of production deployments highlighting why they used SPDK and how it helped
   improve performance, key learnings and ended the talk with future plans
   to contribute to SPDK community. \\
-  ![Alibaba; Using SPDK in Production](../../../../../img/summit-us-2018/alibaba-presentation-title.jpg "Alibaba: Using SPDK in Production")
-  ![Alibaba presentation](../../../../../img/summit-us-2018/alibaba-presentation-slide.jpg "Alibaba presentation")
-  ![Ming Lin](../../../../../img/summit-us-2018/alibaba3.jpg "Ming Lin")
-  ![Sheng Qiu](../../../../../img/summit-us-2018/alibaba4.jpg "Sheng Qiu")
+  ![Alibaba; Using SPDK in Production](/assets/img/summit-us-2018/alibaba-presentation-title.jpg "Alibaba: Using SPDK in Production")
+  ![Alibaba presentation](/assets/img/summit-us-2018/alibaba-presentation-slide.jpg "Alibaba presentation")
+  ![Ming Lin](/assets/img/summit-us-2018/alibaba3.jpg "Ming Lin")
+  ![Sheng Qiu](/assets/img/summit-us-2018/alibaba4.jpg "Sheng Qiu")
 - Paul Luse, Principal Engineer from SPDK team, Intel Corp presented PMDK library
   integration with SPDK. He highlighted how SPDK enabled applications can access
   Persistent memory using SPDK. \\
-  ![Paul Luse](../../../../../img/summit-us-2018/paul-luse-pmdk.jpg "Paul Luse")
+  ![Paul Luse](/assets/img/summit-us-2018/paul-luse-pmdk.jpg "Paul Luse")
 - Paul Luse from Intel Corp gave a talk on
   Virtual BDevs and how it can be customized for various use cases. \\
-  ![Virtual bdevs presentation](../../../../../img/summit-us-2018/virtual-bdevs-presentation.jpg "Virtual bdevs presentation")
+  ![Virtual bdevs presentation](/assets/img/summit-us-2018/virtual-bdevs-presentation.jpg "Virtual bdevs presentation")
 - We concluded the first day of the SPDK Summit with a Networking Event.
   Everyone enjoyed snacks and drinks while networking with their SPDK community peers.
 - Each session appeared to gain significant interest; audience members asked deeply
@@ -132,24 +132,24 @@ Thanks for making time to provide actionable feedback on the Summit.
   Logical Volumes feature delivered by Daniel Verkamp, Software Engineer,
   Intel Corp, followed by talk on BDev QOS features of SPDK by Gang Cao,
   Lead Engineer, Intel Corp. \\
-  ![Daniel Verkamp](../../../../../img/summit-us-2018/daniel-logical-volumes.jpg "Daniel Verkamp")
-  ![Gang Cao](../../../../../img/summit-us-2018/gang-bdev-qos.jpg "Gang Cao")
+  ![Daniel Verkamp](/assets/img/summit-us-2018/daniel-logical-volumes.jpg "Daniel Verkamp")
+  ![Gang Cao](/assets/img/summit-us-2018/gang-bdev-qos.jpg "Gang Cao")
 - Prital Shah and Greg Tucker delivered introductory talk on ISA-L, an open source
   software that optimizes storage functions like Encryption, Compression, Hashing,
   Deduplication etc. and how spdk vbdev can be created to do encryption etc using
   ISA-L via DPDK FW. \\
-  ![Prital Shah](../../../../../img/summit-us-2018/prital-isa-l.jpg "Prital Shah")
-  ![Greg Tucker](../../../../../img/summit-us-2018/greg-isa-l.jpg "Greg Tucker")
+  ![Prital Shah](/assets/img/summit-us-2018/prital-isa-l.jpg "Prital Shah")
+  ![Greg Tucker](/assets/img/summit-us-2018/greg-isa-l.jpg "Greg Tucker")
 - John Kariuki, Software Engineer from Intel Corp hosted hands on developers lab
   at the Summit. We had over 70 participants attend the lab, and it was very well
   received. Attendees got to leverage the Virtual Bdev session from Day 1 to try out
   coding their first virtual Bdev using vbdev_passthrough template. Thanks to all
   the attendees for submitting the survey for the lab. Your feedback is very
   valuable to us. \\
-  ![John Kariuki](../../../../../img/summit-us-2018/john-kariuki-lab.jpg "John Kariuki")
+  ![John Kariuki](/assets/img/summit-us-2018/john-kariuki-lab.jpg "John Kariuki")
 - After lunch, we dove into a talk on ABI, APIs and packaging delivered by Ben Walker.
   There was good amount of participation from the audience leading to good discussion. \\
-  ![Ben Walker](../../../../../img/summit-us-2018/ben-api.jpg "Ben Walker")
+  ![Ben Walker](/assets/img/summit-us-2018/ben-api.jpg "Ben Walker")
 - The event concluded with developers meetup hosted by Paul Luse, Intel Corp. and
   final raffle ticket drawings.
 - Congratulations to all the lucky winners of the Raffle!!!!!!

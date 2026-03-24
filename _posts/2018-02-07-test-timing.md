@@ -44,24 +44,24 @@ on [GerritHub](https://review.gerrithub.io/#/q/project:spdk/spdk+status:open).
 
 Now find your +1 verified link to the build output as shown below:
 
-![CI Link](../../../../../img/blog/test-timing/plus_1.png "CI Link")
+![CI Link](/assets/img/blog/test-timing/plus_1.png "CI Link")
 
 Next, you need to figure out which test system actually executed your test as not
 all test systems run all tests. You can look at the test system descriptions, as
 shown below, to help make that determination. Otherwise you can just look through
 all of them until you see your timing labels. Click on the test system once you find it.
 
-![Test System Link](../../../../../img/blog/test-timing/test_system.png "Test System Link")
+![Test System Link](/assets/img/blog/test-timing/test_system.png "Test System Link")
 
 In the directory listing, you'll see the file `timing.svg`; click on it.
 
-![Directory Listing](../../../../../img/blog/test-timing/dir_list.png "Directory Listing")
+![Directory Listing](/assets/img/blog/test-timing/dir_list.png "Directory Listing")
 
 Now you will see the timing chart showing the test time per block as defined
 by the timing labels described earlier. As you mouse-over each block you will
 see the test time for that block and all those above it.
 
-![Timing](../../../../../img/blog/test-timing/timing.png "Timing")
+![Timing](/assets/img/blog/test-timing/timing.png "Timing")
 
 So now what? This information isn't very useful without a baseline so you also
 need to see the pictures without your test added. Well, on that same CI Status

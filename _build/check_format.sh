@@ -49,7 +49,7 @@ function check_eof() {
 	echo -n "Checking blank lines at end of file... "
 
 	if ! git_grep -I -l -z -e . -- './*' ':!./**/*.min.*' ':!./**/*.svg' | \
-		xargs -0 -P0 -n1 "$BASEDIR/scripts/eofnl" > eofnl.log; then
+		xargs -0 -P0 -n1 "$BASEDIR/_build/eofnl" > eofnl.log; then
 		echo "Incorrect end-of-file formatting detected"
 		cat eofnl.log
 		rc=1
@@ -150,7 +150,7 @@ function check_yaml_style() {
 		return 0
 	fi
 
-	if ! out=$(yamllint -c $BASEDIR/scripts/yamllint.config --no-warnings "${yamls[@]}" 2>/dev/null); then
+	if ! out=$(yamllint -c $BASEDIR/_build/yamllint.config --no-warnings "${yamls[@]}" 2>/dev/null); then
 		echo "NOT OK"
 		echo -e "\n$out"
 		return 1

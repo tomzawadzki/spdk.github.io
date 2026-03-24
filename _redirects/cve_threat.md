@@ -1,5 +1,6 @@
 ---
 layout: none
+permalink: /cve_threat/
 redirect_to: /doc/security.html
 ---
 <!DOCTYPE html>

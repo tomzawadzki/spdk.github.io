@@ -1,5 +1,6 @@
 ---
 layout: none
+permalink: /development/
 redirect_to: /doc/contributing.html
 ---
 <!DOCTYPE html>
