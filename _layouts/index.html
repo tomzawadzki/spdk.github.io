@@ -13,12 +13,12 @@
             <p class="lead">
               The Storage Performance Development Kit (SPDK) provides a set of tools and libraries for writing high performance, scalable, user-mode storage applications.</p>
             <div class="hero-buttons">
-              <a href="{{ baseurl_rel }}/doc/" class="btn btn-lg btn-dark">Get started</a>
-              <a href="{{ baseurl_rel }}/doc/releases.html" class="btn btn-lg btn-outline-dark">Download</a>
+              <a href="/doc/" class="btn btn-lg btn-dark">Get started</a>
+              <a href="/doc/releases.html" class="btn btn-lg btn-outline-dark">Download</a>
             </div>
           </div>
           <div class="hero-image">
-            <img src="{{ baseurl_rel }}/img/spdk.svg" alt="Storage Performance Development Kit" />
+            <img src="/img/spdk.svg" alt="Storage Performance Development Kit" />
           </div>
         </div>
       </div>
@@ -37,8 +37,8 @@
             </ul>
 
             <div class="feature-buttons">
-              <a href="{{ baseurl_rel }}/doc/#md_performance__reports" class="btn btn-lg btn-dark">Performance Reports</a>
-              <a href="{{ baseurl_rel }}/blog/" class="btn btn-lg btn-outline-dark">Blog</a>
+              <a href="/doc/#md_performance__reports" class="btn btn-lg btn-dark">Performance Reports</a>
+              <a href="/blog/" class="btn btn-lg btn-outline-dark">Blog</a>
             </div>
           </div>
 
@@ -50,7 +50,7 @@
             </ul>
 
             <div class="feature-buttons">
-              <a href="{{ baseurl_rel }}/community/" class="btn btn-lg btn-dark">Join Us</a>
+              <a href="/community/" class="btn btn-lg btn-dark">Join Us</a>
               <a href="https://github.com/spdk/spdk" class="btn btn-lg btn-outline-dark">GitHub</a>
             </div>
           </div>
@@ -63,7 +63,7 @@
             </ul>
 
             <div class="feature-buttons">
-              <a href="{{ baseurl_rel }}/doc/contributing.html" class="btn btn-lg btn-dark">Learn More</a>
+              <a href="/doc/contributing.html" class="btn btn-lg btn-dark">Learn More</a>
               <a href="https://github.com/spdk/spdk-ci/actions" class="btn btn-lg btn-outline-dark">CI Status</a>
             </div>
           </div>
@@ -77,8 +77,8 @@
             </ul>
 
             <div class="feature-buttons">
-              <a href="{{ baseurl_rel }}/doc/" class="btn btn-lg btn-dark">Guides</a>
-              <a href="{{ baseurl_rel }}/doc/files.html" class="btn btn-lg btn-outline-dark">API Documentation</a>
+              <a href="/doc/" class="btn btn-lg btn-dark">Guides</a>
+              <a href="/doc/files.html" class="btn btn-lg btn-outline-dark">API Documentation</a>
             </div>
           </div>
         </div>
@@ -90,9 +90,9 @@
         <section id="blog" class="blog">
           {% for post in site.posts limit:10 %}
             <div class="blog-section">
-              <a class="text-primary" href="{{ baseurl_rel }}{{ post.url }}"><h2 class="blog-heading text-primary">{{ post.title }}</h2></a>
+              <a class="text-primary" href="{{ post.url }}"><h2 class="blog-heading text-primary">{{ post.title }}</h2></a>
               <div class="blog-author">{{ post.date | date: "%b %-d, %Y" }} • {{ post.author }}</div>
-              <div class="content">{{ post.excerpt }}  <a class="text-primary" href="{{ baseurl_rel }}{{ post.url }}">Continue...</a></div>
+              <div class="content">{{ post.excerpt }}  <a class="text-primary" href="{{ post.url }}">Continue...</a></div>
             </div>
           {% endfor %}
         </section>

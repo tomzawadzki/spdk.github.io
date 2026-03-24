@@ -2,6 +2,15 @@
    This file is the single source of truth for visual consistency.
    No external CSS framework is used; all layout is self-contained. */
 
+:root {
+    --spdk-brand: #2b497d;
+    --spdk-brand-dark: #213861;
+    --spdk-border: #dee2e6;
+    --spdk-surface: #f8f9fa;
+    --spdk-code-bg: #f0f2f5;
+    --spdk-muted: #6c757d;
+}
+
 *, *::before, *::after { box-sizing: border-box; }
 
 body,
@@ -18,7 +27,7 @@ body {
     color: #212529;
 }
 
-a { color: #2b497d; }
+a { color: var(--spdk-brand); }
 
 h1, h2, h3, h4, h5, h6 {
     font-family: 'Roboto', sans-serif;
@@ -29,7 +38,7 @@ h2 { font-weight: 700; }
 h3, h4, h5, h6 { font-weight: 400; }
 
 code {
-    background-color: #f0f2f5;
+    background-color: var(--spdk-code-bg);
     padding: 0.15em 0.4em;
     border-radius: 4px;
     font-size: 0.9em;
@@ -57,7 +66,7 @@ pre code {
 .navbar {
     display: flex;
     align-items: center;
-    background-color: #2b497d;
+    background-color: var(--spdk-brand);
     padding: 0 0.5rem;
     font-family: 'Roboto', sans-serif;
 }
@@ -114,8 +123,8 @@ pre code {
    ---------------------------------------------------------------- */
 .page-header,
 div.header {
-    background: #f8f9fa;
-    border-bottom: 3px solid #2b497d;
+    background: var(--spdk-surface);
+    border-bottom: 3px solid var(--spdk-brand);
 }
 
 .page-header {
@@ -157,31 +166,31 @@ div.header {
 
 .btn-dark {
     color: #fff;
-    background-color: #2b497d;
-    border-color: #2b497d;
+    background-color: var(--spdk-brand);
+    border-color: var(--spdk-brand);
 }
 
 .btn-dark:hover {
     color: #fff;
-    background-color: #213861;
+    background-color: var(--spdk-brand-dark);
 }
 
 .btn-outline-dark {
-    color: #2b497d;
-    border-color: #2b497d;
+    color: var(--spdk-brand);
+    border-color: var(--spdk-brand);
     background: transparent;
 }
 
 .btn-outline-dark:hover {
     color: #fff;
-    background-color: #2b497d;
+    background-color: var(--spdk-brand);
 }
 
 /* ----------------------------------------------------------------
    Footer
    ---------------------------------------------------------------- */
 .footer {
-    background-color: #2b497d;
+    background-color: var(--spdk-brand);
     margin-top: auto;
     text-align: center;
     font-size: 14px;
@@ -268,7 +277,7 @@ div.header {
    ---------------------------------------------------------------- */
 .site-toc,
 #nav-tree {
-    background: #f8f9fa;
+    background: var(--spdk-surface);
     overflow-x: hidden;
 }
 
@@ -282,14 +291,14 @@ div.header {
 
 .site-toc a:hover,
 #nav-tree .label a:hover {
-    color: #2b497d;
+    color: var(--spdk-brand);
     background: rgba(0,0,0,0.06);
 }
 
 .site-toc {
     width: 350px;
     flex-shrink: 0;
-    border-right: 1px solid #dee2e6;
+    border-right: 1px solid var(--spdk-border);
     padding: 10px 6px;
     position: sticky;
     top: 0;
@@ -377,7 +386,7 @@ div.header {
 /* ----------------------------------------------------------------
    Blog
    ---------------------------------------------------------------- */
-.text-primary { color: #2b497d; }
+.text-primary { color: var(--spdk-brand); }
 
 .blog-section {
     padding: 25px;
@@ -417,10 +426,6 @@ div.header {
 
     .masthead h1 {
         font-size: 1.5rem;
-    }
-
-    .page-heading {
-        padding: 15px;
     }
 
     .blog-section {
