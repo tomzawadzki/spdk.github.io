@@ -1,24 +1,88 @@
-/* SPDK Doxygen layout overrides -- loaded via HTML_EXTRA_STYLESHEET.
-   Cascade: doxygen.css → THIS FILE → /css/spdk.css (final).
+/* SPDK Doxygen overrides — loaded via HTML_EXTRA_STYLESHEET.
+   Standalone builds load only doxygen.css + this file, so the shared
+   visual foundation (variables, fonts, base typography) is duplicated
+   here.  On the website /assets/css/spdk.css loads last and supplies
+   identical values plus site-only rules (navbar, hero, blog, etc.).
+   Dark mode is disabled via HTML_COLORSTYLE = LIGHT in Doxyfile.
+   @import must be the very first rule in the file. */
+@import url('https://fonts.googleapis.com/css?family=Roboto:400,700,900');
 
-   This file handles only Doxygen-specific layout: navtree, splitbar,
-   page-nav, content positioning.  All shared visual styles (typography,
-   page-header, footer, colors) live in /css/spdk.css so both site and
-   doc pages share one source.
+/* ================================================================
+   Shared visual foundation (needed for standalone builds)
+   ================================================================ */
 
-   Dark mode is disabled via HTML_COLORSTYLE = LIGHT in Doxyfile. */
+:root {
+    --spdk-brand: #2b497d;
+    --spdk-brand-dark: #213861;
+    --spdk-border: #dee2e6;
+    --spdk-surface: #f8f9fa;
+    --spdk-code-bg: #f0f2f5;
+    --spdk-muted: #6c757d;
+}
+
+*, *::before, *::after { box-sizing: border-box; }
+
+body {
+    font-family: 'Roboto', sans-serif;
+    font-size: 16px;
+    line-height: 1.6;
+    color: #212529;
+    margin: 0;
+}
+
+a { color: var(--spdk-brand); }
+
+h1, h2, h3, h4, h5, h6 { font-family: 'Roboto', sans-serif; }
+h1 { font-weight: 900; }
+h2 { font-weight: 700; }
+h3, h4, h5, h6 { font-weight: 400; }
+
+code {
+    background-color: var(--spdk-code-bg);
+    padding: 0.15em 0.4em;
+    border-radius: 4px;
+    font-size: 0.9em;
+}
+
+pre code {
+    background: none;
+    padding: 0;
+    font-size: inherit;
+    border-radius: 0;
+}
 
 /* ================================================================
    Doxygen body / container overrides
    ================================================================ */
 
-/* Standardize Doxygen border colors */
 html {
     --nav-border-color: var(--spdk-border);
 }
 
-#container {
-    min-height: calc(100vh - 98px);
+/* ================================================================
+   Website footer fix — Doxygen's doxygen.css and navtree.css style
+   #nav-path for the breadcrumb bar.  The website footer carries
+   id="nav-path" so navtree.js can measure its height; reset all
+   breadcrumb rules so they don't poison the footer.
+   ================================================================ */
+
+footer#nav-path {
+    height: auto;
+}
+
+footer#nav-path ul {
+    height: auto;
+    line-height: inherit;
+    color: inherit;
+    overflow: visible;
+    margin: 0;
+    padding: 0;
+    background: none;
+    border: none;
+}
+
+footer#nav-path li {
+    float: none;
 }
 
 /* Doxygen's "body, table, div, p, dl" rule sets font-size: 14px and
@@ -34,11 +98,6 @@ footer.footer li {
     font-family: inherit;
 }
 
-/* Override the same rule inside the content area so body text renders
-   at 16px/1.6 (matching site pages).  Uses explicit values because an
-   anonymous wrapper div between #doc-content and .contents breaks
-   inherit chains.  Targets only .contents/.textblock — avoids .title,
-   #page-nav, and div.fragment which need their own sizing. */
 #doc-content .contents,
 #doc-content .textblock {
     font-size: 16px;
@@ -56,12 +115,12 @@ footer.footer li {
 }
 
 /* ================================================================
-   Doxygen page title header  (layout only)
-   Visual appearance (background, border) is in /css/spdk.css so it
-   matches the site .page-header exactly.
+   Doxygen page title header
    ================================================================ */
 
 div.header {
+    background: var(--spdk-surface);
+    border-bottom: 3px solid var(--spdk-brand);
     padding: 0 30px;
     overflow: hidden;
     max-width: 1296px;
@@ -71,9 +130,12 @@ div.headertitle {
     padding: 20px 0 16px;
 }
 
-/* .title is a <div>, not an <h1>, so it needs explicit weight.
-   font-size / color / margin are set by the shared rule in /css/spdk.css. */
 .title {
+    font-size: 2.5rem;
+    line-height: 1.15;
+    color: #1a1a1a;
+    margin: 4px 0;
+    letter-spacing: -0.5px;
     font-weight: 900;
 }
 
@@ -81,12 +143,15 @@ div.headertitle {
    Sidebar navtree
    ================================================================ */
 
-/* /css/spdk.css sets * { box-sizing: border-box } but Doxygen's resize JS
-   assumes content-box when computing outerWidth() − barWidth.
-   The default width matches the cookie default (350 + 6px barWidth). */
+/* Doxygen's resize JS assumes content-box on #side-nav. */
 #side-nav {
     box-sizing: content-box;
     width: var(--sn-w, 356px);
+}
+
+#nav-tree {
+    background: var(--spdk-surface);
+    overflow-x: hidden;
 }
 
 /* Hide the root PROJECT_NAME ("SPDK") node so the actual page entries
@@ -104,7 +169,16 @@ div.headertitle {
 }
 
 #nav-tree .label a {
+    color: #333;
+    text-decoration: none;
+    font-size: 15px;
+    line-height: 30px;
     padding: 2px 4px;
+}
+
+#nav-tree .label a:hover {
+    color: var(--spdk-brand);
+    background: rgba(0,0,0,0.06);
 }
 
 #nav-tree .selected {
@@ -297,8 +371,8 @@ div.fragment {
 /* Tables */
 table.markdownTable th,
 table.fieldtable th {
-    background-color: var(--table-header-background-color);
-    color: var(--table-header-foreground-color);
+    background-color: var(--spdk-brand);
+    color: #fff;
     padding: 8px 12px;
 }
 
@@ -399,4 +473,8 @@ table.directory tr:hover td {
 .lineno a:hover {
     color: var(--spdk-brand);
     text-decoration: underline;
+}
+
+@media print {
+    footer#nav-path { display: block; }
 }
