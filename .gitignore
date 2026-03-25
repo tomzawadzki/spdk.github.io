@@ -5,5 +5,4 @@ _site
 .vscode
 *.css.map
 spdk/
-doc/
 doc_header/

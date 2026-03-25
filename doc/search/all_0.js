@@ -1,0 +1,27 @@
+var searchData=
+[
+  ['0_200_3a_20nvme_20user_20space_20driver_0',['v1.0.0: NVMe user-space driver',['../changelog.html#autotoc_md513',1,'']]],
+  ['0_201_20130_201_20only_20works_20with_20512_20byte_20sectors_1',['Windows virtio-blk driver before version 0.1.130-1 only works with 512-byte sectors',['../vhost.html#autotoc_md1376',1,'']]],
+  ['01_2',['01',['../performance_reports.html#autotoc_md1474',1,'Release 19.01'],['../performance_reports.html#autotoc_md1470',1,'Release 20.01'],['../performance_reports.html#autotoc_md1466',1,'Release 21.01'],['../performance_reports.html#autotoc_md1462',1,'Release 22.01'],['../performance_reports.html#autotoc_md1459',1,'Release 23.01'],['../performance_reports.html#autotoc_md1456',1,'Release 24.01'],['../changelog.html#autotoc_md258',1,'v21.01'],['../changelog.html#autotoc_md193',1,'v22.01'],['../changelog.html#autotoc_md135',1,'v23.01'],['../changelog.html#autotoc_md84',1,'v24.01'],['../changelog.html#autotoc_md2',1,'v26.01']]],
+  ['01_3a_20blobstore_20thin_20provisioning_3',['v18.01: Blobstore Thin Provisioning',['../changelog.html#changelog-v18-01',1,'']]],
+  ['01_3a_20nvme_20of_20tcp_20ip_20transport_20open_20channel_20ssd_20flash_20translation_20layer_20caching_20bdev_20based_20on_20ocf_20isa_20l_20support_20dif_20dix_20library_4',['v19.01: NVMe-oF TCP/IP Transport, Open Channel SSD Flash Translation Layer, Caching bdev based on OCF, ISA-L Support, DIF/DIX library',['../changelog.html#changelog-v19-01',1,'']]],
+  ['01_3a_20optimized_20thin_20provisioning_20ftl_20bdev_20vmd_20hot_20plug_20fused_20support_5',['v20.01: Optimized thin provisioning, FTL bdev, VMD hot plug, FUSED support',['../changelog.html#changelog-v20-01',1,'']]],
+  ['03_3a_20blobstore_20and_20userspace_20vhost_20scsi_20target_6',['v17.03: Blobstore and userspace vhost-scsi target',['../changelog.html#changelog-v17-03',1,'']]],
+  ['04_7',['04',['../performance_reports.html#autotoc_md1475',1,'Release 18.04'],['../performance_reports.html#autotoc_md1473',1,'Release 19.04'],['../performance_reports.html#autotoc_md1469',1,'Release 20.04'],['../performance_reports.html#autotoc_md1465',1,'Release 21.04'],['../changelog.html#autotoc_md238',1,'v21.04']]],
+  ['04_3a_20compression_20bdev_20notification_20library_20nvme_20opal_20support_8',['v19.04: Compression bdev, Notification library, NVMe Opal support',['../changelog.html#changelog-v19-04',1,'']]],
+  ['04_3a_20logical_20volume_20snapshot_20clone_20iscsi_20initiator_20bdev_20qos_20vpp_20userspace_20tcp_20ip_9',['v18.04: Logical Volume Snapshot/Clone, iSCSI Initiator, Bdev QoS, VPP Userspace TCP/IP',['../changelog.html#changelog-v18-04',1,'']]],
+  ['04_3a_20spdk_20top_20idxd_20nvme_20qpair_20groups_10',['v20.04: SPDK Top, IDXD, NVMe qpair groups',['../changelog.html#changelog-v20-04',1,'']]],
+  ['05_11',['05',['../changelog.html#autotoc_md451',1,'DPDK 18.05'],['../performance_reports.html#autotoc_md1461',1,'Release 22.05'],['../performance_reports.html#autotoc_md1458',1,'Release 23.05'],['../performance_reports.html#autotoc_md1455',1,'Release 24.05'],['../changelog.html#autotoc_md175',1,'v22.05'],['../changelog.html#autotoc_md120',1,'v23.05'],['../changelog.html#autotoc_md68',1,'v24.05'],['../changelog.html#autotoc_md32',1,'v25.05']]],
+  ['05_3a_20upcoming_20release_12',['v26.05: (Upcoming Release)',['../changelog.html#changelog-v26-05',1,'']]],
+  ['06_3a_20nvmf_20userspace_20target_13',['v16.06: NVMf userspace target',['../changelog.html#changelog-v16-06',1,'']]],
+  ['07_14',['07',['../performance_reports.html#autotoc_md1476',1,'Release 17.07'],['../performance_reports.html#autotoc_md1472',1,'Release 19.07'],['../performance_reports.html#autotoc_md1468',1,'Release 20.07'],['../performance_reports.html#autotoc_md1464',1,'Release 21.07'],['../changelog.html#autotoc_md222',1,'v21.07']]],
+  ['07_3a_20build_20system_20improvements_20userspace_20vhost_20blk_20target_20and_20gpt_20bdev_15',['v17.07: Build system improvements, userspace vhost-blk target, and GPT bdev',['../changelog.html#changelog-v17-07',1,'']]],
+  ['07_3a_20nvme_20of_20fc_20transport_20vmd_20nvme_20of_20persistent_20reservations_20bdev_20i_20o_20with_20separate_20metadata_16',['v19.07: NVMe-oF FC Transport, VMD, NVMe-oF Persistent reservations, Bdev I/O with separate metadata',['../changelog.html#changelog-v19-07',1,'']]],
+  ['07_3a_20raid_20infrastructure_20improvements_20bug_20fixes_17',['v18.07: Raid, Infrastructure Improvements, Bug Fixes',['../changelog.html#changelog-v18-07',1,'']]],
+  ['07_3a_20spdk_20csi_20driver_20new_20accel_5ffw_20commands_20i_20o_20abort_20support_18',['v20.07: SPDK CSI driver, new accel_fw commands, I/O abort support',['../changelog.html#changelog-v20-07',1,'']]],
+  ['08_19',['DPDK 18.08',['../changelog.html#autotoc_md430',1,'']]],
+  ['08_3a_20iscsi_20target_20nvme_20over_20fabrics_20maturity_20',['v16.08: iSCSI target, NVMe over Fabrics maturity',['../changelog.html#changelog-v16-08',1,'']]],
+  ['09_21',['09',['../performance_reports.html#autotoc_md1460',1,'Release 22.09'],['../performance_reports.html#autotoc_md1457',1,'Release 23.09'],['../changelog.html#autotoc_md156',1,'v22.09'],['../changelog.html#autotoc_md103',1,'v23.09'],['../changelog.html#autotoc_md49',1,'v24.09'],['../changelog.html#autotoc_md16',1,'v25.09']]],
+  ['0_3a_20ioat_20user_20space_20driver_22',['v1.2.0: IOAT user-space driver',['../changelog.html#autotoc_md512',1,'']]],
+  ['0_3a_20nvme_20user_20space_20driver_23',['v1.0.0: NVMe user-space driver',['../changelog.html#autotoc_md513',1,'']]]
+];

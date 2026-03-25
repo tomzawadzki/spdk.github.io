@@ -1,0 +1,5 @@
+<map id="spdk_nvme_fdp_ruhs" name="spdk_nvme_fdp_ruhs">
+<area shape="rect" id="Node000001" title="Reclaim unit handle status." alt="" coords="24,106,183,134"/>
+<area shape="rect" id="Node000002" href="$structspdk__nvme__fdp__ruhs__desc.html" title="Reclaim unit handle status descriptor." alt="" coords="5,5,202,33"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="106,49,106,105,101,105,101,49"/>
+</map>

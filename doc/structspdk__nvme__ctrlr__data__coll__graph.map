@@ -1,0 +1,21 @@
+<map id="spdk_nvme_ctrlr_data" name="spdk_nvme_ctrlr_data">
+<area shape="rect" id="Node000001" title=" " alt="" coords="335,242,500,270"/>
+<area shape="rect" id="Node000002" href="$unionspdk__nvme__vs__register.html" title=" " alt="" coords="9,18,185,46"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="201,26,258,37,286,47,312,62,335,81,355,104,385,155,405,204,415,241,410,243,400,206,380,157,350,107,331,85,309,66,284,52,257,42,200,32"/>
+<area shape="rect" id="Node000003" href="$structspdk__nvme__cdata__oaes.html" title=" " alt="" coords="8,74,186,102"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="201,89,258,101,312,124,346,151,374,183,411,240,406,243,370,186,342,155,309,129,256,106,200,95"/>
+<area shape="rect" id="Node000004" href="$unionspdk__nvme__cdata__ctratt.html" title=" " alt="" coords="6,130,188,158"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="203,152,258,164,312,182,362,210,401,239,398,244,359,214,310,186,257,169,202,157"/>
+<area shape="rect" id="Node000005" href="$structspdk__nvme__cdata__oacs.html" title=" " alt="" coords="9,186,185,214"/>
+<area shape="poly" id="edge4_Node000001_Node000005" title=" " alt="" coords="201,209,311,227,364,239,363,244,310,232,200,214"/>
+<area shape="rect" id="Node000006" href="$structspdk__nvme__cdata__oncs.html" title="Identify Controller data Optional NVM Command Support." alt="" coords="9,242,185,270"/>
+<area shape="poly" id="edge5_Node000001_Node000006" title=" " alt="" coords="201,253,334,253,334,259,201,259"/>
+<area shape="rect" id="Node000007" href="$structspdk__nvme__cdata__fuses.html" title=" " alt="" coords="6,298,188,326"/>
+<area shape="poly" id="edge6_Node000001_Node000007" title=" " alt="" coords="203,300,310,284,371,268,372,273,311,289,204,305"/>
+<area shape="rect" id="Node000008" href="$structspdk__nvme__cdata__sgls.html" title="Identify Controller data SGL support." alt="" coords="11,351,183,379"/>
+<area shape="poly" id="edge7_Node000001_Node000008" title=" " alt="" coords="198,356,254,346,310,329,361,300,399,268,403,272,364,304,312,334,256,352,199,362"/>
+<area shape="rect" id="Node000009" href="$structspdk__nvme__cdata__nvmf__specific.html" title="Identify Controller data NVMe over Fabrics&#45;specific fields." alt="" coords="7,403,187,448"/>
+<area shape="poly" id="edge8_Node000001_Node000009" title=" " alt="" coords="202,419,257,407,309,385,343,359,371,327,407,269,411,272,375,330,346,363,312,390,259,413,203,424"/>
+<area shape="rect" id="Node000010" href="$structspdk__nvme__power__state.html" title=" " alt="" coords="5,471,189,499"/>
+<area shape="poly" id="edge9_Node000001_Node000010" title=" " alt="" coords="204,484,259,472,285,462,309,448,331,429,350,406,380,355,400,306,410,269,415,271,405,308,385,358,355,409,335,433,312,452,287,467,260,477,205,489"/>
+</map>

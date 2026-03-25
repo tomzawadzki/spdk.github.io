@@ -1,0 +1,17 @@
+<map id="spdk_nvme_tcp_cmd" name="spdk_nvme_tcp_cmd">
+<area shape="rect" id="Node000001" title="CapsuleCmd." alt="" coords="629,88,787,116"/>
+<area shape="rect" id="Node000002" href="$structspdk__nvme__tcp__common__pdu__hdr.html" title="Common NVMe/TCP PDU header." alt="" coords="329,51,516,95"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="532,81,629,92,628,97,531,87"/>
+<area shape="rect" id="Node000003" href="$structspdk__nvme__cmd.html" title=" " alt="" coords="357,119,488,147"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="503,128,605,119,638,114,639,119,605,125,504,133"/>
+<area shape="rect" id="Node000004" href="$structspdk__nvme__sgl__descriptor.html" title=" " alt="" coords="5,7,200,35"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="216,25,263,38,306,62,316,73,319,85,322,96,330,106,357,120,355,125,327,110,318,98,314,86,311,75,303,66,261,43,214,30"/>
+<area shape="rect" id="Node000005" href="$unionspdk__nvme__cmd__cdw10.html" title=" " alt="" coords="12,63,193,91"/>
+<area shape="poly" id="edge4_Node000003_Node000005" title=" " alt="" coords="209,88,305,104,363,116,361,121,304,109,208,93"/>
+<area shape="rect" id="Node000006" href="$unionspdk__nvme__cmd__cdw11.html" title=" " alt="" coords="12,119,193,147"/>
+<area shape="poly" id="edge5_Node000003_Node000006" title=" " alt="" coords="208,130,356,130,356,136,208,136"/>
+<area shape="rect" id="Node000025" href="$unionspdk__nvme__cmd__cdw12.html" title=" " alt="" coords="12,175,193,203"/>
+<area shape="poly" id="edge6_Node000003_Node000025" title=" " alt="" coords="208,176,304,161,371,145,372,150,305,166,209,181"/>
+<area shape="rect" id="Node000028" href="$unionspdk__nvme__cmd__cdw13.html" title=" " alt="" coords="12,231,193,259"/>
+<area shape="poly" id="edge7_Node000003_Node000028" title=" " alt="" coords="208,230,256,219,304,203,358,175,401,145,404,150,361,180,306,208,258,224,209,235"/>
+</map>

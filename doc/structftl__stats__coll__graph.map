@@ -1,0 +1,7 @@
+<map id="ftl_stats" name="ftl_stats">
+<area shape="rect" id="Node000001" title=" " alt="" coords="27,229,101,257"/>
+<area shape="rect" id="Node000002" href="$structftl__stats__entry.html" title=" " alt="" coords="7,128,121,156"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="67,172,67,228,61,228,61,172"/>
+<area shape="rect" id="Node000003" href="$structftl__stats__group.html" title=" " alt="" coords="5,5,123,33"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="67,49,67,128,61,128,61,49"/>
+</map>

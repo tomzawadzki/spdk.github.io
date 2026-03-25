@@ -1,0 +1,31 @@
+<map id="spdk_nvmf_qpair" name="spdk_nvmf_qpair">
+<area shape="rect" id="Node000001" title=" " alt="" coords="595,504,728,532"/>
+<area shape="rect" id="Node000015" href="$structspdk__nvmf__request.html" title=" " alt="" coords="908,245,1058,273"/>
+<area shape="poly" id="edge7_Node000015_Node000001" title=" " alt="" coords="736,532,772,535,811,534,849,526,883,509,910,484,931,454,948,421,960,386,974,320,979,273,984,273,979,321,965,388,953,423,936,457,914,488,886,513,851,531,812,539,772,541,735,537"/>
+<area shape="rect" id="Node000002" href="$structspdk__nvmf__transport.html" title=" " alt="" coords="288,449,448,477"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="423,480,477,495,537,505,595,511,594,516,536,510,475,500,421,485"/>
+<area shape="rect" id="Node000003" href="$structspdk__nvmf__transport__ops.html" title=" " alt="" coords="567,451,756,478"/>
+<area shape="poly" id="edge3_Node000003_Node000002" title=" " alt="" coords="463,464,476,464,567,464,567,469,476,469,463,469"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="596,449,543,439,509,436,476,439,417,451,416,446,476,434,509,431,543,434,597,444"/>
+<area shape="rect" id="Node000011" href="$structspdk__nvmf__transport__opts.html" title=" " alt="" coords="5,449,200,477"/>
+<area shape="poly" id="edge4_Node000002_Node000011" title=" " alt="" coords="215,460,288,460,288,466,215,466"/>
+<area shape="rect" id="Node000009" href="$structspdk__nvmf__poll__group.html" title=" " alt="" coords="284,561,452,589"/>
+<area shape="poly" id="edge5_Node000001_Node000009" title=" " alt="" coords="457,555,594,528,595,533,458,560"/>
+<area shape="poly" id="edge6_Node000001_Node000015" title=" " alt="" coords="974,289,942,359,917,398,886,432,855,457,826,470,757,492,717,506,715,501,756,487,824,465,852,452,883,429,912,395,937,356,969,286"/>
+<area shape="poly" id="edge13_Node000015_Node000015" title=" " alt="" coords="955,227,965,221,983,219,1000,221,1011,227,1014,236,1010,246,1005,244,1009,236,1006,230,998,226,983,224,967,226,958,232"/>
+<area shape="rect" id="Node000016" href="$unionnvmf__h2c__msg.html" title=" " alt="" coords="602,21,722,49"/>
+<area shape="poly" id="edge8_Node000015_Node000016" title=" " alt="" coords="737,26,774,27,813,32,851,44,886,62,908,82,927,105,955,157,973,207,982,244,977,246,968,208,950,159,923,108,904,86,883,67,849,49,812,37,774,32,737,31"/>
+<area shape="rect" id="Node000049" href="$unionnvmf__c2h__msg.html" title=" " alt="" coords="602,77,722,105"/>
+<area shape="poly" id="edge9_Node000015_Node000049" title=" " alt="" coords="737,87,812,96,850,108,886,125,919,152,945,185,978,243,973,246,941,188,915,156,883,129,848,113,811,102,737,92"/>
+<area shape="rect" id="Node000054" href="$structspdk__nvmf__stripped__data.html" title=" " alt="" coords="567,133,756,161"/>
+<area shape="poly" id="edge10_Node000015_Node000054" title=" " alt="" coords="772,153,829,165,885,183,933,212,969,243,966,247,930,216,883,188,828,170,771,158"/>
+<area shape="rect" id="Node000055" href="$structspdk__nvmf__dif__info.html" title=" " alt="" coords="587,189,736,217"/>
+<area shape="poly" id="edge11_Node000015_Node000055" title=" " alt="" coords="752,210,885,230,935,242,933,247,884,235,751,215"/>
+<area shape="rect" id="Node000057" href="$structspdk__bdev__io__wait__entry.html" title="Structure to register a callback when an spdk_bdev_io becomes available." alt="" coords="568,245,755,273"/>
+<area shape="poly" id="edge12_Node000015_Node000057" title=" " alt="" coords="770,256,908,256,908,262,770,262"/>
+<area shape="rect" id="Node000069" href="$structspdk__bdev__io.html" title=" " alt="" coords="606,297,717,325"/>
+<area shape="poly" id="edge14_Node000015_Node000069" title=" " alt="" coords="732,305,805,299,884,287,941,271,943,276,885,292,806,304,732,311"/>
+<area shape="rect" id="Node000079" href="$structspdk__iobuf__entry.html" title="iobuf queue entry" alt="" coords="595,399,728,426"/>
+<area shape="poly" id="edge15_Node000015_Node000079" title=" " alt="" coords="733,391,807,367,883,332,929,302,965,271,969,275,932,306,886,337,809,372,735,396"/>
+<area shape="poly" id="edge16_Node000079_Node000079" title=" " alt="" coords="634,381,644,374,662,372,679,374,689,380,693,390,689,399,684,397,688,389,685,384,677,379,662,377,646,379,637,385"/>
+</map>

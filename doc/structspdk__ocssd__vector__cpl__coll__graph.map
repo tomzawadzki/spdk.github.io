@@ -1,0 +1,5 @@
+<map id="spdk_ocssd_vector_cpl" name="spdk_ocssd_vector_cpl">
+<area shape="rect" id="Node000001" title="Vector completion queue entry." alt="" coords="5,106,176,134"/>
+<area shape="rect" id="Node000002" href="$structspdk__nvme__status.html" title=" " alt="" coords="19,5,162,33"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="93,49,93,105,88,105,88,49"/>
+</map>

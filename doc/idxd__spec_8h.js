@@ -1,0 +1,26 @@
+var idxd__spec_8h =
+[
+    [ "idxd_hw_desc", "structidxd__hw__desc.html", null ],
+    [ "dsa_hw_comp_record", "structdsa__hw__comp__record.html", null ],
+    [ "iaa_hw_comp_record", "structiaa__hw__comp__record.html", null ],
+    [ "iaa_aecs", "structiaa__aecs.html", null ],
+    [ "idxd_gencap_register", "unionidxd__gencap__register.html", null ],
+    [ "idxd_wqcap_register", "unionidxd__wqcap__register.html", null ],
+    [ "idxd_groupcap_register", "unionidxd__groupcap__register.html", null ],
+    [ "idxd_enginecap_register", "unionidxd__enginecap__register.html", null ],
+    [ "idxd_opcap_register", "structidxd__opcap__register.html", null ],
+    [ "idxd_offsets_register", "unionidxd__offsets__register.html", null ],
+    [ "idxd_gencfg_register", "unionidxd__gencfg__register.html", null ],
+    [ "idxd_genctrl_register", "unionidxd__genctrl__register.html", null ],
+    [ "idxd_gensts_register", "unionidxd__gensts__register.html", null ],
+    [ "idxd_intcause_register", "unionidxd__intcause__register.html", null ],
+    [ "idxd_cmd_register", "unionidxd__cmd__register.html", null ],
+    [ "idxd_cmdsts_register", "unionidxd__cmdsts__register.html", null ],
+    [ "idxd_cmdcap_register", "unionidxd__cmdcap__register.html", null ],
+    [ "idxd_swerr_register", "unionidxd__swerr__register.html", null ],
+    [ "idxd_registers", "structidxd__registers.html", null ],
+    [ "idxd_group_flags", "unionidxd__group__flags.html", null ],
+    [ "idxd_grpcfg", "structidxd__grpcfg.html", null ],
+    [ "idxd_grptbl", "structidxd__grptbl.html", null ],
+    [ "idxd_wqcfg", "unionidxd__wqcfg.html", null ]
+];

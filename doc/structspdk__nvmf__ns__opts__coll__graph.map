@@ -1,0 +1,7 @@
+<map id="spdk_nvmf_ns_opts" name="spdk_nvmf_ns_opts">
+<area shape="rect" id="Node000001" title="NVMe&#45;oF target namespace creation options." alt="" coords="35,106,186,134"/>
+<area shape="rect" id="Node000002" href="$structspdk__uuid.html" title=" " alt="" coords="5,5,93,33"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="67,44,104,104,100,107,63,47"/>
+<area shape="rect" id="Node000003" href="$structspdk__json__val.html" title=" " alt="" coords="116,5,230,33"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="159,47,121,107,116,104,155,44"/>
+</map>

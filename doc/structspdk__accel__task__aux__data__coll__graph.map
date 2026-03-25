@@ -1,0 +1,5 @@
+<map id="spdk_accel_task_aux_data" name="spdk_accel_task_aux_data">
+<area shape="rect" id="Node000001" title=" " alt="" coords="5,128,201,156"/>
+<area shape="rect" id="Node000002" href="$structspdk__accel__bounce__buffer.html" title="Describes user&#39;s buffers in remote memory domains in case a module doesn&#39;t support memory domains and..." alt="" coords="7,5,199,33"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="106,49,106,128,100,128,100,49"/>
+</map>

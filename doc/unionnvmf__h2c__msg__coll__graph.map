@@ -1,0 +1,30 @@
+<map id="nvmf_h2c_msg" name="nvmf_h2c_msg">
+<area shape="rect" id="Node000001" title=" " alt="" coords="717,201,837,229"/>
+<area shape="rect" id="Node000002" href="$structspdk__nvmf__capsule__cmd.html" title=" " alt="" coords="351,20,536,48"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="552,25,588,28,625,35,661,47,695,65,727,96,750,134,766,171,775,200,770,202,761,173,745,136,723,99,691,69,659,52,624,40,588,33,552,30"/>
+<area shape="rect" id="Node000003" href="$structspdk__nvme__cmd.html" title=" " alt="" coords="378,279,510,306"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="524,278,606,263,692,243,740,227,741,232,694,248,607,268,525,283"/>
+<area shape="rect" id="Node000004" href="$structspdk__nvme__sgl__descriptor.html" title=" " alt="" coords="5,147,200,174"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="140,180,180,204,225,226,305,254,380,275,379,280,303,259,223,230,177,208,137,185"/>
+<area shape="rect" id="Node000031" href="$structspdk__nvmf__fabric__connect__cmd.html" title=" " alt="" coords="329,72,559,100"/>
+<area shape="poly" id="edge11_Node000031_Node000004" title=" " alt="" coords="157,139,223,119,334,98,336,103,224,124,158,144"/>
+<area shape="rect" id="Node000032" href="$structspdk__nvmf__fabric__auth__send__cmd.html" title=" " alt="" coords="357,123,530,168"/>
+<area shape="poly" id="edge13_Node000032_Node000004" title=" " alt="" coords="215,153,356,147,357,152,215,158"/>
+<area shape="rect" id="Node000033" href="$structspdk__nvmf__fabric__auth__recv__cmd.html" title=" " alt="" coords="357,193,530,237"/>
+<area shape="poly" id="edge15_Node000033_Node000004" title=" " alt="" coords="184,175,224,183,357,202,356,207,223,188,183,180"/>
+<area shape="rect" id="Node000005" href="$unionspdk__nvme__cmd__cdw10.html" title=" " alt="" coords="12,287,193,314"/>
+<area shape="poly" id="edge4_Node000003_Node000005" title=" " alt="" coords="208,298,305,296,378,293,378,299,305,301,208,303"/>
+<area shape="rect" id="Node000006" href="$unionspdk__nvme__cmd__cdw11.html" title=" " alt="" coords="12,343,193,370"/>
+<area shape="poly" id="edge5_Node000003_Node000006" title=" " alt="" coords="208,348,256,340,304,328,328,315,377,301,379,306,330,320,306,333,257,345,209,353"/>
+<area shape="rect" id="Node000025" href="$unionspdk__nvme__cmd__cdw12.html" title=" " alt="" coords="12,399,193,426"/>
+<area shape="poly" id="edge6_Node000003_Node000025" title=" " alt="" coords="208,411,258,400,282,389,303,375,312,362,314,347,316,331,327,316,351,301,377,293,379,298,353,306,331,320,321,333,319,348,317,364,307,379,284,394,260,405,209,416"/>
+<area shape="rect" id="Node000028" href="$unionspdk__nvme__cmd__cdw13.html" title=" " alt="" coords="12,455,193,482"/>
+<area shape="poly" id="edge7_Node000003_Node000028" title=" " alt="" coords="208,475,259,465,282,455,303,439,313,425,317,411,315,380,312,348,316,332,327,316,350,300,377,291,378,296,352,305,331,320,321,334,317,349,320,380,323,412,318,428,307,443,285,459,261,470,209,480"/>
+<area shape="rect" id="Node000029" href="$structspdk__nvmf__fabric__prop__set__cmd.html" title=" " alt="" coords="357,330,530,375"/>
+<area shape="poly" id="edge8_Node000001_Node000029" title=" " alt="" coords="545,342,620,326,657,314,692,298,714,282,735,263,764,227,768,231,739,267,718,286,694,302,659,319,621,332,546,347"/>
+<area shape="rect" id="Node000030" href="$structspdk__nvmf__fabric__prop__get__cmd.html" title=" " alt="" coords="357,399,530,444"/>
+<area shape="poly" id="edge9_Node000001_Node000030" title=" " alt="" coords="545,416,583,410,621,400,658,385,691,365,722,333,745,295,761,258,770,229,775,230,766,260,750,297,726,336,695,369,660,390,623,405,584,415,546,421"/>
+<area shape="poly" id="edge10_Node000001_Node000031" title=" " alt="" coords="575,93,636,107,694,130,717,145,738,164,768,199,764,202,734,168,714,150,692,135,634,112,574,98"/>
+<area shape="poly" id="edge12_Node000001_Node000032" title=" " alt="" coords="546,154,619,166,694,182,743,198,741,203,692,187,618,171,546,159"/>
+<area shape="poly" id="edge14_Node000001_Node000033" title=" " alt="" coords="546,212,717,212,717,218,546,218"/>
+</map>
