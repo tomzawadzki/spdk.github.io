@@ -271,26 +271,21 @@ div.header {
 }
 
 /* ----------------------------------------------------------------
-   Left sidebar -- shared between site (.site-toc) and Doxygen
-   (#nav-tree).  Visual properties here; Doxygen tree layout
-   (arrows, indentation, selected state) in doc/spdk.css.
+   Left sidebar -- site TOC pages
    ---------------------------------------------------------------- */
-.site-toc,
-#nav-tree {
+.site-toc {
     background: var(--spdk-surface);
     overflow-x: hidden;
 }
 
-.site-toc a,
-#nav-tree .label a {
+.site-toc a {
     color: #333;
     text-decoration: none;
     font-size: 15px;
     line-height: 30px;
 }
 
-.site-toc a:hover,
-#nav-tree .label a:hover {
+.site-toc a:hover {
     color: var(--spdk-brand);
     background: rgba(0,0,0,0.06);
 }
