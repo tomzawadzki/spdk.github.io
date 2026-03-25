@@ -33,7 +33,7 @@
     {% include footer.html %}
 
     {% for js in page.jsfiles %}
-    <script type="text/javascript" src="/assets/{{ js }}"></script>
+    <script type="text/javascript" src="{{ site.baseurl }}/assets/{{ js }}"></script>
     {% endfor %}
 
   </body>

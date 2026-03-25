@@ -24,11 +24,11 @@ regenerate_docs() {
 	{
 		cat "$rootdir/_doxygen/doc_head.html"
 		printf '<body>\n<div id="top"><!-- do not remove this div, it is closed by doxygen! -->\n'
-		cat "$rootdir/_includes/navbar.html"
+		sed 's|{{ site.baseurl }}|..|g' "$rootdir/_includes/navbar.html"
 	} > "$tmpdir/header.html"
 
 	{
-		cat "$rootdir/_includes/footer.html"
+		sed 's|{{ site.baseurl }}|..|g' "$rootdir/_includes/footer.html"
 		cat "$rootdir/_doxygen/doc_footer.html"
 	} > "$tmpdir/footer.html"
 
