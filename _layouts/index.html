@@ -87,15 +87,7 @@
 
     <div class="news">
       <div class="container">
-        <section id="blog" class="blog">
-          {% for post in site.posts limit:10 %}
-            <div class="blog-section">
-              <a class="text-primary" href="{{ post.url }}"><h2 class="blog-heading text-primary">{{ post.title }}</h2></a>
-              <div class="blog-author">{{ post.date | date: "%b %-d, %Y" }} • {{ post.author }}</div>
-              <div class="content">{{ post.excerpt }}  <a class="text-primary" href="{{ post.url }}">Continue...</a></div>
-            </div>
-          {% endfor %}
-        </section>
+        {% include blog.html limit=10 %}
       </div>
     </div>
 
