@@ -1,15 +1,4 @@
 <head>
-
-  <!-- Global site tag (gtag.js) - Google Analytics -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-126182903-1"></script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-
-    gtag('config', 'UA-126182903-1');
-  </script>
-
   {% assign url_slash_count = page.url | split: '/' | size %}
 
   {% if url_slash_count <= 1 %}
@@ -35,7 +24,7 @@
 
   <title>{% if page.title %}{{ page.title }}{% else %}{{ site.title }}{% endif %}</title>
 
-  <link rel="stylesheet" href="{{ baseurl_rel }}/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
   <link rel="stylesheet" href='https://fonts.googleapis.com/css?family=Roboto:400,900' type='text/css'>
   <link rel="stylesheet" href="{{ baseurl_rel }}/css/spdk.css">
   <link rel="stylesheet" href="{{ baseurl_rel }}/css/syntax.css">
