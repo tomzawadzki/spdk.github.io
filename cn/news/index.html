@@ -1,0 +1,220 @@
+<!doctype html>
+<html lang="en">
+  <head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="The Storage Performance Development Kit (SPDK) provides a set of tools and libraries for writing high performance, scalable, user-mode storage applications. It achieves high performance by moving all of the necessary drivers into userspace and operating in a polled mode instead of relying on interrupts, which avoids kernel context switches and eliminates interrupt handling overhead.
+">
+  <meta name="author" content="Benjamin Walker">
+
+  <title>SPDK用户案例</title>
+
+  <link rel="icon" type="image/svg+xml" href="/spdk.github.io/assets/img/spdk.svg">
+  <link rel="icon" href="/spdk.github.io/assets/favicon.ico" sizes="32x32">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:400,700,900" type="text/css">
+  <link rel="stylesheet" href="/spdk.github.io/assets/css/spdk.css">
+
+  <link href="/spdk.github.io/feed.xml" type="application/atom+xml" rel="alternate" title="Atom Feed">
+</head>
+
+
+  <body>
+    <nav class="navbar">
+  <a class="navbar-brand" href="/spdk.github.io/" aria-label="SPDK">
+    <img src="/spdk.github.io/assets/img/spdk.svg" width="36" height="36" alt="Storage Performance Development Kit">
+  </a>
+  <div class="navbar-nav">
+    <a class="nav-link header-link" href="/spdk.github.io/doc/releases.html">download</a>
+    <a class="nav-link header-link" href="/spdk.github.io/doc/">documentation</a>
+    <a class="nav-link header-link" href="/spdk.github.io/doc/contributing.html">development</a>
+    <a class="nav-link header-link" href="/spdk.github.io/doc/ci_tools.html">CI status</a>
+    <a class="nav-link header-link" href="/spdk.github.io/community/">community</a>
+    <a class="nav-link header-link" href="/spdk.github.io/blog/">Blog</a>
+    <a class="nav-link header-link" href="https://github.com/orgs/spdk/projects/5">Roadmap</a>
+    <a class="nav-link header-link" href="/spdk.github.io/news/">News</a>
+  </div>
+  <div class="navbar-end">
+    <a class="nav-link header-link" href="https://github.com/spdk/spdk" aria-label="GitHub">
+      <svg xmlns="http://www.w3.org/2000/svg" class="navbar-nav-svg" aria-hidden="true"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
+    </a>
+    <a id="cn_lang_btn" href="/spdk.github.io/cn/doc/" class="nav-link header-link">中文</a>
+  </div>
+</nav>
+<script>
+(function() {
+    var p = location.pathname, best = null, bLen = 0;
+    document.querySelectorAll('.header-link[href]').forEach(function(a) {
+        var raw = a.getAttribute('href');
+        if (!raw) return;
+        try { var u = new URL(raw, location.href); } catch(e) { return; }
+        if (u.origin !== location.origin) return;
+        var h = u.pathname;
+        if (h === '/') return;
+        var ok = h.endsWith('.html') ? p === h : p.indexOf(h) === 0;
+        if (ok && h.length > bLen) { bLen = h.length; best = a; }
+    });
+    if (best) best.classList.add('active');
+})();
+</script>
+
+
+    
+<div class="page-with-toc">
+  <aside class="site-toc">
+    <ul>
+      
+        <li>
+          <a href="../news/">用户案例</a>
+          
+        </li>
+      
+        <li>
+          <a href="../articles/">技术文章</a>
+          
+        </li>
+      
+        <li>
+          <a href="../whitepaper/">白皮书</a>
+          
+        </li>
+      
+        <li>
+          <a href="../webinar/">在线分享</a>
+          
+        </li>
+      
+    </ul>
+  </aside>
+
+  <div class="page-content">
+    <div class="page-header">
+      <h1>SPDK用户案例</h1>
+    </div>
+    <div class="content"><h2 id="阿里云">阿里云</h2>
+<h3 id="高性能云服务器本地ssd"><a href="https://promotion.aliyun.com/ntms/act/ecshighperformance.html?open_id=1d8213d3-b437-4596-a88a-d27798942d3a-&amp;open_cid=4703">高性能云服务器：本地SSD</a></h3>
+<blockquote>
+  <p>“本地存储设计：NVMe SSD+先进的SPDK存储技术……”</p>
+</blockquote>
+
+<h3 id="阿里云解决大规模高性能存储可靠性问题再次被系统领域顶会认可"><a href="https://mp.weixin.qq.com/s?__biz=MzUxNjE3MTcwMg==&amp;mid=2247484531&amp;idx=1&amp;sn=a2e2403553f35bd95dede1c20008c701&amp;chksm=f9aa36aaceddbfbc2ad61322d1429541c65433f0187cfed43da1abc5b0a74324b7f5e48b6664&amp;mpshare=1&amp;scene=1&amp;srcid=0725GYCQ4umImcE9RTra9b7Q&amp;sharer_sharetime=1595633885692&amp;sharer_shareid=1e1dec1b9475e3734b8e5a5d756cd987&amp;exportkey=A7u3lgJYloOKluHO9Anx%2FlU%3D&amp;pass_ticket=79U82s1g4cln4qPznk2LWHFfonukEua2qL0xjsaXGItU%2F7R8VRtV8ob3jpgdu23g&amp;wx_header=0#rd">阿里云解决大规模高性能存储可靠性问题再次被系统领域顶会认可!</a></h3>
+<blockquote>
+  <p>“阿里云操作系统团队，阿里云存储团队以及上海交通大学新兴并行计算研究中心一起合作的论文(Spool: Reliable Virtualized NVMe Storage Pool in Public Cloud Infrastructure)被系统领域著名会议USENIX ATC’20录用为长论文。Spool是我们4年前提出并在阿里云块存储持续落地的解决方案，Spool阐述了阿里云如何解决本地SSD实例存储服务的可靠性，以2.97%的性能损失，减少94%的数据丢失和90.58%的启动时间，并帮助基于SPDK的NVMe大规模稳定可靠的应用于生产，目前包括阿里云最新一代云存储ESSD也一直沿用Spool技术，这次我们的工作也又一次得到了系统顶级学术会议的认可，我们将在这篇文章中详细介绍Spool的工作细节。”</p>
+</blockquote>
+
+<h3 id="达摩院重要科技突破空天数据库引擎ganos解读"><a href="https://mp.weixin.qq.com/s?__biz=MzIzOTU0NTQ0MA==&amp;mid=2247503532&amp;idx=1&amp;sn=eaddf09ce693188bbf6666c77b07a4dd&amp;chksm=e92af3a3de5d7ab5ecda11a6bf033ef9c2273c4477f5f8ed2ca14367bac97fa2409403eee0e3&amp;mpshare=1&amp;scene=1&amp;srcid=0525S7YkL4NomFEDOCR1M1k3&amp;sharer_sharetime=1621907036591&amp;sharer_shareid=bce63ba0449f498eb13c109c5eaef06d&amp;exportkey=AzmPnGxc0qgnHCPMmLuQtLc%3D&amp;pass_ticket=EAT6tmcbITyDRRuPWQmxc5liib0leAceqPPZ15Olj89nWx6p9SSzzAPI%2BiUyCqo0&amp;wx_header=0#rd">达摩院重要科技突破！空天数据库引擎Ganos解读</a></h3>
+<blockquote>
+  <p>“基于PolarDB，Ganos采用了存计分离和分布式共享存储架构。计算和存储分离，将原有一体化设计的数据库的各个组件（计算/内存/存储）完全解耦，形成可独立伸缩的资源池。同时，为降低存计分离带来的写入和查询延迟，共享存储系统采用了端到端全用户态模式，融合了 RDMA、SPDK 等高速数据传输和存取软硬件技术，以及与近存储计算介质硬件结合的DB处理下推技术，有效地提升了空天数据的存储规模和处理能力。”</p>
+</blockquote>
+
+<h2 id="华为云">华为云</h2>
+<h3 id="打造极致性能领先时代的云存储"><a href="https://mp.weixin.qq.com/s?__biz=MzU2MDQyODg5OQ==&amp;mid=2247483678&amp;idx=1&amp;sn=1ae7ba94c9a1eb700b281f334349bcdd&amp;chksm=fc096312cb7eea04806cb1a79730c0b20a26be30cc598c9a48984c314e5a6ff9a2883d4548c0&amp;mpshare=1&amp;scene=1&amp;srcid=1011i0o8g9PMom1NJvNc6M1F&amp;pass_ticket=78pFPUJXIj2jXUbDK37gFxL1pHBmmS0LyvDfYau6Um90HlQij9oDVpABPtHWgusn#rd">打造极致性能&amp;领先时代的云存储</a></h3>
+<blockquote>
+  <p>“自研高效IO协议栈及SPDK，降低前后端时延、降低SSD读写时延……”</p>
+</blockquote>
+
+<h2 id="ucloud">UCloud</h2>
+<h3 id="13倍性能3倍稳定性提升ucloud云硬盘做了这些事"><a href="https://mp.weixin.qq.com/s?__biz=MzUwOTA1NDg4NQ==&amp;mid=2247485279&amp;idx=1&amp;sn=22d544ff61f95bee5d7c31741fa109fe&amp;chksm=f9195d95ce6ed483b630aa82868ec3c673578c916c701f040465d6ad0eb71d56ac527ba5bb4a&amp;mpshare=1&amp;scene=1&amp;srcid=1109eUsfiFQsJuWdHaci4KWL&amp;pass_ticket=M8iA8MZjqSvTO58%2BTEC99yB4Qp%2BWMsiSeWnXZdkmA8%2B93TtihBKMThXsAhUs3e1U#rd">13倍性能，3倍稳定性提升！UCloud云硬盘做了这些事</a></h3>
+<blockquote>
+  <p>“超高性能存储-RDMA+SPDK：SPDK可以在用户态高并发零拷贝地以用户态驱动直接访问NVME 固态硬盘。并利用轮询模式避免了内核上下文切换和中断处理带来的开销。”</p>
+</blockquote>
+
+<h3 id="ucloud-rssd云盘120万iops的背后spdk-io路径优化实践"><a href="https://mp.weixin.qq.com/s?__biz=MzUwOTA1NDg4NQ==&amp;mid=2247485707&amp;idx=1&amp;sn=c6f8e7ebe48a13e7783abc187c588002&amp;chksm=f91953c1ce6edad7c61b267acb0abc1292486ae70cf4883e9f811320f08a596874e12e0f7d72&amp;mpshare=1&amp;scene=1&amp;srcid=0523NZ3tMRR6jvAOYngdBkXB&amp;pass_ticket=wtEIGZYEis9CDCq2bHqr9cZpaldcKOrajkGA0dojARAuGlY%2FloOQcZQ%2FsK0w0KRa#rd">UCloud RSSD云盘120万IOPS的背后，SPDK IO路径优化实践</a></h3>
+<blockquote>
+  <p>“SPDK作为一个快速发展迭代的项目，每个版本都会给我们带来惊喜，里面也有很多有意思的功能等待我们发掘并进一步运用到云盘及其它产品性能的提升上。”</p>
+</blockquote>
+
+<h2 id="腾讯数据库">腾讯数据库</h2>
+<h3 id="可怕数据库竟然打破安迪-比尔定律"><a href="https://www.cnblogs.com/qcloud1001/p/9087911.html">可怕！数据库竟然打破安迪-比尔定律</a></h3>
+<blockquote>
+  <p>“ 对于单块的SSD Disk，相比传统的Direct IO方式，采用SPDK的直接数据传输无论在顺序读还是随机读模式都有超过一倍的性能提升，对比depth为1时的写性能，无论是随机写还是顺序写都有30%的性能提升。”</p>
+</blockquote>
+
+<h3 id="性能领跑云原生数据库市场英特尔携手腾讯共建云原生技术生态"><a href="https://cloud.it168.com/a2022/0616/6747/000006747234.shtml">性能领跑云原生数据库市场！英特尔携手腾讯共建云原生技术生态</a></h3>
+<blockquote>
+  <p>“为进一步深入优化产品架构和技术实现，TDSQL-C与英特尔技术团队积极开展联合创新。结合最新一代英特尔® 至强® 可扩展处理器以及英特尔® 傲腾™ 持久内存(PMem) 的硬件特性重构二级缓存设计方案，新版本在IO bound场景中的读写性能提升了2倍以上。TDSQL-C还携手英特尔多方位优化存储方案设计，如加入轮询、算法优化、消除锁等机制，优化存储引擎等，并引入由英特尔提供的SPDK开发套件，优化NVMe固态盘的IOPS和时延性能。”</p>
+</blockquote>
+
+<h2 id="腾讯云">腾讯云</h2>
+<h3 id="腾讯云存储发布三个性能第一新品让高性能应用轻松上云"><a href="https://mp.weixin.qq.com/s?__biz=MjM5NDQyNDQ0Mw==&amp;mid=2652396562&amp;idx=1&amp;sn=6da8907f5bdcb4f73dc7307a179d516b&amp;chksm=bd6b0f068a1c86108a7401cb1cb5a56a63e8a9adf42aca59121c21a11685768c4a06a5543495&amp;mpshare=1&amp;scene=1&amp;srcid=051836Xb2aZWt4X85oZP4k8G&amp;sharer_sharetime=1621389350055&amp;sharer_shareid=bce63ba0449f498eb13c109c5eaef06d&amp;exportkey=A2I9cCxluXFCYkF8NqacmEM%3D&amp;pass_ticket=BB1zGDOlf9tuiEOfomZl%2Bns5Dw6zh5OZZ7%2Fm90M4mBpsRWENC%2BaGtiJq7XyxXwnT&amp;wx_header=0#rd">腾讯云存储发布三个性能第一新品，让高性能应用轻松上云</a></h3>
+<blockquote>
+  <p>“当前，腾讯云的快，主要有几大因素，一是硬件使用了RDMA、持久化内存；同时，软件上采用SPDK技术、并优化链路实现零拷贝技术；另外，EC纠删码和无损压缩技术也保持了成本的优势。”</p>
+</blockquote>
+
+<h2 id="双11">双11</h2>
+<h3 id="浅谈分布式存储系统pangu20它让双11运维变得智能起来"><a href="https://yq.aliyun.com/articles/291207">浅谈分布式存储系统Pangu2.0——它让双11运维变得智能起来</a></h3>
+<blockquote>
+  <p>“首先，Pangu2.0拥有自己的单机存储引擎Bypass OS kernel，它是一个基于SPDK的用户态文件系统……”</p>
+</blockquote>
+
+<h3 id="高io型本地盘存储实例双十一中阿里如何将数据库性能提升100响应时间减少80"><a href="http://www.infoq.com/cn/news/2017/02/IO-ali-data-warehouse">高IO型本地盘存储实例：双十一中，阿里如何将数据库性能提升100%、响应时间减少80%？</a></h3>
+<blockquote>
+  <p>“为了解决I/O性能上的痛点，阿里云开始基于NVMe 协议和英特尔开源项目SPDK研发高IO存储实例……”</p>
+</blockquote>
+
+<h3 id="阿里数据库十年变迁那些你不知道的二三事"><a href="https://mp.weixin.qq.com/s?__biz=MzIzOTU0NTQ0MA==&amp;mid=2247488607&amp;idx=1&amp;sn=19e53786933d0c106fa5db842d10ce36&amp;chksm=e9292950de5ea046f0502473454f111a94c8bcf21a83030a5a62466f49abd6653aaaa2f2a0ad&amp;mpshare=1&amp;scene=1&amp;srcid=1204PQWDOwPML9yl7dblk6EV&amp;pass_ticket=M8iA8MZjqSvTO58%2BTEC99yB4Qp%2BWMsiSeWnXZdkmA8%2B93TtihBKMThXsAhUs3e1U#rd">阿里数据库十年变迁，那些你不知道的二三事</a></h3>
+<blockquote>
+  <p>“ ……2018年双11，随着存储计算分离技术的大规模使用，标志着数据库进入了一个新的时代……”</p>
+</blockquote>
+
+<h2 id="红包场景">红包场景</h2>
+<h3 id="spdknvme-ssd对接virtio支撑红包场景性能"><a href="https://mp.weixin.qq.com/s/nP62NpX0NAo4BZhpkAWaQg">SPDK+NVMe SSD对接Virtio支撑红包场景性能</a></h3>
+<blockquote>
+  <p>“最终在块设备层使用了标准virtio blk驱动；硬件驱动使用了SPDK工具集；硬件使用了NVMe SSD……”</p>
+</blockquote>
+
+<h2 id="深信服sangfor">深信服(Sangfor)</h2>
+<h3 id="三万英尺看分布式存储中本地存储引擎"><a href="https://mp.weixin.qq.com/s?__biz=MjM5ODI5Njc2MA==&amp;mid=2655831732&amp;idx=2&amp;sn=2ef2f5b338fc7145d87fe7685d9335aa&amp;chksm=bd748b638a03027558f6925d48fe12ba27aedd5aa749dddad5e40592bf7e79249c144d27a200&amp;mpshare=1&amp;scene=1&amp;srcid=&amp;sharer_sharetime=1590671665398&amp;sharer_shareid=bce63ba0449f498eb13c109c5eaef06d&amp;exportkey=A%2FGUxq5dqdlstzBGYEhU9l0%3D&amp;pass_ticket=QOTscjJWy3u2k7TmQww%2FS9XnYJkCuG109UsYE3PYjmwWTEFMXGD09hVFmSqMD30e#rd">三万英尺看分布式存储中本地存储引擎</a></h3>
+<blockquote>
+  <p>“我们简单介绍深信服企业级分布式存储EDS团队在高性能本地存储的实践之路。PFStore(Phoenix Fast Store)是EDS团队自研的基于SPDK的用户态本地存储引擎……”</p>
+</blockquote>
+
+<h2 id="金山云">金山云</h2>
+<h3 id="金山云英特尔混合云存储市场的创新者"><a href="https://www.sohu.com/a/418794638_351410">金山云+英特尔：混合云存储市场的“创新者”</a></h3>
+<blockquote>
+  <p>“金山云使用SPDK之后，用户态的驱动通过轮询硬件而不是依赖中断来完成，这可以降低总延迟和减少延迟差异，并且和内核驱动相比，在每个CPU内核的IOPS上具有更明显的性能优势；同时，SPDK具备I/O路径的无锁高性能模式，避免了所有在I/O关键路径中的锁，而是依靠消息传递在多个线程中共享资源，从而提高了并行性。可以说，SPDK 有效整合了英特尔的网络、数据和存储技术，真正将固态存储介质的性能潜力充分发挥了出来……”</p>
+</blockquote>
+
+<h2 id="中国移动">中国移动</h2>
+<h3 id="干货分享spdk技术简介和一些实践经验"><a href="https://mp.weixin.qq.com/s?__biz=MzIzMzk0MDgxNQ==&amp;mid=2247490879&amp;idx=1&amp;sn=40a0e5cbdd734599fb48eb9c112b3fa7&amp;chksm=e8fcaf1fdf8b2609963fd4b8e9ddc65b4fd715d9df462caf7882a5d5845ef45f618eb0dc8ca1&amp;mpshare=1&amp;scene=1&amp;srcid=1215BOAcuZ7lwU2fVkbm4OAr&amp;sharer_sharetime=1608102337386&amp;sharer_shareid=bce63ba0449f498eb13c109c5eaef06d&amp;exportkey=A%2BQX%2BiRdm%2Bom2sojFFMlT%2B4%3D&amp;pass_ticket=%2BFOpaf%2FRhmSk8QlTrXaIrM3MOdG3DByrpKT3%2F1pvRnoDbSG1NVORPrCDLUjU0PZ8&amp;wx_header=0#rd">干货分享|SPDK技术简介和一些实践经验</a></h3>
+<blockquote>
+  <p>“SPDK能有优异的性能，离不开它优异的线程模型，实际使用过程中核的分配相当重要，从上面可以看出，在后端是ceph的场景下，ceph线程运行的核如果没有规划……”</p>
+</blockquote>
+
+<h2 id="美团">美团</h2>
+<h3 id="rocksdb加spdk改善吞吐能力建设"><a href="https://mp.weixin.qq.com/s?__biz=MzI3NDA4ODY4MA==&amp;mid=2653337548&amp;idx=1&amp;sn=126be7995677120b5da6f68f78875e61&amp;chksm=f0cb404bc7bcc95d769f6e5abcb6c4e403fc4a2078270b151493277545a7608317c5afa38707&amp;scene=0&amp;xtrack=1&amp;exportkey=A1sqiH%2BMBtpcYEqZYRxO3%2BY%3D&amp;pass_ticket=Yqc82YTsvhRYO%2F9LVG0fQnlhT4AQex%2BS%2BcfddHU25xFgtLVwCovG%2BHck3uYODoz7&amp;wx_header=0#rd">Rocksdb加SPDK改善吞吐能力建设</a></h3>
+<blockquote>
+  <p>“以上便是我们有关rocksdb吞吐能力建设所做的一些改进和尝试，核心内容主要围绕在如何与SPDK做有效整合，从而实现kernal旁路机制，以及如何通过异步化访问来提升整体吞吐。”</p>
+</blockquote>
+
+<h3 id="速度与压缩比如何兼得压缩算法在构建部署中的优化"><a href="https://mp.weixin.qq.com/s?__biz=MzI3NDA4ODY4MA==&amp;mid=2653337496&amp;idx=1&amp;sn=7488f53349a8305402c31fb29a64548d&amp;chksm=f0cb401fc7bcc909d804c39e86118be3b2b219bc5adcbe3c6e0a738745d47df52351560a5f73&amp;scene=0&amp;xtrack=1&amp;exportkey=A3g9BgwANfOTTNkJuJvcc2c%3D&amp;pass_ticket=Yqc82YTsvhRYO%2F9LVG0fQnlhT4AQex%2BS%2BcfddHU25xFgtLVwCovG%2BHck3uYODoz7&amp;wx_header=0#rd">速度与压缩比如何兼得？压缩算法在构建部署中的优化</a></h3>
+<blockquote>
+  <p>“综合以上几点，决定一期采取 ISA-L 的方式加速，可以最稳定并且较高速地提升构建平台的效率”</p>
+</blockquote>
+
+<h2 id="浪潮">浪潮</h2>
+<h3 id="软硬件结合分布式数据库znbase存储架构优化实践软硬件结合分布式数据库znbase存储架构优化实践"><a href="https://baijiahao.baidu.com/s?id=1708408682720278227&amp;wfr=spider&amp;for=pc">软硬件结合，分布式数据库ZNBase存储架构优化实践软硬件结合，分布式数据库ZNBase存储架构优化实践</a></h3>
+<blockquote>
+  <p>“由于RocksDB采用LSM-Tree架构，同样也存在一定的问题。比如在大数据量下有比较高的读放大、写放大、空间放大，性能衰减也比较厉害。为了提高ZNBase在海量数据下的性能表现，ZNBase团队结合浪潮的硬件优势，开发了使用SPDK驱动在专用硬件ZNS SSD上进行软硬件融合的存储引擎……”</p>
+</blockquote>
+
+<h2 id="更多spdk使用案例请参考news页面">更多SPDK使用案例，请参考<a href="/news">news</a>页面</h2>
+</div>
+  </div>
+</div>
+
+
+
+
+    <footer class="footer" id="nav-path">
+  <div class="footer-inner">
+    <div class="footer-copy">
+      <small>Copyright &copy; SPDK a Series of LF Projects, LLC. For web site terms of use, trademark policy, and other
+      project policies please see <a href="https://lfprojects.org">lfprojects.org</a>.</small>
+    </div>
+  </div>
+</footer>
+
+
+    
+  </body>
+</html>

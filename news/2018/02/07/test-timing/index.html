@@ -1,0 +1,167 @@
+<!doctype html>
+<html lang="en">
+  <head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="The Storage Performance Development Kit (SPDK) provides a set of tools and libraries for writing high performance, scalable, user-mode storage applications. It achieves high performance by moving all of the necessary drivers into userspace and operating in a polled mode instead of relying on interrupts, which avoids kernel context switches and eliminates interrupt handling overhead.
+">
+  <meta name="author" content="Benjamin Walker">
+
+  <title>How Long Did My Test Take?</title>
+
+  <link rel="icon" type="image/svg+xml" href="/spdk.github.io/assets/img/spdk.svg">
+  <link rel="icon" href="/spdk.github.io/assets/favicon.ico" sizes="32x32">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:400,700,900" type="text/css">
+  <link rel="stylesheet" href="/spdk.github.io/assets/css/spdk.css">
+
+  <link href="/spdk.github.io/feed.xml" type="application/atom+xml" rel="alternate" title="Atom Feed">
+</head>
+
+
+  <body>
+    <nav class="navbar">
+  <a class="navbar-brand" href="/spdk.github.io/" aria-label="SPDK">
+    <img src="/spdk.github.io/assets/img/spdk.svg" width="36" height="36" alt="Storage Performance Development Kit">
+  </a>
+  <div class="navbar-nav">
+    <a class="nav-link header-link" href="/spdk.github.io/doc/releases.html">download</a>
+    <a class="nav-link header-link" href="/spdk.github.io/doc/">documentation</a>
+    <a class="nav-link header-link" href="/spdk.github.io/doc/contributing.html">development</a>
+    <a class="nav-link header-link" href="/spdk.github.io/doc/ci_tools.html">CI status</a>
+    <a class="nav-link header-link" href="/spdk.github.io/community/">community</a>
+    <a class="nav-link header-link" href="/spdk.github.io/blog/">Blog</a>
+    <a class="nav-link header-link" href="https://github.com/orgs/spdk/projects/5">Roadmap</a>
+    <a class="nav-link header-link" href="/spdk.github.io/news/">News</a>
+  </div>
+  <div class="navbar-end">
+    <a class="nav-link header-link" href="https://github.com/spdk/spdk" aria-label="GitHub">
+      <svg xmlns="http://www.w3.org/2000/svg" class="navbar-nav-svg" aria-hidden="true"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
+    </a>
+    <a id="cn_lang_btn" href="/spdk.github.io/cn/doc/" class="nav-link header-link">中文</a>
+  </div>
+</nav>
+<script>
+(function() {
+    var p = location.pathname, best = null, bLen = 0;
+    document.querySelectorAll('.header-link[href]').forEach(function(a) {
+        var raw = a.getAttribute('href');
+        if (!raw) return;
+        try { var u = new URL(raw, location.href); } catch(e) { return; }
+        if (u.origin !== location.origin) return;
+        var h = u.pathname;
+        if (h === '/') return;
+        var ok = h.endsWith('.html') ? p === h : p.indexOf(h) === 0;
+        if (ok && h.length > bLen) { bLen = h.length; best = a; }
+    });
+    if (best) best.classList.add('active');
+})();
+</script>
+
+
+    <div class="page-content">
+  <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+  <header class="post-header">
+
+    <div class="page-header">
+      <h1>How Long Did My Test Take?</h1>
+    </div>
+
+    <p class="post-meta">
+      <time datetime="2018-02-07T00:00:00+01:00" itemprop="datePublished">
+        Feb 7, 2018
+      </time>
+      
+      •
+      <span itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <span itemprop="name">Paul Luse</span>
+      </span>
+      
+    </p>
+  </header>
+
+  <div class="content" itemprop="articleBody"><p>When submitting a new unit test, it’s not necessary to worry too much
+about how long the test takes because there’s no real hardware involved
+so the unit tests execute super-fast.</p>
+
+<p>However, when you are adding a test that runs either per patch or on a
+nightly basis (one that uses real hardware) it’s very important to understand
+how long the test takes.  It’s far too easy to unintentionally increase
+the per patch or nightly tests by an amount that will either cause the
+series of tests to timeout or simply waste valuable limited resources in
+the test pool.</p>
+
+<p>When adding a test that does IO to an NVMe-oF target, for example, you might
+run FIO for 30 seconds thinking you’ve added only 30 seconds when in reality
+you may have added up to 3x that (or more) because of the time it takes for
+the automated software to setup the test bed.</p>
+
+<p>Fortunately there’s an easy way in the SPDK CI system to see how long any
+specific timestamped series of commands takes.  For this to work, all you
+have to do is make sure you surround the code that invokes your tests with
+timing enter and exit functions. You do this in the shell script that you’ve
+added or modified while adding your test.</p>
+
+<p>For example, in <code class="language-plaintext highlighter-rouge">spdk/test/nvmf/nvmf.sh</code>, you can see examples of this:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>timing_enter nvmf_tgt
+...your code...
+timing_exit nvmf_tgt
+</code></pre></div></div>
+
+<p>And you can nest these statements as well.</p>
+
+<p>Once you’ve done this and submitted your patch, you can use timing charts
+that are automatically generated as part of the CI process to see how long
+things are taking.  To get to the timing charts, start by finding your patch
+on <a href="https://review.gerrithub.io/#/q/project:spdk/spdk+status:open">GerritHub</a>.</p>
+
+<p>Now find your +1 verified link to the build output as shown below:</p>
+
+<p><img src="/assets/img/blog/test-timing/plus_1.png" alt="CI Link" title="CI Link" /></p>
+
+<p>Next, you need to figure out which test system actually executed your test as not
+all test systems run all tests. You can look at the test system descriptions, as
+shown below, to help make that determination. Otherwise you can just look through
+all of them until you see your timing labels. Click on the test system once you find it.</p>
+
+<p><img src="/assets/img/blog/test-timing/test_system.png" alt="Test System Link" title="Test System Link" /></p>
+
+<p>In the directory listing, you’ll see the file <code class="language-plaintext highlighter-rouge">timing.svg</code>; click on it.</p>
+
+<p><img src="/assets/img/blog/test-timing/dir_list.png" alt="Directory Listing" title="Directory Listing" /></p>
+
+<p>Now you will see the timing chart showing the test time per block as defined
+by the timing labels described earlier. As you mouse-over each block you will
+see the test time for that block and all those above it.</p>
+
+<p><img src="/assets/img/blog/test-timing/timing.png" alt="Timing" title="Timing" /></p>
+
+<p>So now what? This information isn’t very useful without a baseline so you also
+need to see the pictures without your test added. Well, on that same CI Status
+page you will see a link in the upper right hand part of the screen to to a patch
+(it will be different every time depending on what ran last) that starts with
+the text “Latest master build is”. If you click on that link, you’ll see the last
+master build and can look at those timing diagrams and compare to yours. You may
+need to consider how long it’s been since yours ran. If, for example, some things
+changed that affect the timings you are interested in you’ll need to rebase your
+patch and re-run.</p>
+
+<p>Good luck and have fun!</p>
+</div>
+</article>
+</div>
+
+
+    <footer class="footer" id="nav-path">
+  <div class="footer-inner">
+    <div class="footer-copy">
+      <small>Copyright &copy; SPDK a Series of LF Projects, LLC. For web site terms of use, trademark policy, and other
+      project policies please see <a href="https://lfprojects.org">lfprojects.org</a>.</small>
+    </div>
+  </div>
+</footer>
+
+
+    
+  </body>
+</html>

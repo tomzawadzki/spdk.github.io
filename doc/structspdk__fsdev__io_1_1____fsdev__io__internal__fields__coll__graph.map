@@ -1,0 +1,16 @@
+<map id="spdk_fsdev_io::__fsdev_io_internal_fields" name="spdk_fsdev_io::__fsdev_io_internal_fields">
+<area shape="rect" id="Node000001" title="Fields that are used internally by the fsdev subsystem." alt="" coords="9,14,181,58"/>
+<area shape="rect" id="Node000002" href="$structspdk__fsdev__io.html" title=" " alt="" coords="291,164,405,191"/>
+<area shape="poly" id="edge7_Node000002_Node000001" title=" " alt="" coords="197,26,234,33,268,47,298,73,320,105,335,136,345,162,340,164,330,139,315,107,294,76,265,52,232,38,196,31"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="320,155,295,132,265,110,214,83,163,61,165,57,217,78,268,106,298,128,324,151"/>
+<area shape="rect" id="Node000003" href="$structspdk__fsdev.html" title=" " alt="" coords="47,108,143,135"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="158,127,267,148,308,160,306,165,266,153,157,132"/>
+<area shape="rect" id="Node000010" href="$structspdk__fsdev__mount__opts.html" title="fsdev mount options" alt="" coords="5,164,185,191"/>
+<area shape="poly" id="edge3_Node000002_Node000010" title=" " alt="" coords="200,175,290,175,290,180,200,180"/>
+<area shape="rect" id="Node000011" href="$structspdk__fsdev__io__opts.html" title="Structure with optional fsdev IO parameters The content of this structure must be valid until the IO ..." alt="" coords="20,220,170,247"/>
+<area shape="poly" id="edge4_Node000002_Node000011" title=" " alt="" coords="184,221,266,205,312,189,314,194,267,210,185,226"/>
+<area shape="rect" id="Node000012" href="$structspdk__fsdev__file__attr.html" title=" " alt="" coords="19,276,171,303"/>
+<area shape="poly" id="edge5_Node000002_Node000012" title=" " alt="" coords="186,275,227,264,265,248,304,220,333,190,337,193,308,224,268,253,228,269,188,280"/>
+<area shape="rect" id="Node000013" href="$structspdk__fsdev__file__statfs.html" title=" " alt="" coords="12,332,178,359"/>
+<area shape="poly" id="edge6_Node000002_Node000013" title=" " alt="" coords="193,331,231,319,265,300,292,275,313,245,339,190,344,193,318,247,296,278,268,305,233,324,195,337"/>
+</map>

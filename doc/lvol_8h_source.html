@@ -1,0 +1,652 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<meta name="generator" content="Doxygen 1.16.1">
+	<title>SPDK: lvol.h Source File</title>
+	<script type="text/javascript" src="jquery.js"></script>
+	<script type="text/javascript" src="dynsections.js"></script>
+	<script type="text/javascript" src="clipboard.js"></script>
+	<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
+<script type="text/javascript" src="cookie.js"></script>
+	<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<script type="text/javascript">
+  $(function() { init_search(); });
+</script>
+	<link rel="icon" type="image/svg+xml" href="../assets/img/spdk.svg">
+	<link rel="icon" href="../assets/favicon.ico" sizes="32x32">
+	<link href="doxygen.css" rel="stylesheet" type="text/css">
+	<script>(function(){var k='doxygen_width',w,bw=6;if(window.chrome){w=localStorage.getItem(k);if(!w){w='350';localStorage.setItem(k,w)}}else{var m=document.cookie.match(new RegExp(k+'=(\\d+)'));w=m?m[1]:null;if(!w){w='350';document.cookie=k+'=350;SameSite=Lax;path=/'}}document.documentElement.style.setProperty('--sn-w',(parseInt(w)+bw)+'px')})()</script>
+	<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:400,700,900" type="text/css">
+	<link href="spdk.css" rel="stylesheet" type="text/css"/>
+	<link href="../assets/css/spdk.css" rel="stylesheet" type="text/css">
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<nav class="navbar">
+  <a class="navbar-brand" href="../" aria-label="SPDK">
+    <img src="../assets/img/spdk.svg" width="36" height="36" alt="Storage Performance Development Kit">
+  </a>
+  <div class="navbar-nav">
+    <a class="nav-link header-link" href="../doc/releases.html">download</a>
+    <a class="nav-link header-link" href="../doc/">documentation</a>
+    <a class="nav-link header-link" href="../doc/contributing.html">development</a>
+    <a class="nav-link header-link" href="../doc/ci_tools.html">CI status</a>
+    <a class="nav-link header-link" href="../community/">community</a>
+    <a class="nav-link header-link" href="../blog/">Blog</a>
+    <a class="nav-link header-link" href="https://github.com/orgs/spdk/projects/5">Roadmap</a>
+    <a class="nav-link header-link" href="../news/">News</a>
+  </div>
+  <div class="navbar-end">
+    <a class="nav-link header-link" href="https://github.com/spdk/spdk" aria-label="GitHub">
+      <svg xmlns="http://www.w3.org/2000/svg" class="navbar-nav-svg" aria-hidden="true"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
+    </a>
+    <a id="cn_lang_btn" href="../cn/doc/" class="nav-link header-link">中文</a>
+  </div>
+</nav>
+<script>
+(function() {
+    var p = location.pathname, best = null, bLen = 0;
+    document.querySelectorAll('.header-link[href]').forEach(function(a) {
+        var raw = a.getAttribute('href');
+        if (!raw) return;
+        try { var u = new URL(raw, location.href); } catch(e) { return; }
+        if (u.origin !== location.origin) return;
+        var h = u.pathname;
+        if (h === '/') return;
+        var ok = h.endsWith('.html') ? p === h : p.indexOf(h) === 0;
+        if (ok && h.length > bLen) { bLen = h.length; best = a; }
+    });
+    if (best) best.classList.add('active');
+})();
+</script>
+<div id="doxygen-searchbox">        <div id="MSearchBox" class="MSearchBoxInactive">
+        <span class="left">
+          <span id="MSearchSelect" class="search-icon" onmouseover="return searchBox.OnSearchSelectShow()" onmouseout="return searchBox.OnSearchSelectHide()"><span class="search-icon-dropdown"></span></span>
+          <input type="text" id="MSearchField" value="" placeholder="Search" accesskey="S"
+               onfocus="searchBox.OnSearchFieldFocus(true)" 
+               onblur="searchBox.OnSearchFieldFocus(false)" 
+               onkeyup="searchBox.OnSearchFieldChange(event)"/>
+          </span><span class="right">
+            <a id="MSearchClose" href="javascript:searchBox.CloseResultsWindow()"><div id="MSearchCloseImg" class="close-icon"></div></a>
+          </span>
+        </div>
+</div>
+<!-- Generated by Doxygen 1.16.1 -->
+<script type="text/javascript">
+var searchBox = new SearchBox("searchBox", "search/",'.html');
+</script>
+<script type="text/javascript">
+$(function() { codefold.init(); });
+</script>
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+$(function(){initNavTree('lvol_8h_source.html','',''); });
+</script>
+<div id="container">
+<div id="doc-content">
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">Loading...</div>
+<div class="SRStatus" id="Searching">Searching...</div>
+<div class="SRStatus" id="NoMatches">No Matches</div>
+</div>
+</div>
+</div>
+</div>
+
+<div class="header">
+  <div class="headertitle"><div class="title">lvol.h</div></div>
+</div><!--header-->
+<div class="contents">
+<a href="lvol_8h.html">Go to the documentation of this file.</a><div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span><span class="comment">/*   SPDX-License-Identifier: BSD-3-Clause</span></div>
+<div class="line"><a id="l00002" name="l00002"></a><span class="lineno">    2</span><span class="comment"> *   Copyright (C) 2017 Intel Corporation.</span></div>
+<div class="line"><a id="l00003" name="l00003"></a><span class="lineno">    3</span><span class="comment"> *   All rights reserved.</span></div>
+<div class="line"><a id="l00004" name="l00004"></a><span class="lineno">    4</span><span class="comment"> *   Copyright (c) 2022-2023 NVIDIA CORPORATION &amp; AFFILIATES. All rights reserved.</span></div>
+<div class="line"><a id="l00005" name="l00005"></a><span class="lineno">    5</span><span class="comment"> */</span></div>
+<div class="line"><a id="l00006" name="l00006"></a><span class="lineno">    6</span><span class="comment"></span> </div>
+<div class="line"><a id="l00007" name="l00007"></a><span class="lineno">    7</span><span class="comment">/** \file</span></div>
+<div class="line"><a id="l00008" name="l00008"></a><span class="lineno">    8</span><span class="comment"> * Logical Volume Interface</span></div>
+<div class="line"><a id="l00009" name="l00009"></a><span class="lineno">    9</span><span class="comment"> */</span></div>
+<div class="line"><a id="l00010" name="l00010"></a><span class="lineno">   10</span> </div>
+<div class="line"><a id="l00011" name="l00011"></a><span class="lineno">   11</span><span class="preprocessor">#ifndef SPDK_LVOL_H</span></div>
+<div class="line"><a id="l00012" name="l00012"></a><span class="lineno">   12</span><span class="preprocessor">#define SPDK_LVOL_H</span></div>
+<div class="line"><a id="l00013" name="l00013"></a><span class="lineno">   13</span> </div>
+<div class="line"><a id="l00014" name="l00014"></a><span class="lineno">   14</span><span class="preprocessor">#include &quot;<a class="code" href="stdinc_8h.html">spdk/stdinc.h</a>&quot;</span></div>
+<div class="line"><a id="l00015" name="l00015"></a><span class="lineno">   15</span><span class="preprocessor">#include &quot;<a class="code" href="blob_8h.html">spdk/blob.h</a>&quot;</span></div>
+<div class="line"><a id="l00016" name="l00016"></a><span class="lineno">   16</span><span class="preprocessor">#include &quot;<a class="code" href="uuid_8h.html">spdk/uuid.h</a>&quot;</span></div>
+<div class="line"><a id="l00017" name="l00017"></a><span class="lineno">   17</span> </div>
+<div class="line"><a id="l00018" name="l00018"></a><span class="lineno">   18</span><span class="preprocessor">#ifdef __cplusplus</span></div>
+<div class="line"><a id="l00019" name="l00019"></a><span class="lineno">   19</span><span class="keyword">extern</span> <span class="stringliteral">&quot;C&quot;</span> {</div>
+<div class="line"><a id="l00020" name="l00020"></a><span class="lineno">   20</span><span class="preprocessor">#endif</span></div>
+<div class="line"><a id="l00021" name="l00021"></a><span class="lineno">   21</span> </div>
+<div class="line"><a id="l00022" name="l00022"></a><span class="lineno">   22</span><span class="keyword">struct </span><a class="code hl_struct" href="structspdk__bs__dev.html">spdk_bs_dev</a>;</div>
+<div class="line"><a id="l00023" name="l00023"></a><span class="lineno">   23</span><span class="keyword">struct </span>spdk_lvol_store;</div>
+<div class="line"><a id="l00024" name="l00024"></a><span class="lineno">   24</span><span class="keyword">struct </span>spdk_lvol;</div>
+<div class="line"><a id="l00025" name="l00025"></a><span class="lineno">   25</span> </div>
+<div class="line"><a id="l00026" name="l00026"></a><span class="lineno">   26</span><span class="keyword">enum</span> lvol_clear_method {</div>
+<div class="line"><a id="l00027" name="l00027"></a><span class="lineno">   27</span>        LVOL_CLEAR_WITH_DEFAULT = BLOB_CLEAR_WITH_DEFAULT,</div>
+<div class="line"><a id="l00028" name="l00028"></a><span class="lineno">   28</span>        LVOL_CLEAR_WITH_NONE = BLOB_CLEAR_WITH_NONE,</div>
+<div class="line"><a id="l00029" name="l00029"></a><span class="lineno">   29</span>        LVOL_CLEAR_WITH_UNMAP = BLOB_CLEAR_WITH_UNMAP,</div>
+<div class="line"><a id="l00030" name="l00030"></a><span class="lineno">   30</span>        LVOL_CLEAR_WITH_WRITE_ZEROES = BLOB_CLEAR_WITH_WRITE_ZEROES,</div>
+<div class="line"><a id="l00031" name="l00031"></a><span class="lineno">   31</span>};</div>
+<div class="line"><a id="l00032" name="l00032"></a><span class="lineno">   32</span> </div>
+<div class="line"><a id="l00033" name="l00033"></a><span class="lineno">   33</span><span class="keyword">enum</span> lvs_clear_method {</div>
+<div class="line"><a id="l00034" name="l00034"></a><span class="lineno">   34</span>        LVS_CLEAR_WITH_UNMAP = BS_CLEAR_WITH_UNMAP,</div>
+<div class="line"><a id="l00035" name="l00035"></a><span class="lineno">   35</span>        LVS_CLEAR_WITH_WRITE_ZEROES = BS_CLEAR_WITH_WRITE_ZEROES,</div>
+<div class="line"><a id="l00036" name="l00036"></a><span class="lineno">   36</span>        LVS_CLEAR_WITH_NONE = BS_CLEAR_WITH_NONE,</div>
+<div class="line"><a id="l00037" name="l00037"></a><span class="lineno">   37</span>};</div>
+<div class="line"><a id="l00038" name="l00038"></a><span class="lineno">   38</span> </div>
+<div class="line"><a id="l00039" name="l00039"></a><span class="lineno">   39</span><span class="comment">/* Must include null terminator. */</span></div>
+<div class="line"><a id="l00040" name="l00040"></a><span class="lineno">   40</span><span class="preprocessor">#define SPDK_LVS_NAME_MAX       64</span></div>
+<div class="line"><a id="l00041" name="l00041"></a><span class="lineno">   41</span><span class="preprocessor">#define SPDK_LVOL_NAME_MAX      64</span></div>
+<div class="line"><a id="l00042" name="l00042"></a><span class="lineno">   42</span><span class="comment"></span> </div>
+<div class="line"><a id="l00043" name="l00043"></a><span class="lineno">   43</span><span class="comment">/**</span></div>
+<div class="line"><a id="l00044" name="l00044"></a><span class="lineno">   44</span><span class="comment"> * Parameters for lvolstore initialization.</span></div>
+<div class="line"><a id="l00045" name="l00045"></a><span class="lineno">   45</span><span class="comment"> */</span></div>
+<div class="foldopen" id="foldopen00046" data-start="{" data-end="};">
+<div class="line"><a id="l00046" name="l00046"></a><span class="lineno"><a class="line" href="structspdk__lvs__opts.html">   46</a></span><span class="keyword">struct </span><a class="code hl_struct" href="structspdk__lvs__opts.html">spdk_lvs_opts</a> {<span class="comment"></span></div>
+<div class="line"><a id="l00047" name="l00047"></a><span class="lineno">   47</span><span class="comment">        /** Size of cluster in bytes. Must be multiple of 4KiB page size. */</span></div>
+<div class="line"><a id="l00048" name="l00048"></a><span class="lineno"><a class="line" href="structspdk__lvs__opts.html#a7de65fde2acf310c0d7ba4479d368f46">   48</a></span>        uint32_t                <a class="code hl_variable" href="structspdk__lvs__opts.html#a7de65fde2acf310c0d7ba4479d368f46">cluster_sz</a>;</div>
+<div class="line"><a id="l00049" name="l00049"></a><span class="lineno">   49</span><span class="comment"></span> </div>
+<div class="line"><a id="l00050" name="l00050"></a><span class="lineno">   50</span><span class="comment">        /** Clear method */</span></div>
+<div class="line"><a id="l00051" name="l00051"></a><span class="lineno"><a class="line" href="structspdk__lvs__opts.html#ad72430d6eb4550837aca4946a3990f8e">   51</a></span>        <span class="keyword">enum</span> lvs_clear_method   <a class="code hl_variable" href="structspdk__lvs__opts.html#ad72430d6eb4550837aca4946a3990f8e">clear_method</a>;</div>
+<div class="line"><a id="l00052" name="l00052"></a><span class="lineno">   52</span><span class="comment"></span> </div>
+<div class="line"><a id="l00053" name="l00053"></a><span class="lineno">   53</span><span class="comment">        /** Name of the lvolstore */</span></div>
+<div class="line"><a id="l00054" name="l00054"></a><span class="lineno"><a class="line" href="structspdk__lvs__opts.html#aa8ddc17ea3ac0cf9ef7f866cf1fac3e0">   54</a></span>        <span class="keywordtype">char</span>                    <a class="code hl_variable" href="structspdk__lvs__opts.html#aa8ddc17ea3ac0cf9ef7f866cf1fac3e0">name</a>[SPDK_LVS_NAME_MAX];</div>
+<div class="line"><a id="l00055" name="l00055"></a><span class="lineno">   55</span><span class="comment"></span> </div>
+<div class="line"><a id="l00056" name="l00056"></a><span class="lineno">   56</span><span class="comment">        /** num_md_pages_per_cluster_ratio = 100 means 1 page per cluster */</span></div>
+<div class="line"><a id="l00057" name="l00057"></a><span class="lineno"><a class="line" href="structspdk__lvs__opts.html#a441dae8d3badece5ef1c52eca5b55cea">   57</a></span>        uint32_t                <a class="code hl_variable" href="structspdk__lvs__opts.html#a441dae8d3badece5ef1c52eca5b55cea">num_md_pages_per_cluster_ratio</a>;</div>
+<div class="line"><a id="l00058" name="l00058"></a><span class="lineno">   58</span><span class="comment"></span> </div>
+<div class="line"><a id="l00059" name="l00059"></a><span class="lineno">   59</span><span class="comment">        /**</span></div>
+<div class="line"><a id="l00060" name="l00060"></a><span class="lineno">   60</span><span class="comment">         * The size of spdk_lvol_opts according to the caller of this library is used for ABI</span></div>
+<div class="line"><a id="l00061" name="l00061"></a><span class="lineno">   61</span><span class="comment">         * compatibility. The library uses this field to know how many fields in this</span></div>
+<div class="line"><a id="l00062" name="l00062"></a><span class="lineno">   62</span><span class="comment">         * structure are valid. And the library will populate any remaining fields with default</span></div>
+<div class="line"><a id="l00063" name="l00063"></a><span class="lineno">   63</span><span class="comment">         * values. After that, new added fields should be put in the end of the struct.</span></div>
+<div class="line"><a id="l00064" name="l00064"></a><span class="lineno">   64</span><span class="comment">         */</span></div>
+<div class="line"><a id="l00065" name="l00065"></a><span class="lineno"><a class="line" href="structspdk__lvs__opts.html#acb87d4e7eddafa21f26296a4c714db58">   65</a></span>        uint32_t                <a class="code hl_variable" href="structspdk__lvs__opts.html#acb87d4e7eddafa21f26296a4c714db58">opts_size</a>;</div>
+<div class="line"><a id="l00066" name="l00066"></a><span class="lineno">   66</span><span class="comment"></span> </div>
+<div class="line"><a id="l00067" name="l00067"></a><span class="lineno">   67</span><span class="comment">        /**</span></div>
+<div class="line"><a id="l00068" name="l00068"></a><span class="lineno">   68</span><span class="comment">         * A function to be called to load external snapshots. If this is NULL while the lvolstore</span></div>
+<div class="line"><a id="l00069" name="l00069"></a><span class="lineno">   69</span><span class="comment">         * is being loaded, the lvolstore will not support external snapshots.</span></div>
+<div class="line"><a id="l00070" name="l00070"></a><span class="lineno">   70</span><span class="comment">         */</span></div>
+<div class="line"><a id="l00071" name="l00071"></a><span class="lineno"><a class="line" href="structspdk__lvs__opts.html#acd478088cf88a9731e689ae48ea461e0">   71</a></span>        <a class="code hl_typedef" href="blob_8h.html#aa9de71c711c86a2fb7b9a7d967ebede4">spdk_bs_esnap_dev_create</a> <a class="code hl_variable" href="structspdk__lvs__opts.html#acd478088cf88a9731e689ae48ea461e0">esnap_bs_dev_create</a>;</div>
+<div class="line"><a id="l00072" name="l00072"></a><span class="lineno">   72</span><span class="comment"></span> </div>
+<div class="line"><a id="l00073" name="l00073"></a><span class="lineno">   73</span><span class="comment">        /** Metadata page size */</span></div>
+<div class="line"><a id="l00074" name="l00074"></a><span class="lineno"><a class="line" href="structspdk__lvs__opts.html#a9be3f1e2393c257a3089b5f32849ab0d">   74</a></span>        uint32_t                <a class="code hl_variable" href="structspdk__lvs__opts.html#a9be3f1e2393c257a3089b5f32849ab0d">md_page_size</a>;</div>
+<div class="line"><a id="l00075" name="l00075"></a><span class="lineno">   75</span>} __attribute__((packed));</div>
+</div>
+<div class="line"><a id="l00076" name="l00076"></a><span class="lineno">   76</span><a class="code hl_define" href="assert_8h.html#ab961047b92ac1428376ef1ae1e4fa1cf">SPDK_STATIC_ASSERT</a>(<span class="keyword">sizeof</span>(<span class="keyword">struct</span> <a class="code hl_struct" href="structspdk__lvs__opts.html">spdk_lvs_opts</a>) == 92, <span class="stringliteral">&quot;Incorrect size&quot;</span>);</div>
+<div class="line"><a id="l00077" name="l00077"></a><span class="lineno">   77</span><span class="comment"></span> </div>
+<div class="line"><a id="l00078" name="l00078"></a><span class="lineno">   78</span><span class="comment">/**</span></div>
+<div class="line"><a id="l00079" name="l00079"></a><span class="lineno">   79</span><span class="comment"> * Initialize an spdk_lvs_opts structure to the defaults.</span></div>
+<div class="line"><a id="l00080" name="l00080"></a><span class="lineno">   80</span><span class="comment"> *</span></div>
+<div class="line"><a id="l00081" name="l00081"></a><span class="lineno">   81</span><span class="comment"> * \param opts Pointer to the spdk_lvs_opts structure to initialize.</span></div>
+<div class="line"><a id="l00082" name="l00082"></a><span class="lineno">   82</span><span class="comment"> */</span></div>
+<div class="line"><a id="l00083" name="l00083"></a><span class="lineno"><a class="line" href="lvol_8h.html#a9ecc81d4bcd4fd9090deb20c1a9e0db8">   83</a></span><span class="keywordtype">void</span> <a class="code hl_function" href="lvol_8h.html#a9ecc81d4bcd4fd9090deb20c1a9e0db8">spdk_lvs_opts_init</a>(<span class="keyword">struct</span> <a class="code hl_struct" href="structspdk__lvs__opts.html">spdk_lvs_opts</a> *opts);</div>
+<div class="line"><a id="l00084" name="l00084"></a><span class="lineno">   84</span><span class="comment"></span> </div>
+<div class="line"><a id="l00085" name="l00085"></a><span class="lineno">   85</span><span class="comment">/**</span></div>
+<div class="line"><a id="l00086" name="l00086"></a><span class="lineno">   86</span><span class="comment"> * Callback definition for lvolstore operations, including handle to lvs.</span></div>
+<div class="line"><a id="l00087" name="l00087"></a><span class="lineno">   87</span><span class="comment"> *</span></div>
+<div class="line"><a id="l00088" name="l00088"></a><span class="lineno">   88</span><span class="comment"> * \param cb_arg Custom arguments</span></div>
+<div class="line"><a id="l00089" name="l00089"></a><span class="lineno">   89</span><span class="comment"> * \param lvol_store Handle to lvol_store or NULL when lvserrno is set</span></div>
+<div class="line"><a id="l00090" name="l00090"></a><span class="lineno">   90</span><span class="comment"> * \param lvserrno Error</span></div>
+<div class="line"><a id="l00091" name="l00091"></a><span class="lineno">   91</span><span class="comment"> */</span></div>
+<div class="line"><a id="l00092" name="l00092"></a><span class="lineno"><a class="line" href="lvol_8h.html#a757eefd4ce0d68328e7dec58eb2e8a50">   92</a></span><span class="keyword">typedef</span> void (*<a class="code hl_typedef" href="lvol_8h.html#a757eefd4ce0d68328e7dec58eb2e8a50">spdk_lvs_op_with_handle_complete</a>)(<span class="keywordtype">void</span> *cb_arg, <span class="keyword">struct </span>spdk_lvol_store *lvol_store,</div>
+<div class="line"><a id="l00093" name="l00093"></a><span class="lineno">   93</span>                <span class="keywordtype">int</span> lvserrno);</div>
+<div class="line"><a id="l00094" name="l00094"></a><span class="lineno">   94</span><span class="comment"></span> </div>
+<div class="line"><a id="l00095" name="l00095"></a><span class="lineno">   95</span><span class="comment">/**</span></div>
+<div class="line"><a id="l00096" name="l00096"></a><span class="lineno">   96</span><span class="comment"> * Callback definition for lvolstore operations without handle.</span></div>
+<div class="line"><a id="l00097" name="l00097"></a><span class="lineno">   97</span><span class="comment"> *</span></div>
+<div class="line"><a id="l00098" name="l00098"></a><span class="lineno">   98</span><span class="comment"> * \param cb_arg Custom arguments</span></div>
+<div class="line"><a id="l00099" name="l00099"></a><span class="lineno">   99</span><span class="comment"> * \param lvserrno Error</span></div>
+<div class="line"><a id="l00100" name="l00100"></a><span class="lineno">  100</span><span class="comment"> */</span></div>
+<div class="line"><a id="l00101" name="l00101"></a><span class="lineno"><a class="line" href="lvol_8h.html#a76f85d046acb7b35ae36dc83cf337075">  101</a></span><span class="keyword">typedef</span> void (*<a class="code hl_typedef" href="lvol_8h.html#a76f85d046acb7b35ae36dc83cf337075">spdk_lvs_op_complete</a>)(<span class="keywordtype">void</span> *cb_arg, <span class="keywordtype">int</span> lvserrno);</div>
+<div class="line"><a id="l00102" name="l00102"></a><span class="lineno">  102</span> </div>
+<div class="line"><a id="l00103" name="l00103"></a><span class="lineno">  103</span><span class="comment"></span> </div>
+<div class="line"><a id="l00104" name="l00104"></a><span class="lineno">  104</span><span class="comment">/**</span></div>
+<div class="line"><a id="l00105" name="l00105"></a><span class="lineno">  105</span><span class="comment"> * Callback definition for lvol operations with handle to lvol.</span></div>
+<div class="line"><a id="l00106" name="l00106"></a><span class="lineno">  106</span><span class="comment"> *</span></div>
+<div class="line"><a id="l00107" name="l00107"></a><span class="lineno">  107</span><span class="comment"> * \param cb_arg Custom arguments</span></div>
+<div class="line"><a id="l00108" name="l00108"></a><span class="lineno">  108</span><span class="comment"> * \param lvol Handle to lvol or NULL when lvserrno is set</span></div>
+<div class="line"><a id="l00109" name="l00109"></a><span class="lineno">  109</span><span class="comment"> * \param lvolerrno Error</span></div>
+<div class="line"><a id="l00110" name="l00110"></a><span class="lineno">  110</span><span class="comment"> */</span></div>
+<div class="line"><a id="l00111" name="l00111"></a><span class="lineno"><a class="line" href="lvol_8h.html#a453c8a7896aafb644e21e1e960ab3759">  111</a></span><span class="keyword">typedef</span> void (*<a class="code hl_typedef" href="lvol_8h.html#a453c8a7896aafb644e21e1e960ab3759">spdk_lvol_op_with_handle_complete</a>)(<span class="keywordtype">void</span> *cb_arg, <span class="keyword">struct </span>spdk_lvol *lvol,</div>
+<div class="line"><a id="l00112" name="l00112"></a><span class="lineno">  112</span>                <span class="keywordtype">int</span> lvolerrno);</div>
+<div class="line"><a id="l00113" name="l00113"></a><span class="lineno">  113</span><span class="comment"></span> </div>
+<div class="line"><a id="l00114" name="l00114"></a><span class="lineno">  114</span><span class="comment">/**</span></div>
+<div class="line"><a id="l00115" name="l00115"></a><span class="lineno">  115</span><span class="comment"> * Callback definition for lvol operations without handle to lvol.</span></div>
+<div class="line"><a id="l00116" name="l00116"></a><span class="lineno">  116</span><span class="comment"> *</span></div>
+<div class="line"><a id="l00117" name="l00117"></a><span class="lineno">  117</span><span class="comment"> * \param cb_arg Custom arguments</span></div>
+<div class="line"><a id="l00118" name="l00118"></a><span class="lineno">  118</span><span class="comment"> * \param lvolerrno Error</span></div>
+<div class="line"><a id="l00119" name="l00119"></a><span class="lineno">  119</span><span class="comment"> */</span></div>
+<div class="line"><a id="l00120" name="l00120"></a><span class="lineno"><a class="line" href="lvol_8h.html#a4d5c96c4fe4512f99dcb3f1e5d5e86be">  120</a></span><span class="keyword">typedef</span> void (*<a class="code hl_typedef" href="lvol_8h.html#a4d5c96c4fe4512f99dcb3f1e5d5e86be">spdk_lvol_op_complete</a>)(<span class="keywordtype">void</span> *cb_arg, <span class="keywordtype">int</span> lvolerrno);</div>
+<div class="line"><a id="l00121" name="l00121"></a><span class="lineno">  121</span><span class="comment"></span> </div>
+<div class="line"><a id="l00122" name="l00122"></a><span class="lineno">  122</span><span class="comment">/**</span></div>
+<div class="line"><a id="l00123" name="l00123"></a><span class="lineno">  123</span><span class="comment"> * Callback definition for spdk_lvol_iter_clones.</span></div>
+<div class="line"><a id="l00124" name="l00124"></a><span class="lineno">  124</span><span class="comment"> *</span></div>
+<div class="line"><a id="l00125" name="l00125"></a><span class="lineno">  125</span><span class="comment"> * \param lvol An iterated lvol.</span></div>
+<div class="line"><a id="l00126" name="l00126"></a><span class="lineno">  126</span><span class="comment"> * \param cb_arg Opaque context passed to spdk_lvol_iter_clone().</span></div>
+<div class="line"><a id="l00127" name="l00127"></a><span class="lineno">  127</span><span class="comment"> * \return 0 to continue iterating, any other value to stop iterating.</span></div>
+<div class="line"><a id="l00128" name="l00128"></a><span class="lineno">  128</span><span class="comment"> */</span></div>
+<div class="line"><a id="l00129" name="l00129"></a><span class="lineno"><a class="line" href="lvol_8h.html#a48870c84403ddd07c81a78f8771eca44">  129</a></span><span class="keyword">typedef</span> int (*<a class="code hl_typedef" href="lvol_8h.html#a48870c84403ddd07c81a78f8771eca44">spdk_lvol_iter_cb</a>)(<span class="keywordtype">void</span> *cb_arg, <span class="keyword">struct </span>spdk_lvol *lvol);</div>
+<div class="line"><a id="l00130" name="l00130"></a><span class="lineno">  130</span><span class="comment"></span> </div>
+<div class="line"><a id="l00131" name="l00131"></a><span class="lineno">  131</span><span class="comment">/**</span></div>
+<div class="line"><a id="l00132" name="l00132"></a><span class="lineno">  132</span><span class="comment"> * Initialize lvolstore on given bs_bdev.</span></div>
+<div class="line"><a id="l00133" name="l00133"></a><span class="lineno">  133</span><span class="comment"> *</span></div>
+<div class="line"><a id="l00134" name="l00134"></a><span class="lineno">  134</span><span class="comment"> * \param bs_dev This is created on the given bdev by using spdk_bdev_create_bs_dev()</span></div>
+<div class="line"><a id="l00135" name="l00135"></a><span class="lineno">  135</span><span class="comment"> * beforehand.</span></div>
+<div class="line"><a id="l00136" name="l00136"></a><span class="lineno">  136</span><span class="comment"> * \param o Options for lvolstore.</span></div>
+<div class="line"><a id="l00137" name="l00137"></a><span class="lineno">  137</span><span class="comment"> * \param cb_fn Completion callback.</span></div>
+<div class="line"><a id="l00138" name="l00138"></a><span class="lineno">  138</span><span class="comment"> * \param cb_arg Completion callback custom arguments.</span></div>
+<div class="line"><a id="l00139" name="l00139"></a><span class="lineno">  139</span><span class="comment"> *</span></div>
+<div class="line"><a id="l00140" name="l00140"></a><span class="lineno">  140</span><span class="comment"> * \return 0 on success, negative errno on failure.</span></div>
+<div class="line"><a id="l00141" name="l00141"></a><span class="lineno">  141</span><span class="comment"> */</span></div>
+<div class="line"><a id="l00142" name="l00142"></a><span class="lineno"><a class="line" href="lvol_8h.html#ae12b16b8565ab63a3c9b919ab9664c0f">  142</a></span><span class="keywordtype">int</span> <a class="code hl_function" href="lvol_8h.html#ae12b16b8565ab63a3c9b919ab9664c0f">spdk_lvs_init</a>(<span class="keyword">struct</span> <a class="code hl_struct" href="structspdk__bs__dev.html">spdk_bs_dev</a> *bs_dev, <span class="keyword">struct</span> <a class="code hl_struct" href="structspdk__lvs__opts.html">spdk_lvs_opts</a> *o,</div>
+<div class="line"><a id="l00143" name="l00143"></a><span class="lineno">  143</span>                  <a class="code hl_typedef" href="lvol_8h.html#a757eefd4ce0d68328e7dec58eb2e8a50">spdk_lvs_op_with_handle_complete</a> cb_fn, <span class="keywordtype">void</span> *cb_arg);</div>
+<div class="line"><a id="l00144" name="l00144"></a><span class="lineno">  144</span><span class="comment"></span> </div>
+<div class="line"><a id="l00145" name="l00145"></a><span class="lineno">  145</span><span class="comment">/**</span></div>
+<div class="line"><a id="l00146" name="l00146"></a><span class="lineno">  146</span><span class="comment"> * Rename the given lvolstore.</span></div>
+<div class="line"><a id="l00147" name="l00147"></a><span class="lineno">  147</span><span class="comment"> *</span></div>
+<div class="line"><a id="l00148" name="l00148"></a><span class="lineno">  148</span><span class="comment"> * \param lvs Pointer to lvolstore.</span></div>
+<div class="line"><a id="l00149" name="l00149"></a><span class="lineno">  149</span><span class="comment"> * \param new_name New name of lvs.</span></div>
+<div class="line"><a id="l00150" name="l00150"></a><span class="lineno">  150</span><span class="comment"> * \param cb_fn Completion callback.</span></div>
+<div class="line"><a id="l00151" name="l00151"></a><span class="lineno">  151</span><span class="comment"> * \param cb_arg Completion callback custom arguments.</span></div>
+<div class="line"><a id="l00152" name="l00152"></a><span class="lineno">  152</span><span class="comment"> */</span></div>
+<div class="line"><a id="l00153" name="l00153"></a><span class="lineno"><a class="line" href="lvol_8h.html#af406c5e7b0e7826b270c802b1431b76f">  153</a></span><span class="keywordtype">void</span> <a class="code hl_function" href="lvol_8h.html#af406c5e7b0e7826b270c802b1431b76f">spdk_lvs_rename</a>(<span class="keyword">struct</span> spdk_lvol_store *lvs, <span class="keyword">const</span> <span class="keywordtype">char</span> *new_name,</div>
+<div class="line"><a id="l00154" name="l00154"></a><span class="lineno">  154</span>                     <a class="code hl_typedef" href="lvol_8h.html#a76f85d046acb7b35ae36dc83cf337075">spdk_lvs_op_complete</a> cb_fn, <span class="keywordtype">void</span> *cb_arg);</div>
+<div class="line"><a id="l00155" name="l00155"></a><span class="lineno">  155</span><span class="comment"></span> </div>
+<div class="line"><a id="l00156" name="l00156"></a><span class="lineno">  156</span><span class="comment">/**</span></div>
+<div class="line"><a id="l00157" name="l00157"></a><span class="lineno">  157</span><span class="comment"> * Unload lvolstore.</span></div>
+<div class="line"><a id="l00158" name="l00158"></a><span class="lineno">  158</span><span class="comment"> *</span></div>
+<div class="line"><a id="l00159" name="l00159"></a><span class="lineno">  159</span><span class="comment"> * All lvols have to be closed beforehand, when doing unload.</span></div>
+<div class="line"><a id="l00160" name="l00160"></a><span class="lineno">  160</span><span class="comment"> *</span></div>
+<div class="line"><a id="l00161" name="l00161"></a><span class="lineno">  161</span><span class="comment"> * \param lvol_store Handle to lvolstore.</span></div>
+<div class="line"><a id="l00162" name="l00162"></a><span class="lineno">  162</span><span class="comment"> * \param cb_fn Completion callback.</span></div>
+<div class="line"><a id="l00163" name="l00163"></a><span class="lineno">  163</span><span class="comment"> * \param cb_arg Completion callback custom arguments.</span></div>
+<div class="line"><a id="l00164" name="l00164"></a><span class="lineno">  164</span><span class="comment"> *</span></div>
+<div class="line"><a id="l00165" name="l00165"></a><span class="lineno">  165</span><span class="comment"> * \return 0 on success, negative errno on failure.</span></div>
+<div class="line"><a id="l00166" name="l00166"></a><span class="lineno">  166</span><span class="comment"> */</span></div>
+<div class="line"><a id="l00167" name="l00167"></a><span class="lineno"><a class="line" href="lvol_8h.html#a9f7032fa38dc1af638910018e07b0dd4">  167</a></span><span class="keywordtype">int</span> <a class="code hl_function" href="lvol_8h.html#a9f7032fa38dc1af638910018e07b0dd4">spdk_lvs_unload</a>(<span class="keyword">struct</span> spdk_lvol_store *lvol_store,</div>
+<div class="line"><a id="l00168" name="l00168"></a><span class="lineno">  168</span>                    <a class="code hl_typedef" href="lvol_8h.html#a76f85d046acb7b35ae36dc83cf337075">spdk_lvs_op_complete</a> cb_fn, <span class="keywordtype">void</span> *cb_arg);</div>
+<div class="line"><a id="l00169" name="l00169"></a><span class="lineno">  169</span><span class="comment"></span> </div>
+<div class="line"><a id="l00170" name="l00170"></a><span class="lineno">  170</span><span class="comment">/**</span></div>
+<div class="line"><a id="l00171" name="l00171"></a><span class="lineno">  171</span><span class="comment"> * Destroy lvolstore.</span></div>
+<div class="line"><a id="l00172" name="l00172"></a><span class="lineno">  172</span><span class="comment"> *</span></div>
+<div class="line"><a id="l00173" name="l00173"></a><span class="lineno">  173</span><span class="comment"> * All lvols have to be closed beforehand, when doing destroy.</span></div>
+<div class="line"><a id="l00174" name="l00174"></a><span class="lineno">  174</span><span class="comment"> *</span></div>
+<div class="line"><a id="l00175" name="l00175"></a><span class="lineno">  175</span><span class="comment"> * \param lvol_store Handle to lvolstore.</span></div>
+<div class="line"><a id="l00176" name="l00176"></a><span class="lineno">  176</span><span class="comment"> * \param cb_fn Completion callback.</span></div>
+<div class="line"><a id="l00177" name="l00177"></a><span class="lineno">  177</span><span class="comment"> * \param cb_arg Completion callback custom arguments.</span></div>
+<div class="line"><a id="l00178" name="l00178"></a><span class="lineno">  178</span><span class="comment"> *</span></div>
+<div class="line"><a id="l00179" name="l00179"></a><span class="lineno">  179</span><span class="comment"> * \return 0 on success, negative errno on failure.</span></div>
+<div class="line"><a id="l00180" name="l00180"></a><span class="lineno">  180</span><span class="comment"> */</span></div>
+<div class="line"><a id="l00181" name="l00181"></a><span class="lineno"><a class="line" href="lvol_8h.html#ac2c5d67c2711ee149784f5e5e5be0b7a">  181</a></span><span class="keywordtype">int</span> <a class="code hl_function" href="lvol_8h.html#ac2c5d67c2711ee149784f5e5e5be0b7a">spdk_lvs_destroy</a>(<span class="keyword">struct</span> spdk_lvol_store *lvol_store,</div>
+<div class="line"><a id="l00182" name="l00182"></a><span class="lineno">  182</span>                     <a class="code hl_typedef" href="lvol_8h.html#a76f85d046acb7b35ae36dc83cf337075">spdk_lvs_op_complete</a> cb_fn, <span class="keywordtype">void</span> *cb_arg);</div>
+<div class="line"><a id="l00183" name="l00183"></a><span class="lineno">  183</span><span class="comment"></span> </div>
+<div class="line"><a id="l00184" name="l00184"></a><span class="lineno">  184</span><span class="comment">/**</span></div>
+<div class="line"><a id="l00185" name="l00185"></a><span class="lineno">  185</span><span class="comment"> * Create lvol on given lvolstore with specified size.</span></div>
+<div class="line"><a id="l00186" name="l00186"></a><span class="lineno">  186</span><span class="comment"> *</span></div>
+<div class="line"><a id="l00187" name="l00187"></a><span class="lineno">  187</span><span class="comment"> * \param lvs Handle to lvolstore.</span></div>
+<div class="line"><a id="l00188" name="l00188"></a><span class="lineno">  188</span><span class="comment"> * \param name Name of lvol.</span></div>
+<div class="line"><a id="l00189" name="l00189"></a><span class="lineno">  189</span><span class="comment"> * \param sz size of lvol in bytes.</span></div>
+<div class="line"><a id="l00190" name="l00190"></a><span class="lineno">  190</span><span class="comment"> * \param thin_provisioned Enables thin provisioning.</span></div>
+<div class="line"><a id="l00191" name="l00191"></a><span class="lineno">  191</span><span class="comment"> * \param clear_method Changes default data clusters clear method</span></div>
+<div class="line"><a id="l00192" name="l00192"></a><span class="lineno">  192</span><span class="comment"> * \param cb_fn Completion callback.</span></div>
+<div class="line"><a id="l00193" name="l00193"></a><span class="lineno">  193</span><span class="comment"> * \param cb_arg Completion callback custom arguments.</span></div>
+<div class="line"><a id="l00194" name="l00194"></a><span class="lineno">  194</span><span class="comment"> *</span></div>
+<div class="line"><a id="l00195" name="l00195"></a><span class="lineno">  195</span><span class="comment"> * \return 0 on success, negative errno on failure.</span></div>
+<div class="line"><a id="l00196" name="l00196"></a><span class="lineno">  196</span><span class="comment"> */</span></div>
+<div class="line"><a id="l00197" name="l00197"></a><span class="lineno"><a class="line" href="lvol_8h.html#ab3586b04e9b91ac588f3f1ff2603876c">  197</a></span><span class="keywordtype">int</span> <a class="code hl_function" href="lvol_8h.html#ab3586b04e9b91ac588f3f1ff2603876c">spdk_lvol_create</a>(<span class="keyword">struct</span> spdk_lvol_store *lvs, <span class="keyword">const</span> <span class="keywordtype">char</span> *name, uint64_t sz,</div>
+<div class="line"><a id="l00198" name="l00198"></a><span class="lineno">  198</span>                     <span class="keywordtype">bool</span> thin_provisioned, <span class="keyword">enum</span> lvol_clear_method clear_method,</div>
+<div class="line"><a id="l00199" name="l00199"></a><span class="lineno">  199</span>                     <a class="code hl_typedef" href="lvol_8h.html#a453c8a7896aafb644e21e1e960ab3759">spdk_lvol_op_with_handle_complete</a> cb_fn, <span class="keywordtype">void</span> *cb_arg);<span class="comment"></span></div>
+<div class="line"><a id="l00200" name="l00200"></a><span class="lineno">  200</span><span class="comment">/**</span></div>
+<div class="line"><a id="l00201" name="l00201"></a><span class="lineno">  201</span><span class="comment"> * Create snapshot of given lvol.</span></div>
+<div class="line"><a id="l00202" name="l00202"></a><span class="lineno">  202</span><span class="comment"> *</span></div>
+<div class="line"><a id="l00203" name="l00203"></a><span class="lineno">  203</span><span class="comment"> * \param lvol Handle to lvol.</span></div>
+<div class="line"><a id="l00204" name="l00204"></a><span class="lineno">  204</span><span class="comment"> * \param snapshot_name Name of created snapshot.</span></div>
+<div class="line"><a id="l00205" name="l00205"></a><span class="lineno">  205</span><span class="comment"> * \param cb_fn Completion callback.</span></div>
+<div class="line"><a id="l00206" name="l00206"></a><span class="lineno">  206</span><span class="comment"> * \param cb_arg Completion callback custom arguments.</span></div>
+<div class="line"><a id="l00207" name="l00207"></a><span class="lineno">  207</span><span class="comment"> */</span></div>
+<div class="line"><a id="l00208" name="l00208"></a><span class="lineno"><a class="line" href="lvol_8h.html#ab7a0818546003c24d2236c1f201fdf28">  208</a></span><span class="keywordtype">void</span> <a class="code hl_function" href="lvol_8h.html#ab7a0818546003c24d2236c1f201fdf28">spdk_lvol_create_snapshot</a>(<span class="keyword">struct</span> spdk_lvol *lvol, <span class="keyword">const</span> <span class="keywordtype">char</span> *snapshot_name,</div>
+<div class="line"><a id="l00209" name="l00209"></a><span class="lineno">  209</span>                               <a class="code hl_typedef" href="lvol_8h.html#a453c8a7896aafb644e21e1e960ab3759">spdk_lvol_op_with_handle_complete</a> cb_fn, <span class="keywordtype">void</span> *cb_arg);</div>
+<div class="line"><a id="l00210" name="l00210"></a><span class="lineno">  210</span><span class="comment"></span> </div>
+<div class="line"><a id="l00211" name="l00211"></a><span class="lineno">  211</span><span class="comment">/**</span></div>
+<div class="line"><a id="l00212" name="l00212"></a><span class="lineno">  212</span><span class="comment"> * Create clone of given snapshot.</span></div>
+<div class="line"><a id="l00213" name="l00213"></a><span class="lineno">  213</span><span class="comment"> *</span></div>
+<div class="line"><a id="l00214" name="l00214"></a><span class="lineno">  214</span><span class="comment"> * \param lvol Handle to lvol snapshot.</span></div>
+<div class="line"><a id="l00215" name="l00215"></a><span class="lineno">  215</span><span class="comment"> * \param clone_name Name of created clone.</span></div>
+<div class="line"><a id="l00216" name="l00216"></a><span class="lineno">  216</span><span class="comment"> * \param cb_fn Completion callback.</span></div>
+<div class="line"><a id="l00217" name="l00217"></a><span class="lineno">  217</span><span class="comment"> * \param cb_arg Completion callback custom arguments.</span></div>
+<div class="line"><a id="l00218" name="l00218"></a><span class="lineno">  218</span><span class="comment"> */</span></div>
+<div class="line"><a id="l00219" name="l00219"></a><span class="lineno"><a class="line" href="lvol_8h.html#a2dfba2354de69f535ab0c39693c9ae73">  219</a></span><span class="keywordtype">void</span> <a class="code hl_function" href="lvol_8h.html#a2dfba2354de69f535ab0c39693c9ae73">spdk_lvol_create_clone</a>(<span class="keyword">struct</span> spdk_lvol *lvol, <span class="keyword">const</span> <span class="keywordtype">char</span> *clone_name,</div>
+<div class="line"><a id="l00220" name="l00220"></a><span class="lineno">  220</span>                            <a class="code hl_typedef" href="lvol_8h.html#a453c8a7896aafb644e21e1e960ab3759">spdk_lvol_op_with_handle_complete</a> cb_fn, <span class="keywordtype">void</span> *cb_arg);</div>
+<div class="line"><a id="l00221" name="l00221"></a><span class="lineno">  221</span><span class="comment"></span> </div>
+<div class="line"><a id="l00222" name="l00222"></a><span class="lineno">  222</span><span class="comment">/**</span></div>
+<div class="line"><a id="l00223" name="l00223"></a><span class="lineno">  223</span><span class="comment"> * Create clone of given non-lvol device.</span></div>
+<div class="line"><a id="l00224" name="l00224"></a><span class="lineno">  224</span><span class="comment"> *</span></div>
+<div class="line"><a id="l00225" name="l00225"></a><span class="lineno">  225</span><span class="comment"> * The bdev that is being cloned is commonly called an external snapshot or esnap. The clone is</span></div>
+<div class="line"><a id="l00226" name="l00226"></a><span class="lineno">  226</span><span class="comment"> * commonly called an esnap clone.</span></div>
+<div class="line"><a id="l00227" name="l00227"></a><span class="lineno">  227</span><span class="comment"> *</span></div>
+<div class="line"><a id="l00228" name="l00228"></a><span class="lineno">  228</span><span class="comment"> * \param esnap_id The identifier that will be passed to the spdk_bs_esnap_dev_create callback.</span></div>
+<div class="line"><a id="l00229" name="l00229"></a><span class="lineno">  229</span><span class="comment"> * \param id_len The length of esnap_id, in bytes.</span></div>
+<div class="line"><a id="l00230" name="l00230"></a><span class="lineno">  230</span><span class="comment"> * \param size_bytes The size of the external snapshot device, in bytes. This must be an integer</span></div>
+<div class="line"><a id="l00231" name="l00231"></a><span class="lineno">  231</span><span class="comment"> * multiple of the lvolstore&#39;s cluster size. See \c cluster_sz in \struct spdk_lvs_opts.</span></div>
+<div class="line"><a id="l00232" name="l00232"></a><span class="lineno">  232</span><span class="comment"> * \param lvs Handle to lvolstore.</span></div>
+<div class="line"><a id="l00233" name="l00233"></a><span class="lineno">  233</span><span class="comment"> * \param clone_name Name of created clone.</span></div>
+<div class="line"><a id="l00234" name="l00234"></a><span class="lineno">  234</span><span class="comment"> * \param cb_fn Completion callback.</span></div>
+<div class="line"><a id="l00235" name="l00235"></a><span class="lineno">  235</span><span class="comment"> * \param cb_arg Completion callback custom arguments.</span></div>
+<div class="line"><a id="l00236" name="l00236"></a><span class="lineno">  236</span><span class="comment"> * \return 0 if parameters pass verification checks and the esnap creation is started, in which case</span></div>
+<div class="line"><a id="l00237" name="l00237"></a><span class="lineno">  237</span><span class="comment"> * the \c cb_fn will be used to report the completion status. If an error is encountered, a negative</span></div>
+<div class="line"><a id="l00238" name="l00238"></a><span class="lineno">  238</span><span class="comment"> * errno will be returned and \c cb_fn will not be called.</span></div>
+<div class="line"><a id="l00239" name="l00239"></a><span class="lineno">  239</span><span class="comment"> */</span></div>
+<div class="line"><a id="l00240" name="l00240"></a><span class="lineno">  240</span><span class="keywordtype">int</span> spdk_lvol_create_esnap_clone(<span class="keyword">const</span> <span class="keywordtype">void</span> *esnap_id, uint32_t id_len, uint64_t size_bytes,</div>
+<div class="line"><a id="l00241" name="l00241"></a><span class="lineno">  241</span>                                 <span class="keyword">struct</span> spdk_lvol_store *lvs, <span class="keyword">const</span> <span class="keywordtype">char</span> *clone_name,</div>
+<div class="line"><a id="l00242" name="l00242"></a><span class="lineno">  242</span>                                 <a class="code hl_typedef" href="lvol_8h.html#a453c8a7896aafb644e21e1e960ab3759">spdk_lvol_op_with_handle_complete</a> cb_fn, <span class="keywordtype">void</span> *cb_arg);</div>
+<div class="line"><a id="l00243" name="l00243"></a><span class="lineno">  243</span><span class="comment"></span> </div>
+<div class="line"><a id="l00244" name="l00244"></a><span class="lineno">  244</span><span class="comment">/**</span></div>
+<div class="line"><a id="l00245" name="l00245"></a><span class="lineno">  245</span><span class="comment"> * Rename lvol with new_name.</span></div>
+<div class="line"><a id="l00246" name="l00246"></a><span class="lineno">  246</span><span class="comment"> *</span></div>
+<div class="line"><a id="l00247" name="l00247"></a><span class="lineno">  247</span><span class="comment"> * \param lvol Handle to lvol.</span></div>
+<div class="line"><a id="l00248" name="l00248"></a><span class="lineno">  248</span><span class="comment"> * \param new_name new name for lvol.</span></div>
+<div class="line"><a id="l00249" name="l00249"></a><span class="lineno">  249</span><span class="comment"> * \param cb_fn Completion callback.</span></div>
+<div class="line"><a id="l00250" name="l00250"></a><span class="lineno">  250</span><span class="comment"> * \param cb_arg Completion callback custom arguments.</span></div>
+<div class="line"><a id="l00251" name="l00251"></a><span class="lineno">  251</span><span class="comment"> */</span></div>
+<div class="line"><a id="l00252" name="l00252"></a><span class="lineno">  252</span><span class="keywordtype">void</span></div>
+<div class="line"><a id="l00253" name="l00253"></a><span class="lineno"><a class="line" href="lvol_8h.html#a3d5d8be84217db4879d5bf79fa5c23f6">  253</a></span><a class="code hl_function" href="lvol_8h.html#a3d5d8be84217db4879d5bf79fa5c23f6">spdk_lvol_rename</a>(<span class="keyword">struct</span> spdk_lvol *lvol, <span class="keyword">const</span> <span class="keywordtype">char</span> *new_name,</div>
+<div class="line"><a id="l00254" name="l00254"></a><span class="lineno">  254</span>                 <a class="code hl_typedef" href="lvol_8h.html#a4d5c96c4fe4512f99dcb3f1e5d5e86be">spdk_lvol_op_complete</a> cb_fn, <span class="keywordtype">void</span> *cb_arg);</div>
+<div class="line"><a id="l00255" name="l00255"></a><span class="lineno">  255</span><span class="comment"></span> </div>
+<div class="line"><a id="l00256" name="l00256"></a><span class="lineno">  256</span><span class="comment">/**</span></div>
+<div class="line"><a id="l00257" name="l00257"></a><span class="lineno">  257</span><span class="comment"> * \brief Returns if it is possible to delete an lvol (i.e. lvol is not a snapshot that have at least one clone).</span></div>
+<div class="line"><a id="l00258" name="l00258"></a><span class="lineno">  258</span><span class="comment"> * \param lvol Handle to lvol</span></div>
+<div class="line"><a id="l00259" name="l00259"></a><span class="lineno">  259</span><span class="comment"> */</span></div>
+<div class="line"><a id="l00260" name="l00260"></a><span class="lineno"><a class="line" href="lvol_8h.html#a526682c9b96877490b9611cc96a907b1">  260</a></span><span class="keywordtype">bool</span> <a class="code hl_function" href="lvol_8h.html#a526682c9b96877490b9611cc96a907b1">spdk_lvol_deletable</a>(<span class="keyword">struct</span> spdk_lvol *lvol);</div>
+<div class="line"><a id="l00261" name="l00261"></a><span class="lineno">  261</span><span class="comment"></span> </div>
+<div class="line"><a id="l00262" name="l00262"></a><span class="lineno">  262</span><span class="comment">/**</span></div>
+<div class="line"><a id="l00263" name="l00263"></a><span class="lineno">  263</span><span class="comment"> * Close lvol and remove information about lvol from its lvolstore.</span></div>
+<div class="line"><a id="l00264" name="l00264"></a><span class="lineno">  264</span><span class="comment"> *</span></div>
+<div class="line"><a id="l00265" name="l00265"></a><span class="lineno">  265</span><span class="comment"> * \param lvol Handle to lvol.</span></div>
+<div class="line"><a id="l00266" name="l00266"></a><span class="lineno">  266</span><span class="comment"> * \param cb_fn Completion callback.</span></div>
+<div class="line"><a id="l00267" name="l00267"></a><span class="lineno">  267</span><span class="comment"> * \param cb_arg Completion callback custom arguments.</span></div>
+<div class="line"><a id="l00268" name="l00268"></a><span class="lineno">  268</span><span class="comment"> */</span></div>
+<div class="line"><a id="l00269" name="l00269"></a><span class="lineno"><a class="line" href="lvol_8h.html#a87c4dadc88c211fb4e8ba0cddc474032">  269</a></span><span class="keywordtype">void</span> <a class="code hl_function" href="lvol_8h.html#a87c4dadc88c211fb4e8ba0cddc474032">spdk_lvol_destroy</a>(<span class="keyword">struct</span> spdk_lvol *lvol, <a class="code hl_typedef" href="lvol_8h.html#a4d5c96c4fe4512f99dcb3f1e5d5e86be">spdk_lvol_op_complete</a> cb_fn, <span class="keywordtype">void</span> *cb_arg);</div>
+<div class="line"><a id="l00270" name="l00270"></a><span class="lineno">  270</span><span class="comment"></span> </div>
+<div class="line"><a id="l00271" name="l00271"></a><span class="lineno">  271</span><span class="comment">/**</span></div>
+<div class="line"><a id="l00272" name="l00272"></a><span class="lineno">  272</span><span class="comment"> * Close lvol, but information is kept on lvolstore.</span></div>
+<div class="line"><a id="l00273" name="l00273"></a><span class="lineno">  273</span><span class="comment"> *</span></div>
+<div class="line"><a id="l00274" name="l00274"></a><span class="lineno">  274</span><span class="comment"> * \param lvol Handle to lvol.</span></div>
+<div class="line"><a id="l00275" name="l00275"></a><span class="lineno">  275</span><span class="comment"> * \param cb_fn Completion callback.</span></div>
+<div class="line"><a id="l00276" name="l00276"></a><span class="lineno">  276</span><span class="comment"> * \param cb_arg Completion callback custom arguments.</span></div>
+<div class="line"><a id="l00277" name="l00277"></a><span class="lineno">  277</span><span class="comment"> */</span></div>
+<div class="line"><a id="l00278" name="l00278"></a><span class="lineno"><a class="line" href="lvol_8h.html#a89835586bb7e2e6e78bd0e4cd4c4d45b">  278</a></span><span class="keywordtype">void</span> <a class="code hl_function" href="lvol_8h.html#a89835586bb7e2e6e78bd0e4cd4c4d45b">spdk_lvol_close</a>(<span class="keyword">struct</span> spdk_lvol *lvol, <a class="code hl_typedef" href="lvol_8h.html#a4d5c96c4fe4512f99dcb3f1e5d5e86be">spdk_lvol_op_complete</a> cb_fn, <span class="keywordtype">void</span> *cb_arg);</div>
+<div class="line"><a id="l00279" name="l00279"></a><span class="lineno">  279</span><span class="comment"></span> </div>
+<div class="line"><a id="l00280" name="l00280"></a><span class="lineno">  280</span><span class="comment">/**</span></div>
+<div class="line"><a id="l00281" name="l00281"></a><span class="lineno">  281</span><span class="comment"> * Iterate clones of an lvol.</span></div>
+<div class="line"><a id="l00282" name="l00282"></a><span class="lineno">  282</span><span class="comment"> *</span></div>
+<div class="line"><a id="l00283" name="l00283"></a><span class="lineno">  283</span><span class="comment"> * Iteration stops if cb_fn(cb_arg, clone_lvol) returns non-zero.</span></div>
+<div class="line"><a id="l00284" name="l00284"></a><span class="lineno">  284</span><span class="comment"> *</span></div>
+<div class="line"><a id="l00285" name="l00285"></a><span class="lineno">  285</span><span class="comment"> * \param lvol Handle to lvol.</span></div>
+<div class="line"><a id="l00286" name="l00286"></a><span class="lineno">  286</span><span class="comment"> * \param cb_fn Function to call for each lvol that clones this lvol.</span></div>
+<div class="line"><a id="l00287" name="l00287"></a><span class="lineno">  287</span><span class="comment"> * \param cb_arg Context to pass with cb_fn.</span></div>
+<div class="line"><a id="l00288" name="l00288"></a><span class="lineno">  288</span><span class="comment"> * \return -ENOMEM if memory allocation failed, non-zero return from cb_fn(), or 0.</span></div>
+<div class="line"><a id="l00289" name="l00289"></a><span class="lineno">  289</span><span class="comment"> */</span></div>
+<div class="line"><a id="l00290" name="l00290"></a><span class="lineno"><a class="line" href="lvol_8h.html#a6d43e92544d79d7e048be0e9ac794271">  290</a></span><span class="keywordtype">int</span> <a class="code hl_function" href="lvol_8h.html#a6d43e92544d79d7e048be0e9ac794271">spdk_lvol_iter_immediate_clones</a>(<span class="keyword">struct</span> spdk_lvol *lvol, <a class="code hl_typedef" href="lvol_8h.html#a48870c84403ddd07c81a78f8771eca44">spdk_lvol_iter_cb</a> cb_fn, <span class="keywordtype">void</span> *cb_arg);</div>
+<div class="line"><a id="l00291" name="l00291"></a><span class="lineno">  291</span><span class="comment"></span> </div>
+<div class="line"><a id="l00292" name="l00292"></a><span class="lineno">  292</span><span class="comment">/**</span></div>
+<div class="line"><a id="l00293" name="l00293"></a><span class="lineno">  293</span><span class="comment"> * Get the lvol that has a particular UUID.</span></div>
+<div class="line"><a id="l00294" name="l00294"></a><span class="lineno">  294</span><span class="comment"> *</span></div>
+<div class="line"><a id="l00295" name="l00295"></a><span class="lineno">  295</span><span class="comment"> * \param uuid The lvol&#39;s UUID.</span></div>
+<div class="line"><a id="l00296" name="l00296"></a><span class="lineno">  296</span><span class="comment"> * \return A pointer to the requested lvol on success, else NULL.</span></div>
+<div class="line"><a id="l00297" name="l00297"></a><span class="lineno">  297</span><span class="comment"> */</span></div>
+<div class="line"><a id="l00298" name="l00298"></a><span class="lineno"><a class="line" href="lvol_8h.html#ac2b7913388e51e8b2191cb1302854416">  298</a></span><span class="keyword">struct </span>spdk_lvol *<a class="code hl_function" href="lvol_8h.html#ac2b7913388e51e8b2191cb1302854416">spdk_lvol_get_by_uuid</a>(<span class="keyword">const</span> <span class="keyword">struct</span> <a class="code hl_struct" href="structspdk__uuid.html">spdk_uuid</a> *uuid);</div>
+<div class="line"><a id="l00299" name="l00299"></a><span class="lineno">  299</span><span class="comment"></span> </div>
+<div class="line"><a id="l00300" name="l00300"></a><span class="lineno">  300</span><span class="comment">/**</span></div>
+<div class="line"><a id="l00301" name="l00301"></a><span class="lineno">  301</span><span class="comment"> * Get the lvol that has the specified name in the specified lvolstore.</span></div>
+<div class="line"><a id="l00302" name="l00302"></a><span class="lineno">  302</span><span class="comment"> *</span></div>
+<div class="line"><a id="l00303" name="l00303"></a><span class="lineno">  303</span><span class="comment"> * \param lvs_name Name of the lvolstore.</span></div>
+<div class="line"><a id="l00304" name="l00304"></a><span class="lineno">  304</span><span class="comment"> * \param lvol_name Name of the lvol.</span></div>
+<div class="line"><a id="l00305" name="l00305"></a><span class="lineno">  305</span><span class="comment"> * \return A pointer to the requested lvol on success, else NULL.</span></div>
+<div class="line"><a id="l00306" name="l00306"></a><span class="lineno">  306</span><span class="comment"> */</span></div>
+<div class="line"><a id="l00307" name="l00307"></a><span class="lineno"><a class="line" href="lvol_8h.html#a32632b9c62c7bf6c3d3c2eca3033a435">  307</a></span><span class="keyword">struct </span>spdk_lvol *<a class="code hl_function" href="lvol_8h.html#a32632b9c62c7bf6c3d3c2eca3033a435">spdk_lvol_get_by_names</a>(<span class="keyword">const</span> <span class="keywordtype">char</span> *lvs_name, <span class="keyword">const</span> <span class="keywordtype">char</span> *lvol_name);</div>
+<div class="line"><a id="l00308" name="l00308"></a><span class="lineno">  308</span><span class="comment"></span> </div>
+<div class="line"><a id="l00309" name="l00309"></a><span class="lineno">  309</span><span class="comment">/**</span></div>
+<div class="line"><a id="l00310" name="l00310"></a><span class="lineno">  310</span><span class="comment"> * Get I/O channel of bdev associated with specified lvol.</span></div>
+<div class="line"><a id="l00311" name="l00311"></a><span class="lineno">  311</span><span class="comment"> *</span></div>
+<div class="line"><a id="l00312" name="l00312"></a><span class="lineno">  312</span><span class="comment"> * \param lvol Handle to lvol.</span></div>
+<div class="line"><a id="l00313" name="l00313"></a><span class="lineno">  313</span><span class="comment"> *</span></div>
+<div class="line"><a id="l00314" name="l00314"></a><span class="lineno">  314</span><span class="comment"> * \return a pointer to the I/O channel.</span></div>
+<div class="line"><a id="l00315" name="l00315"></a><span class="lineno">  315</span><span class="comment"> */</span></div>
+<div class="line"><a id="l00316" name="l00316"></a><span class="lineno"><a class="line" href="lvol_8h.html#a249913455d3c80d34d29b7f023232df3">  316</a></span><span class="keyword">struct </span>spdk_io_channel *<a class="code hl_function" href="lvol_8h.html#a249913455d3c80d34d29b7f023232df3">spdk_lvol_get_io_channel</a>(<span class="keyword">struct</span> spdk_lvol *lvol);</div>
+<div class="line"><a id="l00317" name="l00317"></a><span class="lineno">  317</span><span class="comment"></span> </div>
+<div class="line"><a id="l00318" name="l00318"></a><span class="lineno">  318</span><span class="comment">/**</span></div>
+<div class="line"><a id="l00319" name="l00319"></a><span class="lineno">  319</span><span class="comment"> * Load lvolstore from the given blobstore device.</span></div>
+<div class="line"><a id="l00320" name="l00320"></a><span class="lineno">  320</span><span class="comment"> *</span></div>
+<div class="line"><a id="l00321" name="l00321"></a><span class="lineno">  321</span><span class="comment"> * \param bs_dev Pointer to the blobstore device.</span></div>
+<div class="line"><a id="l00322" name="l00322"></a><span class="lineno">  322</span><span class="comment"> * \param cb_fn Completion callback.</span></div>
+<div class="line"><a id="l00323" name="l00323"></a><span class="lineno">  323</span><span class="comment"> * \param cb_arg Completion callback custom arguments.</span></div>
+<div class="line"><a id="l00324" name="l00324"></a><span class="lineno">  324</span><span class="comment"> */</span></div>
+<div class="line"><a id="l00325" name="l00325"></a><span class="lineno"><a class="line" href="lvol_8h.html#a003e23eb57e1318f2f60c5727cab54e2">  325</a></span><span class="keywordtype">void</span> <a class="code hl_function" href="lvol_8h.html#a003e23eb57e1318f2f60c5727cab54e2">spdk_lvs_load</a>(<span class="keyword">struct</span> <a class="code hl_struct" href="structspdk__bs__dev.html">spdk_bs_dev</a> *bs_dev, <a class="code hl_typedef" href="lvol_8h.html#a757eefd4ce0d68328e7dec58eb2e8a50">spdk_lvs_op_with_handle_complete</a> cb_fn,</div>
+<div class="line"><a id="l00326" name="l00326"></a><span class="lineno">  326</span>                   <span class="keywordtype">void</span> *cb_arg);</div>
+<div class="line"><a id="l00327" name="l00327"></a><span class="lineno">  327</span><span class="comment"></span> </div>
+<div class="line"><a id="l00328" name="l00328"></a><span class="lineno">  328</span><span class="comment">/**</span></div>
+<div class="line"><a id="l00329" name="l00329"></a><span class="lineno">  329</span><span class="comment"> * Load lvolstore from the given blobstore device with options.</span></div>
+<div class="line"><a id="l00330" name="l00330"></a><span class="lineno">  330</span><span class="comment"> *</span></div>
+<div class="line"><a id="l00331" name="l00331"></a><span class="lineno">  331</span><span class="comment"> * If lvs_opts is not NULL, it should be initialized with spdk_lvs_opts_init().</span></div>
+<div class="line"><a id="l00332" name="l00332"></a><span class="lineno">  332</span><span class="comment"> *</span></div>
+<div class="line"><a id="l00333" name="l00333"></a><span class="lineno">  333</span><span class="comment"> * \param bs_dev Pointer to the blobstore device.</span></div>
+<div class="line"><a id="l00334" name="l00334"></a><span class="lineno">  334</span><span class="comment"> * \param lvs_opts lvolstore options.</span></div>
+<div class="line"><a id="l00335" name="l00335"></a><span class="lineno">  335</span><span class="comment"> * \param cb_fn Completion callback.</span></div>
+<div class="line"><a id="l00336" name="l00336"></a><span class="lineno">  336</span><span class="comment"> * \param cb_arg Completion callback custom arguments.</span></div>
+<div class="line"><a id="l00337" name="l00337"></a><span class="lineno">  337</span><span class="comment"> * blobstore.</span></div>
+<div class="line"><a id="l00338" name="l00338"></a><span class="lineno">  338</span><span class="comment"> */</span></div>
+<div class="line"><a id="l00339" name="l00339"></a><span class="lineno"><a class="line" href="lvol_8h.html#a22e4f8c723692f69664fd91760cd30d3">  339</a></span><span class="keywordtype">void</span> <a class="code hl_function" href="lvol_8h.html#a22e4f8c723692f69664fd91760cd30d3">spdk_lvs_load_ext</a>(<span class="keyword">struct</span> <a class="code hl_struct" href="structspdk__bs__dev.html">spdk_bs_dev</a> *bs_dev, <span class="keyword">const</span> <span class="keyword">struct</span> <a class="code hl_struct" href="structspdk__lvs__opts.html">spdk_lvs_opts</a> *lvs_opts,</div>
+<div class="line"><a id="l00340" name="l00340"></a><span class="lineno">  340</span>                       <a class="code hl_typedef" href="lvol_8h.html#a757eefd4ce0d68328e7dec58eb2e8a50">spdk_lvs_op_with_handle_complete</a> cb_fn, <span class="keywordtype">void</span> *cb_arg);</div>
+<div class="line"><a id="l00341" name="l00341"></a><span class="lineno">  341</span><span class="comment"></span> </div>
+<div class="line"><a id="l00342" name="l00342"></a><span class="lineno">  342</span><span class="comment">/**</span></div>
+<div class="line"><a id="l00343" name="l00343"></a><span class="lineno">  343</span><span class="comment"> * Grow a lvstore to fill the underlying device.</span></div>
+<div class="line"><a id="l00344" name="l00344"></a><span class="lineno">  344</span><span class="comment"> * Cannot be used on loaded lvstore.</span></div>
+<div class="line"><a id="l00345" name="l00345"></a><span class="lineno">  345</span><span class="comment"> *</span></div>
+<div class="line"><a id="l00346" name="l00346"></a><span class="lineno">  346</span><span class="comment"> * \param bs_dev Pointer to the blobstore device.</span></div>
+<div class="line"><a id="l00347" name="l00347"></a><span class="lineno">  347</span><span class="comment"> * \param cb_fn Completion callback.</span></div>
+<div class="line"><a id="l00348" name="l00348"></a><span class="lineno">  348</span><span class="comment"> * \param cb_arg Completion callback custom arguments.</span></div>
+<div class="line"><a id="l00349" name="l00349"></a><span class="lineno">  349</span><span class="comment"> */</span></div>
+<div class="line"><a id="l00350" name="l00350"></a><span class="lineno"><a class="line" href="lvol_8h.html#a46ad389863de4d9fdf4284a0cd3d5f6c">  350</a></span><span class="keywordtype">void</span> <a class="code hl_function" href="lvol_8h.html#a46ad389863de4d9fdf4284a0cd3d5f6c">spdk_lvs_grow</a>(<span class="keyword">struct</span> <a class="code hl_struct" href="structspdk__bs__dev.html">spdk_bs_dev</a> *bs_dev, <a class="code hl_typedef" href="lvol_8h.html#a757eefd4ce0d68328e7dec58eb2e8a50">spdk_lvs_op_with_handle_complete</a> cb_fn,</div>
+<div class="line"><a id="l00351" name="l00351"></a><span class="lineno">  351</span>                   <span class="keywordtype">void</span> *cb_arg);</div>
+<div class="line"><a id="l00352" name="l00352"></a><span class="lineno">  352</span><span class="comment"></span> </div>
+<div class="line"><a id="l00353" name="l00353"></a><span class="lineno">  353</span><span class="comment">/**</span></div>
+<div class="line"><a id="l00354" name="l00354"></a><span class="lineno">  354</span><span class="comment"> * Grow a loaded lvstore to fill the underlying device.</span></div>
+<div class="line"><a id="l00355" name="l00355"></a><span class="lineno">  355</span><span class="comment"> *</span></div>
+<div class="line"><a id="l00356" name="l00356"></a><span class="lineno">  356</span><span class="comment"> * \param lvs Pointer to lvolstore.</span></div>
+<div class="line"><a id="l00357" name="l00357"></a><span class="lineno">  357</span><span class="comment"> * \param cb_fn Completion callback.</span></div>
+<div class="line"><a id="l00358" name="l00358"></a><span class="lineno">  358</span><span class="comment"> * \param cb_arg Completion callback custom arguments.</span></div>
+<div class="line"><a id="l00359" name="l00359"></a><span class="lineno">  359</span><span class="comment"> */</span></div>
+<div class="line"><a id="l00360" name="l00360"></a><span class="lineno"><a class="line" href="lvol_8h.html#ae74ba28ec4717accd5a4362e3a2af9d9">  360</a></span><span class="keywordtype">void</span> <a class="code hl_function" href="lvol_8h.html#ae74ba28ec4717accd5a4362e3a2af9d9">spdk_lvs_grow_live</a>(<span class="keyword">struct</span> spdk_lvol_store *lvs, <a class="code hl_typedef" href="lvol_8h.html#a76f85d046acb7b35ae36dc83cf337075">spdk_lvs_op_complete</a> cb_fn, <span class="keywordtype">void</span> *cb_arg);</div>
+<div class="line"><a id="l00361" name="l00361"></a><span class="lineno">  361</span><span class="comment"></span> </div>
+<div class="line"><a id="l00362" name="l00362"></a><span class="lineno">  362</span><span class="comment">/**</span></div>
+<div class="line"><a id="l00363" name="l00363"></a><span class="lineno">  363</span><span class="comment"> * Open a lvol.</span></div>
+<div class="line"><a id="l00364" name="l00364"></a><span class="lineno">  364</span><span class="comment"> *</span></div>
+<div class="line"><a id="l00365" name="l00365"></a><span class="lineno">  365</span><span class="comment"> * \param lvol Handle to lvol.</span></div>
+<div class="line"><a id="l00366" name="l00366"></a><span class="lineno">  366</span><span class="comment"> * \param cb_fn Completion callback.</span></div>
+<div class="line"><a id="l00367" name="l00367"></a><span class="lineno">  367</span><span class="comment"> * \param cb_arg Completion callback custom arguments.</span></div>
+<div class="line"><a id="l00368" name="l00368"></a><span class="lineno">  368</span><span class="comment"> */</span></div>
+<div class="line"><a id="l00369" name="l00369"></a><span class="lineno"><a class="line" href="lvol_8h.html#a25631f8da88352a540abc55f52c0ef2e">  369</a></span><span class="keywordtype">void</span> <a class="code hl_function" href="lvol_8h.html#a25631f8da88352a540abc55f52c0ef2e">spdk_lvol_open</a>(<span class="keyword">struct</span> spdk_lvol *lvol, <a class="code hl_typedef" href="lvol_8h.html#a453c8a7896aafb644e21e1e960ab3759">spdk_lvol_op_with_handle_complete</a> cb_fn, <span class="keywordtype">void</span> *cb_arg);</div>
+<div class="line"><a id="l00370" name="l00370"></a><span class="lineno">  370</span><span class="comment"></span> </div>
+<div class="line"><a id="l00371" name="l00371"></a><span class="lineno">  371</span><span class="comment">/**</span></div>
+<div class="line"><a id="l00372" name="l00372"></a><span class="lineno">  372</span><span class="comment"> * Inflate lvol</span></div>
+<div class="line"><a id="l00373" name="l00373"></a><span class="lineno">  373</span><span class="comment"> *</span></div>
+<div class="line"><a id="l00374" name="l00374"></a><span class="lineno">  374</span><span class="comment"> * \param lvol Handle to lvol</span></div>
+<div class="line"><a id="l00375" name="l00375"></a><span class="lineno">  375</span><span class="comment"> * \param cb_fn Completion callback</span></div>
+<div class="line"><a id="l00376" name="l00376"></a><span class="lineno">  376</span><span class="comment"> * \param cb_arg Completion callback custom arguments</span></div>
+<div class="line"><a id="l00377" name="l00377"></a><span class="lineno">  377</span><span class="comment"> */</span></div>
+<div class="line"><a id="l00378" name="l00378"></a><span class="lineno"><a class="line" href="lvol_8h.html#a795f3fe355907d744d019d2b01f0aee9">  378</a></span><span class="keywordtype">void</span> <a class="code hl_function" href="lvol_8h.html#a795f3fe355907d744d019d2b01f0aee9">spdk_lvol_inflate</a>(<span class="keyword">struct</span> spdk_lvol *lvol, <a class="code hl_typedef" href="lvol_8h.html#a4d5c96c4fe4512f99dcb3f1e5d5e86be">spdk_lvol_op_complete</a> cb_fn, <span class="keywordtype">void</span> *cb_arg);</div>
+<div class="line"><a id="l00379" name="l00379"></a><span class="lineno">  379</span><span class="comment"></span> </div>
+<div class="line"><a id="l00380" name="l00380"></a><span class="lineno">  380</span><span class="comment">/**</span></div>
+<div class="line"><a id="l00381" name="l00381"></a><span class="lineno">  381</span><span class="comment"> * Decouple parent of lvol</span></div>
+<div class="line"><a id="l00382" name="l00382"></a><span class="lineno">  382</span><span class="comment"> *</span></div>
+<div class="line"><a id="l00383" name="l00383"></a><span class="lineno">  383</span><span class="comment"> * \param lvol Handle to lvol</span></div>
+<div class="line"><a id="l00384" name="l00384"></a><span class="lineno">  384</span><span class="comment"> * \param cb_fn Completion callback</span></div>
+<div class="line"><a id="l00385" name="l00385"></a><span class="lineno">  385</span><span class="comment"> * \param cb_arg Completion callback custom arguments</span></div>
+<div class="line"><a id="l00386" name="l00386"></a><span class="lineno">  386</span><span class="comment"> */</span></div>
+<div class="line"><a id="l00387" name="l00387"></a><span class="lineno"><a class="line" href="lvol_8h.html#a15199efb9ca8b7309ec257c1a87360c5">  387</a></span><span class="keywordtype">void</span> <a class="code hl_function" href="lvol_8h.html#a15199efb9ca8b7309ec257c1a87360c5">spdk_lvol_decouple_parent</a>(<span class="keyword">struct</span> spdk_lvol *lvol, <a class="code hl_typedef" href="lvol_8h.html#a4d5c96c4fe4512f99dcb3f1e5d5e86be">spdk_lvol_op_complete</a> cb_fn, <span class="keywordtype">void</span> *cb_arg);</div>
+<div class="line"><a id="l00388" name="l00388"></a><span class="lineno">  388</span><span class="comment"></span> </div>
+<div class="line"><a id="l00389" name="l00389"></a><span class="lineno">  389</span><span class="comment">/**</span></div>
+<div class="line"><a id="l00390" name="l00390"></a><span class="lineno">  390</span><span class="comment"> * Determine if an lvol is degraded. A degraded lvol cannot perform IO.</span></div>
+<div class="line"><a id="l00391" name="l00391"></a><span class="lineno">  391</span><span class="comment"> *</span></div>
+<div class="line"><a id="l00392" name="l00392"></a><span class="lineno">  392</span><span class="comment"> * \param lvol Handle to lvol</span></div>
+<div class="line"><a id="l00393" name="l00393"></a><span class="lineno">  393</span><span class="comment"> * \return true if the lvol has no open blob or the lvol&#39;s blob is degraded, else false.</span></div>
+<div class="line"><a id="l00394" name="l00394"></a><span class="lineno">  394</span><span class="comment"> */</span></div>
+<div class="line"><a id="l00395" name="l00395"></a><span class="lineno"><a class="line" href="lvol_8h.html#a1093dae877481711227c7b2f3aa9d879">  395</a></span><span class="keywordtype">bool</span> <a class="code hl_function" href="lvol_8h.html#a1093dae877481711227c7b2f3aa9d879">spdk_lvol_is_degraded</a>(<span class="keyword">const</span> <span class="keyword">struct</span> spdk_lvol *lvol);</div>
+<div class="line"><a id="l00396" name="l00396"></a><span class="lineno">  396</span><span class="comment"></span> </div>
+<div class="line"><a id="l00397" name="l00397"></a><span class="lineno">  397</span><span class="comment">/**</span></div>
+<div class="line"><a id="l00398" name="l00398"></a><span class="lineno">  398</span><span class="comment"> * Make a shallow copy of lvol on given bs_dev.</span></div>
+<div class="line"><a id="l00399" name="l00399"></a><span class="lineno">  399</span><span class="comment"> *</span></div>
+<div class="line"><a id="l00400" name="l00400"></a><span class="lineno">  400</span><span class="comment"> * Lvol must be read only and lvol size must be less or equal than bs_dev size.</span></div>
+<div class="line"><a id="l00401" name="l00401"></a><span class="lineno">  401</span><span class="comment"> *</span></div>
+<div class="line"><a id="l00402" name="l00402"></a><span class="lineno">  402</span><span class="comment"> * \param lvol Handle to lvol</span></div>
+<div class="line"><a id="l00403" name="l00403"></a><span class="lineno">  403</span><span class="comment"> * \param ext_dev The bs_dev to copy on. This is created on the given bdev by using</span></div>
+<div class="line"><a id="l00404" name="l00404"></a><span class="lineno">  404</span><span class="comment"> * spdk_bdev_create_bs_dev_ext() beforehand</span></div>
+<div class="line"><a id="l00405" name="l00405"></a><span class="lineno">  405</span><span class="comment"> * \param status_cb_fn Called repeatedly during operation with status updates</span></div>
+<div class="line"><a id="l00406" name="l00406"></a><span class="lineno">  406</span><span class="comment"> * \param status_cb_arg Argument passed to function status_cb_fn.</span></div>
+<div class="line"><a id="l00407" name="l00407"></a><span class="lineno">  407</span><span class="comment"> * \param cb_fn Completion callback</span></div>
+<div class="line"><a id="l00408" name="l00408"></a><span class="lineno">  408</span><span class="comment"> * \param cb_arg Completion callback custom arguments</span></div>
+<div class="line"><a id="l00409" name="l00409"></a><span class="lineno">  409</span><span class="comment"> *</span></div>
+<div class="line"><a id="l00410" name="l00410"></a><span class="lineno">  410</span><span class="comment"> * \return 0 if operation starts correctly, negative errno on failure.</span></div>
+<div class="line"><a id="l00411" name="l00411"></a><span class="lineno">  411</span><span class="comment"> */</span></div>
+<div class="line"><a id="l00412" name="l00412"></a><span class="lineno"><a class="line" href="lvol_8h.html#a51cbd535567f9e798ac4d9a1ba51584a">  412</a></span><span class="keywordtype">int</span> <a class="code hl_function" href="lvol_8h.html#a51cbd535567f9e798ac4d9a1ba51584a">spdk_lvol_shallow_copy</a>(<span class="keyword">struct</span> spdk_lvol *lvol, <span class="keyword">struct</span> <a class="code hl_struct" href="structspdk__bs__dev.html">spdk_bs_dev</a> *ext_dev,</div>
+<div class="line"><a id="l00413" name="l00413"></a><span class="lineno">  413</span>                           <a class="code hl_typedef" href="blob_8h.html#a668cd9f989594d7f4f417495ffa7517d">spdk_blob_shallow_copy_status</a> status_cb_fn, <span class="keywordtype">void</span> *status_cb_arg,</div>
+<div class="line"><a id="l00414" name="l00414"></a><span class="lineno">  414</span>                           <a class="code hl_typedef" href="lvol_8h.html#a4d5c96c4fe4512f99dcb3f1e5d5e86be">spdk_lvol_op_complete</a> cb_fn, <span class="keywordtype">void</span> *cb_arg);</div>
+<div class="line"><a id="l00415" name="l00415"></a><span class="lineno">  415</span><span class="comment"></span> </div>
+<div class="line"><a id="l00416" name="l00416"></a><span class="lineno">  416</span><span class="comment">/**</span></div>
+<div class="line"><a id="l00417" name="l00417"></a><span class="lineno">  417</span><span class="comment"> * Set a snapshot as the parent of a lvol</span></div>
+<div class="line"><a id="l00418" name="l00418"></a><span class="lineno">  418</span><span class="comment"> *</span></div>
+<div class="line"><a id="l00419" name="l00419"></a><span class="lineno">  419</span><span class="comment"> * This call set a snapshot as the parent of a lvol, making the lvol a clone of this snapshot.</span></div>
+<div class="line"><a id="l00420" name="l00420"></a><span class="lineno">  420</span><span class="comment"> * The previous parent of the lvol, if any, can be another snapshot or an external snapshot; if</span></div>
+<div class="line"><a id="l00421" name="l00421"></a><span class="lineno">  421</span><span class="comment"> * the lvol is not a clone, it must be thin-provisioned.</span></div>
+<div class="line"><a id="l00422" name="l00422"></a><span class="lineno">  422</span><span class="comment"> * Lvol and parent snapshot must have the same size and must belong to the same lvol store.</span></div>
+<div class="line"><a id="l00423" name="l00423"></a><span class="lineno">  423</span><span class="comment"> *</span></div>
+<div class="line"><a id="l00424" name="l00424"></a><span class="lineno">  424</span><span class="comment"> * \param lvol Handle to lvol</span></div>
+<div class="line"><a id="l00425" name="l00425"></a><span class="lineno">  425</span><span class="comment"> * \param snapshot Handle to the parent snapshot</span></div>
+<div class="line"><a id="l00426" name="l00426"></a><span class="lineno">  426</span><span class="comment"> * \param cb_fn Completion callback</span></div>
+<div class="line"><a id="l00427" name="l00427"></a><span class="lineno">  427</span><span class="comment"> * \param cb_arg Completion callback custom arguments</span></div>
+<div class="line"><a id="l00428" name="l00428"></a><span class="lineno">  428</span><span class="comment"> */</span></div>
+<div class="line"><a id="l00429" name="l00429"></a><span class="lineno"><a class="line" href="lvol_8h.html#ac86de32e88143da55f1538e86bac3acf">  429</a></span><span class="keywordtype">void</span> <a class="code hl_function" href="lvol_8h.html#ac86de32e88143da55f1538e86bac3acf">spdk_lvol_set_parent</a>(<span class="keyword">struct</span> spdk_lvol *lvol, <span class="keyword">struct</span> spdk_lvol *snapshot,</div>
+<div class="line"><a id="l00430" name="l00430"></a><span class="lineno">  430</span>                          <a class="code hl_typedef" href="lvol_8h.html#a4d5c96c4fe4512f99dcb3f1e5d5e86be">spdk_lvol_op_complete</a> cb_fn, <span class="keywordtype">void</span> *cb_arg);</div>
+<div class="line"><a id="l00431" name="l00431"></a><span class="lineno">  431</span><span class="comment"></span> </div>
+<div class="line"><a id="l00432" name="l00432"></a><span class="lineno">  432</span><span class="comment">/**</span></div>
+<div class="line"><a id="l00433" name="l00433"></a><span class="lineno">  433</span><span class="comment"> * Set an external snapshot as the parent of a lvol</span></div>
+<div class="line"><a id="l00434" name="l00434"></a><span class="lineno">  434</span><span class="comment"> *</span></div>
+<div class="line"><a id="l00435" name="l00435"></a><span class="lineno">  435</span><span class="comment"> * This call set an external snapshot as the parent of a lvol, making the lvol a clone of this</span></div>
+<div class="line"><a id="l00436" name="l00436"></a><span class="lineno">  436</span><span class="comment"> * external snapshot.</span></div>
+<div class="line"><a id="l00437" name="l00437"></a><span class="lineno">  437</span><span class="comment"> * The previous parent of the lvol, if any, can be another external snapshot or a snapshot; if</span></div>
+<div class="line"><a id="l00438" name="l00438"></a><span class="lineno">  438</span><span class="comment"> * the lvol is not a clone, it must be thin-provisioned.</span></div>
+<div class="line"><a id="l00439" name="l00439"></a><span class="lineno">  439</span><span class="comment"> * The size of the external snapshot device must be an integer multiple of cluster size of</span></div>
+<div class="line"><a id="l00440" name="l00440"></a><span class="lineno">  440</span><span class="comment"> * lvol&#39;s lvolstore.</span></div>
+<div class="line"><a id="l00441" name="l00441"></a><span class="lineno">  441</span><span class="comment"> *</span></div>
+<div class="line"><a id="l00442" name="l00442"></a><span class="lineno">  442</span><span class="comment"> * \param lvol Handle to lvol</span></div>
+<div class="line"><a id="l00443" name="l00443"></a><span class="lineno">  443</span><span class="comment"> * \param esnap_id The identifier of the external snapshot.</span></div>
+<div class="line"><a id="l00444" name="l00444"></a><span class="lineno">  444</span><span class="comment"> * \param esnap_id_len The length of esnap_id, in bytes.</span></div>
+<div class="line"><a id="l00445" name="l00445"></a><span class="lineno">  445</span><span class="comment"> * \param cb_fn Completion callback</span></div>
+<div class="line"><a id="l00446" name="l00446"></a><span class="lineno">  446</span><span class="comment"> * \param cb_arg Completion callback custom arguments</span></div>
+<div class="line"><a id="l00447" name="l00447"></a><span class="lineno">  447</span><span class="comment"> */</span></div>
+<div class="line"><a id="l00448" name="l00448"></a><span class="lineno"><a class="line" href="lvol_8h.html#aa40f206290a851f01dc0b399155eb968">  448</a></span><span class="keywordtype">void</span> <a class="code hl_function" href="lvol_8h.html#aa40f206290a851f01dc0b399155eb968">spdk_lvol_set_external_parent</a>(<span class="keyword">struct</span> spdk_lvol *lvol, <span class="keyword">const</span> <span class="keywordtype">void</span> *esnap_id,</div>
+<div class="line"><a id="l00449" name="l00449"></a><span class="lineno">  449</span>                                   uint32_t esnap_id_len,</div>
+<div class="line"><a id="l00450" name="l00450"></a><span class="lineno">  450</span>                                   <a class="code hl_typedef" href="lvol_8h.html#a4d5c96c4fe4512f99dcb3f1e5d5e86be">spdk_lvol_op_complete</a> cb_fn, <span class="keywordtype">void</span> *cb_arg);</div>
+<div class="line"><a id="l00451" name="l00451"></a><span class="lineno">  451</span> </div>
+<div class="line"><a id="l00452" name="l00452"></a><span class="lineno">  452</span><span class="preprocessor">#ifdef __cplusplus</span></div>
+<div class="line"><a id="l00453" name="l00453"></a><span class="lineno">  453</span>}</div>
+<div class="line"><a id="l00454" name="l00454"></a><span class="lineno">  454</span><span class="preprocessor">#endif</span></div>
+<div class="line"><a id="l00455" name="l00455"></a><span class="lineno">  455</span> </div>
+<div class="line"><a id="l00456" name="l00456"></a><span class="lineno">  456</span><span class="preprocessor">#endif  </span><span class="comment">/* SPDK_LVOL_H */</span><span class="preprocessor"></span></div>
+<div class="ttc" id="aassert_8h_html_ab961047b92ac1428376ef1ae1e4fa1cf"><div class="ttname"><a href="assert_8h.html#ab961047b92ac1428376ef1ae1e4fa1cf">SPDK_STATIC_ASSERT</a></div><div class="ttdeci">#define SPDK_STATIC_ASSERT(cond, msg)</div><div class="ttdoc">Compatibility wrapper for static_assert.</div><div class="ttdef"><b>Definition</b> <a href="assert_8h_source.html#l00030">assert.h:30</a></div></div>
+<div class="ttc" id="ablob_8h_html"><div class="ttname"><a href="blob_8h.html">blob.h</a></div><div class="ttdoc">Blob Storage System.</div></div>
+<div class="ttc" id="ablob_8h_html_a668cd9f989594d7f4f417495ffa7517d"><div class="ttname"><a href="blob_8h.html#a668cd9f989594d7f4f417495ffa7517d">spdk_blob_shallow_copy_status</a></div><div class="ttdeci">void(* spdk_blob_shallow_copy_status)(uint64_t copied_clusters, void *cb_arg)</div><div class="ttdoc">Blob shallow copy status callback.</div><div class="ttdef"><b>Definition</b> <a href="blob_8h_source.html#l00159">blob.h:159</a></div></div>
+<div class="ttc" id="ablob_8h_html_aa9de71c711c86a2fb7b9a7d967ebede4"><div class="ttname"><a href="blob_8h.html#aa9de71c711c86a2fb7b9a7d967ebede4">spdk_bs_esnap_dev_create</a></div><div class="ttdeci">int(* spdk_bs_esnap_dev_create)(void *bs_ctx, void *blob_ctx, struct spdk_blob *blob, const void *esnap_id, uint32_t id_size, struct spdk_bs_dev **bs_dev)</div><div class="ttdoc">External snapshot device open callback.</div><div class="ttdef"><b>Definition</b> <a href="blob_8h_source.html#l00149">blob.h:149</a></div></div>
+<div class="ttc" id="alvol_8h_html_a003e23eb57e1318f2f60c5727cab54e2"><div class="ttname"><a href="lvol_8h.html#a003e23eb57e1318f2f60c5727cab54e2">spdk_lvs_load</a></div><div class="ttdeci">void spdk_lvs_load(struct spdk_bs_dev *bs_dev, spdk_lvs_op_with_handle_complete cb_fn, void *cb_arg)</div><div class="ttdoc">Load lvolstore from the given blobstore device.</div></div>
+<div class="ttc" id="alvol_8h_html_a1093dae877481711227c7b2f3aa9d879"><div class="ttname"><a href="lvol_8h.html#a1093dae877481711227c7b2f3aa9d879">spdk_lvol_is_degraded</a></div><div class="ttdeci">bool spdk_lvol_is_degraded(const struct spdk_lvol *lvol)</div><div class="ttdoc">Determine if an lvol is degraded.</div></div>
+<div class="ttc" id="alvol_8h_html_a15199efb9ca8b7309ec257c1a87360c5"><div class="ttname"><a href="lvol_8h.html#a15199efb9ca8b7309ec257c1a87360c5">spdk_lvol_decouple_parent</a></div><div class="ttdeci">void spdk_lvol_decouple_parent(struct spdk_lvol *lvol, spdk_lvol_op_complete cb_fn, void *cb_arg)</div><div class="ttdoc">Decouple parent of lvol.</div></div>
+<div class="ttc" id="alvol_8h_html_a22e4f8c723692f69664fd91760cd30d3"><div class="ttname"><a href="lvol_8h.html#a22e4f8c723692f69664fd91760cd30d3">spdk_lvs_load_ext</a></div><div class="ttdeci">void spdk_lvs_load_ext(struct spdk_bs_dev *bs_dev, const struct spdk_lvs_opts *lvs_opts, spdk_lvs_op_with_handle_complete cb_fn, void *cb_arg)</div><div class="ttdoc">Load lvolstore from the given blobstore device with options.</div></div>
+<div class="ttc" id="alvol_8h_html_a249913455d3c80d34d29b7f023232df3"><div class="ttname"><a href="lvol_8h.html#a249913455d3c80d34d29b7f023232df3">spdk_lvol_get_io_channel</a></div><div class="ttdeci">struct spdk_io_channel * spdk_lvol_get_io_channel(struct spdk_lvol *lvol)</div><div class="ttdoc">Get I/O channel of bdev associated with specified lvol.</div></div>
+<div class="ttc" id="alvol_8h_html_a25631f8da88352a540abc55f52c0ef2e"><div class="ttname"><a href="lvol_8h.html#a25631f8da88352a540abc55f52c0ef2e">spdk_lvol_open</a></div><div class="ttdeci">void spdk_lvol_open(struct spdk_lvol *lvol, spdk_lvol_op_with_handle_complete cb_fn, void *cb_arg)</div><div class="ttdoc">Open a lvol.</div></div>
+<div class="ttc" id="alvol_8h_html_a2dfba2354de69f535ab0c39693c9ae73"><div class="ttname"><a href="lvol_8h.html#a2dfba2354de69f535ab0c39693c9ae73">spdk_lvol_create_clone</a></div><div class="ttdeci">void spdk_lvol_create_clone(struct spdk_lvol *lvol, const char *clone_name, spdk_lvol_op_with_handle_complete cb_fn, void *cb_arg)</div><div class="ttdoc">Create clone of given snapshot.</div></div>
+<div class="ttc" id="alvol_8h_html_a32632b9c62c7bf6c3d3c2eca3033a435"><div class="ttname"><a href="lvol_8h.html#a32632b9c62c7bf6c3d3c2eca3033a435">spdk_lvol_get_by_names</a></div><div class="ttdeci">struct spdk_lvol * spdk_lvol_get_by_names(const char *lvs_name, const char *lvol_name)</div><div class="ttdoc">Get the lvol that has the specified name in the specified lvolstore.</div></div>
+<div class="ttc" id="alvol_8h_html_a3d5d8be84217db4879d5bf79fa5c23f6"><div class="ttname"><a href="lvol_8h.html#a3d5d8be84217db4879d5bf79fa5c23f6">spdk_lvol_rename</a></div><div class="ttdeci">void spdk_lvol_rename(struct spdk_lvol *lvol, const char *new_name, spdk_lvol_op_complete cb_fn, void *cb_arg)</div><div class="ttdoc">Rename lvol with new_name.</div></div>
+<div class="ttc" id="alvol_8h_html_a453c8a7896aafb644e21e1e960ab3759"><div class="ttname"><a href="lvol_8h.html#a453c8a7896aafb644e21e1e960ab3759">spdk_lvol_op_with_handle_complete</a></div><div class="ttdeci">void(* spdk_lvol_op_with_handle_complete)(void *cb_arg, struct spdk_lvol *lvol, int lvolerrno)</div><div class="ttdoc">Callback definition for lvol operations with handle to lvol.</div><div class="ttdef"><b>Definition</b> <a href="#l00111">lvol.h:111</a></div></div>
+<div class="ttc" id="alvol_8h_html_a46ad389863de4d9fdf4284a0cd3d5f6c"><div class="ttname"><a href="lvol_8h.html#a46ad389863de4d9fdf4284a0cd3d5f6c">spdk_lvs_grow</a></div><div class="ttdeci">void spdk_lvs_grow(struct spdk_bs_dev *bs_dev, spdk_lvs_op_with_handle_complete cb_fn, void *cb_arg)</div><div class="ttdoc">Grow a lvstore to fill the underlying device.</div></div>
+<div class="ttc" id="alvol_8h_html_a48870c84403ddd07c81a78f8771eca44"><div class="ttname"><a href="lvol_8h.html#a48870c84403ddd07c81a78f8771eca44">spdk_lvol_iter_cb</a></div><div class="ttdeci">int(* spdk_lvol_iter_cb)(void *cb_arg, struct spdk_lvol *lvol)</div><div class="ttdoc">Callback definition for spdk_lvol_iter_clones.</div><div class="ttdef"><b>Definition</b> <a href="#l00129">lvol.h:129</a></div></div>
+<div class="ttc" id="alvol_8h_html_a4d5c96c4fe4512f99dcb3f1e5d5e86be"><div class="ttname"><a href="lvol_8h.html#a4d5c96c4fe4512f99dcb3f1e5d5e86be">spdk_lvol_op_complete</a></div><div class="ttdeci">void(* spdk_lvol_op_complete)(void *cb_arg, int lvolerrno)</div><div class="ttdoc">Callback definition for lvol operations without handle to lvol.</div><div class="ttdef"><b>Definition</b> <a href="#l00120">lvol.h:120</a></div></div>
+<div class="ttc" id="alvol_8h_html_a51cbd535567f9e798ac4d9a1ba51584a"><div class="ttname"><a href="lvol_8h.html#a51cbd535567f9e798ac4d9a1ba51584a">spdk_lvol_shallow_copy</a></div><div class="ttdeci">int spdk_lvol_shallow_copy(struct spdk_lvol *lvol, struct spdk_bs_dev *ext_dev, spdk_blob_shallow_copy_status status_cb_fn, void *status_cb_arg, spdk_lvol_op_complete cb_fn, void *cb_arg)</div><div class="ttdoc">Make a shallow copy of lvol on given bs_dev.</div></div>
+<div class="ttc" id="alvol_8h_html_a526682c9b96877490b9611cc96a907b1"><div class="ttname"><a href="lvol_8h.html#a526682c9b96877490b9611cc96a907b1">spdk_lvol_deletable</a></div><div class="ttdeci">bool spdk_lvol_deletable(struct spdk_lvol *lvol)</div><div class="ttdoc">Returns if it is possible to delete an lvol (i.e.</div></div>
+<div class="ttc" id="alvol_8h_html_a6d43e92544d79d7e048be0e9ac794271"><div class="ttname"><a href="lvol_8h.html#a6d43e92544d79d7e048be0e9ac794271">spdk_lvol_iter_immediate_clones</a></div><div class="ttdeci">int spdk_lvol_iter_immediate_clones(struct spdk_lvol *lvol, spdk_lvol_iter_cb cb_fn, void *cb_arg)</div><div class="ttdoc">Iterate clones of an lvol.</div></div>
+<div class="ttc" id="alvol_8h_html_a757eefd4ce0d68328e7dec58eb2e8a50"><div class="ttname"><a href="lvol_8h.html#a757eefd4ce0d68328e7dec58eb2e8a50">spdk_lvs_op_with_handle_complete</a></div><div class="ttdeci">void(* spdk_lvs_op_with_handle_complete)(void *cb_arg, struct spdk_lvol_store *lvol_store, int lvserrno)</div><div class="ttdoc">Callback definition for lvolstore operations, including handle to lvs.</div><div class="ttdef"><b>Definition</b> <a href="#l00092">lvol.h:92</a></div></div>
+<div class="ttc" id="alvol_8h_html_a76f85d046acb7b35ae36dc83cf337075"><div class="ttname"><a href="lvol_8h.html#a76f85d046acb7b35ae36dc83cf337075">spdk_lvs_op_complete</a></div><div class="ttdeci">void(* spdk_lvs_op_complete)(void *cb_arg, int lvserrno)</div><div class="ttdoc">Callback definition for lvolstore operations without handle.</div><div class="ttdef"><b>Definition</b> <a href="#l00101">lvol.h:101</a></div></div>
+<div class="ttc" id="alvol_8h_html_a795f3fe355907d744d019d2b01f0aee9"><div class="ttname"><a href="lvol_8h.html#a795f3fe355907d744d019d2b01f0aee9">spdk_lvol_inflate</a></div><div class="ttdeci">void spdk_lvol_inflate(struct spdk_lvol *lvol, spdk_lvol_op_complete cb_fn, void *cb_arg)</div><div class="ttdoc">Inflate lvol.</div></div>
+<div class="ttc" id="alvol_8h_html_a87c4dadc88c211fb4e8ba0cddc474032"><div class="ttname"><a href="lvol_8h.html#a87c4dadc88c211fb4e8ba0cddc474032">spdk_lvol_destroy</a></div><div class="ttdeci">void spdk_lvol_destroy(struct spdk_lvol *lvol, spdk_lvol_op_complete cb_fn, void *cb_arg)</div><div class="ttdoc">Close lvol and remove information about lvol from its lvolstore.</div></div>
+<div class="ttc" id="alvol_8h_html_a89835586bb7e2e6e78bd0e4cd4c4d45b"><div class="ttname"><a href="lvol_8h.html#a89835586bb7e2e6e78bd0e4cd4c4d45b">spdk_lvol_close</a></div><div class="ttdeci">void spdk_lvol_close(struct spdk_lvol *lvol, spdk_lvol_op_complete cb_fn, void *cb_arg)</div><div class="ttdoc">Close lvol, but information is kept on lvolstore.</div></div>
+<div class="ttc" id="alvol_8h_html_a9ecc81d4bcd4fd9090deb20c1a9e0db8"><div class="ttname"><a href="lvol_8h.html#a9ecc81d4bcd4fd9090deb20c1a9e0db8">spdk_lvs_opts_init</a></div><div class="ttdeci">void spdk_lvs_opts_init(struct spdk_lvs_opts *opts)</div><div class="ttdoc">Initialize an spdk_lvs_opts structure to the defaults.</div></div>
+<div class="ttc" id="alvol_8h_html_a9f7032fa38dc1af638910018e07b0dd4"><div class="ttname"><a href="lvol_8h.html#a9f7032fa38dc1af638910018e07b0dd4">spdk_lvs_unload</a></div><div class="ttdeci">int spdk_lvs_unload(struct spdk_lvol_store *lvol_store, spdk_lvs_op_complete cb_fn, void *cb_arg)</div><div class="ttdoc">Unload lvolstore.</div></div>
+<div class="ttc" id="alvol_8h_html_aa40f206290a851f01dc0b399155eb968"><div class="ttname"><a href="lvol_8h.html#aa40f206290a851f01dc0b399155eb968">spdk_lvol_set_external_parent</a></div><div class="ttdeci">void spdk_lvol_set_external_parent(struct spdk_lvol *lvol, const void *esnap_id, uint32_t esnap_id_len, spdk_lvol_op_complete cb_fn, void *cb_arg)</div><div class="ttdoc">Set an external snapshot as the parent of a lvol.</div></div>
+<div class="ttc" id="alvol_8h_html_ab3586b04e9b91ac588f3f1ff2603876c"><div class="ttname"><a href="lvol_8h.html#ab3586b04e9b91ac588f3f1ff2603876c">spdk_lvol_create</a></div><div class="ttdeci">int spdk_lvol_create(struct spdk_lvol_store *lvs, const char *name, uint64_t sz, bool thin_provisioned, enum lvol_clear_method clear_method, spdk_lvol_op_with_handle_complete cb_fn, void *cb_arg)</div><div class="ttdoc">Create lvol on given lvolstore with specified size.</div></div>
+<div class="ttc" id="alvol_8h_html_ab7a0818546003c24d2236c1f201fdf28"><div class="ttname"><a href="lvol_8h.html#ab7a0818546003c24d2236c1f201fdf28">spdk_lvol_create_snapshot</a></div><div class="ttdeci">void spdk_lvol_create_snapshot(struct spdk_lvol *lvol, const char *snapshot_name, spdk_lvol_op_with_handle_complete cb_fn, void *cb_arg)</div><div class="ttdoc">Create snapshot of given lvol.</div></div>
+<div class="ttc" id="alvol_8h_html_ac2b7913388e51e8b2191cb1302854416"><div class="ttname"><a href="lvol_8h.html#ac2b7913388e51e8b2191cb1302854416">spdk_lvol_get_by_uuid</a></div><div class="ttdeci">struct spdk_lvol * spdk_lvol_get_by_uuid(const struct spdk_uuid *uuid)</div><div class="ttdoc">Get the lvol that has a particular UUID.</div></div>
+<div class="ttc" id="alvol_8h_html_ac2c5d67c2711ee149784f5e5e5be0b7a"><div class="ttname"><a href="lvol_8h.html#ac2c5d67c2711ee149784f5e5e5be0b7a">spdk_lvs_destroy</a></div><div class="ttdeci">int spdk_lvs_destroy(struct spdk_lvol_store *lvol_store, spdk_lvs_op_complete cb_fn, void *cb_arg)</div><div class="ttdoc">Destroy lvolstore.</div></div>
+<div class="ttc" id="alvol_8h_html_ac86de32e88143da55f1538e86bac3acf"><div class="ttname"><a href="lvol_8h.html#ac86de32e88143da55f1538e86bac3acf">spdk_lvol_set_parent</a></div><div class="ttdeci">void spdk_lvol_set_parent(struct spdk_lvol *lvol, struct spdk_lvol *snapshot, spdk_lvol_op_complete cb_fn, void *cb_arg)</div><div class="ttdoc">Set a snapshot as the parent of a lvol.</div></div>
+<div class="ttc" id="alvol_8h_html_ae12b16b8565ab63a3c9b919ab9664c0f"><div class="ttname"><a href="lvol_8h.html#ae12b16b8565ab63a3c9b919ab9664c0f">spdk_lvs_init</a></div><div class="ttdeci">int spdk_lvs_init(struct spdk_bs_dev *bs_dev, struct spdk_lvs_opts *o, spdk_lvs_op_with_handle_complete cb_fn, void *cb_arg)</div><div class="ttdoc">Initialize lvolstore on given bs_bdev.</div></div>
+<div class="ttc" id="alvol_8h_html_ae74ba28ec4717accd5a4362e3a2af9d9"><div class="ttname"><a href="lvol_8h.html#ae74ba28ec4717accd5a4362e3a2af9d9">spdk_lvs_grow_live</a></div><div class="ttdeci">void spdk_lvs_grow_live(struct spdk_lvol_store *lvs, spdk_lvs_op_complete cb_fn, void *cb_arg)</div><div class="ttdoc">Grow a loaded lvstore to fill the underlying device.</div></div>
+<div class="ttc" id="alvol_8h_html_af406c5e7b0e7826b270c802b1431b76f"><div class="ttname"><a href="lvol_8h.html#af406c5e7b0e7826b270c802b1431b76f">spdk_lvs_rename</a></div><div class="ttdeci">void spdk_lvs_rename(struct spdk_lvol_store *lvs, const char *new_name, spdk_lvs_op_complete cb_fn, void *cb_arg)</div><div class="ttdoc">Rename the given lvolstore.</div></div>
+<div class="ttc" id="astdinc_8h_html"><div class="ttname"><a href="stdinc_8h.html">stdinc.h</a></div><div class="ttdoc">Standard C headers.</div></div>
+<div class="ttc" id="astructspdk__bs__dev_html"><div class="ttname"><a href="structspdk__bs__dev.html">spdk_bs_dev</a></div><div class="ttdef"><b>Definition</b> <a href="blob_8h_source.html#l00183">blob.h:183</a></div></div>
+<div class="ttc" id="astructspdk__lvs__opts_html"><div class="ttname"><a href="structspdk__lvs__opts.html">spdk_lvs_opts</a></div><div class="ttdoc">Parameters for lvolstore initialization.</div><div class="ttdef"><b>Definition</b> <a href="#l00046">lvol.h:46</a></div></div>
+<div class="ttc" id="astructspdk__lvs__opts_html_a441dae8d3badece5ef1c52eca5b55cea"><div class="ttname"><a href="structspdk__lvs__opts.html#a441dae8d3badece5ef1c52eca5b55cea">spdk_lvs_opts::num_md_pages_per_cluster_ratio</a></div><div class="ttdeci">uint32_t num_md_pages_per_cluster_ratio</div><div class="ttdoc">num_md_pages_per_cluster_ratio = 100 means 1 page per cluster</div><div class="ttdef"><b>Definition</b> <a href="#l00057">lvol.h:57</a></div></div>
+<div class="ttc" id="astructspdk__lvs__opts_html_a7de65fde2acf310c0d7ba4479d368f46"><div class="ttname"><a href="structspdk__lvs__opts.html#a7de65fde2acf310c0d7ba4479d368f46">spdk_lvs_opts::cluster_sz</a></div><div class="ttdeci">uint32_t cluster_sz</div><div class="ttdoc">Size of cluster in bytes.</div><div class="ttdef"><b>Definition</b> <a href="#l00048">lvol.h:48</a></div></div>
+<div class="ttc" id="astructspdk__lvs__opts_html_a9be3f1e2393c257a3089b5f32849ab0d"><div class="ttname"><a href="structspdk__lvs__opts.html#a9be3f1e2393c257a3089b5f32849ab0d">spdk_lvs_opts::md_page_size</a></div><div class="ttdeci">uint32_t md_page_size</div><div class="ttdoc">Metadata page size.</div><div class="ttdef"><b>Definition</b> <a href="#l00074">lvol.h:74</a></div></div>
+<div class="ttc" id="astructspdk__lvs__opts_html_aa8ddc17ea3ac0cf9ef7f866cf1fac3e0"><div class="ttname"><a href="structspdk__lvs__opts.html#aa8ddc17ea3ac0cf9ef7f866cf1fac3e0">spdk_lvs_opts::name</a></div><div class="ttdeci">char name[SPDK_LVS_NAME_MAX]</div><div class="ttdoc">Name of the lvolstore.</div><div class="ttdef"><b>Definition</b> <a href="#l00054">lvol.h:54</a></div></div>
+<div class="ttc" id="astructspdk__lvs__opts_html_acb87d4e7eddafa21f26296a4c714db58"><div class="ttname"><a href="structspdk__lvs__opts.html#acb87d4e7eddafa21f26296a4c714db58">spdk_lvs_opts::opts_size</a></div><div class="ttdeci">uint32_t opts_size</div><div class="ttdoc">The size of spdk_lvol_opts according to the caller of this library is used for ABI compatibility.</div><div class="ttdef"><b>Definition</b> <a href="#l00065">lvol.h:65</a></div></div>
+<div class="ttc" id="astructspdk__lvs__opts_html_acd478088cf88a9731e689ae48ea461e0"><div class="ttname"><a href="structspdk__lvs__opts.html#acd478088cf88a9731e689ae48ea461e0">spdk_lvs_opts::esnap_bs_dev_create</a></div><div class="ttdeci">spdk_bs_esnap_dev_create esnap_bs_dev_create</div><div class="ttdoc">A function to be called to load external snapshots.</div><div class="ttdef"><b>Definition</b> <a href="#l00071">lvol.h:71</a></div></div>
+<div class="ttc" id="astructspdk__lvs__opts_html_ad72430d6eb4550837aca4946a3990f8e"><div class="ttname"><a href="structspdk__lvs__opts.html#ad72430d6eb4550837aca4946a3990f8e">spdk_lvs_opts::clear_method</a></div><div class="ttdeci">enum lvs_clear_method clear_method</div><div class="ttdoc">Clear method.</div><div class="ttdef"><b>Definition</b> <a href="#l00051">lvol.h:51</a></div></div>
+<div class="ttc" id="astructspdk__uuid_html"><div class="ttname"><a href="structspdk__uuid.html">spdk_uuid</a></div><div class="ttdef"><b>Definition</b> <a href="uuid_8h_source.html#l00021">uuid.h:21</a></div></div>
+<div class="ttc" id="auuid_8h_html"><div class="ttname"><a href="uuid_8h.html">uuid.h</a></div><div class="ttdoc">UUID types and functions.</div></div>
+</div><!-- fragment --></div><!-- contents -->
+</div><!-- doc-content -->
+</div><!-- container -->
+<footer class="footer" id="nav-path">
+  <div class="footer-inner">
+    <div class="footer-copy">
+      <small>Copyright &copy; SPDK a Series of LF Projects, LLC. For web site terms of use, trademark policy, and other
+      project policies please see <a href="https://lfprojects.org">lfprojects.org</a>.</small>
+    </div>
+  </div>
+</footer>
+<script type="text/javascript" src="page_outline.js"></script>
+<script type="text/javascript" src="spdk_nav.js"></script>
+<!-- Doxygen footer suffix – assembled by _build/common.sh:
+     _includes/footer.html (shared) + theme scripts (from spdk) + this file.
+     Theme scripts are extracted from spdk/doc/theme/footer.html at build
+     time so the script list is maintained in a single place. -->
+</body>
+</html>

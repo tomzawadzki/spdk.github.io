@@ -1,0 +1,17 @@
+<map id="spdk_accel_task" name="spdk_accel_task">
+<area shape="rect" id="Node000001" title=" " alt="" coords="348,246,476,274"/>
+<area shape="rect" id="Node000002" href="$structspdk__accel__crypto__key.html" title=" " alt="" coords="98,145,270,173"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="216,180,250,200,287,220,356,243,354,248,285,224,247,205,214,184"/>
+<area shape="rect" id="Node000003" href="$structspdk__accel__module__if.html" title=" " alt="" coords="5,14,171,42"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="109,53,176,143,172,146,105,56"/>
+<area shape="rect" id="Node000004" href="$structspdk__accel__crypto__key__create__param.html" title=" " alt="" coords="194,5,366,50"/>
+<area shape="poly" id="edge3_Node000002_Node000004" title=" " alt="" coords="269,65,255,95,235,123,208,147,204,143,231,120,250,92,264,63"/>
+<area shape="rect" id="Node000005" href="$structspdk__dif__ctx.html" title="DIF context information." alt="" coords="294,145,397,173"/>
+<area shape="poly" id="edge4_Node000001_Node000005" title=" " alt="" coords="365,184,405,244,401,247,360,187"/>
+<area shape="rect" id="Node000006" href="$structspdk__dif__error.html" title="DIF error information." alt="" coords="422,145,536,173"/>
+<area shape="poly" id="edge5_Node000001_Node000006" title=" " alt="" coords="464,187,423,247,419,244,459,184"/>
+<area shape="rect" id="Node000007" href="$structspdk__accel__task__aux__data.html" title=" " alt="" coords="560,145,755,173"/>
+<area shape="poly" id="edge6_Node000001_Node000007" title=" " alt="" coords="612,182,446,248,444,243,610,177"/>
+<area shape="rect" id="Node000008" href="$structspdk__accel__bounce__buffer.html" title="Describes user&#39;s buffers in remote memory domains in case a module doesn&#39;t support memory domains and..." alt="" coords="561,14,754,42"/>
+<area shape="poly" id="edge7_Node000007_Node000008" title=" " alt="" coords="660,57,660,145,655,145,655,57"/>
+</map>

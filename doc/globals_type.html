@@ -1,0 +1,279 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<meta name="generator" content="Doxygen 1.16.1">
+	<title>SPDK: Globals</title>
+	<script type="text/javascript" src="jquery.js"></script>
+	<script type="text/javascript" src="dynsections.js"></script>
+	<script type="text/javascript" src="clipboard.js"></script>
+	<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
+<script type="text/javascript" src="cookie.js"></script>
+	<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<script type="text/javascript">
+  $(function() { init_search(); });
+</script>
+	<link rel="icon" type="image/svg+xml" href="../assets/img/spdk.svg">
+	<link rel="icon" href="../assets/favicon.ico" sizes="32x32">
+	<link href="doxygen.css" rel="stylesheet" type="text/css">
+	<script>(function(){var k='doxygen_width',w,bw=6;if(window.chrome){w=localStorage.getItem(k);if(!w){w='350';localStorage.setItem(k,w)}}else{var m=document.cookie.match(new RegExp(k+'=(\\d+)'));w=m?m[1]:null;if(!w){w='350';document.cookie=k+'=350;SameSite=Lax;path=/'}}document.documentElement.style.setProperty('--sn-w',(parseInt(w)+bw)+'px')})()</script>
+	<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:400,700,900" type="text/css">
+	<link href="spdk.css" rel="stylesheet" type="text/css"/>
+	<link href="../assets/css/spdk.css" rel="stylesheet" type="text/css">
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<nav class="navbar">
+  <a class="navbar-brand" href="../" aria-label="SPDK">
+    <img src="../assets/img/spdk.svg" width="36" height="36" alt="Storage Performance Development Kit">
+  </a>
+  <div class="navbar-nav">
+    <a class="nav-link header-link" href="../doc/releases.html">download</a>
+    <a class="nav-link header-link" href="../doc/">documentation</a>
+    <a class="nav-link header-link" href="../doc/contributing.html">development</a>
+    <a class="nav-link header-link" href="../doc/ci_tools.html">CI status</a>
+    <a class="nav-link header-link" href="../community/">community</a>
+    <a class="nav-link header-link" href="../blog/">Blog</a>
+    <a class="nav-link header-link" href="https://github.com/orgs/spdk/projects/5">Roadmap</a>
+    <a class="nav-link header-link" href="../news/">News</a>
+  </div>
+  <div class="navbar-end">
+    <a class="nav-link header-link" href="https://github.com/spdk/spdk" aria-label="GitHub">
+      <svg xmlns="http://www.w3.org/2000/svg" class="navbar-nav-svg" aria-hidden="true"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
+    </a>
+    <a id="cn_lang_btn" href="../cn/doc/" class="nav-link header-link">中文</a>
+  </div>
+</nav>
+<script>
+(function() {
+    var p = location.pathname, best = null, bLen = 0;
+    document.querySelectorAll('.header-link[href]').forEach(function(a) {
+        var raw = a.getAttribute('href');
+        if (!raw) return;
+        try { var u = new URL(raw, location.href); } catch(e) { return; }
+        if (u.origin !== location.origin) return;
+        var h = u.pathname;
+        if (h === '/') return;
+        var ok = h.endsWith('.html') ? p === h : p.indexOf(h) === 0;
+        if (ok && h.length > bLen) { bLen = h.length; best = a; }
+    });
+    if (best) best.classList.add('active');
+})();
+</script>
+<div id="doxygen-searchbox">        <div id="MSearchBox" class="MSearchBoxInactive">
+        <span class="left">
+          <span id="MSearchSelect" class="search-icon" onmouseover="return searchBox.OnSearchSelectShow()" onmouseout="return searchBox.OnSearchSelectHide()"><span class="search-icon-dropdown"></span></span>
+          <input type="text" id="MSearchField" value="" placeholder="Search" accesskey="S"
+               onfocus="searchBox.OnSearchFieldFocus(true)" 
+               onblur="searchBox.OnSearchFieldFocus(false)" 
+               onkeyup="searchBox.OnSearchFieldChange(event)"/>
+          </span><span class="right">
+            <a id="MSearchClose" href="javascript:searchBox.CloseResultsWindow()"><div id="MSearchCloseImg" class="close-icon"></div></a>
+          </span>
+        </div>
+</div>
+<!-- Generated by Doxygen 1.16.1 -->
+<script type="text/javascript">
+var searchBox = new SearchBox("searchBox", "search/",'.html');
+</script>
+<script type="text/javascript">
+$(function() { codefold.init(); });
+</script>
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+$(function(){initNavTree('globals_type.html','',''); });
+</script>
+<div id="container">
+<div id="doc-content">
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">Loading...</div>
+<div class="SRStatus" id="Searching">Searching...</div>
+<div class="SRStatus" id="NoMatches">No Matches</div>
+</div>
+</div>
+</div>
+</div>
+
+<div class="contents">
+<div class="textblock">Here is a list of all documented typedefs with links to the documentation:</div>
+
+<h3 class="doxsection"><a id="index_s" name="index_s"></a>- s -</h3><ul>
+<li>spdk_accel_completion_cb&#160;:&#160;<a class="el" href="accel_8h.html#a6ba836b7b128829ba185eadb2c60476a">accel.h</a></li>
+<li>spdk_accel_fini_cb&#160;:&#160;<a class="el" href="accel_8h.html#a545ea1cc4167924acee2803aed824877">accel.h</a></li>
+<li>spdk_accel_step_cb&#160;:&#160;<a class="el" href="accel_8h.html#abaf556b5e1b63b5237faff3952a3bb46">accel.h</a></li>
+<li>spdk_app_shutdown_cb&#160;:&#160;<a class="el" href="event_8h.html#af7e98d89bfe88c7b9d9ecfc78fac2cd2">event.h</a></li>
+<li>spdk_bdev_event_cb_t&#160;:&#160;<a class="el" href="bdev_8h.html#ab4755b1b0a2a204732c3be266b6e1b08">bdev.h</a></li>
+<li>spdk_bdev_fini_cb&#160;:&#160;<a class="el" href="bdev_8h.html#ad33efc88148d8984b353e54b7ee0058f">bdev.h</a></li>
+<li>spdk_bdev_for_each_channel_done&#160;:&#160;<a class="el" href="bdev_8h.html#a16f406e9a97a6ac7072867bdcc7c1df1">bdev.h</a></li>
+<li>spdk_bdev_for_each_channel_msg&#160;:&#160;<a class="el" href="bdev_8h.html#a4ac2a1bd295f6c71dbe706e61f5f6ac4">bdev.h</a></li>
+<li>spdk_bdev_init_cb&#160;:&#160;<a class="el" href="bdev_8h.html#aa6a8987bb3a1bc368881f6b81d249bd3">bdev.h</a></li>
+<li>spdk_bdev_io_completion_cb&#160;:&#160;<a class="el" href="bdev_8h.html#a0c5602dfd313f90032dd91683b9663e3">bdev.h</a></li>
+<li>spdk_bdev_io_get_aux_buf_cb&#160;:&#160;<a class="el" href="bdev__module_8h.html#a78a004a98b02f2d1b2346b6b25e1c945">bdev_module.h</a></li>
+<li>spdk_bdev_io_get_buf_cb&#160;:&#160;<a class="el" href="bdev__module_8h.html#a2562fbcad733a35efaca67e9fb53a382">bdev_module.h</a></li>
+<li>spdk_bdev_io_timeout_cb&#160;:&#160;<a class="el" href="bdev_8h.html#a83db84993554e784cbddf2d217f6ea4f">bdev.h</a></li>
+<li>spdk_bdev_io_wait_cb&#160;:&#160;<a class="el" href="bdev_8h.html#a9c7e19e090b8cdb22e8fc6b1984e5278">bdev.h</a></li>
+<li>spdk_bdev_open_async_cb_t&#160;:&#160;<a class="el" href="bdev_8h.html#a0253fe337c6697d014adffde6f8cd000">bdev.h</a></li>
+<li>spdk_bdev_remove_cb_t&#160;:&#160;<a class="el" href="bdev_8h.html#a51a55c97586c2d524fffcabc4d7910d6">bdev.h</a></li>
+<li>spdk_blob_op_complete&#160;:&#160;<a class="el" href="blob_8h.html#aca5253109581a768e06dd197429ef9e1">blob.h</a></li>
+<li>spdk_blob_op_with_bs_dev&#160;:&#160;<a class="el" href="blob_8h.html#a674db2e2ce68c181b11ffd676b8cc51b">blob.h</a></li>
+<li>spdk_blob_op_with_handle_complete&#160;:&#160;<a class="el" href="blob_8h.html#aab6d19ccc3c952877c355030e2a286c1">blob.h</a></li>
+<li>spdk_blob_op_with_id_complete&#160;:&#160;<a class="el" href="blob_8h.html#a4955592d73cb1a262d699d10c8e2856f">blob.h</a></li>
+<li>spdk_blob_shallow_copy_status&#160;:&#160;<a class="el" href="blob_8h.html#a668cd9f989594d7f4f417495ffa7517d">blob.h</a></li>
+<li>spdk_bs_dev_cpl&#160;:&#160;<a class="el" href="blob_8h.html#afb1f64973b22548813723a645f9b8995">blob.h</a></li>
+<li>spdk_bs_esnap_dev_create&#160;:&#160;<a class="el" href="blob_8h.html#aa9de71c711c86a2fb7b9a7d967ebede4">blob.h</a></li>
+<li>spdk_bs_op_complete&#160;:&#160;<a class="el" href="blob_8h.html#a9c265d4eead39c3419cee4b620bf5052">blob.h</a></li>
+<li>spdk_bs_op_with_handle_complete&#160;:&#160;<a class="el" href="blob_8h.html#a40a976910f2112a4164ae6a12b946855">blob.h</a></li>
+<li>spdk_channel_for_each_cpl&#160;:&#160;<a class="el" href="thread_8h.html#a96f03fe115196f1de03292ed6d86fd46">thread.h</a></li>
+<li>spdk_channel_msg&#160;:&#160;<a class="el" href="thread_8h.html#a2dd91f3094f8b4cf60f460e3f88bbf0c">thread.h</a></li>
+<li>spdk_event_fn&#160;:&#160;<a class="el" href="event_8h.html#a69f0f17c0f9a03840c327672df37b3bb">event.h</a></li>
+<li>spdk_fd_fn&#160;:&#160;<a class="el" href="fd__group_8h.html#a743712229809e8ec96fcfc866978a08c">fd_group.h</a></li>
+<li>spdk_for_each_bdev_fn&#160;:&#160;<a class="el" href="bdev_8h.html#a4163854db79e0e3b211dd72ca031fbb0">bdev.h</a></li>
+<li>spdk_fsdev_abort_cpl_cb&#160;:&#160;<a class="el" href="fsdev_8h.html#a7ee99e3dbae9e06861dc205156050c2a">fsdev.h</a></li>
+<li>spdk_fsdev_copy_file_range_cpl_cb&#160;:&#160;<a class="el" href="fsdev_8h.html#a9d2013cde86098390bbb73e346b96c55">fsdev.h</a></li>
+<li>spdk_fsdev_create_cpl_cb&#160;:&#160;<a class="el" href="fsdev_8h.html#ae77bf4c150b8d685c22726eec7b06516">fsdev.h</a></li>
+<li>spdk_fsdev_event_cb_t&#160;:&#160;<a class="el" href="fsdev_8h.html#a7f17c8dc7e348a41b50aca23d758eecb">fsdev.h</a></li>
+<li>spdk_fsdev_fallocate_cpl_cb&#160;:&#160;<a class="el" href="fsdev_8h.html#a87ec5b2843a7be514ac9d6c693118610">fsdev.h</a></li>
+<li>spdk_fsdev_fini_cb&#160;:&#160;<a class="el" href="fsdev_8h.html#ab100fbd39944f97ce0f8c7bf88591ff5">fsdev.h</a></li>
+<li>spdk_fsdev_flock_cpl_cb&#160;:&#160;<a class="el" href="fsdev_8h.html#a8c43928d312b741a572656c3a89640e4">fsdev.h</a></li>
+<li>spdk_fsdev_flush_cpl_cb&#160;:&#160;<a class="el" href="fsdev_8h.html#a42d995c33ef1719f79dc39eda69e1fc9">fsdev.h</a></li>
+<li>spdk_fsdev_fopen_cpl_cb&#160;:&#160;<a class="el" href="fsdev_8h.html#a8f2e6587b4b405ca41f0f80050698e3e">fsdev.h</a></li>
+<li>spdk_fsdev_forget_cpl_cb&#160;:&#160;<a class="el" href="fsdev_8h.html#a8f3a236dd6a7d31734e92cadadd5f969">fsdev.h</a></li>
+<li>spdk_fsdev_fsync_cpl_cb&#160;:&#160;<a class="el" href="fsdev_8h.html#aa5d8f1a7a5c0569941342cdad445c811">fsdev.h</a></li>
+<li>spdk_fsdev_fsyncdir_cpl_cb&#160;:&#160;<a class="el" href="fsdev_8h.html#acb7a14eafb9606811a10ec4498bcc706">fsdev.h</a></li>
+<li>spdk_fsdev_getattr_cpl_cb&#160;:&#160;<a class="el" href="fsdev_8h.html#aae26d6253c295d4a55add390333be682">fsdev.h</a></li>
+<li>spdk_fsdev_getxattr_cpl_cb&#160;:&#160;<a class="el" href="fsdev_8h.html#ae3e6feb766cdd699b6cec8861f36e6a0">fsdev.h</a></li>
+<li>spdk_fsdev_init_cb&#160;:&#160;<a class="el" href="fsdev_8h.html#a67ec9ba3beeca665c63b03fcf5c35474">fsdev.h</a></li>
+<li>spdk_fsdev_link_cpl_cb&#160;:&#160;<a class="el" href="fsdev_8h.html#a7ef43a61e382a554a25582a040dd4f34">fsdev.h</a></li>
+<li>spdk_fsdev_listxattr_cpl_cb&#160;:&#160;<a class="el" href="fsdev_8h.html#a15bc6ff9892aad590e97357ff791c465">fsdev.h</a></li>
+<li>spdk_fsdev_lookup_cpl_cb&#160;:&#160;<a class="el" href="fsdev_8h.html#afbba08fcf598beb5d98340ba28b617c2">fsdev.h</a></li>
+<li>spdk_fsdev_mkdir_cpl_cb&#160;:&#160;<a class="el" href="fsdev_8h.html#ac6a07bfc8d04a00846b7496bb1dbeeaa">fsdev.h</a></li>
+<li>spdk_fsdev_mknod_cpl_cb&#160;:&#160;<a class="el" href="fsdev_8h.html#adc350530e00392a380a912d1199c088d">fsdev.h</a></li>
+<li>spdk_fsdev_mount_cpl_cb&#160;:&#160;<a class="el" href="fsdev_8h.html#a6ff4c46295508cf6bfc650552e5fd45f">fsdev.h</a></li>
+<li>spdk_fsdev_opendir_cpl_cb&#160;:&#160;<a class="el" href="fsdev_8h.html#ab71c1a2d51d70ba1034ec232658fa635">fsdev.h</a></li>
+<li>spdk_fsdev_read_cpl_cb&#160;:&#160;<a class="el" href="fsdev_8h.html#afe88dee7a3cd449bb8aca4396eed032c">fsdev.h</a></li>
+<li>spdk_fsdev_readdir_cpl_cb&#160;:&#160;<a class="el" href="fsdev_8h.html#aef775cb309379a2065e4e317841bd1a7">fsdev.h</a></li>
+<li>spdk_fsdev_readdir_entry_cb&#160;:&#160;<a class="el" href="fsdev_8h.html#a1aa47bc61002d7f310c31bdc80ef435f">fsdev.h</a></li>
+<li>spdk_fsdev_readlink_cpl_cb&#160;:&#160;<a class="el" href="fsdev_8h.html#a2e0db0a51f3856194393230b9e1112b3">fsdev.h</a></li>
+<li>spdk_fsdev_release_cpl_cb&#160;:&#160;<a class="el" href="fsdev_8h.html#ab5299f1535c59c11d2e2df1c8136d07a">fsdev.h</a></li>
+<li>spdk_fsdev_releasedir_cpl_cb&#160;:&#160;<a class="el" href="fsdev_8h.html#aa240cd5c16eb78164e18ae4e66175623">fsdev.h</a></li>
+<li>spdk_fsdev_removexattr_cpl_cb&#160;:&#160;<a class="el" href="fsdev_8h.html#a505469ea31ee0dd47c5b92b6732d59a2">fsdev.h</a></li>
+<li>spdk_fsdev_rename_cpl_cb&#160;:&#160;<a class="el" href="fsdev_8h.html#af09c4f1a0a8118e98bb1561a2992ecb1">fsdev.h</a></li>
+<li>spdk_fsdev_rmdir_cpl_cb&#160;:&#160;<a class="el" href="fsdev_8h.html#a16062da8ec770fa4efdf0e46021d9ca1">fsdev.h</a></li>
+<li>spdk_fsdev_setattr_cpl_cb&#160;:&#160;<a class="el" href="fsdev_8h.html#a7bfd4916266bd5453ba5c80ffe608e21">fsdev.h</a></li>
+<li>spdk_fsdev_setxattr_cpl_cb&#160;:&#160;<a class="el" href="fsdev_8h.html#a6435227d65f41b7e5b91594d9bba4fb0">fsdev.h</a></li>
+<li>spdk_fsdev_statfs_cpl_cb&#160;:&#160;<a class="el" href="fsdev_8h.html#a2ecb3929bb231f19ce2b2d839677cd16">fsdev.h</a></li>
+<li>spdk_fsdev_symlink_cpl_cb&#160;:&#160;<a class="el" href="fsdev_8h.html#aebf65b6f5edbe0f4ecc9e67f4f83d55e">fsdev.h</a></li>
+<li>spdk_fsdev_umount_cpl_cb&#160;:&#160;<a class="el" href="fsdev_8h.html#a1dd822a2e8b210aee3ccc7869c5b7b94">fsdev.h</a></li>
+<li>spdk_fsdev_unlink_cpl_cb&#160;:&#160;<a class="el" href="fsdev_8h.html#a437ddf6056312ce3d8db8c2772b77595">fsdev.h</a></li>
+<li>spdk_fsdev_write_cpl_cb&#160;:&#160;<a class="el" href="fsdev_8h.html#ac8f367b7c67799b1d2ddd7a2342006bb">fsdev.h</a></li>
+<li>spdk_idxd_attach_cb&#160;:&#160;<a class="el" href="idxd_8h.html#a4d941aea0b11a77815cfdd10b1c3c22b">idxd.h</a></li>
+<li>spdk_idxd_probe_cb&#160;:&#160;<a class="el" href="idxd_8h.html#a9e646b0325aa65b2a5b9519c204a724a">idxd.h</a></li>
+<li>spdk_idxd_req_cb&#160;:&#160;<a class="el" href="idxd_8h.html#a75c066c5425700c49f077e20484b50c1">idxd.h</a></li>
+<li>spdk_interrupt_fn&#160;:&#160;<a class="el" href="thread_8h.html#a61cfdc77d10970d7f3a8631df71e9588">thread.h</a></li>
+<li>spdk_io_channel_create_cb&#160;:&#160;<a class="el" href="thread_8h.html#aed1d14292cfee8553d4a1ebb519b210a">thread.h</a></li>
+<li>spdk_io_channel_destroy_cb&#160;:&#160;<a class="el" href="thread_8h.html#a75aa6a61877f23f79bb75c8fc5e68202">thread.h</a></li>
+<li>spdk_io_device_unregister_cb&#160;:&#160;<a class="el" href="thread_8h.html#ae044f4141737c7f2df49cdfb03fd58ca">thread.h</a></li>
+<li>spdk_ioat_attach_cb&#160;:&#160;<a class="el" href="ioat_8h.html#a8826bf4e7c57228794f486368217a494">ioat.h</a></li>
+<li>spdk_ioat_probe_cb&#160;:&#160;<a class="el" href="ioat_8h.html#a41d999ded01b3bc2b1a1bce0c48083a7">ioat.h</a></li>
+<li>spdk_ioat_req_cb&#160;:&#160;<a class="el" href="ioat_8h.html#a143b0bad5a250a1a6d27b087be67627b">ioat.h</a></li>
+<li>spdk_jsonrpc_client_response_parser&#160;:&#160;<a class="el" href="jsonrpc_8h.html#a5160e9c0a3230584ca653ffd2ea64487">jsonrpc.h</a></li>
+<li>spdk_jsonrpc_handle_request_fn&#160;:&#160;<a class="el" href="jsonrpc_8h.html#a74afccd199dde8aaebd020ac513cf819">jsonrpc.h</a></li>
+<li>spdk_log_cb&#160;:&#160;<a class="el" href="log_8h.html#ae9946dc6bcd854cdb6ea5ae7c77ff704">log.h</a></li>
+<li>spdk_log_close_cb&#160;:&#160;<a class="el" href="log_8h.html#a0a3538385d2c67c4c0cf02c61ed27db6">log.h</a></li>
+<li>spdk_log_for_each_deprecation_fn&#160;:&#160;<a class="el" href="log_8h.html#ac1578d0b093538b785898654350f8f63">log.h</a></li>
+<li>spdk_log_open_cb&#160;:&#160;<a class="el" href="log_8h.html#a8c37ad0624df553cc44f518d9a608dfe">log.h</a></li>
+<li>spdk_lvol_iter_cb&#160;:&#160;<a class="el" href="lvol_8h.html#a48870c84403ddd07c81a78f8771eca44">lvol.h</a></li>
+<li>spdk_lvol_op_complete&#160;:&#160;<a class="el" href="lvol_8h.html#a4d5c96c4fe4512f99dcb3f1e5d5e86be">lvol.h</a></li>
+<li>spdk_lvol_op_with_handle_complete&#160;:&#160;<a class="el" href="lvol_8h.html#a453c8a7896aafb644e21e1e960ab3759">lvol.h</a></li>
+<li>spdk_lvs_op_complete&#160;:&#160;<a class="el" href="lvol_8h.html#a76f85d046acb7b35ae36dc83cf337075">lvol.h</a></li>
+<li>spdk_lvs_op_with_handle_complete&#160;:&#160;<a class="el" href="lvol_8h.html#a757eefd4ce0d68328e7dec58eb2e8a50">lvol.h</a></li>
+<li>spdk_memory_domain_data_cpl_cb&#160;:&#160;<a class="el" href="dma_8h.html#a8d7a0eee8d944cf100d3006b3f3f1774">dma.h</a></li>
+<li>spdk_memory_domain_invalidate_data_cb&#160;:&#160;<a class="el" href="dma_8h.html#a9437c10aecf1f03c8137b870a83dac17">dma.h</a></li>
+<li>spdk_memory_domain_memzero_cb&#160;:&#160;<a class="el" href="dma_8h.html#a22484d6db47a04c8a41a84e67cdb4613">dma.h</a></li>
+<li>spdk_memory_domain_pull_data_cb&#160;:&#160;<a class="el" href="dma_8h.html#abf5cd879a09a8f23a30b45e94574e893">dma.h</a></li>
+<li>spdk_memory_domain_push_data_cb&#160;:&#160;<a class="el" href="dma_8h.html#a2f4b39300fc63eb3fe95530ca4c87305">dma.h</a></li>
+<li>spdk_memory_domain_transfer_data_cb&#160;:&#160;<a class="el" href="dma_8h.html#a01b08a0983057edbc19cb1dd6bdea2de">dma.h</a></li>
+<li>spdk_memory_domain_translate_memory_cb&#160;:&#160;<a class="el" href="dma_8h.html#a80080465d2736a76d0ddf95d67c701bb">dma.h</a></li>
+<li>spdk_mempool_mem_cb_t&#160;:&#160;<a class="el" href="env_8h.html#a18b9dfa4c5574c66e23b748e11443d37">env.h</a></li>
+<li>spdk_mempool_obj_cb_t&#160;:&#160;<a class="el" href="env_8h.html#a0ea268dadea148a98ee5b99c2795c5b0">env.h</a></li>
+<li>spdk_msg_fn&#160;:&#160;<a class="el" href="thread_8h.html#adc0da6b1b784d4f165dcd48b526d12ad">thread.h</a></li>
+<li>spdk_nbd_start_cb&#160;:&#160;<a class="el" href="nbd_8h.html#abed048e29b578c12e7db81e77df6877b">nbd.h</a></li>
+<li>spdk_new_thread_fn&#160;:&#160;<a class="el" href="thread_8h.html#afab3d4339c5bca4dfde209816a9e560f">thread.h</a></li>
+<li>spdk_nvme_accel_completion_cb&#160;:&#160;<a class="el" href="nvme_8h.html#afff8aaa490f2db1119b20e36253196b7">nvme.h</a></li>
+<li>spdk_nvme_accel_step_cb&#160;:&#160;<a class="el" href="nvme_8h.html#a23b4ebb6bfd9f12c07b1ae91a2c98ad8">nvme.h</a></li>
+<li>spdk_nvme_aer_cb&#160;:&#160;<a class="el" href="nvme_8h.html#a1d066bb761dc3481f081d0d6924766ee">nvme.h</a></li>
+<li>spdk_nvme_attach_cb&#160;:&#160;<a class="el" href="nvme_8h.html#ac1eaa795f075495337b270667661ce5d">nvme.h</a></li>
+<li>spdk_nvme_attach_fail_cb&#160;:&#160;<a class="el" href="nvme_8h.html#a99444849c9d146f1f9479a4c48fa0a65">nvme.h</a></li>
+<li>spdk_nvme_cmd_cb&#160;:&#160;<a class="el" href="nvme_8h.html#a1786f9616afc773b20f752dc98ecd465">nvme.h</a></li>
+<li>spdk_nvme_disconnected_qpair_cb&#160;:&#160;<a class="el" href="nvme_8h.html#add892b5eaa7208ca3b08382431713390">nvme.h</a></li>
+<li>spdk_nvme_discovery_cb&#160;:&#160;<a class="el" href="nvme_8h.html#a4e4bc7c0002363701bc9363ab2291e6e">nvme.h</a></li>
+<li>spdk_nvme_probe_cb&#160;:&#160;<a class="el" href="nvme_8h.html#a95f40d5179f8424b466a30ba0610ab4c">nvme.h</a></li>
+<li>spdk_nvme_reg_cb&#160;:&#160;<a class="el" href="nvme_8h.html#a0893350626b0eff85b931c570876f28a">nvme.h</a></li>
+<li>spdk_nvme_remove_cb&#160;:&#160;<a class="el" href="nvme_8h.html#a05f1aa545be57a03bb2dd0c6180172b6">nvme.h</a></li>
+<li>spdk_nvme_req_next_sge_cb&#160;:&#160;<a class="el" href="nvme_8h.html#a4ab95bea86f498c08510f6f0bcd2eb09">nvme.h</a></li>
+<li>spdk_nvme_req_reset_sgl_cb&#160;:&#160;<a class="el" href="nvme_8h.html#a0e1fcb43970ea531567ee00d4ee0675b">nvme.h</a></li>
+<li>spdk_nvme_timeout_cb&#160;:&#160;<a class="el" href="nvme_8h.html#a53fe1c01a447be8fcd29821a668227a0">nvme.h</a></li>
+<li>spdk_nvmf_subsystem_state_change_done&#160;:&#160;<a class="el" href="nvmf_8h.html#aec7dc3c1e2f740c1cbffa028ad5c5bff">nvmf.h</a></li>
+<li>spdk_nvmf_tgt_add_transport_done_fn&#160;:&#160;<a class="el" href="nvmf_8h.html#a53086e85e4a7103ab2b714483b4f2aec">nvmf.h</a></li>
+<li>spdk_nvmf_tgt_pause_polling_cb_fn&#160;:&#160;<a class="el" href="nvmf_8h.html#a50bd8ee037dbbe33729db2eb626267cf">nvmf.h</a></li>
+<li>spdk_nvmf_tgt_resume_polling_cb_fn&#160;:&#160;<a class="el" href="nvmf_8h.html#a654c4a14a9de2ba863abfc1538a3b158">nvmf.h</a></li>
+<li>spdk_nvmf_tgt_subsystem_listen_done_fn&#160;:&#160;<a class="el" href="nvmf_8h.html#aad52ac090dcb26b03da0e689ea71df89">nvmf.h</a></li>
+<li>spdk_pci_enum_cb&#160;:&#160;<a class="el" href="env_8h.html#a0083aec1c2ac9ae023b744a80160af79">env.h</a></li>
+<li>spdk_poller_fn&#160;:&#160;<a class="el" href="thread_8h.html#a35c421accdc2a0a61bb7be916106293b">thread.h</a></li>
+<li>spdk_poller_set_interrupt_mode_cb&#160;:&#160;<a class="el" href="thread_8h.html#aaa00024ffe78012bf1b7ade9aee0ab1a">thread.h</a></li>
+<li>spdk_sighandler_t&#160;:&#160;<a class="el" href="event_8h.html#a6371e3e4903529f9c94e25d224580a44">event.h</a></li>
+<li>spdk_sock_cb&#160;:&#160;<a class="el" href="sock_8h.html#ae297ae75e566b35635d20b959daa7741">sock.h</a></li>
+<li>spdk_sock_connect_cb_fn&#160;:&#160;<a class="el" href="sock_8h.html#a25c432be84090e20e914f0773ce896e9">sock.h</a></li>
+<li>spdk_thread_op_fn&#160;:&#160;<a class="el" href="thread_8h.html#a9f0ad3a2bcbb6d304401b579ab63aeba">thread.h</a></li>
+<li>spdk_thread_op_supported_fn&#160;:&#160;<a class="el" href="thread_8h.html#af791c24e496b96c886fe8bad088eb0cb">thread.h</a></li>
+<li>spdk_thread_pass_msg&#160;:&#160;<a class="el" href="thread_8h.html#a4a0e155fc3fa0150aa4a505dd1801e91">thread.h</a></li>
+<li>spdk_vhost_event_fn&#160;:&#160;<a class="el" href="vhost_8h.html#ac2c4b62eaf6503e5f5e520394f9f9fe1">vhost.h</a></li>
+<li>spdk_vhost_fini_cb&#160;:&#160;<a class="el" href="vhost_8h.html#a8b37106ad173f20d05da87f89714700b">vhost.h</a></li>
+<li>spdk_vhost_init_cb&#160;:&#160;<a class="el" href="vhost_8h.html#aed34ffbfc5835716ba35a9ee050e1e74">vhost.h</a></li>
+</ul>
+</div><!-- contents -->
+</div><!-- doc-content -->
+</div><!-- container -->
+<footer class="footer" id="nav-path">
+  <div class="footer-inner">
+    <div class="footer-copy">
+      <small>Copyright &copy; SPDK a Series of LF Projects, LLC. For web site terms of use, trademark policy, and other
+      project policies please see <a href="https://lfprojects.org">lfprojects.org</a>.</small>
+    </div>
+  </div>
+</footer>
+<script type="text/javascript" src="page_outline.js"></script>
+<script type="text/javascript" src="spdk_nav.js"></script>
+<!-- Doxygen footer suffix – assembled by _build/common.sh:
+     _includes/footer.html (shared) + theme scripts (from spdk) + this file.
+     Theme scripts are extracted from spdk/doc/theme/footer.html at build
+     time so the script list is maintained in a single place. -->
+</body>
+</html>

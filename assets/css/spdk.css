@@ -1,0 +1,476 @@
+/* SPDK shared styles -- loaded on EVERY page (site AND Doxygen).
+   This file is the single source of truth for visual consistency.
+   No external CSS framework is used; all layout is self-contained. */
+
+:root {
+    --spdk-brand: #2b497d;
+    --spdk-brand-dark: #213861;
+    --spdk-border: #dee2e6;
+    --spdk-surface: #f8f9fa;
+    --spdk-code-bg: #f0f2f5;
+    --spdk-muted: #6c757d;
+    --spdk-content-max: 1296px;
+}
+
+*, *::before, *::after { box-sizing: border-box; }
+
+html {
+    height: 100%;
+}
+
+body {
+    min-height: 100vh;
+    margin: 0;
+    font-family: 'Roboto', sans-serif;
+    font-size: 16px;
+    line-height: 1.6;
+    color: #212529;
+}
+
+a { color: var(--spdk-brand); }
+
+h1, h2, h3, h4, h5, h6 {
+    font-family: 'Roboto', sans-serif;
+}
+
+h1 { font-weight: 900; }
+h2 { font-weight: 700; }
+h3, h4, h5, h6 { font-weight: 400; }
+
+code {
+    background-color: var(--spdk-code-bg);
+    padding: 0.15em 0.4em;
+    border-radius: 4px;
+    font-size: 0.9em;
+}
+
+pre code {
+    background: none;
+    padding: 0;
+    font-size: inherit;
+    border-radius: 0;
+}
+
+/* ----------------------------------------------------------------
+   Container
+   ---------------------------------------------------------------- */
+.container {
+    max-width: var(--spdk-content-max);
+    margin: 0 auto;
+    padding: 0 15px;
+}
+
+/* ----------------------------------------------------------------
+   Navbar
+   ---------------------------------------------------------------- */
+.navbar {
+    display: flex;
+    align-items: center;
+    background-color: var(--spdk-brand);
+    padding: 0 0.5rem;
+    font-family: 'Roboto', sans-serif;
+}
+
+.navbar-brand {
+    padding: 0.5rem 0.5rem 0.5rem 10px;
+    flex-shrink: 0;
+}
+
+.navbar-nav {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+}
+
+.navbar-end {
+    display: flex;
+    align-items: center;
+    margin-left: auto;
+    margin-right: 1rem;
+}
+
+.nav-link {
+    color: rgba(255, 255, 255, 0.65);
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: 400;
+    letter-spacing: 1px;
+    padding: 5px 8px;
+}
+
+.nav-link:hover,
+.nav-link.active {
+    color: #fff;
+}
+
+.header-link {
+    text-transform: uppercase;
+    padding-top: 25px;
+    padding-bottom: 25px;
+}
+
+.navbar-nav-svg {
+    fill: #FFFFFF;
+    height: 32px;
+    width: 32px;
+    display: block;
+}
+
+/* ----------------------------------------------------------------
+   Page header -- shared between site (.page-header) and Doxygen
+   (div.header).  Visual appearance lives here; Doxygen-specific
+   layout (overflow, max-width, padding) lives in doc/spdk.css.
+   ---------------------------------------------------------------- */
+.page-header,
+div.header {
+    background: var(--spdk-surface);
+    border-bottom: 3px solid var(--spdk-brand);
+}
+
+.page-header {
+    padding: 20px 30px 16px;
+    margin-bottom: 1rem;
+}
+
+.page-header h1,
+.title {
+    font-size: 2.5rem;
+    line-height: 1.15;
+    color: #1a1a1a;
+    margin: 4px 0;
+    letter-spacing: -0.5px;
+}
+
+.content {
+    max-width: none;
+}
+
+/* ----------------------------------------------------------------
+   Buttons
+   ---------------------------------------------------------------- */
+.btn {
+    display: inline-block;
+    padding: 0.375rem 0.75rem;
+    font-size: 1rem;
+    text-decoration: none;
+    border: 1px solid transparent;
+    border-radius: 0.375rem;
+    cursor: pointer;
+    line-height: 1.5;
+}
+
+.btn-lg {
+    padding: 0.5rem 1rem;
+    font-size: 1.25rem;
+}
+
+.btn-dark {
+    color: #fff;
+    background-color: var(--spdk-brand);
+    border-color: var(--spdk-brand);
+}
+
+.btn-dark:hover {
+    color: #fff;
+    background-color: var(--spdk-brand-dark);
+}
+
+.btn-outline-dark {
+    color: var(--spdk-brand);
+    border-color: var(--spdk-brand);
+    background: transparent;
+}
+
+.btn-outline-dark:hover {
+    color: #fff;
+    background-color: var(--spdk-brand);
+}
+
+/* ----------------------------------------------------------------
+   Footer
+   ---------------------------------------------------------------- */
+.footer {
+    background-color: var(--spdk-brand);
+    margin-top: auto;
+    text-align: center;
+    font-size: 14px;
+    font-weight: 400;
+    padding: 10px;
+    color: rgba(255, 255, 255, 0.5);
+}
+
+.footer a {
+    text-decoration: none;
+    color: rgba(255, 255, 255, 0.65);
+}
+
+.footer a:hover {
+    color: #fff;
+}
+
+.footer-inner {
+    max-width: var(--spdk-content-max);
+    margin: 0 auto;
+    padding: 0.5rem 15px;
+}
+
+.footer-copy {
+    text-align: center;
+}
+
+.footer-copy small {
+    font-size: 12px;
+}
+
+/* ----------------------------------------------------------------
+   Page layout
+   ---------------------------------------------------------------- */
+.page-with-toc {
+    display: flex;
+}
+
+.page-content {
+    flex: 1;
+    min-width: 0;
+    padding: 1rem 15px;
+    max-width: var(--spdk-content-max);
+    margin: 0 auto;
+}
+
+/* ----------------------------------------------------------------
+   Left sidebar -- site TOC pages
+   ---------------------------------------------------------------- */
+.site-toc {
+    background: var(--spdk-surface);
+    overflow-x: hidden;
+}
+
+.site-toc a {
+    color: #333;
+    text-decoration: none;
+    font-size: 15px;
+    line-height: 30px;
+}
+
+.site-toc a:hover {
+    color: var(--spdk-brand);
+    background: rgba(0,0,0,0.06);
+}
+
+.site-toc {
+    width: 350px;
+    flex-shrink: 0;
+    border-right: 1px solid var(--spdk-border);
+    padding: 10px 6px;
+    position: sticky;
+    top: 0;
+    height: 100vh;
+    overflow-y: auto;
+}
+
+.site-toc a {
+    display: block;
+    padding: 2px 8px;
+    border-radius: 4px;
+}
+
+.site-toc ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.site-toc ul ul {
+    padding-left: 1rem;
+}
+
+/* ----------------------------------------------------------------
+   Homepage
+   ---------------------------------------------------------------- */
+.masthead {
+    padding-bottom: 0;
+}
+
+.hero {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+}
+
+.hero-text,
+.hero-image {
+    flex: 1;
+    min-width: 280px;
+    padding: 1rem 0;
+}
+
+.lead {
+    font-size: 1.25rem;
+    font-weight: 300;
+}
+
+.hero-buttons,
+.feature-buttons {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+}
+
+.feature-grid {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.feature {
+    flex: 0 0 50%;
+    padding: 1rem;
+}
+
+.followup {
+    font-size: 16px;
+    font-weight: 400;
+}
+
+/* ----------------------------------------------------------------
+   Content
+   ---------------------------------------------------------------- */
+.content > h1,
+.content > h2,
+.content > h3 {
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+
+.content > p {
+    text-indent: 0;
+}
+
+/* ----------------------------------------------------------------
+   Blog
+   ---------------------------------------------------------------- */
+.spdk-link { color: var(--spdk-brand); }
+
+.blog-section {
+    padding: 25px;
+    border-bottom: 1px solid #bbbbbb;
+}
+
+.blog-section:nth-child(odd) {
+    background-color: #f0f0f0;
+}
+
+.blog-heading {
+    margin-bottom: 5px;
+}
+
+.blog-author {
+    font-size: 14px;
+    font-weight: 400;
+    font-style: italic;
+    padding: 10px;
+}
+
+.post-meta {
+    font-size: 14px;
+    font-weight: 400;
+    font-style: italic;
+    padding-bottom: 10px;
+}
+
+/* ----------------------------------------------------------------
+   Responsive
+   ---------------------------------------------------------------- */
+@media (max-width: 767.98px) {
+    .header-link {
+        padding-top: 10px;
+        padding-bottom: 10px;
+    }
+
+    .masthead h1 {
+        font-size: 1.5rem;
+    }
+
+    .blog-section {
+        padding: 15px;
+    }
+
+    .site-toc {
+        display: none;
+    }
+
+    .feature {
+        flex: 0 0 100%;
+    }
+
+    .hero-text,
+    .hero-image {
+        flex: 0 0 100%;
+    }
+}
+
+/* ----------------------------------------------------------------
+   Syntax highlighting (Rouge)
+   ---------------------------------------------------------------- */
+.highlight  { background: #ffffff; }
+.highlight .c { color: #999988; font-style: italic }
+.highlight .err { color: #a61717; background-color: #e3d2d2 }
+.highlight .k { font-weight: bold }
+.highlight .o { font-weight: bold }
+.highlight .cm { color: #999988; font-style: italic }
+.highlight .cp { color: #999999; font-weight: bold }
+.highlight .c1 { color: #999988; font-style: italic }
+.highlight .cs { color: #999999; font-weight: bold; font-style: italic }
+.highlight .gd { color: #000000; background-color: #ffdddd }
+.highlight .gd .x { color: #000000; background-color: #ffaaaa }
+.highlight .ge { font-style: italic }
+.highlight .gr { color: #aa0000 }
+.highlight .gh { color: #999999 }
+.highlight .gi { color: #000000; background-color: #ddffdd }
+.highlight .gi .x { color: #000000; background-color: #aaffaa }
+.highlight .go { color: #888888 }
+.highlight .gp { color: #555555 }
+.highlight .gs { font-weight: bold }
+.highlight .gu { color: #aaaaaa }
+.highlight .gt { color: #aa0000 }
+.highlight .kc { font-weight: bold }
+.highlight .kd { font-weight: bold }
+.highlight .kp { font-weight: bold }
+.highlight .kr { font-weight: bold }
+.highlight .kt { color: #445588; font-weight: bold }
+.highlight .m { color: #009999 }
+.highlight .s { color: #d14 }
+.highlight .na { color: #008080 }
+.highlight .nb { color: #0086B3 }
+.highlight .nc { color: #445588; font-weight: bold }
+.highlight .no { color: #008080 }
+.highlight .ni { color: #800080 }
+.highlight .ne { color: #990000; font-weight: bold }
+.highlight .nf { color: #990000; font-weight: bold }
+.highlight .nn { color: #555555 }
+.highlight .nt { color: #000080 }
+.highlight .nv { color: #008080 }
+.highlight .ow { font-weight: bold }
+.highlight .w { color: #bbbbbb }
+.highlight .mf { color: #009999 }
+.highlight .mh { color: #009999 }
+.highlight .mi { color: #009999 }
+.highlight .mo { color: #009999 }
+.highlight .sb { color: #d14 }
+.highlight .sc { color: #d14 }
+.highlight .sd { color: #d14 }
+.highlight .s2 { color: #d14 }
+.highlight .se { color: #d14 }
+.highlight .sh { color: #d14 }
+.highlight .si { color: #d14 }
+.highlight .sx { color: #d14 }
+.highlight .sr { color: #009926 }
+.highlight .s1 { color: #d14 }
+.highlight .ss { color: #990073 }
+.highlight .bp { color: #999999 }
+.highlight .vc { color: #008080 }
+.highlight .vg { color: #008080 }
+.highlight .vi { color: #008080 }
+.highlight .il { color: #009999 }
+
+.post > .highlight .lineno { color: #ccc; display:inline-block; padding: 0 5px; border-right:1px solid #ccc; }
+.post > .highlight pre code { display: block; white-space: pre; overflow-x: auto; word-wrap: normal; }

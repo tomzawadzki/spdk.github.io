@@ -1,0 +1,324 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<meta name="generator" content="Doxygen 1.16.1">
+	<title>SPDK: Message Passing and Concurrency</title>
+	<script type="text/javascript" src="jquery.js"></script>
+	<script type="text/javascript" src="dynsections.js"></script>
+	<script type="text/javascript" src="clipboard.js"></script>
+	<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
+<script type="text/javascript" src="cookie.js"></script>
+	<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<script type="text/javascript">
+  $(function() { init_search(); });
+</script>
+	<link rel="icon" type="image/svg+xml" href="../assets/img/spdk.svg">
+	<link rel="icon" href="../assets/favicon.ico" sizes="32x32">
+	<link href="doxygen.css" rel="stylesheet" type="text/css">
+	<script>(function(){var k='doxygen_width',w,bw=6;if(window.chrome){w=localStorage.getItem(k);if(!w){w='350';localStorage.setItem(k,w)}}else{var m=document.cookie.match(new RegExp(k+'=(\\d+)'));w=m?m[1]:null;if(!w){w='350';document.cookie=k+'=350;SameSite=Lax;path=/'}}document.documentElement.style.setProperty('--sn-w',(parseInt(w)+bw)+'px')})()</script>
+	<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:400,700,900" type="text/css">
+	<link href="spdk.css" rel="stylesheet" type="text/css"/>
+	<link href="../assets/css/spdk.css" rel="stylesheet" type="text/css">
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<nav class="navbar">
+  <a class="navbar-brand" href="../" aria-label="SPDK">
+    <img src="../assets/img/spdk.svg" width="36" height="36" alt="Storage Performance Development Kit">
+  </a>
+  <div class="navbar-nav">
+    <a class="nav-link header-link" href="../doc/releases.html">download</a>
+    <a class="nav-link header-link" href="../doc/">documentation</a>
+    <a class="nav-link header-link" href="../doc/contributing.html">development</a>
+    <a class="nav-link header-link" href="../doc/ci_tools.html">CI status</a>
+    <a class="nav-link header-link" href="../community/">community</a>
+    <a class="nav-link header-link" href="../blog/">Blog</a>
+    <a class="nav-link header-link" href="https://github.com/orgs/spdk/projects/5">Roadmap</a>
+    <a class="nav-link header-link" href="../news/">News</a>
+  </div>
+  <div class="navbar-end">
+    <a class="nav-link header-link" href="https://github.com/spdk/spdk" aria-label="GitHub">
+      <svg xmlns="http://www.w3.org/2000/svg" class="navbar-nav-svg" aria-hidden="true"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
+    </a>
+    <a id="cn_lang_btn" href="../cn/doc/" class="nav-link header-link">中文</a>
+  </div>
+</nav>
+<script>
+(function() {
+    var p = location.pathname, best = null, bLen = 0;
+    document.querySelectorAll('.header-link[href]').forEach(function(a) {
+        var raw = a.getAttribute('href');
+        if (!raw) return;
+        try { var u = new URL(raw, location.href); } catch(e) { return; }
+        if (u.origin !== location.origin) return;
+        var h = u.pathname;
+        if (h === '/') return;
+        var ok = h.endsWith('.html') ? p === h : p.indexOf(h) === 0;
+        if (ok && h.length > bLen) { bLen = h.length; best = a; }
+    });
+    if (best) best.classList.add('active');
+})();
+</script>
+<div id="doxygen-searchbox">        <div id="MSearchBox" class="MSearchBoxInactive">
+        <span class="left">
+          <span id="MSearchSelect" class="search-icon" onmouseover="return searchBox.OnSearchSelectShow()" onmouseout="return searchBox.OnSearchSelectHide()"><span class="search-icon-dropdown"></span></span>
+          <input type="text" id="MSearchField" value="" placeholder="Search" accesskey="S"
+               onfocus="searchBox.OnSearchFieldFocus(true)" 
+               onblur="searchBox.OnSearchFieldFocus(false)" 
+               onkeyup="searchBox.OnSearchFieldChange(event)"/>
+          </span><span class="right">
+            <a id="MSearchClose" href="javascript:searchBox.CloseResultsWindow()"><div id="MSearchCloseImg" class="close-icon"></div></a>
+          </span>
+        </div>
+</div>
+<!-- Generated by Doxygen 1.16.1 -->
+<script type="text/javascript">
+var searchBox = new SearchBox("searchBox", "search/",'.html');
+</script>
+<script type="text/javascript">
+$(function() { codefold.init(); });
+</script>
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+$(function(){initNavTree('concurrency.html','',''); });
+</script>
+<div id="container">
+<div id="doc-content">
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">Loading...</div>
+<div class="SRStatus" id="Searching">Searching...</div>
+<div class="SRStatus" id="NoMatches">No Matches</div>
+</div>
+</div>
+</div>
+</div>
+
+<div><div class="header">
+  <div class="headertitle"><div class="title">Message Passing and Concurrency </div></div>
+</div><!--header-->
+<div class="contents">
+<div class="textblock"><p><a class="anchor" id="md_concepts_2concurrency"></a></p>
+<h1 class="doxsection"><a class="anchor" id="autotoc_md16"></a>
+Theory</h1>
+<p>One of the primary aims of SPDK is to scale linearly with the addition of hardware. This can mean many things in practice. For instance, moving from one SSD to two should double the number of I/O's per second. Or doubling the number of CPU cores should double the amount of computation possible. Or even doubling the number of NICs should double the network throughput. To achieve this, the software's threads of execution must be independent from one another as much as possible. In practice, that means avoiding software locks and even atomic instructions.</p>
+<p>Traditionally, software achieves concurrency by placing some shared data onto the heap, protecting it with a lock, and then having all threads of execution acquire the lock only when accessing the data. This model has many great properties:</p>
+<ul>
+<li>It's easy to convert single-threaded programs to multi-threaded programs because you don't have to change the data model from the single-threaded version. You add a lock around the data.</li>
+<li>You can write your program as a synchronous, imperative list of statements that you read from top to bottom.</li>
+<li>The scheduler can interrupt threads, allowing for efficient time-sharing of CPU resources.</li>
+</ul>
+<p>Unfortunately, as the number of threads scales up, contention on the lock around the shared data does too. More granular locking helps, but then also increases the complexity of the program. Even then, beyond a certain number of contended locks, threads will spend most of their time attempting to acquire the locks and the program will not benefit from more CPU cores.</p>
+<p>SPDK takes a different approach altogether. Instead of placing shared data in a global location that all threads access after acquiring a lock, SPDK will often assign that data to a single thread. When other threads want to access the data, they pass a message to the owning thread to perform the operation on their behalf. This strategy, of course, is not at all new. For instance, it is one of the core design principles of <a href="http://erlang.org/download/armstrong_thesis_2003.pdf">Erlang</a> and is the main concurrency mechanism in <a href="https://tour.golang.org/concurrency/2">Go</a>. A message in SPDK consists of a function pointer and a pointer to some context. Messages are passed between threads using a <a href="http://dpdk.org/doc/guides/prog_guide/ring_lib.html">lockless ring</a>. Message passing is often much faster than most software developer's intuition leads them to believe due to caching effects. If a single core is accessing the same data (on behalf of all of the other cores), then that data is far more likely to be in a cache closer to that core. It's often most efficient to have each core work on a small set of data sitting in its local cache and then hand off a small message to the next core when done.</p>
+<p>In more extreme cases where even message passing may be too costly, each thread may make a local copy of the data. The thread will then only reference its local copy. To mutate the data, threads will send a message to each other thread telling them to perform the update on their local copy. This is great when the data isn't mutated very often, but is read very frequently, and is often employed in the I/O path. This of course trades memory size for computational efficiency, so it is used in only the most critical code paths.</p>
+<h1 class="doxsection"><a class="anchor" id="autotoc_md17"></a>
+Message Passing Infrastructure</h1>
+<p>SPDK provides several layers of message passing infrastructure. The most fundamental libraries in SPDK, for instance, don't do any message passing on their own and instead enumerate rules about when functions may be called in their documentation (e.g. <a class="el" href="nvme.html" title="NVMe Driver">NVMe Driver</a>). Most libraries, however, depend on SPDK's <a href="http://www.spdk.io/doc/thread_8h.html">thread</a> abstraction, located in <span class="tt">libspdk_thread.a</span>. The thread abstraction provides a basic message passing framework and defines a few key primitives.</p>
+<h2 class="doxsection"><a class="anchor" id="autotoc_md18"></a>
+Threads</h2>
+<p>First, <span class="tt">spdk_thread</span> is an abstraction for a lightweight, stackless thread of execution. A lower level framework can execute an <span class="tt">spdk_thread</span> for a single timeslice by calling <span class="tt"><a class="el" href="thread_8h.html#ad9e3693e8e9e6c9063ea36414294ae91" title="Perform one iteration worth of processing on the thread.">spdk_thread_poll()</a></span>. A lower level framework is allowed to move an <span class="tt">spdk_thread</span> between system threads at any time, as long as there is only a single system thread executing <span class="tt"><a class="el" href="thread_8h.html#ad9e3693e8e9e6c9063ea36414294ae91" title="Perform one iteration worth of processing on the thread.">spdk_thread_poll()</a></span> on that <span class="tt">spdk_thread</span> at any given time. New lightweight threads may be created at any time by calling <span class="tt"><a class="el" href="thread_8h.html#aa10141eac8fc06771e6203fd7d83926a" title="Creates a new SPDK thread object.">spdk_thread_create()</a></span> and destroyed by calling <span class="tt"><a class="el" href="thread_8h.html#a10aa5a8ec5228fa87db97f7655f8c0d6" title="Destroy a thread, releasing all of its resources.">spdk_thread_destroy()</a></span>. The lightweight thread is the foundational abstraction for threading in SPDK.</p>
+<h2 class="doxsection"><a class="anchor" id="autotoc_md19"></a>
+Pollers</h2>
+<p>There are then a few additional abstractions layered on top of the <span class="tt">spdk_thread</span>. One is the <span class="tt">spdk_poller</span>, which is an abstraction for a function that should be repeatedly called on the given thread. Another is an <span class="tt"><a class="el" href="thread_8h.html#adc0da6b1b784d4f165dcd48b526d12ad" title="A function that will be called on the target thread.">spdk_msg_fn</a></span>, which is a function pointer and a context pointer, that can be sent to a thread for execution via <span class="tt"><a class="el" href="thread_8h.html#a07b662b152c21dad824ad2738d0733ec" title="Send a message to the given thread.">spdk_thread_send_msg()</a></span>.</p>
+<h2 class="doxsection"><a class="anchor" id="autotoc_md20"></a>
+IO Devices and Channels</h2>
+<p>The library also defines two additional abstractions: <span class="tt">spdk_io_device</span> and <span class="tt">spdk_io_channel</span>. In the course of implementing SPDK we noticed the same pattern emerging in a number of different libraries. In order to implement a message passing strategy, the code would describe some object with global state and also some per-thread context associated with that object that was accessed in the I/O path to avoid locking on the global state. The pattern was clearest in the lowest layers where I/O was being submitted to block devices. These devices often expose multiple queues that can be assigned to threads and then accessed without a lock to submit I/O. To abstract that, we generalized the device to <span class="tt">spdk_io_device</span> and the thread-specific queue to <span class="tt">spdk_io_channel</span>. Over time, however, the pattern has appeared in a huge number of places that don't fit quite so nicely with the names we originally chose. In today's code <span class="tt">spdk_io_device</span> is any pointer, whose uniqueness is predicated only on its memory address, and <span class="tt">spdk_io_channel</span> is the per-thread context associated with a particular <span class="tt">spdk_io_device</span>.</p>
+<p>The threading abstraction provides functions to send a message to any other thread, to send a message to all threads one by one, and to send a message to all threads for which there is an io_channel for a given io_device.</p>
+<p>Most critically, the thread abstraction does not actually spawn any system level threads of its own. Instead, it relies on the existence of some lower level framework that spawns system threads and sets up event loops. Inside those event loops, the threading abstraction simply requires the lower level framework to repeatedly call <span class="tt"><a class="el" href="thread_8h.html#ad9e3693e8e9e6c9063ea36414294ae91" title="Perform one iteration worth of processing on the thread.">spdk_thread_poll()</a></span> on each <span class="tt">spdk_thread()</span> that exists. This makes SPDK very portable to a wide variety of asynchronous, event-based frameworks such as <a href="https://www.seastar.io">Seastar</a> or <a href="https://libuv.org/">libuv</a>.</p>
+<h1 class="doxsection"><a class="anchor" id="autotoc_md21"></a>
+Thread Lifetimes</h1>
+<p>The <span class="tt">spdk_thread</span> abstraction itself does not impose any strict thread lifetime requirements, allowing an <span class="tt">spdk_thread</span> to be created or destroyed at runtime.</p>
+<p>When using other abstractions built on top of <span class="tt">spdk_thread</span> such as <span class="tt">spdk_poller</span> or <span class="tt">spdk_io_channel</span>, the underlying <span class="tt">spdk_thread</span> lifetime must surpass that of abstraction that is using it.</p>
+<p>Applications must adhere to proper de-init/finialize ordering that destroy the resources in the reverse order, so that the thread outlives what is using it.</p>
+<p>Simplified example:</p>
+<ol type="1">
+<li>Application start</li>
+</ol>
+<ol type="1">
+<li><span class="tt"><a class="el" href="thread_8h.html#a75f5c71056d8c39ff05a6610d55edcf5" title="Register the opaque io_device context as an I/O device.">spdk_io_device_register()</a></span></li>
+</ol>
+<ol type="1">
+<li><span class="tt"><a class="el" href="thread_8h.html#aa10141eac8fc06771e6203fd7d83926a" title="Creates a new SPDK thread object.">spdk_thread_create()</a></span></li>
+</ol>
+<ol type="1">
+<li><span class="tt"><a class="el" href="thread_8h.html#ab85750b21f0e1cf95223e3e1f7e8f046" title="Get an I/O channel for the specified io_device to be used by the calling thread.">spdk_get_io_channel()</a></span></li>
+</ol>
+<ol type="1">
+<li>Do work on each channel, receive termination signal</li>
+</ol>
+<ol type="1">
+<li><span class="tt"><a class="el" href="thread_8h.html#a717571a5011db0cdd730498146f25f9a" title="Release a reference to an I/O channel.">spdk_put_io_channel()</a></span></li>
+</ol>
+<ol type="1">
+<li><span class="tt"><a class="el" href="thread_8h.html#a5132d2abe39a40a0e14e19bb2bd15489" title="Mark the thread as exited, failing all future spdk_thread_send_msg(), spdk_poller_register(),...">spdk_thread_exit()</a></span></li>
+</ol>
+<ol type="1">
+<li><span class="tt"><a class="el" href="thread_8h.html#a10aa5a8ec5228fa87db97f7655f8c0d6" title="Destroy a thread, releasing all of its resources.">spdk_thread_destroy()</a></span></li>
+</ol>
+<ol type="1">
+<li><span class="tt"><a class="el" href="thread_8h.html#a4c6c3df3a611c10c176cb87966c622f0" title="Unregister the opaque io_device context as an I/O device.">spdk_io_device_unregister()</a></span></li>
+</ol>
+<ol type="1">
+<li>Application exit</li>
+</ol>
+<h1 class="doxsection"><a class="anchor" id="autotoc_md22"></a>
+SPDK Spinlocks</h1>
+<p>There are some cases where locks are used. These should be limited in favor of the message passing interface described above. When locks are needed, SPDK spinlocks should be used instead of POSIX locks.</p>
+<p>POSIX locks like <span class="tt">pthread_mutex_t</span> and <span class="tt">pthread_spinlock_t</span> do not properly handle locking between SPDK's lightweight threads. SPDK's <span class="tt"><a class="el" href="structspdk__spinlock.html" title="A spinlock augmented with safety checks for use with SPDK.">spdk_spinlock</a></span> is safe to use in SPDK libraries and applications. This safety comes from imposing restrictions on when locks can be held. See <a href="structspdk__spinlock.html">spdk_spinlock</a> for details.</p>
+<h1 class="doxsection"><a class="anchor" id="autotoc_md23"></a>
+The event Framework</h1>
+<p>The SPDK project didn't want to officially pick an asynchronous, event-based framework for all of the example applications it shipped with, in the interest of supporting the widest variety of frameworks possible. But the applications do of course require something that implements an asynchronous event loop in order to run, so enter the <span class="tt">event</span> framework located in <span class="tt">lib/event</span>. This framework includes things like polling and scheduling the lightweight threads, installing signal handlers to cleanly shutdown, and basic command line option parsing. Only established applications should consider directly integrating the lower level libraries.</p>
+<h1 class="doxsection"><a class="anchor" id="autotoc_md24"></a>
+Limitations of the C Language</h1>
+<p>Message passing is efficient, but it results in asynchronous code. Unfortunately, asynchronous code is a challenge in C. It's often implemented by passing function pointers that are called when an operation completes. This chops up the code so that it isn't easy to follow, especially through logic branches. The best solution is to use a language with support for <a href="https://en.wikipedia.org/wiki/Futures_and_promises">futures and promises</a>, such as C++, Rust, Go, or almost any other higher level language. However, SPDK is a low level library and requires very wide compatibility and portability, so we've elected to stay with plain old C.</p>
+<p>We do have a few recommendations to share, though. For <em>simple</em> callback chains, it's easiest if you write the functions from bottom to top. By that we mean if function <span class="tt">foo</span> performs some asynchronous operation and when that completes function <span class="tt">bar</span> is called, then function <span class="tt">bar</span> performs some operation that calls function <span class="tt">baz</span> on completion, a good way to write it is as such:</p>
+<div class="fragment"><div class="line"><span class="keywordtype">void</span> baz(<span class="keywordtype">void</span> *ctx) {</div>
+<div class="line">        ...</div>
+<div class="line">}</div>
+<div class="line"> </div>
+<div class="line"><span class="keywordtype">void</span> bar(<span class="keywordtype">void</span> *ctx) {</div>
+<div class="line">        async_op(baz, ctx);</div>
+<div class="line">}</div>
+<div class="line"> </div>
+<div class="line"><span class="keywordtype">void</span> foo(<span class="keywordtype">void</span> *ctx) {</div>
+<div class="line">        async_op(bar, ctx);</div>
+<div class="line">}</div>
+</div><!-- fragment --><p>Don't split these functions up - keep them as a nice unit that can be read from bottom to top.</p>
+<p>For more complex callback chains, especially ones that have logical branches or loops, it's best to write out a state machine. It turns out that higher level languages that support futures and promises are just generating state machines at compile time, so even though we don't have the ability to generate them in C we can still write them out by hand. As an example, here's a callback chain that performs <span class="tt">foo</span> 5 times and then calls <span class="tt">bar</span> - effectively an asynchronous for loop.</p>
+<div class="fragment"><div class="line"><span class="keyword">enum</span> states {</div>
+<div class="line">        FOO_START = 0,</div>
+<div class="line">        FOO_END,</div>
+<div class="line">        BAR_START,</div>
+<div class="line">        BAR_END</div>
+<div class="line">};</div>
+<div class="line"> </div>
+<div class="line"><span class="keyword">struct </span>state_machine {</div>
+<div class="line">        <span class="keyword">enum</span> states state;</div>
+<div class="line"> </div>
+<div class="line">        <span class="keywordtype">int</span> count;</div>
+<div class="line">};</div>
+<div class="line"> </div>
+<div class="line"><span class="keyword">static</span> <span class="keywordtype">void</span></div>
+<div class="line">foo_complete(<span class="keywordtype">void</span> *ctx)</div>
+<div class="line">{</div>
+<div class="line">    <span class="keyword">struct </span>state_machine *sm = ctx;</div>
+<div class="line"> </div>
+<div class="line">    sm-&gt;state = FOO_END;</div>
+<div class="line">    run_state_machine(sm);</div>
+<div class="line">}</div>
+<div class="line"> </div>
+<div class="line"><span class="keyword">static</span> <span class="keywordtype">void</span></div>
+<div class="line">foo(<span class="keyword">struct</span> state_machine *sm)</div>
+<div class="line">{</div>
+<div class="line">    do_async_op(foo_complete, sm);</div>
+<div class="line">}</div>
+<div class="line"> </div>
+<div class="line"><span class="keyword">static</span> <span class="keywordtype">void</span></div>
+<div class="line">bar_complete(<span class="keywordtype">void</span> *ctx)</div>
+<div class="line">{</div>
+<div class="line">    <span class="keyword">struct </span>state_machine *sm = ctx;</div>
+<div class="line"> </div>
+<div class="line">    sm-&gt;state = BAR_END;</div>
+<div class="line">    run_state_machine(sm);</div>
+<div class="line">}</div>
+<div class="line"> </div>
+<div class="line"><span class="keyword">static</span> <span class="keywordtype">void</span></div>
+<div class="line">bar(<span class="keyword">struct</span> state_machine *sm)</div>
+<div class="line">{</div>
+<div class="line">    do_async_op(bar_complete, sm);</div>
+<div class="line">}</div>
+<div class="line"> </div>
+<div class="line"><span class="keyword">static</span> <span class="keywordtype">void</span></div>
+<div class="line">run_state_machine(<span class="keyword">struct</span> state_machine *sm)</div>
+<div class="line">{</div>
+<div class="line">    <span class="keyword">enum</span> states prev_state;</div>
+<div class="line"> </div>
+<div class="line">    <span class="keywordflow">do</span> {</div>
+<div class="line">        prev_state = sm-&gt;state;</div>
+<div class="line"> </div>
+<div class="line">        <span class="keywordflow">switch</span> (sm-&gt;state) {</div>
+<div class="line">            <span class="keywordflow">case</span> FOO_START:</div>
+<div class="line">                foo(sm);</div>
+<div class="line">                <span class="keywordflow">break</span>;</div>
+<div class="line">            <span class="keywordflow">case</span> FOO_END:</div>
+<div class="line">                <span class="comment">/* This is the loop condition */</span></div>
+<div class="line">                <span class="keywordflow">if</span> (sm-&gt;count++ &lt; 5) {</div>
+<div class="line">                    sm-&gt;state = FOO_START;</div>
+<div class="line">                } <span class="keywordflow">else</span> {</div>
+<div class="line">                    sm-&gt;state = BAR_START;</div>
+<div class="line">                }</div>
+<div class="line">                <span class="keywordflow">break</span>;</div>
+<div class="line">            <span class="keywordflow">case</span> BAR_START:</div>
+<div class="line">                bar(sm);</div>
+<div class="line">                <span class="keywordflow">break</span>;</div>
+<div class="line">            <span class="keywordflow">case</span> BAR_END:</div>
+<div class="line">                <span class="keywordflow">break</span>;</div>
+<div class="line">        }</div>
+<div class="line">    } <span class="keywordflow">while</span> (prev_state != sm-&gt;state);</div>
+<div class="line">}</div>
+<div class="line"> </div>
+<div class="line"><span class="keywordtype">void</span> do_async_for(<span class="keywordtype">void</span>)</div>
+<div class="line">{</div>
+<div class="line">        <span class="keyword">struct </span>state_machine *sm;</div>
+<div class="line"> </div>
+<div class="line">        sm = malloc(<span class="keyword">sizeof</span>(*sm));</div>
+<div class="line">        sm-&gt;state = FOO_START;</div>
+<div class="line">        sm-&gt;count = 0;</div>
+<div class="line"> </div>
+<div class="line">        run_state_machine(sm);</div>
+<div class="line">}</div>
+</div><!-- fragment --><p>This is complex, of course, but the <span class="tt">run_state_machine</span> function can be read from top to bottom to get a clear overview of what's happening in the code without having to chase through each of the callbacks. </p>
+</div></div><!-- contents -->
+</div><!-- PageDoc -->
+</div><!-- doc-content -->
+<div id="page-nav" class="page-nav-panel">
+<div id="page-nav-resize-handle"></div>
+<div id="page-nav-tree">
+<div id="page-nav-contents">
+</div><!-- page-nav-contents -->
+</div><!-- page-nav-tree -->
+</div><!-- page-nav -->
+</div><!-- container -->
+<footer class="footer" id="nav-path">
+  <div class="footer-inner">
+    <div class="footer-copy">
+      <small>Copyright &copy; SPDK a Series of LF Projects, LLC. For web site terms of use, trademark policy, and other
+      project policies please see <a href="https://lfprojects.org">lfprojects.org</a>.</small>
+    </div>
+  </div>
+</footer>
+<script type="text/javascript" src="page_outline.js"></script>
+<script type="text/javascript" src="spdk_nav.js"></script>
+<!-- Doxygen footer suffix – assembled by _build/common.sh:
+     _includes/footer.html (shared) + theme scripts (from spdk) + this file.
+     Theme scripts are extracted from spdk/doc/theme/footer.html at build
+     time so the script list is maintained in a single place. -->
+</body>
+</html>

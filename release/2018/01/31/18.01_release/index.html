@@ -1,0 +1,257 @@
+<!doctype html>
+<html lang="en">
+  <head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="The Storage Performance Development Kit (SPDK) provides a set of tools and libraries for writing high performance, scalable, user-mode storage applications. It achieves high performance by moving all of the necessary drivers into userspace and operating in a polled mode instead of relying on interrupts, which avoids kernel context switches and eliminates interrupt handling overhead.
+">
+  <meta name="author" content="Benjamin Walker">
+
+  <title>SPDK v18.01: Blobstore Thin Provisioning</title>
+
+  <link rel="icon" type="image/svg+xml" href="/spdk.github.io/assets/img/spdk.svg">
+  <link rel="icon" href="/spdk.github.io/assets/favicon.ico" sizes="32x32">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:400,700,900" type="text/css">
+  <link rel="stylesheet" href="/spdk.github.io/assets/css/spdk.css">
+
+  <link href="/spdk.github.io/feed.xml" type="application/atom+xml" rel="alternate" title="Atom Feed">
+</head>
+
+
+  <body>
+    <nav class="navbar">
+  <a class="navbar-brand" href="/spdk.github.io/" aria-label="SPDK">
+    <img src="/spdk.github.io/assets/img/spdk.svg" width="36" height="36" alt="Storage Performance Development Kit">
+  </a>
+  <div class="navbar-nav">
+    <a class="nav-link header-link" href="/spdk.github.io/doc/releases.html">download</a>
+    <a class="nav-link header-link" href="/spdk.github.io/doc/">documentation</a>
+    <a class="nav-link header-link" href="/spdk.github.io/doc/contributing.html">development</a>
+    <a class="nav-link header-link" href="/spdk.github.io/doc/ci_tools.html">CI status</a>
+    <a class="nav-link header-link" href="/spdk.github.io/community/">community</a>
+    <a class="nav-link header-link" href="/spdk.github.io/blog/">Blog</a>
+    <a class="nav-link header-link" href="https://github.com/orgs/spdk/projects/5">Roadmap</a>
+    <a class="nav-link header-link" href="/spdk.github.io/news/">News</a>
+  </div>
+  <div class="navbar-end">
+    <a class="nav-link header-link" href="https://github.com/spdk/spdk" aria-label="GitHub">
+      <svg xmlns="http://www.w3.org/2000/svg" class="navbar-nav-svg" aria-hidden="true"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
+    </a>
+    <a id="cn_lang_btn" href="/spdk.github.io/cn/doc/" class="nav-link header-link">中文</a>
+  </div>
+</nav>
+<script>
+(function() {
+    var p = location.pathname, best = null, bLen = 0;
+    document.querySelectorAll('.header-link[href]').forEach(function(a) {
+        var raw = a.getAttribute('href');
+        if (!raw) return;
+        try { var u = new URL(raw, location.href); } catch(e) { return; }
+        if (u.origin !== location.origin) return;
+        var h = u.pathname;
+        if (h === '/') return;
+        var ok = h.endsWith('.html') ? p === h : p.indexOf(h) === 0;
+        if (ok && h.length > bLen) { bLen = h.length; best = a; }
+    });
+    if (best) best.classList.add('active');
+})();
+</script>
+
+
+    <div class="page-content">
+  <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+  <header class="post-header">
+
+    <div class="page-header">
+      <h1>SPDK v18.01: Blobstore Thin Provisioning</h1>
+    </div>
+
+    <p class="post-meta">
+      <time datetime="2018-01-31T00:00:00+01:00" itemprop="datePublished">
+        Jan 31, 2018
+      </time>
+      
+      •
+      <span itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <span itemprop="name">Daniel Verkamp</span>
+      </span>
+      
+    </p>
+  </header>
+
+  <div class="content" itemprop="articleBody"><p>The SPDK team is proud to announce the <a href="https://github.com/spdk/spdk/releases/tag/v18.01">v18.01 release</a>.</p>
+
+<h1 id="contributors">Contributors</h1>
+
+<p>Thanks to everyone who contributed to the SPDK v18.01 release:</p>
+
+<ul>
+  <li>Barry Spinney</li>
+  <li>Ben Walker</li>
+  <li>Changpeng Liu</li>
+  <li>Chen Wang</li>
+  <li>Cunyin Chang</li>
+  <li>Daniel Mrzyglod</li>
+  <li>Daniel Verkamp</li>
+  <li>Dariusz Stojaczyk</li>
+  <li>Dave Boutcher</li>
+  <li>Ed Rodriguez</li>
+  <li>Felipe Franciosi</li>
+  <li>Gang Cao</li>
+  <li>Hailiang Wang</li>
+  <li>Huagen Xu</li>
+  <li>Isaac Otsiabah</li>
+  <li>Jim Harris</li>
+  <li>John Meneghini</li>
+  <li>Jonas Pfefferle</li>
+  <li>Karol Latecki</li>
+  <li>Lance Hartmann</li>
+  <li>Liang Yan</li>
+  <li>Lu Fan</li>
+  <li>Lukasz Galka</li>
+  <li>Maciej Szwed</li>
+  <li>Nathan Cutler</li>
+  <li>Paul Luse</li>
+  <li>Pawel Kaminski</li>
+  <li>Pawel Niedzwiecki</li>
+  <li>Pawel Wodkowski</li>
+  <li>Philipp Skadorov</li>
+  <li>Piotr Pelplinski</li>
+  <li>Sebastian Basierski</li>
+  <li>Seth Howell</li>
+  <li>Shuhei Matsumoto</li>
+  <li>Slawomir Mrozowicz</li>
+  <li>Stephen Bates</li>
+  <li>Tomasz Kulasek</li>
+  <li>Tomasz Zawadzki</li>
+  <li>Xiaodong Liu</li>
+  <li>Yanbo Zhou</li>
+  <li>Young Tack Jin</li>
+  <li>Ziye Yang</li>
+  <li>Wenzhong Wu</li>
+</ul>
+
+<h1 id="spdk-v1801-changelog">SPDK v18.01 Changelog</h1>
+
+<h2 id="build-system">Build System</h2>
+
+<p>The build system now includes a <code class="language-plaintext highlighter-rouge">make install</code> rule, including support for the common
+<code class="language-plaintext highlighter-rouge">DESTDIR</code> and <code class="language-plaintext highlighter-rouge">prefix</code> variables as used in other build systems.  Additionally, the prefix
+may be set via the configure <code class="language-plaintext highlighter-rouge">--prefix</code> option.  Example: <code class="language-plaintext highlighter-rouge">make install prefix=/usr</code>.</p>
+
+<h2 id="rpc">RPC</h2>
+
+<p>A JSON RPC listener is now enabled by default using a UNIX domain socket at /var/run/spdk.sock.
+A -r option command line option has been added to enable an alternative UNIX domain socket location,
+or a TCP port in the format ip_addr:tcp_port (i.e. 127.0.0.1:5260).  The Rpc configuration file
+section is now deprecated and will be removed in the v18.04 release.</p>
+
+<h2 id="io-channels">I/O Channels</h2>
+
+<p>spdk_poller_register() and spdk_poller_unregister() were moved from the event
+framework (include/spdk/event.h) to the I/O channel library
+(include/spdk/io_channel.h). This allows code that doesn’t depend on the event
+framework to request registration and unregistration of pollers.</p>
+
+<p>spdk_for_each_channel() now allows asynchronous operations during iteration.
+Instead of immediately continuing the iteration upon returning from the iteration
+callback, the user must call spdk_for_each_channel_continue() to resume iteration.</p>
+
+<h2 id="block-device-abstraction-layer-bdev">Block Device Abstraction Layer (bdev)</h2>
+
+<p>The poller abstraction was removed from the bdev layer. There is now a general purpose
+abstraction for pollers available in include/spdk/io_channel.h</p>
+
+<h2 id="lib">Lib</h2>
+
+<p>A set of changes were made in the SPDK’s lib code altering,
+instances of calls to <code class="language-plaintext highlighter-rouge">exit()</code> and <code class="language-plaintext highlighter-rouge">abort()</code> to return a failure instead
+wherever reasonably possible.  This has resulted in return type changes of
+the API for:</p>
+
+<ul>
+  <li>spdk_env_init() from type <code class="language-plaintext highlighter-rouge">void</code> to <code class="language-plaintext highlighter-rouge">int</code>.</li>
+  <li>spdk_mem_map_init() from type <code class="language-plaintext highlighter-rouge">void</code> to <code class="language-plaintext highlighter-rouge">int</code>.</li>
+</ul>
+
+<p>Applications making use of these APIs should be modified to check for
+a non-zero return value instead of relying on them to fail without return.</p>
+
+<h2 id="nvme-driver">NVMe Driver</h2>
+
+<p>SPDK now supports hotplug for vfio-attached devices. But there is one thing keep in mind:
+Only physical removal events are supported; removing devices via the sysfs <code class="language-plaintext highlighter-rouge">remove</code> file will not work.</p>
+
+<h2 id="nvme-of-target">NVMe-oF Target</h2>
+
+<p>Subsystems are no longer tied explicitly to CPU cores. Instead, connections are handed out to the available
+cores round-robin. The “Core” option in the configuration file has been removed.</p>
+
+<h2 id="blobstore">Blobstore</h2>
+
+<p>A number of functions have been renamed:</p>
+
+<ul>
+  <li>spdk_bs_md_resize_blob() =&gt; spdk_blob_resize()</li>
+  <li>spdk_bs_md_sync_blob() =&gt; spdk_blob_sync_md()</li>
+  <li>spdk_bs_md_close_blob() =&gt; spdk_blob_close()</li>
+  <li>spdk_bs_md_get_xattr_names() =&gt; spdk_blob_get_xattr_names()</li>
+  <li>spdk_bs_md_get_xattr_value() =&gt; spdk_blob_get_xattr_value()</li>
+  <li>spdk_blob_md_set_xattr() =&gt; spdk_blob_set_xattr()</li>
+  <li>spdk_blob_md_remove_xattr() =&gt; spdk_blob_remove_xattr()</li>
+  <li>spdk_bs_md_create_blob() =&gt; spdk_bs_create_blob()</li>
+  <li>spdk_bs_md_open_blob() =&gt; spdk_bs_open_blob()</li>
+  <li>spdk_bs_md_delete_blob() =&gt; spdk_bs_delete_blob()</li>
+  <li>spdk_bs_md_iter_first() =&gt; spdk_bs_iter_first()</li>
+  <li>spdk_bs_md_iter_next() =&gt; spdk_bs_iter_next()</li>
+</ul>
+
+<p>The function signature of spdk_blob_close() has changed.  It now takes a struct spdk_blob * argument
+rather than struct spdk_blob **.</p>
+
+<p>The function signature of spdk_bs_iter_next() has changed.  It now takes a struct spdk_blob * argument
+rather than struct spdk_blob **.</p>
+
+<p>Thin provisioning support has been added to the blobstore.  It can be enabled by setting the
+<code class="language-plaintext highlighter-rouge">thin_provision</code> flag in struct spdk_blob_opts when calling spdk_bs_create_blob_ext().</p>
+
+<h2 id="nbd-device">NBD device</h2>
+
+<p>The NBD application (test/lib/bdev/nbd) has been removed; Same functionality can now be
+achieved by using the test/app/bdev_svc application and start_nbd_disk RPC method.
+See the <a href="https://www.spdk.io/doc/bdev.html#bdev_config_gpt">GPT</a> documentation for more details.</p>
+
+<h2 id="fio-plugin">FIO plugin</h2>
+
+<p>SPDK <code class="language-plaintext highlighter-rouge">fio_plugin</code> now supports FIO 3.3. The support for previous FIO 2.21 has been dropped,
+although it still remains to work for now. The new FIO contains huge amount of bugfixes and
+it’s recommended to do an update.</p>
+
+<h2 id="virtio-library">Virtio library</h2>
+
+<p>Previously a part of the bdev_virtio module, now a separate library. Virtio is now available
+via <code class="language-plaintext highlighter-rouge">spdk_internal/virtio.h</code> file. This is an internal interface to be used when implementing
+new Virtio backends, namely Virtio-BLK.</p>
+
+<h2 id="iscsi">iSCSI</h2>
+
+<p>The MinConnectionIdleInterval parameter has been removed, and connections are no longer migrated
+to an epoll/kqueue descriptor on the master core when idle.</p>
+</div>
+</article>
+</div>
+
+
+    <footer class="footer" id="nav-path">
+  <div class="footer-inner">
+    <div class="footer-copy">
+      <small>Copyright &copy; SPDK a Series of LF Projects, LLC. For web site terms of use, trademark policy, and other
+      project policies please see <a href="https://lfprojects.org">lfprojects.org</a>.</small>
+    </div>
+  </div>
+</footer>
+
+
+    
+  </body>
+</html>

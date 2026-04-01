@@ -1,0 +1,1573 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<meta name="generator" content="Doxygen 1.16.1">
+	<title>SPDK: iscsi_spec.h File Reference</title>
+	<script type="text/javascript" src="jquery.js"></script>
+	<script type="text/javascript" src="dynsections.js"></script>
+	<script type="text/javascript" src="clipboard.js"></script>
+	<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
+<script type="text/javascript" src="cookie.js"></script>
+	<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<script type="text/javascript">
+  $(function() { init_search(); });
+</script>
+	<link rel="icon" type="image/svg+xml" href="../assets/img/spdk.svg">
+	<link rel="icon" href="../assets/favicon.ico" sizes="32x32">
+	<link href="doxygen.css" rel="stylesheet" type="text/css">
+	<script>(function(){var k='doxygen_width',w,bw=6;if(window.chrome){w=localStorage.getItem(k);if(!w){w='350';localStorage.setItem(k,w)}}else{var m=document.cookie.match(new RegExp(k+'=(\\d+)'));w=m?m[1]:null;if(!w){w='350';document.cookie=k+'=350;SameSite=Lax;path=/'}}document.documentElement.style.setProperty('--sn-w',(parseInt(w)+bw)+'px')})()</script>
+	<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:400,700,900" type="text/css">
+	<link href="spdk.css" rel="stylesheet" type="text/css"/>
+	<link href="../assets/css/spdk.css" rel="stylesheet" type="text/css">
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<nav class="navbar">
+  <a class="navbar-brand" href="../" aria-label="SPDK">
+    <img src="../assets/img/spdk.svg" width="36" height="36" alt="Storage Performance Development Kit">
+  </a>
+  <div class="navbar-nav">
+    <a class="nav-link header-link" href="../doc/releases.html">download</a>
+    <a class="nav-link header-link" href="../doc/">documentation</a>
+    <a class="nav-link header-link" href="../doc/contributing.html">development</a>
+    <a class="nav-link header-link" href="../doc/ci_tools.html">CI status</a>
+    <a class="nav-link header-link" href="../community/">community</a>
+    <a class="nav-link header-link" href="../blog/">Blog</a>
+    <a class="nav-link header-link" href="https://github.com/orgs/spdk/projects/5">Roadmap</a>
+    <a class="nav-link header-link" href="../news/">News</a>
+  </div>
+  <div class="navbar-end">
+    <a class="nav-link header-link" href="https://github.com/spdk/spdk" aria-label="GitHub">
+      <svg xmlns="http://www.w3.org/2000/svg" class="navbar-nav-svg" aria-hidden="true"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
+    </a>
+    <a id="cn_lang_btn" href="../cn/doc/" class="nav-link header-link">中文</a>
+  </div>
+</nav>
+<script>
+(function() {
+    var p = location.pathname, best = null, bLen = 0;
+    document.querySelectorAll('.header-link[href]').forEach(function(a) {
+        var raw = a.getAttribute('href');
+        if (!raw) return;
+        try { var u = new URL(raw, location.href); } catch(e) { return; }
+        if (u.origin !== location.origin) return;
+        var h = u.pathname;
+        if (h === '/') return;
+        var ok = h.endsWith('.html') ? p === h : p.indexOf(h) === 0;
+        if (ok && h.length > bLen) { bLen = h.length; best = a; }
+    });
+    if (best) best.classList.add('active');
+})();
+</script>
+<div id="doxygen-searchbox">        <div id="MSearchBox" class="MSearchBoxInactive">
+        <span class="left">
+          <span id="MSearchSelect" class="search-icon" onmouseover="return searchBox.OnSearchSelectShow()" onmouseout="return searchBox.OnSearchSelectHide()"><span class="search-icon-dropdown"></span></span>
+          <input type="text" id="MSearchField" value="" placeholder="Search" accesskey="S"
+               onfocus="searchBox.OnSearchFieldFocus(true)" 
+               onblur="searchBox.OnSearchFieldFocus(false)" 
+               onkeyup="searchBox.OnSearchFieldChange(event)"/>
+          </span><span class="right">
+            <a id="MSearchClose" href="javascript:searchBox.CloseResultsWindow()"><div id="MSearchCloseImg" class="close-icon"></div></a>
+          </span>
+        </div>
+</div>
+<!-- Generated by Doxygen 1.16.1 -->
+<script type="text/javascript">
+var searchBox = new SearchBox("searchBox", "search/",'.html');
+</script>
+<script type="text/javascript">
+$(function() { codefold.init(); });
+</script>
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+$(function(){initNavTree('iscsi__spec_8h.html','',''); });
+</script>
+<div id="container">
+<div id="doc-content">
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">Loading...</div>
+<div class="SRStatus" id="Searching">Searching...</div>
+<div class="SRStatus" id="NoMatches">No Matches</div>
+</div>
+</div>
+</div>
+</div>
+
+<div class="header">
+  <div class="headertitle"><div class="title">iscsi_spec.h File Reference</div></div>
+</div><!--header-->
+<div class="contents">
+
+<p>iSCSI specification definitions  
+<a href="#details">More...</a></p>
+
+<p><a href="iscsi__spec_8h_source.html">Go to the source code of this file.</a></p>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 id="header-nested-classes" class="groupheader"><a id="nested-classes" name="nested-classes"></a>
+Data Structures</h2></td></tr>
+<tr class="memitem:iscsi_5Fbhs" id="r_iscsi_5Fbhs"><td class="memItemLeft">struct &#160;</td><td class="memItemRight"><a class="el" href="structiscsi__bhs.html">iscsi_bhs</a></td></tr>
+<tr class="memitem:iscsi_5Fbhs_5Fasync" id="r_iscsi_5Fbhs_5Fasync"><td class="memItemLeft">struct &#160;</td><td class="memItemRight"><a class="el" href="structiscsi__bhs__async.html">iscsi_bhs_async</a></td></tr>
+<tr class="memitem:iscsi_5Fbhs_5Flogin_5Freq" id="r_iscsi_5Fbhs_5Flogin_5Freq"><td class="memItemLeft">struct &#160;</td><td class="memItemRight"><a class="el" href="structiscsi__bhs__login__req.html">iscsi_bhs_login_req</a></td></tr>
+<tr class="memitem:iscsi_5Fbhs_5Flogin_5Frsp" id="r_iscsi_5Fbhs_5Flogin_5Frsp"><td class="memItemLeft">struct &#160;</td><td class="memItemRight"><a class="el" href="structiscsi__bhs__login__rsp.html">iscsi_bhs_login_rsp</a></td></tr>
+<tr class="memitem:iscsi_5Fbhs_5Flogout_5Freq" id="r_iscsi_5Fbhs_5Flogout_5Freq"><td class="memItemLeft">struct &#160;</td><td class="memItemRight"><a class="el" href="structiscsi__bhs__logout__req.html">iscsi_bhs_logout_req</a></td></tr>
+<tr class="memitem:iscsi_5Fbhs_5Flogout_5Fresp" id="r_iscsi_5Fbhs_5Flogout_5Fresp"><td class="memItemLeft">struct &#160;</td><td class="memItemRight"><a class="el" href="structiscsi__bhs__logout__resp.html">iscsi_bhs_logout_resp</a></td></tr>
+<tr class="memitem:iscsi_5Fbhs_5Fnop_5Fin" id="r_iscsi_5Fbhs_5Fnop_5Fin"><td class="memItemLeft">struct &#160;</td><td class="memItemRight"><a class="el" href="structiscsi__bhs__nop__in.html">iscsi_bhs_nop_in</a></td></tr>
+<tr class="memitem:iscsi_5Fbhs_5Fnop_5Fout" id="r_iscsi_5Fbhs_5Fnop_5Fout"><td class="memItemLeft">struct &#160;</td><td class="memItemRight"><a class="el" href="structiscsi__bhs__nop__out.html">iscsi_bhs_nop_out</a></td></tr>
+<tr class="memitem:iscsi_5Fbhs_5Fr2t" id="r_iscsi_5Fbhs_5Fr2t"><td class="memItemLeft">struct &#160;</td><td class="memItemRight"><a class="el" href="structiscsi__bhs__r2t.html">iscsi_bhs_r2t</a></td></tr>
+<tr class="memitem:iscsi_5Fbhs_5Freject" id="r_iscsi_5Fbhs_5Freject"><td class="memItemLeft">struct &#160;</td><td class="memItemRight"><a class="el" href="structiscsi__bhs__reject.html">iscsi_bhs_reject</a></td></tr>
+<tr class="memitem:iscsi_5Fbhs_5Fscsi_5Freq" id="r_iscsi_5Fbhs_5Fscsi_5Freq"><td class="memItemLeft">struct &#160;</td><td class="memItemRight"><a class="el" href="structiscsi__bhs__scsi__req.html">iscsi_bhs_scsi_req</a></td></tr>
+<tr class="memitem:iscsi_5Fbhs_5Fscsi_5Fresp" id="r_iscsi_5Fbhs_5Fscsi_5Fresp"><td class="memItemLeft">struct &#160;</td><td class="memItemRight"><a class="el" href="structiscsi__bhs__scsi__resp.html">iscsi_bhs_scsi_resp</a></td></tr>
+<tr class="memitem:iscsi_5Fbhs_5Fdata_5Fin" id="r_iscsi_5Fbhs_5Fdata_5Fin"><td class="memItemLeft">struct &#160;</td><td class="memItemRight"><a class="el" href="structiscsi__bhs__data__in.html">iscsi_bhs_data_in</a></td></tr>
+<tr class="memitem:iscsi_5Fbhs_5Fdata_5Fout" id="r_iscsi_5Fbhs_5Fdata_5Fout"><td class="memItemLeft">struct &#160;</td><td class="memItemRight"><a class="el" href="structiscsi__bhs__data__out.html">iscsi_bhs_data_out</a></td></tr>
+<tr class="memitem:iscsi_5Fbhs_5Fsnack_5Freq" id="r_iscsi_5Fbhs_5Fsnack_5Freq"><td class="memItemLeft">struct &#160;</td><td class="memItemRight"><a class="el" href="structiscsi__bhs__snack__req.html">iscsi_bhs_snack_req</a></td></tr>
+<tr class="memitem:iscsi_5Fbhs_5Ftask_5Freq" id="r_iscsi_5Fbhs_5Ftask_5Freq"><td class="memItemLeft">struct &#160;</td><td class="memItemRight"><a class="el" href="structiscsi__bhs__task__req.html">iscsi_bhs_task_req</a></td></tr>
+<tr class="memitem:iscsi_5Fbhs_5Ftask_5Fresp" id="r_iscsi_5Fbhs_5Ftask_5Fresp"><td class="memItemLeft">struct &#160;</td><td class="memItemRight"><a class="el" href="structiscsi__bhs__task__resp.html">iscsi_bhs_task_resp</a></td></tr>
+<tr class="memitem:iscsi_5Fbhs_5Ftext_5Freq" id="r_iscsi_5Fbhs_5Ftext_5Freq"><td class="memItemLeft">struct &#160;</td><td class="memItemRight"><a class="el" href="structiscsi__bhs__text__req.html">iscsi_bhs_text_req</a></td></tr>
+<tr class="memitem:iscsi_5Fbhs_5Ftext_5Fresp" id="r_iscsi_5Fbhs_5Ftext_5Fresp"><td class="memItemLeft">struct &#160;</td><td class="memItemRight"><a class="el" href="structiscsi__bhs__text__resp.html">iscsi_bhs_text_resp</a></td></tr>
+<tr class="memitem:iscsi_5Fahs" id="r_iscsi_5Fahs"><td class="memItemLeft">struct &#160;</td><td class="memItemRight"><a class="el" href="structiscsi__ahs.html">iscsi_ahs</a></td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 id="header-define-members" class="groupheader"><a id="define-members" name="define-members"></a>
+Macros</h2></td></tr>
+<tr class="memitem:a732305aac4f297690e3b654076212d20" id="r_a732305aac4f297690e3b654076212d20"><td class="memItemLeft">#define&#160;</td><td class="memItemRight"><a class="el" href="#a732305aac4f297690e3b654076212d20">ISCSI_BHS_LEN</a>&#160;&#160;&#160;48</td></tr>
+<tr class="memitem:a8f8f3c53f1dc4fe8ceefe4254271b2cc" id="r_a8f8f3c53f1dc4fe8ceefe4254271b2cc"><td class="memItemLeft">#define&#160;</td><td class="memItemRight"><a class="el" href="#a8f8f3c53f1dc4fe8ceefe4254271b2cc">ISCSI_DIGEST_LEN</a>&#160;&#160;&#160;4</td></tr>
+<tr class="memitem:a7cd9adfe7bc5f8938c200f29c04c4567" id="r_a7cd9adfe7bc5f8938c200f29c04c4567"><td class="memItemLeft">#define&#160;</td><td class="memItemRight"><a class="el" href="#a7cd9adfe7bc5f8938c200f29c04c4567">ISCSI_ALIGNMENT</a>&#160;&#160;&#160;4</td></tr>
+<tr class="memitem:a64aadc6f469d1fccc4bffd83790f8f18" id="r_a64aadc6f469d1fccc4bffd83790f8f18"><td class="memItemLeft">#define&#160;</td><td class="memItemRight"><a class="el" href="#a64aadc6f469d1fccc4bffd83790f8f18">ISCSI_VERSION</a>&#160;&#160;&#160;0x00</td></tr>
+<tr class="memdesc:a64aadc6f469d1fccc4bffd83790f8f18"><td class="mdescLeft">&#160;</td><td class="mdescRight">support version - RFC3720(10.12.4)  <br /></td></tr>
+<tr class="memitem:a1f1892161fb79f55be417dccef9603a7" id="r_a1f1892161fb79f55be417dccef9603a7"><td class="memItemLeft">#define&#160;</td><td class="memItemRight"><a class="el" href="#a1f1892161fb79f55be417dccef9603a7">ISCSI_ALIGN</a>(SIZE)</td></tr>
+<tr class="memitem:a507069bdb66a86eb825aa8a38c51886b" id="r_a507069bdb66a86eb825aa8a38c51886b"><td class="memItemLeft">#define&#160;</td><td class="memItemRight"><a class="el" href="#a507069bdb66a86eb825aa8a38c51886b">ISCSI_TEXT_MAX_VAL_LEN</a>&#160;&#160;&#160;8192</td></tr>
+<tr class="memdesc:a507069bdb66a86eb825aa8a38c51886b"><td class="mdescLeft">&#160;</td><td class="mdescRight">for authentication key (non encoded 1024bytes) RFC3720(5.1/11.1.4)  <br /></td></tr>
+<tr class="memitem:a986978914c003f3149c8b418ad7cab55" id="r_a986978914c003f3149c8b418ad7cab55"><td class="memItemLeft">#define&#160;</td><td class="memItemRight"><a class="el" href="#a986978914c003f3149c8b418ad7cab55">ISCSI_TEXT_MAX_SIMPLE_VAL_LEN</a>&#160;&#160;&#160;255</td></tr>
+<tr class="memdesc:a986978914c003f3149c8b418ad7cab55"><td class="mdescLeft">&#160;</td><td class="mdescRight">RFC 3720 5.1 If not otherwise specified, the maximum length of a simple-value (not its encoded representation) is 255 bytes, not including the delimiter (comma or zero byte).  <br /></td></tr>
+<tr class="memitem:ab3dd961367e041a9b049546cfeccaa78" id="r_ab3dd961367e041a9b049546cfeccaa78"><td class="memItemLeft">#define&#160;</td><td class="memItemRight"><a class="el" href="#ab3dd961367e041a9b049546cfeccaa78">ISCSI_TEXT_MAX_KEY_LEN</a>&#160;&#160;&#160;63</td></tr>
+<tr class="memitem:ae6ac9b2c22c5547b05cdd34986ea96f2" id="r_ae6ac9b2c22c5547b05cdd34986ea96f2"><td class="memItemLeft">#define&#160;</td><td class="memItemRight"><a class="el" href="#ae6ac9b2c22c5547b05cdd34986ea96f2">ISCSI_FLAG_FINAL</a>&#160;&#160;&#160;0x80</td></tr>
+<tr class="memitem:a938baf1d0707ec9289e350cfbbed7a0a" id="r_a938baf1d0707ec9289e350cfbbed7a0a"><td class="memItemLeft">#define&#160;</td><td class="memItemRight"><a class="el" href="#a938baf1d0707ec9289e350cfbbed7a0a">ISCSI_LOGIN_TRANSIT</a>&#160;&#160;&#160;0x80</td></tr>
+<tr class="memitem:a79654e097bd71566642534ce17494a1a" id="r_a79654e097bd71566642534ce17494a1a"><td class="memItemLeft">#define&#160;</td><td class="memItemRight"><a class="el" href="#a79654e097bd71566642534ce17494a1a">ISCSI_LOGIN_CONTINUE</a>&#160;&#160;&#160;0x40</td></tr>
+<tr class="memitem:a1b765df5955c72f1ecb08a653d9f6454" id="r_a1b765df5955c72f1ecb08a653d9f6454"><td class="memItemLeft">#define&#160;</td><td class="memItemRight"><a class="el" href="#a1b765df5955c72f1ecb08a653d9f6454">ISCSI_LOGIN_CURRENT_STAGE_MASK</a>&#160;&#160;&#160;0x0c</td></tr>
+<tr class="memitem:a3fdaaff2e0ed909b8a5c0fb901d8569e" id="r_a3fdaaff2e0ed909b8a5c0fb901d8569e"><td class="memItemLeft">#define&#160;</td><td class="memItemRight"><a class="el" href="#a3fdaaff2e0ed909b8a5c0fb901d8569e">ISCSI_LOGIN_CURRENT_STAGE_0</a>&#160;&#160;&#160;0x04</td></tr>
+<tr class="memitem:a4d60ed3712ea8e2c8e63f0202b3f9328" id="r_a4d60ed3712ea8e2c8e63f0202b3f9328"><td class="memItemLeft">#define&#160;</td><td class="memItemRight"><a class="el" href="#a4d60ed3712ea8e2c8e63f0202b3f9328">ISCSI_LOGIN_CURRENT_STAGE_1</a>&#160;&#160;&#160;0x08</td></tr>
+<tr class="memitem:aaa615f19751a42dcd9cf01fa3140ea8e" id="r_aaa615f19751a42dcd9cf01fa3140ea8e"><td class="memItemLeft">#define&#160;</td><td class="memItemRight"><a class="el" href="#aaa615f19751a42dcd9cf01fa3140ea8e">ISCSI_LOGIN_CURRENT_STAGE_3</a>&#160;&#160;&#160;0x0c</td></tr>
+<tr class="memitem:a390930c72625d40e6bd515c58ec3eb3c" id="r_a390930c72625d40e6bd515c58ec3eb3c"><td class="memItemLeft">#define&#160;</td><td class="memItemRight"><a class="el" href="#a390930c72625d40e6bd515c58ec3eb3c">ISCSI_LOGIN_NEXT_STAGE_MASK</a>&#160;&#160;&#160;0x03</td></tr>
+<tr class="memitem:aee96887365309ea13419e61bb5ec7f0d" id="r_aee96887365309ea13419e61bb5ec7f0d"><td class="memItemLeft">#define&#160;</td><td class="memItemRight"><a class="el" href="#aee96887365309ea13419e61bb5ec7f0d">ISCSI_LOGIN_NEXT_STAGE_0</a>&#160;&#160;&#160;0x01</td></tr>
+<tr class="memitem:a3ce84a97283362dc1af7bdc934dabed6" id="r_a3ce84a97283362dc1af7bdc934dabed6"><td class="memItemLeft">#define&#160;</td><td class="memItemRight"><a class="el" href="#a3ce84a97283362dc1af7bdc934dabed6">ISCSI_LOGIN_NEXT_STAGE_1</a>&#160;&#160;&#160;0x02</td></tr>
+<tr class="memitem:a2041b2b7853dc050cb11133dbd945d09" id="r_a2041b2b7853dc050cb11133dbd945d09"><td class="memItemLeft">#define&#160;</td><td class="memItemRight"><a class="el" href="#a2041b2b7853dc050cb11133dbd945d09">ISCSI_LOGIN_NEXT_STAGE_3</a>&#160;&#160;&#160;0x03</td></tr>
+<tr class="memitem:aa25140ab3d6383910dafff011448c719" id="r_aa25140ab3d6383910dafff011448c719"><td class="memItemLeft">#define&#160;</td><td class="memItemRight"><a class="el" href="#aa25140ab3d6383910dafff011448c719">ISCSI_TEXT_CONTINUE</a>&#160;&#160;&#160;0x40</td></tr>
+<tr class="memitem:aac9cdbcfc17b258f8fd912c9b1cea7b7" id="r_aac9cdbcfc17b258f8fd912c9b1cea7b7"><td class="memItemLeft">#define&#160;</td><td class="memItemRight"><a class="el" href="#aac9cdbcfc17b258f8fd912c9b1cea7b7">ISCSI_DATAIN_ACKNOWLEDGE</a>&#160;&#160;&#160;0x40</td></tr>
+<tr class="memitem:a5037d9a0c3f411d3ac5fea3bbb6367fa" id="r_a5037d9a0c3f411d3ac5fea3bbb6367fa"><td class="memItemLeft">#define&#160;</td><td class="memItemRight"><a class="el" href="#a5037d9a0c3f411d3ac5fea3bbb6367fa">ISCSI_DATAIN_OVERFLOW</a>&#160;&#160;&#160;0x04</td></tr>
+<tr class="memitem:a3ddc3b9300c5d4984fb872b834042b04" id="r_a3ddc3b9300c5d4984fb872b834042b04"><td class="memItemLeft">#define&#160;</td><td class="memItemRight"><a class="el" href="#a3ddc3b9300c5d4984fb872b834042b04">ISCSI_DATAIN_UNDERFLOW</a>&#160;&#160;&#160;0x02</td></tr>
+<tr class="memitem:ac975d253c4743d7cb89b6f3b0328a460" id="r_ac975d253c4743d7cb89b6f3b0328a460"><td class="memItemLeft">#define&#160;</td><td class="memItemRight"><a class="el" href="#ac975d253c4743d7cb89b6f3b0328a460">ISCSI_DATAIN_STATUS</a>&#160;&#160;&#160;0x01</td></tr>
+<tr class="memitem:a1ec3457d9e23e18074a7cb0b2f24ffcc" id="r_a1ec3457d9e23e18074a7cb0b2f24ffcc"><td class="memItemLeft">#define&#160;</td><td class="memItemRight"><a class="el" href="#a1ec3457d9e23e18074a7cb0b2f24ffcc">ISCSI_SCSI_BIDI_OVERFLOW</a>&#160;&#160;&#160;0x10</td></tr>
+<tr class="memitem:a9e4e2cb58d69959248e24d78cdcc0147" id="r_a9e4e2cb58d69959248e24d78cdcc0147"><td class="memItemLeft">#define&#160;</td><td class="memItemRight"><a class="el" href="#a9e4e2cb58d69959248e24d78cdcc0147">ISCSI_SCSI_BIDI_UNDERFLOW</a>&#160;&#160;&#160;0x08</td></tr>
+<tr class="memitem:a0fcf5898a9d4194105b5e88cb79f4d51" id="r_a0fcf5898a9d4194105b5e88cb79f4d51"><td class="memItemLeft">#define&#160;</td><td class="memItemRight"><a class="el" href="#a0fcf5898a9d4194105b5e88cb79f4d51">ISCSI_SCSI_OVERFLOW</a>&#160;&#160;&#160;0x04</td></tr>
+<tr class="memitem:acbd33e0c97f289193ef7493ef81768e6" id="r_acbd33e0c97f289193ef7493ef81768e6"><td class="memItemLeft">#define&#160;</td><td class="memItemRight"><a class="el" href="#acbd33e0c97f289193ef7493ef81768e6">ISCSI_SCSI_UNDERFLOW</a>&#160;&#160;&#160;0x02</td></tr>
+<tr class="memitem:a907e699159718ef097359bb12bfc0ad8" id="r_a907e699159718ef097359bb12bfc0ad8"><td class="memItemLeft">#define&#160;</td><td class="memItemRight"><a class="el" href="#a907e699159718ef097359bb12bfc0ad8">ISCSI_TASK_FUNCTION_MASK</a>&#160;&#160;&#160;0x7f</td></tr>
+<tr class="memitem:aad99955677fa3a626e46ae0652d5d6e7" id="r_aad99955677fa3a626e46ae0652d5d6e7"><td class="memItemLeft">#define&#160;</td><td class="memItemRight"><a class="el" href="#aad99955677fa3a626e46ae0652d5d6e7">ISCSI_REASON_RESERVED</a>&#160;&#160;&#160;0x1</td></tr>
+<tr class="memitem:ae43e862b283be36eec780dc1d74c6ec7" id="r_ae43e862b283be36eec780dc1d74c6ec7"><td class="memItemLeft">#define&#160;</td><td class="memItemRight"><a class="el" href="#ae43e862b283be36eec780dc1d74c6ec7">ISCSI_REASON_DATA_DIGEST_ERROR</a>&#160;&#160;&#160;0x2</td></tr>
+<tr class="memitem:a67325e98b5da1a3d468cb7f57a0ed301" id="r_a67325e98b5da1a3d468cb7f57a0ed301"><td class="memItemLeft">#define&#160;</td><td class="memItemRight"><a class="el" href="#a67325e98b5da1a3d468cb7f57a0ed301">ISCSI_REASON_DATA_SNACK_REJECT</a>&#160;&#160;&#160;0x3</td></tr>
+<tr class="memitem:a94fc93b1eef14a2ea3b07eeed4afec20" id="r_a94fc93b1eef14a2ea3b07eeed4afec20"><td class="memItemLeft">#define&#160;</td><td class="memItemRight"><a class="el" href="#a94fc93b1eef14a2ea3b07eeed4afec20">ISCSI_REASON_PROTOCOL_ERROR</a>&#160;&#160;&#160;0x4</td></tr>
+<tr class="memitem:afc1399a96e2809ab9bc4f0bb040a1c67" id="r_afc1399a96e2809ab9bc4f0bb040a1c67"><td class="memItemLeft">#define&#160;</td><td class="memItemRight"><a class="el" href="#afc1399a96e2809ab9bc4f0bb040a1c67">ISCSI_REASON_CMD_NOT_SUPPORTED</a>&#160;&#160;&#160;0x5</td></tr>
+<tr class="memitem:a92b6769e1c1ad8a82378352eddbb9491" id="r_a92b6769e1c1ad8a82378352eddbb9491"><td class="memItemLeft">#define&#160;</td><td class="memItemRight"><a class="el" href="#a92b6769e1c1ad8a82378352eddbb9491">ISCSI_REASON_IMM_CMD_REJECT</a>&#160;&#160;&#160;0x6</td></tr>
+<tr class="memitem:a739f77e71d48166882478360eb7abb33" id="r_a739f77e71d48166882478360eb7abb33"><td class="memItemLeft">#define&#160;</td><td class="memItemRight"><a class="el" href="#a739f77e71d48166882478360eb7abb33">ISCSI_REASON_TASK_IN_PROGRESS</a>&#160;&#160;&#160;0x7</td></tr>
+<tr class="memitem:a6260633a960877910a301fe74dd0ad9a" id="r_a6260633a960877910a301fe74dd0ad9a"><td class="memItemLeft">#define&#160;</td><td class="memItemRight"><a class="el" href="#a6260633a960877910a301fe74dd0ad9a">ISCSI_REASON_INVALID_SNACK</a>&#160;&#160;&#160;0x8</td></tr>
+<tr class="memitem:a596b7838a8985d6902db1901ab7e0001" id="r_a596b7838a8985d6902db1901ab7e0001"><td class="memItemLeft">#define&#160;</td><td class="memItemRight"><a class="el" href="#a596b7838a8985d6902db1901ab7e0001">ISCSI_REASON_INVALID_PDU_FIELD</a>&#160;&#160;&#160;0x9</td></tr>
+<tr class="memitem:a5e194ce14bf7875eb7f8ab0201018f57" id="r_a5e194ce14bf7875eb7f8ab0201018f57"><td class="memItemLeft">#define&#160;</td><td class="memItemRight"><a class="el" href="#a5e194ce14bf7875eb7f8ab0201018f57">ISCSI_REASON_LONG_OPERATION_REJECT</a>&#160;&#160;&#160;0xa</td></tr>
+<tr class="memitem:af1c5d3ec63397dd13925fdbfc0b73e4b" id="r_af1c5d3ec63397dd13925fdbfc0b73e4b"><td class="memItemLeft">#define&#160;</td><td class="memItemRight"><a class="el" href="#af1c5d3ec63397dd13925fdbfc0b73e4b">ISCSI_REASON_NEGOTIATION_RESET</a>&#160;&#160;&#160;0xb</td></tr>
+<tr class="memitem:ad41a73596d194d0f14b96c1aacabeb48" id="r_ad41a73596d194d0f14b96c1aacabeb48"><td class="memItemLeft">#define&#160;</td><td class="memItemRight"><a class="el" href="#ad41a73596d194d0f14b96c1aacabeb48">ISCSI_REASON_WAIT_FOR_RESET</a>&#160;&#160;&#160;0xc</td></tr>
+<tr class="memitem:ac0d62ee26187ded38ce90884321ba988" id="r_ac0d62ee26187ded38ce90884321ba988"><td class="memItemLeft">#define&#160;</td><td class="memItemRight"><a class="el" href="#ac0d62ee26187ded38ce90884321ba988">ISCSI_FLAG_SNACK_TYPE_DATA</a>&#160;&#160;&#160;0</td></tr>
+<tr class="memitem:afc8398dd60d41f2be91516402ff50704" id="r_afc8398dd60d41f2be91516402ff50704"><td class="memItemLeft">#define&#160;</td><td class="memItemRight"><a class="el" href="#afc8398dd60d41f2be91516402ff50704">ISCSI_FLAG_SNACK_TYPE_R2T</a>&#160;&#160;&#160;0</td></tr>
+<tr class="memitem:a6c35b20c29232c43efbd5c1b53c3704f" id="r_a6c35b20c29232c43efbd5c1b53c3704f"><td class="memItemLeft">#define&#160;</td><td class="memItemRight"><a class="el" href="#a6c35b20c29232c43efbd5c1b53c3704f">ISCSI_FLAG_SNACK_TYPE_STATUS</a>&#160;&#160;&#160;1</td></tr>
+<tr class="memitem:a8428826a133066d5a6d4f46624281343" id="r_a8428826a133066d5a6d4f46624281343"><td class="memItemLeft">#define&#160;</td><td class="memItemRight"><a class="el" href="#a8428826a133066d5a6d4f46624281343">ISCSI_FLAG_SNACK_TYPE_DATA_ACK</a>&#160;&#160;&#160;2</td></tr>
+<tr class="memitem:a625616d916ae6b8697cfd3e94163fefa" id="r_a625616d916ae6b8697cfd3e94163fefa"><td class="memItemLeft">#define&#160;</td><td class="memItemRight"><a class="el" href="#a625616d916ae6b8697cfd3e94163fefa">ISCSI_FLAG_SNACK_TYPE_RDATA</a>&#160;&#160;&#160;3</td></tr>
+<tr class="memitem:a870efa242b7f01cb57548c6b0d39724a" id="r_a870efa242b7f01cb57548c6b0d39724a"><td class="memItemLeft">#define&#160;</td><td class="memItemRight"><a class="el" href="#a870efa242b7f01cb57548c6b0d39724a">ISCSI_FLAG_SNACK_TYPE_MASK</a>&#160;&#160;&#160;0x0F    /* 4 bits */</td></tr>
+<tr class="memitem:a5db7a6ab1571e78ba55d08a6fa4c4b1c" id="r_a5db7a6ab1571e78ba55d08a6fa4c4b1c"><td class="memItemLeft">#define&#160;</td><td class="memItemRight"><a class="el" href="#a5db7a6ab1571e78ba55d08a6fa4c4b1c">ISCSI_BHS_LOGIN_GET_TBIT</a>(X)</td></tr>
+<tr class="memitem:a681ced3781459c23be348ac9c1b9c678" id="r_a681ced3781459c23be348ac9c1b9c678"><td class="memItemLeft">#define&#160;</td><td class="memItemRight"><a class="el" href="#a681ced3781459c23be348ac9c1b9c678">ISCSI_BHS_LOGIN_GET_CBIT</a>(X)</td></tr>
+<tr class="memitem:a2501d0cce0c544a6e15a1e5d5ebab52b" id="r_a2501d0cce0c544a6e15a1e5d5ebab52b"><td class="memItemLeft">#define&#160;</td><td class="memItemRight"><a class="el" href="#a2501d0cce0c544a6e15a1e5d5ebab52b">ISCSI_BHS_LOGIN_GET_CSG</a>(X)</td></tr>
+<tr class="memitem:a5bde03fa5cdf757697683bc7d517e664" id="r_a5bde03fa5cdf757697683bc7d517e664"><td class="memItemLeft">#define&#160;</td><td class="memItemRight"><a class="el" href="#a5bde03fa5cdf757697683bc7d517e664">ISCSI_BHS_LOGIN_GET_NSG</a>(X)</td></tr>
+<tr class="memitem:abd5b963858ccc52de9f15f5e8d51a6c1" id="r_abd5b963858ccc52de9f15f5e8d51a6c1"><td class="memItemLeft">#define&#160;</td><td class="memItemRight"><a class="el" href="#abd5b963858ccc52de9f15f5e8d51a6c1">ISCSI_CLASS_SUCCESS</a>&#160;&#160;&#160;0x00</td></tr>
+<tr class="memitem:acf506c32bf9f465d24e4db4e1fbf15a6" id="r_acf506c32bf9f465d24e4db4e1fbf15a6"><td class="memItemLeft">#define&#160;</td><td class="memItemRight"><a class="el" href="#acf506c32bf9f465d24e4db4e1fbf15a6">ISCSI_CLASS_REDIRECT</a>&#160;&#160;&#160;0x01</td></tr>
+<tr class="memitem:a04b6541ec6c56cd9b1524a2bf9c1f05f" id="r_a04b6541ec6c56cd9b1524a2bf9c1f05f"><td class="memItemLeft">#define&#160;</td><td class="memItemRight"><a class="el" href="#a04b6541ec6c56cd9b1524a2bf9c1f05f">ISCSI_CLASS_INITIATOR_ERROR</a>&#160;&#160;&#160;0x02</td></tr>
+<tr class="memitem:af552fafd6804f9189aa98263f8bb5cd4" id="r_af552fafd6804f9189aa98263f8bb5cd4"><td class="memItemLeft">#define&#160;</td><td class="memItemRight"><a class="el" href="#af552fafd6804f9189aa98263f8bb5cd4">ISCSI_CLASS_TARGET_ERROR</a>&#160;&#160;&#160;0x03</td></tr>
+<tr class="memitem:ade4610ab833eda63d48da4b28733d2f0" id="r_ade4610ab833eda63d48da4b28733d2f0"><td class="memItemLeft">#define&#160;</td><td class="memItemRight"><a class="el" href="#ade4610ab833eda63d48da4b28733d2f0">ISCSI_LOGIN_ACCEPT</a>&#160;&#160;&#160;0x00</td></tr>
+<tr class="memitem:a547ed77b2ea5d2b98d9a9a683e98c3fb" id="r_a547ed77b2ea5d2b98d9a9a683e98c3fb"><td class="memItemLeft">#define&#160;</td><td class="memItemRight"><a class="el" href="#a547ed77b2ea5d2b98d9a9a683e98c3fb">ISCSI_LOGIN_TARGET_TEMPORARILY_MOVED</a>&#160;&#160;&#160;0x01</td></tr>
+<tr class="memitem:afe99d10120365a28ddbdee6f0d09abd7" id="r_afe99d10120365a28ddbdee6f0d09abd7"><td class="memItemLeft">#define&#160;</td><td class="memItemRight"><a class="el" href="#afe99d10120365a28ddbdee6f0d09abd7">ISCSI_LOGIN_TARGET_PERMANENTLY_MOVED</a>&#160;&#160;&#160;0x02</td></tr>
+<tr class="memitem:aff110ee78d96f5b484fa7ce91a71f96c" id="r_aff110ee78d96f5b484fa7ce91a71f96c"><td class="memItemLeft">#define&#160;</td><td class="memItemRight"><a class="el" href="#aff110ee78d96f5b484fa7ce91a71f96c">ISCSI_LOGIN_INITIATOR_ERROR</a>&#160;&#160;&#160;0x00</td></tr>
+<tr class="memitem:af6b4af2bfcecc7351955c4cd89e1e775" id="r_af6b4af2bfcecc7351955c4cd89e1e775"><td class="memItemLeft">#define&#160;</td><td class="memItemRight"><a class="el" href="#af6b4af2bfcecc7351955c4cd89e1e775">ISCSI_LOGIN_AUTHENT_FAIL</a>&#160;&#160;&#160;0x01</td></tr>
+<tr class="memitem:adb40c0a30ecc3598a564d9d78e1c6248" id="r_adb40c0a30ecc3598a564d9d78e1c6248"><td class="memItemLeft">#define&#160;</td><td class="memItemRight"><a class="el" href="#adb40c0a30ecc3598a564d9d78e1c6248">ISCSI_LOGIN_AUTHORIZATION_FAIL</a>&#160;&#160;&#160;0x02</td></tr>
+<tr class="memitem:aa5530d01dd3009d2ca4d9fdbbc322341" id="r_aa5530d01dd3009d2ca4d9fdbbc322341"><td class="memItemLeft">#define&#160;</td><td class="memItemRight"><a class="el" href="#aa5530d01dd3009d2ca4d9fdbbc322341">ISCSI_LOGIN_TARGET_NOT_FOUND</a>&#160;&#160;&#160;0x03</td></tr>
+<tr class="memitem:a5b64dc60c844737f5b71f58c3becffd4" id="r_a5b64dc60c844737f5b71f58c3becffd4"><td class="memItemLeft">#define&#160;</td><td class="memItemRight"><a class="el" href="#a5b64dc60c844737f5b71f58c3becffd4">ISCSI_LOGIN_TARGET_REMOVED</a>&#160;&#160;&#160;0x04</td></tr>
+<tr class="memitem:ac58aab09b28936beaa924bbe49acfb03" id="r_ac58aab09b28936beaa924bbe49acfb03"><td class="memItemLeft">#define&#160;</td><td class="memItemRight"><a class="el" href="#ac58aab09b28936beaa924bbe49acfb03">ISCSI_LOGIN_UNSUPPORTED_VERSION</a>&#160;&#160;&#160;0x05</td></tr>
+<tr class="memitem:a40f41a237a4b88c0203080341f53c867" id="r_a40f41a237a4b88c0203080341f53c867"><td class="memItemLeft">#define&#160;</td><td class="memItemRight"><a class="el" href="#a40f41a237a4b88c0203080341f53c867">ISCSI_LOGIN_TOO_MANY_CONNECTIONS</a>&#160;&#160;&#160;0x06</td></tr>
+<tr class="memitem:a18b6fd1414e2d3ff815838256ea86618" id="r_a18b6fd1414e2d3ff815838256ea86618"><td class="memItemLeft">#define&#160;</td><td class="memItemRight"><a class="el" href="#a18b6fd1414e2d3ff815838256ea86618">ISCSI_LOGIN_MISSING_PARMS</a>&#160;&#160;&#160;0x07</td></tr>
+<tr class="memitem:a331155368bbc9a89783fbaf64eba38c5" id="r_a331155368bbc9a89783fbaf64eba38c5"><td class="memItemLeft">#define&#160;</td><td class="memItemRight"><a class="el" href="#a331155368bbc9a89783fbaf64eba38c5">ISCSI_LOGIN_CONN_ADD_FAIL</a>&#160;&#160;&#160;0x08</td></tr>
+<tr class="memitem:acad962b6a473cfcd30e1c0b7de567a95" id="r_acad962b6a473cfcd30e1c0b7de567a95"><td class="memItemLeft">#define&#160;</td><td class="memItemRight"><a class="el" href="#acad962b6a473cfcd30e1c0b7de567a95">ISCSI_LOGIN_NOT_SUPPORTED_SESSION_TYPE</a>&#160;&#160;&#160;0x09</td></tr>
+<tr class="memitem:a86ab3cf1d7e7bd53fcebcb338fdc23aa" id="r_a86ab3cf1d7e7bd53fcebcb338fdc23aa"><td class="memItemLeft">#define&#160;</td><td class="memItemRight"><a class="el" href="#a86ab3cf1d7e7bd53fcebcb338fdc23aa">ISCSI_LOGIN_NO_SESSION</a>&#160;&#160;&#160;0x0a</td></tr>
+<tr class="memitem:a5b2d47d4cfd763493f56a1286cebbd2c" id="r_a5b2d47d4cfd763493f56a1286cebbd2c"><td class="memItemLeft">#define&#160;</td><td class="memItemRight"><a class="el" href="#a5b2d47d4cfd763493f56a1286cebbd2c">ISCSI_LOGIN_INVALID_LOGIN_REQUEST</a>&#160;&#160;&#160;0x0b</td></tr>
+<tr class="memitem:a5d40d20a885a45bea766a064b938e156" id="r_a5d40d20a885a45bea766a064b938e156"><td class="memItemLeft">#define&#160;</td><td class="memItemRight"><a class="el" href="#a5d40d20a885a45bea766a064b938e156">ISCSI_LOGIN_STATUS_TARGET_ERROR</a>&#160;&#160;&#160;0x00</td></tr>
+<tr class="memitem:aaf0efdb1c7553e000d37efe043ef0b9f" id="r_aaf0efdb1c7553e000d37efe043ef0b9f"><td class="memItemLeft">#define&#160;</td><td class="memItemRight"><a class="el" href="#aaf0efdb1c7553e000d37efe043ef0b9f">ISCSI_LOGIN_STATUS_SERVICE_UNAVAILABLE</a>&#160;&#160;&#160;0x01</td></tr>
+<tr class="memitem:a4d04eaaa6838828970bba84522d180fb" id="r_a4d04eaaa6838828970bba84522d180fb"><td class="memItemLeft">#define&#160;</td><td class="memItemRight"><a class="el" href="#a4d04eaaa6838828970bba84522d180fb">ISCSI_LOGIN_STATUS_NO_RESOURCES</a>&#160;&#160;&#160;0x02</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 id="header-enum-members" class="groupheader"><a id="enum-members" name="enum-members"></a>
+Enumerations</h2></td></tr>
+<tr class="memitem:ad2c30ed17419423b79a47fae8323408a" id="r_ad2c30ed17419423b79a47fae8323408a"><td class="memItemLeft">enum &#160;</td><td class="memItemRight"><b>iscsi_op</b> { <br />
+&#160;&#160;<b>ISCSI_OP_NOPOUT</b> = 0x00
+, <b>ISCSI_OP_SCSI</b> = 0x01
+, <b>ISCSI_OP_TASK</b> = 0x02
+, <b>ISCSI_OP_LOGIN</b> = 0x03
+, <br />
+&#160;&#160;<b>ISCSI_OP_TEXT</b> = 0x04
+, <b>ISCSI_OP_SCSI_DATAOUT</b> = 0x05
+, <b>ISCSI_OP_LOGOUT</b> = 0x06
+, <b>ISCSI_OP_SNACK</b> = 0x10
+, <br />
+&#160;&#160;<b>ISCSI_OP_VENDOR_1C</b> = 0x1c
+, <b>ISCSI_OP_VENDOR_1D</b> = 0x1d
+, <b>ISCSI_OP_VENDOR_1E</b> = 0x1e
+, <b>ISCSI_OP_NOPIN</b> = 0x20
+, <br />
+&#160;&#160;<b>ISCSI_OP_SCSI_RSP</b> = 0x21
+, <b>ISCSI_OP_TASK_RSP</b> = 0x22
+, <b>ISCSI_OP_LOGIN_RSP</b> = 0x23
+, <b>ISCSI_OP_TEXT_RSP</b> = 0x24
+, <br />
+&#160;&#160;<b>ISCSI_OP_SCSI_DATAIN</b> = 0x25
+, <b>ISCSI_OP_LOGOUT_RSP</b> = 0x26
+, <b>ISCSI_OP_R2T</b> = 0x31
+, <b>ISCSI_OP_ASYNC</b> = 0x32
+, <br />
+&#160;&#160;<b>ISCSI_OP_VENDOR_3C</b> = 0x3c
+, <b>ISCSI_OP_VENDOR_3D</b> = 0x3d
+, <b>ISCSI_OP_VENDOR_3E</b> = 0x3e
+, <b>ISCSI_OP_REJECT</b> = 0x3f
+<br />
+ }</td></tr>
+<tr class="memitem:a6ae501611baca9225cc96bf6cf087450" id="r_a6ae501611baca9225cc96bf6cf087450"><td class="memItemLeft">enum &#160;</td><td class="memItemRight"><b>iscsi_task_func</b> { <br />
+&#160;&#160;<b>ISCSI_TASK_FUNC_ABORT_TASK</b> = 1
+, <b>ISCSI_TASK_FUNC_ABORT_TASK_SET</b> = 2
+, <b>ISCSI_TASK_FUNC_CLEAR_ACA</b> = 3
+, <b>ISCSI_TASK_FUNC_CLEAR_TASK_SET</b> = 4
+, <br />
+&#160;&#160;<b>ISCSI_TASK_FUNC_LOGICAL_UNIT_RESET</b> = 5
+, <b>ISCSI_TASK_FUNC_TARGET_WARM_RESET</b> = 6
+, <b>ISCSI_TASK_FUNC_TARGET_COLD_RESET</b> = 7
+, <b>ISCSI_TASK_FUNC_TASK_REASSIGN</b> = 8
+<br />
+ }</td></tr>
+<tr class="memitem:a9cd87a034cf8d8aa42b5203460f03a12" id="r_a9cd87a034cf8d8aa42b5203460f03a12"><td class="memItemLeft">enum &#160;</td><td class="memItemRight"><b>iscsi_task_func_resp</b> { <br />
+&#160;&#160;<b>ISCSI_TASK_FUNC_RESP_COMPLETE</b> = 0
+, <b>ISCSI_TASK_FUNC_RESP_TASK_NOT_EXIST</b> = 1
+, <b>ISCSI_TASK_FUNC_RESP_LUN_NOT_EXIST</b> = 2
+, <b>ISCSI_TASK_FUNC_RESP_TASK_STILL_ALLEGIANT</b> = 3
+, <br />
+&#160;&#160;<b>ISCSI_TASK_FUNC_RESP_REASSIGNMENT_NOT_SUPPORTED</b> = 4
+, <b>ISCSI_TASK_FUNC_RESP_FUNC_NOT_SUPPORTED</b> = 5
+, <b>ISCSI_TASK_FUNC_RESP_AUTHORIZATION_FAILED</b> = 6
+, <b>ISCSI_TASK_FUNC_REJECTED</b> = 255
+<br />
+ }</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 id="header-func-members" class="groupheader"><a id="func-members" name="func-members"></a>
+Functions</h2></td></tr>
+<tr class="memitem:afa03843ca64676b995bf1abe55713228" id="r_afa03843ca64676b995bf1abe55713228"><td class="memItemLeft"><a id="afa03843ca64676b995bf1abe55713228" name="afa03843ca64676b995bf1abe55713228"></a>
+&#160;</td><td class="memItemRight"><b>SPDK_STATIC_ASSERT</b> (sizeof(struct <a class="el" href="structiscsi__bhs.html">iscsi_bhs</a>)==ISCSI_BHS_LEN, &quot;ISCSI_BHS_LEN mismatch&quot;)</td></tr>
+</table>
+<a name="details" id="details"></a><h2 id="header-details" class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>iSCSI specification definitions </p>
+
+<p class="definition">Definition in file <a class="el" href="iscsi__spec_8h_source.html">iscsi_spec.h</a>.</p>
+</div><a name="doc-define-members" id="doc-define-members"></a><h2 id="header-doc-define-members" class="groupheader">Macro Definition Documentation</h2>
+<a id="a1f1892161fb79f55be417dccef9603a7" name="a1f1892161fb79f55be417dccef9603a7"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1f1892161fb79f55be417dccef9603a7">&#9670;&#160;</a></span>ISCSI_ALIGN</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define ISCSI_ALIGN</td>
+          <td>(</td>
+          <td class="paramtype"></td>          <td class="paramname"><span class="paramname"><em>SIZE</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<b>Value:</b><div class="fragment"><div class="line">(((SIZE) + (ISCSI_ALIGNMENT - 1)) &amp; ~(ISCSI_ALIGNMENT - 1))</div>
+</div><!-- fragment -->
+<p class="definition">Definition at line <a class="el" href="iscsi__spec_8h_source.html#l00030">30</a> of file <a class="el" href="iscsi__spec_8h_source.html">iscsi_spec.h</a>.</p>
+
+</div>
+</div>
+<a id="a7cd9adfe7bc5f8938c200f29c04c4567" name="a7cd9adfe7bc5f8938c200f29c04c4567"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7cd9adfe7bc5f8938c200f29c04c4567">&#9670;&#160;</a></span>ISCSI_ALIGNMENT</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define ISCSI_ALIGNMENT&#160;&#160;&#160;4</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="iscsi__spec_8h_source.html#l00025">25</a> of file <a class="el" href="iscsi__spec_8h_source.html">iscsi_spec.h</a>.</p>
+
+</div>
+</div>
+<a id="a732305aac4f297690e3b654076212d20" name="a732305aac4f297690e3b654076212d20"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a732305aac4f297690e3b654076212d20">&#9670;&#160;</a></span>ISCSI_BHS_LEN</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define ISCSI_BHS_LEN&#160;&#160;&#160;48</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="iscsi__spec_8h_source.html#l00023">23</a> of file <a class="el" href="iscsi__spec_8h_source.html">iscsi_spec.h</a>.</p>
+
+</div>
+</div>
+<a id="a681ced3781459c23be348ac9c1b9c678" name="a681ced3781459c23be348ac9c1b9c678"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a681ced3781459c23be348ac9c1b9c678">&#9670;&#160;</a></span>ISCSI_BHS_LOGIN_GET_CBIT</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define ISCSI_BHS_LOGIN_GET_CBIT</td>
+          <td>(</td>
+          <td class="paramtype"></td>          <td class="paramname"><span class="paramname"><em>X</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<b>Value:</b><div class="fragment"><div class="line">(!!(X &amp; ISCSI_LOGIN_CONTINUE))</div>
+</div><!-- fragment -->
+<p class="definition">Definition at line <a class="el" href="iscsi__spec_8h_source.html#l00508">508</a> of file <a class="el" href="iscsi__spec_8h_source.html">iscsi_spec.h</a>.</p>
+
+</div>
+</div>
+<a id="a2501d0cce0c544a6e15a1e5d5ebab52b" name="a2501d0cce0c544a6e15a1e5d5ebab52b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2501d0cce0c544a6e15a1e5d5ebab52b">&#9670;&#160;</a></span>ISCSI_BHS_LOGIN_GET_CSG</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define ISCSI_BHS_LOGIN_GET_CSG</td>
+          <td>(</td>
+          <td class="paramtype"></td>          <td class="paramname"><span class="paramname"><em>X</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<b>Value:</b><div class="fragment"><div class="line">((X &amp; ISCSI_LOGIN_CURRENT_STAGE_MASK) &gt;&gt; 2)</div>
+</div><!-- fragment -->
+<p class="definition">Definition at line <a class="el" href="iscsi__spec_8h_source.html#l00509">509</a> of file <a class="el" href="iscsi__spec_8h_source.html">iscsi_spec.h</a>.</p>
+
+</div>
+</div>
+<a id="a5bde03fa5cdf757697683bc7d517e664" name="a5bde03fa5cdf757697683bc7d517e664"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5bde03fa5cdf757697683bc7d517e664">&#9670;&#160;</a></span>ISCSI_BHS_LOGIN_GET_NSG</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define ISCSI_BHS_LOGIN_GET_NSG</td>
+          <td>(</td>
+          <td class="paramtype"></td>          <td class="paramname"><span class="paramname"><em>X</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<b>Value:</b><div class="fragment"><div class="line">(X &amp; ISCSI_LOGIN_NEXT_STAGE_MASK)</div>
+</div><!-- fragment -->
+<p class="definition">Definition at line <a class="el" href="iscsi__spec_8h_source.html#l00510">510</a> of file <a class="el" href="iscsi__spec_8h_source.html">iscsi_spec.h</a>.</p>
+
+</div>
+</div>
+<a id="a5db7a6ab1571e78ba55d08a6fa4c4b1c" name="a5db7a6ab1571e78ba55d08a6fa4c4b1c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5db7a6ab1571e78ba55d08a6fa4c4b1c">&#9670;&#160;</a></span>ISCSI_BHS_LOGIN_GET_TBIT</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define ISCSI_BHS_LOGIN_GET_TBIT</td>
+          <td>(</td>
+          <td class="paramtype"></td>          <td class="paramname"><span class="paramname"><em>X</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<b>Value:</b><div class="fragment"><div class="line">(!!(X &amp; ISCSI_LOGIN_TRANSIT))</div>
+</div><!-- fragment -->
+<p class="definition">Definition at line <a class="el" href="iscsi__spec_8h_source.html#l00507">507</a> of file <a class="el" href="iscsi__spec_8h_source.html">iscsi_spec.h</a>.</p>
+
+</div>
+</div>
+<a id="a04b6541ec6c56cd9b1524a2bf9c1f05f" name="a04b6541ec6c56cd9b1524a2bf9c1f05f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a04b6541ec6c56cd9b1524a2bf9c1f05f">&#9670;&#160;</a></span>ISCSI_CLASS_INITIATOR_ERROR</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define ISCSI_CLASS_INITIATOR_ERROR&#160;&#160;&#160;0x02</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="iscsi__spec_8h_source.html#l00514">514</a> of file <a class="el" href="iscsi__spec_8h_source.html">iscsi_spec.h</a>.</p>
+
+</div>
+</div>
+<a id="acf506c32bf9f465d24e4db4e1fbf15a6" name="acf506c32bf9f465d24e4db4e1fbf15a6"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#acf506c32bf9f465d24e4db4e1fbf15a6">&#9670;&#160;</a></span>ISCSI_CLASS_REDIRECT</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define ISCSI_CLASS_REDIRECT&#160;&#160;&#160;0x01</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="iscsi__spec_8h_source.html#l00513">513</a> of file <a class="el" href="iscsi__spec_8h_source.html">iscsi_spec.h</a>.</p>
+
+</div>
+</div>
+<a id="abd5b963858ccc52de9f15f5e8d51a6c1" name="abd5b963858ccc52de9f15f5e8d51a6c1"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#abd5b963858ccc52de9f15f5e8d51a6c1">&#9670;&#160;</a></span>ISCSI_CLASS_SUCCESS</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define ISCSI_CLASS_SUCCESS&#160;&#160;&#160;0x00</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="iscsi__spec_8h_source.html#l00512">512</a> of file <a class="el" href="iscsi__spec_8h_source.html">iscsi_spec.h</a>.</p>
+
+</div>
+</div>
+<a id="af552fafd6804f9189aa98263f8bb5cd4" name="af552fafd6804f9189aa98263f8bb5cd4"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af552fafd6804f9189aa98263f8bb5cd4">&#9670;&#160;</a></span>ISCSI_CLASS_TARGET_ERROR</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define ISCSI_CLASS_TARGET_ERROR&#160;&#160;&#160;0x03</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="iscsi__spec_8h_source.html#l00515">515</a> of file <a class="el" href="iscsi__spec_8h_source.html">iscsi_spec.h</a>.</p>
+
+</div>
+</div>
+<a id="aac9cdbcfc17b258f8fd912c9b1cea7b7" name="aac9cdbcfc17b258f8fd912c9b1cea7b7"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aac9cdbcfc17b258f8fd912c9b1cea7b7">&#9670;&#160;</a></span>ISCSI_DATAIN_ACKNOWLEDGE</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define ISCSI_DATAIN_ACKNOWLEDGE&#160;&#160;&#160;0x40</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="iscsi__spec_8h_source.html#l00463">463</a> of file <a class="el" href="iscsi__spec_8h_source.html">iscsi_spec.h</a>.</p>
+
+</div>
+</div>
+<a id="a5037d9a0c3f411d3ac5fea3bbb6367fa" name="a5037d9a0c3f411d3ac5fea3bbb6367fa"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5037d9a0c3f411d3ac5fea3bbb6367fa">&#9670;&#160;</a></span>ISCSI_DATAIN_OVERFLOW</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define ISCSI_DATAIN_OVERFLOW&#160;&#160;&#160;0x04</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="iscsi__spec_8h_source.html#l00464">464</a> of file <a class="el" href="iscsi__spec_8h_source.html">iscsi_spec.h</a>.</p>
+
+</div>
+</div>
+<a id="ac975d253c4743d7cb89b6f3b0328a460" name="ac975d253c4743d7cb89b6f3b0328a460"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac975d253c4743d7cb89b6f3b0328a460">&#9670;&#160;</a></span>ISCSI_DATAIN_STATUS</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define ISCSI_DATAIN_STATUS&#160;&#160;&#160;0x01</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="iscsi__spec_8h_source.html#l00466">466</a> of file <a class="el" href="iscsi__spec_8h_source.html">iscsi_spec.h</a>.</p>
+
+</div>
+</div>
+<a id="a3ddc3b9300c5d4984fb872b834042b04" name="a3ddc3b9300c5d4984fb872b834042b04"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3ddc3b9300c5d4984fb872b834042b04">&#9670;&#160;</a></span>ISCSI_DATAIN_UNDERFLOW</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define ISCSI_DATAIN_UNDERFLOW&#160;&#160;&#160;0x02</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="iscsi__spec_8h_source.html#l00465">465</a> of file <a class="el" href="iscsi__spec_8h_source.html">iscsi_spec.h</a>.</p>
+
+</div>
+</div>
+<a id="a8f8f3c53f1dc4fe8ceefe4254271b2cc" name="a8f8f3c53f1dc4fe8ceefe4254271b2cc"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8f8f3c53f1dc4fe8ceefe4254271b2cc">&#9670;&#160;</a></span>ISCSI_DIGEST_LEN</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define ISCSI_DIGEST_LEN&#160;&#160;&#160;4</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="iscsi__spec_8h_source.html#l00024">24</a> of file <a class="el" href="iscsi__spec_8h_source.html">iscsi_spec.h</a>.</p>
+
+</div>
+</div>
+<a id="ae6ac9b2c22c5547b05cdd34986ea96f2" name="ae6ac9b2c22c5547b05cdd34986ea96f2"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae6ac9b2c22c5547b05cdd34986ea96f2">&#9670;&#160;</a></span>ISCSI_FLAG_FINAL</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define ISCSI_FLAG_FINAL&#160;&#160;&#160;0x80</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="iscsi__spec_8h_source.html#l00445">445</a> of file <a class="el" href="iscsi__spec_8h_source.html">iscsi_spec.h</a>.</p>
+
+</div>
+</div>
+<a id="ac0d62ee26187ded38ce90884321ba988" name="ac0d62ee26187ded38ce90884321ba988"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac0d62ee26187ded38ce90884321ba988">&#9670;&#160;</a></span>ISCSI_FLAG_SNACK_TYPE_DATA</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define ISCSI_FLAG_SNACK_TYPE_DATA&#160;&#160;&#160;0</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="iscsi__spec_8h_source.html#l00491">491</a> of file <a class="el" href="iscsi__spec_8h_source.html">iscsi_spec.h</a>.</p>
+
+</div>
+</div>
+<a id="a8428826a133066d5a6d4f46624281343" name="a8428826a133066d5a6d4f46624281343"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8428826a133066d5a6d4f46624281343">&#9670;&#160;</a></span>ISCSI_FLAG_SNACK_TYPE_DATA_ACK</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define ISCSI_FLAG_SNACK_TYPE_DATA_ACK&#160;&#160;&#160;2</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="iscsi__spec_8h_source.html#l00494">494</a> of file <a class="el" href="iscsi__spec_8h_source.html">iscsi_spec.h</a>.</p>
+
+</div>
+</div>
+<a id="a870efa242b7f01cb57548c6b0d39724a" name="a870efa242b7f01cb57548c6b0d39724a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a870efa242b7f01cb57548c6b0d39724a">&#9670;&#160;</a></span>ISCSI_FLAG_SNACK_TYPE_MASK</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define ISCSI_FLAG_SNACK_TYPE_MASK&#160;&#160;&#160;0x0F    /* 4 bits */</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="iscsi__spec_8h_source.html#l00496">496</a> of file <a class="el" href="iscsi__spec_8h_source.html">iscsi_spec.h</a>.</p>
+
+</div>
+</div>
+<a id="afc8398dd60d41f2be91516402ff50704" name="afc8398dd60d41f2be91516402ff50704"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#afc8398dd60d41f2be91516402ff50704">&#9670;&#160;</a></span>ISCSI_FLAG_SNACK_TYPE_R2T</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define ISCSI_FLAG_SNACK_TYPE_R2T&#160;&#160;&#160;0</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="iscsi__spec_8h_source.html#l00492">492</a> of file <a class="el" href="iscsi__spec_8h_source.html">iscsi_spec.h</a>.</p>
+
+</div>
+</div>
+<a id="a625616d916ae6b8697cfd3e94163fefa" name="a625616d916ae6b8697cfd3e94163fefa"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a625616d916ae6b8697cfd3e94163fefa">&#9670;&#160;</a></span>ISCSI_FLAG_SNACK_TYPE_RDATA</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define ISCSI_FLAG_SNACK_TYPE_RDATA&#160;&#160;&#160;3</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="iscsi__spec_8h_source.html#l00495">495</a> of file <a class="el" href="iscsi__spec_8h_source.html">iscsi_spec.h</a>.</p>
+
+</div>
+</div>
+<a id="a6c35b20c29232c43efbd5c1b53c3704f" name="a6c35b20c29232c43efbd5c1b53c3704f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6c35b20c29232c43efbd5c1b53c3704f">&#9670;&#160;</a></span>ISCSI_FLAG_SNACK_TYPE_STATUS</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define ISCSI_FLAG_SNACK_TYPE_STATUS&#160;&#160;&#160;1</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="iscsi__spec_8h_source.html#l00493">493</a> of file <a class="el" href="iscsi__spec_8h_source.html">iscsi_spec.h</a>.</p>
+
+</div>
+</div>
+<a id="ade4610ab833eda63d48da4b28733d2f0" name="ade4610ab833eda63d48da4b28733d2f0"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ade4610ab833eda63d48da4b28733d2f0">&#9670;&#160;</a></span>ISCSI_LOGIN_ACCEPT</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define ISCSI_LOGIN_ACCEPT&#160;&#160;&#160;0x00</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="iscsi__spec_8h_source.html#l00518">518</a> of file <a class="el" href="iscsi__spec_8h_source.html">iscsi_spec.h</a>.</p>
+
+</div>
+</div>
+<a id="af6b4af2bfcecc7351955c4cd89e1e775" name="af6b4af2bfcecc7351955c4cd89e1e775"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af6b4af2bfcecc7351955c4cd89e1e775">&#9670;&#160;</a></span>ISCSI_LOGIN_AUTHENT_FAIL</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define ISCSI_LOGIN_AUTHENT_FAIL&#160;&#160;&#160;0x01</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="iscsi__spec_8h_source.html#l00526">526</a> of file <a class="el" href="iscsi__spec_8h_source.html">iscsi_spec.h</a>.</p>
+
+</div>
+</div>
+<a id="adb40c0a30ecc3598a564d9d78e1c6248" name="adb40c0a30ecc3598a564d9d78e1c6248"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#adb40c0a30ecc3598a564d9d78e1c6248">&#9670;&#160;</a></span>ISCSI_LOGIN_AUTHORIZATION_FAIL</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define ISCSI_LOGIN_AUTHORIZATION_FAIL&#160;&#160;&#160;0x02</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="iscsi__spec_8h_source.html#l00527">527</a> of file <a class="el" href="iscsi__spec_8h_source.html">iscsi_spec.h</a>.</p>
+
+</div>
+</div>
+<a id="a331155368bbc9a89783fbaf64eba38c5" name="a331155368bbc9a89783fbaf64eba38c5"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a331155368bbc9a89783fbaf64eba38c5">&#9670;&#160;</a></span>ISCSI_LOGIN_CONN_ADD_FAIL</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define ISCSI_LOGIN_CONN_ADD_FAIL&#160;&#160;&#160;0x08</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="iscsi__spec_8h_source.html#l00533">533</a> of file <a class="el" href="iscsi__spec_8h_source.html">iscsi_spec.h</a>.</p>
+
+</div>
+</div>
+<a id="a79654e097bd71566642534ce17494a1a" name="a79654e097bd71566642534ce17494a1a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a79654e097bd71566642534ce17494a1a">&#9670;&#160;</a></span>ISCSI_LOGIN_CONTINUE</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define ISCSI_LOGIN_CONTINUE&#160;&#160;&#160;0x40</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="iscsi__spec_8h_source.html#l00449">449</a> of file <a class="el" href="iscsi__spec_8h_source.html">iscsi_spec.h</a>.</p>
+
+</div>
+</div>
+<a id="a3fdaaff2e0ed909b8a5c0fb901d8569e" name="a3fdaaff2e0ed909b8a5c0fb901d8569e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3fdaaff2e0ed909b8a5c0fb901d8569e">&#9670;&#160;</a></span>ISCSI_LOGIN_CURRENT_STAGE_0</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define ISCSI_LOGIN_CURRENT_STAGE_0&#160;&#160;&#160;0x04</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="iscsi__spec_8h_source.html#l00451">451</a> of file <a class="el" href="iscsi__spec_8h_source.html">iscsi_spec.h</a>.</p>
+
+</div>
+</div>
+<a id="a4d60ed3712ea8e2c8e63f0202b3f9328" name="a4d60ed3712ea8e2c8e63f0202b3f9328"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4d60ed3712ea8e2c8e63f0202b3f9328">&#9670;&#160;</a></span>ISCSI_LOGIN_CURRENT_STAGE_1</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define ISCSI_LOGIN_CURRENT_STAGE_1&#160;&#160;&#160;0x08</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="iscsi__spec_8h_source.html#l00452">452</a> of file <a class="el" href="iscsi__spec_8h_source.html">iscsi_spec.h</a>.</p>
+
+</div>
+</div>
+<a id="aaa615f19751a42dcd9cf01fa3140ea8e" name="aaa615f19751a42dcd9cf01fa3140ea8e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aaa615f19751a42dcd9cf01fa3140ea8e">&#9670;&#160;</a></span>ISCSI_LOGIN_CURRENT_STAGE_3</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define ISCSI_LOGIN_CURRENT_STAGE_3&#160;&#160;&#160;0x0c</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="iscsi__spec_8h_source.html#l00453">453</a> of file <a class="el" href="iscsi__spec_8h_source.html">iscsi_spec.h</a>.</p>
+
+</div>
+</div>
+<a id="a1b765df5955c72f1ecb08a653d9f6454" name="a1b765df5955c72f1ecb08a653d9f6454"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1b765df5955c72f1ecb08a653d9f6454">&#9670;&#160;</a></span>ISCSI_LOGIN_CURRENT_STAGE_MASK</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define ISCSI_LOGIN_CURRENT_STAGE_MASK&#160;&#160;&#160;0x0c</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="iscsi__spec_8h_source.html#l00450">450</a> of file <a class="el" href="iscsi__spec_8h_source.html">iscsi_spec.h</a>.</p>
+
+</div>
+</div>
+<a id="aff110ee78d96f5b484fa7ce91a71f96c" name="aff110ee78d96f5b484fa7ce91a71f96c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aff110ee78d96f5b484fa7ce91a71f96c">&#9670;&#160;</a></span>ISCSI_LOGIN_INITIATOR_ERROR</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define ISCSI_LOGIN_INITIATOR_ERROR&#160;&#160;&#160;0x00</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="iscsi__spec_8h_source.html#l00525">525</a> of file <a class="el" href="iscsi__spec_8h_source.html">iscsi_spec.h</a>.</p>
+
+</div>
+</div>
+<a id="a5b2d47d4cfd763493f56a1286cebbd2c" name="a5b2d47d4cfd763493f56a1286cebbd2c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5b2d47d4cfd763493f56a1286cebbd2c">&#9670;&#160;</a></span>ISCSI_LOGIN_INVALID_LOGIN_REQUEST</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define ISCSI_LOGIN_INVALID_LOGIN_REQUEST&#160;&#160;&#160;0x0b</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="iscsi__spec_8h_source.html#l00536">536</a> of file <a class="el" href="iscsi__spec_8h_source.html">iscsi_spec.h</a>.</p>
+
+</div>
+</div>
+<a id="a18b6fd1414e2d3ff815838256ea86618" name="a18b6fd1414e2d3ff815838256ea86618"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a18b6fd1414e2d3ff815838256ea86618">&#9670;&#160;</a></span>ISCSI_LOGIN_MISSING_PARMS</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define ISCSI_LOGIN_MISSING_PARMS&#160;&#160;&#160;0x07</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="iscsi__spec_8h_source.html#l00532">532</a> of file <a class="el" href="iscsi__spec_8h_source.html">iscsi_spec.h</a>.</p>
+
+</div>
+</div>
+<a id="aee96887365309ea13419e61bb5ec7f0d" name="aee96887365309ea13419e61bb5ec7f0d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aee96887365309ea13419e61bb5ec7f0d">&#9670;&#160;</a></span>ISCSI_LOGIN_NEXT_STAGE_0</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define ISCSI_LOGIN_NEXT_STAGE_0&#160;&#160;&#160;0x01</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="iscsi__spec_8h_source.html#l00455">455</a> of file <a class="el" href="iscsi__spec_8h_source.html">iscsi_spec.h</a>.</p>
+
+</div>
+</div>
+<a id="a3ce84a97283362dc1af7bdc934dabed6" name="a3ce84a97283362dc1af7bdc934dabed6"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3ce84a97283362dc1af7bdc934dabed6">&#9670;&#160;</a></span>ISCSI_LOGIN_NEXT_STAGE_1</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define ISCSI_LOGIN_NEXT_STAGE_1&#160;&#160;&#160;0x02</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="iscsi__spec_8h_source.html#l00456">456</a> of file <a class="el" href="iscsi__spec_8h_source.html">iscsi_spec.h</a>.</p>
+
+</div>
+</div>
+<a id="a2041b2b7853dc050cb11133dbd945d09" name="a2041b2b7853dc050cb11133dbd945d09"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2041b2b7853dc050cb11133dbd945d09">&#9670;&#160;</a></span>ISCSI_LOGIN_NEXT_STAGE_3</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define ISCSI_LOGIN_NEXT_STAGE_3&#160;&#160;&#160;0x03</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="iscsi__spec_8h_source.html#l00457">457</a> of file <a class="el" href="iscsi__spec_8h_source.html">iscsi_spec.h</a>.</p>
+
+</div>
+</div>
+<a id="a390930c72625d40e6bd515c58ec3eb3c" name="a390930c72625d40e6bd515c58ec3eb3c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a390930c72625d40e6bd515c58ec3eb3c">&#9670;&#160;</a></span>ISCSI_LOGIN_NEXT_STAGE_MASK</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define ISCSI_LOGIN_NEXT_STAGE_MASK&#160;&#160;&#160;0x03</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="iscsi__spec_8h_source.html#l00454">454</a> of file <a class="el" href="iscsi__spec_8h_source.html">iscsi_spec.h</a>.</p>
+
+</div>
+</div>
+<a id="a86ab3cf1d7e7bd53fcebcb338fdc23aa" name="a86ab3cf1d7e7bd53fcebcb338fdc23aa"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a86ab3cf1d7e7bd53fcebcb338fdc23aa">&#9670;&#160;</a></span>ISCSI_LOGIN_NO_SESSION</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define ISCSI_LOGIN_NO_SESSION&#160;&#160;&#160;0x0a</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="iscsi__spec_8h_source.html#l00535">535</a> of file <a class="el" href="iscsi__spec_8h_source.html">iscsi_spec.h</a>.</p>
+
+</div>
+</div>
+<a id="acad962b6a473cfcd30e1c0b7de567a95" name="acad962b6a473cfcd30e1c0b7de567a95"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#acad962b6a473cfcd30e1c0b7de567a95">&#9670;&#160;</a></span>ISCSI_LOGIN_NOT_SUPPORTED_SESSION_TYPE</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define ISCSI_LOGIN_NOT_SUPPORTED_SESSION_TYPE&#160;&#160;&#160;0x09</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="iscsi__spec_8h_source.html#l00534">534</a> of file <a class="el" href="iscsi__spec_8h_source.html">iscsi_spec.h</a>.</p>
+
+</div>
+</div>
+<a id="a4d04eaaa6838828970bba84522d180fb" name="a4d04eaaa6838828970bba84522d180fb"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4d04eaaa6838828970bba84522d180fb">&#9670;&#160;</a></span>ISCSI_LOGIN_STATUS_NO_RESOURCES</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define ISCSI_LOGIN_STATUS_NO_RESOURCES&#160;&#160;&#160;0x02</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="iscsi__spec_8h_source.html#l00541">541</a> of file <a class="el" href="iscsi__spec_8h_source.html">iscsi_spec.h</a>.</p>
+
+</div>
+</div>
+<a id="aaf0efdb1c7553e000d37efe043ef0b9f" name="aaf0efdb1c7553e000d37efe043ef0b9f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aaf0efdb1c7553e000d37efe043ef0b9f">&#9670;&#160;</a></span>ISCSI_LOGIN_STATUS_SERVICE_UNAVAILABLE</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define ISCSI_LOGIN_STATUS_SERVICE_UNAVAILABLE&#160;&#160;&#160;0x01</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="iscsi__spec_8h_source.html#l00540">540</a> of file <a class="el" href="iscsi__spec_8h_source.html">iscsi_spec.h</a>.</p>
+
+</div>
+</div>
+<a id="a5d40d20a885a45bea766a064b938e156" name="a5d40d20a885a45bea766a064b938e156"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5d40d20a885a45bea766a064b938e156">&#9670;&#160;</a></span>ISCSI_LOGIN_STATUS_TARGET_ERROR</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define ISCSI_LOGIN_STATUS_TARGET_ERROR&#160;&#160;&#160;0x00</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="iscsi__spec_8h_source.html#l00539">539</a> of file <a class="el" href="iscsi__spec_8h_source.html">iscsi_spec.h</a>.</p>
+
+</div>
+</div>
+<a id="aa5530d01dd3009d2ca4d9fdbbc322341" name="aa5530d01dd3009d2ca4d9fdbbc322341"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa5530d01dd3009d2ca4d9fdbbc322341">&#9670;&#160;</a></span>ISCSI_LOGIN_TARGET_NOT_FOUND</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define ISCSI_LOGIN_TARGET_NOT_FOUND&#160;&#160;&#160;0x03</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="iscsi__spec_8h_source.html#l00528">528</a> of file <a class="el" href="iscsi__spec_8h_source.html">iscsi_spec.h</a>.</p>
+
+</div>
+</div>
+<a id="afe99d10120365a28ddbdee6f0d09abd7" name="afe99d10120365a28ddbdee6f0d09abd7"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#afe99d10120365a28ddbdee6f0d09abd7">&#9670;&#160;</a></span>ISCSI_LOGIN_TARGET_PERMANENTLY_MOVED</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define ISCSI_LOGIN_TARGET_PERMANENTLY_MOVED&#160;&#160;&#160;0x02</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="iscsi__spec_8h_source.html#l00522">522</a> of file <a class="el" href="iscsi__spec_8h_source.html">iscsi_spec.h</a>.</p>
+
+</div>
+</div>
+<a id="a5b64dc60c844737f5b71f58c3becffd4" name="a5b64dc60c844737f5b71f58c3becffd4"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5b64dc60c844737f5b71f58c3becffd4">&#9670;&#160;</a></span>ISCSI_LOGIN_TARGET_REMOVED</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define ISCSI_LOGIN_TARGET_REMOVED&#160;&#160;&#160;0x04</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="iscsi__spec_8h_source.html#l00529">529</a> of file <a class="el" href="iscsi__spec_8h_source.html">iscsi_spec.h</a>.</p>
+
+</div>
+</div>
+<a id="a547ed77b2ea5d2b98d9a9a683e98c3fb" name="a547ed77b2ea5d2b98d9a9a683e98c3fb"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a547ed77b2ea5d2b98d9a9a683e98c3fb">&#9670;&#160;</a></span>ISCSI_LOGIN_TARGET_TEMPORARILY_MOVED</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define ISCSI_LOGIN_TARGET_TEMPORARILY_MOVED&#160;&#160;&#160;0x01</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="iscsi__spec_8h_source.html#l00521">521</a> of file <a class="el" href="iscsi__spec_8h_source.html">iscsi_spec.h</a>.</p>
+
+</div>
+</div>
+<a id="a40f41a237a4b88c0203080341f53c867" name="a40f41a237a4b88c0203080341f53c867"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a40f41a237a4b88c0203080341f53c867">&#9670;&#160;</a></span>ISCSI_LOGIN_TOO_MANY_CONNECTIONS</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define ISCSI_LOGIN_TOO_MANY_CONNECTIONS&#160;&#160;&#160;0x06</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="iscsi__spec_8h_source.html#l00531">531</a> of file <a class="el" href="iscsi__spec_8h_source.html">iscsi_spec.h</a>.</p>
+
+</div>
+</div>
+<a id="a938baf1d0707ec9289e350cfbbed7a0a" name="a938baf1d0707ec9289e350cfbbed7a0a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a938baf1d0707ec9289e350cfbbed7a0a">&#9670;&#160;</a></span>ISCSI_LOGIN_TRANSIT</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define ISCSI_LOGIN_TRANSIT&#160;&#160;&#160;0x80</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="iscsi__spec_8h_source.html#l00448">448</a> of file <a class="el" href="iscsi__spec_8h_source.html">iscsi_spec.h</a>.</p>
+
+</div>
+</div>
+<a id="ac58aab09b28936beaa924bbe49acfb03" name="ac58aab09b28936beaa924bbe49acfb03"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac58aab09b28936beaa924bbe49acfb03">&#9670;&#160;</a></span>ISCSI_LOGIN_UNSUPPORTED_VERSION</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define ISCSI_LOGIN_UNSUPPORTED_VERSION&#160;&#160;&#160;0x05</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="iscsi__spec_8h_source.html#l00530">530</a> of file <a class="el" href="iscsi__spec_8h_source.html">iscsi_spec.h</a>.</p>
+
+</div>
+</div>
+<a id="afc1399a96e2809ab9bc4f0bb040a1c67" name="afc1399a96e2809ab9bc4f0bb040a1c67"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#afc1399a96e2809ab9bc4f0bb040a1c67">&#9670;&#160;</a></span>ISCSI_REASON_CMD_NOT_SUPPORTED</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define ISCSI_REASON_CMD_NOT_SUPPORTED&#160;&#160;&#160;0x5</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="iscsi__spec_8h_source.html#l00482">482</a> of file <a class="el" href="iscsi__spec_8h_source.html">iscsi_spec.h</a>.</p>
+
+</div>
+</div>
+<a id="ae43e862b283be36eec780dc1d74c6ec7" name="ae43e862b283be36eec780dc1d74c6ec7"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae43e862b283be36eec780dc1d74c6ec7">&#9670;&#160;</a></span>ISCSI_REASON_DATA_DIGEST_ERROR</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define ISCSI_REASON_DATA_DIGEST_ERROR&#160;&#160;&#160;0x2</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="iscsi__spec_8h_source.html#l00479">479</a> of file <a class="el" href="iscsi__spec_8h_source.html">iscsi_spec.h</a>.</p>
+
+</div>
+</div>
+<a id="a67325e98b5da1a3d468cb7f57a0ed301" name="a67325e98b5da1a3d468cb7f57a0ed301"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a67325e98b5da1a3d468cb7f57a0ed301">&#9670;&#160;</a></span>ISCSI_REASON_DATA_SNACK_REJECT</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define ISCSI_REASON_DATA_SNACK_REJECT&#160;&#160;&#160;0x3</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="iscsi__spec_8h_source.html#l00480">480</a> of file <a class="el" href="iscsi__spec_8h_source.html">iscsi_spec.h</a>.</p>
+
+</div>
+</div>
+<a id="a92b6769e1c1ad8a82378352eddbb9491" name="a92b6769e1c1ad8a82378352eddbb9491"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a92b6769e1c1ad8a82378352eddbb9491">&#9670;&#160;</a></span>ISCSI_REASON_IMM_CMD_REJECT</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define ISCSI_REASON_IMM_CMD_REJECT&#160;&#160;&#160;0x6</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="iscsi__spec_8h_source.html#l00483">483</a> of file <a class="el" href="iscsi__spec_8h_source.html">iscsi_spec.h</a>.</p>
+
+</div>
+</div>
+<a id="a596b7838a8985d6902db1901ab7e0001" name="a596b7838a8985d6902db1901ab7e0001"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a596b7838a8985d6902db1901ab7e0001">&#9670;&#160;</a></span>ISCSI_REASON_INVALID_PDU_FIELD</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define ISCSI_REASON_INVALID_PDU_FIELD&#160;&#160;&#160;0x9</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="iscsi__spec_8h_source.html#l00486">486</a> of file <a class="el" href="iscsi__spec_8h_source.html">iscsi_spec.h</a>.</p>
+
+</div>
+</div>
+<a id="a6260633a960877910a301fe74dd0ad9a" name="a6260633a960877910a301fe74dd0ad9a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6260633a960877910a301fe74dd0ad9a">&#9670;&#160;</a></span>ISCSI_REASON_INVALID_SNACK</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define ISCSI_REASON_INVALID_SNACK&#160;&#160;&#160;0x8</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="iscsi__spec_8h_source.html#l00485">485</a> of file <a class="el" href="iscsi__spec_8h_source.html">iscsi_spec.h</a>.</p>
+
+</div>
+</div>
+<a id="a5e194ce14bf7875eb7f8ab0201018f57" name="a5e194ce14bf7875eb7f8ab0201018f57"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5e194ce14bf7875eb7f8ab0201018f57">&#9670;&#160;</a></span>ISCSI_REASON_LONG_OPERATION_REJECT</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define ISCSI_REASON_LONG_OPERATION_REJECT&#160;&#160;&#160;0xa</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="iscsi__spec_8h_source.html#l00487">487</a> of file <a class="el" href="iscsi__spec_8h_source.html">iscsi_spec.h</a>.</p>
+
+</div>
+</div>
+<a id="af1c5d3ec63397dd13925fdbfc0b73e4b" name="af1c5d3ec63397dd13925fdbfc0b73e4b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af1c5d3ec63397dd13925fdbfc0b73e4b">&#9670;&#160;</a></span>ISCSI_REASON_NEGOTIATION_RESET</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define ISCSI_REASON_NEGOTIATION_RESET&#160;&#160;&#160;0xb</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="iscsi__spec_8h_source.html#l00488">488</a> of file <a class="el" href="iscsi__spec_8h_source.html">iscsi_spec.h</a>.</p>
+
+</div>
+</div>
+<a id="a94fc93b1eef14a2ea3b07eeed4afec20" name="a94fc93b1eef14a2ea3b07eeed4afec20"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a94fc93b1eef14a2ea3b07eeed4afec20">&#9670;&#160;</a></span>ISCSI_REASON_PROTOCOL_ERROR</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define ISCSI_REASON_PROTOCOL_ERROR&#160;&#160;&#160;0x4</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="iscsi__spec_8h_source.html#l00481">481</a> of file <a class="el" href="iscsi__spec_8h_source.html">iscsi_spec.h</a>.</p>
+
+</div>
+</div>
+<a id="aad99955677fa3a626e46ae0652d5d6e7" name="aad99955677fa3a626e46ae0652d5d6e7"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aad99955677fa3a626e46ae0652d5d6e7">&#9670;&#160;</a></span>ISCSI_REASON_RESERVED</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define ISCSI_REASON_RESERVED&#160;&#160;&#160;0x1</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="iscsi__spec_8h_source.html#l00478">478</a> of file <a class="el" href="iscsi__spec_8h_source.html">iscsi_spec.h</a>.</p>
+
+</div>
+</div>
+<a id="a739f77e71d48166882478360eb7abb33" name="a739f77e71d48166882478360eb7abb33"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a739f77e71d48166882478360eb7abb33">&#9670;&#160;</a></span>ISCSI_REASON_TASK_IN_PROGRESS</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define ISCSI_REASON_TASK_IN_PROGRESS&#160;&#160;&#160;0x7</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="iscsi__spec_8h_source.html#l00484">484</a> of file <a class="el" href="iscsi__spec_8h_source.html">iscsi_spec.h</a>.</p>
+
+</div>
+</div>
+<a id="ad41a73596d194d0f14b96c1aacabeb48" name="ad41a73596d194d0f14b96c1aacabeb48"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad41a73596d194d0f14b96c1aacabeb48">&#9670;&#160;</a></span>ISCSI_REASON_WAIT_FOR_RESET</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define ISCSI_REASON_WAIT_FOR_RESET&#160;&#160;&#160;0xc</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="iscsi__spec_8h_source.html#l00489">489</a> of file <a class="el" href="iscsi__spec_8h_source.html">iscsi_spec.h</a>.</p>
+
+</div>
+</div>
+<a id="a1ec3457d9e23e18074a7cb0b2f24ffcc" name="a1ec3457d9e23e18074a7cb0b2f24ffcc"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1ec3457d9e23e18074a7cb0b2f24ffcc">&#9670;&#160;</a></span>ISCSI_SCSI_BIDI_OVERFLOW</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define ISCSI_SCSI_BIDI_OVERFLOW&#160;&#160;&#160;0x10</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="iscsi__spec_8h_source.html#l00469">469</a> of file <a class="el" href="iscsi__spec_8h_source.html">iscsi_spec.h</a>.</p>
+
+</div>
+</div>
+<a id="a9e4e2cb58d69959248e24d78cdcc0147" name="a9e4e2cb58d69959248e24d78cdcc0147"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9e4e2cb58d69959248e24d78cdcc0147">&#9670;&#160;</a></span>ISCSI_SCSI_BIDI_UNDERFLOW</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define ISCSI_SCSI_BIDI_UNDERFLOW&#160;&#160;&#160;0x08</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="iscsi__spec_8h_source.html#l00470">470</a> of file <a class="el" href="iscsi__spec_8h_source.html">iscsi_spec.h</a>.</p>
+
+</div>
+</div>
+<a id="a0fcf5898a9d4194105b5e88cb79f4d51" name="a0fcf5898a9d4194105b5e88cb79f4d51"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0fcf5898a9d4194105b5e88cb79f4d51">&#9670;&#160;</a></span>ISCSI_SCSI_OVERFLOW</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define ISCSI_SCSI_OVERFLOW&#160;&#160;&#160;0x04</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="iscsi__spec_8h_source.html#l00471">471</a> of file <a class="el" href="iscsi__spec_8h_source.html">iscsi_spec.h</a>.</p>
+
+</div>
+</div>
+<a id="acbd33e0c97f289193ef7493ef81768e6" name="acbd33e0c97f289193ef7493ef81768e6"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#acbd33e0c97f289193ef7493ef81768e6">&#9670;&#160;</a></span>ISCSI_SCSI_UNDERFLOW</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define ISCSI_SCSI_UNDERFLOW&#160;&#160;&#160;0x02</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="iscsi__spec_8h_source.html#l00472">472</a> of file <a class="el" href="iscsi__spec_8h_source.html">iscsi_spec.h</a>.</p>
+
+</div>
+</div>
+<a id="a907e699159718ef097359bb12bfc0ad8" name="a907e699159718ef097359bb12bfc0ad8"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a907e699159718ef097359bb12bfc0ad8">&#9670;&#160;</a></span>ISCSI_TASK_FUNCTION_MASK</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define ISCSI_TASK_FUNCTION_MASK&#160;&#160;&#160;0x7f</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="iscsi__spec_8h_source.html#l00475">475</a> of file <a class="el" href="iscsi__spec_8h_source.html">iscsi_spec.h</a>.</p>
+
+</div>
+</div>
+<a id="aa25140ab3d6383910dafff011448c719" name="aa25140ab3d6383910dafff011448c719"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa25140ab3d6383910dafff011448c719">&#9670;&#160;</a></span>ISCSI_TEXT_CONTINUE</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define ISCSI_TEXT_CONTINUE&#160;&#160;&#160;0x40</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="iscsi__spec_8h_source.html#l00460">460</a> of file <a class="el" href="iscsi__spec_8h_source.html">iscsi_spec.h</a>.</p>
+
+</div>
+</div>
+<a id="ab3dd961367e041a9b049546cfeccaa78" name="ab3dd961367e041a9b049546cfeccaa78"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab3dd961367e041a9b049546cfeccaa78">&#9670;&#160;</a></span>ISCSI_TEXT_MAX_KEY_LEN</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define ISCSI_TEXT_MAX_KEY_LEN&#160;&#160;&#160;63</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="iscsi__spec_8h_source.html#l00044">44</a> of file <a class="el" href="iscsi__spec_8h_source.html">iscsi_spec.h</a>.</p>
+
+</div>
+</div>
+<a id="a986978914c003f3149c8b418ad7cab55" name="a986978914c003f3149c8b418ad7cab55"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a986978914c003f3149c8b418ad7cab55">&#9670;&#160;</a></span>ISCSI_TEXT_MAX_SIMPLE_VAL_LEN</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define ISCSI_TEXT_MAX_SIMPLE_VAL_LEN&#160;&#160;&#160;255</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>RFC 3720 5.1 If not otherwise specified, the maximum length of a simple-value (not its encoded representation) is 255 bytes, not including the delimiter (comma or zero byte). </p>
+
+<p class="definition">Definition at line <a class="el" href="iscsi__spec_8h_source.html#l00042">42</a> of file <a class="el" href="iscsi__spec_8h_source.html">iscsi_spec.h</a>.</p>
+
+</div>
+</div>
+<a id="a507069bdb66a86eb825aa8a38c51886b" name="a507069bdb66a86eb825aa8a38c51886b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a507069bdb66a86eb825aa8a38c51886b">&#9670;&#160;</a></span>ISCSI_TEXT_MAX_VAL_LEN</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define ISCSI_TEXT_MAX_VAL_LEN&#160;&#160;&#160;8192</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>for authentication key (non encoded 1024bytes) RFC3720(5.1/11.1.4) </p>
+
+<p class="definition">Definition at line <a class="el" href="iscsi__spec_8h_source.html#l00034">34</a> of file <a class="el" href="iscsi__spec_8h_source.html">iscsi_spec.h</a>.</p>
+
+</div>
+</div>
+<a id="a64aadc6f469d1fccc4bffd83790f8f18" name="a64aadc6f469d1fccc4bffd83790f8f18"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a64aadc6f469d1fccc4bffd83790f8f18">&#9670;&#160;</a></span>ISCSI_VERSION</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define ISCSI_VERSION&#160;&#160;&#160;0x00</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>support version - RFC3720(10.12.4) </p>
+
+<p class="definition">Definition at line <a class="el" href="iscsi__spec_8h_source.html#l00028">28</a> of file <a class="el" href="iscsi__spec_8h_source.html">iscsi_spec.h</a>.</p>
+
+</div>
+</div>
+<a name="doc-enum-members" id="doc-enum-members"></a><h2 id="header-doc-enum-members" class="groupheader">Enumeration Type Documentation</h2>
+<a id="ad2c30ed17419423b79a47fae8323408a" name="ad2c30ed17419423b79a47fae8323408a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad2c30ed17419423b79a47fae8323408a">&#9670;&#160;</a></span>iscsi_op</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">enum iscsi_op</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="iscsi__spec_8h_source.html#l00046">46</a> of file <a class="el" href="iscsi__spec_8h_source.html">iscsi_spec.h</a>.</p>
+
+</div>
+</div>
+<a id="a6ae501611baca9225cc96bf6cf087450" name="a6ae501611baca9225cc96bf6cf087450"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6ae501611baca9225cc96bf6cf087450">&#9670;&#160;</a></span>iscsi_task_func</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">enum iscsi_task_func</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="iscsi__spec_8h_source.html#l00076">76</a> of file <a class="el" href="iscsi__spec_8h_source.html">iscsi_spec.h</a>.</p>
+
+</div>
+</div>
+<a id="a9cd87a034cf8d8aa42b5203460f03a12" name="a9cd87a034cf8d8aa42b5203460f03a12"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9cd87a034cf8d8aa42b5203460f03a12">&#9670;&#160;</a></span>iscsi_task_func_resp</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">enum iscsi_task_func_resp</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="iscsi__spec_8h_source.html#l00087">87</a> of file <a class="el" href="iscsi__spec_8h_source.html">iscsi_spec.h</a>.</p>
+
+</div>
+</div>
+</div><!-- contents -->
+</div><!-- doc-content -->
+<div id="page-nav" class="page-nav-panel">
+<div id="page-nav-resize-handle"></div>
+<div id="page-nav-tree">
+<div id="page-nav-contents">
+</div><!-- page-nav-contents -->
+</div><!-- page-nav-tree -->
+</div><!-- page-nav -->
+</div><!-- container -->
+<footer class="footer" id="nav-path">
+  <div class="footer-inner">
+    <div class="footer-copy">
+      <small>Copyright &copy; SPDK a Series of LF Projects, LLC. For web site terms of use, trademark policy, and other
+      project policies please see <a href="https://lfprojects.org">lfprojects.org</a>.</small>
+    </div>
+  </div>
+</footer>
+<script type="text/javascript" src="page_outline.js"></script>
+<script type="text/javascript" src="spdk_nav.js"></script>
+<!-- Doxygen footer suffix – assembled by _build/common.sh:
+     _includes/footer.html (shared) + theme scripts (from spdk) + this file.
+     Theme scripts are extracted from spdk/doc/theme/footer.html at build
+     time so the script list is maintained in a single place. -->
+</body>
+</html>

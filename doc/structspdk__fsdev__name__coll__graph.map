@@ -1,0 +1,12 @@
+<map id="spdk_fsdev_name" name="spdk_fsdev_name">
+<area shape="rect" id="Node000001" title=" " alt="" coords="73,5,212,33"/>
+<area shape="rect" id="Node000006" href="$structspdk__fsdev_1_1____fsdev__internal__fields.html" title="Fields that are used internally by the fsdev subsystem." alt="" coords="5,106,158,151"/>
+<area shape="poly" id="edge5_Node000006_Node000001" title=" " alt="" coords="112,45,101,58,91,82,86,106,81,105,86,80,97,56,108,42"/>
+<area shape="rect" id="Node000002" href="$structspdk__fsdev.html" title=" " alt="" coords="230,224,325,251"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="255,213,234,184,215,152,205,125,201,103,197,82,185,59,161,35,165,32,189,55,202,81,207,102,210,124,220,150,239,182,259,210"/>
+<area shape="rect" id="Node000003" href="$structspdk__fsdev__module.html" title="Filesystem device module." alt="" coords="274,114,425,142"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="334,157,289,224,284,222,330,154"/>
+<area shape="rect" id="Node000005" href="$structspdk__fsdev__fn__table.html" title="Function table for a filesystem device backend." alt="" coords="449,114,604,142"/>
+<area shape="poly" id="edge3_Node000002_Node000005" title=" " alt="" coords="490,152,381,202,318,226,316,221,379,197,487,147"/>
+<area shape="poly" id="edge4_Node000002_Node000006" title=" " alt="" coords="100,163,114,182,130,198,154,211,179,220,230,231,229,236,178,225,152,215,127,202,110,185,96,166"/>
+</map>

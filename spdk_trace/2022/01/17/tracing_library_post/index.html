@@ -1,0 +1,196 @@
+<!doctype html>
+<html lang="en">
+  <head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="The Storage Performance Development Kit (SPDK) provides a set of tools and libraries for writing high performance, scalable, user-mode storage applications. It achieves high performance by moving all of the necessary drivers into userspace and operating in a polled mode instead of relying on interrupts, which avoids kernel context switches and eliminates interrupt handling overhead.
+">
+  <meta name="author" content="Benjamin Walker">
+
+  <title>Tracing Framework</title>
+
+  <link rel="icon" type="image/svg+xml" href="/spdk.github.io/assets/img/spdk.svg">
+  <link rel="icon" href="/spdk.github.io/assets/favicon.ico" sizes="32x32">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:400,700,900" type="text/css">
+  <link rel="stylesheet" href="/spdk.github.io/assets/css/spdk.css">
+
+  <link href="/spdk.github.io/feed.xml" type="application/atom+xml" rel="alternate" title="Atom Feed">
+</head>
+
+
+  <body>
+    <nav class="navbar">
+  <a class="navbar-brand" href="/spdk.github.io/" aria-label="SPDK">
+    <img src="/spdk.github.io/assets/img/spdk.svg" width="36" height="36" alt="Storage Performance Development Kit">
+  </a>
+  <div class="navbar-nav">
+    <a class="nav-link header-link" href="/spdk.github.io/doc/releases.html">download</a>
+    <a class="nav-link header-link" href="/spdk.github.io/doc/">documentation</a>
+    <a class="nav-link header-link" href="/spdk.github.io/doc/contributing.html">development</a>
+    <a class="nav-link header-link" href="/spdk.github.io/doc/ci_tools.html">CI status</a>
+    <a class="nav-link header-link" href="/spdk.github.io/community/">community</a>
+    <a class="nav-link header-link" href="/spdk.github.io/blog/">Blog</a>
+    <a class="nav-link header-link" href="https://github.com/orgs/spdk/projects/5">Roadmap</a>
+    <a class="nav-link header-link" href="/spdk.github.io/news/">News</a>
+  </div>
+  <div class="navbar-end">
+    <a class="nav-link header-link" href="https://github.com/spdk/spdk" aria-label="GitHub">
+      <svg xmlns="http://www.w3.org/2000/svg" class="navbar-nav-svg" aria-hidden="true"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
+    </a>
+    <a id="cn_lang_btn" href="/spdk.github.io/cn/doc/" class="nav-link header-link">中文</a>
+  </div>
+</nav>
+<script>
+(function() {
+    var p = location.pathname, best = null, bLen = 0;
+    document.querySelectorAll('.header-link[href]').forEach(function(a) {
+        var raw = a.getAttribute('href');
+        if (!raw) return;
+        try { var u = new URL(raw, location.href); } catch(e) { return; }
+        if (u.origin !== location.origin) return;
+        var h = u.pathname;
+        if (h === '/') return;
+        var ok = h.endsWith('.html') ? p === h : p.indexOf(h) === 0;
+        if (ok && h.length > bLen) { bLen = h.length; best = a; }
+    });
+    if (best) best.classList.add('active');
+})();
+</script>
+
+
+    <div class="page-content">
+  <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+  <header class="post-header">
+
+    <div class="page-header">
+      <h1>Tracing Framework</h1>
+    </div>
+
+    <p class="post-meta">
+      <time datetime="2022-01-17T00:00:00+01:00" itemprop="datePublished">
+        Jan 17, 2022
+      </time>
+      
+      •
+      <span itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <span itemprop="name">Krzysztof Karas</span>
+      </span>
+      
+    </p>
+  </header>
+
+  <div class="content" itemprop="articleBody"><h2 id="introduction">Introduction</h2>
+
+<p>Traces in SPDK provide us with information about what is happening inside our code in various
+scenarios. One could think about them as “info logs”, but defined very differently than regular
+print to stdout function. Over the few last months a great deal of effort has been put into
+expanding our tracing framework and we want to tell you about our work in a few words.</p>
+
+<h3 id="trace-types">Trace types</h3>
+
+<p>We use two types of traces: SPDK tracepoints and BPF dtrace probes. The former are usually used in
+places requiring short processing time, like io related code. The latter are implemented where
+there are no time constraints, as they have higher overhead due to software interrupts.</p>
+
+<h2 id="general-structure">General structure</h2>
+
+<p>Our tracing framework is spread across multiple files.
+SPDK tracepoints are implemented in:</p>
+
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">trace_defs.h</code> is the place where we keep all our tracepoint and trace group definitions,</li>
+  <li><code class="language-plaintext highlighter-rouge">trace</code> library in <code class="language-plaintext highlighter-rouge">/lib</code> directory provides most of the functionality to initiate, record and
+cleanup traces in our SPDK application,</li>
+  <li><code class="language-plaintext highlighter-rouge">trace_parser</code> lies next to the trace library - it is used to parse recorded traces.</li>
+</ul>
+
+<p>This type of traces requires registration before calling to record them from within the code.
+We use <code class="language-plaintext highlighter-rouge">SPDK_TRACE_REGISTER_FN</code> macro inside the file they are to be used in to specify the
+tracepoint name and its arguments, if there are any.</p>
+
+<p>BPF dtrace probes are specified in the <code class="language-plaintext highlighter-rouge">.c</code> files with <code class="language-plaintext highlighter-rouge">SPDK_DTRACE_PROBE</code> macro - it allows to
+specify a probe point with up to 4 arguments. The <code class="language-plaintext highlighter-rouge">.bt</code> files in <code class="language-plaintext highlighter-rouge">scripts/bpf</code> directory provide
+examples of how to use the probe points. The <code class="language-plaintext highlighter-rouge">bpftrace.sh</code> script may be later executed to print
+out all saved records.</p>
+
+<p>Both of above trace types may be used together to annotate SPDK tracepoints with supplementary
+information from BPF dtrace probes - this provides another layer of detail to printed traces.</p>
+
+<h3 id="trace-parser">Trace parser</h3>
+
+<p>Trace parser library was recently extracted from our trace library and expanded later by
+Konrad Sztyber. It is written in C++ and its main purpose is to parse traces recorded by
+SPDK application and allow other applications, e.g. <code class="language-plaintext highlighter-rouge">trace.py</code>, to make use of recorded tracepoints.</p>
+
+<h2 id="how-to">How to</h2>
+
+<p>You can find information about how to run spdk tracepoints and BPF dtrace probes in our
+documentation pages <a href="https://spdk.io/doc/nvmf_tgt_tracepoints.html">here</a> and
+<a href="https://spdk.io/doc/usdt.html">here</a>. For detailed description of BPF tracing please
+check out our previous blogpost
+<a href="https://spdk.io/news/2021/09/28/bpf_tracing_with_spdk/">BPF tracing with SPDK</a>.</p>
+
+<h2 id="current-traces">Current traces</h2>
+
+<p>We currently use SPDK tracepoints to track information in our libraries:</p>
+
+<ul>
+  <li>bdev</li>
+  <li>blobfs</li>
+  <li>ftl</li>
+  <li>iscsi</li>
+  <li>nvme</li>
+  <li>nvmf</li>
+  <li>scsi</li>
+  <li>thread</li>
+</ul>
+
+<p>We also have them in module/accel/idxd module and test/app/fuzz/iscsi_fuzz.</p>
+
+<p>BPF dtrace probes are used in libraries:</p>
+
+<ul>
+  <li>nvmf</li>
+  <li>ctrlr</li>
+  <li>subsystem</li>
+</ul>
+
+<p>and in modules:</p>
+
+<ul>
+  <li>event</li>
+  <li>scheduler</li>
+</ul>
+
+<h2 id="even-more-traces">Even more traces</h2>
+
+<p>There are a number of traces on the way to be introduced in the near future, providing even broader
+coverage for different code paths in our project. Stay tuned!</p>
+
+<p>We also plan to release more material on the topic to help you understand and create your own
+traces inside SPDK!</p>
+
+<h2 id="contributing">Contributing</h2>
+
+<p>If you have an idea how to improve our tracing framework, you are welcome to post a GitHub issue
+<a href="https://github.com/spdk/spdk/issues">here</a> with <code class="language-plaintext highlighter-rouge">enhancement</code> label and we will se what we can do!
+Same goes for questions: just post an issue with <code class="language-plaintext highlighter-rouge">question</code> label and we will do our best to answer
+any concerns.</p>
+</div>
+</article>
+</div>
+
+
+    <footer class="footer" id="nav-path">
+  <div class="footer-inner">
+    <div class="footer-copy">
+      <small>Copyright &copy; SPDK a Series of LF Projects, LLC. For web site terms of use, trademark policy, and other
+      project policies please see <a href="https://lfprojects.org">lfprojects.org</a>.</small>
+    </div>
+  </div>
+</footer>
+
+
+    
+  </body>
+</html>

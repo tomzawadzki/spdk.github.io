@@ -1,0 +1,235 @@
+<!doctype html>
+<html lang="en">
+  <head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="The Storage Performance Development Kit (SPDK) provides a set of tools and libraries for writing high performance, scalable, user-mode storage applications. It achieves high performance by moving all of the necessary drivers into userspace and operating in a polled mode instead of relying on interrupts, which avoids kernel context switches and eliminates interrupt handling overhead.
+">
+  <meta name="author" content="Benjamin Walker">
+
+  <title>What? 80 Million I/O Per Second with a Standard 2U Intel® Xeon® System!</title>
+
+  <link rel="icon" type="image/svg+xml" href="/spdk.github.io/assets/img/spdk.svg">
+  <link rel="icon" href="/spdk.github.io/assets/favicon.ico" sizes="32x32">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:400,700,900" type="text/css">
+  <link rel="stylesheet" href="/spdk.github.io/assets/css/spdk.css">
+
+  <link href="/spdk.github.io/feed.xml" type="application/atom+xml" rel="alternate" title="Atom Feed">
+</head>
+
+
+  <body>
+    <nav class="navbar">
+  <a class="navbar-brand" href="/spdk.github.io/" aria-label="SPDK">
+    <img src="/spdk.github.io/assets/img/spdk.svg" width="36" height="36" alt="Storage Performance Development Kit">
+  </a>
+  <div class="navbar-nav">
+    <a class="nav-link header-link" href="/spdk.github.io/doc/releases.html">download</a>
+    <a class="nav-link header-link" href="/spdk.github.io/doc/">documentation</a>
+    <a class="nav-link header-link" href="/spdk.github.io/doc/contributing.html">development</a>
+    <a class="nav-link header-link" href="/spdk.github.io/doc/ci_tools.html">CI status</a>
+    <a class="nav-link header-link" href="/spdk.github.io/community/">community</a>
+    <a class="nav-link header-link" href="/spdk.github.io/blog/">Blog</a>
+    <a class="nav-link header-link" href="https://github.com/orgs/spdk/projects/5">Roadmap</a>
+    <a class="nav-link header-link" href="/spdk.github.io/news/">News</a>
+  </div>
+  <div class="navbar-end">
+    <a class="nav-link header-link" href="https://github.com/spdk/spdk" aria-label="GitHub">
+      <svg xmlns="http://www.w3.org/2000/svg" class="navbar-nav-svg" aria-hidden="true"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
+    </a>
+    <a id="cn_lang_btn" href="/spdk.github.io/cn/doc/" class="nav-link header-link">中文</a>
+  </div>
+</nav>
+<script>
+(function() {
+    var p = location.pathname, best = null, bLen = 0;
+    document.querySelectorAll('.header-link[href]').forEach(function(a) {
+        var raw = a.getAttribute('href');
+        if (!raw) return;
+        try { var u = new URL(raw, location.href); } catch(e) { return; }
+        if (u.origin !== location.origin) return;
+        var h = u.pathname;
+        if (h === '/') return;
+        var ok = h.endsWith('.html') ? p === h : p.indexOf(h) === 0;
+        if (ok && h.length > bLen) { bLen = h.length; best = a; }
+    });
+    if (best) best.classList.add('active');
+})();
+</script>
+
+
+    <div class="page-content">
+  <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+  <header class="post-header">
+
+    <div class="page-header">
+      <h1>What? 80 Million I/O Per Second with a Standard 2U Intel® Xeon® System!</h1>
+    </div>
+
+    <p class="post-meta">
+      <time datetime="2021-05-06T00:00:00+02:00" itemprop="datePublished">
+        May 6, 2021
+      </time>
+      
+      •
+      <span itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <span itemprop="name">John Kariuki</span>
+      </span>
+      
+    </p>
+  </header>
+
+  <div class="content" itemprop="articleBody"><p>The adoption of NVM Express® SSDs in the data center is unleashing performance
+that was unprecedented just a few years ago. Since the inception of the SPDK project,
+the community has demonstrated that it’s possible to build systems capable of
+tens of millions of IOPS (I/O operations per second) using commodity hardware.
+Over the last couple of years, we have demonstrated systems capable of over
+10 million IOPS (using a single CPU core!), but now we’re ready to significantly
+advance the state of the art. Yes, 80 Million IOPS.</p>
+
+<p>We built a 2U Intel® Xeon® server system capable of <strong>80 MILLION</strong> 512B random read
+I/O operations by combining the latest 3rd Generation Intel® Xeon® Scalable Processor
+(code-named Ice Lake) with Intel® Optane™ SSDs. The system has 2 CPUs with 64 PCIe
+Gen 4 lanes each, giving us plenty of PCIe lanes to connect NVMe SSDs and other
+I/O devices such as network cards.</p>
+
+<p><br /></p>
+
+<table class="table table-striped table-bordered">
+<thead>
+<tr>
+<td colspan="2">Configuration</td>
+</tr>
+</thead>
+<tbody>
+<tr><td>CPU </td><td> Intel® Xeon® Platinum 8380 Processor @ 2.30GHz </td></tr>
+<tr><td>Memory </td><td> 16x 64GB 3200MHz DDR4 </td></tr>
+<tr><td>Storage </td><td> 16x Intel® Optane™ SSD P5800X 800GB</td></tr>
+<tr><td>Platform </td><td> Intel® Server Board M50CYP2SB2U </td></tr>
+<tr><td>BIOS </td><td> SE5C6200.86B.2021.D40.2103100308 (ucode:0x261) </td></tr>
+<tr><td>OS </td><td> Linux Fedora30 (Kernel 5.7.12) </td></tr>
+<tr><td>Hyperthreading </td><td> ON </td></tr>
+<tr><td>Turbo </td><td> ON </td></tr>
+<tr><td>Turbo Frequency </td><td> 3.4GHz </td></tr>
+</tbody>
+</table>
+
+<h2 id="big-numbers">BIG NUMBERS</h2>
+
+<p>The graph below demonstrates the I/O throughput scalability of the SPDK NVMe driver
+with the addition of more CPU cores to perform I/O. We measured a stunning <strong>13.85 MILLION</strong>
+512B I/O per second on 1 CPU core. The IOPS scaled linearly with the addition of CPU cores
+until 4 cores. Above 4 CPU cores, the scaling is non-linear as the IOPS approach
+the limits of the SSD capabilities. At just 8 I/O processing cores,
+we measured over <strong>80 MILLION IOPS at an amazing average latency of just 25.54 microseconds</strong>.</p>
+
+<p><img src="/assets/img/blog/big_numbers_512b_iops_scalability.png" alt="512B Performance" title="Over 80 MILLION IOPS!" class="text-center" />
+<br />
+512B random reads at queue depth 128 to each device.</p>
+
+<p><br /></p>
+
+<h2 id="is-your-storage-software-ready-for-80m-iops">Is Your Storage Software ready for 80M IOPS?</h2>
+
+<p>One of the major challenges that organizations integrating NVMe SSDs face is the performance
+and efficiency of the storage software is increasingly critical to the overall storage system
+performance. Combining the latest Xeon Scalable processor platform with Intel® Optane™ SSDs
+may strain even flash-optimized architectures.
+If you are new to SPDK, you might be asking “where do I find a storage stack capable of
+80 million IOPS?”. The Storage Performance Development Kit (SPDK) provides a set of open-source
+tools and libraries for writing high performance, scalable, user-mode storage applications.
+SPDK was designed from the beginning to support what we call “next generation” storage media,
+such as Intel® Optane™ devices. Designing for low latency and high throughput is what this
+project is all about. There is a lot of reading material over at SPDK’s <a href="https://spdk.io/doc">main documentation page</a>.
+In particular, check out the <a href="https://spdk.io/doc/intro.html">Introduction</a>
+and <a href="https://spdk.io/doc/concepts.html">Concepts</a> sections.</p>
+
+<p>The bedrock of SPDK is a user space, polled-mode, asynchronous, lockless NVMe driver that
+provides zero-copy, highly parallel access directly to an SSD from a user space application.
+Two years ago, the SPDK community highly optimized the SPDK NVMe driver to achieve over
+10 million IOPS from one thread. We published a <a href="https://spdk.io/news/2019/05/06/nvme/">blog</a>
+that explains the techniques and strategies used to achieve great performance.
+Additionally, the SPDK NVMe driver achieves linear IOPS scalability because there are
+no locks in the I/O path and pinning I/O threads to CPU cores keeps data the caches of
+the CPU cores accessing it.</p>
+
+<p>You can find out more information about the design of the SPDK NVMe driver at the
+following <a href="https://spdk.io/doc/nvme.html">documentation page</a>, which includes the APIs
+you need to start integrating the driver into your storage application.</p>
+
+<h2 id="how-about-4kb-ios">How About 4KB I/Os?</h2>
+
+<p>The graph below shows the scaling for 4KiB random read I/O.
+We measured 12.62 million 4KiB random read I/O operations per second on a single thread.
+The IOPS scaled linearly as we added a second core to 25.17 million IOPS.</p>
+
+<p><img src="/assets/img/blog/big_numbers_4k_iops_scalability.png" alt="4KB Performance" title="Over 25 MILLION IOPS!" class="text-center" />
+<br />
+4KiB random reads at queue depth 128 to each device.</p>
+
+<p><br /></p>
+
+<h2 id="test-methodology">Test Methodology</h2>
+
+<ul>
+  <li>The data was collected using the SPDK NVMe <a href="https://github.com/spdk/spdk/blob/master/examples/nvme/perf/perf.c">perf tool</a>
+in the examples/nvme/perf directory of the SPDK repository. The perf tool was created because
+off-the-shelf performance tools were not designed to get to this IOPS rate. SPDK’s NVMe perf
+tool has a comparatively reduced feature set, but is designed specifically to get to this
+level of performance.</li>
+  <li>The 1 I/O core test was performed using a CPU core on NUMA node 0. However, as we scaled the
+number of I/O cores to 2, 4, 6, 8, 10 and 12, we evenly split the CPU cores between the 2 NUMA
+nodes and configured the perf jobs to use SSDs on the same NUMA node as the CPU cores running perf jobs.</li>
+  <li>Each workload was run for 5 minutes and repeated three times at each CPU count.</li>
+</ul>
+
+<h2 id="wrapping-up">Wrapping Up</h2>
+
+<p>SPDK is enabling best-in-class performance via a growing list of open source libraries and
+applications covering storage, storage networking, and storage virtualization.
+SPDK follows a fully open development model with all code BSD licensed, allowing community
+members to integrate any or all the components under the most permissive licensing terms.
+There is an increasing number of companies and projects contributing to and adopting SPDK
+to take advantage of the advancements in NVMe solid state media in hyper converged and disaggregated
+storage usage models. Join the <a href="https://spdk.io/community/">SPDK open source community’s</a>
+pursuit to build storage software for systems capable of 100 million IOPS!</p>
+
+<h4 id="notices--disclaimer">Notices &amp; Disclaimer</h4>
+
+<p>Performance varies by use, configuration and other factors.
+Learn more at www.Intel.com/PerformanceIndex.
+Performance results are based on testing as of dates shown in configurations and may not reflect
+all publicly available updates. See configuration details.
+No product or component can be absolutely secure.
+Your costs and results may vary.
+Intel technologies may require enabled hardware, software or service activation.
+© Intel Corporation.  Intel, the Intel logo, and other Intel marks are trademarks of
+Intel Corporation or its subsidiaries.
+Other names and brands may be claimed as the property of others.</p>
+
+<h4 id="configuration-details">Configuration Details</h4>
+
+<p>Test by Intel as of 3/17/2021.
+System: 1-node, 2x Intel® Xeon® Platinum 8380 Processor (40 cores, HT=On, Turbo=ON),
+Total Memory 1024 GB (16 slots/ 64GB/ 3200 MHz), BIOS:SE5C6200.86B.2021.D40.2103100308 (ucode:0x261),
+Storage: 16x Intel® Optane™ SSD 800GB P5800X.
+Software: Fedora 30, Linux Kernel 5.7.12, gcc 9.3.1 compiler, SPDK 20.10.
+Workload: 512B/4096B Random Read @ QD=128</p>
+</div>
+</article>
+</div>
+
+
+    <footer class="footer" id="nav-path">
+  <div class="footer-inner">
+    <div class="footer-copy">
+      <small>Copyright &copy; SPDK a Series of LF Projects, LLC. For web site terms of use, trademark policy, and other
+      project policies please see <a href="https://lfprojects.org">lfprojects.org</a>.</small>
+    </div>
+  </div>
+</footer>
+
+
+    
+  </body>
+</html>

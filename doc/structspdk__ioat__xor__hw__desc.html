@@ -1,0 +1,510 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<meta name="generator" content="Doxygen 1.16.1">
+	<title>SPDK: spdk_ioat_xor_hw_desc Struct Reference</title>
+	<script type="text/javascript" src="jquery.js"></script>
+	<script type="text/javascript" src="dynsections.js"></script>
+	<script type="text/javascript" src="clipboard.js"></script>
+	<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
+<script type="text/javascript" src="cookie.js"></script>
+	<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<script type="text/javascript">
+  $(function() { init_search(); });
+</script>
+	<link rel="icon" type="image/svg+xml" href="../assets/img/spdk.svg">
+	<link rel="icon" href="../assets/favicon.ico" sizes="32x32">
+	<link href="doxygen.css" rel="stylesheet" type="text/css">
+	<script>(function(){var k='doxygen_width',w,bw=6;if(window.chrome){w=localStorage.getItem(k);if(!w){w='350';localStorage.setItem(k,w)}}else{var m=document.cookie.match(new RegExp(k+'=(\\d+)'));w=m?m[1]:null;if(!w){w='350';document.cookie=k+'=350;SameSite=Lax;path=/'}}document.documentElement.style.setProperty('--sn-w',(parseInt(w)+bw)+'px')})()</script>
+	<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:400,700,900" type="text/css">
+	<link href="spdk.css" rel="stylesheet" type="text/css"/>
+	<link href="../assets/css/spdk.css" rel="stylesheet" type="text/css">
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<nav class="navbar">
+  <a class="navbar-brand" href="../" aria-label="SPDK">
+    <img src="../assets/img/spdk.svg" width="36" height="36" alt="Storage Performance Development Kit">
+  </a>
+  <div class="navbar-nav">
+    <a class="nav-link header-link" href="../doc/releases.html">download</a>
+    <a class="nav-link header-link" href="../doc/">documentation</a>
+    <a class="nav-link header-link" href="../doc/contributing.html">development</a>
+    <a class="nav-link header-link" href="../doc/ci_tools.html">CI status</a>
+    <a class="nav-link header-link" href="../community/">community</a>
+    <a class="nav-link header-link" href="../blog/">Blog</a>
+    <a class="nav-link header-link" href="https://github.com/orgs/spdk/projects/5">Roadmap</a>
+    <a class="nav-link header-link" href="../news/">News</a>
+  </div>
+  <div class="navbar-end">
+    <a class="nav-link header-link" href="https://github.com/spdk/spdk" aria-label="GitHub">
+      <svg xmlns="http://www.w3.org/2000/svg" class="navbar-nav-svg" aria-hidden="true"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
+    </a>
+    <a id="cn_lang_btn" href="../cn/doc/" class="nav-link header-link">中文</a>
+  </div>
+</nav>
+<script>
+(function() {
+    var p = location.pathname, best = null, bLen = 0;
+    document.querySelectorAll('.header-link[href]').forEach(function(a) {
+        var raw = a.getAttribute('href');
+        if (!raw) return;
+        try { var u = new URL(raw, location.href); } catch(e) { return; }
+        if (u.origin !== location.origin) return;
+        var h = u.pathname;
+        if (h === '/') return;
+        var ok = h.endsWith('.html') ? p === h : p.indexOf(h) === 0;
+        if (ok && h.length > bLen) { bLen = h.length; best = a; }
+    });
+    if (best) best.classList.add('active');
+})();
+</script>
+<div id="doxygen-searchbox">        <div id="MSearchBox" class="MSearchBoxInactive">
+        <span class="left">
+          <span id="MSearchSelect" class="search-icon" onmouseover="return searchBox.OnSearchSelectShow()" onmouseout="return searchBox.OnSearchSelectHide()"><span class="search-icon-dropdown"></span></span>
+          <input type="text" id="MSearchField" value="" placeholder="Search" accesskey="S"
+               onfocus="searchBox.OnSearchFieldFocus(true)" 
+               onblur="searchBox.OnSearchFieldFocus(false)" 
+               onkeyup="searchBox.OnSearchFieldChange(event)"/>
+          </span><span class="right">
+            <a id="MSearchClose" href="javascript:searchBox.CloseResultsWindow()"><div id="MSearchCloseImg" class="close-icon"></div></a>
+          </span>
+        </div>
+</div>
+<!-- Generated by Doxygen 1.16.1 -->
+<script type="text/javascript">
+var searchBox = new SearchBox("searchBox", "search/",'.html');
+</script>
+<script type="text/javascript">
+$(function() { codefold.init(); });
+</script>
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+$(function(){initNavTree('structspdk__ioat__xor__hw__desc.html','',''); });
+</script>
+<div id="container">
+<div id="doc-content">
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">Loading...</div>
+<div class="SRStatus" id="Searching">Searching...</div>
+<div class="SRStatus" id="NoMatches">No Matches</div>
+</div>
+</div>
+</div>
+</div>
+
+<div class="header">
+  <div class="headertitle"><div class="title">spdk_ioat_xor_hw_desc Struct Reference</div></div>
+</div><!--header-->
+<div class="contents">
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 id="header-pub-attribs" class="groupheader"><a id="pub-attribs" name="pub-attribs"></a>
+Data Fields</h2></td></tr>
+<tr class="memitem:aebbe290c07ef8c88ac4e14a1329dd368" id="r_aebbe290c07ef8c88ac4e14a1329dd368"><td class="memItemLeft">uint32_t&#160;</td><td class="memItemRight"><a class="el" href="#aebbe290c07ef8c88ac4e14a1329dd368">size</a></td></tr>
+<tr class="memitem:"><td class="memItemLeft anon"><a id="a456c8966a617ca52813917f6f5df4983" name="a456c8966a617ca52813917f6f5df4983"></a>
+union {&#160;</td><td class="memItemRight"></td></tr>
+<tr class="memitem:a1adad0d0098c2a363e9a47c50eed0a0f" id="r_a1adad0d0098c2a363e9a47c50eed0a0f"><td class="memItemLeft anon">&#160;&#160;&#160;uint32_t&#160;&#160;&#160;<a class="el" href="#ad2084a26b29723fbc1986b93741ae4aa">control_raw</a>&#160;</td><td class="memItemRight"></td></tr>
+<tr class="memitem:"><td class="memItemLeft anon">
+&#160;&#160;&#160;struct {&#160;</td><td class="memItemRight"></td></tr>
+<tr class="memitem:acc26d5d66bc4ce2e9a6e81ef7d69b954" id="r_acc26d5d66bc4ce2e9a6e81ef7d69b954"><td class="memItemLeft anon">&#160;&#160;&#160;&#160;&#160;&#160;uint32_t&#160;&#160;&#160;<a class="el" href="#aacb8b9ac37bb2be6968d428b08068609">int_enable</a>: 1&#160;</td><td class="memItemRight"></td></tr>
+<tr class="memitem:aab7b42a83db59187eea162af6daf3548" id="r_aab7b42a83db59187eea162af6daf3548"><td class="memItemLeft anon">&#160;&#160;&#160;&#160;&#160;&#160;uint32_t&#160;&#160;&#160;<a class="el" href="#a35d896803e26c261b149b9884f3b7303">src_snoop_disable</a>: 1&#160;</td><td class="memItemRight"></td></tr>
+<tr class="memitem:ab136aa3d6f3ef03aa6c828efac3c99d1" id="r_ab136aa3d6f3ef03aa6c828efac3c99d1"><td class="memItemLeft anon">&#160;&#160;&#160;&#160;&#160;&#160;uint32_t&#160;&#160;&#160;<a class="el" href="#a5979af9e2941ca951db0caade78beb03">dest_snoop_disable</a>: 1&#160;</td><td class="memItemRight"></td></tr>
+<tr class="memitem:aed6cc0a7aaef3e63806db7b6f27d24bd" id="r_aed6cc0a7aaef3e63806db7b6f27d24bd"><td class="memItemLeft anon">&#160;&#160;&#160;&#160;&#160;&#160;uint32_t&#160;&#160;&#160;<a class="el" href="#aa69817ce0d15cc2caa495a1d3f5f8d80">completion_update</a>: 1&#160;</td><td class="memItemRight"></td></tr>
+<tr class="memitem:a05a2f6bd4559c2f0da9b8fb8f5cc0f55" id="r_a05a2f6bd4559c2f0da9b8fb8f5cc0f55"><td class="memItemLeft anon">&#160;&#160;&#160;&#160;&#160;&#160;uint32_t&#160;&#160;&#160;<a class="el" href="#a5af583264c36208dcfffbccc7acd1416">fence</a>: 1&#160;</td><td class="memItemRight"></td></tr>
+<tr class="memitem:a75fcacde19d9018dc5920a46c33f831c" id="r_a75fcacde19d9018dc5920a46c33f831c"><td class="memItemLeft anon">&#160;&#160;&#160;&#160;&#160;&#160;uint32_t&#160;&#160;&#160;<a class="el" href="#afc217d72348f20f8ee53dcb7f884bf5a">src_count</a>: 3&#160;</td><td class="memItemRight"></td></tr>
+<tr class="memitem:a84b6f4da0a0fffbb246e80c2f2b6e87d" id="r_a84b6f4da0a0fffbb246e80c2f2b6e87d"><td class="memItemLeft anon">&#160;&#160;&#160;&#160;&#160;&#160;uint32_t&#160;&#160;&#160;<a class="el" href="#a6884112bd4dca537f37a0b1d0bad228d">bundle</a>: 1&#160;</td><td class="memItemRight"></td></tr>
+<tr class="memitem:a1811d6c7f3f9e9ed652761f1c1ff860c" id="r_a1811d6c7f3f9e9ed652761f1c1ff860c"><td class="memItemLeft anon">&#160;&#160;&#160;&#160;&#160;&#160;uint32_t&#160;&#160;&#160;<a class="el" href="#a916fd149dff1045d79777f30e9281e5a">dest_dca</a>: 1&#160;</td><td class="memItemRight"></td></tr>
+<tr class="memitem:a23b0073d589c9c10ed19bc05b4639c9a" id="r_a23b0073d589c9c10ed19bc05b4639c9a"><td class="memItemLeft anon">&#160;&#160;&#160;&#160;&#160;&#160;uint32_t&#160;&#160;&#160;<a class="el" href="#a95001c2c87a96fd754386c8fc6e7116f">hint</a>: 1&#160;</td><td class="memItemRight"></td></tr>
+<tr class="memitem:a67f2688c3517cf1f7818577de4005cf7" id="r_a67f2688c3517cf1f7818577de4005cf7"><td class="memItemLeft anon">&#160;&#160;&#160;&#160;&#160;&#160;uint32_t&#160;&#160;&#160;<a class="el" href="#a298bc3a2702c2a8766f6c33e0d419da1">reserved</a>: 13&#160;</td><td class="memItemRight"></td></tr>
+<tr class="memitem:ac5fe28e48752f2aaf6f69ba8aa68439f" id="r_ac5fe28e48752f2aaf6f69ba8aa68439f"><td class="memItemLeft anon">&#160;&#160;&#160;&#160;&#160;&#160;uint32_t&#160;&#160;&#160;<a class="el" href="#ac92b5474f72ac562a34798a7f876acd7">op</a>: 8&#160;</td><td class="memItemRight"></td></tr>
+<tr class="memitem:a6ae918f438c0adde32f50cbde1741438" id="r_a6ae918f438c0adde32f50cbde1741438"><td class="memItemLeft anonEnd">&#160;&#160;&#160;}&#160;&#160;&#160;<b>control</b></td></tr>
+<tr class="memitem:a456c8966a617ca52813917f6f5df4983" id="r_a456c8966a617ca52813917f6f5df4983"><td class="memItemLeft anonEnd">}&#160;</td><td class="memItemRight"><b>u</b></td></tr>
+<tr class="memitem:ac75369616118a562812fcc21756972dc" id="r_ac75369616118a562812fcc21756972dc"><td class="memItemLeft">uint64_t&#160;</td><td class="memItemRight"><a class="el" href="#ac75369616118a562812fcc21756972dc">src_addr</a></td></tr>
+<tr class="memitem:a67e84a1a99b5690fab69c6f4a038ad9f" id="r_a67e84a1a99b5690fab69c6f4a038ad9f"><td class="memItemLeft">uint64_t&#160;</td><td class="memItemRight"><a class="el" href="#a67e84a1a99b5690fab69c6f4a038ad9f">dest_addr</a></td></tr>
+<tr class="memitem:a105a15e08dd15ae5928f3a9d94991f51" id="r_a105a15e08dd15ae5928f3a9d94991f51"><td class="memItemLeft">uint64_t&#160;</td><td class="memItemRight"><a class="el" href="#a105a15e08dd15ae5928f3a9d94991f51">next</a></td></tr>
+<tr class="memitem:abd51c84ede32201c91a071aada4218ef" id="r_abd51c84ede32201c91a071aada4218ef"><td class="memItemLeft">uint64_t&#160;</td><td class="memItemRight"><a class="el" href="#abd51c84ede32201c91a071aada4218ef">src_addr2</a></td></tr>
+<tr class="memitem:ad5132becbbf1d3ad1b9b0d6cf3b9cd45" id="r_ad5132becbbf1d3ad1b9b0d6cf3b9cd45"><td class="memItemLeft">uint64_t&#160;</td><td class="memItemRight"><a class="el" href="#ad5132becbbf1d3ad1b9b0d6cf3b9cd45">src_addr3</a></td></tr>
+<tr class="memitem:a095dedbd16424fe39928415bc986a1b1" id="r_a095dedbd16424fe39928415bc986a1b1"><td class="memItemLeft">uint64_t&#160;</td><td class="memItemRight"><a class="el" href="#a095dedbd16424fe39928415bc986a1b1">src_addr4</a></td></tr>
+<tr class="memitem:a1c3a27cd5cc599ff20565e207b01283f" id="r_a1c3a27cd5cc599ff20565e207b01283f"><td class="memItemLeft">uint64_t&#160;</td><td class="memItemRight"><a class="el" href="#a1c3a27cd5cc599ff20565e207b01283f">src_addr5</a></td></tr>
+</table>
+<a name="details" id="details"></a><h2 id="header-details" class="groupheader">Detailed Description</h2>
+<div class="textblock">
+<p class="definition">Definition at line <a class="el" href="ioat__spec_8h_source.html#l00172">172</a> of file <a class="el" href="ioat__spec_8h_source.html">ioat_spec.h</a>.</p>
+</div><a name="doc-variable-members" id="doc-variable-members"></a><h2 id="header-doc-variable-members" class="groupheader">Field Documentation</h2>
+<a id="a6884112bd4dca537f37a0b1d0bad228d" name="a6884112bd4dca537f37a0b1d0bad228d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6884112bd4dca537f37a0b1d0bad228d">&#9670;&#160;</a></span>bundle</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">uint32_t spdk_ioat_xor_hw_desc::bundle</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="ioat__spec_8h_source.html#l00183">183</a> of file <a class="el" href="ioat__spec_8h_source.html">ioat_spec.h</a>.</p>
+
+</div>
+</div>
+<a id="aa69817ce0d15cc2caa495a1d3f5f8d80" name="aa69817ce0d15cc2caa495a1d3f5f8d80"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa69817ce0d15cc2caa495a1d3f5f8d80">&#9670;&#160;</a></span>completion_update</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">uint32_t spdk_ioat_xor_hw_desc::completion_update</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="ioat__spec_8h_source.html#l00180">180</a> of file <a class="el" href="ioat__spec_8h_source.html">ioat_spec.h</a>.</p>
+
+</div>
+</div>
+<a id="ad2084a26b29723fbc1986b93741ae4aa" name="ad2084a26b29723fbc1986b93741ae4aa"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad2084a26b29723fbc1986b93741ae4aa">&#9670;&#160;</a></span>control_raw</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">uint32_t spdk_ioat_xor_hw_desc::control_raw</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="ioat__spec_8h_source.html#l00175">175</a> of file <a class="el" href="ioat__spec_8h_source.html">ioat_spec.h</a>.</p>
+
+</div>
+</div>
+<a id="a67e84a1a99b5690fab69c6f4a038ad9f" name="a67e84a1a99b5690fab69c6f4a038ad9f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a67e84a1a99b5690fab69c6f4a038ad9f">&#9670;&#160;</a></span>dest_addr</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">uint64_t spdk_ioat_xor_hw_desc::dest_addr</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="ioat__spec_8h_source.html#l00193">193</a> of file <a class="el" href="ioat__spec_8h_source.html">ioat_spec.h</a>.</p>
+
+</div>
+</div>
+<a id="a916fd149dff1045d79777f30e9281e5a" name="a916fd149dff1045d79777f30e9281e5a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a916fd149dff1045d79777f30e9281e5a">&#9670;&#160;</a></span>dest_dca</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">uint32_t spdk_ioat_xor_hw_desc::dest_dca</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="ioat__spec_8h_source.html#l00184">184</a> of file <a class="el" href="ioat__spec_8h_source.html">ioat_spec.h</a>.</p>
+
+</div>
+</div>
+<a id="a5979af9e2941ca951db0caade78beb03" name="a5979af9e2941ca951db0caade78beb03"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5979af9e2941ca951db0caade78beb03">&#9670;&#160;</a></span>dest_snoop_disable</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">uint32_t spdk_ioat_xor_hw_desc::dest_snoop_disable</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="ioat__spec_8h_source.html#l00179">179</a> of file <a class="el" href="ioat__spec_8h_source.html">ioat_spec.h</a>.</p>
+
+</div>
+</div>
+<a id="a5af583264c36208dcfffbccc7acd1416" name="a5af583264c36208dcfffbccc7acd1416"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5af583264c36208dcfffbccc7acd1416">&#9670;&#160;</a></span>fence</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">uint32_t spdk_ioat_xor_hw_desc::fence</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="ioat__spec_8h_source.html#l00181">181</a> of file <a class="el" href="ioat__spec_8h_source.html">ioat_spec.h</a>.</p>
+
+</div>
+</div>
+<a id="a95001c2c87a96fd754386c8fc6e7116f" name="a95001c2c87a96fd754386c8fc6e7116f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a95001c2c87a96fd754386c8fc6e7116f">&#9670;&#160;</a></span>hint</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">uint32_t spdk_ioat_xor_hw_desc::hint</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="ioat__spec_8h_source.html#l00185">185</a> of file <a class="el" href="ioat__spec_8h_source.html">ioat_spec.h</a>.</p>
+
+</div>
+</div>
+<a id="aacb8b9ac37bb2be6968d428b08068609" name="aacb8b9ac37bb2be6968d428b08068609"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aacb8b9ac37bb2be6968d428b08068609">&#9670;&#160;</a></span>int_enable</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">uint32_t spdk_ioat_xor_hw_desc::int_enable</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="ioat__spec_8h_source.html#l00177">177</a> of file <a class="el" href="ioat__spec_8h_source.html">ioat_spec.h</a>.</p>
+
+</div>
+</div>
+<a id="a105a15e08dd15ae5928f3a9d94991f51" name="a105a15e08dd15ae5928f3a9d94991f51"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a105a15e08dd15ae5928f3a9d94991f51">&#9670;&#160;</a></span>next</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">uint64_t spdk_ioat_xor_hw_desc::next</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="ioat__spec_8h_source.html#l00194">194</a> of file <a class="el" href="ioat__spec_8h_source.html">ioat_spec.h</a>.</p>
+
+</div>
+</div>
+<a id="ac92b5474f72ac562a34798a7f876acd7" name="ac92b5474f72ac562a34798a7f876acd7"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac92b5474f72ac562a34798a7f876acd7">&#9670;&#160;</a></span>op</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">uint32_t spdk_ioat_xor_hw_desc::op</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="ioat__spec_8h_source.html#l00189">189</a> of file <a class="el" href="ioat__spec_8h_source.html">ioat_spec.h</a>.</p>
+
+</div>
+</div>
+<a id="a298bc3a2702c2a8766f6c33e0d419da1" name="a298bc3a2702c2a8766f6c33e0d419da1"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a298bc3a2702c2a8766f6c33e0d419da1">&#9670;&#160;</a></span>reserved</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">uint32_t spdk_ioat_xor_hw_desc::reserved</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="ioat__spec_8h_source.html#l00186">186</a> of file <a class="el" href="ioat__spec_8h_source.html">ioat_spec.h</a>.</p>
+
+</div>
+</div>
+<a id="aebbe290c07ef8c88ac4e14a1329dd368" name="aebbe290c07ef8c88ac4e14a1329dd368"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aebbe290c07ef8c88ac4e14a1329dd368">&#9670;&#160;</a></span>size</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">uint32_t spdk_ioat_xor_hw_desc::size</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="ioat__spec_8h_source.html#l00173">173</a> of file <a class="el" href="ioat__spec_8h_source.html">ioat_spec.h</a>.</p>
+
+</div>
+</div>
+<a id="ac75369616118a562812fcc21756972dc" name="ac75369616118a562812fcc21756972dc"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac75369616118a562812fcc21756972dc">&#9670;&#160;</a></span>src_addr</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">uint64_t spdk_ioat_xor_hw_desc::src_addr</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="ioat__spec_8h_source.html#l00192">192</a> of file <a class="el" href="ioat__spec_8h_source.html">ioat_spec.h</a>.</p>
+
+</div>
+</div>
+<a id="abd51c84ede32201c91a071aada4218ef" name="abd51c84ede32201c91a071aada4218ef"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#abd51c84ede32201c91a071aada4218ef">&#9670;&#160;</a></span>src_addr2</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">uint64_t spdk_ioat_xor_hw_desc::src_addr2</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="ioat__spec_8h_source.html#l00195">195</a> of file <a class="el" href="ioat__spec_8h_source.html">ioat_spec.h</a>.</p>
+
+</div>
+</div>
+<a id="ad5132becbbf1d3ad1b9b0d6cf3b9cd45" name="ad5132becbbf1d3ad1b9b0d6cf3b9cd45"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad5132becbbf1d3ad1b9b0d6cf3b9cd45">&#9670;&#160;</a></span>src_addr3</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">uint64_t spdk_ioat_xor_hw_desc::src_addr3</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="ioat__spec_8h_source.html#l00196">196</a> of file <a class="el" href="ioat__spec_8h_source.html">ioat_spec.h</a>.</p>
+
+</div>
+</div>
+<a id="a095dedbd16424fe39928415bc986a1b1" name="a095dedbd16424fe39928415bc986a1b1"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a095dedbd16424fe39928415bc986a1b1">&#9670;&#160;</a></span>src_addr4</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">uint64_t spdk_ioat_xor_hw_desc::src_addr4</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="ioat__spec_8h_source.html#l00197">197</a> of file <a class="el" href="ioat__spec_8h_source.html">ioat_spec.h</a>.</p>
+
+</div>
+</div>
+<a id="a1c3a27cd5cc599ff20565e207b01283f" name="a1c3a27cd5cc599ff20565e207b01283f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1c3a27cd5cc599ff20565e207b01283f">&#9670;&#160;</a></span>src_addr5</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">uint64_t spdk_ioat_xor_hw_desc::src_addr5</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="ioat__spec_8h_source.html#l00198">198</a> of file <a class="el" href="ioat__spec_8h_source.html">ioat_spec.h</a>.</p>
+
+</div>
+</div>
+<a id="afc217d72348f20f8ee53dcb7f884bf5a" name="afc217d72348f20f8ee53dcb7f884bf5a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#afc217d72348f20f8ee53dcb7f884bf5a">&#9670;&#160;</a></span>src_count</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">uint32_t spdk_ioat_xor_hw_desc::src_count</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="ioat__spec_8h_source.html#l00182">182</a> of file <a class="el" href="ioat__spec_8h_source.html">ioat_spec.h</a>.</p>
+
+</div>
+</div>
+<a id="a35d896803e26c261b149b9884f3b7303" name="a35d896803e26c261b149b9884f3b7303"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a35d896803e26c261b149b9884f3b7303">&#9670;&#160;</a></span>src_snoop_disable</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">uint32_t spdk_ioat_xor_hw_desc::src_snoop_disable</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="ioat__spec_8h_source.html#l00178">178</a> of file <a class="el" href="ioat__spec_8h_source.html">ioat_spec.h</a>.</p>
+
+</div>
+</div>
+<hr/>The documentation for this struct was generated from the following file:<ul>
+<li><a class="el" href="ioat__spec_8h_source.html">ioat_spec.h</a></li>
+</ul>
+</div><!-- contents -->
+</div><!-- doc-content -->
+<div id="page-nav" class="page-nav-panel">
+<div id="page-nav-resize-handle"></div>
+<div id="page-nav-tree">
+<div id="page-nav-contents">
+</div><!-- page-nav-contents -->
+</div><!-- page-nav-tree -->
+</div><!-- page-nav -->
+</div><!-- container -->
+<footer class="footer" id="nav-path">
+  <div class="footer-inner">
+    <div class="footer-copy">
+      <small>Copyright &copy; SPDK a Series of LF Projects, LLC. For web site terms of use, trademark policy, and other
+      project policies please see <a href="https://lfprojects.org">lfprojects.org</a>.</small>
+    </div>
+  </div>
+</footer>
+<script type="text/javascript" src="page_outline.js"></script>
+<script type="text/javascript" src="spdk_nav.js"></script>
+<!-- Doxygen footer suffix – assembled by _build/common.sh:
+     _includes/footer.html (shared) + theme scripts (from spdk) + this file.
+     Theme scripts are extracted from spdk/doc/theme/footer.html at build
+     time so the script list is maintained in a single place. -->
+</body>
+</html>

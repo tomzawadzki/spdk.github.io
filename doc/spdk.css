@@ -1,0 +1,781 @@
+/* SPDK shared visual foundation — single source of truth.
+   This file is prepended to the Doxygen theme/spdk.css by
+   common.sh during the website build, replacing the standalone
+   copy of the same block in that file.
+
+   The site CSS (assets/css/spdk.css) also defines these values;
+   when editing, update BOTH this file and the site CSS.
+   The site CSS additionally sets html { height: 100% } and
+   body { min-height: 100vh } which are not needed for Doxygen. */
+
+:root {
+    --spdk-brand: #2b497d;
+    --spdk-brand-dark: #213861;
+    --spdk-border: #dee2e6;
+    --spdk-surface: #f8f9fa;
+    --spdk-code-bg: #f0f2f5;
+    --spdk-muted: #6c757d;
+    --spdk-sidebar-w: 356px;
+    --spdk-content-max: 1296px;
+    --spdk-content-pad: 48px;
+}
+
+*, *::before, *::after { box-sizing: border-box; }
+
+body {
+    font-family: 'Roboto', sans-serif;
+    font-size: 16px;
+    line-height: 1.6;
+    color: #212529;
+    margin: 0;
+}
+
+a { color: var(--spdk-brand); }
+
+h1, h2, h3, h4, h5, h6 { font-family: 'Roboto', sans-serif; }
+h1 { font-weight: 900; }
+h2 { font-weight: 700; }
+h3, h4, h5, h6 { font-weight: 400; }
+
+code {
+    background-color: var(--spdk-code-bg);
+    padding: 0.15em 0.4em;
+    border-radius: 4px;
+    font-size: 0.9em;
+}
+
+pre code {
+    background: none;
+    padding: 0;
+    font-size: inherit;
+    border-radius: 0;
+}
+/* SPDK Doxygen overrides — loaded via HTML_EXTRA_STYLESHEET.
+   Standalone builds load only doxygen.css + this file, so the shared
+   visual foundation (variables, fonts, base typography) is duplicated
+   here.  On the website /assets/css/spdk.css loads last and supplies
+   identical values plus site-only rules (navbar, hero, blog, etc.).
+   Dark mode is disabled via HTML_COLORSTYLE = LIGHT in Doxyfile.
+   @import must be the very first rule in the file. */
+@import url('https://fonts.googleapis.com/css?family=Roboto:400,700,900');
+
+/* ================================================================
+   Shared visual foundation (needed for standalone builds)
+   ================================================================ */
+
+:root {
+    --spdk-brand: #2b497d;
+    --spdk-brand-dark: #213861;
+    --spdk-border: #dee2e6;
+    --spdk-surface: #f8f9fa;
+    --spdk-code-bg: #f0f2f5;
+    --spdk-muted: #6c757d;
+    --spdk-sidebar-w: 356px;
+    --spdk-content-max: 1296px;
+    --spdk-content-pad: 48px;
+}
+
+*, *::before, *::after { box-sizing: border-box; }
+
+body {
+    font-family: 'Roboto', sans-serif;
+    font-size: 16px;
+    line-height: 1.6;
+    color: #212529;
+    margin: 0;
+}
+
+a { color: var(--spdk-brand); }
+
+h1, h2, h3, h4, h5, h6 { font-family: 'Roboto', sans-serif; }
+h1 { font-weight: 900; }
+h2 { font-weight: 700; }
+h3, h4, h5, h6 { font-weight: 400; }
+
+code {
+    background-color: var(--spdk-code-bg);
+    padding: 0.15em 0.4em;
+    border-radius: 4px;
+    font-size: 0.9em;
+}
+
+pre code {
+    background: none;
+    padding: 0;
+    font-size: inherit;
+    border-radius: 0;
+}
+
+/* ================================================================
+   Doxygen body / container overrides
+   ================================================================ */
+
+html {
+    --nav-border-color: var(--spdk-border);
+}
+
+/* ================================================================
+   Full-page scroll layout — Doxygen's navtree.js sizes all panels
+   to the viewport height and scrolls content internally.  Override
+   that so the document scrolls as a whole and the footer sits
+   below all content.
+
+   Body becomes a 2-column grid:
+     row 1  #top (header/navbar)           — spans both columns
+     row 2  #side-nav | #container         — content row
+     row 3  #nav-path (footer/breadcrumb)  — spans both columns
+   ================================================================ */
+
+body {
+    display: grid !important;
+    grid-template-columns: auto 1fr;
+    grid-template-rows: auto 1fr auto;
+}
+
+#top {
+    grid-column: 1 / -1;
+}
+
+#side-nav {
+    position: relative !important;
+    grid-row: 2;
+    grid-column: 1;
+    height: auto !important;
+    overflow: visible !important;
+    background: var(--spdk-surface);
+    border-right: 1px solid var(--spdk-border);
+}
+
+#container {
+    grid-row: 2;
+    grid-column: 2;
+    height: auto !important;
+    overflow: visible !important;
+}
+
+#nav-path {
+    grid-column: 1 / -1;
+}
+
+#nav-tree {
+    position: sticky;
+    top: 0;
+    max-height: 100vh;
+    overflow-y: auto;
+    height: auto !important;
+}
+
+#page-nav {
+    height: auto !important;
+}
+
+/* The handle lives inside #page-nav in the DOM.  Doxygen's default
+   position: relative + height: 100% would push #page-nav-tree to the
+   bottom of the stretched grid row; absolute takes it out of flow. */
+#page-nav-resize-handle {
+    position: absolute !important;
+    top: 0;
+    left: 0;
+    height: 100%;
+    z-index: 5;
+}
+
+#page-nav-tree {
+    display: block !important;
+    position: sticky;
+    top: 0;
+    max-height: 100vh;
+    overflow-y: auto;
+}
+
+#page-nav-contents {
+    position: static !important;
+    height: auto !important;
+    width: auto !important;
+}
+
+/* ================================================================
+   Website footer fix — Doxygen's doxygen.css and navtree.css style
+   #nav-path for the breadcrumb bar.  The website footer carries
+   id="nav-path" so navtree.js can measure its height; reset all
+   breadcrumb rules so they don't poison the footer.
+   ================================================================ */
+
+footer#nav-path {
+    height: auto;
+}
+
+footer#nav-path ul {
+    height: auto;
+    line-height: inherit;
+    color: inherit;
+    overflow: visible;
+    margin: 0;
+    padding: 0;
+    background: none;
+    border: none;
+}
+
+footer#nav-path li {
+    float: none;
+}
+
+/* Doxygen's "body, table, div, p, dl" rule sets font-size: 14px and
+   line-height: 22px on generic elements.  Force inheritance so the
+   shared navbar and footer render identically to site pages. */
+nav.navbar div,
+nav.navbar p,
+footer.footer div,
+footer.footer p,
+footer.footer li {
+    font-size: inherit;
+    line-height: inherit;
+    font-family: inherit;
+}
+
+#doc-content .contents,
+#doc-content .textblock {
+    font-size: 16px;
+    line-height: 1.6;
+    font-family: 'Roboto', sans-serif;
+}
+
+#doc-content .contents p,
+#doc-content .contents dl,
+#doc-content .textblock p,
+#doc-content .textblock dl {
+    font-size: inherit;
+    line-height: inherit;
+    font-family: inherit;
+}
+
+/* ================================================================
+   Doxygen page title header
+   ================================================================ */
+
+div.header {
+    background: var(--spdk-surface);
+    border-bottom: 3px solid var(--spdk-brand);
+    padding: 0 30px;
+    overflow: hidden;
+    max-width: var(--spdk-content-max);
+}
+
+div.headertitle {
+    padding: 20px 0 16px;
+}
+
+.title {
+    font-size: 2.5rem;
+    line-height: 1.15;
+    color: #1a1a1a;
+    margin: 4px 0;
+    letter-spacing: -0.5px;
+    font-weight: 900;
+}
+
+/* ================================================================
+   Sidebar navtree
+   ================================================================ */
+
+/* Doxygen's resize JS assumes content-box on #side-nav. */
+#side-nav {
+    box-sizing: content-box;
+    width: var(--sn-w, var(--spdk-sidebar-w));
+}
+
+#nav-tree {
+    background: var(--spdk-surface);
+    border-right: none;
+    overflow-x: hidden;
+}
+
+/* Hide the root PROJECT_NAME ("SPDK") node. */
+#nav-tree-contents > ul > li > .item {
+    display: none;
+}
+#nav-tree-contents > ul > li > .children_ul {
+    display: block !important;
+    padding-left: 0 !important;
+}
+
+/* The mainpage ("Storage Performance Development Kit") is the first
+   child of the hidden root.  Keep its label visible as a top-level
+   link but flatten its section children (Introduction, Concepts, …)
+   to the same visual level. */
+#nav-tree-contents > ul > li > .children_ul > li:first-child > .item .arrow {
+    display: none;
+}
+#nav-tree-contents > ul > li > .children_ul > li:first-child > .children_ul {
+    display: block !important;
+    padding-left: 0 !important;
+}
+
+#nav-tree .label {
+    margin-left: 4px;
+}
+
+#nav-tree .label a {
+    color: #333;
+    text-decoration: none;
+    font-size: 15px;
+    line-height: 30px;
+    padding: 2px 4px;
+}
+
+#nav-tree .label a:hover {
+    color: var(--spdk-brand);
+    background: rgba(0,0,0,0.06);
+}
+
+#nav-tree .selected {
+    background-color: #e3ecf7;
+    border-radius: 0 6px 6px 0;
+}
+
+#nav-tree .selected .label a {
+    color: var(--spdk-brand);
+    font-weight: 700;
+}
+
+#nav-tree li {
+    padding: 2px 0;
+}
+
+#nav-tree .arrow {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 24px !important;
+    height: 24px;
+    min-width: 24px;
+    vertical-align: middle;
+    flex-shrink: 0;
+    cursor: pointer;
+    border-radius: 4px;
+    padding-left: 0 !important;
+}
+
+#nav-tree .arrow:hover {
+    background: rgba(0,0,0,0.06);
+}
+
+#nav-tree img {
+    width: 18px;
+    height: 18px;
+    vertical-align: middle;
+    opacity: 0.5;
+}
+
+#nav-tree ul {
+    padding-left: 6px;
+}
+
+#nav-tree .children_ul {
+    padding: 2px 0 2px 18px;
+}
+
+#nav-tree .item {
+    display: flex;
+    align-items: center;
+    gap: 2px;
+}
+
+#nav-tree a {
+    text-decoration: none;
+}
+
+#nav-sync {
+    display: none;
+}
+
+#splitbar {
+    width: 6px;
+    background: var(--spdk-border);
+}
+
+#splitbar:hover {
+    background: var(--spdk-muted);
+}
+
+/* ================================================================
+   Right-side page TOC (Doxygen #page-nav)
+   ================================================================ */
+
+/* Padding must live on #page-nav-contents, NOT #page-nav.  Doxygen's
+   resize JS reads $(pagenav).outerWidth() and feeds it back into
+   updateWidths(); with content-box any padding on #page-nav inflates
+   outerWidth each cycle, growing the panel on every drag. */
+#page-nav {
+    position: relative;
+    background: var(--spdk-surface);
+    border-left: 1px solid var(--spdk-border);
+    font-size: 13px;
+    padding: 0;
+}
+
+#page-nav-contents {
+    padding: 8px 4px;
+}
+
+#page-nav .page-toc-entry {
+    padding: 2px 6px;
+    line-height: 1.4;
+}
+
+#page-nav a {
+    color: #364D7C;
+    text-decoration: none;
+}
+
+#page-nav a:hover {
+    color: var(--spdk-brand);
+    text-decoration: underline;
+}
+
+.page-outline .arrow {
+    box-sizing: content-box;
+}
+
+.page-outline .arrowhead {
+    cursor: pointer;
+}
+
+/* ================================================================
+   Content area
+   ================================================================ */
+
+#doc-content {
+    margin-left: 0 !important;
+    padding: 0 var(--spdk-content-pad);
+    height: auto !important;
+    overflow: visible !important;
+    background: white;
+    font-size: 16px;
+    line-height: 1.6;
+}
+
+#doc-content .textblock,
+#doc-content .contents {
+    max-width: var(--spdk-content-max);
+}
+
+#doc-content:not(:has(#page-nav)) .textblock,
+#doc-content:not(:has(#page-nav)) .contents,
+#doc-content:not(:has(#page-nav)) .header {
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/* ================================================================
+   Links
+   ================================================================ */
+
+/* Underline content links for visibility */
+#doc-content .textblock a,
+#doc-content .contents a,
+#doc-content .memdoc a {
+    text-decoration: underline;
+    text-decoration-color: rgba(43, 73, 125, 0.3);
+    text-underline-offset: 2px;
+}
+
+#doc-content .textblock a:hover,
+#doc-content .contents a:hover,
+#doc-content .memdoc a:hover {
+    text-decoration-color: currentColor;
+}
+
+/* Internal cross-refs (.el) are less prominent */
+a.el {
+    text-decoration: none;
+}
+
+a.el:hover {
+    text-decoration: underline;
+}
+
+/* Inline code (Doxygen renders backtick code as span.tt) */
+span.tt {
+    background-color: var(--spdk-code-bg);
+    padding: 0.15em 0.4em;
+    border-radius: 4px;
+    font-size: 0.9em;
+}
+
+/* Code blocks */
+pre.fragment,
+div.fragment {
+    background-color: var(--spdk-surface);
+    border: 1px solid var(--spdk-border);
+    border-radius: .375rem;
+    padding: .75rem 1rem;
+    font-size: .875em;
+}
+
+div.fragment {
+    margin: 1rem 0;
+}
+
+/* Tables */
+table.markdownTable th,
+table.fieldtable th {
+    background-color: var(--spdk-brand);
+    color: #fff;
+    padding: 8px 12px;
+}
+
+table.markdownTable td,
+table.fieldtable td {
+    padding: 8px 12px;
+    border: 1px solid var(--spdk-border);
+}
+
+table.markdownTable tr.markdownTableRowOdd td {
+    background-color: var(--spdk-surface);
+}
+
+table.markdownTable tr.markdownTableRowEven td {
+    background-color: #ffffff;
+}
+
+/* Doxygen wraps markdown tables in <center>; left-align instead */
+center:has(> table.markdownTable) {
+    text-align: left;
+}
+
+table.markdownTable {
+    margin: 1rem 0;
+    border-collapse: collapse;
+}
+
+/* ================================================================
+   Member declarations / data fields
+   ================================================================ */
+
+/* Alternating rows for function lists and struct fields */
+table.memberdecls tr[class^='memitem']:nth-child(4n+1) td {
+    background-color: #f8f9fc;
+}
+
+.memItemLeft, .memItemRight {
+    padding: 6px 10px;
+    font-size: 14px;
+    line-height: 1.5;
+}
+
+/* Group headers (e.g. "Functions", "Data Fields") */
+h2.groupheader {
+    font-size: 1.25rem;
+    padding-bottom: 4px;
+    border-bottom: 2px solid var(--spdk-border);
+}
+
+/* Function prototype box */
+.memproto, dl.reflist dt {
+    background-color: #f0f3f7;
+    border-radius: 4px 4px 0 0;
+}
+
+/* Hide the diamond/permalink next to function names */
+.memtitle .permalink {
+    display: none;
+}
+
+/* ================================================================
+   Search box — placed inside #top by common.sh, moved into
+   #doc-content by page_outline.js so it sits above the main text,
+   left of the right-side TOC panel.
+   ================================================================ */
+
+#doxygen-searchbox {
+    display: none;
+}
+
+#doxygen-searchbox.in-content {
+    display: flex;
+    justify-content: flex-end;
+    padding: 8px 0 0;
+    position: relative;
+}
+
+#MSearchBox {
+    position: static !important;
+    display: flex;
+    align-items: center;
+    background: #fff;
+    border: 1px solid var(--spdk-border);
+    border-radius: 4px;
+    padding: 4px 8px;
+    width: 250px;
+    box-sizing: border-box;
+}
+
+#MSearchField {
+    border: none;
+    outline: none;
+    flex: 1;
+    font-size: 14px;
+    font-family: 'Roboto', sans-serif;
+    background: transparent;
+    min-width: 0;
+}
+
+#MSearchBox .left {
+    display: flex;
+    align-items: center;
+    flex: 1;
+    min-width: 0;
+}
+
+#MSearchBox .right {
+    display: none;
+}
+
+#MSearchSelect {
+    cursor: pointer;
+    margin-right: 4px;
+    flex-shrink: 0;
+}
+
+/* Search popup windows — relocated into #doxygen-searchbox by JS.
+   Override Doxygen's inline left/top so they align with the search bar. */
+#MSearchResultsWindow,
+#MSearchSelectWindow {
+    z-index: 9999;
+    position: absolute !important;
+    left: auto !important;
+    right: 0 !important;
+    top: 100% !important;
+    margin-top: 2px;
+}
+
+/* ================================================================
+   Source browser
+   ================================================================ */
+
+/* Source file list and directory pages */
+table.directory {
+    border-collapse: collapse;
+    width: 100%;
+}
+
+table.directory td {
+    padding: 4px 8px;
+    border-bottom: 1px solid #eee;
+}
+
+table.directory tr:hover td {
+    background-color: var(--spdk-surface);
+}
+
+/* Line numbers in source view */
+.lineno a {
+    color: var(--spdk-muted);
+    text-decoration: none;
+}
+
+.lineno a:hover {
+    color: var(--spdk-brand);
+    text-decoration: underline;
+}
+
+/* ================================================================
+   Panel toggle buttons — placed OUTSIDE the panel boundaries
+   on the divider handles, so they never cover panel content.
+   ================================================================ */
+
+.panel-toggle-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 22px;
+    height: 28px;
+    border: 1px solid var(--spdk-border);
+    border-radius: 4px;
+    background: #fff;
+    color: var(--spdk-muted);
+    font-size: 13px;
+    cursor: pointer;
+    z-index: 10;
+    line-height: 1;
+    padding: 0;
+}
+
+.panel-toggle-btn:hover {
+    background: var(--spdk-surface);
+    color: var(--spdk-brand);
+    border-color: var(--spdk-brand);
+}
+
+/* Left toggle: right edge of #side-nav, pushed outside via translateX.
+   #side-nav has overflow: visible so the button renders outside. */
+.panel-toggle-left {
+    position: absolute;
+    top: 8px;
+    right: 0;
+    transform: translateX(100%);
+    z-index: 20;
+}
+
+/* Right toggle: left edge of #page-nav, pushed outside via translateX */
+.panel-toggle-right {
+    position: absolute;
+    top: 8px;
+    left: 0;
+    transform: translateX(-100%);
+    z-index: 20;
+}
+
+/* Restore buttons: shown when a panel is hidden.
+   top is set dynamically by JS to match the toggle button position.
+   z-index must beat the search box area which can overlap when
+   the right panel is collapsed and doc-content expands. */
+.panel-restore-left,
+.panel-restore-right {
+    display: none;
+    position: fixed;
+    z-index: 10000;
+}
+
+.panel-restore-left {
+    left: 0;
+    border-radius: 0 4px 4px 0;
+    border-left: none;
+}
+
+.panel-restore-right {
+    right: 0;
+    border-radius: 4px 0 0 4px;
+    border-right: none;
+}
+
+.panel-restore-left.visible,
+.panel-restore-right.visible {
+    display: flex;
+}
+
+#side-nav.panel-hidden {
+    width: 0 !important;
+    min-width: 0 !important;
+    overflow: hidden !important;
+    border: none !important;
+    padding: 0 !important;
+}
+
+#side-nav.panel-hidden + #splitbar {
+    display: none;
+}
+
+#page-nav.panel-hidden {
+    width: 0 !important;
+    min-width: 0 !important;
+    overflow: hidden !important;
+    border: none !important;
+    padding: 0 !important;
+}
+
+@media print {
+    footer#nav-path { display: block; }
+    .panel-toggle-btn, .panel-restore-left, .panel-restore-right { display: none !important; }
+}

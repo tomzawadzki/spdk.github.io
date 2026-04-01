@@ -1,0 +1,176 @@
+<!doctype html>
+<html lang="en">
+  <head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="The Storage Performance Development Kit (SPDK) provides a set of tools and libraries for writing high performance, scalable, user-mode storage applications. It achieves high performance by moving all of the necessary drivers into userspace and operating in a polled mode instead of relying on interrupts, which avoids kernel context switches and eliminates interrupt handling overhead.
+">
+  <meta name="author" content="Benjamin Walker">
+
+  <title>NVMe API Changes</title>
+
+  <link rel="icon" type="image/svg+xml" href="/spdk.github.io/assets/img/spdk.svg">
+  <link rel="icon" href="/spdk.github.io/assets/favicon.ico" sizes="32x32">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:400,700,900" type="text/css">
+  <link rel="stylesheet" href="/spdk.github.io/assets/css/spdk.css">
+
+  <link href="/spdk.github.io/feed.xml" type="application/atom+xml" rel="alternate" title="Atom Feed">
+</head>
+
+
+  <body>
+    <nav class="navbar">
+  <a class="navbar-brand" href="/spdk.github.io/" aria-label="SPDK">
+    <img src="/spdk.github.io/assets/img/spdk.svg" width="36" height="36" alt="Storage Performance Development Kit">
+  </a>
+  <div class="navbar-nav">
+    <a class="nav-link header-link" href="/spdk.github.io/doc/releases.html">download</a>
+    <a class="nav-link header-link" href="/spdk.github.io/doc/">documentation</a>
+    <a class="nav-link header-link" href="/spdk.github.io/doc/contributing.html">development</a>
+    <a class="nav-link header-link" href="/spdk.github.io/doc/ci_tools.html">CI status</a>
+    <a class="nav-link header-link" href="/spdk.github.io/community/">community</a>
+    <a class="nav-link header-link" href="/spdk.github.io/blog/">Blog</a>
+    <a class="nav-link header-link" href="https://github.com/orgs/spdk/projects/5">Roadmap</a>
+    <a class="nav-link header-link" href="/spdk.github.io/news/">News</a>
+  </div>
+  <div class="navbar-end">
+    <a class="nav-link header-link" href="https://github.com/spdk/spdk" aria-label="GitHub">
+      <svg xmlns="http://www.w3.org/2000/svg" class="navbar-nav-svg" aria-hidden="true"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
+    </a>
+    <a id="cn_lang_btn" href="/spdk.github.io/cn/doc/" class="nav-link header-link">中文</a>
+  </div>
+</nav>
+<script>
+(function() {
+    var p = location.pathname, best = null, bLen = 0;
+    document.querySelectorAll('.header-link[href]').forEach(function(a) {
+        var raw = a.getAttribute('href');
+        if (!raw) return;
+        try { var u = new URL(raw, location.href); } catch(e) { return; }
+        if (u.origin !== location.origin) return;
+        var h = u.pathname;
+        if (h === '/') return;
+        var ok = h.endsWith('.html') ? p === h : p.indexOf(h) === 0;
+        if (ok && h.length > bLen) { bLen = h.length; best = a; }
+    });
+    if (best) best.classList.add('active');
+})();
+</script>
+
+
+    <div class="page-content">
+  <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+  <header class="post-header">
+
+    <div class="page-header">
+      <h1>NVMe API Changes</h1>
+    </div>
+
+    <p class="post-meta">
+      <time datetime="2016-03-03T00:00:00+01:00" itemprop="datePublished">
+        Mar 3, 2016
+      </time>
+      
+      •
+      <span itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <span itemprop="name">Ben Walker</span>
+      </span>
+      
+    </p>
+  </header>
+
+  <div class="content" itemprop="articleBody"><p>Over the last month, the API of the NVMe driver in SPDK has changed significantly. First, on behalf of the SPDK team, I’m sorry for breaking any existing code! SPDK is still in its infancy, so dramatic API changes will be a fact of life for the next few months. By the end of the year, we’d like to have a plan in place to manage future API changes in a more formal way. Second, I’d like to take a few moments to explain what changes were made and why we made them. I’ll stick to a mostly high level overview of the API changes for now, but we hope to produce some additional blog posts that detail each one in the future.</p>
+
+<p>The most noticeable API change is that we renamed all of our public functions and structures to include an <code class="language-plaintext highlighter-rouge">spdk_</code> prefix. This is simply to allow our driver to play nicely in other software packages. As soon as we realized this needed to happen, we decided to get this over with now, before too much code was built on the old interfaces.</p>
+
+<p>We’ve also added a number of new interfaces. For instance, we now have full support for log pages and features, including the ability to query for support. The new APIs are:</p>
+
+<div class="language-c highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">bool</span> <span class="nf">spdk_nvme_ctrlr_is_log_page_supported</span><span class="p">(</span><span class="k">struct</span> <span class="n">spdk_nvme_ctrlr</span> <span class="o">*</span><span class="n">ctrlr</span><span class="p">,</span> <span class="kt">uint8_t</span> <span class="n">log_page</span><span class="p">);</span>
+<span class="kt">int</span> <span class="nf">spdk_nvme_ctrlr_cmd_get_log_page</span><span class="p">(</span><span class="k">struct</span> <span class="n">spdk_nvme_ctrlr</span> <span class="o">*</span><span class="n">ctrlr</span><span class="p">,</span>
+  				     <span class="kt">uint8_t</span> <span class="n">log_page</span><span class="p">,</span> <span class="kt">uint32_t</span> <span class="n">nsid</span><span class="p">,</span>
+  				     <span class="kt">void</span> <span class="o">*</span><span class="n">payload</span><span class="p">,</span> <span class="kt">uint32_t</span> <span class="n">payload_size</span><span class="p">,</span>
+  				     <span class="n">spdk_nvme_cmd_cb</span> <span class="n">cb_fn</span><span class="p">,</span> <span class="kt">void</span> <span class="o">*</span><span class="n">cb_arg</span><span class="p">);</span>
+<span class="n">bool</span> <span class="nf">spdk_nvme_ctrlr_is_feature_supported</span><span class="p">(</span><span class="k">struct</span> <span class="n">spdk_nvme_ctrlr</span> <span class="o">*</span><span class="n">ctrlr</span><span class="p">,</span> <span class="kt">uint8_t</span> <span class="n">feature_code</span><span class="p">);</span>
+<span class="kt">int</span> <span class="nf">spdk_nvme_ctrlr_cmd_set_feature</span><span class="p">(</span><span class="k">struct</span> <span class="n">spdk_nvme_ctrlr</span> <span class="o">*</span><span class="n">ctrlr</span><span class="p">,</span>
+				    <span class="kt">uint8_t</span> <span class="n">feature</span><span class="p">,</span> <span class="kt">uint32_t</span> <span class="n">cdw11</span><span class="p">,</span> <span class="kt">uint32_t</span> <span class="n">cdw12</span><span class="p">,</span>
+				    <span class="kt">void</span> <span class="o">*</span><span class="n">payload</span><span class="p">,</span> <span class="kt">uint32_t</span> <span class="n">payload_size</span><span class="p">,</span>
+				    <span class="n">spdk_nvme_cmd_cb</span> <span class="n">cb_fn</span><span class="p">,</span> <span class="kt">void</span> <span class="o">*</span><span class="n">cb_arg</span><span class="p">);</span>
+<span class="kt">int</span> <span class="nf">spdk_nvme_ctrlr_cmd_get_feature</span><span class="p">(</span><span class="k">struct</span> <span class="n">spdk_nvme_ctrlr</span> <span class="o">*</span><span class="n">ctrlr</span><span class="p">,</span>
+				    <span class="kt">uint8_t</span> <span class="n">feature</span><span class="p">,</span> <span class="kt">uint32_t</span> <span class="n">cdw11</span><span class="p">,</span>
+				    <span class="kt">void</span> <span class="o">*</span><span class="n">payload</span><span class="p">,</span> <span class="kt">uint32_t</span> <span class="n">payload_size</span><span class="p">,</span>
+				    <span class="n">spdk_nvme_cmd_cb</span> <span class="n">cb_fn</span><span class="p">,</span> <span class="kt">void</span> <span class="o">*</span><span class="n">cb_arg</span><span class="p">);</span>
+</code></pre></div></div>
+
+<p>Full documentation is available via <a href="https://www.spdk.io/doc/nvme.html" title="NVMe API Documentation">Doxygen</a>. Some vendor specific log pages and features are supported as well for Intel devices. We’d be happy to accept patches to add similar support for other vendors’ devices, if anyone out there is willing to pick up that work.</p>
+
+<p>We’ve added some additional features around reads and writes as well. First, we added support for <code class="language-plaintext highlighter-rouge">Force Unit Access</code> and <code class="language-plaintext highlighter-rouge">Limited Retry</code> by adding an <code class="language-plaintext highlighter-rouge">io_flags</code> parameter to the read and write commands. We also added a write zeroes interface (submitted by a third party - thank you!), for devices that support it. Finally, we added a readv and a writev interface so that I/O can be performed using scatter gather lists. For these interfaces, you simply provide two callbacks to the read or write operation. The first callback resets the scatter gather list to the beginning. The second callback returns the next element in the list each time it is called. We use these callbacks internally to build a PRP list or an SGL as needed for the device.</p>
+
+<p>Namespace management and reservations are a big focus in the NVMe 1.2 specification, so we’ve begun to add support for devices that implement these features. Support for all four of the namespace management commands have been added:</p>
+
+<div class="language-c highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kt">int</span> <span class="nf">spdk_nvme_ctrlr_attach_ns</span><span class="p">(</span><span class="k">struct</span> <span class="n">spdk_nvme_ctrlr</span> <span class="o">*</span><span class="n">ctrlr</span><span class="p">,</span> <span class="kt">uint32_t</span> <span class="n">nsid</span><span class="p">,</span>
+			      <span class="k">struct</span> <span class="n">spdk_nvme_ctrlr_list</span> <span class="o">*</span><span class="n">payload</span><span class="p">);</span>
+<span class="kt">int</span> <span class="nf">spdk_nvme_ctrlr_detach_ns</span><span class="p">(</span><span class="k">struct</span> <span class="n">spdk_nvme_ctrlr</span> <span class="o">*</span><span class="n">ctrlr</span><span class="p">,</span> <span class="kt">uint32_t</span> <span class="n">nsid</span><span class="p">,</span>
+			      <span class="k">struct</span> <span class="n">spdk_nvme_ctrlr_list</span> <span class="o">*</span><span class="n">payload</span><span class="p">);</span>
+<span class="kt">int</span> <span class="nf">spdk_nvme_ctrlr_create_ns</span><span class="p">(</span><span class="k">struct</span> <span class="n">spdk_nvme_ctrlr</span> <span class="o">*</span><span class="n">ctrlr</span><span class="p">,</span> <span class="k">struct</span> <span class="n">spdk_nvme_ns_data</span> <span class="o">*</span><span class="n">payload</span><span class="p">);</span>
+<span class="kt">int</span> <span class="nf">spdk_nvme_ctrlr_delete_ns</span><span class="p">(</span><span class="k">struct</span> <span class="n">spdk_nvme_ctrlr</span> <span class="o">*</span><span class="n">ctrlr</span><span class="p">,</span> <span class="kt">uint32_t</span> <span class="n">nsid</span><span class="p">);</span>
+</code></pre></div></div>
+
+<p>There is also a new example tool called <code class="language-plaintext highlighter-rouge">nvme_manage</code> that allows you to use all of these new commands from an interactive prompt. As part of this same effort, we also added support for reservations. There are four operations:</p>
+
+<div class="language-c highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kt">int</span> <span class="nf">spdk_nvme_ns_cmd_reservation_register</span><span class="p">(</span><span class="k">struct</span> <span class="n">spdk_nvme_ns</span> <span class="o">*</span><span class="n">ns</span><span class="p">,</span>
+		<span class="k">struct</span> <span class="n">spdk_nvme_reservation_register_data</span> <span class="o">*</span><span class="n">payload</span><span class="p">,</span>
+		<span class="n">bool</span> <span class="n">ignore_key</span><span class="p">,</span>
+		<span class="k">enum</span> <span class="n">spdk_nvme_reservation_register_action</span> <span class="n">action</span><span class="p">,</span>
+		<span class="k">enum</span> <span class="n">spdk_nvme_reservation_register_cptpl</span> <span class="n">cptpl</span><span class="p">,</span>
+		<span class="n">spdk_nvme_cmd_cb</span> <span class="n">cb_fn</span><span class="p">,</span> <span class="kt">void</span> <span class="o">*</span><span class="n">cb_arg</span><span class="p">);</span>
+<span class="kt">int</span> <span class="nf">spdk_nvme_ns_cmd_reservation_release</span><span class="p">(</span><span class="k">struct</span> <span class="n">spdk_nvme_ns</span> <span class="o">*</span><span class="n">ns</span><span class="p">,</span>
+		<span class="k">struct</span> <span class="n">spdk_nvme_reservation_key_data</span> <span class="o">*</span><span class="n">payload</span><span class="p">,</span>
+		<span class="n">bool</span> <span class="n">ignore_key</span><span class="p">,</span>
+		<span class="k">enum</span> <span class="n">spdk_nvme_reservation_release_action</span> <span class="n">action</span><span class="p">,</span>
+		<span class="k">enum</span> <span class="n">spdk_nvme_reservation_type</span> <span class="n">type</span><span class="p">,</span>
+		<span class="n">spdk_nvme_cmd_cb</span> <span class="n">cb_fn</span><span class="p">,</span> <span class="kt">void</span> <span class="o">*</span><span class="n">cb_arg</span><span class="p">);</span>
+<span class="kt">int</span> <span class="nf">spdk_nvme_ns_cmd_reservation_acquire</span><span class="p">(</span><span class="k">struct</span> <span class="n">spdk_nvme_ns</span> <span class="o">*</span><span class="n">ns</span><span class="p">,</span>
+		<span class="k">struct</span> <span class="n">spdk_nvme_reservation_acquire_data</span> <span class="o">*</span><span class="n">payload</span><span class="p">,</span>
+		<span class="n">bool</span> <span class="n">ignore_key</span><span class="p">,</span>
+		<span class="k">enum</span> <span class="n">spdk_nvme_reservation_acquire_action</span> <span class="n">action</span><span class="p">,</span>
+		<span class="k">enum</span> <span class="n">spdk_nvme_reservation_type</span> <span class="n">type</span><span class="p">,</span>
+		<span class="n">spdk_nvme_cmd_cb</span> <span class="n">cb_fn</span><span class="p">,</span> <span class="kt">void</span> <span class="o">*</span><span class="n">cb_arg</span><span class="p">);</span>
+<span class="kt">int</span> <span class="nf">spdk_nvme_ns_cmd_reservation_report</span><span class="p">(</span><span class="k">struct</span> <span class="n">spdk_nvme_ns</span> <span class="o">*</span><span class="n">ns</span><span class="p">,</span> <span class="kt">void</span> <span class="o">*</span><span class="n">payload</span><span class="p">,</span>
+					<span class="kt">uint32_t</span> <span class="n">len</span><span class="p">,</span> <span class="n">spdk_nvme_cmd_cb</span> <span class="n">cb_fn</span><span class="p">,</span> <span class="kt">void</span> <span class="o">*</span><span class="n">cb_arg</span><span class="p">);</span>
+</code></pre></div></div>
+
+<p>Again, check out our <a href="https://www.spdk.io/doc/nvme.html" title="NVMe API Documentation">API documentation</a> for full documentation on all of these.</p>
+
+<p>Another big change was made to how the driver is attached to devices at start up. Instead of a single <code class="language-plaintext highlighter-rouge">nvme_attach</code> function, we now have:</p>
+
+<div class="language-c highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">typedef</span> <span class="nf">bool</span> <span class="p">(</span><span class="o">*</span><span class="n">spdk_nvme_probe_cb</span><span class="p">)(</span><span class="kt">void</span> <span class="o">*</span><span class="n">cb_ctx</span><span class="p">,</span> <span class="k">struct</span> <span class="n">spdk_pci_device</span> <span class="o">*</span><span class="n">pci_dev</span><span class="p">,</span>
+				    <span class="k">struct</span> <span class="n">spdk_nvme_ctrlr_opts</span> <span class="o">*</span><span class="n">opts</span><span class="p">);</span>
+<span class="k">typedef</span> <span class="nf">void</span> <span class="p">(</span><span class="o">*</span><span class="n">spdk_nvme_attach_cb</span><span class="p">)(</span><span class="kt">void</span> <span class="o">*</span><span class="n">cb_ctx</span><span class="p">,</span> <span class="k">struct</span> <span class="n">spdk_pci_device</span> <span class="o">*</span><span class="n">pci_dev</span><span class="p">,</span>
+				    <span class="k">struct</span> <span class="n">spdk_nvme_ctrlr</span> <span class="o">*</span><span class="n">ctrlr</span><span class="p">,</span>
+				    <span class="k">const</span> <span class="k">struct</span> <span class="n">spdk_nvme_ctrlr_opts</span> <span class="o">*</span><span class="n">opts</span><span class="p">);</span>
+<span class="kt">int</span> <span class="nf">spdk_nvme_probe</span><span class="p">(</span><span class="kt">void</span> <span class="o">*</span><span class="n">cb_ctx</span><span class="p">,</span> <span class="n">spdk_nvme_probe_cb</span> <span class="n">probe_cb</span><span class="p">,</span> <span class="n">spdk_nvme_attach_cb</span> <span class="n">attach_cb</span><span class="p">);</span>
+</code></pre></div></div>
+
+<p>The probe callback will be called once for each NVMe device found on the system that isn’t currently owned by the SPDK NVMe driver. Return true from that callback to claim the device. Inside the probe callback you also have the opportunity to change some of the default options by modifying the spdk_nvme_ctrlr_opts structure. The attach callback is called after the NVMe driver has been loaded, and it also provides the final version of spdk_nvme_ctrlr_opts that was used. The change to this interface was made for two reasons. First, we’d like to eventually drop our dependency on libpciaccess and rely solely on DPDK. This interface is more amenable to that. Second, we’re working on first-class hot plug support. This interface will allow the user to simply poll <code class="language-plaintext highlighter-rouge">spdk_nvme_probe</code> for new devices. Hot plug support is not currently available, but this is a step in that direction.</p>
+
+<p>The final, and possibly most important, change we made was to move away from our system of implicit queue allocation based on threads to one of explicit queue allocation. You are no longer expected to call <code class="language-plaintext highlighter-rouge">spdk_nvme_register_io_thread</code> - instead you call <code class="language-plaintext highlighter-rouge">spdk_nvme_ctrlr_alloc_io_qpair</code> to create a queue pair and you explicitly pass that queue pair to the read and write interfaces. Note that you, as the user, are responsible for enforcing mutual exclusion around queue pairs - you cannot use them from two threads at the same time! This enables a number of things in SPDK, including the ability to specify queue pair weights for the weighted round robin arbitration method at queue creation time, as well as alternative topologies to one queue pair per thread.</p>
+
+<p>That’s what we’ve been up to for the last couple of months. In hindsight, we’ve accomplished a lot! As always, we very much appreciate pull requests, and we’re open to working with anyone in the community that wants to participate.</p>
+</div>
+</article>
+</div>
+
+
+    <footer class="footer" id="nav-path">
+  <div class="footer-inner">
+    <div class="footer-copy">
+      <small>Copyright &copy; SPDK a Series of LF Projects, LLC. For web site terms of use, trademark policy, and other
+      project policies please see <a href="https://lfprojects.org">lfprojects.org</a>.</small>
+    </div>
+  </div>
+</footer>
+
+
+    
+  </body>
+</html>

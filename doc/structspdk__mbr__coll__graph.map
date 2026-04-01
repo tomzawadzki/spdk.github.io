@@ -1,0 +1,7 @@
+<map id="spdk_mbr" name="spdk_mbr">
+<area shape="rect" id="Node000001" title=" " alt="" coords="36,246,122,274"/>
+<area shape="rect" id="Node000002" href="$structspdk__mbr__partition__entry.html" title=" " alt="" coords="5,128,153,173"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="82,188,82,246,76,246,76,188"/>
+<area shape="rect" id="Node000003" href="$structspdk__mbr__chs.html" title=" " alt="" coords="22,5,136,33"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="82,49,82,128,76,128,76,49"/>
+</map>

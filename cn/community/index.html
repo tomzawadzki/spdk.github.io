@@ -1,0 +1,115 @@
+<!doctype html>
+<html lang="en">
+  <head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="The Storage Performance Development Kit (SPDK) provides a set of tools and libraries for writing high performance, scalable, user-mode storage applications. It achieves high performance by moving all of the necessary drivers into userspace and operating in a polled mode instead of relying on interrupts, which avoids kernel context switches and eliminates interrupt handling overhead.
+">
+  <meta name="author" content="Benjamin Walker">
+
+  <title>社区</title>
+
+  <link rel="icon" type="image/svg+xml" href="/spdk.github.io/assets/img/spdk.svg">
+  <link rel="icon" href="/spdk.github.io/assets/favicon.ico" sizes="32x32">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:400,700,900" type="text/css">
+  <link rel="stylesheet" href="/spdk.github.io/assets/css/spdk.css">
+
+  <link href="/spdk.github.io/feed.xml" type="application/atom+xml" rel="alternate" title="Atom Feed">
+</head>
+
+
+  <body>
+    <nav class="navbar">
+  <a class="navbar-brand" href="/spdk.github.io/" aria-label="SPDK">
+    <img src="/spdk.github.io/assets/img/spdk.svg" width="36" height="36" alt="Storage Performance Development Kit">
+  </a>
+  <div class="navbar-nav">
+    <a class="nav-link header-link" href="/spdk.github.io/doc/releases.html">download</a>
+    <a class="nav-link header-link" href="/spdk.github.io/doc/">documentation</a>
+    <a class="nav-link header-link" href="/spdk.github.io/doc/contributing.html">development</a>
+    <a class="nav-link header-link" href="/spdk.github.io/doc/ci_tools.html">CI status</a>
+    <a class="nav-link header-link" href="/spdk.github.io/community/">community</a>
+    <a class="nav-link header-link" href="/spdk.github.io/blog/">Blog</a>
+    <a class="nav-link header-link" href="https://github.com/orgs/spdk/projects/5">Roadmap</a>
+    <a class="nav-link header-link" href="/spdk.github.io/news/">News</a>
+  </div>
+  <div class="navbar-end">
+    <a class="nav-link header-link" href="https://github.com/spdk/spdk" aria-label="GitHub">
+      <svg xmlns="http://www.w3.org/2000/svg" class="navbar-nav-svg" aria-hidden="true"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
+    </a>
+    <a id="cn_lang_btn" href="/spdk.github.io/cn/doc/" class="nav-link header-link">中文</a>
+  </div>
+</nav>
+<script>
+(function() {
+    var p = location.pathname, best = null, bLen = 0;
+    document.querySelectorAll('.header-link[href]').forEach(function(a) {
+        var raw = a.getAttribute('href');
+        if (!raw) return;
+        try { var u = new URL(raw, location.href); } catch(e) { return; }
+        if (u.origin !== location.origin) return;
+        var h = u.pathname;
+        if (h === '/') return;
+        var ok = h.endsWith('.html') ? p === h : p.indexOf(h) === 0;
+        if (ok && h.length > bLen) { bLen = h.length; best = a; }
+    });
+    if (best) best.classList.add('active');
+})();
+</script>
+
+
+    
+<div class="page-content">
+  <div class="page-header">
+    <h1>社区</h1>
+  </div>
+  <div class="content"><h1 id="即时通信">即时通信</h1>
+
+<p>加入我们 <a href="https://spdk-team.slack.com/">SPDK Slack</a> 进行实时讨论。</p>
+
+<h1 id="新功能开发">新功能开发</h1>
+
+<p>感兴趣的可以在<a href="https://github.com/spdk/spdk/issues?q=is:issue+is:open+label:enhancement">enhancement requests</a>找到新的待开发的功能特性。</p>
+
+<h1 id="邮件列表">邮件列表</h1>
+
+<p><a href="https://lists.linuxfoundation.org/mailman/listinfo/spdk/">SPDK邮件列表</a> 可用于讨论使用、开发和设计问题。</p>
+
+<h1 id="社区会议">社区会议</h1>
+
+<p>SPDK社区会议对所有人开放，并鼓励所有人参与。社区会议的主要目的是, 讨论那些口头交流比电子邮件或IRC交流更有效的话题。会议通过<a href="https://www.freeconferencecall.com">FreeConferenceCall</a>举行。社区会议每周一次，会议时间每周交替，一周是欧洲友好的会议时间，一周是亚太友好的会议时间。</p>
+
+<p>请在会议开始前在<a href="https://github.com/orgs/spdk/projects/1">board</a>相关页面上把需要讨论的话题和相关信息列出来。如果我们在既定的会议时间内讨论完所有列出来的话题，我们可以用会议剩下的时间讨论其他事宜。</p>
+
+<p>除了社区会议，还有个专门的Bug讨论会议，每两周在亚太友好的时间。请注意Bug在<a href="https://github.com/spdk/spdk/issues">SPDK GitHub issue tracker</a>上记录。</p>
+
+<p>所有的会议，包括Bug讨论会议，使用相同的会议信息。为了避免机器人抓取信息登入会议，请参考下面图示的会议信息。方便起见，可以将会议的链接作为书签保存方便下次登陆。</p>
+
+<p><img src="/assets/img/spdk_free.jpg" alt="SPDK" title="SPDK" /></p>
+
+<h2 id="下一次欧洲会议时间">下一次欧洲会议时间</h2>
+<div id="euro-mtg"></div>
+
+<h1 id="贡献代码">贡献代码</h1>
+
+<p>有关如何为SPDK做出贡献的更多信息，请参见<a href="../development/">开发页面</a>。</p>
+</div>
+</div>
+
+
+
+    <footer class="footer" id="nav-path">
+  <div class="footer-inner">
+    <div class="footer-copy">
+      <small>Copyright &copy; SPDK a Series of LF Projects, LLC. For web site terms of use, trademark policy, and other
+      project policies please see <a href="https://lfprojects.org">lfprojects.org</a>.</small>
+    </div>
+  </div>
+</footer>
+
+
+    
+    <script type="text/javascript" src="/spdk.github.io/assets/js/meetings.js"></script>
+    
+  </body>
+</html>

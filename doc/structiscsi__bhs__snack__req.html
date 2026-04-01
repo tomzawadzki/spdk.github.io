@@ -1,0 +1,402 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<meta name="generator" content="Doxygen 1.16.1">
+	<title>SPDK: iscsi_bhs_snack_req Struct Reference</title>
+	<script type="text/javascript" src="jquery.js"></script>
+	<script type="text/javascript" src="dynsections.js"></script>
+	<script type="text/javascript" src="clipboard.js"></script>
+	<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
+<script type="text/javascript" src="cookie.js"></script>
+	<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<script type="text/javascript">
+  $(function() { init_search(); });
+</script>
+	<link rel="icon" type="image/svg+xml" href="../assets/img/spdk.svg">
+	<link rel="icon" href="../assets/favicon.ico" sizes="32x32">
+	<link href="doxygen.css" rel="stylesheet" type="text/css">
+	<script>(function(){var k='doxygen_width',w,bw=6;if(window.chrome){w=localStorage.getItem(k);if(!w){w='350';localStorage.setItem(k,w)}}else{var m=document.cookie.match(new RegExp(k+'=(\\d+)'));w=m?m[1]:null;if(!w){w='350';document.cookie=k+'=350;SameSite=Lax;path=/'}}document.documentElement.style.setProperty('--sn-w',(parseInt(w)+bw)+'px')})()</script>
+	<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:400,700,900" type="text/css">
+	<link href="spdk.css" rel="stylesheet" type="text/css"/>
+	<link href="../assets/css/spdk.css" rel="stylesheet" type="text/css">
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<nav class="navbar">
+  <a class="navbar-brand" href="../" aria-label="SPDK">
+    <img src="../assets/img/spdk.svg" width="36" height="36" alt="Storage Performance Development Kit">
+  </a>
+  <div class="navbar-nav">
+    <a class="nav-link header-link" href="../doc/releases.html">download</a>
+    <a class="nav-link header-link" href="../doc/">documentation</a>
+    <a class="nav-link header-link" href="../doc/contributing.html">development</a>
+    <a class="nav-link header-link" href="../doc/ci_tools.html">CI status</a>
+    <a class="nav-link header-link" href="../community/">community</a>
+    <a class="nav-link header-link" href="../blog/">Blog</a>
+    <a class="nav-link header-link" href="https://github.com/orgs/spdk/projects/5">Roadmap</a>
+    <a class="nav-link header-link" href="../news/">News</a>
+  </div>
+  <div class="navbar-end">
+    <a class="nav-link header-link" href="https://github.com/spdk/spdk" aria-label="GitHub">
+      <svg xmlns="http://www.w3.org/2000/svg" class="navbar-nav-svg" aria-hidden="true"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
+    </a>
+    <a id="cn_lang_btn" href="../cn/doc/" class="nav-link header-link">中文</a>
+  </div>
+</nav>
+<script>
+(function() {
+    var p = location.pathname, best = null, bLen = 0;
+    document.querySelectorAll('.header-link[href]').forEach(function(a) {
+        var raw = a.getAttribute('href');
+        if (!raw) return;
+        try { var u = new URL(raw, location.href); } catch(e) { return; }
+        if (u.origin !== location.origin) return;
+        var h = u.pathname;
+        if (h === '/') return;
+        var ok = h.endsWith('.html') ? p === h : p.indexOf(h) === 0;
+        if (ok && h.length > bLen) { bLen = h.length; best = a; }
+    });
+    if (best) best.classList.add('active');
+})();
+</script>
+<div id="doxygen-searchbox">        <div id="MSearchBox" class="MSearchBoxInactive">
+        <span class="left">
+          <span id="MSearchSelect" class="search-icon" onmouseover="return searchBox.OnSearchSelectShow()" onmouseout="return searchBox.OnSearchSelectHide()"><span class="search-icon-dropdown"></span></span>
+          <input type="text" id="MSearchField" value="" placeholder="Search" accesskey="S"
+               onfocus="searchBox.OnSearchFieldFocus(true)" 
+               onblur="searchBox.OnSearchFieldFocus(false)" 
+               onkeyup="searchBox.OnSearchFieldChange(event)"/>
+          </span><span class="right">
+            <a id="MSearchClose" href="javascript:searchBox.CloseResultsWindow()"><div id="MSearchCloseImg" class="close-icon"></div></a>
+          </span>
+        </div>
+</div>
+<!-- Generated by Doxygen 1.16.1 -->
+<script type="text/javascript">
+var searchBox = new SearchBox("searchBox", "search/",'.html');
+</script>
+<script type="text/javascript">
+$(function() { codefold.init(); });
+</script>
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+$(function(){initNavTree('structiscsi__bhs__snack__req.html','',''); });
+</script>
+<div id="container">
+<div id="doc-content">
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">Loading...</div>
+<div class="SRStatus" id="Searching">Searching...</div>
+<div class="SRStatus" id="NoMatches">No Matches</div>
+</div>
+</div>
+</div>
+</div>
+
+<div class="header">
+  <div class="headertitle"><div class="title">iscsi_bhs_snack_req Struct Reference</div></div>
+</div><!--header-->
+<div class="contents">
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 id="header-pub-attribs" class="groupheader"><a id="pub-attribs" name="pub-attribs"></a>
+Data Fields</h2></td></tr>
+<tr class="memitem:a7db23e013adde042959450197d3abacb" id="r_a7db23e013adde042959450197d3abacb"><td class="memItemLeft">uint8_t&#160;</td><td class="memItemRight"><a class="el" href="#a7db23e013adde042959450197d3abacb">opcode</a>: 6</td></tr>
+<tr class="memitem:a22eb16ac816a24f65d3d0cb1ee18d82e" id="r_a22eb16ac816a24f65d3d0cb1ee18d82e"><td class="memItemLeft">uint8_t&#160;</td><td class="memItemRight"><a class="el" href="#a22eb16ac816a24f65d3d0cb1ee18d82e">reserved</a>: 2</td></tr>
+<tr class="memitem:a0e16a3a01e0082e3981cb60695ab97ed" id="r_a0e16a3a01e0082e3981cb60695ab97ed"><td class="memItemLeft">uint8_t&#160;</td><td class="memItemRight"><a class="el" href="#a0e16a3a01e0082e3981cb60695ab97ed">flags</a></td></tr>
+<tr class="memitem:a21f682d6ee244f9e73a2b313a7f5768d" id="r_a21f682d6ee244f9e73a2b313a7f5768d"><td class="memItemLeft">uint8_t&#160;</td><td class="memItemRight"><a class="el" href="#a21f682d6ee244f9e73a2b313a7f5768d">res</a> [2]</td></tr>
+<tr class="memitem:ab04c43f1dfccad67444b27e586a46f4d" id="r_ab04c43f1dfccad67444b27e586a46f4d"><td class="memItemLeft">uint8_t&#160;</td><td class="memItemRight"><a class="el" href="#ab04c43f1dfccad67444b27e586a46f4d">total_ahs_len</a></td></tr>
+<tr class="memitem:a4b50783cc1aa57237d69d60ab0decedf" id="r_a4b50783cc1aa57237d69d60ab0decedf"><td class="memItemLeft">uint8_t&#160;</td><td class="memItemRight"><a class="el" href="#a4b50783cc1aa57237d69d60ab0decedf">data_segment_len</a> [3]</td></tr>
+<tr class="memitem:a0e91bdd784ad8b026bfcba4dc353c97c" id="r_a0e91bdd784ad8b026bfcba4dc353c97c"><td class="memItemLeft">uint64_t&#160;</td><td class="memItemRight"><a class="el" href="#a0e91bdd784ad8b026bfcba4dc353c97c">lun</a></td></tr>
+<tr class="memitem:a362ace5c147d96cebda6b9c9ff7725a2" id="r_a362ace5c147d96cebda6b9c9ff7725a2"><td class="memItemLeft">uint32_t&#160;</td><td class="memItemRight"><a class="el" href="#a362ace5c147d96cebda6b9c9ff7725a2">itt</a></td></tr>
+<tr class="memitem:a2b8c0e864391af84ed81e2a021e8621f" id="r_a2b8c0e864391af84ed81e2a021e8621f"><td class="memItemLeft">uint32_t&#160;</td><td class="memItemRight"><a class="el" href="#a2b8c0e864391af84ed81e2a021e8621f">ttt</a></td></tr>
+<tr class="memitem:a113e118ccddbd17edf3413718522ea78" id="r_a113e118ccddbd17edf3413718522ea78"><td class="memItemLeft">uint32_t&#160;</td><td class="memItemRight"><a class="el" href="#a113e118ccddbd17edf3413718522ea78">res5</a></td></tr>
+<tr class="memitem:af9e1d2ecbfa2cf1c1e0cf18fcf0edbf2" id="r_af9e1d2ecbfa2cf1c1e0cf18fcf0edbf2"><td class="memItemLeft">uint32_t&#160;</td><td class="memItemRight"><a class="el" href="#af9e1d2ecbfa2cf1c1e0cf18fcf0edbf2">exp_stat_sn</a></td></tr>
+<tr class="memitem:ab4cc5b20352b6400188870deee451393" id="r_ab4cc5b20352b6400188870deee451393"><td class="memItemLeft">uint8_t&#160;</td><td class="memItemRight"><a class="el" href="#ab4cc5b20352b6400188870deee451393">res6</a> [8]</td></tr>
+<tr class="memitem:a70074098be46198eb0889d350f7ce40b" id="r_a70074098be46198eb0889d350f7ce40b"><td class="memItemLeft">uint32_t&#160;</td><td class="memItemRight"><a class="el" href="#a70074098be46198eb0889d350f7ce40b">beg_run</a></td></tr>
+<tr class="memitem:a9ce914a4903b861c105e5fdfccf36457" id="r_a9ce914a4903b861c105e5fdfccf36457"><td class="memItemLeft">uint32_t&#160;</td><td class="memItemRight"><a class="el" href="#a9ce914a4903b861c105e5fdfccf36457">run_len</a></td></tr>
+</table>
+<a name="details" id="details"></a><h2 id="header-details" class="groupheader">Detailed Description</h2>
+<div class="textblock">
+<p class="definition">Definition at line <a class="el" href="iscsi__spec_8h_source.html#l00360">360</a> of file <a class="el" href="iscsi__spec_8h_source.html">iscsi_spec.h</a>.</p>
+</div><a name="doc-variable-members" id="doc-variable-members"></a><h2 id="header-doc-variable-members" class="groupheader">Field Documentation</h2>
+<a id="a70074098be46198eb0889d350f7ce40b" name="a70074098be46198eb0889d350f7ce40b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a70074098be46198eb0889d350f7ce40b">&#9670;&#160;</a></span>beg_run</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">uint32_t iscsi_bhs_snack_req::beg_run</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="iscsi__spec_8h_source.html#l00373">373</a> of file <a class="el" href="iscsi__spec_8h_source.html">iscsi_spec.h</a>.</p>
+
+</div>
+</div>
+<a id="a4b50783cc1aa57237d69d60ab0decedf" name="a4b50783cc1aa57237d69d60ab0decedf"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4b50783cc1aa57237d69d60ab0decedf">&#9670;&#160;</a></span>data_segment_len</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">uint8_t iscsi_bhs_snack_req::data_segment_len[3]</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="iscsi__spec_8h_source.html#l00366">366</a> of file <a class="el" href="iscsi__spec_8h_source.html">iscsi_spec.h</a>.</p>
+
+</div>
+</div>
+<a id="af9e1d2ecbfa2cf1c1e0cf18fcf0edbf2" name="af9e1d2ecbfa2cf1c1e0cf18fcf0edbf2"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af9e1d2ecbfa2cf1c1e0cf18fcf0edbf2">&#9670;&#160;</a></span>exp_stat_sn</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">uint32_t iscsi_bhs_snack_req::exp_stat_sn</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="iscsi__spec_8h_source.html#l00371">371</a> of file <a class="el" href="iscsi__spec_8h_source.html">iscsi_spec.h</a>.</p>
+
+</div>
+</div>
+<a id="a0e16a3a01e0082e3981cb60695ab97ed" name="a0e16a3a01e0082e3981cb60695ab97ed"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0e16a3a01e0082e3981cb60695ab97ed">&#9670;&#160;</a></span>flags</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">uint8_t iscsi_bhs_snack_req::flags</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="iscsi__spec_8h_source.html#l00363">363</a> of file <a class="el" href="iscsi__spec_8h_source.html">iscsi_spec.h</a>.</p>
+
+</div>
+</div>
+<a id="a362ace5c147d96cebda6b9c9ff7725a2" name="a362ace5c147d96cebda6b9c9ff7725a2"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a362ace5c147d96cebda6b9c9ff7725a2">&#9670;&#160;</a></span>itt</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">uint32_t iscsi_bhs_snack_req::itt</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="iscsi__spec_8h_source.html#l00368">368</a> of file <a class="el" href="iscsi__spec_8h_source.html">iscsi_spec.h</a>.</p>
+
+</div>
+</div>
+<a id="a0e91bdd784ad8b026bfcba4dc353c97c" name="a0e91bdd784ad8b026bfcba4dc353c97c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0e91bdd784ad8b026bfcba4dc353c97c">&#9670;&#160;</a></span>lun</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">uint64_t iscsi_bhs_snack_req::lun</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="iscsi__spec_8h_source.html#l00367">367</a> of file <a class="el" href="iscsi__spec_8h_source.html">iscsi_spec.h</a>.</p>
+
+</div>
+</div>
+<a id="a7db23e013adde042959450197d3abacb" name="a7db23e013adde042959450197d3abacb"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7db23e013adde042959450197d3abacb">&#9670;&#160;</a></span>opcode</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">uint8_t iscsi_bhs_snack_req::opcode</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="iscsi__spec_8h_source.html#l00361">361</a> of file <a class="el" href="iscsi__spec_8h_source.html">iscsi_spec.h</a>.</p>
+
+</div>
+</div>
+<a id="a21f682d6ee244f9e73a2b313a7f5768d" name="a21f682d6ee244f9e73a2b313a7f5768d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a21f682d6ee244f9e73a2b313a7f5768d">&#9670;&#160;</a></span>res</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">uint8_t iscsi_bhs_snack_req::res[2]</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="iscsi__spec_8h_source.html#l00364">364</a> of file <a class="el" href="iscsi__spec_8h_source.html">iscsi_spec.h</a>.</p>
+
+</div>
+</div>
+<a id="a113e118ccddbd17edf3413718522ea78" name="a113e118ccddbd17edf3413718522ea78"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a113e118ccddbd17edf3413718522ea78">&#9670;&#160;</a></span>res5</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">uint32_t iscsi_bhs_snack_req::res5</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="iscsi__spec_8h_source.html#l00370">370</a> of file <a class="el" href="iscsi__spec_8h_source.html">iscsi_spec.h</a>.</p>
+
+</div>
+</div>
+<a id="ab4cc5b20352b6400188870deee451393" name="ab4cc5b20352b6400188870deee451393"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab4cc5b20352b6400188870deee451393">&#9670;&#160;</a></span>res6</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">uint8_t iscsi_bhs_snack_req::res6[8]</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="iscsi__spec_8h_source.html#l00372">372</a> of file <a class="el" href="iscsi__spec_8h_source.html">iscsi_spec.h</a>.</p>
+
+</div>
+</div>
+<a id="a22eb16ac816a24f65d3d0cb1ee18d82e" name="a22eb16ac816a24f65d3d0cb1ee18d82e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a22eb16ac816a24f65d3d0cb1ee18d82e">&#9670;&#160;</a></span>reserved</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">uint8_t iscsi_bhs_snack_req::reserved</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="iscsi__spec_8h_source.html#l00362">362</a> of file <a class="el" href="iscsi__spec_8h_source.html">iscsi_spec.h</a>.</p>
+
+</div>
+</div>
+<a id="a9ce914a4903b861c105e5fdfccf36457" name="a9ce914a4903b861c105e5fdfccf36457"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9ce914a4903b861c105e5fdfccf36457">&#9670;&#160;</a></span>run_len</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">uint32_t iscsi_bhs_snack_req::run_len</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="iscsi__spec_8h_source.html#l00374">374</a> of file <a class="el" href="iscsi__spec_8h_source.html">iscsi_spec.h</a>.</p>
+
+</div>
+</div>
+<a id="ab04c43f1dfccad67444b27e586a46f4d" name="ab04c43f1dfccad67444b27e586a46f4d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab04c43f1dfccad67444b27e586a46f4d">&#9670;&#160;</a></span>total_ahs_len</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">uint8_t iscsi_bhs_snack_req::total_ahs_len</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="iscsi__spec_8h_source.html#l00365">365</a> of file <a class="el" href="iscsi__spec_8h_source.html">iscsi_spec.h</a>.</p>
+
+</div>
+</div>
+<a id="a2b8c0e864391af84ed81e2a021e8621f" name="a2b8c0e864391af84ed81e2a021e8621f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2b8c0e864391af84ed81e2a021e8621f">&#9670;&#160;</a></span>ttt</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">uint32_t iscsi_bhs_snack_req::ttt</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="iscsi__spec_8h_source.html#l00369">369</a> of file <a class="el" href="iscsi__spec_8h_source.html">iscsi_spec.h</a>.</p>
+
+</div>
+</div>
+<hr/>The documentation for this struct was generated from the following file:<ul>
+<li><a class="el" href="iscsi__spec_8h_source.html">iscsi_spec.h</a></li>
+</ul>
+</div><!-- contents -->
+</div><!-- doc-content -->
+<div id="page-nav" class="page-nav-panel">
+<div id="page-nav-resize-handle"></div>
+<div id="page-nav-tree">
+<div id="page-nav-contents">
+</div><!-- page-nav-contents -->
+</div><!-- page-nav-tree -->
+</div><!-- page-nav -->
+</div><!-- container -->
+<footer class="footer" id="nav-path">
+  <div class="footer-inner">
+    <div class="footer-copy">
+      <small>Copyright &copy; SPDK a Series of LF Projects, LLC. For web site terms of use, trademark policy, and other
+      project policies please see <a href="https://lfprojects.org">lfprojects.org</a>.</small>
+    </div>
+  </div>
+</footer>
+<script type="text/javascript" src="page_outline.js"></script>
+<script type="text/javascript" src="spdk_nav.js"></script>
+<!-- Doxygen footer suffix – assembled by _build/common.sh:
+     _includes/footer.html (shared) + theme scripts (from spdk) + this file.
+     Theme scripts are extracted from spdk/doc/theme/footer.html at build
+     time so the script list is maintained in a single place. -->
+</body>
+</html>

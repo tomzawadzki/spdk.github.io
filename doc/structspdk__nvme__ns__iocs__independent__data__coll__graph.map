@@ -1,0 +1,11 @@
+<map id="spdk_nvme_ns_iocs_independent_data" name="spdk_nvme_ns_iocs_independent_data">
+<area shape="rect" id="Node000001" title="Identify – I/O Command Set Independent Identify Namespace Data Structure (CNS 08h)." alt="" coords="179,106,455,134"/>
+<area shape="rect" id="Node000002" href="$structspdk__nvme__nmic.html" title=" " alt="" coords="5,5,141,33"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="119,37,223,80,283,103,281,108,221,84,117,42"/>
+<area shape="rect" id="Node000003" href="$structspdk__nvme__rescap.html" title=" " alt="" coords="165,5,312,33"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="260,44,309,104,304,107,256,47"/>
+<area shape="rect" id="Node000004" href="$structspdk__nvme__fpi.html" title=" " alt="" coords="336,5,456,33"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="378,47,330,107,325,104,374,44"/>
+<area shape="rect" id="Node000005" href="$structspdk__nvme__nsattr.html" title=" " alt="" coords="480,5,621,33"/>
+<area shape="poly" id="edge4_Node000001_Node000005" title=" " alt="" coords="506,42,349,108,347,103,504,37"/>
+</map>

@@ -1,0 +1,196 @@
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.4.1">Jekyll</generator><link href="https://www.spdk.io/spdk.github.io/feed/news.xml" rel="self" type="application/atom+xml" /><link href="https://www.spdk.io/spdk.github.io/" rel="alternate" type="text/html" /><updated>2026-03-31T22:56:45+02:00</updated><id>https://www.spdk.io/spdk.github.io/feed/news.xml</id><title type="html">Storage Performance Development Kit | News</title><subtitle>The Storage Performance Development Kit (SPDK) provides a set of tools and libraries for writing high performance, scalable, user-mode storage applications. It achieves high performance by moving all of the necessary drivers into userspace and operating in a polled mode instead of relying on interrupts, which avoids kernel context switches and eliminates interrupt handling overhead.
+</subtitle><author><name>Benjamin Walker</name></author><entry><title type="html">2025 SPDK Developer Meetup Hosted by Nutanix</title><link href="https://www.spdk.io/spdk.github.io/news/2025/11/07/dev_meetup_summary/" rel="alternate" type="text/html" title="2025 SPDK Developer Meetup Hosted by Nutanix" /><published>2025-11-07T00:00:00+01:00</published><updated>2025-11-07T00:00:00+01:00</updated><id>https://www.spdk.io/spdk.github.io/news/2025/11/07/dev_meetup_summary</id><content type="html" xml:base="https://www.spdk.io/spdk.github.io/news/2025/11/07/dev_meetup_summary/"><![CDATA[<p>This year Nutanix hosted the 5th SPDK Developer Meetup in Cambridge, UK.
+The event was a great success, attracting around 30 attendees from 11 different companies.
+The agenda was packed with a variety of activities, including technical
+presentations, open discussions, and collaborative whiteboard design work.
+Attendees had the opportunity to network, learn, and contribute to the growth of the SPDK community.</p>
+
+<p><img src="/assets/img/blog/spdk_devmeetup_2025_1.jpg" alt="Hard at work" width="100%" /></p>
+
+<p><img src="/assets/img/blog/spdk_devmeetup_2025_2.jpg" alt="Group shot" width="100%" /></p>
+
+<p>Presentations from some of the topics discussed this year can be found <a href="https://review.spdk.io/download/2025-dev-meetup/">here</a>.</p>
+
+<p>The event was a huge hit, and we look forward to more in the future!</p>]]></content><author><name>Tomasz Zawadzki</name></author><category term="news" /><summary type="html"><![CDATA[This year Nutanix hosted the 5th SPDK Developer Meetup in Cambridge, UK. The event was a great success, attracting around 30 attendees from 11 different companies. The agenda was packed with a variety of activities, including technical presentations, open discussions, and collaborative whiteboard design work. Attendees had the opportunity to network, learn, and contribute to the growth of the SPDK community.]]></summary></entry><entry><title type="html">New Core Maintainer - Jacek Kalwas</title><link href="https://www.spdk.io/spdk.github.io/news/2025/09/17/new-core-maintainer/" rel="alternate" type="text/html" title="New Core Maintainer - Jacek Kalwas" /><published>2025-09-17T00:00:00+02:00</published><updated>2025-09-17T00:00:00+02:00</updated><id>https://www.spdk.io/spdk.github.io/news/2025/09/17/new-core-maintainer</id><content type="html" xml:base="https://www.spdk.io/spdk.github.io/news/2025/09/17/new-core-maintainer/"><![CDATA[<p>The SPDK project has a team of core maintainers who are responsible for providing
+technical oversight for the SPDK project, including final review and merging of
+patches into the SPDK code base. The core maintainer team looks to add to its
+team with contributors who are demonstrating technical skill and
+leadership within the project over an extended period of time. So we are
+pleased to announce that we are adding Jacek Kalwas to the core
+maintainer team!</p>
+
+<p>Jacek has been a key contributor to SPDK over the last 6 years with over
+300 patches in a wide range of components, including the nvmf target,
+nvme driver, and socket, bdev and accel libraries. Jacek is from Nutanix and
+is based in Gdansk, Poland.</p>
+
+<p>Thanks,</p>
+
+<p>Jim Harris (representing the core maintainer team)</p>
+
+<p>Please visit <a href="https://www.spdk.io/development/#core">Core Maintainers</a> for further
+details on the core maintainer team and their responsibilities.</p>]]></content><author><name>Jim Harris</name></author><category term="news" /><summary type="html"><![CDATA[The SPDK project has a team of core maintainers who are responsible for providing technical oversight for the SPDK project, including final review and merging of patches into the SPDK code base. The core maintainer team looks to add to its team with contributors who are demonstrating technical skill and leadership within the project over an extended period of time. So we are pleased to announce that we are adding Jacek Kalwas to the core maintainer team!]]></summary></entry><entry><title type="html">Announcing the 2025 SPDK Developer Meetup Hosted by Nutanix</title><link href="https://www.spdk.io/spdk.github.io/news/2025/08/08/dev_meetup/" rel="alternate" type="text/html" title="Announcing the 2025 SPDK Developer Meetup Hosted by Nutanix" /><published>2025-08-08T00:00:00+02:00</published><updated>2025-08-08T00:00:00+02:00</updated><id>https://www.spdk.io/spdk.github.io/news/2025/08/08/dev_meetup</id><content type="html" xml:base="https://www.spdk.io/spdk.github.io/news/2025/08/08/dev_meetup/"><![CDATA[<p>We are happy to announce the 2025 SPDK Developer Meetup hosted at Nutanix offices in Cambridge, UK! The meetup will be Thursday and Friday, November 6 and 7, 2025.</p>
+
+<p>SPDK Developer Meetups are a great opportunity to network with other SPDK contributors, discuss new or ongoing SPDK feature development, learn about SPDK and to build the SPDK community.</p>
+
+<p>Meetups are relatively informal but highly technical, working through a broad range of agenda items including the following:</p>
+
+<ul>
+  <li>Introductory presentations on the technical topics for solidifying understanding of key concepts especially for new contributors to certain areas of SPDK</li>
+  <li>Open discussions and brainstorming sessions on new features or process improvements</li>
+  <li>Collaborative whiteboard design work</li>
+  <li>Code walkthroughs</li>
+  <li>Focused time on specific patchsets to accelerate progress</li>
+</ul>
+
+<p>We typically start day 1 with a session on building the agenda for the meetup. If you have specific topics you are interested in presenting or having others present, it is helpful to reach out to the organizers ahead of time.</p>
+
+<p>Seating is somewhat limited, so please RSVP as soon as possible to secure your seats at the meetup. Attendance will initially be restricted to 2 engineers per company, with exceptions for those actively contributing to SPDK.</p>
+
+<h4 id="link-invitation">Link: <a href="https://forms.gle/VBrTDH76dyt22xeQ8">Invitation</a></h4>
+
+<p>Tomek Zawadzki [tomasz.zawadzki@nutanix.com]<br />
+Jim Harris [jim.harris@nvidia.com]</p>
+
+<h4 id="location">Location:</h4>
+
+<p>Nutanix<br />
+9 Hills Road<br />
+Cambridge, CB2 1GE, United Kingdom</p>
+
+<h4 id="map"><a href="https://maps.app.goo.gl/zuhrTp9gfvoeNjjW7">Map</a></h4>
+
+<h4 id="dates">Dates:</h4>
+
+<p>06/11/2025, 8:30 am - 5:00 pm<br />
+07/11/2025, 8:30 am - 5:00 pm</p>
+
+<p><img src="/assets/img/blog/spdk_devmeetup_2025.jpg" alt="Cambridge" width="100%" /></p>
+
+<p>By Jean-Christophe BENOIST - Own work, CC BY-SA 4.0, https://commons.wikimedia.org/w/index.php?curid=39896996</p>]]></content><author><name>Tomasz Zawadzki</name></author><category term="news" /><summary type="html"><![CDATA[We are happy to announce the 2025 SPDK Developer Meetup hosted at Nutanix offices in Cambridge, UK! The meetup will be Thursday and Friday, November 6 and 7, 2025.]]></summary></entry><entry><title type="html">Updates on SPDK Linux Foundation Transition</title><link href="https://www.spdk.io/spdk.github.io/news/2024/12/16/transition/" rel="alternate" type="text/html" title="Updates on SPDK Linux Foundation Transition" /><published>2024-12-16T00:00:00+01:00</published><updated>2024-12-16T00:00:00+01:00</updated><id>https://www.spdk.io/spdk.github.io/news/2024/12/16/transition</id><content type="html" xml:base="https://www.spdk.io/spdk.github.io/news/2024/12/16/transition/"><![CDATA[<p>After Intel’s recent <a href="https://spdk.io/news/2024/12/05/LF/">announcement</a> about
+SPDK’s transition to the Linux Foundation (LF), SPDK needs to have an orderly
+shutdown of the SPDK project resources provided by Intel to facilitate the
+transition.</p>
+
+<p>The SPDK CI at Intel, which drives the vast majority of per-patch and nightly
+testing, will be permanently turned off Tuesday, December 17 (morning CEST).
+SPDK <a href="https://review.spdk.io">Gerrit</a> will be shutdown Thursday, December 19
+(morning CEST), to enable transition of the Gerrit instance from Intel to the
+LF. All efforts are being made to ensure no Gerrit data is lost during the
+transition. There are no changes to the SPDK <a href="https://github.com/spdk">GitHub</a>
+repositories as part of this transition.</p>
+
+<p>No more patches will be merged to the SPDK master branch starting
+immediately. Patch merges will resume when the SPDK LF project establishes a
+new CI and the SPDK Gerrit instance is restored under the LF. Any services or
+local repositories currently pointing to Gerrit can be pointed to the SPDK
+GitHub repositories while the transition is in progress. SPDK GitHub is an
+exact mirror, as always, of the current state of all SPDK Gerrit branches.</p>
+
+<p>The SPDK LF project is actively working on the transition and will provide
+updates as details become available. Please contact
+<a href="mailto:rob.mills@nutanix.com">Rob Mills</a> from Nutanix with any questions
+about the SPDK LF project transition.</p>
+
+<p>Thanks,</p>
+
+<p>Jim Harris
+(on behalf of the SPDK core maintainers and SPDK LF project)</p>]]></content><author><name>Jim Harris</name></author><category term="news" /><summary type="html"><![CDATA[After Intel’s recent announcement about SPDK’s transition to the Linux Foundation (LF), SPDK needs to have an orderly shutdown of the SPDK project resources provided by Intel to facilitate the transition.]]></summary></entry><entry><title type="html">Intel’s SPDK Transition to the Linux Foundation</title><link href="https://www.spdk.io/spdk.github.io/news/2024/12/05/LF/" rel="alternate" type="text/html" title="Intel’s SPDK Transition to the Linux Foundation" /><published>2024-12-05T00:00:00+01:00</published><updated>2024-12-05T00:00:00+01:00</updated><id>https://www.spdk.io/spdk.github.io/news/2024/12/05/LF</id><content type="html" xml:base="https://www.spdk.io/spdk.github.io/news/2024/12/05/LF/"><![CDATA[<p>Intel is pleased to announce that the Storage Performance Development Kit (SPDK) project will be
+transitioning to the Linux Foundation in 2025. This move aims to ensure the long-term sustainability
+and growth of SPDK, fostering a vibrant community and driving innovation in storage performance.</p>
+
+<p>While Intel will be divesting from the project, we remain committed to supporting the community
+during this transition. We are actively working with the Linux Foundation to establish a Technical
+Steering Committee that will oversee the project’s future direction. During the transition period,
+there may be some temporary disruptions to services such as code reviews and continuous integration.
+We apologize for any inconvenience this may cause and will provide updates on the status of these
+services. Please check back here or on Slack for updates.</p>
+
+<p>We would like to express our sincere gratitude to the SPDK community for their contributions over
+the past decade. Your dedication and hard work have made SPDK a valuable resource for the storage
+industry. We wish the SPDK community continued success under the stewardship of the Linux
+Foundation.</p>
+
+<p>Thank you,<br />
+Bill Pearson, Vice President, Intel Data Center &amp; AI Group<br />
+Paul Luse, Principal Engineer, Intel Data Center &amp; AI Group<br />
+(direct questions to Paul.E.Luse@intel.com)<br /></p>]]></content><author><name>Bill Pearson, Paul Luse</name></author><category term="news" /><summary type="html"><![CDATA[Intel is pleased to announce that the Storage Performance Development Kit (SPDK) project will be transitioning to the Linux Foundation in 2025. This move aims to ensure the long-term sustainability and growth of SPDK, fostering a vibrant community and driving innovation in storage performance.]]></summary></entry><entry><title type="html">24.05 SPDK NVMe-oF RDMA and Vhost Performance Reports</title><link href="https://www.spdk.io/spdk.github.io/news/2024/08/13/Performance_Report_Update/" rel="alternate" type="text/html" title="24.05 SPDK NVMe-oF RDMA and Vhost Performance Reports" /><published>2024-08-13T00:00:00+02:00</published><updated>2024-08-13T00:00:00+02:00</updated><id>https://www.spdk.io/spdk.github.io/news/2024/08/13/Performance_Report_Update</id><content type="html" xml:base="https://www.spdk.io/spdk.github.io/news/2024/08/13/Performance_Report_Update/"><![CDATA[<p>The performance reports for SPDK 24.05 have been published. One report presents the results for
+RDMA NVMe-oF, utilizing the Intel E810-CQDA2 NIC with RoCEv2 protocol enabled in the hardware setup.
+The other report covers the Vhost performance results.</p>
+
+<p>You can find all SPDK performance reports <a href="https://spdk.io/doc/performance_reports.html">here</a>.</p>
+
+<p>Direct links to the reports:</p>
+
+<ul>
+  <li><a href="https://review.spdk.io/download/performance-reports/SPDK_rdma_cvl_roce_perf_report_2405.pdf">SPDK 24.05 NVMe-oF RDMA Performance Report (Intel E810-CQDA2 RoCEv2)</a></li>
+  <li><a href="https://review.spdk.io/download/performance-reports/SPDK_vhost_perf_report_2405.pdf">SPDK 24.05 Vhost Performance Report</a></li>
+</ul>]]></content><author><name>Jaroslaw Chachulski</name></author><category term="news" /><summary type="html"><![CDATA[The performance reports for SPDK 24.05 have been published. One report presents the results for RDMA NVMe-oF, utilizing the Intel E810-CQDA2 NIC with RoCEv2 protocol enabled in the hardware setup. The other report covers the Vhost performance results.]]></summary></entry><entry><title type="html">2024 SPDK Developer Meetup Hosted by Intel</title><link href="https://www.spdk.io/spdk.github.io/news/2024/07/22/dev_meetup_summary/" rel="alternate" type="text/html" title="2024 SPDK Developer Meetup Hosted by Intel" /><published>2024-07-22T00:00:00+02:00</published><updated>2024-07-22T00:00:00+02:00</updated><id>https://www.spdk.io/spdk.github.io/news/2024/07/22/dev_meetup_summary</id><content type="html" xml:base="https://www.spdk.io/spdk.github.io/news/2024/07/22/dev_meetup_summary/"><![CDATA[<p>This year Intel hosted the 4th SPDK Developer Meetup in Gdansk, Poland.
+The event was a great success, attracting around 30 attendees from 7 different companies.
+The agenda was packed with a variety of activities, including technical
+presentations, open discussions, and collaborative whiteboard design work.
+Attendees had the opportunity to network, learn, and contribute to the growth of the SPDK community.</p>
+
+<p><img src="/assets/img/blog/spdk_devmeetup_2024_1.jpg" alt="Group_shot" title="Group shot" /></p>
+
+<p><img src="/assets/img/blog/spdk_devmeetup_2024_2.jpg" alt="Hard_at_work" title="Hard at work" /></p>
+
+<p>Topics discussed this year are documented on the <a href="https://github.com/orgs/spdk/projects/6">SPDK DevMeetup ‘24</a> board,
+and many already had follow-up discussions on the weekly <a href="https://spdk.io/community/#meetings">Community Meetings</a>.</p>
+
+<p>The event was a huge hit, and we look forward to more in the future!</p>]]></content><author><name>Tomasz Zawadzki</name></author><category term="news" /><summary type="html"><![CDATA[This year Intel hosted the 4th SPDK Developer Meetup in Gdansk, Poland. The event was a great success, attracting around 30 attendees from 7 different companies. The agenda was packed with a variety of activities, including technical presentations, open discussions, and collaborative whiteboard design work. Attendees had the opportunity to network, learn, and contribute to the growth of the SPDK community.]]></summary></entry><entry><title type="html">24.05 SPDK NVMe-oF TCP Performance Reports</title><link href="https://www.spdk.io/spdk.github.io/news/2024/07/15/Performance_Report_Update/" rel="alternate" type="text/html" title="24.05 SPDK NVMe-oF TCP Performance Reports" /><published>2024-07-15T00:00:00+02:00</published><updated>2024-07-15T00:00:00+02:00</updated><id>https://www.spdk.io/spdk.github.io/news/2024/07/15/Performance_Report_Update</id><content type="html" xml:base="https://www.spdk.io/spdk.github.io/news/2024/07/15/Performance_Report_Update/"><![CDATA[<p>SPDK TCP NVMe-oF 24.05 performance report documents have been published.
+Report documents contain results of benchmark tests carried out using
+two different NICs:</p>
+
+<ul>
+  <li>Mellanox ConnectX-5 Ex</li>
+  <li>Intel E810-CQDA2</li>
+</ul>
+
+<p>You can find all SPDK performance reports <a href="https://spdk.io/doc/performance_reports.html">here</a>.</p>
+
+<p>Direct links to the reports:</p>
+
+<ul>
+  <li><a href="https://review.spdk.io/download/performance-reports/SPDK_tcp_mlx_perf_report_2405.pdf">SPDK 24.05 NVMe-oF TCP Performance Report (Mellanox ConnectX-5)</a></li>
+  <li><a href="https://review.spdk.io/download/performance-reports/SPDK_tcp_cvl_perf_report_2405.pdf">SPDK 24.05 NVMe-oF TCP Performance Report (Intel E810-CQDA2)</a></li>
+</ul>]]></content><author><name>Jaroslaw Chachulski</name></author><category term="news" /><summary type="html"><![CDATA[SPDK TCP NVMe-oF 24.05 performance report documents have been published. Report documents contain results of benchmark tests carried out using two different NICs:]]></summary></entry><entry><title type="html">24.05 SPDK NVMe Bdev and NVMe-oF RDMA Performance Reports</title><link href="https://www.spdk.io/spdk.github.io/news/2024/06/26/Performance_Report_Update/" rel="alternate" type="text/html" title="24.05 SPDK NVMe Bdev and NVMe-oF RDMA Performance Reports" /><published>2024-06-26T00:00:00+02:00</published><updated>2024-06-26T00:00:00+02:00</updated><id>https://www.spdk.io/spdk.github.io/news/2024/06/26/Performance_Report_Update</id><content type="html" xml:base="https://www.spdk.io/spdk.github.io/news/2024/06/26/Performance_Report_Update/"><![CDATA[<p>Another part of SPDK 24.05 performance report documents is now available.</p>
+
+<p>This part contains:</p>
+
+<ul>
+  <li>SPDK 24.05 NVMe-oF RDMA Performance Reports</li>
+</ul>
+
+<p>NVMe-oF RDMA report documents come in different flavors, using different NICs and protocols for NVMe-oF target to NVMe-oF initiator connections:</p>
+
+<ul>
+  <li>Mellanox ConnectX-5 Ex with the RoCEv2 protocol.</li>
+  <li>Intel E810-CQDA2 with the iWARP protocol.</li>
+</ul>
+
+<p>Intel E810-CQDA2 RoCEv2 protocol version of the performance report will be
+published separately at a later time.</p>
+
+<p>You can find all SPDK performance reports <a href="https://spdk.io/doc/performance_reports.html">here</a>.</p>
+
+<p>Direct links to the reports:</p>
+
+<ul>
+  <li><a href="https://review.spdk.io/download/performance-reports/SPDK_rdma_mlx_perf_report_2405.pdf">SPDK 24.05 NVMe-oF RDMA Performance Report (Mellanox ConnectX-5)</a></li>
+  <li><a href="https://review.spdk.io/download/performance-reports/SPDK_rdma_cvl_iwarp_perf_report_2405.pdf">SPDK 24.05 NVMe-oF RDMA Performance Report (Intel E810-CQDA2 iWARP)</a></li>
+</ul>]]></content><author><name>Jaroslaw Chachulski</name></author><category term="news" /><summary type="html"><![CDATA[Another part of SPDK 24.05 performance report documents is now available.]]></summary></entry><entry><title type="html">24.05 SPDK NVMe Bdev Performance Report</title><link href="https://www.spdk.io/spdk.github.io/news/2024/06/24/Performance_Report_Update/" rel="alternate" type="text/html" title="24.05 SPDK NVMe Bdev Performance Report" /><published>2024-06-24T00:00:00+02:00</published><updated>2024-06-24T00:00:00+02:00</updated><id>https://www.spdk.io/spdk.github.io/news/2024/06/24/Performance_Report_Update</id><content type="html" xml:base="https://www.spdk.io/spdk.github.io/news/2024/06/24/Performance_Report_Update/"><![CDATA[<p>The first part of the SPDK 24.05 performance report documents is now available.</p>
+
+<p>This part contains:</p>
+
+<ul>
+  <li>SPDK 24.05 NVMe Bdev Performance Report</li>
+</ul>
+
+<p>You can find all SPDK performance reports <a href="https://spdk.io/doc/performance_reports.html">here</a>.</p>
+
+<p>Direct link to the report:</p>
+
+<ul>
+  <li><a href="https://review.spdk.io/download/performance-reports/SPDK_nvme_bdev_perf_report_2405.pdf">SPDK 24.05 NVMe Bdev Performance Report</a></li>
+</ul>]]></content><author><name>Jaroslaw Chachulski</name></author><category term="news" /><summary type="html"><![CDATA[The first part of the SPDK 24.05 performance report documents is now available.]]></summary></entry></feed>

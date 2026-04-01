@@ -1,0 +1,383 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<meta name="generator" content="Doxygen 1.16.1">
+	<title>SPDK: trace_parser.h File Reference</title>
+	<script type="text/javascript" src="jquery.js"></script>
+	<script type="text/javascript" src="dynsections.js"></script>
+	<script type="text/javascript" src="clipboard.js"></script>
+	<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
+<script type="text/javascript" src="cookie.js"></script>
+	<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<script type="text/javascript">
+  $(function() { init_search(); });
+</script>
+	<link rel="icon" type="image/svg+xml" href="../assets/img/spdk.svg">
+	<link rel="icon" href="../assets/favicon.ico" sizes="32x32">
+	<link href="doxygen.css" rel="stylesheet" type="text/css">
+	<script>(function(){var k='doxygen_width',w,bw=6;if(window.chrome){w=localStorage.getItem(k);if(!w){w='350';localStorage.setItem(k,w)}}else{var m=document.cookie.match(new RegExp(k+'=(\\d+)'));w=m?m[1]:null;if(!w){w='350';document.cookie=k+'=350;SameSite=Lax;path=/'}}document.documentElement.style.setProperty('--sn-w',(parseInt(w)+bw)+'px')})()</script>
+	<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:400,700,900" type="text/css">
+	<link href="spdk.css" rel="stylesheet" type="text/css"/>
+	<link href="../assets/css/spdk.css" rel="stylesheet" type="text/css">
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<nav class="navbar">
+  <a class="navbar-brand" href="../" aria-label="SPDK">
+    <img src="../assets/img/spdk.svg" width="36" height="36" alt="Storage Performance Development Kit">
+  </a>
+  <div class="navbar-nav">
+    <a class="nav-link header-link" href="../doc/releases.html">download</a>
+    <a class="nav-link header-link" href="../doc/">documentation</a>
+    <a class="nav-link header-link" href="../doc/contributing.html">development</a>
+    <a class="nav-link header-link" href="../doc/ci_tools.html">CI status</a>
+    <a class="nav-link header-link" href="../community/">community</a>
+    <a class="nav-link header-link" href="../blog/">Blog</a>
+    <a class="nav-link header-link" href="https://github.com/orgs/spdk/projects/5">Roadmap</a>
+    <a class="nav-link header-link" href="../news/">News</a>
+  </div>
+  <div class="navbar-end">
+    <a class="nav-link header-link" href="https://github.com/spdk/spdk" aria-label="GitHub">
+      <svg xmlns="http://www.w3.org/2000/svg" class="navbar-nav-svg" aria-hidden="true"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
+    </a>
+    <a id="cn_lang_btn" href="../cn/doc/" class="nav-link header-link">中文</a>
+  </div>
+</nav>
+<script>
+(function() {
+    var p = location.pathname, best = null, bLen = 0;
+    document.querySelectorAll('.header-link[href]').forEach(function(a) {
+        var raw = a.getAttribute('href');
+        if (!raw) return;
+        try { var u = new URL(raw, location.href); } catch(e) { return; }
+        if (u.origin !== location.origin) return;
+        var h = u.pathname;
+        if (h === '/') return;
+        var ok = h.endsWith('.html') ? p === h : p.indexOf(h) === 0;
+        if (ok && h.length > bLen) { bLen = h.length; best = a; }
+    });
+    if (best) best.classList.add('active');
+})();
+</script>
+<div id="doxygen-searchbox">        <div id="MSearchBox" class="MSearchBoxInactive">
+        <span class="left">
+          <span id="MSearchSelect" class="search-icon" onmouseover="return searchBox.OnSearchSelectShow()" onmouseout="return searchBox.OnSearchSelectHide()"><span class="search-icon-dropdown"></span></span>
+          <input type="text" id="MSearchField" value="" placeholder="Search" accesskey="S"
+               onfocus="searchBox.OnSearchFieldFocus(true)" 
+               onblur="searchBox.OnSearchFieldFocus(false)" 
+               onkeyup="searchBox.OnSearchFieldChange(event)"/>
+          </span><span class="right">
+            <a id="MSearchClose" href="javascript:searchBox.CloseResultsWindow()"><div id="MSearchCloseImg" class="close-icon"></div></a>
+          </span>
+        </div>
+</div>
+<!-- Generated by Doxygen 1.16.1 -->
+<script type="text/javascript">
+var searchBox = new SearchBox("searchBox", "search/",'.html');
+</script>
+<script type="text/javascript">
+$(function() { codefold.init(); });
+</script>
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+$(function(){initNavTree('trace__parser_8h.html','',''); });
+</script>
+<div id="container">
+<div id="doc-content">
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">Loading...</div>
+<div class="SRStatus" id="Searching">Searching...</div>
+<div class="SRStatus" id="NoMatches">No Matches</div>
+</div>
+</div>
+</div>
+</div>
+
+<div class="header">
+  <div class="headertitle"><div class="title">trace_parser.h File Reference</div></div>
+</div><!--header-->
+<div class="contents">
+
+<p>Trace parser library.  
+<a href="#details">More...</a></p>
+
+<p><a href="trace__parser_8h_source.html">Go to the source code of this file.</a></p>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 id="header-nested-classes" class="groupheader"><a id="nested-classes" name="nested-classes"></a>
+Data Structures</h2></td></tr>
+<tr class="memitem:spdk_5Ftrace_5Fparser_5Fopts" id="r_spdk_5Ftrace_5Fparser_5Fopts"><td class="memItemLeft">struct &#160;</td><td class="memItemRight"><a class="el" href="structspdk__trace__parser__opts.html">spdk_trace_parser_opts</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Describes trace file and options to use when parsing it.  <a href="structspdk__trace__parser__opts.html#details">More...</a><br /></td></tr>
+<tr class="memitem:spdk_5Ftrace_5Fparser_5Fentry" id="r_spdk_5Ftrace_5Fparser_5Fentry"><td class="memItemLeft">struct &#160;</td><td class="memItemRight"><a class="el" href="structspdk__trace__parser__entry.html">spdk_trace_parser_entry</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Describes a parsed trace entry.  <a href="structspdk__trace__parser__entry.html#details">More...</a><br /></td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 id="header-enum-members" class="groupheader"><a id="enum-members" name="enum-members"></a>
+Enumerations</h2></td></tr>
+<tr class="memitem:a4253a898fb3f2ff1a047a1f6e4a1e3ab" id="r_a4253a898fb3f2ff1a047a1f6e4a1e3ab"><td class="memItemLeft">enum &#160;</td><td class="memItemRight"><a class="el" href="#a4253a898fb3f2ff1a047a1f6e4a1e3ab">spdk_trace_parser_mode</a> { <a class="el" href="#a4253a898fb3f2ff1a047a1f6e4a1e3abad09ef51b1f3f5fcbcb004a95dd01a4be">SPDK_TRACE_PARSER_MODE_FILE</a>
+, <a class="el" href="#a4253a898fb3f2ff1a047a1f6e4a1e3aba2bbc1491612eafb6472caba04b3c0e2d">SPDK_TRACE_PARSER_MODE_SHM</a>
+ }</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 id="header-func-members" class="groupheader"><a id="func-members" name="func-members"></a>
+Functions</h2></td></tr>
+<tr class="memitem:a9522b4cadbd78010a5894a580c6fe602" id="r_a9522b4cadbd78010a5894a580c6fe602"><td class="memItemLeft">struct spdk_trace_parser *&#160;</td><td class="memItemRight"><a class="el" href="#a9522b4cadbd78010a5894a580c6fe602">spdk_trace_parser_init</a> (const struct <a class="el" href="structspdk__trace__parser__opts.html">spdk_trace_parser_opts</a> *opts)</td></tr>
+<tr class="memdesc:a9522b4cadbd78010a5894a580c6fe602"><td class="mdescLeft">&#160;</td><td class="mdescRight">Initialize the parser using a specified trace file.  <br /></td></tr>
+<tr class="memitem:a4fa645b01c18c3c7b2545fb0bb834c10" id="r_a4fa645b01c18c3c7b2545fb0bb834c10"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="#a4fa645b01c18c3c7b2545fb0bb834c10">spdk_trace_parser_cleanup</a> (struct spdk_trace_parser *parser)</td></tr>
+<tr class="memdesc:a4fa645b01c18c3c7b2545fb0bb834c10"><td class="mdescLeft">&#160;</td><td class="mdescRight">Free any resources tied to a parser object.  <br /></td></tr>
+<tr class="memitem:a209cf80f5d881929121c136f1f9f2283" id="r_a209cf80f5d881929121c136f1f9f2283"><td class="memItemLeft">const struct <a class="el" href="structspdk__trace__file.html">spdk_trace_file</a> *&#160;</td><td class="memItemRight"><a class="el" href="#a209cf80f5d881929121c136f1f9f2283">spdk_trace_parser_get_file</a> (const struct spdk_trace_parser *parser)</td></tr>
+<tr class="memdesc:a209cf80f5d881929121c136f1f9f2283"><td class="mdescLeft">&#160;</td><td class="mdescRight">Return trace file describing the traces.  <br /></td></tr>
+<tr class="memitem:aae729da36784f7e2da4107c77c11926b" id="r_aae729da36784f7e2da4107c77c11926b"><td class="memItemLeft">uint64_t&#160;</td><td class="memItemRight"><a class="el" href="#aae729da36784f7e2da4107c77c11926b">spdk_trace_parser_get_tsc_offset</a> (const struct spdk_trace_parser *parser)</td></tr>
+<tr class="memdesc:aae729da36784f7e2da4107c77c11926b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Return the highest tsc out of first entries across all specified cores.  <br /></td></tr>
+<tr class="memitem:a102d5c564cad8f4932f96fe073d94622" id="r_a102d5c564cad8f4932f96fe073d94622"><td class="memItemLeft">bool&#160;</td><td class="memItemRight"><a class="el" href="#a102d5c564cad8f4932f96fe073d94622">spdk_trace_parser_next_entry</a> (struct spdk_trace_parser *parser, struct <a class="el" href="structspdk__trace__parser__entry.html">spdk_trace_parser_entry</a> *entry)</td></tr>
+<tr class="memdesc:a102d5c564cad8f4932f96fe073d94622"><td class="mdescLeft">&#160;</td><td class="mdescRight">Return next parsed trace entry.  <br /></td></tr>
+<tr class="memitem:a74ebe6fa3d5870d54b4fa91f9b56ad45" id="r_a74ebe6fa3d5870d54b4fa91f9b56ad45"><td class="memItemLeft">uint64_t&#160;</td><td class="memItemRight"><a class="el" href="#a74ebe6fa3d5870d54b4fa91f9b56ad45">spdk_trace_parser_get_entry_count</a> (const struct spdk_trace_parser *parser, uint16_t lcore)</td></tr>
+<tr class="memdesc:a74ebe6fa3d5870d54b4fa91f9b56ad45"><td class="mdescLeft">&#160;</td><td class="mdescRight">Return the number of entries recorded on a given core.  <br /></td></tr>
+</table>
+<a name="details" id="details"></a><h2 id="header-details" class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>Trace parser library. </p>
+
+<p class="definition">Definition in file <a class="el" href="trace__parser_8h_source.html">trace_parser.h</a>.</p>
+</div><a name="doc-enum-members" id="doc-enum-members"></a><h2 id="header-doc-enum-members" class="groupheader">Enumeration Type Documentation</h2>
+<a id="a4253a898fb3f2ff1a047a1f6e4a1e3ab" name="a4253a898fb3f2ff1a047a1f6e4a1e3ab"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4253a898fb3f2ff1a047a1f6e4a1e3ab">&#9670;&#160;</a></span>spdk_trace_parser_mode</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">enum <a class="el" href="#a4253a898fb3f2ff1a047a1f6e4a1e3ab">spdk_trace_parser_mode</a></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<table class="fieldtable">
+<tr><th colspan="2">Enumerator</th></tr><tr><td class="fieldname"><a id="a4253a898fb3f2ff1a047a1f6e4a1e3abad09ef51b1f3f5fcbcb004a95dd01a4be" name="a4253a898fb3f2ff1a047a1f6e4a1e3abad09ef51b1f3f5fcbcb004a95dd01a4be"></a>SPDK_TRACE_PARSER_MODE_FILE&#160;</td><td class="fielddoc"><p>Regular file. </p>
+</td></tr>
+<tr><td class="fieldname"><a id="a4253a898fb3f2ff1a047a1f6e4a1e3aba2bbc1491612eafb6472caba04b3c0e2d" name="a4253a898fb3f2ff1a047a1f6e4a1e3aba2bbc1491612eafb6472caba04b3c0e2d"></a>SPDK_TRACE_PARSER_MODE_SHM&#160;</td><td class="fielddoc"><p>Shared memory. </p>
+</td></tr>
+</table>
+
+<p class="definition">Definition at line <a class="el" href="trace__parser_8h_source.html#l00023">23</a> of file <a class="el" href="trace__parser_8h_source.html">trace_parser.h</a>.</p>
+
+</div>
+</div>
+<a name="doc-func-members" id="doc-func-members"></a><h2 id="header-doc-func-members" class="groupheader">Function Documentation</h2>
+<a id="a4fa645b01c18c3c7b2545fb0bb834c10" name="a4fa645b01c18c3c7b2545fb0bb834c10"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4fa645b01c18c3c7b2545fb0bb834c10">&#9670;&#160;</a></span>spdk_trace_parser_cleanup()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void spdk_trace_parser_cleanup </td>
+          <td>(</td>
+          <td class="paramtype">struct spdk_trace_parser *</td>          <td class="paramname"><span class="paramname"><em>parser</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Free any resources tied to a parser object. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">parser</td><td>Parser to clean up. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a74ebe6fa3d5870d54b4fa91f9b56ad45" name="a74ebe6fa3d5870d54b4fa91f9b56ad45"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a74ebe6fa3d5870d54b4fa91f9b56ad45">&#9670;&#160;</a></span>spdk_trace_parser_get_entry_count()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">uint64_t spdk_trace_parser_get_entry_count </td>
+          <td>(</td>
+          <td class="paramtype">const struct spdk_trace_parser *</td>          <td class="paramname"><span class="paramname"><em>parser</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">uint16_t</td>          <td class="paramname"><span class="paramname"><em>lcore</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Return the number of entries recorded on a given core. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">parser</td><td>Parser object to be used. </td></tr>
+    <tr><td class="paramname">lcore</td><td>Logical core number.</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>Number of entries. </dd></dl>
+
+</div>
+</div>
+<a id="a209cf80f5d881929121c136f1f9f2283" name="a209cf80f5d881929121c136f1f9f2283"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a209cf80f5d881929121c136f1f9f2283">&#9670;&#160;</a></span>spdk_trace_parser_get_file()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">const struct <a class="el" href="structspdk__trace__file.html">spdk_trace_file</a> * spdk_trace_parser_get_file </td>
+          <td>(</td>
+          <td class="paramtype">const struct spdk_trace_parser *</td>          <td class="paramname"><span class="paramname"><em>parser</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Return trace file describing the traces. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">parser</td><td>Parser object to be used.</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>Pointer to the trace file. </dd></dl>
+
+</div>
+</div>
+<a id="aae729da36784f7e2da4107c77c11926b" name="aae729da36784f7e2da4107c77c11926b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aae729da36784f7e2da4107c77c11926b">&#9670;&#160;</a></span>spdk_trace_parser_get_tsc_offset()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">uint64_t spdk_trace_parser_get_tsc_offset </td>
+          <td>(</td>
+          <td class="paramtype">const struct spdk_trace_parser *</td>          <td class="paramname"><span class="paramname"><em>parser</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Return the highest tsc out of first entries across all specified cores. </p>
+<p>This value can be used to select entries from the subset of time we have the data from all reactors.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">parser</td><td>Parser object to be used.</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>Offset in tsc. </dd></dl>
+
+</div>
+</div>
+<a id="a9522b4cadbd78010a5894a580c6fe602" name="a9522b4cadbd78010a5894a580c6fe602"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9522b4cadbd78010a5894a580c6fe602">&#9670;&#160;</a></span>spdk_trace_parser_init()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">struct spdk_trace_parser * spdk_trace_parser_init </td>
+          <td>(</td>
+          <td class="paramtype">const struct <a class="el" href="structspdk__trace__parser__opts.html">spdk_trace_parser_opts</a> *</td>          <td class="paramname"><span class="paramname"><em>opts</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Initialize the parser using a specified trace file. </p>
+<p>This results in parsing the traces, merging entries from multiple cores together and sorting them by their tsc, so it can take a significant amount of time to complete.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">opts</td><td>Describes the trace file to parse.</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>Parser object or NULL in case of any failures. </dd></dl>
+
+</div>
+</div>
+<a id="a102d5c564cad8f4932f96fe073d94622" name="a102d5c564cad8f4932f96fe073d94622"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a102d5c564cad8f4932f96fe073d94622">&#9670;&#160;</a></span>spdk_trace_parser_next_entry()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool spdk_trace_parser_next_entry </td>
+          <td>(</td>
+          <td class="paramtype">struct spdk_trace_parser *</td>          <td class="paramname"><span class="paramname"><em>parser</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">struct <a class="el" href="structspdk__trace__parser__entry.html">spdk_trace_parser_entry</a> *</td>          <td class="paramname"><span class="paramname"><em>entry</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Return next parsed trace entry. </p>
+<p>Once no more traces are available, this will return false and entry won't be touched.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">parser</td><td>Parser object to be used. </td></tr>
+    <tr><td class="paramname">entry</td><td>Tracepoint entry.</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>True if a trace entry was available, false otherwise. </dd></dl>
+
+</div>
+</div>
+</div><!-- contents -->
+</div><!-- doc-content -->
+<div id="page-nav" class="page-nav-panel">
+<div id="page-nav-resize-handle"></div>
+<div id="page-nav-tree">
+<div id="page-nav-contents">
+</div><!-- page-nav-contents -->
+</div><!-- page-nav-tree -->
+</div><!-- page-nav -->
+</div><!-- container -->
+<footer class="footer" id="nav-path">
+  <div class="footer-inner">
+    <div class="footer-copy">
+      <small>Copyright &copy; SPDK a Series of LF Projects, LLC. For web site terms of use, trademark policy, and other
+      project policies please see <a href="https://lfprojects.org">lfprojects.org</a>.</small>
+    </div>
+  </div>
+</footer>
+<script type="text/javascript" src="page_outline.js"></script>
+<script type="text/javascript" src="spdk_nav.js"></script>
+<!-- Doxygen footer suffix – assembled by _build/common.sh:
+     _includes/footer.html (shared) + theme scripts (from spdk) + this file.
+     Theme scripts are extracted from spdk/doc/theme/footer.html at build
+     time so the script list is maintained in a single place. -->
+</body>
+</html>

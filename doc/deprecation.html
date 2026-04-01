@@ -1,0 +1,196 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<meta name="generator" content="Doxygen 1.16.1">
+	<title>SPDK: Deprecation</title>
+	<script type="text/javascript" src="jquery.js"></script>
+	<script type="text/javascript" src="dynsections.js"></script>
+	<script type="text/javascript" src="clipboard.js"></script>
+	<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
+<script type="text/javascript" src="cookie.js"></script>
+	<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<script type="text/javascript">
+  $(function() { init_search(); });
+</script>
+	<link rel="icon" type="image/svg+xml" href="../assets/img/spdk.svg">
+	<link rel="icon" href="../assets/favicon.ico" sizes="32x32">
+	<link href="doxygen.css" rel="stylesheet" type="text/css">
+	<script>(function(){var k='doxygen_width',w,bw=6;if(window.chrome){w=localStorage.getItem(k);if(!w){w='350';localStorage.setItem(k,w)}}else{var m=document.cookie.match(new RegExp(k+'=(\\d+)'));w=m?m[1]:null;if(!w){w='350';document.cookie=k+'=350;SameSite=Lax;path=/'}}document.documentElement.style.setProperty('--sn-w',(parseInt(w)+bw)+'px')})()</script>
+	<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:400,700,900" type="text/css">
+	<link href="spdk.css" rel="stylesheet" type="text/css"/>
+	<link href="../assets/css/spdk.css" rel="stylesheet" type="text/css">
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<nav class="navbar">
+  <a class="navbar-brand" href="../" aria-label="SPDK">
+    <img src="../assets/img/spdk.svg" width="36" height="36" alt="Storage Performance Development Kit">
+  </a>
+  <div class="navbar-nav">
+    <a class="nav-link header-link" href="../doc/releases.html">download</a>
+    <a class="nav-link header-link" href="../doc/">documentation</a>
+    <a class="nav-link header-link" href="../doc/contributing.html">development</a>
+    <a class="nav-link header-link" href="../doc/ci_tools.html">CI status</a>
+    <a class="nav-link header-link" href="../community/">community</a>
+    <a class="nav-link header-link" href="../blog/">Blog</a>
+    <a class="nav-link header-link" href="https://github.com/orgs/spdk/projects/5">Roadmap</a>
+    <a class="nav-link header-link" href="../news/">News</a>
+  </div>
+  <div class="navbar-end">
+    <a class="nav-link header-link" href="https://github.com/spdk/spdk" aria-label="GitHub">
+      <svg xmlns="http://www.w3.org/2000/svg" class="navbar-nav-svg" aria-hidden="true"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
+    </a>
+    <a id="cn_lang_btn" href="../cn/doc/" class="nav-link header-link">中文</a>
+  </div>
+</nav>
+<script>
+(function() {
+    var p = location.pathname, best = null, bLen = 0;
+    document.querySelectorAll('.header-link[href]').forEach(function(a) {
+        var raw = a.getAttribute('href');
+        if (!raw) return;
+        try { var u = new URL(raw, location.href); } catch(e) { return; }
+        if (u.origin !== location.origin) return;
+        var h = u.pathname;
+        if (h === '/') return;
+        var ok = h.endsWith('.html') ? p === h : p.indexOf(h) === 0;
+        if (ok && h.length > bLen) { bLen = h.length; best = a; }
+    });
+    if (best) best.classList.add('active');
+})();
+</script>
+<div id="doxygen-searchbox">        <div id="MSearchBox" class="MSearchBoxInactive">
+        <span class="left">
+          <span id="MSearchSelect" class="search-icon" onmouseover="return searchBox.OnSearchSelectShow()" onmouseout="return searchBox.OnSearchSelectHide()"><span class="search-icon-dropdown"></span></span>
+          <input type="text" id="MSearchField" value="" placeholder="Search" accesskey="S"
+               onfocus="searchBox.OnSearchFieldFocus(true)" 
+               onblur="searchBox.OnSearchFieldFocus(false)" 
+               onkeyup="searchBox.OnSearchFieldChange(event)"/>
+          </span><span class="right">
+            <a id="MSearchClose" href="javascript:searchBox.CloseResultsWindow()"><div id="MSearchCloseImg" class="close-icon"></div></a>
+          </span>
+        </div>
+</div>
+<!-- Generated by Doxygen 1.16.1 -->
+<script type="text/javascript">
+var searchBox = new SearchBox("searchBox", "search/",'.html');
+</script>
+<script type="text/javascript">
+$(function() { codefold.init(); });
+</script>
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+$(function(){initNavTree('deprecation.html','',''); });
+</script>
+<div id="container">
+<div id="doc-content">
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">Loading...</div>
+<div class="SRStatus" id="Searching">Searching...</div>
+<div class="SRStatus" id="NoMatches">No Matches</div>
+</div>
+</div>
+</div>
+</div>
+
+<div><div class="header">
+  <div class="headertitle"><div class="title">Deprecation </div></div>
+</div><!--header-->
+<div class="contents">
+<div class="textblock"><p><a class="anchor" id="md_deprecation"></a></p>
+<h1 class="doxsection"><a class="anchor" id="autotoc_md0"></a>
+ABI and API Deprecation</h1>
+<p>This document details the policy for maintaining stability of SPDK ABI and API.</p>
+<p>Major ABI version can change at most once for each SPDK release. ABI versions are managed separately for each library and follow <a href="https://semver.org/">Semantic Versioning</a>.</p>
+<p>API and ABI deprecation notices shall be posted in the next section. Each entry must describe what will be removed and can suggest the future use or alternative. Specific future SPDK release for the removal must be provided. ABI cannot be removed without providing deprecation notice for at least single SPDK release.</p>
+<p>Deprecated code paths must be registered with <span class="tt">SPDK_LOG_DEPRECATION_REGISTER()</span> and logged with <span class="tt">SPDK_LOG_DEPRECATED()</span>. The tag used with these macros will appear in the SPDK log at the warn level when <span class="tt">SPDK_LOG_DEPRECATED()</span> is called, subject to rate limits. The tags can be matched with the level 4 headers below.</p>
+<h1 class="doxsection"><a class="anchor" id="autotoc_md1"></a>
+Deprecation Notices</h1>
+<h2 class="doxsection"><a class="anchor" id="autotoc_md2"></a>
+bdev</h2>
+<h3 class="doxsection"><a class="anchor" id="autotoc_md3"></a>
+<span class="tt">bdev_get_memory_domains</span></h3>
+<p><span class="tt"><a class="el" href="bdev_8h.html#a2643db603c5c9762d839036c1658bf1b" title="Get SPDK memory domains used by the given bdev.">spdk_bdev_get_memory_domains</a></span> and the <span class="tt">get_memory_domains</span> fn_table entry are deprecated. Use <span class="tt"><a class="el" href="bdev_8h.html#a8ceb3c9b0cc1e626fbbbffd0407d6231" title="Get SPDK memory domain types used by the given bdev.">spdk_bdev_get_memory_domain_types</a></span> and <span class="tt">get_memory_domain_types</span> instead. Will be removed in the v26.09 release.</p>
+<h3 class="doxsection"><a class="anchor" id="autotoc_md4"></a>
+<span class="tt">bdev_get_iostat</span></h3>
+<p><span class="tt">--name</span> option will be removed in the 26.05 release. <span class="tt">--names</span> option should be used instead, it allows providing array of devices names to obtain statistics from.</p>
+<h2 class="doxsection"><a class="anchor" id="autotoc_md5"></a>
+bdev/nvme</h2>
+<p>The <span class="tt"><a class="el" href="module_2bdev_2nvme_8h.html#afea4be31a3e8fb89d97ffb453e9c4764">BDEV_NVME_MP_POLICY_ACTIVE_PASSIVE</a></span>, <span class="tt">BDEV_NVME_MP_POLICY_ACTIVE_ACTIVE</span>, <span class="tt">BDEV_NVME_MP_SELECTOR_ROUND_ROBIN</span>, and <span class="tt">BDEV_NVME_MP_SELECTOR_QUEUE_DEPTH</span> enum value names are deprecated and will be removed in v25.09. Use the <span class="tt">SPDK_BDEV_NVME_MULTIPATH_POLICY_*</span> and <span class="tt">SPDK_BDEV_NVME_MULTIPATH_SELECTOR_*</span> names instead.</p>
+<h2 class="doxsection"><a class="anchor" id="autotoc_md6"></a>
+gpt</h2>
+<h3 class="doxsection"><a class="anchor" id="autotoc_md7"></a>
+<span class="tt">old_gpt_guid</span></h3>
+<p>Deprecated the SPDK partition type GUID <span class="tt">7c5222bd-8f5d-4087-9c00-bf9843c7b58c</span>. Partitions of this type have bdevs created that are one block less than the actual size of the partition. Existing partitions using the deprecated GUID can continue to use that GUID; support for the deprecated GUID will remain in SPDK indefinitely, and will continue to exhibit the off-by-one bug so that on-disk metadata layouts based on the incorrect size are not affected.</p>
+<p>See GitHub issue <a href="https://github.com/spdk/spdk/issues/2801">2801</a> for additional details on the bug.</p>
+<p>New SPDK partition types should use GUID <span class="tt">6527994e-2c5a-4eec-9613-8f5944074e8b</span> which will create a bdev of the correct size.</p>
+<h2 class="doxsection"><a class="anchor" id="autotoc_md8"></a>
+nvmf</h2>
+<p><span class="tt"><a class="el" href="nvmf_8h.html#a8a593cd20d82a159e7bc6cdfe233242e" title="Create an NVMe-oF subsystem.">spdk_nvmf_subsystem_create</a></span>, <span class="tt"><a class="el" href="nvmf_8h.html#abb053c9573460d29898b184957ce05fd" title="Set the serial number for the specified subsystem.">spdk_nvmf_subsystem_set_sn</a></span>, <span class="tt"><a class="el" href="nvmf_8h.html#a270a2bbd77c6b97116c7e61b4f1a56ce" title="Set the model number for the specified subsystem.">spdk_nvmf_subsystem_set_mn</a></span>, <span class="tt"><a class="el" href="nvmf_8h.html#a488442d5a27c5e3c4a88184bd8a5301b" title="Set whether a subsystem supports Asymmetric Namespace Access (ANA) reporting.">spdk_nvmf_subsystem_set_ana_reporting</a></span> are deprecated and will be removed in v26.09. Use <span class="tt"><a class="el" href="nvmf_8h.html#a8b3b572e7ba523dad549bf7d1aa9d45a" title="Create an NVMe-oF subsystem.">spdk_nvmf_subsystem_create_ext</a></span> with subsystem options instead.</p>
+<p><span class="tt"><a class="el" href="nvmf_8h.html#ad9cfadf7b2f1086f0448a6ccedf6b458" title="Get the serial number of the specified subsystem.">spdk_nvmf_subsystem_get_sn</a></span>, <span class="tt"><a class="el" href="nvmf_8h.html#aa9fb4f5b1806fcb56ba39d135de8e4d4" title="Get the model number of the specified subsystem.">spdk_nvmf_subsystem_get_mn</a></span>, <span class="tt"><a class="el" href="nvmf_8h.html#acfae99734ec18b90dbb6ef39d1b73860" title="Get maximum namespace id of the specified subsystem.">spdk_nvmf_subsystem_get_max_nsid</a></span>, <span class="tt"><a class="el" href="nvmf_8h.html#a414b91bad7200ab931f14a06585ccc74" title="Get the maximum number of namespaces allowed in a subsystem.">spdk_nvmf_subsystem_get_max_namespaces</a></span>, <span class="tt"><a class="el" href="nvmf_8h.html#af2865d5c13e5c7ca972e1577796d8dcf" title="Get whether a subsystem supports Asymmetric Namespace Access (ANA) reporting.">spdk_nvmf_subsystem_get_ana_reporting</a></span>, <span class="tt"><a class="el" href="nvmf_8h.html#a0f3fbe4ab1d90cda9a1f3fcbf2cb857d" title="Get the type of the specified subsystem.">spdk_nvmf_subsystem_get_type</a></span> are deprecated and will be removed in v26.09. Use <span class="tt"><a class="el" href="nvmf_8h.html#a901526fe28710bcc2b5af94e1bc5f874" title="Get the options specified for a NVMe-oF subsystem.">spdk_nvmf_subsystem_get_opts</a></span> instead.</p>
+<h3 class="doxsection"><a class="anchor" id="autotoc_md9"></a>
+<span class="tt">nvmf_create_subsystem_max_discard_size_kib</span></h3>
+<p>The <span class="tt">max_discard_size_kib</span> parameter of <span class="tt">nvmf_create_subsystem</span> RPC is deprecated and will be removed in v26.09. Use <span class="tt">dmrsl</span> instead.</p>
+<h3 class="doxsection"><a class="anchor" id="autotoc_md10"></a>
+<span class="tt">nvmf_create_subsystem_max_write_zeroes_size_kib</span></h3>
+<p>The <span class="tt">max_write_zeroes_size_kib</span> parameter of <span class="tt">nvmf_create_subsystem</span> RPC is deprecated and will be removed in v26.09. Use <span class="tt">wzsl</span> instead.</p>
+<h2 class="doxsection"><a class="anchor" id="autotoc_md11"></a>
+app/spdk_nvme_perf</h2>
+<h3 class="doxsection"><a class="anchor" id="autotoc_md12"></a>
+perf_g_option</h3>
+<p>The <span class="tt">-G</span> command line option is deprecated and will be removed in the v26.05 release. Use <span class="tt">--log-level debug -T nvme</span> instead. </p>
+</div></div><!-- contents -->
+</div><!-- PageDoc -->
+</div><!-- doc-content -->
+<div id="page-nav" class="page-nav-panel">
+<div id="page-nav-resize-handle"></div>
+<div id="page-nav-tree">
+<div id="page-nav-contents">
+</div><!-- page-nav-contents -->
+</div><!-- page-nav-tree -->
+</div><!-- page-nav -->
+</div><!-- container -->
+<footer class="footer" id="nav-path">
+  <div class="footer-inner">
+    <div class="footer-copy">
+      <small>Copyright &copy; SPDK a Series of LF Projects, LLC. For web site terms of use, trademark policy, and other
+      project policies please see <a href="https://lfprojects.org">lfprojects.org</a>.</small>
+    </div>
+  </div>
+</footer>
+<script type="text/javascript" src="page_outline.js"></script>
+<script type="text/javascript" src="spdk_nav.js"></script>
+<!-- Doxygen footer suffix – assembled by _build/common.sh:
+     _includes/footer.html (shared) + theme scripts (from spdk) + this file.
+     Theme scripts are extracted from spdk/doc/theme/footer.html at build
+     time so the script list is maintained in a single place. -->
+</body>
+</html>

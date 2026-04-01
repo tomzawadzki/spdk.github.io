@@ -1,0 +1,470 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<meta name="generator" content="Doxygen 1.16.1">
+	<title>SPDK: spdk_nvmf_discovery_log_page_entry Struct Reference</title>
+	<script type="text/javascript" src="jquery.js"></script>
+	<script type="text/javascript" src="dynsections.js"></script>
+	<script type="text/javascript" src="clipboard.js"></script>
+	<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
+<script type="text/javascript" src="cookie.js"></script>
+	<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<script type="text/javascript">
+  $(function() { init_search(); });
+</script>
+	<link rel="icon" type="image/svg+xml" href="../assets/img/spdk.svg">
+	<link rel="icon" href="../assets/favicon.ico" sizes="32x32">
+	<link href="doxygen.css" rel="stylesheet" type="text/css">
+	<script>(function(){var k='doxygen_width',w,bw=6;if(window.chrome){w=localStorage.getItem(k);if(!w){w='350';localStorage.setItem(k,w)}}else{var m=document.cookie.match(new RegExp(k+'=(\\d+)'));w=m?m[1]:null;if(!w){w='350';document.cookie=k+'=350;SameSite=Lax;path=/'}}document.documentElement.style.setProperty('--sn-w',(parseInt(w)+bw)+'px')})()</script>
+	<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:400,700,900" type="text/css">
+	<link href="spdk.css" rel="stylesheet" type="text/css"/>
+	<link href="../assets/css/spdk.css" rel="stylesheet" type="text/css">
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<nav class="navbar">
+  <a class="navbar-brand" href="../" aria-label="SPDK">
+    <img src="../assets/img/spdk.svg" width="36" height="36" alt="Storage Performance Development Kit">
+  </a>
+  <div class="navbar-nav">
+    <a class="nav-link header-link" href="../doc/releases.html">download</a>
+    <a class="nav-link header-link" href="../doc/">documentation</a>
+    <a class="nav-link header-link" href="../doc/contributing.html">development</a>
+    <a class="nav-link header-link" href="../doc/ci_tools.html">CI status</a>
+    <a class="nav-link header-link" href="../community/">community</a>
+    <a class="nav-link header-link" href="../blog/">Blog</a>
+    <a class="nav-link header-link" href="https://github.com/orgs/spdk/projects/5">Roadmap</a>
+    <a class="nav-link header-link" href="../news/">News</a>
+  </div>
+  <div class="navbar-end">
+    <a class="nav-link header-link" href="https://github.com/spdk/spdk" aria-label="GitHub">
+      <svg xmlns="http://www.w3.org/2000/svg" class="navbar-nav-svg" aria-hidden="true"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
+    </a>
+    <a id="cn_lang_btn" href="../cn/doc/" class="nav-link header-link">中文</a>
+  </div>
+</nav>
+<script>
+(function() {
+    var p = location.pathname, best = null, bLen = 0;
+    document.querySelectorAll('.header-link[href]').forEach(function(a) {
+        var raw = a.getAttribute('href');
+        if (!raw) return;
+        try { var u = new URL(raw, location.href); } catch(e) { return; }
+        if (u.origin !== location.origin) return;
+        var h = u.pathname;
+        if (h === '/') return;
+        var ok = h.endsWith('.html') ? p === h : p.indexOf(h) === 0;
+        if (ok && h.length > bLen) { bLen = h.length; best = a; }
+    });
+    if (best) best.classList.add('active');
+})();
+</script>
+<div id="doxygen-searchbox">        <div id="MSearchBox" class="MSearchBoxInactive">
+        <span class="left">
+          <span id="MSearchSelect" class="search-icon" onmouseover="return searchBox.OnSearchSelectShow()" onmouseout="return searchBox.OnSearchSelectHide()"><span class="search-icon-dropdown"></span></span>
+          <input type="text" id="MSearchField" value="" placeholder="Search" accesskey="S"
+               onfocus="searchBox.OnSearchFieldFocus(true)" 
+               onblur="searchBox.OnSearchFieldFocus(false)" 
+               onkeyup="searchBox.OnSearchFieldChange(event)"/>
+          </span><span class="right">
+            <a id="MSearchClose" href="javascript:searchBox.CloseResultsWindow()"><div id="MSearchCloseImg" class="close-icon"></div></a>
+          </span>
+        </div>
+</div>
+<!-- Generated by Doxygen 1.16.1 -->
+<script type="text/javascript">
+var searchBox = new SearchBox("searchBox", "search/",'.html');
+</script>
+<script type="text/javascript">
+$(function() { codefold.init(); });
+</script>
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+$(function(){initNavTree('structspdk__nvmf__discovery__log__page__entry.html','',''); });
+</script>
+<div id="container">
+<div id="doc-content">
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">Loading...</div>
+<div class="SRStatus" id="Searching">Searching...</div>
+<div class="SRStatus" id="NoMatches">No Matches</div>
+</div>
+</div>
+</div>
+</div>
+
+<div class="header">
+  <div class="headertitle"><div class="title">spdk_nvmf_discovery_log_page_entry Struct Reference</div></div>
+</div><!--header-->
+<div class="contents">
+
+<p>Discovery Log Page entry.  
+ <a href="#details">More...</a></p>
+
+<p><code>#include &lt;<a class="el" href="nvmf__spec_8h_source.html">nvmf_spec.h</a>&gt;</code></p>
+<div class="dynheader">
+Collaboration diagram for spdk_nvmf_discovery_log_page_entry:</div>
+<div class="dyncontent">
+<div class="center"><div class="zoom"><iframe scrolling="no" loading="lazy" frameborder="0" src="structspdk__nvmf__discovery__log__page__entry__coll__graph.svg" width="100%" height="394"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div></div>
+<center><span class="legend">[<a target="top" href="graph_legend.html">legend</a>]</span></center></div>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 id="header-pub-attribs" class="groupheader"><a id="pub-attribs" name="pub-attribs"></a>
+Data Fields</h2></td></tr>
+<tr class="memitem:ad5db7a511e5a7b5bf342391e77ecb27d" id="r_ad5db7a511e5a7b5bf342391e77ecb27d"><td class="memItemLeft">uint8_t&#160;</td><td class="memItemRight"><a class="el" href="#ad5db7a511e5a7b5bf342391e77ecb27d">trtype</a></td></tr>
+<tr class="memdesc:ad5db7a511e5a7b5bf342391e77ecb27d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Transport type (<a class="el" href="nvmf__spec_8h.html#a239e424a2438a066c30a288c592cba1b" title="spdk_nvmf_trtype">spdk_nvmf_trtype</a>).  <br /></td></tr>
+<tr class="memitem:adf9f35d61b31aa0199ae32ef638a3107" id="r_adf9f35d61b31aa0199ae32ef638a3107"><td class="memItemLeft">uint8_t&#160;</td><td class="memItemRight"><a class="el" href="#adf9f35d61b31aa0199ae32ef638a3107">adrfam</a></td></tr>
+<tr class="memdesc:adf9f35d61b31aa0199ae32ef638a3107"><td class="mdescLeft">&#160;</td><td class="mdescRight">Address family (<a class="el" href="nvmf__spec_8h.html#a08f0090d242e2607ab11f148dcd797c6" title="spdk_nvmf_adrfam">spdk_nvmf_adrfam</a>).  <br /></td></tr>
+<tr class="memitem:a2cc3f0c6ab0ebb7eb85cd3058f0f787f" id="r_a2cc3f0c6ab0ebb7eb85cd3058f0f787f"><td class="memItemLeft">uint8_t&#160;</td><td class="memItemRight"><a class="el" href="#a2cc3f0c6ab0ebb7eb85cd3058f0f787f">subtype</a></td></tr>
+<tr class="memdesc:a2cc3f0c6ab0ebb7eb85cd3058f0f787f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Subsystem type (<a class="el" href="nvmf__spec_8h.html#a808272f050cc373f3a90871c1528afd4" title="spdk_nvmf_subtype">spdk_nvmf_subtype</a>).  <br /></td></tr>
+<tr class="memitem:"><td class="memItemLeft anon"><a id="a2a1e20804517ba726176798c2f9da915" name="a2a1e20804517ba726176798c2f9da915"></a>
+struct {&#160;</td><td class="memItemRight"></td></tr>
+<tr class="memitem:a9988fc958642c83f68fffb4fda44cb5c" id="r_a9988fc958642c83f68fffb4fda44cb5c"><td class="memItemLeft anon">&#160;&#160;&#160;uint8_t&#160;&#160;&#160;<a class="el" href="#a34f68aaa15f5c3a42c64c25d594b8cdd">secure_channel</a>: 2&#160;</td><td class="memItemRight"></td></tr>
+<tr class="memdesc:a9988fc958642c83f68fffb4fda44cb5c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Secure channel requirements (<a class="el" href="nvmf__spec_8h.html#a0a92190b8c6824182974e20f84ee0a3c" title="spdk_nvmf_treq_secure_channel">spdk_nvmf_treq_secure_channel</a>).  <a href="#a34f68aaa15f5c3a42c64c25d594b8cdd">More...</a><br /></td></tr>
+<tr class="memitem:a2b76fca8f1e63e000a976bbcdb5d5502" id="r_a2b76fca8f1e63e000a976bbcdb5d5502"><td class="memItemLeft anon">&#160;&#160;&#160;uint8_t&#160;&#160;&#160;<a class="el" href="#a2ac239007d3805e11d5a0cf0a3b1ce3f">reserved</a>: 6&#160;</td><td class="memItemRight"></td></tr>
+<tr class="memitem:a2a1e20804517ba726176798c2f9da915" id="r_a2a1e20804517ba726176798c2f9da915"><td class="memItemLeft anonEnd">}&#160;</td><td class="memItemRight"><b>treq</b></td></tr>
+<tr class="memdesc:a2a1e20804517ba726176798c2f9da915"><td class="mdescLeft">&#160;</td><td class="mdescRight">Transport requirements. <br /></td></tr>
+<tr class="memitem:afe04107ae81316f7e1c189472a881e52" id="r_afe04107ae81316f7e1c189472a881e52"><td class="memItemLeft">uint16_t&#160;</td><td class="memItemRight"><a class="el" href="#afe04107ae81316f7e1c189472a881e52">portid</a></td></tr>
+<tr class="memdesc:afe04107ae81316f7e1c189472a881e52"><td class="mdescLeft">&#160;</td><td class="mdescRight">NVM subsystem port ID.  <br /></td></tr>
+<tr class="memitem:ad5cf412899705f398e046fd3f290067d" id="r_ad5cf412899705f398e046fd3f290067d"><td class="memItemLeft">uint16_t&#160;</td><td class="memItemRight"><a class="el" href="#ad5cf412899705f398e046fd3f290067d">cntlid</a></td></tr>
+<tr class="memdesc:ad5cf412899705f398e046fd3f290067d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Controller ID.  <br /></td></tr>
+<tr class="memitem:aa64eafd0f0d0dd3820d88ec9a243b8a2" id="r_aa64eafd0f0d0dd3820d88ec9a243b8a2"><td class="memItemLeft">uint16_t&#160;</td><td class="memItemRight"><a class="el" href="#aa64eafd0f0d0dd3820d88ec9a243b8a2">asqsz</a></td></tr>
+<tr class="memdesc:aa64eafd0f0d0dd3820d88ec9a243b8a2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Admin max SQ size.  <br /></td></tr>
+<tr class="memitem:a9277360e4daa301585d83577c8f3a47e" id="r_a9277360e4daa301585d83577c8f3a47e"><td class="memItemLeft">uint16_t&#160;</td><td class="memItemRight"><a class="el" href="#a9277360e4daa301585d83577c8f3a47e">eflags</a></td></tr>
+<tr class="memdesc:a9277360e4daa301585d83577c8f3a47e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Entry Flags.  <br /></td></tr>
+<tr class="memitem:aa0a9b57d28fecae78caf8e59c6aa03b5" id="r_aa0a9b57d28fecae78caf8e59c6aa03b5"><td class="memItemLeft">uint8_t&#160;</td><td class="memItemRight"><a class="el" href="#aa0a9b57d28fecae78caf8e59c6aa03b5">reserved0</a> [20]</td></tr>
+<tr class="memitem:a4b3b3ff4bd5f94e6ffe8a11b90b08caa" id="r_a4b3b3ff4bd5f94e6ffe8a11b90b08caa"><td class="memItemLeft">uint8_t&#160;</td><td class="memItemRight"><a class="el" href="#a4b3b3ff4bd5f94e6ffe8a11b90b08caa">trsvcid</a> [SPDK_NVMF_TRSVCID_MAX_LEN]</td></tr>
+<tr class="memdesc:a4b3b3ff4bd5f94e6ffe8a11b90b08caa"><td class="mdescLeft">&#160;</td><td class="mdescRight">Transport service identifier.  <br /></td></tr>
+<tr class="memitem:a712531c4645d3e0f229d82afc841b546" id="r_a712531c4645d3e0f229d82afc841b546"><td class="memItemLeft">uint8_t&#160;</td><td class="memItemRight"><a class="el" href="#a712531c4645d3e0f229d82afc841b546">reserved1</a> [192]</td></tr>
+<tr class="memitem:a797dfd34a151a7c7d9942a7ad179aac5" id="r_a797dfd34a151a7c7d9942a7ad179aac5"><td class="memItemLeft">uint8_t&#160;</td><td class="memItemRight"><a class="el" href="#a797dfd34a151a7c7d9942a7ad179aac5">subnqn</a> [256]</td></tr>
+<tr class="memdesc:a797dfd34a151a7c7d9942a7ad179aac5"><td class="mdescLeft">&#160;</td><td class="mdescRight">NVM subsystem qualified name.  <br /></td></tr>
+<tr class="memitem:a549e9bb635b7ae387daceef8e5b27e68" id="r_a549e9bb635b7ae387daceef8e5b27e68"><td class="memItemLeft">uint8_t&#160;</td><td class="memItemRight"><a class="el" href="#a549e9bb635b7ae387daceef8e5b27e68">traddr</a> [SPDK_NVMF_TRADDR_MAX_LEN]</td></tr>
+<tr class="memdesc:a549e9bb635b7ae387daceef8e5b27e68"><td class="mdescLeft">&#160;</td><td class="mdescRight">Transport address.  <br /></td></tr>
+<tr class="memitem:ae6926468815fd6dbdd5ff136a4905057" id="r_ae6926468815fd6dbdd5ff136a4905057"><td class="memItemLeft">union <a class="el" href="unionspdk__nvmf__transport__specific__address__subtype.html">spdk_nvmf_transport_specific_address_subtype</a>&#160;</td><td class="memItemRight"><a class="el" href="#ae6926468815fd6dbdd5ff136a4905057">tsas</a></td></tr>
+<tr class="memdesc:ae6926468815fd6dbdd5ff136a4905057"><td class="mdescLeft">&#160;</td><td class="mdescRight">Transport-specific address subtype.  <br /></td></tr>
+</table>
+<a name="details" id="details"></a><h2 id="header-details" class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>Discovery Log Page entry. </p>
+
+<p class="definition">Definition at line <a class="el" href="nvmf__spec_8h_source.html#l00392">392</a> of file <a class="el" href="nvmf__spec_8h_source.html">nvmf_spec.h</a>.</p>
+</div><a name="doc-variable-members" id="doc-variable-members"></a><h2 id="header-doc-variable-members" class="groupheader">Field Documentation</h2>
+<a id="adf9f35d61b31aa0199ae32ef638a3107" name="adf9f35d61b31aa0199ae32ef638a3107"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#adf9f35d61b31aa0199ae32ef638a3107">&#9670;&#160;</a></span>adrfam</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">uint8_t spdk_nvmf_discovery_log_page_entry::adrfam</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Address family (<a class="el" href="nvmf__spec_8h.html#a08f0090d242e2607ab11f148dcd797c6" title="spdk_nvmf_adrfam">spdk_nvmf_adrfam</a>). </p>
+
+<p class="definition">Definition at line <a class="el" href="nvmf__spec_8h_source.html#l00397">397</a> of file <a class="el" href="nvmf__spec_8h_source.html">nvmf_spec.h</a>.</p>
+
+</div>
+</div>
+<a id="aa64eafd0f0d0dd3820d88ec9a243b8a2" name="aa64eafd0f0d0dd3820d88ec9a243b8a2"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa64eafd0f0d0dd3820d88ec9a243b8a2">&#9670;&#160;</a></span>asqsz</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">uint16_t spdk_nvmf_discovery_log_page_entry::asqsz</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Admin max SQ size. </p>
+
+<p class="definition">Definition at line <a class="el" href="nvmf__spec_8h_source.html#l00417">417</a> of file <a class="el" href="nvmf__spec_8h_source.html">nvmf_spec.h</a>.</p>
+
+</div>
+</div>
+<a id="ad5cf412899705f398e046fd3f290067d" name="ad5cf412899705f398e046fd3f290067d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad5cf412899705f398e046fd3f290067d">&#9670;&#160;</a></span>cntlid</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">uint16_t spdk_nvmf_discovery_log_page_entry::cntlid</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Controller ID. </p>
+
+<p class="definition">Definition at line <a class="el" href="nvmf__spec_8h_source.html#l00414">414</a> of file <a class="el" href="nvmf__spec_8h_source.html">nvmf_spec.h</a>.</p>
+
+</div>
+</div>
+<a id="a9277360e4daa301585d83577c8f3a47e" name="a9277360e4daa301585d83577c8f3a47e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9277360e4daa301585d83577c8f3a47e">&#9670;&#160;</a></span>eflags</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">uint16_t spdk_nvmf_discovery_log_page_entry::eflags</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Entry Flags. </p>
+
+<p class="definition">Definition at line <a class="el" href="nvmf__spec_8h_source.html#l00420">420</a> of file <a class="el" href="nvmf__spec_8h_source.html">nvmf_spec.h</a>.</p>
+
+</div>
+</div>
+<a id="afe04107ae81316f7e1c189472a881e52" name="afe04107ae81316f7e1c189472a881e52"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#afe04107ae81316f7e1c189472a881e52">&#9670;&#160;</a></span>portid</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">uint16_t spdk_nvmf_discovery_log_page_entry::portid</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>NVM subsystem port ID. </p>
+
+<p class="definition">Definition at line <a class="el" href="nvmf__spec_8h_source.html#l00411">411</a> of file <a class="el" href="nvmf__spec_8h_source.html">nvmf_spec.h</a>.</p>
+
+</div>
+</div>
+<a id="a2ac239007d3805e11d5a0cf0a3b1ce3f" name="a2ac239007d3805e11d5a0cf0a3b1ce3f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2ac239007d3805e11d5a0cf0a3b1ce3f">&#9670;&#160;</a></span>reserved</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">uint8_t spdk_nvmf_discovery_log_page_entry::reserved</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="nvmf__spec_8h_source.html#l00407">407</a> of file <a class="el" href="nvmf__spec_8h_source.html">nvmf_spec.h</a>.</p>
+
+</div>
+</div>
+<a id="aa0a9b57d28fecae78caf8e59c6aa03b5" name="aa0a9b57d28fecae78caf8e59c6aa03b5"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa0a9b57d28fecae78caf8e59c6aa03b5">&#9670;&#160;</a></span>reserved0</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">uint8_t spdk_nvmf_discovery_log_page_entry::reserved0[20]</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="nvmf__spec_8h_source.html#l00422">422</a> of file <a class="el" href="nvmf__spec_8h_source.html">nvmf_spec.h</a>.</p>
+
+</div>
+</div>
+<a id="a712531c4645d3e0f229d82afc841b546" name="a712531c4645d3e0f229d82afc841b546"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a712531c4645d3e0f229d82afc841b546">&#9670;&#160;</a></span>reserved1</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">uint8_t spdk_nvmf_discovery_log_page_entry::reserved1[192]</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="nvmf__spec_8h_source.html#l00427">427</a> of file <a class="el" href="nvmf__spec_8h_source.html">nvmf_spec.h</a>.</p>
+
+</div>
+</div>
+<a id="a34f68aaa15f5c3a42c64c25d594b8cdd" name="a34f68aaa15f5c3a42c64c25d594b8cdd"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a34f68aaa15f5c3a42c64c25d594b8cdd">&#9670;&#160;</a></span>secure_channel</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">uint8_t spdk_nvmf_discovery_log_page_entry::secure_channel</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Secure channel requirements (<a class="el" href="nvmf__spec_8h.html#a0a92190b8c6824182974e20f84ee0a3c" title="spdk_nvmf_treq_secure_channel">spdk_nvmf_treq_secure_channel</a>). </p>
+
+<p class="definition">Definition at line <a class="el" href="nvmf__spec_8h_source.html#l00405">405</a> of file <a class="el" href="nvmf__spec_8h_source.html">nvmf_spec.h</a>.</p>
+
+</div>
+</div>
+<a id="a797dfd34a151a7c7d9942a7ad179aac5" name="a797dfd34a151a7c7d9942a7ad179aac5"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a797dfd34a151a7c7d9942a7ad179aac5">&#9670;&#160;</a></span>subnqn</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">uint8_t spdk_nvmf_discovery_log_page_entry::subnqn[256]</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>NVM subsystem qualified name. </p>
+
+<p class="definition">Definition at line <a class="el" href="nvmf__spec_8h_source.html#l00430">430</a> of file <a class="el" href="nvmf__spec_8h_source.html">nvmf_spec.h</a>.</p>
+
+</div>
+</div>
+<a id="a2cc3f0c6ab0ebb7eb85cd3058f0f787f" name="a2cc3f0c6ab0ebb7eb85cd3058f0f787f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2cc3f0c6ab0ebb7eb85cd3058f0f787f">&#9670;&#160;</a></span>subtype</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">uint8_t spdk_nvmf_discovery_log_page_entry::subtype</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Subsystem type (<a class="el" href="nvmf__spec_8h.html#a808272f050cc373f3a90871c1528afd4" title="spdk_nvmf_subtype">spdk_nvmf_subtype</a>). </p>
+
+<p class="definition">Definition at line <a class="el" href="nvmf__spec_8h_source.html#l00400">400</a> of file <a class="el" href="nvmf__spec_8h_source.html">nvmf_spec.h</a>.</p>
+
+</div>
+</div>
+<a id="a549e9bb635b7ae387daceef8e5b27e68" name="a549e9bb635b7ae387daceef8e5b27e68"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a549e9bb635b7ae387daceef8e5b27e68">&#9670;&#160;</a></span>traddr</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">uint8_t spdk_nvmf_discovery_log_page_entry::traddr[SPDK_NVMF_TRADDR_MAX_LEN]</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Transport address. </p>
+
+<p class="definition">Definition at line <a class="el" href="nvmf__spec_8h_source.html#l00433">433</a> of file <a class="el" href="nvmf__spec_8h_source.html">nvmf_spec.h</a>.</p>
+
+</div>
+</div>
+<a id="a4b3b3ff4bd5f94e6ffe8a11b90b08caa" name="a4b3b3ff4bd5f94e6ffe8a11b90b08caa"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4b3b3ff4bd5f94e6ffe8a11b90b08caa">&#9670;&#160;</a></span>trsvcid</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">uint8_t spdk_nvmf_discovery_log_page_entry::trsvcid[SPDK_NVMF_TRSVCID_MAX_LEN]</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Transport service identifier. </p>
+
+<p class="definition">Definition at line <a class="el" href="nvmf__spec_8h_source.html#l00425">425</a> of file <a class="el" href="nvmf__spec_8h_source.html">nvmf_spec.h</a>.</p>
+
+</div>
+</div>
+<a id="ad5db7a511e5a7b5bf342391e77ecb27d" name="ad5db7a511e5a7b5bf342391e77ecb27d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad5db7a511e5a7b5bf342391e77ecb27d">&#9670;&#160;</a></span>trtype</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">uint8_t spdk_nvmf_discovery_log_page_entry::trtype</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Transport type (<a class="el" href="nvmf__spec_8h.html#a239e424a2438a066c30a288c592cba1b" title="spdk_nvmf_trtype">spdk_nvmf_trtype</a>). </p>
+
+<p class="definition">Definition at line <a class="el" href="nvmf__spec_8h_source.html#l00394">394</a> of file <a class="el" href="nvmf__spec_8h_source.html">nvmf_spec.h</a>.</p>
+
+</div>
+</div>
+<a id="ae6926468815fd6dbdd5ff136a4905057" name="ae6926468815fd6dbdd5ff136a4905057"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae6926468815fd6dbdd5ff136a4905057">&#9670;&#160;</a></span>tsas</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">union <a class="el" href="unionspdk__nvmf__transport__specific__address__subtype.html">spdk_nvmf_transport_specific_address_subtype</a> spdk_nvmf_discovery_log_page_entry::tsas</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Transport-specific address subtype. </p>
+
+<p class="definition">Definition at line <a class="el" href="nvmf__spec_8h_source.html#l00436">436</a> of file <a class="el" href="nvmf__spec_8h_source.html">nvmf_spec.h</a>.</p>
+
+</div>
+</div>
+<hr/>The documentation for this struct was generated from the following file:<ul>
+<li><a class="el" href="nvmf__spec_8h_source.html">nvmf_spec.h</a></li>
+</ul>
+</div><!-- contents -->
+</div><!-- doc-content -->
+<div id="page-nav" class="page-nav-panel">
+<div id="page-nav-resize-handle"></div>
+<div id="page-nav-tree">
+<div id="page-nav-contents">
+</div><!-- page-nav-contents -->
+</div><!-- page-nav-tree -->
+</div><!-- page-nav -->
+</div><!-- container -->
+<footer class="footer" id="nav-path">
+  <div class="footer-inner">
+    <div class="footer-copy">
+      <small>Copyright &copy; SPDK a Series of LF Projects, LLC. For web site terms of use, trademark policy, and other
+      project policies please see <a href="https://lfprojects.org">lfprojects.org</a>.</small>
+    </div>
+  </div>
+</footer>
+<script type="text/javascript" src="page_outline.js"></script>
+<script type="text/javascript" src="spdk_nav.js"></script>
+<!-- Doxygen footer suffix – assembled by _build/common.sh:
+     _includes/footer.html (shared) + theme scripts (from spdk) + this file.
+     Theme scripts are extracted from spdk/doc/theme/footer.html at build
+     time so the script list is maintained in a single place. -->
+</body>
+</html>

@@ -1,0 +1,25 @@
+<map id="spdk_opal_d0_features_info" name="spdk_opal_d0_features_info">
+<area shape="rect" id="Node000001" title=" " alt="" coords="596,173,799,201"/>
+<area shape="rect" id="Node000002" href="$structspdk__opal__d0__tper__feat.html" title=" " alt="" coords="272,5,448,33"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="464,26,520,39,573,61,611,86,643,117,689,171,685,175,640,121,607,90,571,66,518,44,463,31"/>
+<area shape="rect" id="Node000003" href="$structspdk__opal__d0__feat__hdr.html" title=" " alt="" coords="5,173,177,201"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="110,160,169,99,209,68,253,43,289,31,291,36,255,48,211,72,172,103,114,163"/>
+<area shape="rect" id="Node000004" href="$structspdk__opal__d0__locking__feat.html" title=" " alt="" coords="261,57,458,85"/>
+<area shape="poly" id="edge4_Node000004_Node000003" title=" " alt="" coords="124,162,183,127,253,94,288,83,289,88,255,99,185,132,127,167"/>
+<area shape="rect" id="Node000005" href="$structspdk__opal__d0__single__user__mode__feat.html" title=" " alt="" coords="282,109,438,154"/>
+<area shape="poly" id="edge6_Node000005_Node000003" title=" " alt="" coords="163,166,200,158,281,142,282,147,201,163,164,172"/>
+<area shape="rect" id="Node000006" href="$structspdk__opal__d0__geo__feat.html" title=" " alt="" coords="273,177,447,205"/>
+<area shape="poly" id="edge8_Node000006_Node000003" title=" " alt="" coords="193,186,272,187,272,193,192,191"/>
+<area shape="rect" id="Node000007" href="$structspdk__opal__d0__datastore__feat.html" title=" " alt="" coords="254,229,466,257"/>
+<area shape="poly" id="edge10_Node000007_Node000003" title=" " alt="" coords="152,203,201,216,254,226,253,232,200,221,150,208"/>
+<area shape="rect" id="Node000008" href="$structspdk__opal__d0__v100__feat.html" title=" " alt="" coords="269,285,451,313"/>
+<area shape="poly" id="edge12_Node000008_Node000003" title=" " alt="" coords="125,208,161,231,202,252,247,269,292,282,290,287,245,274,200,257,158,236,122,212"/>
+<area shape="rect" id="Node000009" href="$structspdk__opal__d0__v200__feat.html" title=" " alt="" coords="269,341,451,369"/>
+<area shape="poly" id="edge14_Node000009_Node000003" title=" " alt="" coords="116,210,155,251,202,293,227,310,255,322,301,338,300,343,253,327,225,314,199,297,151,255,112,214"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="469,86,521,99,573,115,630,143,677,171,674,175,628,147,571,120,520,104,468,91"/>
+<area shape="poly" id="edge5_Node000001_Node000005" title=" " alt="" coords="454,140,572,158,634,170,633,175,572,163,453,145"/>
+<area shape="poly" id="edge7_Node000001_Node000006" title=" " alt="" coords="463,187,595,186,595,191,463,193"/>
+<area shape="poly" id="edge9_Node000001_Node000007" title=" " alt="" coords="481,231,571,218,648,199,650,204,573,223,481,236"/>
+<area shape="poly" id="edge11_Node000001_Node000008" title=" " alt="" coords="466,286,519,276,571,260,630,231,676,199,679,204,633,235,573,265,520,281,467,292"/>
+<area shape="poly" id="edge13_Node000001_Node000009" title=" " alt="" coords="466,345,519,333,571,312,608,287,640,256,685,200,689,203,644,259,611,291,573,317,521,338,467,350"/>
+</map>

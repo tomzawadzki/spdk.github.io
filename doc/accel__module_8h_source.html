@@ -1,0 +1,603 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<meta name="generator" content="Doxygen 1.16.1">
+	<title>SPDK: accel_module.h Source File</title>
+	<script type="text/javascript" src="jquery.js"></script>
+	<script type="text/javascript" src="dynsections.js"></script>
+	<script type="text/javascript" src="clipboard.js"></script>
+	<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
+<script type="text/javascript" src="cookie.js"></script>
+	<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<script type="text/javascript">
+  $(function() { init_search(); });
+</script>
+	<link rel="icon" type="image/svg+xml" href="../assets/img/spdk.svg">
+	<link rel="icon" href="../assets/favicon.ico" sizes="32x32">
+	<link href="doxygen.css" rel="stylesheet" type="text/css">
+	<script>(function(){var k='doxygen_width',w,bw=6;if(window.chrome){w=localStorage.getItem(k);if(!w){w='350';localStorage.setItem(k,w)}}else{var m=document.cookie.match(new RegExp(k+'=(\\d+)'));w=m?m[1]:null;if(!w){w='350';document.cookie=k+'=350;SameSite=Lax;path=/'}}document.documentElement.style.setProperty('--sn-w',(parseInt(w)+bw)+'px')})()</script>
+	<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:400,700,900" type="text/css">
+	<link href="spdk.css" rel="stylesheet" type="text/css"/>
+	<link href="../assets/css/spdk.css" rel="stylesheet" type="text/css">
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<nav class="navbar">
+  <a class="navbar-brand" href="../" aria-label="SPDK">
+    <img src="../assets/img/spdk.svg" width="36" height="36" alt="Storage Performance Development Kit">
+  </a>
+  <div class="navbar-nav">
+    <a class="nav-link header-link" href="../doc/releases.html">download</a>
+    <a class="nav-link header-link" href="../doc/">documentation</a>
+    <a class="nav-link header-link" href="../doc/contributing.html">development</a>
+    <a class="nav-link header-link" href="../doc/ci_tools.html">CI status</a>
+    <a class="nav-link header-link" href="../community/">community</a>
+    <a class="nav-link header-link" href="../blog/">Blog</a>
+    <a class="nav-link header-link" href="https://github.com/orgs/spdk/projects/5">Roadmap</a>
+    <a class="nav-link header-link" href="../news/">News</a>
+  </div>
+  <div class="navbar-end">
+    <a class="nav-link header-link" href="https://github.com/spdk/spdk" aria-label="GitHub">
+      <svg xmlns="http://www.w3.org/2000/svg" class="navbar-nav-svg" aria-hidden="true"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
+    </a>
+    <a id="cn_lang_btn" href="../cn/doc/" class="nav-link header-link">中文</a>
+  </div>
+</nav>
+<script>
+(function() {
+    var p = location.pathname, best = null, bLen = 0;
+    document.querySelectorAll('.header-link[href]').forEach(function(a) {
+        var raw = a.getAttribute('href');
+        if (!raw) return;
+        try { var u = new URL(raw, location.href); } catch(e) { return; }
+        if (u.origin !== location.origin) return;
+        var h = u.pathname;
+        if (h === '/') return;
+        var ok = h.endsWith('.html') ? p === h : p.indexOf(h) === 0;
+        if (ok && h.length > bLen) { bLen = h.length; best = a; }
+    });
+    if (best) best.classList.add('active');
+})();
+</script>
+<div id="doxygen-searchbox">        <div id="MSearchBox" class="MSearchBoxInactive">
+        <span class="left">
+          <span id="MSearchSelect" class="search-icon" onmouseover="return searchBox.OnSearchSelectShow()" onmouseout="return searchBox.OnSearchSelectHide()"><span class="search-icon-dropdown"></span></span>
+          <input type="text" id="MSearchField" value="" placeholder="Search" accesskey="S"
+               onfocus="searchBox.OnSearchFieldFocus(true)" 
+               onblur="searchBox.OnSearchFieldFocus(false)" 
+               onkeyup="searchBox.OnSearchFieldChange(event)"/>
+          </span><span class="right">
+            <a id="MSearchClose" href="javascript:searchBox.CloseResultsWindow()"><div id="MSearchCloseImg" class="close-icon"></div></a>
+          </span>
+        </div>
+</div>
+<!-- Generated by Doxygen 1.16.1 -->
+<script type="text/javascript">
+var searchBox = new SearchBox("searchBox", "search/",'.html');
+</script>
+<script type="text/javascript">
+$(function() { codefold.init(); });
+</script>
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+$(function(){initNavTree('accel__module_8h_source.html','',''); });
+</script>
+<div id="container">
+<div id="doc-content">
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">Loading...</div>
+<div class="SRStatus" id="Searching">Searching...</div>
+<div class="SRStatus" id="NoMatches">No Matches</div>
+</div>
+</div>
+</div>
+</div>
+
+<div class="header">
+  <div class="headertitle"><div class="title">accel_module.h</div></div>
+</div><!--header-->
+<div class="contents">
+<div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span><span class="comment">/*   SPDX-License-Identifier: BSD-3-Clause</span></div>
+<div class="line"><a id="l00002" name="l00002"></a><span class="lineno">    2</span><span class="comment"> *   Copyright (C) 2020 Intel Corporation.</span></div>
+<div class="line"><a id="l00003" name="l00003"></a><span class="lineno">    3</span><span class="comment"> *   Copyright (c) 2022, 2023 NVIDIA CORPORATION &amp; AFFILIATES</span></div>
+<div class="line"><a id="l00004" name="l00004"></a><span class="lineno">    4</span><span class="comment"> *   All rights reserved.</span></div>
+<div class="line"><a id="l00005" name="l00005"></a><span class="lineno">    5</span><span class="comment"> */</span></div>
+<div class="line"><a id="l00006" name="l00006"></a><span class="lineno">    6</span> </div>
+<div class="line"><a id="l00007" name="l00007"></a><span class="lineno">    7</span><span class="preprocessor">#ifndef SPDK_ACCEL_MODULE_H</span></div>
+<div class="line"><a id="l00008" name="l00008"></a><span class="lineno">    8</span><span class="preprocessor">#define SPDK_ACCEL_MODULE_H</span></div>
+<div class="line"><a id="l00009" name="l00009"></a><span class="lineno">    9</span> </div>
+<div class="line"><a id="l00010" name="l00010"></a><span class="lineno">   10</span><span class="preprocessor">#include &quot;<a class="code" href="stdinc_8h.html">spdk/stdinc.h</a>&quot;</span></div>
+<div class="line"><a id="l00011" name="l00011"></a><span class="lineno">   11</span> </div>
+<div class="line"><a id="l00012" name="l00012"></a><span class="lineno">   12</span><span class="preprocessor">#include &quot;<a class="code" href="accel_8h.html">spdk/accel.h</a>&quot;</span></div>
+<div class="line"><a id="l00013" name="l00013"></a><span class="lineno">   13</span><span class="preprocessor">#include &quot;spdk/queue.h&quot;</span></div>
+<div class="line"><a id="l00014" name="l00014"></a><span class="lineno">   14</span><span class="preprocessor">#include &quot;spdk/config.h&quot;</span></div>
+<div class="line"><a id="l00015" name="l00015"></a><span class="lineno">   15</span> </div>
+<div class="line"><a id="l00016" name="l00016"></a><span class="lineno">   16</span><span class="preprocessor">#ifdef __cplusplus</span></div>
+<div class="line"><a id="l00017" name="l00017"></a><span class="lineno">   17</span><span class="keyword">extern</span> <span class="stringliteral">&quot;C&quot;</span> {</div>
+<div class="line"><a id="l00018" name="l00018"></a><span class="lineno">   18</span><span class="preprocessor">#endif</span></div>
+<div class="line"><a id="l00019" name="l00019"></a><span class="lineno">   19</span> </div>
+<div class="line"><a id="l00020" name="l00020"></a><span class="lineno">   20</span><span class="keyword">struct </span><a class="code hl_struct" href="structspdk__accel__module__if.html">spdk_accel_module_if</a>;</div>
+<div class="line"><a id="l00021" name="l00021"></a><span class="lineno">   21</span><span class="keyword">struct </span><a class="code hl_struct" href="structspdk__accel__task.html">spdk_accel_task</a>;</div>
+<div class="line"><a id="l00022" name="l00022"></a><span class="lineno">   22</span> </div>
+<div class="line"><a id="l00023" name="l00023"></a><span class="lineno">   23</span><span class="keywordtype">void</span> spdk_accel_task_complete(<span class="keyword">struct</span> <a class="code hl_struct" href="structspdk__accel__task.html">spdk_accel_task</a> *task, <span class="keywordtype">int</span> status);</div>
+<div class="line"><a id="l00024" name="l00024"></a><span class="lineno">   24</span><span class="comment"></span> </div>
+<div class="line"><a id="l00025" name="l00025"></a><span class="lineno">   25</span><span class="comment">/** Some reasonable key length used with strnlen() */</span></div>
+<div class="line"><a id="l00026" name="l00026"></a><span class="lineno">   26</span><span class="preprocessor">#define SPDK_ACCEL_CRYPTO_KEY_MAX_HEX_LENGTH (256 + 1)</span></div>
+<div class="line"><a id="l00027" name="l00027"></a><span class="lineno">   27</span> </div>
+<div class="line"><a id="l00028" name="l00028"></a><span class="lineno">   28</span><span class="keyword">enum</span> spdk_accel_crypto_tweak_mode {</div>
+<div class="line"><a id="l00029" name="l00029"></a><span class="lineno">   29</span>        <span class="comment">/* Tweak[127:0] = {64&#39;b0, LBA[63:0]} */</span></div>
+<div class="line"><a id="l00030" name="l00030"></a><span class="lineno">   30</span>        SPDK_ACCEL_CRYPTO_TWEAK_MODE_SIMPLE_LBA,</div>
+<div class="line"><a id="l00031" name="l00031"></a><span class="lineno">   31</span> </div>
+<div class="line"><a id="l00032" name="l00032"></a><span class="lineno">   32</span>        <span class="comment">/* Tweak[127:0] = {1’b0, ~LBA[62:0], LBA[63:0]} */</span></div>
+<div class="line"><a id="l00033" name="l00033"></a><span class="lineno">   33</span>        SPDK_ACCEL_CRYPTO_TWEAK_MODE_JOIN_NEG_LBA_WITH_LBA,</div>
+<div class="line"><a id="l00034" name="l00034"></a><span class="lineno">   34</span> </div>
+<div class="line"><a id="l00035" name="l00035"></a><span class="lineno">   35</span>        <span class="comment">/* Tweak is derived from LBA that is internally incremented by 1 for every 512 bytes processed</span></div>
+<div class="line"><a id="l00036" name="l00036"></a><span class="lineno">   36</span><span class="comment">         * so initial lba = (BLOCK_SIZE_IN_BYTES / 512) * LBA</span></div>
+<div class="line"><a id="l00037" name="l00037"></a><span class="lineno">   37</span><span class="comment">         * Tweak[127:0] = {lba[127:0]} */</span></div>
+<div class="line"><a id="l00038" name="l00038"></a><span class="lineno">   38</span>        SPDK_ACCEL_CRYPTO_TWEAK_MODE_INCR_512_FULL_LBA,</div>
+<div class="line"><a id="l00039" name="l00039"></a><span class="lineno">   39</span> </div>
+<div class="line"><a id="l00040" name="l00040"></a><span class="lineno">   40</span>        <span class="comment">/* Tweak is derived from LBA that is internally incremented by 1 for every 512 bytes processed</span></div>
+<div class="line"><a id="l00041" name="l00041"></a><span class="lineno">   41</span><span class="comment">         * so initial lba = (BLOCK_SIZE_IN_BYTES / 512) * LBA</span></div>
+<div class="line"><a id="l00042" name="l00042"></a><span class="lineno">   42</span><span class="comment">         * Tweak[127:0] = {lba[63:0], 64&#39;b0} */</span></div>
+<div class="line"><a id="l00043" name="l00043"></a><span class="lineno">   43</span>        SPDK_ACCEL_CRYPTO_TWEAK_MODE_INCR_512_UPPER_LBA,</div>
+<div class="line"><a id="l00044" name="l00044"></a><span class="lineno">   44</span>};</div>
+<div class="line"><a id="l00045" name="l00045"></a><span class="lineno">   45</span> </div>
+<div class="foldopen" id="foldopen00046" data-start="{" data-end="};">
+<div class="line"><a id="l00046" name="l00046"></a><span class="lineno"><a class="line" href="structspdk__accel__crypto__key.html">   46</a></span><span class="keyword">struct </span><a class="code hl_struct" href="structspdk__accel__crypto__key.html">spdk_accel_crypto_key</a> {</div>
+<div class="line"><a id="l00047" name="l00047"></a><span class="lineno"><a class="line" href="structspdk__accel__crypto__key.html#acc9c5ea5eedb9d6b1b9e53da0d446373">   47</a></span>        <span class="keywordtype">void</span> *<a class="code hl_variable" href="structspdk__accel__crypto__key.html#acc9c5ea5eedb9d6b1b9e53da0d446373">priv</a>;                                     <span class="comment">/**&lt; Module private data */</span></div>
+<div class="line"><a id="l00048" name="l00048"></a><span class="lineno"><a class="line" href="structspdk__accel__crypto__key.html#af28371302175cbcfae86ffa9fdf9b70e">   48</a></span>        <span class="keywordtype">char</span> *<a class="code hl_variable" href="structspdk__accel__crypto__key.html#af28371302175cbcfae86ffa9fdf9b70e">key</a>;                                      <span class="comment">/**&lt; Key in binary form */</span></div>
+<div class="line"><a id="l00049" name="l00049"></a><span class="lineno"><a class="line" href="structspdk__accel__crypto__key.html#acc60f9372db9f122c9639b41717b61da">   49</a></span>        <span class="keywordtype">size_t</span> <a class="code hl_variable" href="structspdk__accel__crypto__key.html#acc60f9372db9f122c9639b41717b61da">key_size</a>;                                <span class="comment">/**&lt; Key size in bytes */</span></div>
+<div class="line"><a id="l00050" name="l00050"></a><span class="lineno"><a class="line" href="structspdk__accel__crypto__key.html#a5cb430285008edf86de712110f672a45">   50</a></span>        <span class="keywordtype">char</span> *<a class="code hl_variable" href="structspdk__accel__crypto__key.html#a5cb430285008edf86de712110f672a45">key2</a>;                                     <span class="comment">/**&lt; Key2 in binary form */</span></div>
+<div class="line"><a id="l00051" name="l00051"></a><span class="lineno"><a class="line" href="structspdk__accel__crypto__key.html#affba315845451014fd15be510fba4ce9">   51</a></span>        <span class="keywordtype">size_t</span> <a class="code hl_variable" href="structspdk__accel__crypto__key.html#affba315845451014fd15be510fba4ce9">key2_size</a>;                               <span class="comment">/**&lt; Key2 size in bytes */</span></div>
+<div class="line"><a id="l00052" name="l00052"></a><span class="lineno">   52</span>        <span class="keyword">enum</span> spdk_accel_cipher cipher;</div>
+<div class="line"><a id="l00053" name="l00053"></a><span class="lineno">   53</span>        <span class="keyword">enum</span> spdk_accel_crypto_tweak_mode tweak_mode;</div>
+<div class="line"><a id="l00054" name="l00054"></a><span class="lineno"><a class="line" href="structspdk__accel__crypto__key.html#a887e1b0bf2e7c89f33c75293e3d839a4">   54</a></span>        <span class="keyword">struct </span><a class="code hl_struct" href="structspdk__accel__module__if.html">spdk_accel_module_if</a> *<a class="code hl_variable" href="structspdk__accel__crypto__key.html#a887e1b0bf2e7c89f33c75293e3d839a4">module_if</a>;                 <span class="comment">/**&lt; Accel module the key belongs to */</span></div>
+<div class="line"><a id="l00055" name="l00055"></a><span class="lineno"><a class="line" href="structspdk__accel__crypto__key.html#a671a54dba981be3dcec021b0ef49b03b">   55</a></span>        <span class="keyword">struct </span><a class="code hl_struct" href="structspdk__accel__crypto__key__create__param.html">spdk_accel_crypto_key_create_param</a> <a class="code hl_variable" href="structspdk__accel__crypto__key.html#a671a54dba981be3dcec021b0ef49b03b">param</a>;        <span class="comment">/**&lt; User input parameters */</span></div>
+<div class="line"><a id="l00056" name="l00056"></a><span class="lineno">   56</span>        TAILQ_ENTRY(<a class="code hl_struct" href="structspdk__accel__crypto__key.html">spdk_accel_crypto_key</a>) link;</div>
+<div class="line"><a id="l00057" name="l00057"></a><span class="lineno">   57</span>};</div>
+</div>
+<div class="line"><a id="l00058" name="l00058"></a><span class="lineno">   58</span><span class="comment"></span> </div>
+<div class="line"><a id="l00059" name="l00059"></a><span class="lineno">   59</span><span class="comment">/**</span></div>
+<div class="line"><a id="l00060" name="l00060"></a><span class="lineno">   60</span><span class="comment"> * Describes user&#39;s buffers in remote memory domains in case a module doesn&#39;t support memory domains</span></div>
+<div class="line"><a id="l00061" name="l00061"></a><span class="lineno">   61</span><span class="comment"> * and accel needs to pull/push the data before submitting a task.  Should only be used by accel</span></div>
+<div class="line"><a id="l00062" name="l00062"></a><span class="lineno">   62</span><span class="comment"> * itself and should not be touched by accel modules.</span></div>
+<div class="line"><a id="l00063" name="l00063"></a><span class="lineno">   63</span><span class="comment"> */</span></div>
+<div class="foldopen" id="foldopen00064" data-start="{" data-end="};">
+<div class="line"><a id="l00064" name="l00064"></a><span class="lineno"><a class="line" href="structspdk__accel__bounce__buffer.html">   64</a></span><span class="keyword">struct </span><a class="code hl_struct" href="structspdk__accel__bounce__buffer.html">spdk_accel_bounce_buffer</a> {</div>
+<div class="line"><a id="l00065" name="l00065"></a><span class="lineno">   65</span>        <span class="keyword">struct </span>iovec                    *orig_iovs;</div>
+<div class="line"><a id="l00066" name="l00066"></a><span class="lineno">   66</span>        uint32_t                        orig_iovcnt;</div>
+<div class="line"><a id="l00067" name="l00067"></a><span class="lineno">   67</span>        <span class="keyword">struct </span>spdk_memory_domain       *orig_domain;</div>
+<div class="line"><a id="l00068" name="l00068"></a><span class="lineno">   68</span>        <span class="keywordtype">void</span>                            *orig_domain_ctx;</div>
+<div class="line"><a id="l00069" name="l00069"></a><span class="lineno">   69</span>        <span class="keyword">struct </span>iovec                    iov;</div>
+<div class="line"><a id="l00070" name="l00070"></a><span class="lineno">   70</span>};</div>
+</div>
+<div class="line"><a id="l00071" name="l00071"></a><span class="lineno">   71</span> </div>
+<div class="line"><a id="l00072" name="l00072"></a><span class="lineno">   72</span><span class="keyword">enum</span> spdk_accel_aux_iov_type {</div>
+<div class="line"><a id="l00073" name="l00073"></a><span class="lineno">   73</span>        SPDK_ACCEL_AUX_IOV_SRC,</div>
+<div class="line"><a id="l00074" name="l00074"></a><span class="lineno">   74</span>        SPDK_ACCEL_AUX_IOV_DST,</div>
+<div class="line"><a id="l00075" name="l00075"></a><span class="lineno">   75</span>        SPDK_ACCEL_AUX_IOV_SRC2,</div>
+<div class="line"><a id="l00076" name="l00076"></a><span class="lineno">   76</span>        SPDK_ACCEL_AUX_IOV_DST2,</div>
+<div class="line"><a id="l00077" name="l00077"></a><span class="lineno">   77</span>        SPDK_ACCEL_AXU_IOV_VIRT_SRC,</div>
+<div class="line"><a id="l00078" name="l00078"></a><span class="lineno">   78</span>        SPDK_ACCEL_AXU_IOV_VIRT_DST,</div>
+<div class="line"><a id="l00079" name="l00079"></a><span class="lineno">   79</span>        SPDK_ACCEL_AUX_IOV_MAX,</div>
+<div class="line"><a id="l00080" name="l00080"></a><span class="lineno">   80</span>};</div>
+<div class="line"><a id="l00081" name="l00081"></a><span class="lineno">   81</span> </div>
+<div class="foldopen" id="foldopen00082" data-start="{" data-end="};">
+<div class="line"><a id="l00082" name="l00082"></a><span class="lineno"><a class="line" href="structspdk__accel__task__aux__data.html">   82</a></span><span class="keyword">struct </span><a class="code hl_struct" href="structspdk__accel__task__aux__data.html">spdk_accel_task_aux_data</a> {</div>
+<div class="line"><a id="l00083" name="l00083"></a><span class="lineno">   83</span>        SLIST_ENTRY(<a class="code hl_struct" href="structspdk__accel__task__aux__data.html">spdk_accel_task_aux_data</a>) link;</div>
+<div class="line"><a id="l00084" name="l00084"></a><span class="lineno">   84</span>        <span class="keyword">struct </span>iovec iovs[SPDK_ACCEL_AUX_IOV_MAX];</div>
+<div class="line"><a id="l00085" name="l00085"></a><span class="lineno">   85</span>        <span class="keyword">struct </span>{</div>
+<div class="line"><a id="l00086" name="l00086"></a><span class="lineno">   86</span>                <span class="keyword">struct </span><a class="code hl_struct" href="structspdk__accel__bounce__buffer.html">spdk_accel_bounce_buffer</a> s;</div>
+<div class="line"><a id="l00087" name="l00087"></a><span class="lineno">   87</span>                <span class="keyword">struct </span><a class="code hl_struct" href="structspdk__accel__bounce__buffer.html">spdk_accel_bounce_buffer</a> d;</div>
+<div class="line"><a id="l00088" name="l00088"></a><span class="lineno">   88</span>        } bounce;</div>
+<div class="line"><a id="l00089" name="l00089"></a><span class="lineno">   89</span>};</div>
+</div>
+<div class="line"><a id="l00090" name="l00090"></a><span class="lineno">   90</span> </div>
+<div class="foldopen" id="foldopen00091" data-start="{" data-end="};">
+<div class="line"><a id="l00091" name="l00091"></a><span class="lineno"><a class="line" href="structspdk__accel__task.html">   91</a></span><span class="keyword">struct </span><a class="code hl_struct" href="structspdk__accel__task.html">spdk_accel_task</a> {</div>
+<div class="line"><a id="l00092" name="l00092"></a><span class="lineno">   92</span>        TAILQ_ENTRY(<a class="code hl_struct" href="structspdk__accel__task.html">spdk_accel_task</a>)    seq_link;</div>
+<div class="line"><a id="l00093" name="l00093"></a><span class="lineno">   93</span>        STAILQ_ENTRY(<a class="code hl_struct" href="structspdk__accel__task.html">spdk_accel_task</a>)   link;</div>
+<div class="line"><a id="l00094" name="l00094"></a><span class="lineno">   94</span>        <span class="comment">/* Uses enum spdk_accel_opcode */</span></div>
+<div class="line"><a id="l00095" name="l00095"></a><span class="lineno">   95</span>        uint8_t                         op_code;</div>
+<div class="line"><a id="l00096" name="l00096"></a><span class="lineno">   96</span>        <span class="keywordtype">bool</span>                            has_aux;</div>
+<div class="line"><a id="l00097" name="l00097"></a><span class="lineno">   97</span>        int16_t                         status;</div>
+<div class="line"><a id="l00098" name="l00098"></a><span class="lineno">   98</span>        uint8_t                         reserved[4];</div>
+<div class="line"><a id="l00099" name="l00099"></a><span class="lineno">   99</span>        <span class="keyword">struct </span>accel_io_channel         *accel_ch;</div>
+<div class="line"><a id="l00100" name="l00100"></a><span class="lineno">  100</span>        <span class="keyword">struct </span>spdk_accel_sequence      *seq;</div>
+<div class="line"><a id="l00101" name="l00101"></a><span class="lineno">  101</span>        <span class="keyword">union </span>{</div>
+<div class="line"><a id="l00102" name="l00102"></a><span class="lineno">  102</span>                <span class="comment">/* Used by spdk_accel_submit_* functions */</span></div>
+<div class="line"><a id="l00103" name="l00103"></a><span class="lineno">  103</span>                <a class="code hl_typedef" href="accel_8h.html#a6ba836b7b128829ba185eadb2c60476a">spdk_accel_completion_cb</a>        cb_fn;</div>
+<div class="line"><a id="l00104" name="l00104"></a><span class="lineno">  104</span>                <span class="comment">/* Used by spdk_accel_append_* functions */</span></div>
+<div class="line"><a id="l00105" name="l00105"></a><span class="lineno">  105</span>                <a class="code hl_typedef" href="accel_8h.html#abaf556b5e1b63b5237faff3952a3bb46">spdk_accel_step_cb</a>              step_cb_fn;</div>
+<div class="line"><a id="l00106" name="l00106"></a><span class="lineno">  106</span>        };</div>
+<div class="line"><a id="l00107" name="l00107"></a><span class="lineno">  107</span>        <span class="keywordtype">void</span>                            *cb_arg;</div>
+<div class="line"><a id="l00108" name="l00108"></a><span class="lineno">  108</span>        <span class="keyword">struct </span>spdk_memory_domain       *src_domain;</div>
+<div class="line"><a id="l00109" name="l00109"></a><span class="lineno">  109</span>        <span class="keywordtype">void</span>                            *src_domain_ctx;</div>
+<div class="line"><a id="l00110" name="l00110"></a><span class="lineno">  110</span>        <span class="keyword">struct </span>spdk_memory_domain       *dst_domain;</div>
+<div class="line"><a id="l00111" name="l00111"></a><span class="lineno">  111</span>        <span class="keywordtype">void</span>                            *dst_domain_ctx;</div>
+<div class="line"><a id="l00112" name="l00112"></a><span class="lineno">  112</span>        uint64_t                        nbytes;</div>
+<div class="line"><a id="l00113" name="l00113"></a><span class="lineno">  113</span>        <span class="keyword">union </span>{</div>
+<div class="line"><a id="l00114" name="l00114"></a><span class="lineno">  114</span>                <span class="keyword">struct </span>{</div>
+<div class="line"><a id="l00115" name="l00115"></a><span class="lineno">  115</span>                        <span class="keyword">struct </span>iovec            *iovs; <span class="comment">/* iovs passed by the caller */</span></div>
+<div class="line"><a id="l00116" name="l00116"></a><span class="lineno">  116</span>                        uint32_t                iovcnt; <span class="comment">/* iovcnt passed by the caller */</span></div>
+<div class="line"><a id="l00117" name="l00117"></a><span class="lineno">  117</span>                } s;</div>
+<div class="line"><a id="l00118" name="l00118"></a><span class="lineno">  118</span>                <span class="keyword">struct </span>{</div>
+<div class="line"><a id="l00119" name="l00119"></a><span class="lineno">  119</span>                        <span class="keywordtype">void</span>                    **srcs;</div>
+<div class="line"><a id="l00120" name="l00120"></a><span class="lineno">  120</span>                        uint32_t                cnt;</div>
+<div class="line"><a id="l00121" name="l00121"></a><span class="lineno">  121</span>                } nsrcs;</div>
+<div class="line"><a id="l00122" name="l00122"></a><span class="lineno">  122</span>        };</div>
+<div class="line"><a id="l00123" name="l00123"></a><span class="lineno">  123</span>        <span class="keyword">union </span>{</div>
+<div class="line"><a id="l00124" name="l00124"></a><span class="lineno">  124</span>                <span class="keyword">struct </span>{</div>
+<div class="line"><a id="l00125" name="l00125"></a><span class="lineno">  125</span>                        <span class="keyword">struct </span>iovec            *iovs; <span class="comment">/* iovs passed by the caller */</span></div>
+<div class="line"><a id="l00126" name="l00126"></a><span class="lineno">  126</span>                        uint32_t                iovcnt; <span class="comment">/* iovcnt passed by the caller */</span></div>
+<div class="line"><a id="l00127" name="l00127"></a><span class="lineno">  127</span>                } d;</div>
+<div class="line"><a id="l00128" name="l00128"></a><span class="lineno">  128</span>                <span class="keyword">struct </span>{</div>
+<div class="line"><a id="l00129" name="l00129"></a><span class="lineno">  129</span>                        <span class="keyword">struct </span>iovec            *iovs;</div>
+<div class="line"><a id="l00130" name="l00130"></a><span class="lineno">  130</span>                        uint32_t                iovcnt;</div>
+<div class="line"><a id="l00131" name="l00131"></a><span class="lineno">  131</span>                } s2;</div>
+<div class="line"><a id="l00132" name="l00132"></a><span class="lineno">  132</span>        };</div>
+<div class="line"><a id="l00133" name="l00133"></a><span class="lineno">  133</span>        <span class="keyword">union </span>{</div>
+<div class="line"><a id="l00134" name="l00134"></a><span class="lineno">  134</span>                <span class="keyword">struct </span>{</div>
+<div class="line"><a id="l00135" name="l00135"></a><span class="lineno">  135</span>                        <span class="keyword">struct </span>iovec            *iovs;</div>
+<div class="line"><a id="l00136" name="l00136"></a><span class="lineno">  136</span>                        uint32_t                iovcnt;</div>
+<div class="line"><a id="l00137" name="l00137"></a><span class="lineno">  137</span>                } d2;</div>
+<div class="line"><a id="l00138" name="l00138"></a><span class="lineno">  138</span>                uint32_t                        seed;</div>
+<div class="line"><a id="l00139" name="l00139"></a><span class="lineno">  139</span>                uint64_t                        fill_pattern;</div>
+<div class="line"><a id="l00140" name="l00140"></a><span class="lineno">  140</span>                <span class="keyword">struct </span><a class="code hl_struct" href="structspdk__accel__crypto__key.html">spdk_accel_crypto_key</a>    *crypto_key;</div>
+<div class="line"><a id="l00141" name="l00141"></a><span class="lineno">  141</span>                <span class="keyword">struct </span>{</div>
+<div class="line"><a id="l00142" name="l00142"></a><span class="lineno">  142</span>                        <span class="keyword">const</span> <span class="keyword">struct </span><a class="code hl_struct" href="structspdk__dif__ctx.html">spdk_dif_ctx</a>       *ctx;</div>
+<div class="line"><a id="l00143" name="l00143"></a><span class="lineno">  143</span>                        <span class="keyword">struct </span><a class="code hl_struct" href="structspdk__dif__error.html">spdk_dif_error</a>           *err;</div>
+<div class="line"><a id="l00144" name="l00144"></a><span class="lineno">  144</span>                        uint32_t        num_blocks;</div>
+<div class="line"><a id="l00145" name="l00145"></a><span class="lineno">  145</span>                } dif;</div>
+<div class="line"><a id="l00146" name="l00146"></a><span class="lineno">  146</span>                <span class="keyword">struct </span>{</div>
+<div class="line"><a id="l00147" name="l00147"></a><span class="lineno">  147</span>                        <span class="keyword">enum</span> spdk_accel_comp_algo       algo; <span class="comment">/* compresssion/decompression algorithm */</span></div>
+<div class="line"><a id="l00148" name="l00148"></a><span class="lineno">  148</span>                        uint32_t                        level; <span class="comment">/* compression alogrithm level */</span></div>
+<div class="line"><a id="l00149" name="l00149"></a><span class="lineno">  149</span>                } comp;</div>
+<div class="line"><a id="l00150" name="l00150"></a><span class="lineno">  150</span>        };</div>
+<div class="line"><a id="l00151" name="l00151"></a><span class="lineno">  151</span>        <span class="keyword">union </span>{</div>
+<div class="line"><a id="l00152" name="l00152"></a><span class="lineno">  152</span>                uint32_t                *crc_dst;</div>
+<div class="line"><a id="l00153" name="l00153"></a><span class="lineno">  153</span>                uint32_t                *output_size;</div>
+<div class="line"><a id="l00154" name="l00154"></a><span class="lineno">  154</span>                uint32_t                block_size; <span class="comment">/* for crypto op */</span></div>
+<div class="line"><a id="l00155" name="l00155"></a><span class="lineno">  155</span>        };</div>
+<div class="line"><a id="l00156" name="l00156"></a><span class="lineno">  156</span>        uint64_t                        iv; <span class="comment">/* Initialization vector (tweak) for crypto op */</span></div>
+<div class="line"><a id="l00157" name="l00157"></a><span class="lineno">  157</span>        <span class="keyword">struct </span><a class="code hl_struct" href="structspdk__accel__task__aux__data.html">spdk_accel_task_aux_data</a> *aux;</div>
+<div class="line"><a id="l00158" name="l00158"></a><span class="lineno">  158</span>};</div>
+</div>
+<div class="line"><a id="l00159" name="l00159"></a><span class="lineno">  159</span> </div>
+<div class="foldopen" id="foldopen00160" data-start="{" data-end="};">
+<div class="line"><a id="l00160" name="l00160"></a><span class="lineno"><a class="line" href="structspdk__accel__opcode__info.html">  160</a></span><span class="keyword">struct </span><a class="code hl_struct" href="structspdk__accel__opcode__info.html">spdk_accel_opcode_info</a> {<span class="comment"></span></div>
+<div class="line"><a id="l00161" name="l00161"></a><span class="lineno">  161</span><span class="comment">        /**</span></div>
+<div class="line"><a id="l00162" name="l00162"></a><span class="lineno">  162</span><span class="comment">         * Minimum buffer alignment required to execute the operation, expressed as power of 2.  The</span></div>
+<div class="line"><a id="l00163" name="l00163"></a><span class="lineno">  163</span><span class="comment">         * value of 0 means that the buffers don&#39;t need to be aligned.</span></div>
+<div class="line"><a id="l00164" name="l00164"></a><span class="lineno">  164</span><span class="comment">         */</span></div>
+<div class="line"><a id="l00165" name="l00165"></a><span class="lineno"><a class="line" href="structspdk__accel__opcode__info.html#ae3efcb48e9ddc6ec7aa01ff061cf7f77">  165</a></span>        uint8_t <a class="code hl_variable" href="structspdk__accel__opcode__info.html#ae3efcb48e9ddc6ec7aa01ff061cf7f77">required_alignment</a>;</div>
+<div class="line"><a id="l00166" name="l00166"></a><span class="lineno">  166</span>};</div>
+</div>
+<div class="line"><a id="l00167" name="l00167"></a><span class="lineno">  167</span> </div>
+<div class="foldopen" id="foldopen00168" data-start="{" data-end="};">
+<div class="line"><a id="l00168" name="l00168"></a><span class="lineno"><a class="line" href="structspdk__accel__module__if.html">  168</a></span><span class="keyword">struct </span><a class="code hl_struct" href="structspdk__accel__module__if.html">spdk_accel_module_if</a> {<span class="comment"></span></div>
+<div class="line"><a id="l00169" name="l00169"></a><span class="lineno">  169</span><span class="comment">        /** Name of the module. */</span></div>
+<div class="line"><a id="l00170" name="l00170"></a><span class="lineno"><a class="line" href="structspdk__accel__module__if.html#ae918a45a62d5578f40ff7f90c88de1c6">  170</a></span>        <span class="keyword">const</span> <span class="keywordtype">char</span> *<a class="code hl_variable" href="structspdk__accel__module__if.html#ae918a45a62d5578f40ff7f90c88de1c6">name</a>;</div>
+<div class="line"><a id="l00171" name="l00171"></a><span class="lineno">  171</span><span class="comment"></span> </div>
+<div class="line"><a id="l00172" name="l00172"></a><span class="lineno">  172</span><span class="comment">        /**</span></div>
+<div class="line"><a id="l00173" name="l00173"></a><span class="lineno">  173</span><span class="comment">         * Priority of the module.  It&#39;s used to select a module to execute an operation when</span></div>
+<div class="line"><a id="l00174" name="l00174"></a><span class="lineno">  174</span><span class="comment">         * multiple modules support it.  Higher value means higher priority.  Software module has a</span></div>
+<div class="line"><a id="l00175" name="l00175"></a><span class="lineno">  175</span><span class="comment">         * priority of `SPDK_ACCEL_SW_PRIORITY`.  Of course, this value is only relevant when none</span></div>
+<div class="line"><a id="l00176" name="l00176"></a><span class="lineno">  176</span><span class="comment">         * of the modules have been explicitly assigned to execute a given operation via</span></div>
+<div class="line"><a id="l00177" name="l00177"></a><span class="lineno">  177</span><span class="comment">         * `spdk_accel_assign_opc()`.</span></div>
+<div class="line"><a id="l00178" name="l00178"></a><span class="lineno">  178</span><span class="comment">         */</span></div>
+<div class="line"><a id="l00179" name="l00179"></a><span class="lineno"><a class="line" href="structspdk__accel__module__if.html#abcfd6469c7d697bfe2bc6352a2f1bac1">  179</a></span>        <span class="keywordtype">int</span> <a class="code hl_variable" href="structspdk__accel__module__if.html#abcfd6469c7d697bfe2bc6352a2f1bac1">priority</a>;</div>
+<div class="line"><a id="l00180" name="l00180"></a><span class="lineno">  180</span><span class="comment"></span> </div>
+<div class="line"><a id="l00181" name="l00181"></a><span class="lineno">  181</span><span class="comment">        /**</span></div>
+<div class="line"><a id="l00182" name="l00182"></a><span class="lineno">  182</span><span class="comment">         * Initialization function for the module.  Called by the application during startup.</span></div>
+<div class="line"><a id="l00183" name="l00183"></a><span class="lineno">  183</span><span class="comment">         *</span></div>
+<div class="line"><a id="l00184" name="l00184"></a><span class="lineno">  184</span><span class="comment">         * Return 0 on success or negative error code. If -ENODEV is returned - the module</span></div>
+<div class="line"><a id="l00185" name="l00185"></a><span class="lineno">  185</span><span class="comment">         * will not be used to handle any operation, but the error will not stop framework</span></div>
+<div class="line"><a id="l00186" name="l00186"></a><span class="lineno">  186</span><span class="comment">         * initialization.</span></div>
+<div class="line"><a id="l00187" name="l00187"></a><span class="lineno">  187</span><span class="comment">         *</span></div>
+<div class="line"><a id="l00188" name="l00188"></a><span class="lineno">  188</span><span class="comment">         * Modules are required to define this function.</span></div>
+<div class="line"><a id="l00189" name="l00189"></a><span class="lineno">  189</span><span class="comment">         */</span></div>
+<div class="line"><a id="l00190" name="l00190"></a><span class="lineno"><a class="line" href="structspdk__accel__module__if.html#a67ea670c5044c1201533a7e23b81c8b3">  190</a></span>        int     (*<a class="code hl_variable" href="structspdk__accel__module__if.html#a67ea670c5044c1201533a7e23b81c8b3">module_init</a>)(void);</div>
+<div class="line"><a id="l00191" name="l00191"></a><span class="lineno">  191</span><span class="comment"></span> </div>
+<div class="line"><a id="l00192" name="l00192"></a><span class="lineno">  192</span><span class="comment">        /**</span></div>
+<div class="line"><a id="l00193" name="l00193"></a><span class="lineno">  193</span><span class="comment">         * Finish function for the module.  Called by the application before the application exits</span></div>
+<div class="line"><a id="l00194" name="l00194"></a><span class="lineno">  194</span><span class="comment">         * to perform any necessary cleanup.</span></div>
+<div class="line"><a id="l00195" name="l00195"></a><span class="lineno">  195</span><span class="comment">         *</span></div>
+<div class="line"><a id="l00196" name="l00196"></a><span class="lineno">  196</span><span class="comment">         * Modules are not required to define this function.</span></div>
+<div class="line"><a id="l00197" name="l00197"></a><span class="lineno">  197</span><span class="comment">         */</span></div>
+<div class="line"><a id="l00198" name="l00198"></a><span class="lineno"><a class="line" href="structspdk__accel__module__if.html#a3cba48f71887d03cb0b350a06e56ecf4">  198</a></span>        void    (*<a class="code hl_variable" href="structspdk__accel__module__if.html#a3cba48f71887d03cb0b350a06e56ecf4">module_fini</a>)(<span class="keywordtype">void</span> *ctx);</div>
+<div class="line"><a id="l00199" name="l00199"></a><span class="lineno">  199</span><span class="comment"></span> </div>
+<div class="line"><a id="l00200" name="l00200"></a><span class="lineno">  200</span><span class="comment">        /** Write Acceleration module configuration into provided JSON context. */</span></div>
+<div class="line"><a id="l00201" name="l00201"></a><span class="lineno"><a class="line" href="structspdk__accel__module__if.html#aa935af52f46cb0aee6f15b6bb8c68726">  201</a></span>        void    (*<a class="code hl_variable" href="structspdk__accel__module__if.html#aa935af52f46cb0aee6f15b6bb8c68726">write_config_json</a>)(<span class="keyword">struct </span>spdk_json_write_ctx *w);</div>
+<div class="line"><a id="l00202" name="l00202"></a><span class="lineno">  202</span><span class="comment"></span> </div>
+<div class="line"><a id="l00203" name="l00203"></a><span class="lineno">  203</span><span class="comment">        /** Returns the allocation size required for the modules to use for context. */</span></div>
+<div class="line"><a id="l00204" name="l00204"></a><span class="lineno"><a class="line" href="structspdk__accel__module__if.html#acdfb086fb9aeb6e678d0e59dd4757935">  204</a></span>        size_t  (*<a class="code hl_variable" href="structspdk__accel__module__if.html#acdfb086fb9aeb6e678d0e59dd4757935">get_ctx_size</a>)(void);</div>
+<div class="line"><a id="l00205" name="l00205"></a><span class="lineno">  205</span><span class="comment"></span> </div>
+<div class="line"><a id="l00206" name="l00206"></a><span class="lineno">  206</span><span class="comment">        /** Reports whether the module supports a given operation. */</span></div>
+<div class="line"><a id="l00207" name="l00207"></a><span class="lineno"><a class="line" href="structspdk__accel__module__if.html#af04dd19cbb86d9ce7cb7b94be00f2165">  207</a></span>        bool (*<a class="code hl_variable" href="structspdk__accel__module__if.html#af8472800fed11f279f6c1e96ac48a122">supports_opcode</a>)(<span class="keyword">enum</span> spdk_accel_opcode);</div>
+<div class="line"><a id="l00208" name="l00208"></a><span class="lineno">  208</span><span class="comment"></span> </div>
+<div class="line"><a id="l00209" name="l00209"></a><span class="lineno">  209</span><span class="comment">        /** Returns module&#39;s IO channel on the calling thread. */</span></div>
+<div class="line"><a id="l00210" name="l00210"></a><span class="lineno">  210</span>        <span class="keyword">struct </span>spdk_io_channel *(*get_io_channel)(void);</div>
+<div class="line"><a id="l00211" name="l00211"></a><span class="lineno">  211</span><span class="comment"></span> </div>
+<div class="line"><a id="l00212" name="l00212"></a><span class="lineno">  212</span><span class="comment">        /**</span></div>
+<div class="line"><a id="l00213" name="l00213"></a><span class="lineno">  213</span><span class="comment">         * Submit tasks to be executed by the module.  Once a task execution is done, the module is</span></div>
+<div class="line"><a id="l00214" name="l00214"></a><span class="lineno">  214</span><span class="comment">         * required to complete it using `spdk_accel_task_complete()`.  `ch` is the IO channel</span></div>
+<div class="line"><a id="l00215" name="l00215"></a><span class="lineno">  215</span><span class="comment">         * obtained by `get_io_channel()`.</span></div>
+<div class="line"><a id="l00216" name="l00216"></a><span class="lineno">  216</span><span class="comment">         */</span></div>
+<div class="line"><a id="l00217" name="l00217"></a><span class="lineno"><a class="line" href="structspdk__accel__module__if.html#a5ec7cb8d7de6948a45df39e3a486f976">  217</a></span>        int (*<a class="code hl_variable" href="structspdk__accel__module__if.html#a5ec7cb8d7de6948a45df39e3a486f976">submit_tasks</a>)(<span class="keyword">struct </span>spdk_io_channel *ch, <span class="keyword">struct </span><a class="code hl_struct" href="structspdk__accel__task.html">spdk_accel_task</a> *accel_task);</div>
+<div class="line"><a id="l00218" name="l00218"></a><span class="lineno">  218</span><span class="comment"></span> </div>
+<div class="line"><a id="l00219" name="l00219"></a><span class="lineno">  219</span><span class="comment">        /**</span></div>
+<div class="line"><a id="l00220" name="l00220"></a><span class="lineno">  220</span><span class="comment">         * Create crypto key function. Module is responsible to fill all necessary parameters in</span></div>
+<div class="line"><a id="l00221" name="l00221"></a><span class="lineno">  221</span><span class="comment">         * \b spdk_accel_crypto_key structure</span></div>
+<div class="line"><a id="l00222" name="l00222"></a><span class="lineno">  222</span><span class="comment">         */</span></div>
+<div class="line"><a id="l00223" name="l00223"></a><span class="lineno"><a class="line" href="structspdk__accel__module__if.html#a05ac29ef44c9ad2dd81840d8e1a031f7">  223</a></span>        int (*<a class="code hl_variable" href="structspdk__accel__module__if.html#a05ac29ef44c9ad2dd81840d8e1a031f7">crypto_key_init</a>)(<span class="keyword">struct </span><a class="code hl_struct" href="structspdk__accel__crypto__key.html">spdk_accel_crypto_key</a> *key);</div>
+<div class="line"><a id="l00224" name="l00224"></a><span class="lineno">  224</span><span class="comment"></span> </div>
+<div class="line"><a id="l00225" name="l00225"></a><span class="lineno">  225</span><span class="comment">        /** Free any resources associated with `key` allocated during `crypto_key_init()`. */</span></div>
+<div class="line"><a id="l00226" name="l00226"></a><span class="lineno"><a class="line" href="structspdk__accel__module__if.html#a78368381e6a26d59ddfc2b363de581fc">  226</a></span>        void (*<a class="code hl_variable" href="structspdk__accel__module__if.html#a78368381e6a26d59ddfc2b363de581fc">crypto_key_deinit</a>)(<span class="keyword">struct </span><a class="code hl_struct" href="structspdk__accel__crypto__key.html">spdk_accel_crypto_key</a> *key);</div>
+<div class="line"><a id="l00227" name="l00227"></a><span class="lineno">  227</span><span class="comment"></span> </div>
+<div class="line"><a id="l00228" name="l00228"></a><span class="lineno">  228</span><span class="comment">        /**</span></div>
+<div class="line"><a id="l00229" name="l00229"></a><span class="lineno">  229</span><span class="comment">         * Returns true if given tweak mode is supported. If module doesn&#39;t implement that function it shall support SIMPLE LBA mode.</span></div>
+<div class="line"><a id="l00230" name="l00230"></a><span class="lineno">  230</span><span class="comment">         */</span></div>
+<div class="line"><a id="l00231" name="l00231"></a><span class="lineno"><a class="line" href="structspdk__accel__module__if.html#aa773f55e3f32077e98932f6f67fca1f3">  231</a></span>        bool (*<a class="code hl_variable" href="structspdk__accel__module__if.html#aa773f55e3f32077e98932f6f67fca1f3">crypto_supports_tweak_mode</a>)(<span class="keyword">enum</span> spdk_accel_crypto_tweak_mode tweak_mode);</div>
+<div class="line"><a id="l00232" name="l00232"></a><span class="lineno">  232</span><span class="comment"></span> </div>
+<div class="line"><a id="l00233" name="l00233"></a><span class="lineno">  233</span><span class="comment">        /**</span></div>
+<div class="line"><a id="l00234" name="l00234"></a><span class="lineno">  234</span><span class="comment">         * Returns true if given pair (cipher, key size) is supported.</span></div>
+<div class="line"><a id="l00235" name="l00235"></a><span class="lineno">  235</span><span class="comment">         */</span></div>
+<div class="line"><a id="l00236" name="l00236"></a><span class="lineno"><a class="line" href="structspdk__accel__module__if.html#ae6dfa91acb521f8605575ba431e5adb0">  236</a></span>        bool (*<a class="code hl_variable" href="structspdk__accel__module__if.html#ae6dfa91acb521f8605575ba431e5adb0">crypto_supports_cipher</a>)(<span class="keyword">enum</span> spdk_accel_cipher cipher, <span class="keywordtype">size_t</span> key_size);</div>
+<div class="line"><a id="l00237" name="l00237"></a><span class="lineno">  237</span><span class="comment"></span> </div>
+<div class="line"><a id="l00238" name="l00238"></a><span class="lineno">  238</span><span class="comment">        /**</span></div>
+<div class="line"><a id="l00239" name="l00239"></a><span class="lineno">  239</span><span class="comment">         * Return true if compresssion algo is supported, false otherwise.</span></div>
+<div class="line"><a id="l00240" name="l00240"></a><span class="lineno">  240</span><span class="comment">         */</span></div>
+<div class="line"><a id="l00241" name="l00241"></a><span class="lineno"><a class="line" href="structspdk__accel__module__if.html#acbb53b2b5b1e149cf86ea7518c8a96b7">  241</a></span>        bool (*<a class="code hl_variable" href="structspdk__accel__module__if.html#acbb53b2b5b1e149cf86ea7518c8a96b7">compress_supports_algo</a>)(<span class="keyword">enum</span> spdk_accel_comp_algo algo);</div>
+<div class="line"><a id="l00242" name="l00242"></a><span class="lineno">  242</span><span class="comment"></span> </div>
+<div class="line"><a id="l00243" name="l00243"></a><span class="lineno">  243</span><span class="comment">        /**</span></div>
+<div class="line"><a id="l00244" name="l00244"></a><span class="lineno">  244</span><span class="comment">         * Returns the lowest and highest levels of the specified algorithm.</span></div>
+<div class="line"><a id="l00245" name="l00245"></a><span class="lineno">  245</span><span class="comment">         */</span></div>
+<div class="line"><a id="l00246" name="l00246"></a><span class="lineno"><a class="line" href="structspdk__accel__module__if.html#a193ec0c0ef5133a90ae43296025bff61">  246</a></span>        int (*<a class="code hl_variable" href="structspdk__accel__module__if.html#a193ec0c0ef5133a90ae43296025bff61">get_compress_level_range</a>)(<span class="keyword">enum</span> spdk_accel_comp_algo algo,</div>
+<div class="line"><a id="l00247" name="l00247"></a><span class="lineno">  247</span>                                        uint32_t *min_level, uint32_t *max_level);</div>
+<div class="line"><a id="l00248" name="l00248"></a><span class="lineno">  248</span><span class="comment"></span> </div>
+<div class="line"><a id="l00249" name="l00249"></a><span class="lineno">  249</span><span class="comment">        /**</span></div>
+<div class="line"><a id="l00250" name="l00250"></a><span class="lineno">  250</span><span class="comment">         * Returns memory domains supported by the module.  If NULL, the module does not support</span></div>
+<div class="line"><a id="l00251" name="l00251"></a><span class="lineno">  251</span><span class="comment">         * memory domains.  The `domains` array can be NULL, in which case this function only</span></div>
+<div class="line"><a id="l00252" name="l00252"></a><span class="lineno">  252</span><span class="comment">         * returns the number of supported memory domains.</span></div>
+<div class="line"><a id="l00253" name="l00253"></a><span class="lineno">  253</span><span class="comment">         *</span></div>
+<div class="line"><a id="l00254" name="l00254"></a><span class="lineno">  254</span><span class="comment">         * \param domains Memory domain array.</span></div>
+<div class="line"><a id="l00255" name="l00255"></a><span class="lineno">  255</span><span class="comment">         * \param num_domains Size of the `domains` array.</span></div>
+<div class="line"><a id="l00256" name="l00256"></a><span class="lineno">  256</span><span class="comment">         *</span></div>
+<div class="line"><a id="l00257" name="l00257"></a><span class="lineno">  257</span><span class="comment">         * \return Number of supported memory domains.</span></div>
+<div class="line"><a id="l00258" name="l00258"></a><span class="lineno">  258</span><span class="comment">         */</span></div>
+<div class="line"><a id="l00259" name="l00259"></a><span class="lineno"><a class="line" href="structspdk__accel__module__if.html#add80c515e6283f7dfbc89e203b1cf45c">  259</a></span>        int (*<a class="code hl_variable" href="structspdk__accel__module__if.html#add80c515e6283f7dfbc89e203b1cf45c">get_memory_domains</a>)(<span class="keyword">struct </span>spdk_memory_domain **domains, <span class="keywordtype">int</span> num_domains);</div>
+<div class="line"><a id="l00260" name="l00260"></a><span class="lineno">  260</span><span class="comment"></span> </div>
+<div class="line"><a id="l00261" name="l00261"></a><span class="lineno">  261</span><span class="comment">        /**</span></div>
+<div class="line"><a id="l00262" name="l00262"></a><span class="lineno">  262</span><span class="comment">         * Returns information/constraints for a given operation.  If unimplemented, it is assumed</span></div>
+<div class="line"><a id="l00263" name="l00263"></a><span class="lineno">  263</span><span class="comment">         * that the module doesn&#39;t have any constraints to execute any operation.</span></div>
+<div class="line"><a id="l00264" name="l00264"></a><span class="lineno">  264</span><span class="comment">         */</span></div>
+<div class="line"><a id="l00265" name="l00265"></a><span class="lineno"><a class="line" href="structspdk__accel__module__if.html#ae5fb6643626d8ab347d4d4e4fb0cee62">  265</a></span>        int (*<a class="code hl_variable" href="structspdk__accel__module__if.html#ae5fb6643626d8ab347d4d4e4fb0cee62">get_operation_info</a>)(<span class="keyword">enum</span> spdk_accel_opcode opcode,</div>
+<div class="line"><a id="l00266" name="l00266"></a><span class="lineno">  266</span>                                  <span class="keyword">const</span> <span class="keyword">struct </span><a class="code hl_struct" href="structspdk__accel__operation__exec__ctx.html">spdk_accel_operation_exec_ctx</a> *ctx,</div>
+<div class="line"><a id="l00267" name="l00267"></a><span class="lineno">  267</span>                                  <span class="keyword">struct </span><a class="code hl_struct" href="structspdk__accel__opcode__info.html">spdk_accel_opcode_info</a> *info);</div>
+<div class="line"><a id="l00268" name="l00268"></a><span class="lineno">  268</span> </div>
+<div class="line"><a id="l00269" name="l00269"></a><span class="lineno">  269</span>        TAILQ_ENTRY(<a class="code hl_struct" href="structspdk__accel__module__if.html">spdk_accel_module_if</a>)       tailq;</div>
+<div class="line"><a id="l00270" name="l00270"></a><span class="lineno">  270</span>};</div>
+</div>
+<div class="line"><a id="l00271" name="l00271"></a><span class="lineno">  271</span> </div>
+<div class="line"><a id="l00272" name="l00272"></a><span class="lineno">  272</span><span class="keywordtype">void</span> spdk_accel_module_list_add(<span class="keyword">struct</span> <a class="code hl_struct" href="structspdk__accel__module__if.html">spdk_accel_module_if</a> *accel_module);</div>
+<div class="line"><a id="l00273" name="l00273"></a><span class="lineno">  273</span> </div>
+<div class="line"><a id="l00274" name="l00274"></a><span class="lineno">  274</span><span class="preprocessor">#define SPDK_ACCEL_MODULE_REGISTER(name, module) \</span></div>
+<div class="line"><a id="l00275" name="l00275"></a><span class="lineno">  275</span><span class="preprocessor">static void __attribute__((constructor)) _spdk_accel_module_register_##name(void) \</span></div>
+<div class="line"><a id="l00276" name="l00276"></a><span class="lineno">  276</span><span class="preprocessor">{ \</span></div>
+<div class="line"><a id="l00277" name="l00277"></a><span class="lineno">  277</span><span class="preprocessor">        spdk_accel_module_list_add(module); \</span></div>
+<div class="line"><a id="l00278" name="l00278"></a><span class="lineno">  278</span><span class="preprocessor">}</span></div>
+<div class="line"><a id="l00279" name="l00279"></a><span class="lineno">  279</span> </div>
+<div class="line"><a id="l00280" name="l00280"></a><span class="lineno">  280</span><span class="comment">/* Priority of the accel_sw module */</span></div>
+<div class="line"><a id="l00281" name="l00281"></a><span class="lineno">  281</span><span class="preprocessor">#define SPDK_ACCEL_SW_PRIORITY (-1)</span></div>
+<div class="line"><a id="l00282" name="l00282"></a><span class="lineno">  282</span><span class="comment"></span> </div>
+<div class="line"><a id="l00283" name="l00283"></a><span class="lineno">  283</span><span class="comment">/**</span></div>
+<div class="line"><a id="l00284" name="l00284"></a><span class="lineno">  284</span><span class="comment"> * Called by an accel module when cleanup initiated during .module_fini has completed</span></div>
+<div class="line"><a id="l00285" name="l00285"></a><span class="lineno">  285</span><span class="comment"> */</span></div>
+<div class="line"><a id="l00286" name="l00286"></a><span class="lineno">  286</span><span class="keywordtype">void</span> spdk_accel_module_finish(<span class="keywordtype">void</span>);</div>
+<div class="line"><a id="l00287" name="l00287"></a><span class="lineno">  287</span><span class="comment"></span> </div>
+<div class="line"><a id="l00288" name="l00288"></a><span class="lineno">  288</span><span class="comment">/**</span></div>
+<div class="line"><a id="l00289" name="l00289"></a><span class="lineno">  289</span><span class="comment"> * Platform driver responsible for executing tasks in a sequence.  If no driver is selected, tasks</span></div>
+<div class="line"><a id="l00290" name="l00290"></a><span class="lineno">  290</span><span class="comment"> * are submitted to accel modules.  All drivers are required to be aware of memory domains.</span></div>
+<div class="line"><a id="l00291" name="l00291"></a><span class="lineno">  291</span><span class="comment"> */</span></div>
+<div class="foldopen" id="foldopen00292" data-start="{" data-end="};">
+<div class="line"><a id="l00292" name="l00292"></a><span class="lineno"><a class="line" href="structspdk__accel__driver.html">  292</a></span><span class="keyword">struct </span><a class="code hl_struct" href="structspdk__accel__driver.html">spdk_accel_driver</a> {<span class="comment"></span></div>
+<div class="line"><a id="l00293" name="l00293"></a><span class="lineno">  293</span><span class="comment">        /** Name of the driver. */</span></div>
+<div class="line"><a id="l00294" name="l00294"></a><span class="lineno"><a class="line" href="structspdk__accel__driver.html#a6bb6f2903745ca4cd6a16f8f17463f80">  294</a></span>        <span class="keyword">const</span> <span class="keywordtype">char</span> *<a class="code hl_variable" href="structspdk__accel__driver.html#a6bb6f2903745ca4cd6a16f8f17463f80">name</a>;</div>
+<div class="line"><a id="l00295" name="l00295"></a><span class="lineno">  295</span><span class="comment"></span> </div>
+<div class="line"><a id="l00296" name="l00296"></a><span class="lineno">  296</span><span class="comment">        /** Initializes the driver, called when accel initializes.  Optional. */</span></div>
+<div class="line"><a id="l00297" name="l00297"></a><span class="lineno"><a class="line" href="structspdk__accel__driver.html#a4a84401e09a5d16cd6a36c411b613091">  297</a></span>        int (*<a class="code hl_variable" href="structspdk__accel__driver.html#a4a84401e09a5d16cd6a36c411b613091">init</a>)(void);</div>
+<div class="line"><a id="l00298" name="l00298"></a><span class="lineno">  298</span><span class="comment"></span> </div>
+<div class="line"><a id="l00299" name="l00299"></a><span class="lineno">  299</span><span class="comment">        /** Performs cleanup on resources allocated by the driver.  Optional. */</span></div>
+<div class="line"><a id="l00300" name="l00300"></a><span class="lineno"><a class="line" href="structspdk__accel__driver.html#a3e56a6fd4644f2002ce03500e3f2138d">  300</a></span>        void (*<a class="code hl_variable" href="structspdk__accel__driver.html#a3e56a6fd4644f2002ce03500e3f2138d">fini</a>)(void);</div>
+<div class="line"><a id="l00301" name="l00301"></a><span class="lineno">  301</span><span class="comment"></span> </div>
+<div class="line"><a id="l00302" name="l00302"></a><span class="lineno">  302</span><span class="comment">        /**</span></div>
+<div class="line"><a id="l00303" name="l00303"></a><span class="lineno">  303</span><span class="comment">         * Executes a sequence of accel operations.  The driver should notify accel about each</span></div>
+<div class="line"><a id="l00304" name="l00304"></a><span class="lineno">  304</span><span class="comment">         * completed task using `spdk_accel_task_complete()`.  Once all tasks are completed or the</span></div>
+<div class="line"><a id="l00305" name="l00305"></a><span class="lineno">  305</span><span class="comment">         * driver cannot proceed with a given task (e.g. because it doesn&#39;t handle specific opcode),</span></div>
+<div class="line"><a id="l00306" name="l00306"></a><span class="lineno">  306</span><span class="comment">         * accel should be notified via `spdk_accel_sequence_continue()`.  If there are tasks left</span></div>
+<div class="line"><a id="l00307" name="l00307"></a><span class="lineno">  307</span><span class="comment">         * in a sequence, the first will be submitted to a module, while the rest will be sent back</span></div>
+<div class="line"><a id="l00308" name="l00308"></a><span class="lineno">  308</span><span class="comment">         * to the driver.  `spdk_accel_sequence_continue()` should only be called if this function</span></div>
+<div class="line"><a id="l00309" name="l00309"></a><span class="lineno">  309</span><span class="comment">         * succeeds (i.e. returns 0).</span></div>
+<div class="line"><a id="l00310" name="l00310"></a><span class="lineno">  310</span><span class="comment">         *</span></div>
+<div class="line"><a id="l00311" name="l00311"></a><span class="lineno">  311</span><span class="comment">         * \param ch IO channel obtained by `get_io_channel()`.</span></div>
+<div class="line"><a id="l00312" name="l00312"></a><span class="lineno">  312</span><span class="comment">         * \param seq Sequence of tasks to execute.</span></div>
+<div class="line"><a id="l00313" name="l00313"></a><span class="lineno">  313</span><span class="comment">         *</span></div>
+<div class="line"><a id="l00314" name="l00314"></a><span class="lineno">  314</span><span class="comment">         * \return 0 on success, negative errno on failure.</span></div>
+<div class="line"><a id="l00315" name="l00315"></a><span class="lineno">  315</span><span class="comment">         */</span></div>
+<div class="line"><a id="l00316" name="l00316"></a><span class="lineno"><a class="line" href="structspdk__accel__driver.html#a28a4ffcf8a04cc9629936f342d15e6bd">  316</a></span>        int (*<a class="code hl_variable" href="structspdk__accel__driver.html#a28a4ffcf8a04cc9629936f342d15e6bd">execute_sequence</a>)(<span class="keyword">struct </span>spdk_io_channel *ch, <span class="keyword">struct </span>spdk_accel_sequence *seq);</div>
+<div class="line"><a id="l00317" name="l00317"></a><span class="lineno">  317</span><span class="comment"></span> </div>
+<div class="line"><a id="l00318" name="l00318"></a><span class="lineno">  318</span><span class="comment">        /** Returns IO channel that will be passed to `execute_sequence()`. */</span></div>
+<div class="line"><a id="l00319" name="l00319"></a><span class="lineno">  319</span>        <span class="keyword">struct </span>spdk_io_channel *(*get_io_channel)(void);</div>
+<div class="line"><a id="l00320" name="l00320"></a><span class="lineno">  320</span><span class="comment"></span> </div>
+<div class="line"><a id="l00321" name="l00321"></a><span class="lineno">  321</span><span class="comment">        /**</span></div>
+<div class="line"><a id="l00322" name="l00322"></a><span class="lineno">  322</span><span class="comment">         * Returns information/constraints for a given operation.  If unimplemented, it is assumed</span></div>
+<div class="line"><a id="l00323" name="l00323"></a><span class="lineno">  323</span><span class="comment">         * that the driver doesn&#39;t have any constraints to execute any operation.</span></div>
+<div class="line"><a id="l00324" name="l00324"></a><span class="lineno">  324</span><span class="comment">         */</span></div>
+<div class="line"><a id="l00325" name="l00325"></a><span class="lineno"><a class="line" href="structspdk__accel__driver.html#a4b6a86ed7bd102bcfdd5275ebe056f5a">  325</a></span>        int (*<a class="code hl_variable" href="structspdk__accel__driver.html#a4b6a86ed7bd102bcfdd5275ebe056f5a">get_operation_info</a>)(<span class="keyword">enum</span> spdk_accel_opcode opcode,</div>
+<div class="line"><a id="l00326" name="l00326"></a><span class="lineno">  326</span>                                  <span class="keyword">const</span> <span class="keyword">struct </span><a class="code hl_struct" href="structspdk__accel__operation__exec__ctx.html">spdk_accel_operation_exec_ctx</a> *ctx,</div>
+<div class="line"><a id="l00327" name="l00327"></a><span class="lineno">  327</span>                                  <span class="keyword">struct </span><a class="code hl_struct" href="structspdk__accel__opcode__info.html">spdk_accel_opcode_info</a> *info);</div>
+<div class="line"><a id="l00328" name="l00328"></a><span class="lineno">  328</span> </div>
+<div class="line"><a id="l00329" name="l00329"></a><span class="lineno">  329</span>        TAILQ_ENTRY(<a class="code hl_struct" href="structspdk__accel__driver.html">spdk_accel_driver</a>)  tailq;</div>
+<div class="line"><a id="l00330" name="l00330"></a><span class="lineno">  330</span>};</div>
+</div>
+<div class="line"><a id="l00331" name="l00331"></a><span class="lineno">  331</span><span class="comment"></span> </div>
+<div class="line"><a id="l00332" name="l00332"></a><span class="lineno">  332</span><span class="comment">/**</span></div>
+<div class="line"><a id="l00333" name="l00333"></a><span class="lineno">  333</span><span class="comment"> * Notifies accel that a driver has finished executing a sequence (or its part) and accel should</span></div>
+<div class="line"><a id="l00334" name="l00334"></a><span class="lineno">  334</span><span class="comment"> * continue processing it.</span></div>
+<div class="line"><a id="l00335" name="l00335"></a><span class="lineno">  335</span><span class="comment"> *</span></div>
+<div class="line"><a id="l00336" name="l00336"></a><span class="lineno">  336</span><span class="comment"> * \param seq Sequence object.</span></div>
+<div class="line"><a id="l00337" name="l00337"></a><span class="lineno">  337</span><span class="comment"> */</span></div>
+<div class="line"><a id="l00338" name="l00338"></a><span class="lineno">  338</span><span class="keywordtype">void</span> spdk_accel_sequence_continue(<span class="keyword">struct</span> spdk_accel_sequence *seq);</div>
+<div class="line"><a id="l00339" name="l00339"></a><span class="lineno">  339</span> </div>
+<div class="line"><a id="l00340" name="l00340"></a><span class="lineno">  340</span><span class="keywordtype">void</span> spdk_accel_driver_register(<span class="keyword">struct</span> <a class="code hl_struct" href="structspdk__accel__driver.html">spdk_accel_driver</a> *driver);</div>
+<div class="line"><a id="l00341" name="l00341"></a><span class="lineno">  341</span> </div>
+<div class="line"><a id="l00342" name="l00342"></a><span class="lineno">  342</span><span class="preprocessor">#define SPDK_ACCEL_DRIVER_REGISTER(name, driver) \</span></div>
+<div class="line"><a id="l00343" name="l00343"></a><span class="lineno">  343</span><span class="preprocessor">static void __attribute__((constructor)) _spdk_accel_driver_register_##name(void) \</span></div>
+<div class="line"><a id="l00344" name="l00344"></a><span class="lineno">  344</span><span class="preprocessor">{ \</span></div>
+<div class="line"><a id="l00345" name="l00345"></a><span class="lineno">  345</span><span class="preprocessor">        spdk_accel_driver_register(driver); \</span></div>
+<div class="line"><a id="l00346" name="l00346"></a><span class="lineno">  346</span><span class="preprocessor">}</span></div>
+<div class="line"><a id="l00347" name="l00347"></a><span class="lineno">  347</span> </div>
+<div class="line"><a id="l00348" name="l00348"></a><span class="lineno">  348</span><span class="keyword">typedef</span> void (*spdk_accel_sequence_get_buf_cb)(<span class="keyword">struct </span>spdk_accel_sequence *seq, <span class="keywordtype">void</span> *cb_arg);</div>
+<div class="line"><a id="l00349" name="l00349"></a><span class="lineno">  349</span><span class="comment"></span> </div>
+<div class="line"><a id="l00350" name="l00350"></a><span class="lineno">  350</span><span class="comment">/**</span></div>
+<div class="line"><a id="l00351" name="l00351"></a><span class="lineno">  351</span><span class="comment"> * Allocates memory for an accel buffer in a given sequence.  The callback is only executed if the</span></div>
+<div class="line"><a id="l00352" name="l00352"></a><span class="lineno">  352</span><span class="comment"> * buffer couldn&#39;t be allocated immediately.</span></div>
+<div class="line"><a id="l00353" name="l00353"></a><span class="lineno">  353</span><span class="comment"> *</span></div>
+<div class="line"><a id="l00354" name="l00354"></a><span class="lineno">  354</span><span class="comment"> * \param seq Sequence object.</span></div>
+<div class="line"><a id="l00355" name="l00355"></a><span class="lineno">  355</span><span class="comment"> * \param buf Accel buffer to allocate.</span></div>
+<div class="line"><a id="l00356" name="l00356"></a><span class="lineno">  356</span><span class="comment"> * \param domain Accel memory domain.</span></div>
+<div class="line"><a id="l00357" name="l00357"></a><span class="lineno">  357</span><span class="comment"> * \param domain_ctx Memory domain context.</span></div>
+<div class="line"><a id="l00358" name="l00358"></a><span class="lineno">  358</span><span class="comment"> * \param cb_fn Callback to be executed once the buffer is allocated.</span></div>
+<div class="line"><a id="l00359" name="l00359"></a><span class="lineno">  359</span><span class="comment"> * \param cb_ctx Argument to be passed to `cb_fn`.</span></div>
+<div class="line"><a id="l00360" name="l00360"></a><span class="lineno">  360</span><span class="comment"> *</span></div>
+<div class="line"><a id="l00361" name="l00361"></a><span class="lineno">  361</span><span class="comment"> * \return true if the buffer was immediately allocated, false otherwise.</span></div>
+<div class="line"><a id="l00362" name="l00362"></a><span class="lineno">  362</span><span class="comment"> */</span></div>
+<div class="line"><a id="l00363" name="l00363"></a><span class="lineno">  363</span><span class="keywordtype">bool</span> spdk_accel_alloc_sequence_buf(<span class="keyword">struct</span> spdk_accel_sequence *seq, <span class="keywordtype">void</span> *buf,</div>
+<div class="line"><a id="l00364" name="l00364"></a><span class="lineno">  364</span>                                   <span class="keyword">struct</span> spdk_memory_domain *domain, <span class="keywordtype">void</span> *domain_ctx,</div>
+<div class="line"><a id="l00365" name="l00365"></a><span class="lineno">  365</span>                                   spdk_accel_sequence_get_buf_cb cb_fn, <span class="keywordtype">void</span> *cb_ctx);</div>
+<div class="line"><a id="l00366" name="l00366"></a><span class="lineno">  366</span><span class="comment"></span> </div>
+<div class="line"><a id="l00367" name="l00367"></a><span class="lineno">  367</span><span class="comment">/**</span></div>
+<div class="line"><a id="l00368" name="l00368"></a><span class="lineno">  368</span><span class="comment"> * Returns the first task remaining to be executed in a given sequence.</span></div>
+<div class="line"><a id="l00369" name="l00369"></a><span class="lineno">  369</span><span class="comment"> *</span></div>
+<div class="line"><a id="l00370" name="l00370"></a><span class="lineno">  370</span><span class="comment"> * \param seq Sequence object.</span></div>
+<div class="line"><a id="l00371" name="l00371"></a><span class="lineno">  371</span><span class="comment"> *</span></div>
+<div class="line"><a id="l00372" name="l00372"></a><span class="lineno">  372</span><span class="comment"> * \return the first remaining task or NULL if all tasks are already completed.</span></div>
+<div class="line"><a id="l00373" name="l00373"></a><span class="lineno">  373</span><span class="comment"> */</span></div>
+<div class="line"><a id="l00374" name="l00374"></a><span class="lineno">  374</span><span class="keyword">struct </span><a class="code hl_struct" href="structspdk__accel__task.html">spdk_accel_task</a> *spdk_accel_sequence_first_task(<span class="keyword">struct</span> spdk_accel_sequence *seq);</div>
+<div class="line"><a id="l00375" name="l00375"></a><span class="lineno">  375</span><span class="comment"></span> </div>
+<div class="line"><a id="l00376" name="l00376"></a><span class="lineno">  376</span><span class="comment">/**</span></div>
+<div class="line"><a id="l00377" name="l00377"></a><span class="lineno">  377</span><span class="comment"> * Returns the next remaining task that follows a given task in a sequence.</span></div>
+<div class="line"><a id="l00378" name="l00378"></a><span class="lineno">  378</span><span class="comment"> *</span></div>
+<div class="line"><a id="l00379" name="l00379"></a><span class="lineno">  379</span><span class="comment"> * \param task Accel task.  This task must be still outstanding (i.e. it wasn&#39;t completed through</span></div>
+<div class="line"><a id="l00380" name="l00380"></a><span class="lineno">  380</span><span class="comment"> *             `spdk_accel_task_complete()`).</span></div>
+<div class="line"><a id="l00381" name="l00381"></a><span class="lineno">  381</span><span class="comment"> *</span></div>
+<div class="line"><a id="l00382" name="l00382"></a><span class="lineno">  382</span><span class="comment"> * \return the next task or NULL if `task` was the last task in a sequence.</span></div>
+<div class="line"><a id="l00383" name="l00383"></a><span class="lineno">  383</span><span class="comment"> */</span></div>
+<div class="line"><a id="l00384" name="l00384"></a><span class="lineno">  384</span><span class="keyword">struct </span><a class="code hl_struct" href="structspdk__accel__task.html">spdk_accel_task</a> *spdk_accel_sequence_next_task(<span class="keyword">struct</span> <a class="code hl_struct" href="structspdk__accel__task.html">spdk_accel_task</a> *task);</div>
+<div class="line"><a id="l00385" name="l00385"></a><span class="lineno">  385</span><span class="comment"></span> </div>
+<div class="line"><a id="l00386" name="l00386"></a><span class="lineno">  386</span><span class="comment">/**</span></div>
+<div class="line"><a id="l00387" name="l00387"></a><span class="lineno">  387</span><span class="comment"> * Returns an accel module identified by `name`.</span></div>
+<div class="line"><a id="l00388" name="l00388"></a><span class="lineno">  388</span><span class="comment"> *</span></div>
+<div class="line"><a id="l00389" name="l00389"></a><span class="lineno">  389</span><span class="comment"> * \param name Name of the module.</span></div>
+<div class="line"><a id="l00390" name="l00390"></a><span class="lineno">  390</span><span class="comment"> *</span></div>
+<div class="line"><a id="l00391" name="l00391"></a><span class="lineno">  391</span><span class="comment"> * \return Pointer to a module or NULL if it couldn&#39;t be found.</span></div>
+<div class="line"><a id="l00392" name="l00392"></a><span class="lineno">  392</span><span class="comment"> */</span></div>
+<div class="line"><a id="l00393" name="l00393"></a><span class="lineno">  393</span><span class="keyword">struct </span><a class="code hl_struct" href="structspdk__accel__module__if.html">spdk_accel_module_if</a> *spdk_accel_get_module(<span class="keyword">const</span> <span class="keywordtype">char</span> *<a class="code hl_variable" href="structspdk__accel__module__if.html#ae918a45a62d5578f40ff7f90c88de1c6">name</a>);</div>
+<div class="line"><a id="l00394" name="l00394"></a><span class="lineno">  394</span> </div>
+<div class="line"><a id="l00395" name="l00395"></a><span class="lineno">  395</span><span class="preprocessor">#ifdef __cplusplus</span></div>
+<div class="line"><a id="l00396" name="l00396"></a><span class="lineno">  396</span>}</div>
+<div class="line"><a id="l00397" name="l00397"></a><span class="lineno">  397</span><span class="preprocessor">#endif</span></div>
+<div class="line"><a id="l00398" name="l00398"></a><span class="lineno">  398</span> </div>
+<div class="line"><a id="l00399" name="l00399"></a><span class="lineno">  399</span><span class="preprocessor">#endif</span></div>
+<div class="ttc" id="aaccel_8h_html"><div class="ttname"><a href="accel_8h.html">accel.h</a></div><div class="ttdoc">Acceleration Framework.</div></div>
+<div class="ttc" id="aaccel_8h_html_a6ba836b7b128829ba185eadb2c60476a"><div class="ttname"><a href="accel_8h.html#a6ba836b7b128829ba185eadb2c60476a">spdk_accel_completion_cb</a></div><div class="ttdeci">void(* spdk_accel_completion_cb)(void *cb_arg, int status)</div><div class="ttdoc">Acceleration operation callback.</div><div class="ttdef"><b>Definition</b> <a href="accel_8h_source.html#l00073">accel.h:73</a></div></div>
+<div class="ttc" id="aaccel_8h_html_abaf556b5e1b63b5237faff3952a3bb46"><div class="ttname"><a href="accel_8h.html#abaf556b5e1b63b5237faff3952a3bb46">spdk_accel_step_cb</a></div><div class="ttdeci">void(* spdk_accel_step_cb)(void *cb_arg)</div><div class="ttdoc">Completion callback of a single operation within a sequence.</div><div class="ttdef"><b>Definition</b> <a href="accel_8h_source.html#l00618">accel.h:618</a></div></div>
+<div class="ttc" id="astdinc_8h_html"><div class="ttname"><a href="stdinc_8h.html">stdinc.h</a></div><div class="ttdoc">Standard C headers.</div></div>
+<div class="ttc" id="astructspdk__accel__bounce__buffer_html"><div class="ttname"><a href="structspdk__accel__bounce__buffer.html">spdk_accel_bounce_buffer</a></div><div class="ttdoc">Describes user&#39;s buffers in remote memory domains in case a module doesn&#39;t support memory domains and...</div><div class="ttdef"><b>Definition</b> <a href="#l00064">accel_module.h:64</a></div></div>
+<div class="ttc" id="astructspdk__accel__crypto__key__create__param_html"><div class="ttname"><a href="structspdk__accel__crypto__key__create__param.html">spdk_accel_crypto_key_create_param</a></div><div class="ttdef"><b>Definition</b> <a href="accel_8h_source.html#l00033">accel.h:33</a></div></div>
+<div class="ttc" id="astructspdk__accel__crypto__key_html"><div class="ttname"><a href="structspdk__accel__crypto__key.html">spdk_accel_crypto_key</a></div><div class="ttdef"><b>Definition</b> <a href="#l00046">accel_module.h:46</a></div></div>
+<div class="ttc" id="astructspdk__accel__crypto__key_html_a5cb430285008edf86de712110f672a45"><div class="ttname"><a href="structspdk__accel__crypto__key.html#a5cb430285008edf86de712110f672a45">spdk_accel_crypto_key::key2</a></div><div class="ttdeci">char * key2</div><div class="ttdoc">Key2 in binary form.</div><div class="ttdef"><b>Definition</b> <a href="#l00050">accel_module.h:50</a></div></div>
+<div class="ttc" id="astructspdk__accel__crypto__key_html_a671a54dba981be3dcec021b0ef49b03b"><div class="ttname"><a href="structspdk__accel__crypto__key.html#a671a54dba981be3dcec021b0ef49b03b">spdk_accel_crypto_key::param</a></div><div class="ttdeci">struct spdk_accel_crypto_key_create_param param</div><div class="ttdoc">User input parameters.</div><div class="ttdef"><b>Definition</b> <a href="#l00055">accel_module.h:55</a></div></div>
+<div class="ttc" id="astructspdk__accel__crypto__key_html_a887e1b0bf2e7c89f33c75293e3d839a4"><div class="ttname"><a href="structspdk__accel__crypto__key.html#a887e1b0bf2e7c89f33c75293e3d839a4">spdk_accel_crypto_key::module_if</a></div><div class="ttdeci">struct spdk_accel_module_if * module_if</div><div class="ttdoc">Accel module the key belongs to.</div><div class="ttdef"><b>Definition</b> <a href="#l00054">accel_module.h:54</a></div></div>
+<div class="ttc" id="astructspdk__accel__crypto__key_html_acc60f9372db9f122c9639b41717b61da"><div class="ttname"><a href="structspdk__accel__crypto__key.html#acc60f9372db9f122c9639b41717b61da">spdk_accel_crypto_key::key_size</a></div><div class="ttdeci">size_t key_size</div><div class="ttdoc">Key size in bytes.</div><div class="ttdef"><b>Definition</b> <a href="#l00049">accel_module.h:49</a></div></div>
+<div class="ttc" id="astructspdk__accel__crypto__key_html_acc9c5ea5eedb9d6b1b9e53da0d446373"><div class="ttname"><a href="structspdk__accel__crypto__key.html#acc9c5ea5eedb9d6b1b9e53da0d446373">spdk_accel_crypto_key::priv</a></div><div class="ttdeci">void * priv</div><div class="ttdoc">Module private data.</div><div class="ttdef"><b>Definition</b> <a href="#l00047">accel_module.h:47</a></div></div>
+<div class="ttc" id="astructspdk__accel__crypto__key_html_af28371302175cbcfae86ffa9fdf9b70e"><div class="ttname"><a href="structspdk__accel__crypto__key.html#af28371302175cbcfae86ffa9fdf9b70e">spdk_accel_crypto_key::key</a></div><div class="ttdeci">char * key</div><div class="ttdoc">Key in binary form.</div><div class="ttdef"><b>Definition</b> <a href="#l00048">accel_module.h:48</a></div></div>
+<div class="ttc" id="astructspdk__accel__crypto__key_html_affba315845451014fd15be510fba4ce9"><div class="ttname"><a href="structspdk__accel__crypto__key.html#affba315845451014fd15be510fba4ce9">spdk_accel_crypto_key::key2_size</a></div><div class="ttdeci">size_t key2_size</div><div class="ttdoc">Key2 size in bytes.</div><div class="ttdef"><b>Definition</b> <a href="#l00051">accel_module.h:51</a></div></div>
+<div class="ttc" id="astructspdk__accel__driver_html"><div class="ttname"><a href="structspdk__accel__driver.html">spdk_accel_driver</a></div><div class="ttdoc">Platform driver responsible for executing tasks in a sequence.</div><div class="ttdef"><b>Definition</b> <a href="#l00292">accel_module.h:292</a></div></div>
+<div class="ttc" id="astructspdk__accel__driver_html_a28a4ffcf8a04cc9629936f342d15e6bd"><div class="ttname"><a href="structspdk__accel__driver.html#a28a4ffcf8a04cc9629936f342d15e6bd">spdk_accel_driver::execute_sequence</a></div><div class="ttdeci">int(* execute_sequence)(struct spdk_io_channel *ch, struct spdk_accel_sequence *seq)</div><div class="ttdoc">Executes a sequence of accel operations.</div><div class="ttdef"><b>Definition</b> <a href="#l00316">accel_module.h:316</a></div></div>
+<div class="ttc" id="astructspdk__accel__driver_html_a3e56a6fd4644f2002ce03500e3f2138d"><div class="ttname"><a href="structspdk__accel__driver.html#a3e56a6fd4644f2002ce03500e3f2138d">spdk_accel_driver::fini</a></div><div class="ttdeci">void(* fini)(void)</div><div class="ttdoc">Performs cleanup on resources allocated by the driver.</div><div class="ttdef"><b>Definition</b> <a href="#l00300">accel_module.h:300</a></div></div>
+<div class="ttc" id="astructspdk__accel__driver_html_a4a84401e09a5d16cd6a36c411b613091"><div class="ttname"><a href="structspdk__accel__driver.html#a4a84401e09a5d16cd6a36c411b613091">spdk_accel_driver::init</a></div><div class="ttdeci">int(* init)(void)</div><div class="ttdoc">Initializes the driver, called when accel initializes.</div><div class="ttdef"><b>Definition</b> <a href="#l00297">accel_module.h:297</a></div></div>
+<div class="ttc" id="astructspdk__accel__driver_html_a4b6a86ed7bd102bcfdd5275ebe056f5a"><div class="ttname"><a href="structspdk__accel__driver.html#a4b6a86ed7bd102bcfdd5275ebe056f5a">spdk_accel_driver::get_operation_info</a></div><div class="ttdeci">int(* get_operation_info)(enum spdk_accel_opcode opcode, const struct spdk_accel_operation_exec_ctx *ctx, struct spdk_accel_opcode_info *info)</div><div class="ttdoc">Returns information/constraints for a given operation.</div><div class="ttdef"><b>Definition</b> <a href="#l00325">accel_module.h:325</a></div></div>
+<div class="ttc" id="astructspdk__accel__driver_html_a6bb6f2903745ca4cd6a16f8f17463f80"><div class="ttname"><a href="structspdk__accel__driver.html#a6bb6f2903745ca4cd6a16f8f17463f80">spdk_accel_driver::name</a></div><div class="ttdeci">const char * name</div><div class="ttdoc">Name of the driver.</div><div class="ttdef"><b>Definition</b> <a href="#l00294">accel_module.h:294</a></div></div>
+<div class="ttc" id="astructspdk__accel__module__if_html"><div class="ttname"><a href="structspdk__accel__module__if.html">spdk_accel_module_if</a></div><div class="ttdef"><b>Definition</b> <a href="#l00168">accel_module.h:168</a></div></div>
+<div class="ttc" id="astructspdk__accel__module__if_html_a05ac29ef44c9ad2dd81840d8e1a031f7"><div class="ttname"><a href="structspdk__accel__module__if.html#a05ac29ef44c9ad2dd81840d8e1a031f7">spdk_accel_module_if::crypto_key_init</a></div><div class="ttdeci">int(* crypto_key_init)(struct spdk_accel_crypto_key *key)</div><div class="ttdoc">Create crypto key function.</div><div class="ttdef"><b>Definition</b> <a href="#l00223">accel_module.h:223</a></div></div>
+<div class="ttc" id="astructspdk__accel__module__if_html_a193ec0c0ef5133a90ae43296025bff61"><div class="ttname"><a href="structspdk__accel__module__if.html#a193ec0c0ef5133a90ae43296025bff61">spdk_accel_module_if::get_compress_level_range</a></div><div class="ttdeci">int(* get_compress_level_range)(enum spdk_accel_comp_algo algo, uint32_t *min_level, uint32_t *max_level)</div><div class="ttdoc">Returns the lowest and highest levels of the specified algorithm.</div><div class="ttdef"><b>Definition</b> <a href="#l00246">accel_module.h:246</a></div></div>
+<div class="ttc" id="astructspdk__accel__module__if_html_a3cba48f71887d03cb0b350a06e56ecf4"><div class="ttname"><a href="structspdk__accel__module__if.html#a3cba48f71887d03cb0b350a06e56ecf4">spdk_accel_module_if::module_fini</a></div><div class="ttdeci">void(* module_fini)(void *ctx)</div><div class="ttdoc">Finish function for the module.</div><div class="ttdef"><b>Definition</b> <a href="#l00198">accel_module.h:198</a></div></div>
+<div class="ttc" id="astructspdk__accel__module__if_html_a5ec7cb8d7de6948a45df39e3a486f976"><div class="ttname"><a href="structspdk__accel__module__if.html#a5ec7cb8d7de6948a45df39e3a486f976">spdk_accel_module_if::submit_tasks</a></div><div class="ttdeci">int(* submit_tasks)(struct spdk_io_channel *ch, struct spdk_accel_task *accel_task)</div><div class="ttdoc">Submit tasks to be executed by the module.</div><div class="ttdef"><b>Definition</b> <a href="#l00217">accel_module.h:217</a></div></div>
+<div class="ttc" id="astructspdk__accel__module__if_html_a67ea670c5044c1201533a7e23b81c8b3"><div class="ttname"><a href="structspdk__accel__module__if.html#a67ea670c5044c1201533a7e23b81c8b3">spdk_accel_module_if::module_init</a></div><div class="ttdeci">int(* module_init)(void)</div><div class="ttdoc">Initialization function for the module.</div><div class="ttdef"><b>Definition</b> <a href="#l00190">accel_module.h:190</a></div></div>
+<div class="ttc" id="astructspdk__accel__module__if_html_a78368381e6a26d59ddfc2b363de581fc"><div class="ttname"><a href="structspdk__accel__module__if.html#a78368381e6a26d59ddfc2b363de581fc">spdk_accel_module_if::crypto_key_deinit</a></div><div class="ttdeci">void(* crypto_key_deinit)(struct spdk_accel_crypto_key *key)</div><div class="ttdoc">Free any resources associated with key allocated during crypto_key_init().</div><div class="ttdef"><b>Definition</b> <a href="#l00226">accel_module.h:226</a></div></div>
+<div class="ttc" id="astructspdk__accel__module__if_html_aa773f55e3f32077e98932f6f67fca1f3"><div class="ttname"><a href="structspdk__accel__module__if.html#aa773f55e3f32077e98932f6f67fca1f3">spdk_accel_module_if::crypto_supports_tweak_mode</a></div><div class="ttdeci">bool(* crypto_supports_tweak_mode)(enum spdk_accel_crypto_tweak_mode tweak_mode)</div><div class="ttdoc">Returns true if given tweak mode is supported.</div><div class="ttdef"><b>Definition</b> <a href="#l00231">accel_module.h:231</a></div></div>
+<div class="ttc" id="astructspdk__accel__module__if_html_aa935af52f46cb0aee6f15b6bb8c68726"><div class="ttname"><a href="structspdk__accel__module__if.html#aa935af52f46cb0aee6f15b6bb8c68726">spdk_accel_module_if::write_config_json</a></div><div class="ttdeci">void(* write_config_json)(struct spdk_json_write_ctx *w)</div><div class="ttdoc">Write Acceleration module configuration into provided JSON context.</div><div class="ttdef"><b>Definition</b> <a href="#l00201">accel_module.h:201</a></div></div>
+<div class="ttc" id="astructspdk__accel__module__if_html_abcfd6469c7d697bfe2bc6352a2f1bac1"><div class="ttname"><a href="structspdk__accel__module__if.html#abcfd6469c7d697bfe2bc6352a2f1bac1">spdk_accel_module_if::priority</a></div><div class="ttdeci">int priority</div><div class="ttdoc">Priority of the module.</div><div class="ttdef"><b>Definition</b> <a href="#l00179">accel_module.h:179</a></div></div>
+<div class="ttc" id="astructspdk__accel__module__if_html_acbb53b2b5b1e149cf86ea7518c8a96b7"><div class="ttname"><a href="structspdk__accel__module__if.html#acbb53b2b5b1e149cf86ea7518c8a96b7">spdk_accel_module_if::compress_supports_algo</a></div><div class="ttdeci">bool(* compress_supports_algo)(enum spdk_accel_comp_algo algo)</div><div class="ttdoc">Return true if compresssion algo is supported, false otherwise.</div><div class="ttdef"><b>Definition</b> <a href="#l00241">accel_module.h:241</a></div></div>
+<div class="ttc" id="astructspdk__accel__module__if_html_acdfb086fb9aeb6e678d0e59dd4757935"><div class="ttname"><a href="structspdk__accel__module__if.html#acdfb086fb9aeb6e678d0e59dd4757935">spdk_accel_module_if::get_ctx_size</a></div><div class="ttdeci">size_t(* get_ctx_size)(void)</div><div class="ttdoc">Returns the allocation size required for the modules to use for context.</div><div class="ttdef"><b>Definition</b> <a href="#l00204">accel_module.h:204</a></div></div>
+<div class="ttc" id="astructspdk__accel__module__if_html_add80c515e6283f7dfbc89e203b1cf45c"><div class="ttname"><a href="structspdk__accel__module__if.html#add80c515e6283f7dfbc89e203b1cf45c">spdk_accel_module_if::get_memory_domains</a></div><div class="ttdeci">int(* get_memory_domains)(struct spdk_memory_domain **domains, int num_domains)</div><div class="ttdoc">Returns memory domains supported by the module.</div><div class="ttdef"><b>Definition</b> <a href="#l00259">accel_module.h:259</a></div></div>
+<div class="ttc" id="astructspdk__accel__module__if_html_ae5fb6643626d8ab347d4d4e4fb0cee62"><div class="ttname"><a href="structspdk__accel__module__if.html#ae5fb6643626d8ab347d4d4e4fb0cee62">spdk_accel_module_if::get_operation_info</a></div><div class="ttdeci">int(* get_operation_info)(enum spdk_accel_opcode opcode, const struct spdk_accel_operation_exec_ctx *ctx, struct spdk_accel_opcode_info *info)</div><div class="ttdoc">Returns information/constraints for a given operation.</div><div class="ttdef"><b>Definition</b> <a href="#l00265">accel_module.h:265</a></div></div>
+<div class="ttc" id="astructspdk__accel__module__if_html_ae6dfa91acb521f8605575ba431e5adb0"><div class="ttname"><a href="structspdk__accel__module__if.html#ae6dfa91acb521f8605575ba431e5adb0">spdk_accel_module_if::crypto_supports_cipher</a></div><div class="ttdeci">bool(* crypto_supports_cipher)(enum spdk_accel_cipher cipher, size_t key_size)</div><div class="ttdoc">Returns true if given pair (cipher, key size) is supported.</div><div class="ttdef"><b>Definition</b> <a href="#l00236">accel_module.h:236</a></div></div>
+<div class="ttc" id="astructspdk__accel__module__if_html_ae918a45a62d5578f40ff7f90c88de1c6"><div class="ttname"><a href="structspdk__accel__module__if.html#ae918a45a62d5578f40ff7f90c88de1c6">spdk_accel_module_if::name</a></div><div class="ttdeci">const char * name</div><div class="ttdoc">Name of the module.</div><div class="ttdef"><b>Definition</b> <a href="#l00170">accel_module.h:170</a></div></div>
+<div class="ttc" id="astructspdk__accel__module__if_html_af8472800fed11f279f6c1e96ac48a122"><div class="ttname"><a href="structspdk__accel__module__if.html#af8472800fed11f279f6c1e96ac48a122">spdk_accel_module_if::supports_opcode</a></div><div class="ttdeci">bool(* supports_opcode)(enum spdk_accel_opcode)</div><div class="ttdoc">Reports whether the module supports a given operation.</div><div class="ttdef"><b>Definition</b> <a href="#l00207">accel_module.h:207</a></div></div>
+<div class="ttc" id="astructspdk__accel__opcode__info_html"><div class="ttname"><a href="structspdk__accel__opcode__info.html">spdk_accel_opcode_info</a></div><div class="ttdef"><b>Definition</b> <a href="#l00160">accel_module.h:160</a></div></div>
+<div class="ttc" id="astructspdk__accel__opcode__info_html_ae3efcb48e9ddc6ec7aa01ff061cf7f77"><div class="ttname"><a href="structspdk__accel__opcode__info.html#ae3efcb48e9ddc6ec7aa01ff061cf7f77">spdk_accel_opcode_info::required_alignment</a></div><div class="ttdeci">uint8_t required_alignment</div><div class="ttdoc">Minimum buffer alignment required to execute the operation, expressed as power of 2.</div><div class="ttdef"><b>Definition</b> <a href="#l00165">accel_module.h:165</a></div></div>
+<div class="ttc" id="astructspdk__accel__operation__exec__ctx_html"><div class="ttname"><a href="structspdk__accel__operation__exec__ctx.html">spdk_accel_operation_exec_ctx</a></div><div class="ttdoc">Context for the spdk_accel_get_buf_align() function.</div><div class="ttdef"><b>Definition</b> <a href="accel_8h_source.html#l01216">accel.h:1216</a></div></div>
+<div class="ttc" id="astructspdk__accel__task__aux__data_html"><div class="ttname"><a href="structspdk__accel__task__aux__data.html">spdk_accel_task_aux_data</a></div><div class="ttdef"><b>Definition</b> <a href="#l00082">accel_module.h:82</a></div></div>
+<div class="ttc" id="astructspdk__accel__task_html"><div class="ttname"><a href="structspdk__accel__task.html">spdk_accel_task</a></div><div class="ttdef"><b>Definition</b> <a href="#l00091">accel_module.h:91</a></div></div>
+<div class="ttc" id="astructspdk__dif__ctx_html"><div class="ttname"><a href="structspdk__dif__ctx.html">spdk_dif_ctx</a></div><div class="ttdoc">DIF context information.</div><div class="ttdef"><b>Definition</b> <a href="dif_8h_source.html#l00065">dif.h:65</a></div></div>
+<div class="ttc" id="astructspdk__dif__error_html"><div class="ttname"><a href="structspdk__dif__error.html">spdk_dif_error</a></div><div class="ttdoc">DIF error information.</div><div class="ttdef"><b>Definition</b> <a href="dif_8h_source.html#l00122">dif.h:122</a></div></div>
+</div><!-- fragment --></div><!-- contents -->
+</div><!-- doc-content -->
+</div><!-- container -->
+<footer class="footer" id="nav-path">
+  <div class="footer-inner">
+    <div class="footer-copy">
+      <small>Copyright &copy; SPDK a Series of LF Projects, LLC. For web site terms of use, trademark policy, and other
+      project policies please see <a href="https://lfprojects.org">lfprojects.org</a>.</small>
+    </div>
+  </div>
+</footer>
+<script type="text/javascript" src="page_outline.js"></script>
+<script type="text/javascript" src="spdk_nav.js"></script>
+<!-- Doxygen footer suffix – assembled by _build/common.sh:
+     _includes/footer.html (shared) + theme scripts (from spdk) + this file.
+     Theme scripts are extracted from spdk/doc/theme/footer.html at build
+     time so the script list is maintained in a single place. -->
+</body>
+</html>

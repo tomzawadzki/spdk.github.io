@@ -1,0 +1,9 @@
+<map id="spdk_nvme_transport_poll_group_stat" name="spdk_nvme_transport_poll_group_stat">
+<area shape="rect" id="Node000001" title=" " alt="" coords="248,106,411,151"/>
+<area shape="rect" id="Node000002" href="$structspdk__nvme__rdma__device__stat.html" title=" " alt="" coords="5,5,225,33"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="154,38,236,80,284,103,282,108,233,84,152,43"/>
+<area shape="rect" id="Node000003" href="$structspdk__nvme__pcie__stat.html" title=" " alt="" coords="248,5,411,33"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="332,49,332,105,327,105,327,49"/>
+<area shape="rect" id="Node000004" href="$structspdk__nvme__tcp__stat.html" title=" " alt="" coords="435,5,590,33"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="478,43,368,108,365,103,476,39"/>
+</map>

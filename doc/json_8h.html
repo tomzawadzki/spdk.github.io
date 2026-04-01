@@ -1,0 +1,1069 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<meta name="generator" content="Doxygen 1.16.1">
+	<title>SPDK: json.h File Reference</title>
+	<script type="text/javascript" src="jquery.js"></script>
+	<script type="text/javascript" src="dynsections.js"></script>
+	<script type="text/javascript" src="clipboard.js"></script>
+	<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
+<script type="text/javascript" src="cookie.js"></script>
+	<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<script type="text/javascript">
+  $(function() { init_search(); });
+</script>
+	<link rel="icon" type="image/svg+xml" href="../assets/img/spdk.svg">
+	<link rel="icon" href="../assets/favicon.ico" sizes="32x32">
+	<link href="doxygen.css" rel="stylesheet" type="text/css">
+	<script>(function(){var k='doxygen_width',w,bw=6;if(window.chrome){w=localStorage.getItem(k);if(!w){w='350';localStorage.setItem(k,w)}}else{var m=document.cookie.match(new RegExp(k+'=(\\d+)'));w=m?m[1]:null;if(!w){w='350';document.cookie=k+'=350;SameSite=Lax;path=/'}}document.documentElement.style.setProperty('--sn-w',(parseInt(w)+bw)+'px')})()</script>
+	<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:400,700,900" type="text/css">
+	<link href="spdk.css" rel="stylesheet" type="text/css"/>
+	<link href="../assets/css/spdk.css" rel="stylesheet" type="text/css">
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<nav class="navbar">
+  <a class="navbar-brand" href="../" aria-label="SPDK">
+    <img src="../assets/img/spdk.svg" width="36" height="36" alt="Storage Performance Development Kit">
+  </a>
+  <div class="navbar-nav">
+    <a class="nav-link header-link" href="../doc/releases.html">download</a>
+    <a class="nav-link header-link" href="../doc/">documentation</a>
+    <a class="nav-link header-link" href="../doc/contributing.html">development</a>
+    <a class="nav-link header-link" href="../doc/ci_tools.html">CI status</a>
+    <a class="nav-link header-link" href="../community/">community</a>
+    <a class="nav-link header-link" href="../blog/">Blog</a>
+    <a class="nav-link header-link" href="https://github.com/orgs/spdk/projects/5">Roadmap</a>
+    <a class="nav-link header-link" href="../news/">News</a>
+  </div>
+  <div class="navbar-end">
+    <a class="nav-link header-link" href="https://github.com/spdk/spdk" aria-label="GitHub">
+      <svg xmlns="http://www.w3.org/2000/svg" class="navbar-nav-svg" aria-hidden="true"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
+    </a>
+    <a id="cn_lang_btn" href="../cn/doc/" class="nav-link header-link">中文</a>
+  </div>
+</nav>
+<script>
+(function() {
+    var p = location.pathname, best = null, bLen = 0;
+    document.querySelectorAll('.header-link[href]').forEach(function(a) {
+        var raw = a.getAttribute('href');
+        if (!raw) return;
+        try { var u = new URL(raw, location.href); } catch(e) { return; }
+        if (u.origin !== location.origin) return;
+        var h = u.pathname;
+        if (h === '/') return;
+        var ok = h.endsWith('.html') ? p === h : p.indexOf(h) === 0;
+        if (ok && h.length > bLen) { bLen = h.length; best = a; }
+    });
+    if (best) best.classList.add('active');
+})();
+</script>
+<div id="doxygen-searchbox">        <div id="MSearchBox" class="MSearchBoxInactive">
+        <span class="left">
+          <span id="MSearchSelect" class="search-icon" onmouseover="return searchBox.OnSearchSelectShow()" onmouseout="return searchBox.OnSearchSelectHide()"><span class="search-icon-dropdown"></span></span>
+          <input type="text" id="MSearchField" value="" placeholder="Search" accesskey="S"
+               onfocus="searchBox.OnSearchFieldFocus(true)" 
+               onblur="searchBox.OnSearchFieldFocus(false)" 
+               onkeyup="searchBox.OnSearchFieldChange(event)"/>
+          </span><span class="right">
+            <a id="MSearchClose" href="javascript:searchBox.CloseResultsWindow()"><div id="MSearchCloseImg" class="close-icon"></div></a>
+          </span>
+        </div>
+</div>
+<!-- Generated by Doxygen 1.16.1 -->
+<script type="text/javascript">
+var searchBox = new SearchBox("searchBox", "search/",'.html');
+</script>
+<script type="text/javascript">
+$(function() { codefold.init(); });
+</script>
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+$(function(){initNavTree('json_8h.html','',''); });
+</script>
+<div id="container">
+<div id="doc-content">
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">Loading...</div>
+<div class="SRStatus" id="Searching">Searching...</div>
+<div class="SRStatus" id="NoMatches">No Matches</div>
+</div>
+</div>
+</div>
+</div>
+
+<div class="header">
+  <div class="headertitle"><div class="title">json.h File Reference</div></div>
+</div><!--header-->
+<div class="contents">
+
+<p>JSON parsing and encoding.  
+<a href="#details">More...</a></p>
+
+<p><a href="json_8h_source.html">Go to the source code of this file.</a></p>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 id="header-nested-classes" class="groupheader"><a id="nested-classes" name="nested-classes"></a>
+Data Structures</h2></td></tr>
+<tr class="memitem:spdk_5Fjson_5Fval" id="r_spdk_5Fjson_5Fval"><td class="memItemLeft">struct &#160;</td><td class="memItemRight"><a class="el" href="structspdk__json__val.html">spdk_json_val</a></td></tr>
+<tr class="memitem:spdk_5Fjson_5Fobject_5Fdecoder" id="r_spdk_5Fjson_5Fobject_5Fdecoder"><td class="memItemLeft">struct &#160;</td><td class="memItemRight"><a class="el" href="structspdk__json__object__decoder.html">spdk_json_object_decoder</a></td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 id="header-define-members" class="groupheader"><a id="define-members" name="define-members"></a>
+Macros</h2></td></tr>
+<tr class="memitem:a664ed928cd6899ab085d467894018936" id="r_a664ed928cd6899ab085d467894018936"><td class="memItemLeft">#define&#160;</td><td class="memItemRight"><a class="el" href="#a664ed928cd6899ab085d467894018936">SPDK_JSON_VAL_ANY</a>&#160;&#160;&#160;SPDK_JSON_VAL_INVALID</td></tr>
+<tr class="memitem:a91c8e2bb9f0a1af4824d5708b8afbf26" id="r_a91c8e2bb9f0a1af4824d5708b8afbf26"><td class="memItemLeft">#define&#160;</td><td class="memItemRight"><a class="el" href="#a91c8e2bb9f0a1af4824d5708b8afbf26">SPDK_JSON_PARSE_INVALID</a>&#160;&#160;&#160;-1</td></tr>
+<tr class="memdesc:a91c8e2bb9f0a1af4824d5708b8afbf26"><td class="mdescLeft">&#160;</td><td class="mdescRight">Invalid JSON syntax.  <br /></td></tr>
+<tr class="memitem:acc79dce318c094983d4a6e94cd49684f" id="r_acc79dce318c094983d4a6e94cd49684f"><td class="memItemLeft">#define&#160;</td><td class="memItemRight"><a class="el" href="#acc79dce318c094983d4a6e94cd49684f">SPDK_JSON_PARSE_INCOMPLETE</a>&#160;&#160;&#160;-2</td></tr>
+<tr class="memdesc:acc79dce318c094983d4a6e94cd49684f"><td class="mdescLeft">&#160;</td><td class="mdescRight">JSON was valid up to the end of the current buffer, but did not represent a complete JSON value.  <br /></td></tr>
+<tr class="memitem:a4677d94bb35fe81cd0a1421a9429749d" id="r_a4677d94bb35fe81cd0a1421a9429749d"><td class="memItemLeft">#define&#160;</td><td class="memItemRight"><a class="el" href="#a4677d94bb35fe81cd0a1421a9429749d">SPDK_JSON_PARSE_MAX_DEPTH_EXCEEDED</a>&#160;&#160;&#160;-3</td></tr>
+<tr class="memitem:a282fefd919b6a7df96d06d182621b7ae" id="r_a282fefd919b6a7df96d06d182621b7ae"><td class="memItemLeft">#define&#160;</td><td class="memItemRight"><a class="el" href="#a282fefd919b6a7df96d06d182621b7ae">SPDK_JSON_PARSE_FLAG_DECODE_IN_PLACE</a>&#160;&#160;&#160;0x000000001</td></tr>
+<tr class="memdesc:a282fefd919b6a7df96d06d182621b7ae"><td class="mdescLeft">&#160;</td><td class="mdescRight">Decode JSON strings and names in place (modify the input buffer).  <br /></td></tr>
+<tr class="memitem:ae70b833e42043ec3f254da0fbc3c5787" id="r_ae70b833e42043ec3f254da0fbc3c5787"><td class="memItemLeft">#define&#160;</td><td class="memItemRight"><a class="el" href="#ae70b833e42043ec3f254da0fbc3c5787">SPDK_JSON_PARSE_FLAG_ALLOW_COMMENTS</a>&#160;&#160;&#160;0x000000002</td></tr>
+<tr class="memdesc:ae70b833e42043ec3f254da0fbc3c5787"><td class="mdescLeft">&#160;</td><td class="mdescRight">Allow parsing of comments.  <br /></td></tr>
+<tr class="memitem:ad5f14ea888abfa32c979c7a3684d0a91" id="r_ad5f14ea888abfa32c979c7a3684d0a91"><td class="memItemLeft">#define&#160;</td><td class="memItemRight"><a class="el" href="#ad5f14ea888abfa32c979c7a3684d0a91">SPDK_JSON_WRITE_FLAG_FORMATTED</a>&#160;&#160;&#160;0x00000001</td></tr>
+<tr class="memitem:ad782cffad00fc03da0f0ab2761e3b894" id="r_ad782cffad00fc03da0f0ab2761e3b894"><td class="memItemLeft">#define&#160;</td><td class="memItemRight"><a class="el" href="#ad782cffad00fc03da0f0ab2761e3b894">SPDK_JSON_WRITE_FLAG_FLATTEN_BATCHES</a>&#160;&#160;&#160;0x00000002</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 id="header-typedef-members" class="groupheader"><a id="typedef-members" name="typedef-members"></a>
+Typedefs</h2></td></tr>
+<tr class="memitem:a13fb3780f39b52a2d7d35d804e181f5b" id="r_a13fb3780f39b52a2d7d35d804e181f5b"><td class="memItemLeft">typedef int(*&#160;</td><td class="memItemRight"><a class="el" href="#a13fb3780f39b52a2d7d35d804e181f5b">spdk_json_decode_fn</a>) (const struct <a class="el" href="structspdk__json__val.html">spdk_json_val</a> *val, void *out)</td></tr>
+<tr class="memitem:a2e907bd02a906de97d064dcac72a4cb5" id="r_a2e907bd02a906de97d064dcac72a4cb5"><td class="memItemLeft">typedef int(*&#160;</td><td class="memItemRight"><a class="el" href="#a2e907bd02a906de97d064dcac72a4cb5">spdk_json_write_cb</a>) (void *cb_ctx, const void *data, size_t size)</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 id="header-enum-members" class="groupheader"><a id="enum-members" name="enum-members"></a>
+Enumerations</h2></td></tr>
+<tr class="memitem:aae250e55eb9ac9183315695d5f84cd9f" id="r_aae250e55eb9ac9183315695d5f84cd9f"><td class="memItemLeft">enum &#160;</td><td class="memItemRight"><b>spdk_json_val_type</b> { <br />
+&#160;&#160;<b>SPDK_JSON_VAL_INVALID</b> = 0
+, <b>SPDK_JSON_VAL_NULL</b> = 1U &lt;&lt; 1
+, <b>SPDK_JSON_VAL_TRUE</b> = 1U &lt;&lt; 2
+, <b>SPDK_JSON_VAL_FALSE</b> = 1U &lt;&lt; 3
+, <br />
+&#160;&#160;<b>SPDK_JSON_VAL_NUMBER</b> = 1U &lt;&lt; 4
+, <b>SPDK_JSON_VAL_STRING</b> = 1U &lt;&lt; 5
+, <b>SPDK_JSON_VAL_ARRAY_BEGIN</b> = 1U &lt;&lt; 6
+, <b>SPDK_JSON_VAL_ARRAY_END</b> = 1U &lt;&lt; 7
+, <br />
+&#160;&#160;<b>SPDK_JSON_VAL_OBJECT_BEGIN</b> = 1U &lt;&lt; 8
+, <b>SPDK_JSON_VAL_OBJECT_END</b> = 1U &lt;&lt; 9
+, <b>SPDK_JSON_VAL_NAME</b> = 1U &lt;&lt; 10
+<br />
+ }</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 id="header-func-members" class="groupheader"><a id="func-members" name="func-members"></a>
+Functions</h2></td></tr>
+<tr class="memitem:ad4c297360983047e0796f0c70c88e768" id="r_ad4c297360983047e0796f0c70c88e768"><td class="memItemLeft"><a id="ad4c297360983047e0796f0c70c88e768" name="ad4c297360983047e0796f0c70c88e768"></a>
+ssize_t&#160;</td><td class="memItemRight"><b>spdk_json_parse</b> (void *json, size_t size, struct <a class="el" href="structspdk__json__val.html">spdk_json_val</a> *values, size_t num_values, void **end, uint32_t flags)</td></tr>
+<tr class="memitem:a1615973fcc18e1d274a95fb8b0a3eb47" id="r_a1615973fcc18e1d274a95fb8b0a3eb47"><td class="memItemLeft"><a id="a1615973fcc18e1d274a95fb8b0a3eb47" name="a1615973fcc18e1d274a95fb8b0a3eb47"></a>
+int&#160;</td><td class="memItemRight"><b>spdk_json_decode_object</b> (const struct <a class="el" href="structspdk__json__val.html">spdk_json_val</a> *values, const struct <a class="el" href="structspdk__json__object__decoder.html">spdk_json_object_decoder</a> *decoders, size_t num_decoders, void *out)</td></tr>
+<tr class="memitem:a3fd7603d5b1f769e75b6331be6f7a052" id="r_a3fd7603d5b1f769e75b6331be6f7a052"><td class="memItemLeft"><a id="a3fd7603d5b1f769e75b6331be6f7a052" name="a3fd7603d5b1f769e75b6331be6f7a052"></a>
+int&#160;</td><td class="memItemRight"><b>spdk_json_decode_object_relaxed</b> (const struct <a class="el" href="structspdk__json__val.html">spdk_json_val</a> *values, const struct <a class="el" href="structspdk__json__object__decoder.html">spdk_json_object_decoder</a> *decoders, size_t num_decoders, void *out)</td></tr>
+<tr class="memitem:a1ed6b4728ebf6c75087864dd3e2256a6" id="r_a1ed6b4728ebf6c75087864dd3e2256a6"><td class="memItemLeft">int&#160;</td><td class="memItemRight"><a class="el" href="#a1ed6b4728ebf6c75087864dd3e2256a6">spdk_json_decode_array</a> (const struct <a class="el" href="structspdk__json__val.html">spdk_json_val</a> *values, spdk_json_decode_fn decode_func, void *out, size_t max_size, size_t *out_size, size_t stride)</td></tr>
+<tr class="memdesc:a1ed6b4728ebf6c75087864dd3e2256a6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Decode a JSON array.  <br /></td></tr>
+<tr class="memitem:a01e5f7c9397f496f580d63c2735d280c" id="r_a01e5f7c9397f496f580d63c2735d280c"><td class="memItemLeft"><a id="a01e5f7c9397f496f580d63c2735d280c" name="a01e5f7c9397f496f580d63c2735d280c"></a>
+int&#160;</td><td class="memItemRight"><b>spdk_json_decode_bool</b> (const struct <a class="el" href="structspdk__json__val.html">spdk_json_val</a> *val, void *out)</td></tr>
+<tr class="memitem:a004f1240d5091218020dd1fc4bf557c1" id="r_a004f1240d5091218020dd1fc4bf557c1"><td class="memItemLeft"><a id="a004f1240d5091218020dd1fc4bf557c1" name="a004f1240d5091218020dd1fc4bf557c1"></a>
+int&#160;</td><td class="memItemRight"><b>spdk_json_decode_uint8</b> (const struct <a class="el" href="structspdk__json__val.html">spdk_json_val</a> *val, void *out)</td></tr>
+<tr class="memitem:aefa0a3429cedd36596023e99801cd5c0" id="r_aefa0a3429cedd36596023e99801cd5c0"><td class="memItemLeft"><a id="aefa0a3429cedd36596023e99801cd5c0" name="aefa0a3429cedd36596023e99801cd5c0"></a>
+int&#160;</td><td class="memItemRight"><b>spdk_json_decode_uint16</b> (const struct <a class="el" href="structspdk__json__val.html">spdk_json_val</a> *val, void *out)</td></tr>
+<tr class="memitem:ac31a213b3ccc7808796806ab25cfbe81" id="r_ac31a213b3ccc7808796806ab25cfbe81"><td class="memItemLeft"><a id="ac31a213b3ccc7808796806ab25cfbe81" name="ac31a213b3ccc7808796806ab25cfbe81"></a>
+int&#160;</td><td class="memItemRight"><b>spdk_json_decode_int32</b> (const struct <a class="el" href="structspdk__json__val.html">spdk_json_val</a> *val, void *out)</td></tr>
+<tr class="memitem:a5ba97519fb4d8431f8b5241379a06b2e" id="r_a5ba97519fb4d8431f8b5241379a06b2e"><td class="memItemLeft"><a id="a5ba97519fb4d8431f8b5241379a06b2e" name="a5ba97519fb4d8431f8b5241379a06b2e"></a>
+int&#160;</td><td class="memItemRight"><b>spdk_json_decode_uint32</b> (const struct <a class="el" href="structspdk__json__val.html">spdk_json_val</a> *val, void *out)</td></tr>
+<tr class="memitem:a96d2603083c8aa2b43a9f26d5d040262" id="r_a96d2603083c8aa2b43a9f26d5d040262"><td class="memItemLeft"><a id="a96d2603083c8aa2b43a9f26d5d040262" name="a96d2603083c8aa2b43a9f26d5d040262"></a>
+int&#160;</td><td class="memItemRight"><b>spdk_json_decode_uint64</b> (const struct <a class="el" href="structspdk__json__val.html">spdk_json_val</a> *val, void *out)</td></tr>
+<tr class="memitem:ae002256312f263ec6082c9f06f135608" id="r_ae002256312f263ec6082c9f06f135608"><td class="memItemLeft"><a id="ae002256312f263ec6082c9f06f135608" name="ae002256312f263ec6082c9f06f135608"></a>
+int&#160;</td><td class="memItemRight"><b>spdk_json_decode_string</b> (const struct <a class="el" href="structspdk__json__val.html">spdk_json_val</a> *val, void *out)</td></tr>
+<tr class="memitem:a55415cf972c1637acfc0c932f6ff88fc" id="r_a55415cf972c1637acfc0c932f6ff88fc"><td class="memItemLeft"><a id="a55415cf972c1637acfc0c932f6ff88fc" name="a55415cf972c1637acfc0c932f6ff88fc"></a>
+int&#160;</td><td class="memItemRight"><b>spdk_json_decode_uuid</b> (const struct <a class="el" href="structspdk__json__val.html">spdk_json_val</a> *val, void *out)</td></tr>
+<tr class="memitem:a4eb8e1f24bde7dc2184b4a9cb7b291f3" id="r_a4eb8e1f24bde7dc2184b4a9cb7b291f3"><td class="memItemLeft"><a id="a4eb8e1f24bde7dc2184b4a9cb7b291f3" name="a4eb8e1f24bde7dc2184b4a9cb7b291f3"></a>
+void&#160;</td><td class="memItemRight"><b>spdk_json_free_object</b> (const struct <a class="el" href="structspdk__json__object__decoder.html">spdk_json_object_decoder</a> *decoders, size_t num_decoders, void *obj)</td></tr>
+<tr class="memitem:a4d5aa0b66aa2cb7af428a03249b55c20" id="r_a4d5aa0b66aa2cb7af428a03249b55c20"><td class="memItemLeft">size_t&#160;</td><td class="memItemRight"><a class="el" href="#a4d5aa0b66aa2cb7af428a03249b55c20">spdk_json_val_len</a> (const struct <a class="el" href="structspdk__json__val.html">spdk_json_val</a> *val)</td></tr>
+<tr class="memdesc:a4d5aa0b66aa2cb7af428a03249b55c20"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get length of a value in number of values.  <br /></td></tr>
+<tr class="memitem:ad851874ca2322afe2e70352b74ec9ea1" id="r_ad851874ca2322afe2e70352b74ec9ea1"><td class="memItemLeft">size_t&#160;</td><td class="memItemRight"><a class="el" href="#ad851874ca2322afe2e70352b74ec9ea1">spdk_json_array_count</a> (const struct <a class="el" href="structspdk__json__val.html">spdk_json_val</a> *val)</td></tr>
+<tr class="memdesc:ad851874ca2322afe2e70352b74ec9ea1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Count the number of immediate elements in a JSON array.  <br /></td></tr>
+<tr class="memitem:a1eef0cdf2426dc5fc8f860b94e26453f" id="r_a1eef0cdf2426dc5fc8f860b94e26453f"><td class="memItemLeft">bool&#160;</td><td class="memItemRight"><a class="el" href="#a1eef0cdf2426dc5fc8f860b94e26453f">spdk_json_strequal</a> (const struct <a class="el" href="structspdk__json__val.html">spdk_json_val</a> *val, const char *str)</td></tr>
+<tr class="memdesc:a1eef0cdf2426dc5fc8f860b94e26453f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Compare JSON string with null terminated C string.  <br /></td></tr>
+<tr class="memitem:a7fdc86d6037df00a5a48271a77afb4ec" id="r_a7fdc86d6037df00a5a48271a77afb4ec"><td class="memItemLeft">char *&#160;</td><td class="memItemRight"><a class="el" href="#a7fdc86d6037df00a5a48271a77afb4ec">spdk_json_strdup</a> (const struct <a class="el" href="structspdk__json__val.html">spdk_json_val</a> *val)</td></tr>
+<tr class="memdesc:a7fdc86d6037df00a5a48271a77afb4ec"><td class="mdescLeft">&#160;</td><td class="mdescRight">Equivalent of strdup() for JSON string values.  <br /></td></tr>
+<tr class="memitem:ab86df1f26896faa44ef153faac4536e3" id="r_ab86df1f26896faa44ef153faac4536e3"><td class="memItemLeft"><a id="ab86df1f26896faa44ef153faac4536e3" name="ab86df1f26896faa44ef153faac4536e3"></a>
+int&#160;</td><td class="memItemRight"><b>spdk_json_number_to_uint8</b> (const struct <a class="el" href="structspdk__json__val.html">spdk_json_val</a> *val, uint8_t *num)</td></tr>
+<tr class="memitem:a8f37bf6dcbc847325d5e6bcfe3dc1e59" id="r_a8f37bf6dcbc847325d5e6bcfe3dc1e59"><td class="memItemLeft"><a id="a8f37bf6dcbc847325d5e6bcfe3dc1e59" name="a8f37bf6dcbc847325d5e6bcfe3dc1e59"></a>
+int&#160;</td><td class="memItemRight"><b>spdk_json_number_to_uint16</b> (const struct <a class="el" href="structspdk__json__val.html">spdk_json_val</a> *val, uint16_t *num)</td></tr>
+<tr class="memitem:aef7ad204330195bde7e89054f43ce6a3" id="r_aef7ad204330195bde7e89054f43ce6a3"><td class="memItemLeft"><a id="aef7ad204330195bde7e89054f43ce6a3" name="aef7ad204330195bde7e89054f43ce6a3"></a>
+int&#160;</td><td class="memItemRight"><b>spdk_json_number_to_int32</b> (const struct <a class="el" href="structspdk__json__val.html">spdk_json_val</a> *val, int32_t *num)</td></tr>
+<tr class="memitem:a09e94f77e23c6a3d4211a91a7fdec6e4" id="r_a09e94f77e23c6a3d4211a91a7fdec6e4"><td class="memItemLeft"><a id="a09e94f77e23c6a3d4211a91a7fdec6e4" name="a09e94f77e23c6a3d4211a91a7fdec6e4"></a>
+int&#160;</td><td class="memItemRight"><b>spdk_json_number_to_uint32</b> (const struct <a class="el" href="structspdk__json__val.html">spdk_json_val</a> *val, uint32_t *num)</td></tr>
+<tr class="memitem:a0c52aaf8c280708f391202507ac80a4b" id="r_a0c52aaf8c280708f391202507ac80a4b"><td class="memItemLeft"><a id="a0c52aaf8c280708f391202507ac80a4b" name="a0c52aaf8c280708f391202507ac80a4b"></a>
+int&#160;</td><td class="memItemRight"><b>spdk_json_number_to_uint64</b> (const struct <a class="el" href="structspdk__json__val.html">spdk_json_val</a> *val, uint64_t *num)</td></tr>
+<tr class="memitem:aa210383bb7cb11b582b6173641ce57a8" id="r_aa210383bb7cb11b582b6173641ce57a8"><td class="memItemLeft"><a id="aa210383bb7cb11b582b6173641ce57a8" name="aa210383bb7cb11b582b6173641ce57a8"></a>
+struct spdk_json_write_ctx *&#160;</td><td class="memItemRight"><b>spdk_json_write_begin</b> (spdk_json_write_cb write_cb, void *cb_ctx, uint32_t flags)</td></tr>
+<tr class="memitem:a97b8231e8e3edf28b783a251568ab839" id="r_a97b8231e8e3edf28b783a251568ab839"><td class="memItemLeft"><a id="a97b8231e8e3edf28b783a251568ab839" name="a97b8231e8e3edf28b783a251568ab839"></a>
+int&#160;</td><td class="memItemRight"><b>spdk_json_write_end</b> (struct spdk_json_write_ctx *w)</td></tr>
+<tr class="memitem:a87825bb7a2d52a6881e03a3ca7ccf353" id="r_a87825bb7a2d52a6881e03a3ca7ccf353"><td class="memItemLeft"><a id="a87825bb7a2d52a6881e03a3ca7ccf353" name="a87825bb7a2d52a6881e03a3ca7ccf353"></a>
+void&#160;</td><td class="memItemRight"><b>spdk_json_write_reset</b> (struct spdk_json_write_ctx *w)</td></tr>
+<tr class="memitem:a99b9b836bb35a015981a68dc6dbc2c3b" id="r_a99b9b836bb35a015981a68dc6dbc2c3b"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="#a99b9b836bb35a015981a68dc6dbc2c3b">spdk_json_write_add_flags</a> (struct spdk_json_write_ctx *w, uint32_t flags)</td></tr>
+<tr class="memdesc:a99b9b836bb35a015981a68dc6dbc2c3b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set additional flags on a JSON write context.  <br /></td></tr>
+<tr class="memitem:afb39ef20750d537d2ceb7deb88a2d860" id="r_afb39ef20750d537d2ceb7deb88a2d860"><td class="memItemLeft"><a id="afb39ef20750d537d2ceb7deb88a2d860" name="afb39ef20750d537d2ceb7deb88a2d860"></a>
+int&#160;</td><td class="memItemRight"><b>spdk_json_write_null</b> (struct spdk_json_write_ctx *w)</td></tr>
+<tr class="memitem:a968950cbafd14720bdc2d9aba6a8c276" id="r_a968950cbafd14720bdc2d9aba6a8c276"><td class="memItemLeft"><a id="a968950cbafd14720bdc2d9aba6a8c276" name="a968950cbafd14720bdc2d9aba6a8c276"></a>
+int&#160;</td><td class="memItemRight"><b>spdk_json_write_bool</b> (struct spdk_json_write_ctx *w, bool val)</td></tr>
+<tr class="memitem:a31989bffad10e0f7e0f8534ce4a1b574" id="r_a31989bffad10e0f7e0f8534ce4a1b574"><td class="memItemLeft"><a id="a31989bffad10e0f7e0f8534ce4a1b574" name="a31989bffad10e0f7e0f8534ce4a1b574"></a>
+int&#160;</td><td class="memItemRight"><b>spdk_json_write_uint8</b> (struct spdk_json_write_ctx *w, uint8_t val)</td></tr>
+<tr class="memitem:a441adbd4779f6063926f30e3efff3c19" id="r_a441adbd4779f6063926f30e3efff3c19"><td class="memItemLeft"><a id="a441adbd4779f6063926f30e3efff3c19" name="a441adbd4779f6063926f30e3efff3c19"></a>
+int&#160;</td><td class="memItemRight"><b>spdk_json_write_uint16</b> (struct spdk_json_write_ctx *w, uint16_t val)</td></tr>
+<tr class="memitem:a223071134f0ca94d171d9810e2bdb378" id="r_a223071134f0ca94d171d9810e2bdb378"><td class="memItemLeft"><a id="a223071134f0ca94d171d9810e2bdb378" name="a223071134f0ca94d171d9810e2bdb378"></a>
+int&#160;</td><td class="memItemRight"><b>spdk_json_write_int32</b> (struct spdk_json_write_ctx *w, int32_t val)</td></tr>
+<tr class="memitem:a78ee727532882d4cab19bad70343eb7f" id="r_a78ee727532882d4cab19bad70343eb7f"><td class="memItemLeft"><a id="a78ee727532882d4cab19bad70343eb7f" name="a78ee727532882d4cab19bad70343eb7f"></a>
+int&#160;</td><td class="memItemRight"><b>spdk_json_write_uint32</b> (struct spdk_json_write_ctx *w, uint32_t val)</td></tr>
+<tr class="memitem:a2946cc64851a646bf63f5ddd9c65f9ca" id="r_a2946cc64851a646bf63f5ddd9c65f9ca"><td class="memItemLeft"><a id="a2946cc64851a646bf63f5ddd9c65f9ca" name="a2946cc64851a646bf63f5ddd9c65f9ca"></a>
+int&#160;</td><td class="memItemRight"><b>spdk_json_write_int64</b> (struct spdk_json_write_ctx *w, int64_t val)</td></tr>
+<tr class="memitem:a3555f5e2934c911ffd4d46f7b8671203" id="r_a3555f5e2934c911ffd4d46f7b8671203"><td class="memItemLeft"><a id="a3555f5e2934c911ffd4d46f7b8671203" name="a3555f5e2934c911ffd4d46f7b8671203"></a>
+int&#160;</td><td class="memItemRight"><b>spdk_json_write_uint64</b> (struct spdk_json_write_ctx *w, uint64_t val)</td></tr>
+<tr class="memitem:a661b800fa5cc226f08eaba8b6a51d881" id="r_a661b800fa5cc226f08eaba8b6a51d881"><td class="memItemLeft"><a id="a661b800fa5cc226f08eaba8b6a51d881" name="a661b800fa5cc226f08eaba8b6a51d881"></a>
+int&#160;</td><td class="memItemRight"><b>spdk_json_write_uint128</b> (struct spdk_json_write_ctx *w, uint64_t low_val, uint64_t high_val)</td></tr>
+<tr class="memitem:abed68bdc3f9405322d2b71563d2b36f5" id="r_abed68bdc3f9405322d2b71563d2b36f5"><td class="memItemLeft"><a id="abed68bdc3f9405322d2b71563d2b36f5" name="abed68bdc3f9405322d2b71563d2b36f5"></a>
+int&#160;</td><td class="memItemRight"><b>spdk_json_write_double</b> (struct spdk_json_write_ctx *w, double val)</td></tr>
+<tr class="memitem:a6d51ae041b9f8401a3e0a35287bfad5a" id="r_a6d51ae041b9f8401a3e0a35287bfad5a"><td class="memItemLeft"><a id="a6d51ae041b9f8401a3e0a35287bfad5a" name="a6d51ae041b9f8401a3e0a35287bfad5a"></a>
+int&#160;</td><td class="memItemRight"><b>spdk_json_write_string</b> (struct spdk_json_write_ctx *w, const char *val)</td></tr>
+<tr class="memitem:a6be580d5ea07bb5a5456857971c4ef84" id="r_a6be580d5ea07bb5a5456857971c4ef84"><td class="memItemLeft"><a id="a6be580d5ea07bb5a5456857971c4ef84" name="a6be580d5ea07bb5a5456857971c4ef84"></a>
+int&#160;</td><td class="memItemRight"><b>spdk_json_write_string_raw</b> (struct spdk_json_write_ctx *w, const char *val, size_t len)</td></tr>
+<tr class="memitem:a308fa2793e4472ca8740f23cd66ce64a" id="r_a308fa2793e4472ca8740f23cd66ce64a"><td class="memItemLeft"><a id="a308fa2793e4472ca8740f23cd66ce64a" name="a308fa2793e4472ca8740f23cd66ce64a"></a>
+int&#160;</td><td class="memItemRight"><b>spdk_json_write_bytearray</b> (struct spdk_json_write_ctx *w, const void *val, size_t len)</td></tr>
+<tr class="memitem:a6a38a13aef491aa3d5eb43b45ed93356" id="r_a6a38a13aef491aa3d5eb43b45ed93356"><td class="memItemLeft"><a id="a6a38a13aef491aa3d5eb43b45ed93356" name="a6a38a13aef491aa3d5eb43b45ed93356"></a>
+int&#160;</td><td class="memItemRight"><b>spdk_json_write_uuid</b> (struct spdk_json_write_ctx *w, const struct <a class="el" href="structspdk__uuid.html">spdk_uuid</a> *uuid)</td></tr>
+<tr class="memitem:a6f0f7b255a750c26d300957894c0a093" id="r_a6f0f7b255a750c26d300957894c0a093"><td class="memItemLeft">int&#160;</td><td class="memItemRight"><a class="el" href="#a6f0f7b255a750c26d300957894c0a093">spdk_json_write_string_utf16le</a> (struct spdk_json_write_ctx *w, const uint16_t *val)</td></tr>
+<tr class="memdesc:a6f0f7b255a750c26d300957894c0a093"><td class="mdescLeft">&#160;</td><td class="mdescRight">Write null-terminated UTF-16LE string.  <br /></td></tr>
+<tr class="memitem:a1d5f6be0455ec859148b046d9d13ad03" id="r_a1d5f6be0455ec859148b046d9d13ad03"><td class="memItemLeft">int&#160;</td><td class="memItemRight"><a class="el" href="#a1d5f6be0455ec859148b046d9d13ad03">spdk_json_write_string_utf16le_raw</a> (struct spdk_json_write_ctx *w, const uint16_t *val, size_t len)</td></tr>
+<tr class="memdesc:a1d5f6be0455ec859148b046d9d13ad03"><td class="mdescLeft">&#160;</td><td class="mdescRight">Write UTF-16LE string.  <br /></td></tr>
+<tr class="memitem:aa38e53dfa61213b568f66aa25de29385" id="r_aa38e53dfa61213b568f66aa25de29385"><td class="memItemLeft"><a id="aa38e53dfa61213b568f66aa25de29385" name="aa38e53dfa61213b568f66aa25de29385"></a>
+int&#160;</td><td class="memItemRight"><b>spdk_json_write_string_fmt</b> (struct spdk_json_write_ctx *w, const char *fmt,...)</td></tr>
+<tr class="memitem:a5f6fdaa306b32f280c19909429cb320f" id="r_a5f6fdaa306b32f280c19909429cb320f"><td class="memItemLeft"><a id="a5f6fdaa306b32f280c19909429cb320f" name="a5f6fdaa306b32f280c19909429cb320f"></a>
+int&#160;</td><td class="memItemRight"><b>spdk_json_write_string_fmt_v</b> (struct spdk_json_write_ctx *w, const char *fmt, va_list args)</td></tr>
+<tr class="memitem:ac97abb245698783d90430b17a379abac" id="r_ac97abb245698783d90430b17a379abac"><td class="memItemLeft"><a id="ac97abb245698783d90430b17a379abac" name="ac97abb245698783d90430b17a379abac"></a>
+int&#160;</td><td class="memItemRight"><b>spdk_json_write_array_begin</b> (struct spdk_json_write_ctx *w)</td></tr>
+<tr class="memitem:a034afae7d0bbb43e6b75f91402cdbcdb" id="r_a034afae7d0bbb43e6b75f91402cdbcdb"><td class="memItemLeft"><a id="a034afae7d0bbb43e6b75f91402cdbcdb" name="a034afae7d0bbb43e6b75f91402cdbcdb"></a>
+int&#160;</td><td class="memItemRight"><b>spdk_json_write_array_end</b> (struct spdk_json_write_ctx *w)</td></tr>
+<tr class="memitem:a17bfb9a5ec2326dcf3abc1674ed918b8" id="r_a17bfb9a5ec2326dcf3abc1674ed918b8"><td class="memItemLeft">int&#160;</td><td class="memItemRight"><a class="el" href="#a17bfb9a5ec2326dcf3abc1674ed918b8">spdk_json_write_batch_begin</a> (struct spdk_json_write_ctx *w)</td></tr>
+<tr class="memdesc:a17bfb9a5ec2326dcf3abc1674ed918b8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Begin a batch array.  <br /></td></tr>
+<tr class="memitem:a4cd64d0716106f2e76b50efe5ffad126" id="r_a4cd64d0716106f2e76b50efe5ffad126"><td class="memItemLeft">int&#160;</td><td class="memItemRight"><a class="el" href="#a4cd64d0716106f2e76b50efe5ffad126">spdk_json_write_batch_end</a> (struct spdk_json_write_ctx *w)</td></tr>
+<tr class="memdesc:a4cd64d0716106f2e76b50efe5ffad126"><td class="mdescLeft">&#160;</td><td class="mdescRight">End a batch array.  <br /></td></tr>
+<tr class="memitem:a43134cf7b4e2eb1ed0ec9003f1aaaad0" id="r_a43134cf7b4e2eb1ed0ec9003f1aaaad0"><td class="memItemLeft"><a id="a43134cf7b4e2eb1ed0ec9003f1aaaad0" name="a43134cf7b4e2eb1ed0ec9003f1aaaad0"></a>
+int&#160;</td><td class="memItemRight"><b>spdk_json_write_object_begin</b> (struct spdk_json_write_ctx *w)</td></tr>
+<tr class="memitem:a29b41db16a7efa38cfafb86241059c9b" id="r_a29b41db16a7efa38cfafb86241059c9b"><td class="memItemLeft"><a id="a29b41db16a7efa38cfafb86241059c9b" name="a29b41db16a7efa38cfafb86241059c9b"></a>
+int&#160;</td><td class="memItemRight"><b>spdk_json_write_object_end</b> (struct spdk_json_write_ctx *w)</td></tr>
+<tr class="memitem:a3b02f60a06a505520f6088b1f9ef6a40" id="r_a3b02f60a06a505520f6088b1f9ef6a40"><td class="memItemLeft"><a id="a3b02f60a06a505520f6088b1f9ef6a40" name="a3b02f60a06a505520f6088b1f9ef6a40"></a>
+int&#160;</td><td class="memItemRight"><b>spdk_json_write_name</b> (struct spdk_json_write_ctx *w, const char *name)</td></tr>
+<tr class="memitem:a793b5baacd8c017356270f9092881199" id="r_a793b5baacd8c017356270f9092881199"><td class="memItemLeft"><a id="a793b5baacd8c017356270f9092881199" name="a793b5baacd8c017356270f9092881199"></a>
+int&#160;</td><td class="memItemRight"><b>spdk_json_write_name_raw</b> (struct spdk_json_write_ctx *w, const char *name, size_t len)</td></tr>
+<tr class="memitem:aaf471af9adc269e6b3f9753acffbc173" id="r_aaf471af9adc269e6b3f9753acffbc173"><td class="memItemLeft"><a id="aaf471af9adc269e6b3f9753acffbc173" name="aaf471af9adc269e6b3f9753acffbc173"></a>
+int&#160;</td><td class="memItemRight"><b>spdk_json_write_val</b> (struct spdk_json_write_ctx *w, const struct <a class="el" href="structspdk__json__val.html">spdk_json_val</a> *val)</td></tr>
+<tr class="memitem:ab93e46b460a6a5f2f9ee3fa54edcc8de" id="r_ab93e46b460a6a5f2f9ee3fa54edcc8de"><td class="memItemLeft"><a id="ab93e46b460a6a5f2f9ee3fa54edcc8de" name="ab93e46b460a6a5f2f9ee3fa54edcc8de"></a>
+int&#160;</td><td class="memItemRight"><b>spdk_json_write_val_raw</b> (struct spdk_json_write_ctx *w, const void *data, size_t len)</td></tr>
+<tr class="memitem:ab86b097667b889dfda164b10a746ec29" id="r_ab86b097667b889dfda164b10a746ec29"><td class="memItemLeft"><a id="ab86b097667b889dfda164b10a746ec29" name="ab86b097667b889dfda164b10a746ec29"></a>
+int&#160;</td><td class="memItemRight"><b>spdk_json_write_named_null</b> (struct spdk_json_write_ctx *w, const char *name)</td></tr>
+<tr class="memitem:a4ae247a07382854c991faeb7131116c1" id="r_a4ae247a07382854c991faeb7131116c1"><td class="memItemLeft"><a id="a4ae247a07382854c991faeb7131116c1" name="a4ae247a07382854c991faeb7131116c1"></a>
+int&#160;</td><td class="memItemRight"><b>spdk_json_write_named_bool</b> (struct spdk_json_write_ctx *w, const char *name, bool val)</td></tr>
+<tr class="memitem:ac0b98b65d7319ef1148d4b87b4bb80f5" id="r_ac0b98b65d7319ef1148d4b87b4bb80f5"><td class="memItemLeft"><a id="ac0b98b65d7319ef1148d4b87b4bb80f5" name="ac0b98b65d7319ef1148d4b87b4bb80f5"></a>
+int&#160;</td><td class="memItemRight"><b>spdk_json_write_named_uint8</b> (struct spdk_json_write_ctx *w, const char *name, uint8_t val)</td></tr>
+<tr class="memitem:a9d7ab67c32e6f05b102e0c82f8bf2461" id="r_a9d7ab67c32e6f05b102e0c82f8bf2461"><td class="memItemLeft"><a id="a9d7ab67c32e6f05b102e0c82f8bf2461" name="a9d7ab67c32e6f05b102e0c82f8bf2461"></a>
+int&#160;</td><td class="memItemRight"><b>spdk_json_write_named_uint16</b> (struct spdk_json_write_ctx *w, const char *name, uint16_t val)</td></tr>
+<tr class="memitem:a5989aa1a7e696d3ad7e394e4e96783da" id="r_a5989aa1a7e696d3ad7e394e4e96783da"><td class="memItemLeft"><a id="a5989aa1a7e696d3ad7e394e4e96783da" name="a5989aa1a7e696d3ad7e394e4e96783da"></a>
+int&#160;</td><td class="memItemRight"><b>spdk_json_write_named_int32</b> (struct spdk_json_write_ctx *w, const char *name, int32_t val)</td></tr>
+<tr class="memitem:a0ba1891841d0504b55ca62ef2005bb2f" id="r_a0ba1891841d0504b55ca62ef2005bb2f"><td class="memItemLeft"><a id="a0ba1891841d0504b55ca62ef2005bb2f" name="a0ba1891841d0504b55ca62ef2005bb2f"></a>
+int&#160;</td><td class="memItemRight"><b>spdk_json_write_named_uint32</b> (struct spdk_json_write_ctx *w, const char *name, uint32_t val)</td></tr>
+<tr class="memitem:a4e2e5ec6ae83ecc0c88f8213825cf5d6" id="r_a4e2e5ec6ae83ecc0c88f8213825cf5d6"><td class="memItemLeft"><a id="a4e2e5ec6ae83ecc0c88f8213825cf5d6" name="a4e2e5ec6ae83ecc0c88f8213825cf5d6"></a>
+int&#160;</td><td class="memItemRight"><b>spdk_json_write_named_int64</b> (struct spdk_json_write_ctx *w, const char *name, int64_t val)</td></tr>
+<tr class="memitem:af58205394bbbfb6d05219e1c8b88023d" id="r_af58205394bbbfb6d05219e1c8b88023d"><td class="memItemLeft"><a id="af58205394bbbfb6d05219e1c8b88023d" name="af58205394bbbfb6d05219e1c8b88023d"></a>
+int&#160;</td><td class="memItemRight"><b>spdk_json_write_named_uint64</b> (struct spdk_json_write_ctx *w, const char *name, uint64_t val)</td></tr>
+<tr class="memitem:ab1d5374092f6b7bc0e33c5b8a3547bc8" id="r_ab1d5374092f6b7bc0e33c5b8a3547bc8"><td class="memItemLeft"><a id="ab1d5374092f6b7bc0e33c5b8a3547bc8" name="ab1d5374092f6b7bc0e33c5b8a3547bc8"></a>
+int&#160;</td><td class="memItemRight"><b>spdk_json_write_named_uint128</b> (struct spdk_json_write_ctx *w, const char *name, uint64_t low_val, uint64_t high_val)</td></tr>
+<tr class="memitem:a948b7674b0977141e257b5ff3b34fec0" id="r_a948b7674b0977141e257b5ff3b34fec0"><td class="memItemLeft"><a id="a948b7674b0977141e257b5ff3b34fec0" name="a948b7674b0977141e257b5ff3b34fec0"></a>
+int&#160;</td><td class="memItemRight"><b>spdk_json_write_named_double</b> (struct spdk_json_write_ctx *w, const char *name, double val)</td></tr>
+<tr class="memitem:a9818f28c01f95a44cbae78bedab604a0" id="r_a9818f28c01f95a44cbae78bedab604a0"><td class="memItemLeft"><a id="a9818f28c01f95a44cbae78bedab604a0" name="a9818f28c01f95a44cbae78bedab604a0"></a>
+int&#160;</td><td class="memItemRight"><b>spdk_json_write_named_string</b> (struct spdk_json_write_ctx *w, const char *name, const char *val)</td></tr>
+<tr class="memitem:a5e87be14077e78016f6ec88be45639d1" id="r_a5e87be14077e78016f6ec88be45639d1"><td class="memItemLeft"><a id="a5e87be14077e78016f6ec88be45639d1" name="a5e87be14077e78016f6ec88be45639d1"></a>
+int&#160;</td><td class="memItemRight"><b>spdk_json_write_named_string_fmt</b> (struct spdk_json_write_ctx *w, const char *name, const char *fmt,...)</td></tr>
+<tr class="memitem:a4f3a2705636d6abcfff09a9c2e3dc6cb" id="r_a4f3a2705636d6abcfff09a9c2e3dc6cb"><td class="memItemLeft"><a id="a4f3a2705636d6abcfff09a9c2e3dc6cb" name="a4f3a2705636d6abcfff09a9c2e3dc6cb"></a>
+int&#160;</td><td class="memItemRight"><b>spdk_json_write_named_string_fmt_v</b> (struct spdk_json_write_ctx *w, const char *name, const char *fmt, va_list args)</td></tr>
+<tr class="memitem:a0243b25b04a8f06ea1656c86d7621cf9" id="r_a0243b25b04a8f06ea1656c86d7621cf9"><td class="memItemLeft"><a id="a0243b25b04a8f06ea1656c86d7621cf9" name="a0243b25b04a8f06ea1656c86d7621cf9"></a>
+int&#160;</td><td class="memItemRight"><b>spdk_json_write_named_bytearray</b> (struct spdk_json_write_ctx *w, const char *name, const void *val, size_t len)</td></tr>
+<tr class="memitem:a374693dfbf6ed15ee870350e1c11b44e" id="r_a374693dfbf6ed15ee870350e1c11b44e"><td class="memItemLeft"><a id="a374693dfbf6ed15ee870350e1c11b44e" name="a374693dfbf6ed15ee870350e1c11b44e"></a>
+int&#160;</td><td class="memItemRight"><b>spdk_json_write_named_uuid</b> (struct spdk_json_write_ctx *w, const char *name, const struct <a class="el" href="structspdk__uuid.html">spdk_uuid</a> *uuid)</td></tr>
+<tr class="memitem:ad0964a3d06321a53281889c98128244a" id="r_ad0964a3d06321a53281889c98128244a"><td class="memItemLeft"><a id="ad0964a3d06321a53281889c98128244a" name="ad0964a3d06321a53281889c98128244a"></a>
+int&#160;</td><td class="memItemRight"><b>spdk_json_write_named_array_begin</b> (struct spdk_json_write_ctx *w, const char *name)</td></tr>
+<tr class="memitem:ab41e40a3d513cc859534cb5ed08a69ad" id="r_ab41e40a3d513cc859534cb5ed08a69ad"><td class="memItemLeft"><a id="ab41e40a3d513cc859534cb5ed08a69ad" name="ab41e40a3d513cc859534cb5ed08a69ad"></a>
+int&#160;</td><td class="memItemRight"><b>spdk_json_write_named_object_begin</b> (struct spdk_json_write_ctx *w, const char *name)</td></tr>
+<tr class="memitem:a5fc65c7d1961c23a747b3e2aa2169f4a" id="r_a5fc65c7d1961c23a747b3e2aa2169f4a"><td class="memItemLeft">int&#160;</td><td class="memItemRight"><a class="el" href="#a5fc65c7d1961c23a747b3e2aa2169f4a">spdk_json_find</a> (struct <a class="el" href="structspdk__json__val.html">spdk_json_val</a> *object, const char *key_name, struct <a class="el" href="structspdk__json__val.html">spdk_json_val</a> **key, struct <a class="el" href="structspdk__json__val.html">spdk_json_val</a> **val, enum spdk_json_val_type type)</td></tr>
+<tr class="memdesc:a5fc65c7d1961c23a747b3e2aa2169f4a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Return JSON value associated with key <code>key_name</code>.  <br /></td></tr>
+<tr class="memitem:a04601f5c6dc82ac1ddedc387a510249d" id="r_a04601f5c6dc82ac1ddedc387a510249d"><td class="memItemLeft">int&#160;</td><td class="memItemRight"><a class="el" href="#a04601f5c6dc82ac1ddedc387a510249d">spdk_json_find_string</a> (struct <a class="el" href="structspdk__json__val.html">spdk_json_val</a> *object, const char *key_name, struct <a class="el" href="structspdk__json__val.html">spdk_json_val</a> **key, struct <a class="el" href="structspdk__json__val.html">spdk_json_val</a> **val)</td></tr>
+<tr class="memdesc:a04601f5c6dc82ac1ddedc387a510249d"><td class="mdescLeft">&#160;</td><td class="mdescRight">The same as calling <code><a class="el" href="#a5fc65c7d1961c23a747b3e2aa2169f4a" title="Return JSON value associated with key key_name.">spdk_json_find()</a></code> function with <code>type</code> set to <code>SPDK_JSON_VAL_STRING</code>.  <br /></td></tr>
+<tr class="memitem:a0512cd8ee58901ec15f5ef372d6cafc6" id="r_a0512cd8ee58901ec15f5ef372d6cafc6"><td class="memItemLeft">int&#160;</td><td class="memItemRight"><a class="el" href="#a0512cd8ee58901ec15f5ef372d6cafc6">spdk_json_find_array</a> (struct <a class="el" href="structspdk__json__val.html">spdk_json_val</a> *object, const char *key_name, struct <a class="el" href="structspdk__json__val.html">spdk_json_val</a> **key, struct <a class="el" href="structspdk__json__val.html">spdk_json_val</a> **value)</td></tr>
+<tr class="memdesc:a0512cd8ee58901ec15f5ef372d6cafc6"><td class="mdescLeft">&#160;</td><td class="mdescRight">The same as calling <code>spdk_json_key()</code> function with <code>type</code> set to <code>SPDK_JSON_VAL_ARRAY_BEGIN</code>.  <br /></td></tr>
+<tr class="memitem:a9661bfd85fbe4d303e518cdd709464c9" id="r_a9661bfd85fbe4d303e518cdd709464c9"><td class="memItemLeft">struct <a class="el" href="structspdk__json__val.html">spdk_json_val</a> *&#160;</td><td class="memItemRight"><a class="el" href="#a9661bfd85fbe4d303e518cdd709464c9">spdk_json_object_first</a> (struct <a class="el" href="structspdk__json__val.html">spdk_json_val</a> *object)</td></tr>
+<tr class="memdesc:a9661bfd85fbe4d303e518cdd709464c9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Return first JSON value in given JSON object.  <br /></td></tr>
+<tr class="memitem:a8bd11daecbee3d99cc139e607d1b4217" id="r_a8bd11daecbee3d99cc139e607d1b4217"><td class="memItemLeft">struct <a class="el" href="structspdk__json__val.html">spdk_json_val</a> *&#160;</td><td class="memItemRight"><a class="el" href="#a8bd11daecbee3d99cc139e607d1b4217">spdk_json_array_first</a> (struct <a class="el" href="structspdk__json__val.html">spdk_json_val</a> *array_begin)</td></tr>
+<tr class="memdesc:a8bd11daecbee3d99cc139e607d1b4217"><td class="mdescLeft">&#160;</td><td class="mdescRight">Return first JSON value in array.  <br /></td></tr>
+<tr class="memitem:a4a62658d8812b14398a3ec2096b7de5f" id="r_a4a62658d8812b14398a3ec2096b7de5f"><td class="memItemLeft">struct <a class="el" href="structspdk__json__val.html">spdk_json_val</a> *&#160;</td><td class="memItemRight"><a class="el" href="#a4a62658d8812b14398a3ec2096b7de5f">spdk_json_next</a> (struct <a class="el" href="structspdk__json__val.html">spdk_json_val</a> *pos)</td></tr>
+<tr class="memdesc:a4a62658d8812b14398a3ec2096b7de5f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Advance to the next JSON value in JSON object or array.  <br /></td></tr>
+</table>
+<a name="details" id="details"></a><h2 id="header-details" class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>JSON parsing and encoding. </p>
+
+<p class="definition">Definition in file <a class="el" href="json_8h_source.html">json.h</a>.</p>
+</div><a name="doc-define-members" id="doc-define-members"></a><h2 id="header-doc-define-members" class="groupheader">Macro Definition Documentation</h2>
+<a id="ae70b833e42043ec3f254da0fbc3c5787" name="ae70b833e42043ec3f254da0fbc3c5787"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae70b833e42043ec3f254da0fbc3c5787">&#9670;&#160;</a></span>SPDK_JSON_PARSE_FLAG_ALLOW_COMMENTS</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define SPDK_JSON_PARSE_FLAG_ALLOW_COMMENTS&#160;&#160;&#160;0x000000002</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Allow parsing of comments. </p>
+<p>Comments are not allowed by the JSON RFC, so this is not enabled by default. </p>
+
+<p class="definition">Definition at line <a class="el" href="json_8h_source.html#l00092">92</a> of file <a class="el" href="json_8h_source.html">json.h</a>.</p>
+
+</div>
+</div>
+<a id="a282fefd919b6a7df96d06d182621b7ae" name="a282fefd919b6a7df96d06d182621b7ae"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a282fefd919b6a7df96d06d182621b7ae">&#9670;&#160;</a></span>SPDK_JSON_PARSE_FLAG_DECODE_IN_PLACE</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define SPDK_JSON_PARSE_FLAG_DECODE_IN_PLACE&#160;&#160;&#160;0x000000001</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Decode JSON strings and names in place (modify the input buffer). </p>
+
+<p class="definition">Definition at line <a class="el" href="json_8h_source.html#l00085">85</a> of file <a class="el" href="json_8h_source.html">json.h</a>.</p>
+
+</div>
+</div>
+<a id="acc79dce318c094983d4a6e94cd49684f" name="acc79dce318c094983d4a6e94cd49684f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#acc79dce318c094983d4a6e94cd49684f">&#9670;&#160;</a></span>SPDK_JSON_PARSE_INCOMPLETE</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define SPDK_JSON_PARSE_INCOMPLETE&#160;&#160;&#160;-2</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>JSON was valid up to the end of the current buffer, but did not represent a complete JSON value. </p>
+
+<p class="definition">Definition at line <a class="el" href="json_8h_source.html#l00078">78</a> of file <a class="el" href="json_8h_source.html">json.h</a>.</p>
+
+</div>
+</div>
+<a id="a91c8e2bb9f0a1af4824d5708b8afbf26" name="a91c8e2bb9f0a1af4824d5708b8afbf26"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a91c8e2bb9f0a1af4824d5708b8afbf26">&#9670;&#160;</a></span>SPDK_JSON_PARSE_INVALID</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define SPDK_JSON_PARSE_INVALID&#160;&#160;&#160;-1</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Invalid JSON syntax. </p>
+
+<p class="definition">Definition at line <a class="el" href="json_8h_source.html#l00073">73</a> of file <a class="el" href="json_8h_source.html">json.h</a>.</p>
+
+</div>
+</div>
+<a id="a4677d94bb35fe81cd0a1421a9429749d" name="a4677d94bb35fe81cd0a1421a9429749d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4677d94bb35fe81cd0a1421a9429749d">&#9670;&#160;</a></span>SPDK_JSON_PARSE_MAX_DEPTH_EXCEEDED</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define SPDK_JSON_PARSE_MAX_DEPTH_EXCEEDED&#160;&#160;&#160;-3</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="json_8h_source.html#l00080">80</a> of file <a class="el" href="json_8h_source.html">json.h</a>.</p>
+
+</div>
+</div>
+<a id="a664ed928cd6899ab085d467894018936" name="a664ed928cd6899ab085d467894018936"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a664ed928cd6899ab085d467894018936">&#9670;&#160;</a></span>SPDK_JSON_VAL_ANY</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define SPDK_JSON_VAL_ANY&#160;&#160;&#160;SPDK_JSON_VAL_INVALID</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="json_8h_source.html#l00023">23</a> of file <a class="el" href="json_8h_source.html">json.h</a>.</p>
+
+</div>
+</div>
+<a id="ad782cffad00fc03da0f0ab2761e3b894" name="ad782cffad00fc03da0f0ab2761e3b894"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad782cffad00fc03da0f0ab2761e3b894">&#9670;&#160;</a></span>SPDK_JSON_WRITE_FLAG_FLATTEN_BATCHES</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define SPDK_JSON_WRITE_FLAG_FLATTEN_BATCHES&#160;&#160;&#160;0x00000002</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="json_8h_source.html#l00201">201</a> of file <a class="el" href="json_8h_source.html">json.h</a>.</p>
+
+</div>
+</div>
+<a id="ad5f14ea888abfa32c979c7a3684d0a91" name="ad5f14ea888abfa32c979c7a3684d0a91"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad5f14ea888abfa32c979c7a3684d0a91">&#9670;&#160;</a></span>SPDK_JSON_WRITE_FLAG_FORMATTED</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define SPDK_JSON_WRITE_FLAG_FORMATTED&#160;&#160;&#160;0x00000001</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="json_8h_source.html#l00200">200</a> of file <a class="el" href="json_8h_source.html">json.h</a>.</p>
+
+</div>
+</div>
+<a name="doc-typedef-members" id="doc-typedef-members"></a><h2 id="header-doc-typedef-members" class="groupheader">Typedef Documentation</h2>
+<a id="a13fb3780f39b52a2d7d35d804e181f5b" name="a13fb3780f39b52a2d7d35d804e181f5b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a13fb3780f39b52a2d7d35d804e181f5b">&#9670;&#160;</a></span>spdk_json_decode_fn</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">typedef int(* spdk_json_decode_fn) (const struct <a class="el" href="structspdk__json__val.html">spdk_json_val</a> *val, void *out)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="json_8h_source.html#l00112">112</a> of file <a class="el" href="json_8h_source.html">json.h</a>.</p>
+
+</div>
+</div>
+<a id="a2e907bd02a906de97d064dcac72a4cb5" name="a2e907bd02a906de97d064dcac72a4cb5"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2e907bd02a906de97d064dcac72a4cb5">&#9670;&#160;</a></span>spdk_json_write_cb</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">typedef int(* spdk_json_write_cb) (void *cb_ctx, const void *data, size_t size)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="json_8h_source.html#l00203">203</a> of file <a class="el" href="json_8h_source.html">json.h</a>.</p>
+
+</div>
+</div>
+<a name="doc-enum-members" id="doc-enum-members"></a><h2 id="header-doc-enum-members" class="groupheader">Enumeration Type Documentation</h2>
+<a id="aae250e55eb9ac9183315695d5f84cd9f" name="aae250e55eb9ac9183315695d5f84cd9f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aae250e55eb9ac9183315695d5f84cd9f">&#9670;&#160;</a></span>spdk_json_val_type</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">enum spdk_json_val_type</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="json_8h_source.html#l00021">21</a> of file <a class="el" href="json_8h_source.html">json.h</a>.</p>
+
+</div>
+</div>
+<a name="doc-func-members" id="doc-func-members"></a><h2 id="header-doc-func-members" class="groupheader">Function Documentation</h2>
+<a id="ad851874ca2322afe2e70352b74ec9ea1" name="ad851874ca2322afe2e70352b74ec9ea1"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad851874ca2322afe2e70352b74ec9ea1">&#9670;&#160;</a></span>spdk_json_array_count()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">size_t spdk_json_array_count </td>
+          <td>(</td>
+          <td class="paramtype">const struct <a class="el" href="structspdk__json__val.html">spdk_json_val</a> *</td>          <td class="paramname"><span class="paramname"><em>val</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Count the number of immediate elements in a JSON array. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">val</td><td>Pointer to a JSON value of type SPDK_JSON_VAL_ARRAY_BEGIN.</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>Number of elements in the array, or 0 if val is NULL or not an array. </dd></dl>
+
+</div>
+</div>
+<a id="a8bd11daecbee3d99cc139e607d1b4217" name="a8bd11daecbee3d99cc139e607d1b4217"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8bd11daecbee3d99cc139e607d1b4217">&#9670;&#160;</a></span>spdk_json_array_first()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">struct <a class="el" href="structspdk__json__val.html">spdk_json_val</a> * spdk_json_array_first </td>
+          <td>(</td>
+          <td class="paramtype">struct <a class="el" href="structspdk__json__val.html">spdk_json_val</a> *</td>          <td class="paramname"><span class="paramname"><em>array_begin</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Return first JSON value in array. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">array_begin</td><td>pointer to JSON array begin </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>Pointer to first JSON value or NULL if array is empty or is not an JSON array. </dd></dl>
+
+</div>
+</div>
+<a id="a1ed6b4728ebf6c75087864dd3e2256a6" name="a1ed6b4728ebf6c75087864dd3e2256a6"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1ed6b4728ebf6c75087864dd3e2256a6">&#9670;&#160;</a></span>spdk_json_decode_array()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int spdk_json_decode_array </td>
+          <td>(</td>
+          <td class="paramtype">const struct <a class="el" href="structspdk__json__val.html">spdk_json_val</a> *</td>          <td class="paramname"><span class="paramname"><em>values</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">spdk_json_decode_fn</td>          <td class="paramname"><span class="paramname"><em>decode_func</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">void *</td>          <td class="paramname"><span class="paramname"><em>out</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">size_t</td>          <td class="paramname"><span class="paramname"><em>max_size</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">size_t *</td>          <td class="paramname"><span class="paramname"><em>out_size</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">size_t</td>          <td class="paramname"><span class="paramname"><em>stride</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Decode a JSON array. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">values</td><td>List of values to decode. </td></tr>
+    <tr><td class="paramname">decode_func</td><td>Function to use to decode each individual value. </td></tr>
+    <tr><td class="paramname">out</td><td>Buffer to store decoded value(s). If <span class="tt">stride</span> != 0, this buffer is advanced <span class="tt">stride</span> bytes for each decoded value. </td></tr>
+    <tr><td class="paramname">out_size</td><td>Number of decoded values. </td></tr>
+    <tr><td class="paramname">max_size</td><td>Maximum number of array elements to decode. </td></tr>
+    <tr><td class="paramname">stride</td><td>Number of bytes to advance <span class="tt">out</span>.</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>0 on success, -1 on failure. </dd></dl>
+
+</div>
+</div>
+<a id="a5fc65c7d1961c23a747b3e2aa2169f4a" name="a5fc65c7d1961c23a747b3e2aa2169f4a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5fc65c7d1961c23a747b3e2aa2169f4a">&#9670;&#160;</a></span>spdk_json_find()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int spdk_json_find </td>
+          <td>(</td>
+          <td class="paramtype">struct <a class="el" href="structspdk__json__val.html">spdk_json_val</a> *</td>          <td class="paramname"><span class="paramname"><em>object</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const char *</td>          <td class="paramname"><span class="paramname"><em>key_name</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">struct <a class="el" href="structspdk__json__val.html">spdk_json_val</a> **</td>          <td class="paramname"><span class="paramname"><em>key</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">struct <a class="el" href="structspdk__json__val.html">spdk_json_val</a> **</td>          <td class="paramname"><span class="paramname"><em>val</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">enum spdk_json_val_type</td>          <td class="paramname"><span class="paramname"><em>type</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Return JSON value associated with key <code>key_name</code>. </p>
+<p>Subobjects won't be searched.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">object</td><td>JSON object to be examined </td></tr>
+    <tr><td class="paramname">key_name</td><td>name of the key </td></tr>
+    <tr><td class="paramname">key</td><td>optional, will be set with found key </td></tr>
+    <tr><td class="paramname">val</td><td>optional, will be set with value of the key </td></tr>
+    <tr><td class="paramname">type</td><td>search for specific value type. Pass SPDK_JSON_VAL_ANY to match any type. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>0 if found or negative error code: -EINVAL - json object is invalid -ENOENT - key not found -EDOM - key exists but value type mismatch. -EPROTOTYPE - json not enclosed in {}. </dd></dl>
+
+</div>
+</div>
+<a id="a0512cd8ee58901ec15f5ef372d6cafc6" name="a0512cd8ee58901ec15f5ef372d6cafc6"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0512cd8ee58901ec15f5ef372d6cafc6">&#9670;&#160;</a></span>spdk_json_find_array()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int spdk_json_find_array </td>
+          <td>(</td>
+          <td class="paramtype">struct <a class="el" href="structspdk__json__val.html">spdk_json_val</a> *</td>          <td class="paramname"><span class="paramname"><em>object</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const char *</td>          <td class="paramname"><span class="paramname"><em>key_name</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">struct <a class="el" href="structspdk__json__val.html">spdk_json_val</a> **</td>          <td class="paramname"><span class="paramname"><em>key</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">struct <a class="el" href="structspdk__json__val.html">spdk_json_val</a> **</td>          <td class="paramname"><span class="paramname"><em>value</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>The same as calling <code>spdk_json_key()</code> function with <code>type</code> set to <code>SPDK_JSON_VAL_ARRAY_BEGIN</code>. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">object</td><td>JSON object to be examined </td></tr>
+    <tr><td class="paramname">key_name</td><td>name of the key </td></tr>
+    <tr><td class="paramname">key</td><td>optional, will be set with found key </td></tr>
+    <tr><td class="paramname">value</td><td>optional, will be set with key value </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>See <code>spdk_json_find</code> </dd></dl>
+
+</div>
+</div>
+<a id="a04601f5c6dc82ac1ddedc387a510249d" name="a04601f5c6dc82ac1ddedc387a510249d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a04601f5c6dc82ac1ddedc387a510249d">&#9670;&#160;</a></span>spdk_json_find_string()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int spdk_json_find_string </td>
+          <td>(</td>
+          <td class="paramtype">struct <a class="el" href="structspdk__json__val.html">spdk_json_val</a> *</td>          <td class="paramname"><span class="paramname"><em>object</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const char *</td>          <td class="paramname"><span class="paramname"><em>key_name</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">struct <a class="el" href="structspdk__json__val.html">spdk_json_val</a> **</td>          <td class="paramname"><span class="paramname"><em>key</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">struct <a class="el" href="structspdk__json__val.html">spdk_json_val</a> **</td>          <td class="paramname"><span class="paramname"><em>val</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>The same as calling <code><a class="el" href="#a5fc65c7d1961c23a747b3e2aa2169f4a" title="Return JSON value associated with key key_name.">spdk_json_find()</a></code> function with <code>type</code> set to <code>SPDK_JSON_VAL_STRING</code>. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">object</td><td>JSON object to be examined </td></tr>
+    <tr><td class="paramname">key_name</td><td>name of the key </td></tr>
+    <tr><td class="paramname">key</td><td>optional, will be set with found key </td></tr>
+    <tr><td class="paramname">val</td><td>optional, will be set with value of the key </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>See <code>spdk_json_find</code> </dd></dl>
+
+</div>
+</div>
+<a id="a4a62658d8812b14398a3ec2096b7de5f" name="a4a62658d8812b14398a3ec2096b7de5f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4a62658d8812b14398a3ec2096b7de5f">&#9670;&#160;</a></span>spdk_json_next()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">struct <a class="el" href="structspdk__json__val.html">spdk_json_val</a> * spdk_json_next </td>
+          <td>(</td>
+          <td class="paramtype">struct <a class="el" href="structspdk__json__val.html">spdk_json_val</a> *</td>          <td class="paramname"><span class="paramname"><em>pos</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Advance to the next JSON value in JSON object or array. </p>
+<dl class="section warning"><dt>Warning</dt><dd>if <code>pos</code> is not JSON key or JSON array element behaviour is undefined.</dd></dl>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">pos</td><td>pointer to JSON key if iterating over JSON object or array element </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>next JSON value or NULL if there is no more objects or array elements </dd></dl>
+
+</div>
+</div>
+<a id="a9661bfd85fbe4d303e518cdd709464c9" name="a9661bfd85fbe4d303e518cdd709464c9"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9661bfd85fbe4d303e518cdd709464c9">&#9670;&#160;</a></span>spdk_json_object_first()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">struct <a class="el" href="structspdk__json__val.html">spdk_json_val</a> * spdk_json_object_first </td>
+          <td>(</td>
+          <td class="paramtype">struct <a class="el" href="structspdk__json__val.html">spdk_json_val</a> *</td>          <td class="paramname"><span class="paramname"><em>object</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Return first JSON value in given JSON object. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">object</td><td>pointer to JSON object begin </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>Pointer to first object or NULL if object is empty or is not an JSON object </dd></dl>
+
+</div>
+</div>
+<a id="a7fdc86d6037df00a5a48271a77afb4ec" name="a7fdc86d6037df00a5a48271a77afb4ec"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7fdc86d6037df00a5a48271a77afb4ec">&#9670;&#160;</a></span>spdk_json_strdup()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">char * spdk_json_strdup </td>
+          <td>(</td>
+          <td class="paramtype">const struct <a class="el" href="structspdk__json__val.html">spdk_json_val</a> *</td>          <td class="paramname"><span class="paramname"><em>val</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Equivalent of strdup() for JSON string values. </p>
+<p>If val is not representable as a C string (contains embedded '\0' characters), returns NULL.</p>
+<p>Caller is responsible for passing the result to free() when it is no longer needed. </p>
+
+</div>
+</div>
+<a id="a1eef0cdf2426dc5fc8f860b94e26453f" name="a1eef0cdf2426dc5fc8f860b94e26453f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1eef0cdf2426dc5fc8f860b94e26453f">&#9670;&#160;</a></span>spdk_json_strequal()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool spdk_json_strequal </td>
+          <td>(</td>
+          <td class="paramtype">const struct <a class="el" href="structspdk__json__val.html">spdk_json_val</a> *</td>          <td class="paramname"><span class="paramname"><em>val</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const char *</td>          <td class="paramname"><span class="paramname"><em>str</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Compare JSON string with null terminated C string. </p>
+<dl class="section return"><dt>Returns</dt><dd>true if strings are equal or false if not </dd></dl>
+
+</div>
+</div>
+<a id="a4d5aa0b66aa2cb7af428a03249b55c20" name="a4d5aa0b66aa2cb7af428a03249b55c20"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4d5aa0b66aa2cb7af428a03249b55c20">&#9670;&#160;</a></span>spdk_json_val_len()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">size_t spdk_json_val_len </td>
+          <td>(</td>
+          <td class="paramtype">const struct <a class="el" href="structspdk__json__val.html">spdk_json_val</a> *</td>          <td class="paramname"><span class="paramname"><em>val</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Get length of a value in number of values. </p>
+<p>This can be used to skip over a value while interpreting parse results.</p>
+<p>For SPDK_JSON_VAL_ARRAY_BEGIN and SPDK_JSON_VAL_OBJECT_BEGIN, this returns the number of values contained within this value, plus the _BEGIN and _END values.</p>
+<p>For all other values, this returns 1. </p>
+
+</div>
+</div>
+<a id="a99b9b836bb35a015981a68dc6dbc2c3b" name="a99b9b836bb35a015981a68dc6dbc2c3b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a99b9b836bb35a015981a68dc6dbc2c3b">&#9670;&#160;</a></span>spdk_json_write_add_flags()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void spdk_json_write_add_flags </td>
+          <td>(</td>
+          <td class="paramtype">struct spdk_json_write_ctx *</td>          <td class="paramname"><span class="paramname"><em>w</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">uint32_t</td>          <td class="paramname"><span class="paramname"><em>flags</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Set additional flags on a JSON write context. </p>
+<p>The provided flags are OR'd into the existing flags.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">w</td><td>JSON write context. </td></tr>
+    <tr><td class="paramname">flags</td><td>Flags to add </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a17bfb9a5ec2326dcf3abc1674ed918b8" name="a17bfb9a5ec2326dcf3abc1674ed918b8"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a17bfb9a5ec2326dcf3abc1674ed918b8">&#9670;&#160;</a></span>spdk_json_write_batch_begin()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int spdk_json_write_batch_begin </td>
+          <td>(</td>
+          <td class="paramtype">struct spdk_json_write_ctx *</td>          <td class="paramname"><span class="paramname"><em>w</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Begin a batch array. </p>
+<p>This is similar to spdk_json_write_array_begin(), but respects the SPDK_JSON_WRITE_FLAG_FLATTEN_BATCHES flag if it is set on the write context. If that flag is set, this function is a no-op (no '[' is emitted), allowing batch arrays to be flattened into the parent array.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">w</td><td>JSON write context. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>0 on success or negative on failure. </dd></dl>
+
+</div>
+</div>
+<a id="a4cd64d0716106f2e76b50efe5ffad126" name="a4cd64d0716106f2e76b50efe5ffad126"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4cd64d0716106f2e76b50efe5ffad126">&#9670;&#160;</a></span>spdk_json_write_batch_end()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int spdk_json_write_batch_end </td>
+          <td>(</td>
+          <td class="paramtype">struct spdk_json_write_ctx *</td>          <td class="paramname"><span class="paramname"><em>w</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>End a batch array. </p>
+<p>This is similar to spdk_json_write_array_end(), but respects the SPDK_JSON_WRITE_FLAG_FLATTEN_BATCHES flag if it is set on the write context. If that flag is set, this function is a no-op (no ']' is emitted).</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">w</td><td>JSON write context. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>0 on success or negative on failure. </dd></dl>
+
+</div>
+</div>
+<a id="a6f0f7b255a750c26d300957894c0a093" name="a6f0f7b255a750c26d300957894c0a093"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6f0f7b255a750c26d300957894c0a093">&#9670;&#160;</a></span>spdk_json_write_string_utf16le()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int spdk_json_write_string_utf16le </td>
+          <td>(</td>
+          <td class="paramtype">struct spdk_json_write_ctx *</td>          <td class="paramname"><span class="paramname"><em>w</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const uint16_t *</td>          <td class="paramname"><span class="paramname"><em>val</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Write null-terminated UTF-16LE string. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">w</td><td>JSON write context. </td></tr>
+    <tr><td class="paramname">val</td><td>UTF-16LE string; must be null terminated. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>0 on success or negative on failure. </dd></dl>
+
+</div>
+</div>
+<a id="a1d5f6be0455ec859148b046d9d13ad03" name="a1d5f6be0455ec859148b046d9d13ad03"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1d5f6be0455ec859148b046d9d13ad03">&#9670;&#160;</a></span>spdk_json_write_string_utf16le_raw()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int spdk_json_write_string_utf16le_raw </td>
+          <td>(</td>
+          <td class="paramtype">struct spdk_json_write_ctx *</td>          <td class="paramname"><span class="paramname"><em>w</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const uint16_t *</td>          <td class="paramname"><span class="paramname"><em>val</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">size_t</td>          <td class="paramname"><span class="paramname"><em>len</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Write UTF-16LE string. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">w</td><td>JSON write context. </td></tr>
+    <tr><td class="paramname">val</td><td>UTF-16LE string; may contain embedded null characters. </td></tr>
+    <tr><td class="paramname">len</td><td>Length of val in 16-bit code units (i.e. size of string in bytes divided by 2). </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>0 on success or negative on failure. </dd></dl>
+
+</div>
+</div>
+</div><!-- contents -->
+</div><!-- doc-content -->
+<div id="page-nav" class="page-nav-panel">
+<div id="page-nav-resize-handle"></div>
+<div id="page-nav-tree">
+<div id="page-nav-contents">
+</div><!-- page-nav-contents -->
+</div><!-- page-nav-tree -->
+</div><!-- page-nav -->
+</div><!-- container -->
+<footer class="footer" id="nav-path">
+  <div class="footer-inner">
+    <div class="footer-copy">
+      <small>Copyright &copy; SPDK a Series of LF Projects, LLC. For web site terms of use, trademark policy, and other
+      project policies please see <a href="https://lfprojects.org">lfprojects.org</a>.</small>
+    </div>
+  </div>
+</footer>
+<script type="text/javascript" src="page_outline.js"></script>
+<script type="text/javascript" src="spdk_nav.js"></script>
+<!-- Doxygen footer suffix – assembled by _build/common.sh:
+     _includes/footer.html (shared) + theme scripts (from spdk) + this file.
+     Theme scripts are extracted from spdk/doc/theme/footer.html at build
+     time so the script list is maintained in a single place. -->
+</body>
+</html>

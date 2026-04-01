@@ -1,0 +1,305 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<meta name="generator" content="Doxygen 1.16.1">
+	<title>SPDK: spdk_nvmf_reservation_info Struct Reference</title>
+	<script type="text/javascript" src="jquery.js"></script>
+	<script type="text/javascript" src="dynsections.js"></script>
+	<script type="text/javascript" src="clipboard.js"></script>
+	<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
+<script type="text/javascript" src="cookie.js"></script>
+	<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<script type="text/javascript">
+  $(function() { init_search(); });
+</script>
+	<link rel="icon" type="image/svg+xml" href="../assets/img/spdk.svg">
+	<link rel="icon" href="../assets/favicon.ico" sizes="32x32">
+	<link href="doxygen.css" rel="stylesheet" type="text/css">
+	<script>(function(){var k='doxygen_width',w,bw=6;if(window.chrome){w=localStorage.getItem(k);if(!w){w='350';localStorage.setItem(k,w)}}else{var m=document.cookie.match(new RegExp(k+'=(\\d+)'));w=m?m[1]:null;if(!w){w='350';document.cookie=k+'=350;SameSite=Lax;path=/'}}document.documentElement.style.setProperty('--sn-w',(parseInt(w)+bw)+'px')})()</script>
+	<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:400,700,900" type="text/css">
+	<link href="spdk.css" rel="stylesheet" type="text/css"/>
+	<link href="../assets/css/spdk.css" rel="stylesheet" type="text/css">
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<nav class="navbar">
+  <a class="navbar-brand" href="../" aria-label="SPDK">
+    <img src="../assets/img/spdk.svg" width="36" height="36" alt="Storage Performance Development Kit">
+  </a>
+  <div class="navbar-nav">
+    <a class="nav-link header-link" href="../doc/releases.html">download</a>
+    <a class="nav-link header-link" href="../doc/">documentation</a>
+    <a class="nav-link header-link" href="../doc/contributing.html">development</a>
+    <a class="nav-link header-link" href="../doc/ci_tools.html">CI status</a>
+    <a class="nav-link header-link" href="../community/">community</a>
+    <a class="nav-link header-link" href="../blog/">Blog</a>
+    <a class="nav-link header-link" href="https://github.com/orgs/spdk/projects/5">Roadmap</a>
+    <a class="nav-link header-link" href="../news/">News</a>
+  </div>
+  <div class="navbar-end">
+    <a class="nav-link header-link" href="https://github.com/spdk/spdk" aria-label="GitHub">
+      <svg xmlns="http://www.w3.org/2000/svg" class="navbar-nav-svg" aria-hidden="true"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
+    </a>
+    <a id="cn_lang_btn" href="../cn/doc/" class="nav-link header-link">中文</a>
+  </div>
+</nav>
+<script>
+(function() {
+    var p = location.pathname, best = null, bLen = 0;
+    document.querySelectorAll('.header-link[href]').forEach(function(a) {
+        var raw = a.getAttribute('href');
+        if (!raw) return;
+        try { var u = new URL(raw, location.href); } catch(e) { return; }
+        if (u.origin !== location.origin) return;
+        var h = u.pathname;
+        if (h === '/') return;
+        var ok = h.endsWith('.html') ? p === h : p.indexOf(h) === 0;
+        if (ok && h.length > bLen) { bLen = h.length; best = a; }
+    });
+    if (best) best.classList.add('active');
+})();
+</script>
+<div id="doxygen-searchbox">        <div id="MSearchBox" class="MSearchBoxInactive">
+        <span class="left">
+          <span id="MSearchSelect" class="search-icon" onmouseover="return searchBox.OnSearchSelectShow()" onmouseout="return searchBox.OnSearchSelectHide()"><span class="search-icon-dropdown"></span></span>
+          <input type="text" id="MSearchField" value="" placeholder="Search" accesskey="S"
+               onfocus="searchBox.OnSearchFieldFocus(true)" 
+               onblur="searchBox.OnSearchFieldFocus(false)" 
+               onkeyup="searchBox.OnSearchFieldChange(event)"/>
+          </span><span class="right">
+            <a id="MSearchClose" href="javascript:searchBox.CloseResultsWindow()"><div id="MSearchCloseImg" class="close-icon"></div></a>
+          </span>
+        </div>
+</div>
+<!-- Generated by Doxygen 1.16.1 -->
+<script type="text/javascript">
+var searchBox = new SearchBox("searchBox", "search/",'.html');
+</script>
+<script type="text/javascript">
+$(function() { codefold.init(); });
+</script>
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+$(function(){initNavTree('structspdk__nvmf__reservation__info.html','',''); });
+</script>
+<div id="container">
+<div id="doc-content">
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">Loading...</div>
+<div class="SRStatus" id="Searching">Searching...</div>
+<div class="SRStatus" id="NoMatches">No Matches</div>
+</div>
+</div>
+</div>
+</div>
+
+<div class="header">
+  <div class="headertitle"><div class="title">spdk_nvmf_reservation_info Struct Reference</div></div>
+</div><!--header-->
+<div class="contents">
+<div class="dynheader">
+Collaboration diagram for spdk_nvmf_reservation_info:</div>
+<div class="dyncontent">
+<div class="center"><iframe scrolling="no" loading="lazy" frameborder="0" src="structspdk__nvmf__reservation__info__coll__graph.svg" width="218" height="139"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+<center><span class="legend">[<a target="top" href="graph_legend.html">legend</a>]</span></center></div>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 id="header-pub-attribs" class="groupheader"><a id="pub-attribs" name="pub-attribs"></a>
+Data Fields</h2></td></tr>
+<tr class="memitem:a3dbb19bec0c628fa8cb4908054b26d6a" id="r_a3dbb19bec0c628fa8cb4908054b26d6a"><td class="memItemLeft">uint64_t&#160;</td><td class="memItemRight"><a class="el" href="#a3dbb19bec0c628fa8cb4908054b26d6a">crkey</a></td></tr>
+<tr class="memitem:a269c9ff9bc3c37f4e369d750a59849d2" id="r_a269c9ff9bc3c37f4e369d750a59849d2"><td class="memItemLeft">uint8_t&#160;</td><td class="memItemRight"><a class="el" href="#a269c9ff9bc3c37f4e369d750a59849d2">rtype</a></td></tr>
+<tr class="memitem:abe75a12264c4d1c6bc27cf59ae974fc7" id="r_abe75a12264c4d1c6bc27cf59ae974fc7"><td class="memItemLeft">uint8_t&#160;</td><td class="memItemRight"><a class="el" href="#abe75a12264c4d1c6bc27cf59ae974fc7">ptpl_activated</a></td></tr>
+<tr class="memitem:a71925543cc5f53885be4836edbac4785" id="r_a71925543cc5f53885be4836edbac4785"><td class="memItemLeft">char&#160;</td><td class="memItemRight"><a class="el" href="#a71925543cc5f53885be4836edbac4785">bdev_uuid</a> [SPDK_UUID_STRING_LEN]</td></tr>
+<tr class="memitem:a894d1b756896abbdeaabeb89d9321201" id="r_a894d1b756896abbdeaabeb89d9321201"><td class="memItemLeft">char&#160;</td><td class="memItemRight"><a class="el" href="#a894d1b756896abbdeaabeb89d9321201">holder_uuid</a> [SPDK_UUID_STRING_LEN]</td></tr>
+<tr class="memitem:a25f97f8cebde3c54eed56432ad63c8c4" id="r_a25f97f8cebde3c54eed56432ad63c8c4"><td class="memItemLeft">uint8_t&#160;</td><td class="memItemRight"><a class="el" href="#a25f97f8cebde3c54eed56432ad63c8c4">reserved</a> [3]</td></tr>
+<tr class="memitem:abaa38e54b4af015bcb3ae5618ea4d801" id="r_abaa38e54b4af015bcb3ae5618ea4d801"><td class="memItemLeft">uint8_t&#160;</td><td class="memItemRight"><a class="el" href="#abaa38e54b4af015bcb3ae5618ea4d801">num_regs</a></td></tr>
+<tr class="memitem:a8f63957b27d521cfb539992133efb36c" id="r_a8f63957b27d521cfb539992133efb36c"><td class="memItemLeft">struct <a class="el" href="structspdk__nvmf__registrant__info.html">spdk_nvmf_registrant_info</a>&#160;</td><td class="memItemRight"><a class="el" href="#a8f63957b27d521cfb539992133efb36c">registrants</a> [SPDK_NVMF_MAX_NUM_REGISTRANTS]</td></tr>
+</table>
+<a name="details" id="details"></a><h2 id="header-details" class="groupheader">Detailed Description</h2>
+<div class="textblock">
+<p class="definition">Definition at line <a class="el" href="nvmf_8h_source.html#l01773">1773</a> of file <a class="el" href="nvmf_8h_source.html">nvmf.h</a>.</p>
+</div><a name="doc-variable-members" id="doc-variable-members"></a><h2 id="header-doc-variable-members" class="groupheader">Field Documentation</h2>
+<a id="a71925543cc5f53885be4836edbac4785" name="a71925543cc5f53885be4836edbac4785"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a71925543cc5f53885be4836edbac4785">&#9670;&#160;</a></span>bdev_uuid</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">char spdk_nvmf_reservation_info::bdev_uuid[SPDK_UUID_STRING_LEN]</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="nvmf_8h_source.html#l01777">1777</a> of file <a class="el" href="nvmf_8h_source.html">nvmf.h</a>.</p>
+
+</div>
+</div>
+<a id="a3dbb19bec0c628fa8cb4908054b26d6a" name="a3dbb19bec0c628fa8cb4908054b26d6a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3dbb19bec0c628fa8cb4908054b26d6a">&#9670;&#160;</a></span>crkey</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">uint64_t spdk_nvmf_reservation_info::crkey</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="nvmf_8h_source.html#l01774">1774</a> of file <a class="el" href="nvmf_8h_source.html">nvmf.h</a>.</p>
+
+</div>
+</div>
+<a id="a894d1b756896abbdeaabeb89d9321201" name="a894d1b756896abbdeaabeb89d9321201"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a894d1b756896abbdeaabeb89d9321201">&#9670;&#160;</a></span>holder_uuid</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">char spdk_nvmf_reservation_info::holder_uuid[SPDK_UUID_STRING_LEN]</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="nvmf_8h_source.html#l01778">1778</a> of file <a class="el" href="nvmf_8h_source.html">nvmf.h</a>.</p>
+
+</div>
+</div>
+<a id="abaa38e54b4af015bcb3ae5618ea4d801" name="abaa38e54b4af015bcb3ae5618ea4d801"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#abaa38e54b4af015bcb3ae5618ea4d801">&#9670;&#160;</a></span>num_regs</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">uint8_t spdk_nvmf_reservation_info::num_regs</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="nvmf_8h_source.html#l01780">1780</a> of file <a class="el" href="nvmf_8h_source.html">nvmf.h</a>.</p>
+
+</div>
+</div>
+<a id="abe75a12264c4d1c6bc27cf59ae974fc7" name="abe75a12264c4d1c6bc27cf59ae974fc7"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#abe75a12264c4d1c6bc27cf59ae974fc7">&#9670;&#160;</a></span>ptpl_activated</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">uint8_t spdk_nvmf_reservation_info::ptpl_activated</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="nvmf_8h_source.html#l01776">1776</a> of file <a class="el" href="nvmf_8h_source.html">nvmf.h</a>.</p>
+
+</div>
+</div>
+<a id="a8f63957b27d521cfb539992133efb36c" name="a8f63957b27d521cfb539992133efb36c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8f63957b27d521cfb539992133efb36c">&#9670;&#160;</a></span>registrants</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">struct <a class="el" href="structspdk__nvmf__registrant__info.html">spdk_nvmf_registrant_info</a> spdk_nvmf_reservation_info::registrants[SPDK_NVMF_MAX_NUM_REGISTRANTS]</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="nvmf_8h_source.html#l01781">1781</a> of file <a class="el" href="nvmf_8h_source.html">nvmf.h</a>.</p>
+
+</div>
+</div>
+<a id="a25f97f8cebde3c54eed56432ad63c8c4" name="a25f97f8cebde3c54eed56432ad63c8c4"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a25f97f8cebde3c54eed56432ad63c8c4">&#9670;&#160;</a></span>reserved</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">uint8_t spdk_nvmf_reservation_info::reserved[3]</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="nvmf_8h_source.html#l01779">1779</a> of file <a class="el" href="nvmf_8h_source.html">nvmf.h</a>.</p>
+
+</div>
+</div>
+<a id="a269c9ff9bc3c37f4e369d750a59849d2" name="a269c9ff9bc3c37f4e369d750a59849d2"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a269c9ff9bc3c37f4e369d750a59849d2">&#9670;&#160;</a></span>rtype</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">uint8_t spdk_nvmf_reservation_info::rtype</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="nvmf_8h_source.html#l01775">1775</a> of file <a class="el" href="nvmf_8h_source.html">nvmf.h</a>.</p>
+
+</div>
+</div>
+<hr/>The documentation for this struct was generated from the following file:<ul>
+<li><a class="el" href="nvmf_8h_source.html">nvmf.h</a></li>
+</ul>
+</div><!-- contents -->
+</div><!-- doc-content -->
+<div id="page-nav" class="page-nav-panel">
+<div id="page-nav-resize-handle"></div>
+<div id="page-nav-tree">
+<div id="page-nav-contents">
+</div><!-- page-nav-contents -->
+</div><!-- page-nav-tree -->
+</div><!-- page-nav -->
+</div><!-- container -->
+<footer class="footer" id="nav-path">
+  <div class="footer-inner">
+    <div class="footer-copy">
+      <small>Copyright &copy; SPDK a Series of LF Projects, LLC. For web site terms of use, trademark policy, and other
+      project policies please see <a href="https://lfprojects.org">lfprojects.org</a>.</small>
+    </div>
+  </div>
+</footer>
+<script type="text/javascript" src="page_outline.js"></script>
+<script type="text/javascript" src="spdk_nav.js"></script>
+<!-- Doxygen footer suffix – assembled by _build/common.sh:
+     _includes/footer.html (shared) + theme scripts (from spdk) + this file.
+     Theme scripts are extracted from spdk/doc/theme/footer.html at build
+     time so the script list is maintained in a single place. -->
+</body>
+</html>

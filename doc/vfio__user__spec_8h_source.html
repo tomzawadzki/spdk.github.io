@@ -1,0 +1,308 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<meta name="generator" content="Doxygen 1.16.1">
+	<title>SPDK: vfio_user_spec.h Source File</title>
+	<script type="text/javascript" src="jquery.js"></script>
+	<script type="text/javascript" src="dynsections.js"></script>
+	<script type="text/javascript" src="clipboard.js"></script>
+	<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
+<script type="text/javascript" src="cookie.js"></script>
+	<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<script type="text/javascript">
+  $(function() { init_search(); });
+</script>
+	<link rel="icon" type="image/svg+xml" href="../assets/img/spdk.svg">
+	<link rel="icon" href="../assets/favicon.ico" sizes="32x32">
+	<link href="doxygen.css" rel="stylesheet" type="text/css">
+	<script>(function(){var k='doxygen_width',w,bw=6;if(window.chrome){w=localStorage.getItem(k);if(!w){w='350';localStorage.setItem(k,w)}}else{var m=document.cookie.match(new RegExp(k+'=(\\d+)'));w=m?m[1]:null;if(!w){w='350';document.cookie=k+'=350;SameSite=Lax;path=/'}}document.documentElement.style.setProperty('--sn-w',(parseInt(w)+bw)+'px')})()</script>
+	<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:400,700,900" type="text/css">
+	<link href="spdk.css" rel="stylesheet" type="text/css"/>
+	<link href="../assets/css/spdk.css" rel="stylesheet" type="text/css">
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<nav class="navbar">
+  <a class="navbar-brand" href="../" aria-label="SPDK">
+    <img src="../assets/img/spdk.svg" width="36" height="36" alt="Storage Performance Development Kit">
+  </a>
+  <div class="navbar-nav">
+    <a class="nav-link header-link" href="../doc/releases.html">download</a>
+    <a class="nav-link header-link" href="../doc/">documentation</a>
+    <a class="nav-link header-link" href="../doc/contributing.html">development</a>
+    <a class="nav-link header-link" href="../doc/ci_tools.html">CI status</a>
+    <a class="nav-link header-link" href="../community/">community</a>
+    <a class="nav-link header-link" href="../blog/">Blog</a>
+    <a class="nav-link header-link" href="https://github.com/orgs/spdk/projects/5">Roadmap</a>
+    <a class="nav-link header-link" href="../news/">News</a>
+  </div>
+  <div class="navbar-end">
+    <a class="nav-link header-link" href="https://github.com/spdk/spdk" aria-label="GitHub">
+      <svg xmlns="http://www.w3.org/2000/svg" class="navbar-nav-svg" aria-hidden="true"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
+    </a>
+    <a id="cn_lang_btn" href="../cn/doc/" class="nav-link header-link">中文</a>
+  </div>
+</nav>
+<script>
+(function() {
+    var p = location.pathname, best = null, bLen = 0;
+    document.querySelectorAll('.header-link[href]').forEach(function(a) {
+        var raw = a.getAttribute('href');
+        if (!raw) return;
+        try { var u = new URL(raw, location.href); } catch(e) { return; }
+        if (u.origin !== location.origin) return;
+        var h = u.pathname;
+        if (h === '/') return;
+        var ok = h.endsWith('.html') ? p === h : p.indexOf(h) === 0;
+        if (ok && h.length > bLen) { bLen = h.length; best = a; }
+    });
+    if (best) best.classList.add('active');
+})();
+</script>
+<div id="doxygen-searchbox">        <div id="MSearchBox" class="MSearchBoxInactive">
+        <span class="left">
+          <span id="MSearchSelect" class="search-icon" onmouseover="return searchBox.OnSearchSelectShow()" onmouseout="return searchBox.OnSearchSelectHide()"><span class="search-icon-dropdown"></span></span>
+          <input type="text" id="MSearchField" value="" placeholder="Search" accesskey="S"
+               onfocus="searchBox.OnSearchFieldFocus(true)" 
+               onblur="searchBox.OnSearchFieldFocus(false)" 
+               onkeyup="searchBox.OnSearchFieldChange(event)"/>
+          </span><span class="right">
+            <a id="MSearchClose" href="javascript:searchBox.CloseResultsWindow()"><div id="MSearchCloseImg" class="close-icon"></div></a>
+          </span>
+        </div>
+</div>
+<!-- Generated by Doxygen 1.16.1 -->
+<script type="text/javascript">
+var searchBox = new SearchBox("searchBox", "search/",'.html');
+</script>
+<script type="text/javascript">
+$(function() { codefold.init(); });
+</script>
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+$(function(){initNavTree('vfio__user__spec_8h_source.html','',''); });
+</script>
+<div id="container">
+<div id="doc-content">
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">Loading...</div>
+<div class="SRStatus" id="Searching">Searching...</div>
+<div class="SRStatus" id="NoMatches">No Matches</div>
+</div>
+</div>
+</div>
+</div>
+
+<div class="header">
+  <div class="headertitle"><div class="title">vfio_user_spec.h</div></div>
+</div><!--header-->
+<div class="contents">
+<div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span><span class="comment">/*   SPDX-License-Identifier: BSD-3-Clause</span></div>
+<div class="line"><a id="l00002" name="l00002"></a><span class="lineno">    2</span><span class="comment"> *   Copyright (C) 2020 Intel Corporation.</span></div>
+<div class="line"><a id="l00003" name="l00003"></a><span class="lineno">    3</span><span class="comment"> *   All rights reserved.</span></div>
+<div class="line"><a id="l00004" name="l00004"></a><span class="lineno">    4</span><span class="comment"> */</span></div>
+<div class="line"><a id="l00005" name="l00005"></a><span class="lineno">    5</span> </div>
+<div class="line"><a id="l00006" name="l00006"></a><span class="lineno">    6</span><span class="preprocessor">#ifndef _VFIO_USER_SPEC_H</span></div>
+<div class="line"><a id="l00007" name="l00007"></a><span class="lineno">    7</span><span class="preprocessor">#define _VFIO_USER_SPEC_H</span></div>
+<div class="line"><a id="l00008" name="l00008"></a><span class="lineno">    8</span> </div>
+<div class="line"><a id="l00009" name="l00009"></a><span class="lineno">    9</span><span class="preprocessor">#include &quot;<a class="code" href="stdinc_8h.html">spdk/stdinc.h</a>&quot;</span></div>
+<div class="line"><a id="l00010" name="l00010"></a><span class="lineno">   10</span> </div>
+<div class="line"><a id="l00011" name="l00011"></a><span class="lineno">   11</span><span class="preprocessor">#ifdef __cplusplus</span></div>
+<div class="line"><a id="l00012" name="l00012"></a><span class="lineno">   12</span><span class="keyword">extern</span> <span class="stringliteral">&quot;C&quot;</span> {</div>
+<div class="line"><a id="l00013" name="l00013"></a><span class="lineno">   13</span><span class="preprocessor">#endif</span></div>
+<div class="line"><a id="l00014" name="l00014"></a><span class="lineno">   14</span> </div>
+<div class="line"><a id="l00015" name="l00015"></a><span class="lineno">   15</span><span class="keyword">enum</span> vfio_user_command {</div>
+<div class="line"><a id="l00016" name="l00016"></a><span class="lineno">   16</span>        VFIO_USER_VERSION                       = 1,</div>
+<div class="line"><a id="l00017" name="l00017"></a><span class="lineno">   17</span>        VFIO_USER_DMA_MAP                       = 2,</div>
+<div class="line"><a id="l00018" name="l00018"></a><span class="lineno">   18</span>        VFIO_USER_DMA_UNMAP                     = 3,</div>
+<div class="line"><a id="l00019" name="l00019"></a><span class="lineno">   19</span>        VFIO_USER_DEVICE_GET_INFO               = 4,</div>
+<div class="line"><a id="l00020" name="l00020"></a><span class="lineno">   20</span>        VFIO_USER_DEVICE_GET_REGION_INFO        = 5,</div>
+<div class="line"><a id="l00021" name="l00021"></a><span class="lineno">   21</span>        VFIO_USER_DEVICE_GET_REGION_IO_FDS      = 6,</div>
+<div class="line"><a id="l00022" name="l00022"></a><span class="lineno">   22</span>        VFIO_USER_DEVICE_GET_IRQ_INFO           = 7,</div>
+<div class="line"><a id="l00023" name="l00023"></a><span class="lineno">   23</span>        VFIO_USER_DEVICE_SET_IRQS               = 8,</div>
+<div class="line"><a id="l00024" name="l00024"></a><span class="lineno">   24</span>        VFIO_USER_REGION_READ                   = 9,</div>
+<div class="line"><a id="l00025" name="l00025"></a><span class="lineno">   25</span>        VFIO_USER_REGION_WRITE                  = 10,</div>
+<div class="line"><a id="l00026" name="l00026"></a><span class="lineno">   26</span>        VFIO_USER_DMA_READ                      = 11,</div>
+<div class="line"><a id="l00027" name="l00027"></a><span class="lineno">   27</span>        VFIO_USER_DMA_WRITE                     = 12,</div>
+<div class="line"><a id="l00028" name="l00028"></a><span class="lineno">   28</span>        VFIO_USER_DEVICE_RESET                  = 13,</div>
+<div class="line"><a id="l00029" name="l00029"></a><span class="lineno">   29</span>        VFIO_USER_DIRTY_PAGES                   = 14,</div>
+<div class="line"><a id="l00030" name="l00030"></a><span class="lineno">   30</span>        VFIO_USER_MAX,</div>
+<div class="line"><a id="l00031" name="l00031"></a><span class="lineno">   31</span>};</div>
+<div class="line"><a id="l00032" name="l00032"></a><span class="lineno">   32</span> </div>
+<div class="line"><a id="l00033" name="l00033"></a><span class="lineno">   33</span><span class="keyword">enum</span> vfio_user_message_type {</div>
+<div class="line"><a id="l00034" name="l00034"></a><span class="lineno">   34</span>        VFIO_USER_MESSAGE_COMMAND       = 0,</div>
+<div class="line"><a id="l00035" name="l00035"></a><span class="lineno">   35</span>        VFIO_USER_MESSAGE_REPLY         = 1,</div>
+<div class="line"><a id="l00036" name="l00036"></a><span class="lineno">   36</span>};</div>
+<div class="line"><a id="l00037" name="l00037"></a><span class="lineno">   37</span> </div>
+<div class="line"><a id="l00038" name="l00038"></a><span class="lineno">   38</span><span class="preprocessor">#define VFIO_USER_FLAGS_NO_REPLY        (0x1)</span></div>
+<div class="line"><a id="l00039" name="l00039"></a><span class="lineno">   39</span> </div>
+<div class="foldopen" id="foldopen00040" data-start="{" data-end="};">
+<div class="line"><a id="l00040" name="l00040"></a><span class="lineno"><a class="line" href="structvfio__user__header.html">   40</a></span><span class="keyword">struct </span><a class="code hl_struct" href="structvfio__user__header.html">vfio_user_header</a> {</div>
+<div class="line"><a id="l00041" name="l00041"></a><span class="lineno">   41</span>        uint16_t        msg_id;</div>
+<div class="line"><a id="l00042" name="l00042"></a><span class="lineno">   42</span>        uint16_t        cmd;</div>
+<div class="line"><a id="l00043" name="l00043"></a><span class="lineno">   43</span>        uint32_t        msg_size;</div>
+<div class="line"><a id="l00044" name="l00044"></a><span class="lineno">   44</span>        <span class="keyword">struct </span>{</div>
+<div class="line"><a id="l00045" name="l00045"></a><span class="lineno">   45</span>                uint32_t        type     : 4;</div>
+<div class="line"><a id="l00046" name="l00046"></a><span class="lineno">   46</span><span class="preprocessor">#define VFIO_USER_F_TYPE_COMMAND        0</span></div>
+<div class="line"><a id="l00047" name="l00047"></a><span class="lineno">   47</span><span class="preprocessor">#define VFIO_USER_F_TYPE_REPLY          1</span></div>
+<div class="line"><a id="l00048" name="l00048"></a><span class="lineno">   48</span>                uint32_t        no_reply : 1;</div>
+<div class="line"><a id="l00049" name="l00049"></a><span class="lineno">   49</span>                uint32_t        error    : 1;</div>
+<div class="line"><a id="l00050" name="l00050"></a><span class="lineno">   50</span>                uint32_t        resvd    : 26;</div>
+<div class="line"><a id="l00051" name="l00051"></a><span class="lineno">   51</span>        } flags;</div>
+<div class="line"><a id="l00052" name="l00052"></a><span class="lineno">   52</span>        uint32_t        error_no;</div>
+<div class="line"><a id="l00053" name="l00053"></a><span class="lineno">   53</span>} __attribute__((packed));</div>
+</div>
+<div class="line"><a id="l00054" name="l00054"></a><span class="lineno">   54</span> </div>
+<div class="foldopen" id="foldopen00055" data-start="{" data-end="};">
+<div class="line"><a id="l00055" name="l00055"></a><span class="lineno"><a class="line" href="structvfio__user__version.html">   55</a></span><span class="keyword">struct </span><a class="code hl_struct" href="structvfio__user__version.html">vfio_user_version</a> {</div>
+<div class="line"><a id="l00056" name="l00056"></a><span class="lineno">   56</span>        uint16_t        major;</div>
+<div class="line"><a id="l00057" name="l00057"></a><span class="lineno">   57</span>        uint16_t        minor;</div>
+<div class="line"><a id="l00058" name="l00058"></a><span class="lineno">   58</span>        uint8_t         data[];</div>
+<div class="line"><a id="l00059" name="l00059"></a><span class="lineno">   59</span>} __attribute__((packed));</div>
+</div>
+<div class="line"><a id="l00060" name="l00060"></a><span class="lineno">   60</span> </div>
+<div class="line"><a id="l00061" name="l00061"></a><span class="lineno">   61</span><span class="comment">/*</span></div>
+<div class="line"><a id="l00062" name="l00062"></a><span class="lineno">   62</span><span class="comment"> * Similar to vfio_device_info, but without caps (yet).</span></div>
+<div class="line"><a id="l00063" name="l00063"></a><span class="lineno">   63</span><span class="comment"> */</span></div>
+<div class="foldopen" id="foldopen00064" data-start="{" data-end="};">
+<div class="line"><a id="l00064" name="l00064"></a><span class="lineno"><a class="line" href="structvfio__user__device__info.html">   64</a></span><span class="keyword">struct </span><a class="code hl_struct" href="structvfio__user__device__info.html">vfio_user_device_info</a> {</div>
+<div class="line"><a id="l00065" name="l00065"></a><span class="lineno">   65</span>        uint32_t        argsz;</div>
+<div class="line"><a id="l00066" name="l00066"></a><span class="lineno">   66</span>        <span class="comment">/* VFIO_DEVICE_FLAGS_* */</span></div>
+<div class="line"><a id="l00067" name="l00067"></a><span class="lineno">   67</span>        uint32_t        flags;</div>
+<div class="line"><a id="l00068" name="l00068"></a><span class="lineno">   68</span>        uint32_t        num_regions;</div>
+<div class="line"><a id="l00069" name="l00069"></a><span class="lineno">   69</span>        uint32_t        num_irqs;</div>
+<div class="line"><a id="l00070" name="l00070"></a><span class="lineno">   70</span>} __attribute__((packed));</div>
+</div>
+<div class="line"><a id="l00071" name="l00071"></a><span class="lineno">   71</span> </div>
+<div class="line"><a id="l00072" name="l00072"></a><span class="lineno">   72</span><span class="comment">/* based on struct vfio_bitmap */</span></div>
+<div class="foldopen" id="foldopen00073" data-start="{" data-end="};">
+<div class="line"><a id="l00073" name="l00073"></a><span class="lineno"><a class="line" href="structvfio__user__bitmap.html">   73</a></span><span class="keyword">struct </span><a class="code hl_struct" href="structvfio__user__bitmap.html">vfio_user_bitmap</a> {</div>
+<div class="line"><a id="l00074" name="l00074"></a><span class="lineno">   74</span>        uint64_t        pgsize;</div>
+<div class="line"><a id="l00075" name="l00075"></a><span class="lineno">   75</span>        uint64_t        size;</div>
+<div class="line"><a id="l00076" name="l00076"></a><span class="lineno">   76</span>        <span class="keywordtype">char</span>            data[];</div>
+<div class="line"><a id="l00077" name="l00077"></a><span class="lineno">   77</span>} __attribute__((packed));</div>
+</div>
+<div class="line"><a id="l00078" name="l00078"></a><span class="lineno">   78</span> </div>
+<div class="line"><a id="l00079" name="l00079"></a><span class="lineno">   79</span><span class="comment">/* based on struct vfio_iommu_type1_dma_map */</span></div>
+<div class="foldopen" id="foldopen00080" data-start="{" data-end="};">
+<div class="line"><a id="l00080" name="l00080"></a><span class="lineno"><a class="line" href="structvfio__user__dma__map.html">   80</a></span><span class="keyword">struct </span><a class="code hl_struct" href="structvfio__user__dma__map.html">vfio_user_dma_map</a> {</div>
+<div class="line"><a id="l00081" name="l00081"></a><span class="lineno">   81</span>        uint32_t        argsz;</div>
+<div class="line"><a id="l00082" name="l00082"></a><span class="lineno">   82</span><span class="preprocessor">#define VFIO_USER_F_DMA_REGION_READ     (1 &lt;&lt; 0)</span></div>
+<div class="line"><a id="l00083" name="l00083"></a><span class="lineno">   83</span><span class="preprocessor">#define VFIO_USER_F_DMA_REGION_WRITE    (1 &lt;&lt; 1)</span></div>
+<div class="line"><a id="l00084" name="l00084"></a><span class="lineno">   84</span>        uint32_t        flags;</div>
+<div class="line"><a id="l00085" name="l00085"></a><span class="lineno">   85</span>        uint64_t        offset;</div>
+<div class="line"><a id="l00086" name="l00086"></a><span class="lineno">   86</span>        uint64_t        addr;</div>
+<div class="line"><a id="l00087" name="l00087"></a><span class="lineno">   87</span>        uint64_t        size;</div>
+<div class="line"><a id="l00088" name="l00088"></a><span class="lineno">   88</span>} __attribute__((packed));</div>
+</div>
+<div class="line"><a id="l00089" name="l00089"></a><span class="lineno">   89</span> </div>
+<div class="line"><a id="l00090" name="l00090"></a><span class="lineno">   90</span><span class="comment">/* based on struct vfio_iommu_type1_dma_unmap */</span></div>
+<div class="foldopen" id="foldopen00091" data-start="{" data-end="};">
+<div class="line"><a id="l00091" name="l00091"></a><span class="lineno"><a class="line" href="structvfio__user__dma__unmap.html">   91</a></span><span class="keyword">struct </span><a class="code hl_struct" href="structvfio__user__dma__unmap.html">vfio_user_dma_unmap</a> {</div>
+<div class="line"><a id="l00092" name="l00092"></a><span class="lineno">   92</span>        uint32_t        argsz;</div>
+<div class="line"><a id="l00093" name="l00093"></a><span class="lineno">   93</span><span class="preprocessor">#ifndef VFIO_DMA_UNMAP_FLAG_GET_DIRTY_BITMAP</span></div>
+<div class="line"><a id="l00094" name="l00094"></a><span class="lineno">   94</span><span class="preprocessor">#define VFIO_DMA_UNMAP_FLAG_GET_DIRTY_BITMAP    (1 &lt;&lt; 0)</span></div>
+<div class="line"><a id="l00095" name="l00095"></a><span class="lineno">   95</span><span class="preprocessor">#endif</span></div>
+<div class="line"><a id="l00096" name="l00096"></a><span class="lineno">   96</span>        uint32_t        flags;</div>
+<div class="line"><a id="l00097" name="l00097"></a><span class="lineno">   97</span>        uint64_t        addr;</div>
+<div class="line"><a id="l00098" name="l00098"></a><span class="lineno">   98</span>        uint64_t        size;</div>
+<div class="line"><a id="l00099" name="l00099"></a><span class="lineno">   99</span>        <span class="keyword">struct </span><a class="code hl_struct" href="structvfio__user__bitmap.html">vfio_user_bitmap</a> bitmap[];</div>
+<div class="line"><a id="l00100" name="l00100"></a><span class="lineno">  100</span>};</div>
+</div>
+<div class="line"><a id="l00101" name="l00101"></a><span class="lineno">  101</span> </div>
+<div class="foldopen" id="foldopen00102" data-start="{" data-end="};">
+<div class="line"><a id="l00102" name="l00102"></a><span class="lineno"><a class="line" href="structvfio__user__region__access.html">  102</a></span><span class="keyword">struct </span><a class="code hl_struct" href="structvfio__user__region__access.html">vfio_user_region_access</a> {</div>
+<div class="line"><a id="l00103" name="l00103"></a><span class="lineno">  103</span>        uint64_t        offset;</div>
+<div class="line"><a id="l00104" name="l00104"></a><span class="lineno">  104</span>        uint32_t        region;</div>
+<div class="line"><a id="l00105" name="l00105"></a><span class="lineno">  105</span>        uint32_t        count;</div>
+<div class="line"><a id="l00106" name="l00106"></a><span class="lineno">  106</span>        uint8_t         data[];</div>
+<div class="line"><a id="l00107" name="l00107"></a><span class="lineno">  107</span>} __attribute__((packed));</div>
+</div>
+<div class="line"><a id="l00108" name="l00108"></a><span class="lineno">  108</span> </div>
+<div class="foldopen" id="foldopen00109" data-start="{" data-end="};">
+<div class="line"><a id="l00109" name="l00109"></a><span class="lineno"><a class="line" href="structvfio__user__dma__region__access.html">  109</a></span><span class="keyword">struct </span><a class="code hl_struct" href="structvfio__user__dma__region__access.html">vfio_user_dma_region_access</a> {</div>
+<div class="line"><a id="l00110" name="l00110"></a><span class="lineno">  110</span>        uint64_t        addr;</div>
+<div class="line"><a id="l00111" name="l00111"></a><span class="lineno">  111</span>        uint64_t        count;</div>
+<div class="line"><a id="l00112" name="l00112"></a><span class="lineno">  112</span>        uint8_t         data[];</div>
+<div class="line"><a id="l00113" name="l00113"></a><span class="lineno">  113</span>} __attribute__((packed));</div>
+</div>
+<div class="line"><a id="l00114" name="l00114"></a><span class="lineno">  114</span> </div>
+<div class="foldopen" id="foldopen00115" data-start="{" data-end="};">
+<div class="line"><a id="l00115" name="l00115"></a><span class="lineno"><a class="line" href="structvfio__user__irq__info.html">  115</a></span><span class="keyword">struct </span><a class="code hl_struct" href="structvfio__user__irq__info.html">vfio_user_irq_info</a> {</div>
+<div class="line"><a id="l00116" name="l00116"></a><span class="lineno">  116</span>        uint32_t        subindex;</div>
+<div class="line"><a id="l00117" name="l00117"></a><span class="lineno">  117</span>} __attribute__((packed));</div>
+</div>
+<div class="line"><a id="l00118" name="l00118"></a><span class="lineno">  118</span> </div>
+<div class="line"><a id="l00119" name="l00119"></a><span class="lineno">  119</span><span class="comment">/* based on struct vfio_iommu_type1_dirty_bitmap_get */</span></div>
+<div class="foldopen" id="foldopen00120" data-start="{" data-end="};">
+<div class="line"><a id="l00120" name="l00120"></a><span class="lineno"><a class="line" href="structvfio__user__bitmap__range.html">  120</a></span><span class="keyword">struct </span><a class="code hl_struct" href="structvfio__user__bitmap__range.html">vfio_user_bitmap_range</a> {</div>
+<div class="line"><a id="l00121" name="l00121"></a><span class="lineno">  121</span>        uint64_t        iova;</div>
+<div class="line"><a id="l00122" name="l00122"></a><span class="lineno">  122</span>        uint64_t        size;</div>
+<div class="line"><a id="l00123" name="l00123"></a><span class="lineno">  123</span>        <span class="keyword">struct </span><a class="code hl_struct" href="structvfio__user__bitmap.html">vfio_user_bitmap</a> bitmap;</div>
+<div class="line"><a id="l00124" name="l00124"></a><span class="lineno">  124</span>} __attribute__((packed));</div>
+</div>
+<div class="line"><a id="l00125" name="l00125"></a><span class="lineno">  125</span> </div>
+<div class="line"><a id="l00126" name="l00126"></a><span class="lineno">  126</span> </div>
+<div class="line"><a id="l00127" name="l00127"></a><span class="lineno">  127</span><span class="preprocessor">#ifdef __cplusplus</span></div>
+<div class="line"><a id="l00128" name="l00128"></a><span class="lineno">  128</span>}</div>
+<div class="line"><a id="l00129" name="l00129"></a><span class="lineno">  129</span><span class="preprocessor">#endif</span></div>
+<div class="line"><a id="l00130" name="l00130"></a><span class="lineno">  130</span> </div>
+<div class="line"><a id="l00131" name="l00131"></a><span class="lineno">  131</span><span class="preprocessor">#endif</span></div>
+<div class="ttc" id="astdinc_8h_html"><div class="ttname"><a href="stdinc_8h.html">stdinc.h</a></div><div class="ttdoc">Standard C headers.</div></div>
+<div class="ttc" id="astructvfio__user__bitmap__range_html"><div class="ttname"><a href="structvfio__user__bitmap__range.html">vfio_user_bitmap_range</a></div><div class="ttdef"><b>Definition</b> <a href="#l00120">vfio_user_spec.h:120</a></div></div>
+<div class="ttc" id="astructvfio__user__bitmap_html"><div class="ttname"><a href="structvfio__user__bitmap.html">vfio_user_bitmap</a></div><div class="ttdef"><b>Definition</b> <a href="#l00073">vfio_user_spec.h:73</a></div></div>
+<div class="ttc" id="astructvfio__user__device__info_html"><div class="ttname"><a href="structvfio__user__device__info.html">vfio_user_device_info</a></div><div class="ttdef"><b>Definition</b> <a href="#l00064">vfio_user_spec.h:64</a></div></div>
+<div class="ttc" id="astructvfio__user__dma__map_html"><div class="ttname"><a href="structvfio__user__dma__map.html">vfio_user_dma_map</a></div><div class="ttdef"><b>Definition</b> <a href="#l00080">vfio_user_spec.h:80</a></div></div>
+<div class="ttc" id="astructvfio__user__dma__region__access_html"><div class="ttname"><a href="structvfio__user__dma__region__access.html">vfio_user_dma_region_access</a></div><div class="ttdef"><b>Definition</b> <a href="#l00109">vfio_user_spec.h:109</a></div></div>
+<div class="ttc" id="astructvfio__user__dma__unmap_html"><div class="ttname"><a href="structvfio__user__dma__unmap.html">vfio_user_dma_unmap</a></div><div class="ttdef"><b>Definition</b> <a href="#l00091">vfio_user_spec.h:91</a></div></div>
+<div class="ttc" id="astructvfio__user__header_html"><div class="ttname"><a href="structvfio__user__header.html">vfio_user_header</a></div><div class="ttdef"><b>Definition</b> <a href="#l00040">vfio_user_spec.h:40</a></div></div>
+<div class="ttc" id="astructvfio__user__irq__info_html"><div class="ttname"><a href="structvfio__user__irq__info.html">vfio_user_irq_info</a></div><div class="ttdef"><b>Definition</b> <a href="#l00115">vfio_user_spec.h:115</a></div></div>
+<div class="ttc" id="astructvfio__user__region__access_html"><div class="ttname"><a href="structvfio__user__region__access.html">vfio_user_region_access</a></div><div class="ttdef"><b>Definition</b> <a href="#l00102">vfio_user_spec.h:102</a></div></div>
+<div class="ttc" id="astructvfio__user__version_html"><div class="ttname"><a href="structvfio__user__version.html">vfio_user_version</a></div><div class="ttdef"><b>Definition</b> <a href="#l00055">vfio_user_spec.h:55</a></div></div>
+</div><!-- fragment --></div><!-- contents -->
+</div><!-- doc-content -->
+</div><!-- container -->
+<footer class="footer" id="nav-path">
+  <div class="footer-inner">
+    <div class="footer-copy">
+      <small>Copyright &copy; SPDK a Series of LF Projects, LLC. For web site terms of use, trademark policy, and other
+      project policies please see <a href="https://lfprojects.org">lfprojects.org</a>.</small>
+    </div>
+  </div>
+</footer>
+<script type="text/javascript" src="page_outline.js"></script>
+<script type="text/javascript" src="spdk_nav.js"></script>
+<!-- Doxygen footer suffix – assembled by _build/common.sh:
+     _includes/footer.html (shared) + theme scripts (from spdk) + this file.
+     Theme scripts are extracted from spdk/doc/theme/footer.html at build
+     time so the script list is maintained in a single place. -->
+</body>
+</html>

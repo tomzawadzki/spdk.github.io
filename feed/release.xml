@@ -1,0 +1,455 @@
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.4.1">Jekyll</generator><link href="https://www.spdk.io/spdk.github.io/feed/release.xml" rel="self" type="application/atom+xml" /><link href="https://www.spdk.io/spdk.github.io/" rel="alternate" type="text/html" /><updated>2026-03-31T22:56:45+02:00</updated><id>https://www.spdk.io/spdk.github.io/feed/release.xml</id><title type="html">Storage Performance Development Kit | Release</title><subtitle>The Storage Performance Development Kit (SPDK) provides a set of tools and libraries for writing high performance, scalable, user-mode storage applications. It achieves high performance by moving all of the necessary drivers into userspace and operating in a polled mode instead of relying on interrupts, which avoids kernel context switches and eliminates interrupt handling overhead.
+</subtitle><author><name>Benjamin Walker</name></author><entry><title type="html">SPDK v26.01: NVMe 2.0 target support, NVMe target RDMA interrupt support</title><link href="https://www.spdk.io/spdk.github.io/release/2026/01/28/v26.01_release/" rel="alternate" type="text/html" title="SPDK v26.01: NVMe 2.0 target support, NVMe target RDMA interrupt support" /><published>2026-01-28T00:00:00+01:00</published><updated>2026-01-28T00:00:00+01:00</updated><id>https://www.spdk.io/spdk.github.io/release/2026/01/28/v26.01_release</id><content type="html" xml:base="https://www.spdk.io/spdk.github.io/release/2026/01/28/v26.01_release/"><![CDATA[<p>On behalf of the SPDK community, I’m proud to announce the release of
+<a href="https://github.com/spdk/spdk/releases/tag/v26.01">SPDK v26.01 LTS</a>!
+This release is a Long Term Support (LTS) version that will be supported for 1 year.</p>
+
+<p>This release brings the following major features and improvements:</p>
+<ul>
+  <li><strong>NVMe 2.0 support for NVMe-oF target</strong>: SPDK NVMe-oF target now supports all required NVMe 2.0 features.</li>
+  <li><strong>JSON-RPC schema validation</strong>: Extensive validation added for JSON-RPC parameters to ensure correctness</li>
+  <li><strong>NVMe-oF target RDMA transport interrupt support</strong></li>
+  <li><strong>NVMe-oF target preempt-and-abort reservation support</strong></li>
+  <li><strong>NVMe-oF target additional passthrough support</strong>: Support for FW operations, security send/recv, sanitize, get/set features, and more</li>
+  <li><strong>Improved bdev and bdev/nvme thread synchronization</strong>: Reduced locking cases by half, several races identified and fixed</li>
+  <li><strong>Hot remove support for uring and aio bdev modules</strong></li>
+  <li><strong>Write uncorrectable command support</strong>: Support added to the bdev layer, and plumbed through the bdev/nvme module</li>
+  <li><strong>AMD AE4DMA DMA engine support</strong></li>
+  <li><strong>CUDA accel module</strong>: Used to support offloading XOR, FILL and COPY operations to GPUs</li>
+  <li><strong>DPDK 25.11</strong>: SPDK’s DPDK submodule was updated to the DPDK 25.11 release.</li>
+</ul>
+
+<p>You can view the full changelog <a href="https://github.com/spdk/spdk/releases/tag/v26.01">here</a>.
+Deprecation notices for users upgrading from previous releases are available
+<a href="https://github.com/spdk/spdk/blob/v26.01/deprecation.md">here</a>.</p>
+
+<h1 id="new-contributors">New Contributors</h1>
+
+<p>This release includes <strong>567 commits</strong> from <strong>48 authors</strong>, with over <strong>27k lines of code</strong> changed.</p>
+
+<p>We’d especially like to recognize our first-time contributors:</p>
+<ul>
+  <li>Modali Bhagyada</li>
+  <li>Nelson Bighetti</li>
+  <li>Omer Brezel</li>
+  <li>Tiago Castro</li>
+  <li>Valerii Hlushkov</li>
+  <li>Adarsh Pradhan JMT</li>
+  <li>Volodymyr Khrystenko</li>
+  <li>Vineet Madan</li>
+  <li>Umang Patel</li>
+  <li>Vinoth Rajagopal</li>
+  <li>Abhilash Shetty</li>
+  <li>Maneesh Singhal</li>
+  <li>Thore Sommer</li>
+</ul>
+
+<p>Many thanks to everyone for your contributions, participation, and effort!</p>]]></content><author><name>Jim Harris</name></author><category term="release" /><summary type="html"><![CDATA[On behalf of the SPDK community, I’m proud to announce the release of SPDK v26.01 LTS! This release is a Long Term Support (LTS) version that will be supported for 1 year.]]></summary></entry><entry><title type="html">SPDK v25.09: NVMe 1.4 support in NVMe-oF target, NVMe-oF NSSR</title><link href="https://www.spdk.io/spdk.github.io/release/2025/09/26/v25.09_release/" rel="alternate" type="text/html" title="SPDK v25.09: NVMe 1.4 support in NVMe-oF target, NVMe-oF NSSR" /><published>2025-09-26T00:00:00+02:00</published><updated>2025-09-26T00:00:00+02:00</updated><id>https://www.spdk.io/spdk.github.io/release/2025/09/26/v25.09_release</id><content type="html" xml:base="https://www.spdk.io/spdk.github.io/release/2025/09/26/v25.09_release/"><![CDATA[<p>On behalf of the SPDK community, I’m proud to announce the release of
+<a href="https://github.com/spdk/spdk/releases/tag/v25.09">SPDK v25.09</a>!</p>
+
+<p>This release brings several major features and improvements:</p>
+<ul>
+  <li><strong>NVMe 1.4 support for NVMe-oF target</strong>: SPDK NVMe-oF target now supports all required NVMe 1.4 features.</li>
+  <li><strong>NVMe-oF NSSR support</strong>: Added NVMe Subsystem Reset to NVMe-oF target, see (nvmf documentation)[https://spdk.io/doc/nvmf.html] for more information.</li>
+  <li><strong>NVMe-oF optimal and preferred I/O sizes</strong>: SPDK NVMe-oF target now reports preferred write and unmap alignments, preferred write and unmap granularity, and optimal write size, for bdevs that provide this information.</li>
+  <li><strong>Block device optimal and preferred I/O sizes</strong>: SPDK bdev layer and the nvme bdev module now report optimal and preferred I/O sizes for write and unmap commands.</li>
+  <li><strong>DPDK 25.07</strong>: SPDK’s DPDK submodule was updated to the DPDK 25.07 release.</li>
+  <li><strong>Read-only Ceph RBD bdevs</strong>: SPDK’s bdev_rbd module now supports read-only bdevs.</li>
+  <li><strong>Improved NVMe driver logging</strong>: Logging in the nvme driver was significantly improved to provide more information about controllers and queue pairs.</li>
+  <li><strong>Improved Python code packaging</strong>: Python CLI-related code was refactored to make it easier to package SPDK’s Python code.</li>
+</ul>
+
+<p>This release contains fix (8981ddb1) for (CVE-2025-57275)[https://www.cve.org/CVERecord?id=CVE-2025-57275].</p>
+
+<p>You can view the full changelog <a href="https://github.com/spdk/spdk/releases/tag/v25.09">here</a>.
+Deprecation notices for users upgrading from previous releases are available
+<a href="https://github.com/spdk/spdk/blob/v25.09/deprecation.md">here</a>.</p>
+
+<h1 id="new-contributors">New Contributors</h1>
+
+<p>This release includes <strong>374 commits</strong> from <strong>61 authors</strong>, with over <strong>48k lines of code</strong> changed.</p>
+
+<p>We’d especially like to recognize our first-time contributors:</p>
+<ul>
+  <li>Avri Altman</li>
+  <li>Pravin M Bathija</li>
+  <li>Liu Cheng</li>
+  <li>Dor Deri</li>
+  <li>Colin Dorsey</li>
+  <li>Amit Engel</li>
+  <li>Ori Evron</li>
+  <li>Vladislav Fedyaev</li>
+  <li>Kou Jiawei</li>
+  <li>Jinhong Kim</li>
+  <li>Karol Kolacinski</li>
+  <li>Andrey Korzinev</li>
+  <li>Fedor Kukso</li>
+  <li>Zhipeng Li</li>
+  <li>Brian Meagher</li>
+  <li>Jiri Novak</li>
+  <li>Omar Pakker</li>
+  <li>Huang Shijie</li>
+  <li>Ramkumar S</li>
+  <li>Mingbao Sun</li>
+  <li>Mariusz Tkaczyk</li>
+  <li>Evan Webster</li>
+  <li>Przemyslaw Wielgo</li>
+  <li>Tomas Winkler</li>
+</ul>
+
+<p>Many thanks to everyone for your contributions, participation, and effort!</p>]]></content><author><name>Tomasz Zawadzki</name></author><category term="release" /><summary type="html"><![CDATA[On behalf of the SPDK community, I’m proud to announce the release of SPDK v25.09!]]></summary></entry><entry><title type="html">SPDK v25.05.1 Maintenance LTS Release</title><link href="https://www.spdk.io/spdk.github.io/release/2025/09/25/v25.05.1_release/" rel="alternate" type="text/html" title="SPDK v25.05.1 Maintenance LTS Release" /><published>2025-09-25T00:00:00+02:00</published><updated>2025-09-25T00:00:00+02:00</updated><id>https://www.spdk.io/spdk.github.io/release/2025/09/25/v25.05.1_release</id><content type="html" xml:base="https://www.spdk.io/spdk.github.io/release/2025/09/25/v25.05.1_release/"><![CDATA[<p>On behalf of the SPDK community, I’m proud to announce the release of
+<a href="https://github.com/spdk/spdk/releases/tag/v25.05.1">SPDK v25.05.1</a>!</p>
+
+<p>This release contains fix (8981ddb1) for (CVE-2025-57275)[https://www.cve.org/CVERecord?id=CVE-2025-57275].</p>
+
+<p>Many thanks to everyone for your contributions, participation, and effort!</p>]]></content><author><name>Tomasz Zawadzki</name></author><category term="release" /><summary type="html"><![CDATA[On behalf of the SPDK community, I’m proud to announce the release of SPDK v25.05.1!]]></summary></entry><entry><title type="html">SPDK v25.05: NVMe PCIe interrupt mode, DIF insert/strip, mlx5 accel platform driver</title><link href="https://www.spdk.io/spdk.github.io/release/2025/05/29/v25.05_release/" rel="alternate" type="text/html" title="SPDK v25.05: NVMe PCIe interrupt mode, DIF insert/strip, mlx5 accel platform driver" /><published>2025-05-29T00:00:00+02:00</published><updated>2025-05-29T00:00:00+02:00</updated><id>https://www.spdk.io/spdk.github.io/release/2025/05/29/v25.05_release</id><content type="html" xml:base="https://www.spdk.io/spdk.github.io/release/2025/05/29/v25.05_release/"><![CDATA[<p>On behalf of the SPDK community, I’m proud to announce the release of
+<a href="https://github.com/spdk/spdk/releases/tag/v25.05">SPDK v25.05 LTS</a>!</p>
+
+<p>This release is a Long Term Support (LTS) version and will be supported until SPDK v26.01 LTS.
+The next SPDK release, v25.09, is planned for the end of September.</p>
+
+<p>This release brings several major features and improvements:</p>
+<ul>
+  <li><strong>NVMe PCIe Interrupt Mode</strong>: The NVMe library and NVMe bdev module now support
+ interrupt mode for PCIe transport in the primary process.</li>
+  <li><strong>DIF Insert and Strip</strong>: The bdev layer can now generate and verify data integrity by
+ inserting and stripping DIF from I/O.</li>
+  <li><strong>mlx5 Accel Platform Driver</strong>: Adds a new mlx5 platform driver capable of offloading
+ the execution of a sequence of RDMA_READ/RDMA_WRITE and encrypt/decrypt operations in a single step.</li>
+</ul>
+
+<p>You can view the full changelog <a href="https://github.com/spdk/spdk/releases/tag/v25.05">here</a>.
+Deprecation notices for users upgrading from previous releases are available
+<a href="https://github.com/spdk/spdk/blob/v25.05/deprecation.md">here</a>.</p>
+
+<h1 id="spdk-transition-to-the-linux-foundation">SPDK Transition to the Linux Foundation</h1>
+
+<p>This is the first SPDK release after our <a href="https://spdk.io/news/2024/12/05/LF/">transition to the Linux Foundation</a>.
+The project, now under the guidance of the
+<a href="https://spdk.io/community/#technical-steering-committee-tsc">SPDK Technical Steering Committee (TSC)</a>, has:</p>
+<ul>
+  <li>Welcomed Mateusz Kozlowski as a Core Maintainer,</li>
+  <li>Brought forth <a href="https://github.com/spdk/spdk/blob/master/MAINTAINERS">SPDK Component Maintainers</a>,</li>
+  <li>Established the open source <a href="https://github.com/spdk/spdk-ci/">SPDK-CI</a> infrastructure.</li>
+</ul>
+
+<h1 id="new-contributors">New Contributors</h1>
+
+<p>This release includes <strong>508 commits</strong> from <strong>65 authors</strong>, with over <strong>23k lines of code</strong> changed.</p>
+
+<p>We’d especially like to recognize our first-time contributors:</p>
+<ul>
+  <li>Pawel Baldysiak</li>
+  <li>Gil Bregman</li>
+  <li>Kaiqi Chen</li>
+  <li>Joel Cunningham</li>
+  <li>Saravanan D</li>
+  <li>Anton Einax</li>
+  <li>Eric Gouriou</li>
+  <li>Kalyan Kadiyala</li>
+  <li>Nadja Brix Koch</li>
+  <li>Nitheesh Prakash</li>
+  <li>Xu Qi</li>
+  <li>Ed Reed</li>
+  <li>Siddhu Swarup</li>
+  <li>Yoray Zack</li>
+  <li>Sun Zhenliang</li>
+</ul>
+
+<p>Many thanks to everyone for your contributions, participation, and effort!</p>]]></content><author><name>Tomasz Zawadzki</name></author><category term="release" /><summary type="html"><![CDATA[On behalf of the SPDK community, I’m proud to announce the release of SPDK v25.05 LTS!]]></summary></entry><entry><title type="html">SPDK v24.09: fsdev, NVMe-oF TCP interrupt mode</title><link href="https://www.spdk.io/spdk.github.io/release/2024/09/27/v24.09_release/" rel="alternate" type="text/html" title="SPDK v24.09: fsdev, NVMe-oF TCP interrupt mode" /><published>2024-09-27T00:00:00+02:00</published><updated>2024-09-27T00:00:00+02:00</updated><id>https://www.spdk.io/spdk.github.io/release/2024/09/27/v24.09_release</id><content type="html" xml:base="https://www.spdk.io/spdk.github.io/release/2024/09/27/v24.09_release/"><![CDATA[<p>On behalf of the SPDK community, I’m proud to announce the release of
+<a href="https://github.com/spdk/spdk/releases/tag/v24.09">SPDK v24.09</a>!</p>
+
+<p>This release contains several new features:</p>
+<ul>
+  <li><strong>fsdev library</strong>: added the fsdev library providing a filesystem abstraction,</li>
+  <li><strong>virtio-fs/vfio-user target</strong>: added support for virtio-fs over vfio-user,</li>
+  <li><strong>NVMe-oF TCP interrupt mode</strong>: the NVMe-oF target now supports interrupt mode with TCP transport,</li>
+  <li><strong>better NUMA awareness</strong>: NVMe controllers can report NUMA node they’re closest to,</li>
+  <li><strong>NVMe-oF in-band reauthentication</strong>: it’s possible to change DH-HMAC-CHAP keys and force
+reauthentication on all existing connections,</li>
+  <li><strong>DIX support in accel</strong>: added support for executing DIX (Data Integrity Extension) operations
+using accel framework,</li>
+  <li><strong>bdev_compress algorithm configuration</strong>: compression algorithm and level can be configured.</li>
+</ul>
+
+<p>Full changelog is available <a href="https://github.com/spdk/spdk/releases/tag/v24.09">here</a>. Deprecation
+notices for users updating from previous releases can be found
+<a href="https://github.com/spdk/spdk/blob/v24.09/deprecation.md">here</a>.</p>
+
+<h1 id="new-contributors">New Contributors</h1>
+
+<p>This release contains 752 commits from 65 authors with over 61k lines of code changed.</p>
+
+<p>We’d especially like to recognize all of our first time contributors:</p>
+<ul>
+  <li>Jinlong Chen,</li>
+  <li>Cody Cheng,</li>
+  <li>Kaushik Chug,</li>
+  <li>Yin Congmin</li>
+  <li>Ivan Efremov,</li>
+  <li>Vincent Fu,</li>
+  <li>Marcin Galecki,</li>
+  <li>Oded Mashbach,</li>
+  <li>Hadi Moshayedi,</li>
+  <li>Daniel Nowak,</li>
+  <li>Marcin Pytel,</li>
+  <li>Morten B. Rasmussen,</li>
+  <li>Syeon Shin,</li>
+  <li>Mehakjot Singh Sidhu,</li>
+  <li>Anisa Su,</li>
+  <li>Yalong Wang,</li>
+  <li>Loïc Yavercovski,</li>
+</ul>
+
+<p>Many thanks to everyone for your contributions, participation, and effort!</p>]]></content><author><name>Konrad Sztyber</name></author><category term="release" /><summary type="html"><![CDATA[On behalf of the SPDK community, I’m proud to announce the release of SPDK v24.09!]]></summary></entry><entry><title type="html">SPDK v24.05: NVMe in-band authentication, keyring lib, blob shallow copy</title><link href="https://www.spdk.io/spdk.github.io/release/2024/05/24/24.05_release/" rel="alternate" type="text/html" title="SPDK v24.05: NVMe in-band authentication, keyring lib, blob shallow copy" /><published>2024-05-24T00:00:00+02:00</published><updated>2024-05-24T00:00:00+02:00</updated><id>https://www.spdk.io/spdk.github.io/release/2024/05/24/24.05_release</id><content type="html" xml:base="https://www.spdk.io/spdk.github.io/release/2024/05/24/24.05_release/"><![CDATA[<p>On behalf of the SPDK community I’m pleased to announce the release of <a href="https://github.com/spdk/spdk/releases/tag/v24.05">SPDK 24.05</a>!!</p>
+
+<p>This release contains the following new features:</p>
+
+<ul>
+  <li><strong>NVMe In-Band Authentication</strong>: NVMe driver and NVMe-oF target now supports DH-HMAC-CHAP protocol for in-band authentication.</li>
+  <li><strong>Keyring Library</strong>: New library responsible for providing access to cryptographic keys. The module interface is pluggable with <code class="language-plaintext highlighter-rouge">keyring_file</code> and <code class="language-plaintext highlighter-rouge">keyring_linux</code> modules implemented.</li>
+  <li><strong>Blobstore Shallow Copy</strong>: Enables copying of read-only blobs such that only allocated clusters are written on the device. This functionality extends to logical volumes.</li>
+  <li><strong>DIF Operations in Accel</strong>: Accel now supports verify-copy operation for Data Integrity Field (DIF) computation. Supported by software and DSA accel modules.</li>
+  <li><strong>NVMe-oF mDNS Pull Registration Requests</strong>: Support added for mDNS-based discovery of NVMe-oF target for TCP transport.</li>
+  <li><strong>RAID1 I/O Error Handling</strong>: RAID1 can now recover from I/O errors when redundancy permits.</li>
+</ul>
+
+<p>The full changelog for this release is available <a href="https://github.com/spdk/spdk/releases/tag/v24.05">here</a>.
+Deprecation notices for users updating from previous releases can be found <a href="https://github.com/spdk/spdk/blob/v24.05/deprecation.md">here</a>.</p>
+
+<h1 id="new-contributors">New Contributors</h1>
+
+<p>This release contains 728 commits from 66 authors with over 39k lines of code changed.</p>
+
+<p>We’d especially like to recognize all of our first time contributors:</p>
+
+<ul>
+  <li>Atul Malakar</li>
+  <li>Diwakar Sharma</li>
+  <li>Krzysztof Goreczny</li>
+  <li>Kyuho Son</li>
+  <li>Moshe Shahar</li>
+  <li>Olivier Mayer</li>
+  <li>Pierre Bouvier</li>
+  <li>Xupeng Mingtu</li>
+  <li>Yash Raj Singh</li>
+  <li>Yongjin Lee</li>
+  <li>Zhangfei Gao</li>
+  <li>Zhang Hongtao</li>
+</ul>
+
+<p>Many thanks to everyone for your contributions, participation, and effort!</p>]]></content><author><name>Tomasz Zawadzki</name></author><category term="release" /><summary type="html"><![CDATA[On behalf of the SPDK community I’m pleased to announce the release of SPDK 24.05!!]]></summary></entry><entry><title type="html">SPDK v24.01: DIF in accel, RAID rebuild, Blobstore grow</title><link href="https://www.spdk.io/spdk.github.io/release/2024/01/25/24.01_release/" rel="alternate" type="text/html" title="SPDK v24.01: DIF in accel, RAID rebuild, Blobstore grow" /><published>2024-01-25T00:00:00+01:00</published><updated>2024-01-25T00:00:00+01:00</updated><id>https://www.spdk.io/spdk.github.io/release/2024/01/25/24.01_release</id><content type="html" xml:base="https://www.spdk.io/spdk.github.io/release/2024/01/25/24.01_release/"><![CDATA[<p>On behalf of the SPDK community I’m pleased to announce the release of <a href="https://github.com/spdk/spdk/releases/tag/v24.01">SPDK 24.01 LTS</a>!!
+The SPDK 24.01 release is a long term support release that will be supported for 1 year.</p>
+
+<p>This release contains the following new features:</p>
+
+<ul>
+  <li><strong>DIF operations in accel</strong>: Accel now supports verify, generate and generate copy operations for computing Data Integrity Field (DIF). Currently supported by software and DSA accel modules.</li>
+  <li><strong>RAID rebuild</strong>: RAID bdev module supports rebuild for RAID1 and RAID5F levels.</li>
+  <li><strong>Blobstore grow in runtime</strong>: Blobstore now supports increasing it’s size to fill the underlying device without the need to close all blobs. This functionality extends to logical volumes.</li>
+  <li><strong>NVMe CUSE enabled by default</strong>: NVMe CUSE is no longer considered experimental and enabled by default. It allows creation of NVMe device nodes in Linux kernel for the controller and namespaces (i.e. at /dev/nvmeXnY). These character devices can be used by tools such as nvme-cli.</li>
+</ul>
+
+<p>The full changelog for this release is available <a href="https://github.com/spdk/spdk/releases/tag/v24.01">here</a>.
+Deprecation notices for users updating from previous releases can be found <a href="https://github.com/spdk/spdk/blob/v24.01/deprecation.md">here</a>.</p>
+
+<h1 id="new-contributors">New Contributors</h1>
+
+<p>This release contains 568 commits from 53 authors with over 34k lines of code changed.</p>
+
+<p>We’d especially like to recognize all of our first time contributors:</p>
+
+<ul>
+  <li>Abhineet Pandey</li>
+  <li>Anton Nayshtut</li>
+  <li>Changqi Lu</li>
+  <li>Deepak Abraham Tom</li>
+  <li>Haoqian He</li>
+  <li>Hollin</li>
+  <li>Igor Vechirko</li>
+  <li>Kanika Nema</li>
+  <li>Karl Bonde Torp</li>
+  <li>Lukasz Lasek</li>
+  <li>Marcin Suski</li>
+  <li>Philipp Riederer</li>
+  <li>Sarvesh Lanke</li>
+  <li>Vasilii Ivanov</li>
+  <li>Xiaoguang Wang</li>
+  <li>Yoav Cohen</li>
+</ul>
+
+<p>Many thanks to everyone for your contributions, participation, and effort!</p>]]></content><author><name>Tomasz Zawadzki</name></author><category term="release" /><summary type="html"><![CDATA[On behalf of the SPDK community I’m pleased to announce the release of SPDK 24.01 LTS!! The SPDK 24.01 release is a long term support release that will be supported for 1 year.]]></summary></entry><entry><title type="html">SPDK v23.09: NVMe-oF TCP data digest chaining, JSON-RPC Go client, DIF/DIX CRC32/64</title><link href="https://www.spdk.io/spdk.github.io/release/2023/09/28/23.09_release/" rel="alternate" type="text/html" title="SPDK v23.09: NVMe-oF TCP data digest chaining, JSON-RPC Go client, DIF/DIX CRC32/64" /><published>2023-09-28T00:00:00+02:00</published><updated>2023-09-28T00:00:00+02:00</updated><id>https://www.spdk.io/spdk.github.io/release/2023/09/28/23.09_release</id><content type="html" xml:base="https://www.spdk.io/spdk.github.io/release/2023/09/28/23.09_release/"><![CDATA[<p>On behalf of the SPDK community I’m pleased to announce the release of <a href="https://github.com/spdk/spdk/releases/tag/v23.09">SPDK 23.09</a>!!</p>
+
+<p>This release contains the following new features:</p>
+
+<ul>
+  <li><strong>Accel operation chaining NVMe bdev</strong>: The NVMe bdev will now advertise support for accel sequences if the underlying controller supports it.</li>
+  <li><strong>NVMe-oF TCP data digest chaining</strong>: The NVMe-oF TCP transport will now calculate data digest using the accel sequence APIs if they’re available.</li>
+  <li><strong>JSON-RPC 2.0 client in Go</strong>: Added JSON-RPC 2.0 client written in Go to ease communication with SPDK. Please see the <a href="https://github.com/spdk/spdk/blob/v23.09/go/rpc/README.md">documentation</a>.</li>
+  <li><strong>DIF/DIX CRC32/64 support</strong>: Extended util library DIF/DIX support to CRC-32 and CRC-64 format of the Protection Information.</li>
+  <li><strong>NVMe-oF TCP TLS configuration</strong>: It is now possible to persist NVMe-oF TCP TLS configuration across application restarts.</li>
+</ul>
+
+<p>The full changelog for this release is available <a href="https://github.com/spdk/spdk/releases/tag/v23.09">here</a>.
+Deprecation notices for users updating from previous releases can be found <a href="https://github.com/spdk/spdk/blob/v23.09/deprecation.md">here</a>.</p>
+
+<h1 id="new-contributors">New Contributors</h1>
+
+<p>This release contains 483 commits from 52 authors with over 21k lines of code changed.</p>
+
+<p>We’d especially like to recognize all of our first time contributors:</p>
+
+<ul>
+  <li>Duncan Bellamy <a href="codespell-ignore"></a></li>
+  <li>Emilia Haligowska <a href="codespell-ignore"></a></li>
+  <li>Eugene Kobyak <a href="codespell-ignore"></a></li>
+  <li>Fedor Uporov <a href="codespell-ignore"></a></li>
+  <li>Guangyang Han <a href="codespell-ignore"></a></li>
+  <li>Krzysztof Sprzaczkowski <a href="codespell-ignore"></a></li>
+  <li>Maciej Mis <a href="codespell-ignore"></a></li>
+  <li>Marek Chomnicki <a href="codespell-ignore"></a></li>
+  <li>Robert Ganzynkowicz <a href="codespell-ignore"></a></li>
+  <li>Zhenwei Pi <a href="codespell-ignore"></a></li>
+</ul>
+
+<p>Many thanks to everyone for your contributions, participation, and effort!</p>]]></content><author><name>Tomasz Zawadzki</name></author><category term="release" /><summary type="html"><![CDATA[On behalf of the SPDK community I’m pleased to announce the release of SPDK 23.09!!]]></summary></entry><entry><title type="html">SPDK v23.05: NVMe-oF/TCP TLS, Logical Volume External Snapshots</title><link href="https://www.spdk.io/spdk.github.io/release/2023/05/26/23.05_release/" rel="alternate" type="text/html" title="SPDK v23.05: NVMe-oF/TCP TLS, Logical Volume External Snapshots" /><published>2023-05-26T00:00:00+02:00</published><updated>2023-05-26T00:00:00+02:00</updated><id>https://www.spdk.io/spdk.github.io/release/2023/05/26/23.05_release</id><content type="html" xml:base="https://www.spdk.io/spdk.github.io/release/2023/05/26/23.05_release/"><![CDATA[<p>On behalf of the SPDK community I’m pleased to announce the release of <a href="https://github.com/spdk/spdk/releases/tag/v23.05">SPDK v23.05</a>!</p>
+
+<p>This release contains the following new features:</p>
+<ul>
+  <li><strong>NVMe-oF/TCP TLS</strong>: Added support for establishing a TCP fabric secure channel using TLS in
+compliance with <em>NVM Express TCP Transport Specification</em>.  Both the NVMe-oF target and NVMe
+driver can be configured to use TLS.  This feature is considered experimental.</li>
+  <li><strong>Logical volume external snapshots</strong>: It is now possible to create clones of any bdev, not
+only of logical volume bdevs.  Such clones are called <em>esnap clones</em> (external snapshot clones).
+A bdev that is used as an external snapshot cannot be opened for writing so long as an esnap
+clone exists.</li>
+  <li><strong>ublk optimizations</strong>: Implemented various ublk improvements, most notably added support for
+<code class="language-plaintext highlighter-rouge">UBLK_F_NEED_GET_DATA</code>, which allows ublk target to allocate buffers on demand, rather than
+pre-allocate it during initialization.</li>
+  <li><strong>Zero copy sock receive interface</strong>: Added APIs allowing users to provide buffers to a sock
+group which will then get filled with the next portions of the stream on each socket.</li>
+  <li><strong>nvmf transport iobuf pool</strong>: The nvmf transports no longer allocate their own buffer pools and,
+instead, they will acquire the buffers from the iobuf pool.  This means that the nvmf library
+shares the same memory pool with the bdev layer and other parts of the code base, reducing
+overall memory usage.</li>
+  <li><strong>Accel operation chaining bdev support</strong>: bdev layer, bdev crypto, and bdev malloc are now using
+Acceleration Framework’s sequence interface.  This makes it possible to chain accel operations
+scheduled by these components and execute them all at once.</li>
+  <li><strong>Accel framework statistics</strong>: It is now possible to retrieve statistics on the operations
+executed by the Acceleration Framework.</li>
+  <li><strong>bdev quiesce interface</strong>: Added APIs to quiesce a bdev.  All I/Os submitted after a bdev is
+quiesced will be queued until the bdev is unquiesced.</li>
+  <li><strong>fd_group nesting optimizations</strong>: Added new interfaces making it possible to nest one
+<code class="language-plaintext highlighter-rouge">fd_group</code> in another providing an efficient way of monitoring the file descriptors of both
+groups at the same time.</li>
+</ul>
+
+<p>The full changelog for this release is available <a href="https://github.com/spdk/spdk/releases/tag/v23.05">here</a>.
+Deprecation notices for users updating from previous releases can be found <a href="https://github.com/spdk/spdk/blob/v23.05/deprecation.md">here</a>.</p>
+
+<h1 id="new-contributors">New Contributors</h1>
+
+<p>This release contains 822 commits from 60 authors with over 46k lines of code changed.</p>
+
+<p>We’d especially like to recognize all of our first time contributors:</p>
+
+<ul>
+  <li>Antti Kervinen</li>
+  <li>Yuri Kirichok</li>
+  <li>Wojciech Panfil</li>
+  <li>plestk</li>
+  <li>Slawomir Ptak</li>
+  <li>Marcin Spiewak</li>
+  <li>Lukas Stockner</li>
+  <li>Tim Zhang</li>
+</ul>
+
+<p>Many thanks to everyone for your contributions, participation, and effort!</p>]]></content><author><name>Konrad Sztyber</name></author><category term="release" /><summary type="html"><![CDATA[On behalf of the SPDK community I’m pleased to announce the release of SPDK v23.05!]]></summary></entry><entry><title type="html">SPDK v23.01.1: Maintenance Release</title><link href="https://www.spdk.io/spdk.github.io/release/2023/04/26/23.01.1_release/" rel="alternate" type="text/html" title="SPDK v23.01.1: Maintenance Release" /><published>2023-04-26T00:00:00+02:00</published><updated>2023-04-26T00:00:00+02:00</updated><id>https://www.spdk.io/spdk.github.io/release/2023/04/26/23.01.1_release</id><content type="html" xml:base="https://www.spdk.io/spdk.github.io/release/2023/04/26/23.01.1_release/"><![CDATA[<p>On behalf of the SPDK community I’m pleased to announce the release of <a href="https://github.com/spdk/spdk/releases/tag/v23.01.1">SPDK v23.01.1</a>.</p>
+
+<h2 id="v23011-lts">v23.01.1 LTS</h2>
+
+<h3 id="accel">accel</h3>
+
+<p>Corrected the optional <code class="language-plaintext highlighter-rouge">key_name</code> parameters in <code class="language-plaintext highlighter-rouge">accel_crypto_keys_get</code> and
+<code class="language-plaintext highlighter-rouge">accel_crypto_key_destroy</code> RPC commands.</p>
+
+<p>Fixed SGL initialization in <code class="language-plaintext highlighter-rouge">dpdk_cryptodev</code> module when a task is processed in several iterations.</p>
+
+<p>Fixed memory domain contexts not being copied when removing copy operations.</p>
+
+<h3 id="bdev">bdev</h3>
+
+<p>Auxiliary buffer is now freed when crypto operation fails in bdev crypto (#2886).</p>
+
+<p>Uring bdev no longer sets the <code class="language-plaintext highlighter-rouge">write_cache</code> flag, as it does not support flushing.</p>
+
+<p>The <code class="language-plaintext highlighter-rouge">hdgst</code> and <code class="language-plaintext highlighter-rouge">ddgst</code> fields are now output when saving bdev NVMe config.</p>
+
+<p>Fixed off-by-one error in maximum buffer size calculation when determining whether bdev layer can
+allocate a buffer from the iobuf pool.</p>
+
+<p>Crypto bdev no longer uses <code class="language-plaintext highlighter-rouge">spdk_bdev_queue_io_wait()</code> after receiving ENOMEM from accel.  Instead,
+such IOs are completed with NOMEM status and bdev layer is responsible for retrying them.</p>
+
+<h3 id="blob">blob</h3>
+
+<p>Removed short-circuiting path for <code class="language-plaintext highlighter-rouge">blob_freeze</code> to ensure that if <code class="language-plaintext highlighter-rouge">blob_freeze_io()</code> is called twice
+in a row, and the second time occurs before the <code class="language-plaintext highlighter-rouge">for_each_channel</code> for the first completes, the
+second caller will receive its callback too soon (#2935).</p>
+
+<p>Last <code class="language-plaintext highlighter-rouge">md_page</code> index is now correctly tracked during a resize (#2932).</p>
+
+<h3 id="env">env</h3>
+
+<p>Huge-related options are now omitted when –no-huge specified (#2973).</p>
+
+<h3 id="idxd">idxd</h3>
+
+<p>Fixed maybe-uninitialized compilation warnings under gcc 12.2.1.</p>
+
+<h3 id="miscellaneous">miscellaneous</h3>
+
+<p>bdevperf is now calling <code class="language-plaintext highlighter-rouge">rand_r()</code> twice to get 64-bit values to ensure it’s issuing I/O across the
+full range of the bdev.</p>
+
+<h3 id="nvme">nvme</h3>
+
+<p>The destination port is now checked before parsing address in the TCP transport to keep the behavior
+the same across Linux and FreeBSD due to differences in <code class="language-plaintext highlighter-rouge">getaddrinfo()</code> when port exceeds 65535
+(#2936).</p>
+
+<p>The <code class="language-plaintext highlighter-rouge">numd</code> field in the Reservation Report command is now filled as a 0 based value in accordance
+with the NVMe spec.</p>
+
+<p>Fixed <code class="language-plaintext highlighter-rouge">nvme_qpair_abort_all_queued_reqs()</code> not being called for the admin queue in the PCIe
+transport (#2928).</p>
+
+<p>PCIe transport now calls <code class="language-plaintext highlighter-rouge">transport_ctrlr_disconnect_qpair_done()</code> if <code class="language-plaintext highlighter-rouge">ctrlr_disable_poll()</code> fails,
+e.g. if the drive is unresponsive (#2931).</p>
+
+<p>RDMA and TCP transports are now correctly initializing <code class="language-plaintext highlighter-rouge">cpl-&gt;sqid</code> when aborting requests (#2930).</p>
+
+<p>Corrected reporting max SGE supported by the TCP transport to avoid unnecessarily splitting
+requests.</p>
+
+<h3 id="nvmf">nvmf</h3>
+
+<p>Fixed issue with aborting TCP requests awaiting R2T ACK leading to terminating the connection
+(#2789).</p>
+
+<p>Deprecated <code class="language-plaintext highlighter-rouge">cb_fn</code> argument in <code class="language-plaintext highlighter-rouge">spdk_nvmf_qpair_disconnect()</code> and updated it to return
+<code class="language-plaintext highlighter-rouge">-EINPROGRESS</code> when a qpair is already being disconnected.</p>
+
+<p>All trid fields are now initialized by <code class="language-plaintext highlighter-rouge">spdk_nvmf_qpair_get_*_trid()</code>. This fixed issue with active
+qpairs not getting disconnected after a listener is removed via <code class="language-plaintext highlighter-rouge">nvmf_subsystem_remove_listener</code>
+(#2595, #2862, #2864, #2865).</p>
+
+<h3 id="rpc">rpc</h3>
+
+<p>Fixed the type of <code class="language-plaintext highlighter-rouge">rr-min-io parameter</code> in <code class="language-plaintext highlighter-rouge">bdev_nvme_set_multipath_policy</code> RPC to be an integer.</p>
+
+<h3 id="vhost">vhost</h3>
+
+<p>Renamed <code class="language-plaintext highlighter-rouge">rte_vhost_slave_config_change()</code> to <code class="language-plaintext highlighter-rouge">rte_vhost_backend_config_change()</code> due to changes in
+DPDK.</p>
+
+<p>Many thanks to everyone for your contributions, participation, and effort!</p>]]></content><author><name>Konrad Sztyber</name></author><category term="release" /><summary type="html"><![CDATA[On behalf of the SPDK community I’m pleased to announce the release of SPDK v23.01.1.]]></summary></entry></feed>

@@ -1,0 +1,196 @@
+<!doctype html>
+<html lang="en">
+  <head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="The Storage Performance Development Kit (SPDK) provides a set of tools and libraries for writing high performance, scalable, user-mode storage applications. It achieves high performance by moving all of the necessary drivers into userspace and operating in a polled mode instead of relying on interrupts, which avoids kernel context switches and eliminates interrupt handling overhead.
+">
+  <meta name="author" content="Benjamin Walker">
+
+  <title>raid5f: the SPDK RAID 5 implementation</title>
+
+  <link rel="icon" type="image/svg+xml" href="/spdk.github.io/assets/img/spdk.svg">
+  <link rel="icon" href="/spdk.github.io/assets/favicon.ico" sizes="32x32">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:400,700,900" type="text/css">
+  <link rel="stylesheet" href="/spdk.github.io/assets/css/spdk.css">
+
+  <link href="/spdk.github.io/feed.xml" type="application/atom+xml" rel="alternate" title="Atom Feed">
+</head>
+
+
+  <body>
+    <nav class="navbar">
+  <a class="navbar-brand" href="/spdk.github.io/" aria-label="SPDK">
+    <img src="/spdk.github.io/assets/img/spdk.svg" width="36" height="36" alt="Storage Performance Development Kit">
+  </a>
+  <div class="navbar-nav">
+    <a class="nav-link header-link" href="/spdk.github.io/doc/releases.html">download</a>
+    <a class="nav-link header-link" href="/spdk.github.io/doc/">documentation</a>
+    <a class="nav-link header-link" href="/spdk.github.io/doc/contributing.html">development</a>
+    <a class="nav-link header-link" href="/spdk.github.io/doc/ci_tools.html">CI status</a>
+    <a class="nav-link header-link" href="/spdk.github.io/community/">community</a>
+    <a class="nav-link header-link" href="/spdk.github.io/blog/">Blog</a>
+    <a class="nav-link header-link" href="https://github.com/orgs/spdk/projects/5">Roadmap</a>
+    <a class="nav-link header-link" href="/spdk.github.io/news/">News</a>
+  </div>
+  <div class="navbar-end">
+    <a class="nav-link header-link" href="https://github.com/spdk/spdk" aria-label="GitHub">
+      <svg xmlns="http://www.w3.org/2000/svg" class="navbar-nav-svg" aria-hidden="true"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
+    </a>
+    <a id="cn_lang_btn" href="/spdk.github.io/cn/doc/" class="nav-link header-link">中文</a>
+  </div>
+</nav>
+<script>
+(function() {
+    var p = location.pathname, best = null, bLen = 0;
+    document.querySelectorAll('.header-link[href]').forEach(function(a) {
+        var raw = a.getAttribute('href');
+        if (!raw) return;
+        try { var u = new URL(raw, location.href); } catch(e) { return; }
+        if (u.origin !== location.origin) return;
+        var h = u.pathname;
+        if (h === '/') return;
+        var ok = h.endsWith('.html') ? p === h : p.indexOf(h) === 0;
+        if (ok && h.length > bLen) { bLen = h.length; best = a; }
+    });
+    if (best) best.classList.add('active');
+})();
+</script>
+
+
+    <div class="page-content">
+  <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+  <header class="post-header">
+
+    <div class="page-header">
+      <h1>raid5f: the SPDK RAID 5 implementation</h1>
+    </div>
+
+    <p class="post-meta">
+      <time datetime="2024-02-12T00:00:00+01:00" itemprop="datePublished">
+        Feb 12, 2024
+      </time>
+      
+      •
+      <span itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <span itemprop="name">Artur Paszkiewicz</span>
+      </span>
+      
+    </p>
+  </header>
+
+  <div class="content" itemprop="articleBody"><p>RAID 5 is a popular RAID level which, similarly to RAID 1 (mirroring), protects
+data in the array against failure of a member drive and can improve read
+performance by reading from multiple drives in parallel. It is often preferred
+over mirroring because it “wastes” less storage capacity - the array can have
+many member drives but the total available capacity is always reduced only by
+the size of one member. Meanwhile, RAID 1 exposes the capacity of only one
+member. That’s 50% in the most common two-way mirror case, which provides the
+same level of protection as RAID 5 - protection from failure of one drive.</p>
+
+<p>The biggest downside of RAID 5 has always been write performance. Every write
+to the array causes writes to at least two member drives, because apart from
+the actual data, the parity also has to be updated. Parity is the redundant data
+that allows recovery after a drive failure. It must stay in sync with the data
+on the other drives. But the problem is not in the additional write. After all,
+RAID 1 also has to duplicate writes. Computing the parity does add some
+overhead but is still much faster than accessing storage. The real performance
+hit comes when a write causes a read-modify-write cycle - to compute the
+updated parity some data needs to be read from at least one member drive first.
+It happens when a RAID stripe is partially updated.</p>
+
+<p>A stripe is the data plus parity interleaved across member drives. The size of
+the part of a stripe that is contained on one member is configurable and is
+known as strip (AKA <em>chunk</em>) size. The amount of data that a single stripe can
+hold is equal to <code class="language-plaintext highlighter-rouge">strip_size * (n - 1)</code>, where <code class="language-plaintext highlighter-rouge">n</code> is the number of members in
+the array. Here is a diagram showing an example layout of an array of 4 drives
+with strip size set to 4 blocks, so the stripe size (or <em>width</em>) is 12 blocks:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>block     drive 0        drive 1        drive 2        drive 3
+     +--------------+--------------+--------------+--------------+
+ 0   | data strip 0 | data strip 1 | data strip 2 | parity strip | stripe 0
+ 1   |              |              |              |              |
+ 2   | RAID blocks  | RAID blocks  | RAID blocks  |              | RAID blocks
+ 3   | 0-3          | 4-7          | 8-11         |              | 0-11
+     +--------------+--------------+--------------+--------------+
+ 4   | data strip 0 | data strip 1 | parity strip | data strip 2 | stripe 1
+ 5   |              |              |              |              |
+ 6   | RAID blocks  | RAID blocks  |              | RAID blocks  | RAID blocks
+ 7   | 12-15        | 16-19        |              | 20-23        | 12-23
+     +--------------+--------------+--------------+--------------+
+ 8   | data strip 0 | parity strip | data strip 1 | data strip 2 | stripe 2
+ 9   |              |              |              |              |
+10   | RAID blocks  |              | RAID blocks  | RAID blocks  | RAID blocks
+11   | 24-27        |              | 28-31        | 32-35        | 24-35
+     +--------------+--------------+--------------+--------------+
+12   | parity strip | data strip 0 | data strip 1 | data strip 2 | stripe 3
+13   |              |              |              |              |
+14   |              | RAID blocks  | RAID blocks  | RAID blocks  | RAID blocks
+15   |              | 36-39        | 40-43        | 44-47        | 36-47
+     +--------------+--------------+--------------+--------------+
+16   | data strip 0 | data strip 1 | data strip 2 | parity strip | stripe 4
+17   |              |              |              |              |
+18   | RAID blocks  | RAID blocks  | RAID blocks  |              | RAID blocks
+19   | 48-51        | 52-55        | 56-59        |              | 48-59
+     +--------------+--------------+--------------+--------------+
+20   | data strip 0 | data strip 1 | parity strip | data strip 2 | stripe 5
+21   |              |              |              |              |
+...
+</code></pre></div></div>
+
+<p>Writing less than the size of a stripe causes read-modify-write, is bad for
+performance and can even lead to silent data corruption in case of a dirty
+shutdown combined with a drive failure, a phenomenon known as RAID Write Hole.
+For these reasons, it is recommended to optimize the workload to avoid partial
+stripe writes and use <em>full stripe writes</em> whenever possible.</p>
+
+<p>With raid5f we went beyond recommending full stripe writes and outright require
+them. That’s what the “f” at the end of raid5f stands for: full stripe writes,
+to differentiate from standard RAID 5. Without having to support partial stripe
+updates, the code can be much simpler and possibly faster. The stripe size is
+set as the bdev’s <em>write unit size</em> and is enforced by the bdev layer. This
+value can be retrieved with the API call <code class="language-plaintext highlighter-rouge">spdk_bdev_get_write_unit_size()</code>. If
+a write to a raid5f bdev is not aligned to or is not a multiple of a stripe,
+the I/O will fail. Reads are handled normally, without such restrictions.</p>
+
+<p>Obviously, the requirement to only use full stripe writes puts additional
+burden on the application. In some cases it may not be a problem, in others it
+will require big changes. An interesting option, and initially the main
+motivation behind raid5f, is to combine it with the
+<a href="https://spdk.io/doc/ftl.html">FTL bdev</a>. It can work on top of raid5f and,
+among other benefits, eliminates the requirement to issue writes in full
+stripes, thanks to its logical to physical (L2P) block mapping.</p>
+
+<p>If you would like to try raid5f, configure SPDK using the <code class="language-plaintext highlighter-rouge">--with-raid5f</code>
+option. You need at least 3 bdevs of any kind, but with the same block size and
+metadata format. Their size does not have to be equal, the array member size
+will be limited to the smallest base bdev. An example command to create a
+raid5f bdev is:</p>
+
+<p><code class="language-plaintext highlighter-rouge">$ scripts/rpc.py bdev_raid_create -n raid_bdev0 -z 128 -r 5f -b "malloc0 malloc1 malloc2"</code></p>
+
+<p>This creates a raid5f array named <code class="language-plaintext highlighter-rouge">raid_bdev0</code> from bdevs <code class="language-plaintext highlighter-rouge">malloc0 malloc1
+malloc2</code> with strip size set to 128 KiB and write unit size to 256 KiB.</p>
+
+<p>SPDK RAID modules are still in active development. Some big features like
+rebuild and superblock support have recently been merged and are available in
+SPDK release 24.01. More are coming in the future, we encourage you to review,
+share feedback, and submit your changes!</p>
+</div>
+</article>
+</div>
+
+
+    <footer class="footer" id="nav-path">
+  <div class="footer-inner">
+    <div class="footer-copy">
+      <small>Copyright &copy; SPDK a Series of LF Projects, LLC. For web site terms of use, trademark policy, and other
+      project policies please see <a href="https://lfprojects.org">lfprojects.org</a>.</small>
+    </div>
+  </div>
+</footer>
+
+
+    
+  </body>
+</html>

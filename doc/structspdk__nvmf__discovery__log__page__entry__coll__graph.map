@@ -1,0 +1,9 @@
+<map id="spdk_nvmf_discovery_log_page_entry" name="spdk_nvmf_discovery_log_page_entry">
+<area shape="rect" id="Node000001" title="Discovery Log Page entry." alt="" coords="573,40,736,85"/>
+<area shape="rect" id="Node000002" href="$unionspdk__nvmf__transport__specific__address__subtype.html" title="Transport&#45;specific address subtype." alt="" coords="296,40,490,85"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="505,60,573,60,573,65,505,65"/>
+<area shape="rect" id="Node000003" href="$structspdk__nvmf__rdma__transport__specific__address__subtype.html" title="RDMA transport&#45;specific address subtype." alt="" coords="5,5,206,50"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="221,39,295,48,295,53,221,44"/>
+<area shape="rect" id="Node000004" href="$structspdk__nvme__tcp__transport__specific__address__subtype.html" title="TCP transport&#45;specific address subtype." alt="" coords="8,75,203,119"/>
+<area shape="poly" id="edge3_Node000002_Node000004" title=" " alt="" coords="218,82,271,75,295,72,296,78,272,81,218,87"/>
+</map>

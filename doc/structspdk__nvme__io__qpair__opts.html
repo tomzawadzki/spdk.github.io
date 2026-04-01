@@ -1,0 +1,510 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<meta name="generator" content="Doxygen 1.16.1">
+	<title>SPDK: spdk_nvme_io_qpair_opts Struct Reference</title>
+	<script type="text/javascript" src="jquery.js"></script>
+	<script type="text/javascript" src="dynsections.js"></script>
+	<script type="text/javascript" src="clipboard.js"></script>
+	<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
+<script type="text/javascript" src="cookie.js"></script>
+	<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<script type="text/javascript">
+  $(function() { init_search(); });
+</script>
+	<link rel="icon" type="image/svg+xml" href="../assets/img/spdk.svg">
+	<link rel="icon" href="../assets/favicon.ico" sizes="32x32">
+	<link href="doxygen.css" rel="stylesheet" type="text/css">
+	<script>(function(){var k='doxygen_width',w,bw=6;if(window.chrome){w=localStorage.getItem(k);if(!w){w='350';localStorage.setItem(k,w)}}else{var m=document.cookie.match(new RegExp(k+'=(\\d+)'));w=m?m[1]:null;if(!w){w='350';document.cookie=k+'=350;SameSite=Lax;path=/'}}document.documentElement.style.setProperty('--sn-w',(parseInt(w)+bw)+'px')})()</script>
+	<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:400,700,900" type="text/css">
+	<link href="spdk.css" rel="stylesheet" type="text/css"/>
+	<link href="../assets/css/spdk.css" rel="stylesheet" type="text/css">
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<nav class="navbar">
+  <a class="navbar-brand" href="../" aria-label="SPDK">
+    <img src="../assets/img/spdk.svg" width="36" height="36" alt="Storage Performance Development Kit">
+  </a>
+  <div class="navbar-nav">
+    <a class="nav-link header-link" href="../doc/releases.html">download</a>
+    <a class="nav-link header-link" href="../doc/">documentation</a>
+    <a class="nav-link header-link" href="../doc/contributing.html">development</a>
+    <a class="nav-link header-link" href="../doc/ci_tools.html">CI status</a>
+    <a class="nav-link header-link" href="../community/">community</a>
+    <a class="nav-link header-link" href="../blog/">Blog</a>
+    <a class="nav-link header-link" href="https://github.com/orgs/spdk/projects/5">Roadmap</a>
+    <a class="nav-link header-link" href="../news/">News</a>
+  </div>
+  <div class="navbar-end">
+    <a class="nav-link header-link" href="https://github.com/spdk/spdk" aria-label="GitHub">
+      <svg xmlns="http://www.w3.org/2000/svg" class="navbar-nav-svg" aria-hidden="true"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
+    </a>
+    <a id="cn_lang_btn" href="../cn/doc/" class="nav-link header-link">中文</a>
+  </div>
+</nav>
+<script>
+(function() {
+    var p = location.pathname, best = null, bLen = 0;
+    document.querySelectorAll('.header-link[href]').forEach(function(a) {
+        var raw = a.getAttribute('href');
+        if (!raw) return;
+        try { var u = new URL(raw, location.href); } catch(e) { return; }
+        if (u.origin !== location.origin) return;
+        var h = u.pathname;
+        if (h === '/') return;
+        var ok = h.endsWith('.html') ? p === h : p.indexOf(h) === 0;
+        if (ok && h.length > bLen) { bLen = h.length; best = a; }
+    });
+    if (best) best.classList.add('active');
+})();
+</script>
+<div id="doxygen-searchbox">        <div id="MSearchBox" class="MSearchBoxInactive">
+        <span class="left">
+          <span id="MSearchSelect" class="search-icon" onmouseover="return searchBox.OnSearchSelectShow()" onmouseout="return searchBox.OnSearchSelectHide()"><span class="search-icon-dropdown"></span></span>
+          <input type="text" id="MSearchField" value="" placeholder="Search" accesskey="S"
+               onfocus="searchBox.OnSearchFieldFocus(true)" 
+               onblur="searchBox.OnSearchFieldFocus(false)" 
+               onkeyup="searchBox.OnSearchFieldChange(event)"/>
+          </span><span class="right">
+            <a id="MSearchClose" href="javascript:searchBox.CloseResultsWindow()"><div id="MSearchCloseImg" class="close-icon"></div></a>
+          </span>
+        </div>
+</div>
+<!-- Generated by Doxygen 1.16.1 -->
+<script type="text/javascript">
+var searchBox = new SearchBox("searchBox", "search/",'.html');
+</script>
+<script type="text/javascript">
+$(function() { codefold.init(); });
+</script>
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+$(function(){initNavTree('structspdk__nvme__io__qpair__opts.html','',''); });
+</script>
+<div id="container">
+<div id="doc-content">
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">Loading...</div>
+<div class="SRStatus" id="Searching">Searching...</div>
+<div class="SRStatus" id="NoMatches">No Matches</div>
+</div>
+</div>
+</div>
+</div>
+
+<div class="header">
+  <div class="headertitle"><div class="title">spdk_nvme_io_qpair_opts Struct Reference</div></div>
+</div><!--header-->
+<div class="contents">
+
+<p>NVMe I/O queue pair initialization options.  
+ <a href="#details">More...</a></p>
+
+<p><code>#include &lt;<a class="el" href="nvme_8h_source.html">nvme.h</a>&gt;</code></p>
+<div class="dynheader">
+Collaboration diagram for spdk_nvme_io_qpair_opts:</div>
+<div class="dyncontent">
+<div class="center"><div class="zoom"><iframe scrolling="no" loading="lazy" frameborder="0" src="structspdk__nvme__io__qpair__opts__coll__graph.svg" width="100%" height="539"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div></div>
+<center><span class="legend">[<a target="top" href="graph_legend.html">legend</a>]</span></center></div>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 id="header-pub-attribs" class="groupheader"><a id="pub-attribs" name="pub-attribs"></a>
+Data Fields</h2></td></tr>
+<tr class="memitem:a9a9ae75991da44a7fbf06a3c82161a6d" id="r_a9a9ae75991da44a7fbf06a3c82161a6d"><td class="memItemLeft">enum <a class="el" href="nvme__spec_8h.html#ae83a61e254cf9d1fd59376ceedd1b4e6">spdk_nvme_qprio</a>&#160;</td><td class="memItemRight"><a class="el" href="#a9a9ae75991da44a7fbf06a3c82161a6d">qprio</a></td></tr>
+<tr class="memdesc:a9a9ae75991da44a7fbf06a3c82161a6d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Queue priority for weighted round robin arbitration.  <br /></td></tr>
+<tr class="memitem:adbb8aa3f64bc021ea5e9fddec6796341" id="r_adbb8aa3f64bc021ea5e9fddec6796341"><td class="memItemLeft">uint32_t&#160;</td><td class="memItemRight"><a class="el" href="#adbb8aa3f64bc021ea5e9fddec6796341">io_queue_size</a></td></tr>
+<tr class="memdesc:adbb8aa3f64bc021ea5e9fddec6796341"><td class="mdescLeft">&#160;</td><td class="mdescRight">The queue depth of this NVMe I/O queue.  <br /></td></tr>
+<tr class="memitem:a4af594ef7f8b7e590662633c926146b4" id="r_a4af594ef7f8b7e590662633c926146b4"><td class="memItemLeft">uint32_t&#160;</td><td class="memItemRight"><a class="el" href="#a4af594ef7f8b7e590662633c926146b4">io_queue_requests</a></td></tr>
+<tr class="memdesc:a4af594ef7f8b7e590662633c926146b4"><td class="mdescLeft">&#160;</td><td class="mdescRight">The number of requests to allocate for this NVMe I/O queue.  <br /></td></tr>
+<tr class="memitem:"><td class="memItemLeft anon">union {&#160;</td><td class="memItemRight"></td></tr>
+<tr class="memitem:ae45bcbe70b24223e54e3bcf30f8e8349" id="r_ae45bcbe70b24223e54e3bcf30f8e8349"><td class="memItemLeft anon">&#160;&#160;&#160;bool&#160;&#160;&#160;<a class="el" href="#a0cf0ca9709ef76cd67bcfd4c3601963c">delay_cmd_submit</a>&#160;</td><td class="memItemRight"></td></tr>
+<tr class="memitem:a69ee3e302718f57a63f6abf3bd1b7569" id="r_a69ee3e302718f57a63f6abf3bd1b7569"><td class="memItemLeft anon">&#160;&#160;&#160;bool&#160;&#160;&#160;<a class="el" href="#a44d81a594ba280300928e7244c2612d0">delay_pcie_doorbell</a>&#160;</td><td class="memItemRight"></td></tr>
+<tr class="memitem:a96829ce808fb5d71380ef16391e2aa4f" id="r_a96829ce808fb5d71380ef16391e2aa4f"><td class="memItemLeft anonEnd">};&#160;</td><td class="memItemRight"></td></tr>
+<tr class="memdesc:a96829ce808fb5d71380ef16391e2aa4f"><td class="mdescLeft">&#160;</td><td class="mdescRight">When submitting I/O via spdk_nvme_ns_read/write and similar functions, don't immediately submit it to hardware. <br /></td></tr>
+<tr class="memitem:a07d109dbf64b048e0fe692a970d52c81" id="r_a07d109dbf64b048e0fe692a970d52c81"><td class="memItemLeft">uint8_t&#160;</td><td class="memItemRight"><a class="el" href="#a07d109dbf64b048e0fe692a970d52c81">reserved13</a> [3]</td></tr>
+<tr class="memitem:"><td class="memItemLeft anon">struct {&#160;</td><td class="memItemRight"></td></tr>
+<tr class="memitem:a5b9dba22e997f9b35ef70ba270813821" id="r_a5b9dba22e997f9b35ef70ba270813821"><td class="memItemLeft anon">&#160;&#160;&#160;struct <a class="el" href="structspdk__nvme__cmd.html">spdk_nvme_cmd</a> *&#160;&#160;&#160;<a class="el" href="#a7236cf0caff96c7b46bda8c25e85fd01">vaddr</a>&#160;</td><td class="memItemRight"></td></tr>
+<tr class="memitem:aacb4a51533a332dc00913232aefbaff9" id="r_aacb4a51533a332dc00913232aefbaff9"><td class="memItemLeft anon">&#160;&#160;&#160;uint64_t&#160;&#160;&#160;<a class="el" href="#aa3d92d942325f923d4e1622a8522aa38">paddr</a>&#160;</td><td class="memItemRight"></td></tr>
+<tr class="memitem:a73121ef4276552529ea03532e2bbddb0" id="r_a73121ef4276552529ea03532e2bbddb0"><td class="memItemLeft anon">&#160;&#160;&#160;uint64_t&#160;&#160;&#160;<a class="el" href="#a46b4b303a90d96576e8ed2feb216e93b">buffer_size</a>&#160;</td><td class="memItemRight"></td></tr>
+<tr class="memitem:aedf6e3a9a150643694e846c8d01d6840" id="r_aedf6e3a9a150643694e846c8d01d6840"><td class="memItemLeft anonEnd">}&#160;</td><td class="memItemRight"><a class="el" href="#aedf6e3a9a150643694e846c8d01d6840">sq</a></td></tr>
+<tr class="memdesc:aedf6e3a9a150643694e846c8d01d6840"><td class="mdescLeft">&#160;</td><td class="mdescRight">These fields allow specifying the memory buffers for the submission and/or completion queues.  <br /></td></tr>
+<tr class="memitem:"><td class="memItemLeft anon"><a id="ab11812636d67264b076b48e1b56b9a6c" name="ab11812636d67264b076b48e1b56b9a6c"></a>
+struct {&#160;</td><td class="memItemRight"></td></tr>
+<tr class="memitem:a1d08d06fd314927669568d6898f8cef6" id="r_a1d08d06fd314927669568d6898f8cef6"><td class="memItemLeft anon">&#160;&#160;&#160;struct <a class="el" href="structspdk__nvme__cpl.html">spdk_nvme_cpl</a> *&#160;&#160;&#160;<a class="el" href="#adbd6f687ad6a315dd4a25d5947f52bd7">vaddr</a>&#160;</td><td class="memItemRight"></td></tr>
+<tr class="memitem:ab34d1ba49869958d3b9fb4e2e87293da" id="r_ab34d1ba49869958d3b9fb4e2e87293da"><td class="memItemLeft anon">&#160;&#160;&#160;uint64_t&#160;&#160;&#160;<a class="el" href="#aa3d92d942325f923d4e1622a8522aa38">paddr</a>&#160;</td><td class="memItemRight"></td></tr>
+<tr class="memitem:a5839c2ee3cf87018a32dd5dd798ed067" id="r_a5839c2ee3cf87018a32dd5dd798ed067"><td class="memItemLeft anon">&#160;&#160;&#160;uint64_t&#160;&#160;&#160;<a class="el" href="#a46b4b303a90d96576e8ed2feb216e93b">buffer_size</a>&#160;</td><td class="memItemRight"></td></tr>
+<tr class="memitem:ab11812636d67264b076b48e1b56b9a6c" id="r_ab11812636d67264b076b48e1b56b9a6c"><td class="memItemLeft anonEnd">}&#160;</td><td class="memItemRight"><b>cq</b></td></tr>
+<tr class="memitem:a9de651bfea3d4f53d80c124530062ca5" id="r_a9de651bfea3d4f53d80c124530062ca5"><td class="memItemLeft">bool&#160;</td><td class="memItemRight"><a class="el" href="#a9de651bfea3d4f53d80c124530062ca5">create_only</a></td></tr>
+<tr class="memdesc:a9de651bfea3d4f53d80c124530062ca5"><td class="mdescLeft">&#160;</td><td class="mdescRight">This flag indicates to the alloc_io_qpair function that it should not perform the connect portion on this qpair.  <br /></td></tr>
+<tr class="memitem:a4a1213a3d3d5a83c1654d62449af5bdc" id="r_a4a1213a3d3d5a83c1654d62449af5bdc"><td class="memItemLeft">bool&#160;</td><td class="memItemRight"><a class="el" href="#a4a1213a3d3d5a83c1654d62449af5bdc">async_mode</a></td></tr>
+<tr class="memdesc:a4a1213a3d3d5a83c1654d62449af5bdc"><td class="mdescLeft">&#160;</td><td class="mdescRight">This flag if set to true enables the creation of submission and completion queue asynchronously.  <br /></td></tr>
+<tr class="memitem:ace3c0ae8dc18fbf78eb495c6a7bb2aa5" id="r_ace3c0ae8dc18fbf78eb495c6a7bb2aa5"><td class="memItemLeft">bool&#160;</td><td class="memItemRight"><a class="el" href="#ace3c0ae8dc18fbf78eb495c6a7bb2aa5">disable_pcie_sgl_merge</a></td></tr>
+<tr class="memdesc:ace3c0ae8dc18fbf78eb495c6a7bb2aa5"><td class="mdescLeft">&#160;</td><td class="mdescRight">This flag if set to true disables the merging of physically contiguous SGL elements.  <br /></td></tr>
+<tr class="memitem:a8bef830b51ef7518c65dbbcf7c0be398" id="r_a8bef830b51ef7518c65dbbcf7c0be398"><td class="memItemLeft">uint8_t&#160;</td><td class="memItemRight"><a class="el" href="#a8bef830b51ef7518c65dbbcf7c0be398">reserved67</a> [5]</td></tr>
+<tr class="memitem:aec580676efc2aab7586d78b26819b794" id="r_aec580676efc2aab7586d78b26819b794"><td class="memItemLeft">size_t&#160;</td><td class="memItemRight"><a class="el" href="#aec580676efc2aab7586d78b26819b794">opts_size</a></td></tr>
+<tr class="memdesc:aec580676efc2aab7586d78b26819b794"><td class="mdescLeft">&#160;</td><td class="mdescRight">The size of <a class="el" href="structspdk__nvme__io__qpair__opts.html" title="NVMe I/O queue pair initialization options.">spdk_nvme_io_qpair_opts</a> according to the caller of this library is used for ABI compatibility.  <br /></td></tr>
+</table>
+<a name="details" id="details"></a><h2 id="header-details" class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>NVMe I/O queue pair initialization options. </p>
+<p>These options may be passed to <a class="el" href="nvme_8h.html#a69f3af06e6227881ce3d9182da9bc0d0" title="Allocate an I/O queue pair (submission and completion queue).">spdk_nvme_ctrlr_alloc_io_qpair()</a> to configure queue pair options at queue creation time.</p>
+<p>The user may retrieve the default I/O queue pair creation options for a controller using <a class="el" href="nvme_8h.html#a6964d09dc51882fae6f2a7cf94afc741" title="Get the default options for I/O qpair creation for a specific NVMe controller.">spdk_nvme_ctrlr_get_default_io_qpair_opts()</a>. </p>
+
+<p class="definition">Definition at line <a class="el" href="nvme_8h_source.html#l01763">1763</a> of file <a class="el" href="nvme_8h_source.html">nvme.h</a>.</p>
+</div><a name="doc-variable-members" id="doc-variable-members"></a><h2 id="header-doc-variable-members" class="groupheader">Field Documentation</h2>
+<a id="a96829ce808fb5d71380ef16391e2aa4f" name="a96829ce808fb5d71380ef16391e2aa4f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a96829ce808fb5d71380ef16391e2aa4f">&#9670;&#160;</a></span>[union]</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">union  { ... }  <a class="el" href="structspdk__nvme__io__qpair__opts.html">spdk_nvme_io_qpair_opts</a></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>When submitting I/O via spdk_nvme_ns_read/write and similar functions, don't immediately submit it to hardware. </p>
+<p>Instead, queue up new commands and submit them to the hardware inside <a class="el" href="nvme_8h.html#aa331d140870e977722bfbb6826524782" title="Process any outstanding completions for I/O submitted on a queue pair.">spdk_nvme_qpair_process_completions()</a>.</p>
+<p>This results in better batching of I/O commands. Often, it is more efficient to submit batches of commands to the underlying hardware than each command individually.</p>
+<p>This only applies to PCIe and RDMA transports.</p>
+<p>The flag was originally named delay_pcie_doorbell. To allow backward compatibility both names are kept in unnamed union. </p>
+
+</div>
+</div>
+<a id="a4a1213a3d3d5a83c1654d62449af5bdc" name="a4a1213a3d3d5a83c1654d62449af5bdc"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4a1213a3d3d5a83c1654d62449af5bdc">&#9670;&#160;</a></span>async_mode</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool spdk_nvme_io_qpair_opts::async_mode</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>This flag if set to true enables the creation of submission and completion queue asynchronously. </p>
+<p>Default mode is set to false to create io qpair synchronously. </p>
+
+<p class="definition">Definition at line <a class="el" href="nvme_8h_source.html#l01849">1849</a> of file <a class="el" href="nvme_8h_source.html">nvme.h</a>.</p>
+
+</div>
+</div>
+<a id="a46b4b303a90d96576e8ed2feb216e93b" name="a46b4b303a90d96576e8ed2feb216e93b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a46b4b303a90d96576e8ed2feb216e93b">&#9670;&#160;</a></span>buffer_size</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">uint64_t spdk_nvme_io_qpair_opts::buffer_size</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="nvme_8h_source.html#l01830">1830</a> of file <a class="el" href="nvme_8h_source.html">nvme.h</a>.</p>
+
+</div>
+</div>
+<a id="a9de651bfea3d4f53d80c124530062ca5" name="a9de651bfea3d4f53d80c124530062ca5"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9de651bfea3d4f53d80c124530062ca5">&#9670;&#160;</a></span>create_only</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool spdk_nvme_io_qpair_opts::create_only</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>This flag indicates to the alloc_io_qpair function that it should not perform the connect portion on this qpair. </p>
+<p>This allows the user to add the qpair to a poll group and then connect it later. </p>
+
+<p class="definition">Definition at line <a class="el" href="nvme_8h_source.html#l01843">1843</a> of file <a class="el" href="nvme_8h_source.html">nvme.h</a>.</p>
+
+</div>
+</div>
+<a id="a0cf0ca9709ef76cd67bcfd4c3601963c" name="a0cf0ca9709ef76cd67bcfd4c3601963c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0cf0ca9709ef76cd67bcfd4c3601963c">&#9670;&#160;</a></span>delay_cmd_submit</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool spdk_nvme_io_qpair_opts::delay_cmd_submit</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="nvme_8h_source.html#l01803">1803</a> of file <a class="el" href="nvme_8h_source.html">nvme.h</a>.</p>
+
+</div>
+</div>
+<a id="a44d81a594ba280300928e7244c2612d0" name="a44d81a594ba280300928e7244c2612d0"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a44d81a594ba280300928e7244c2612d0">&#9670;&#160;</a></span>delay_pcie_doorbell</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool spdk_nvme_io_qpair_opts::delay_pcie_doorbell</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="nvme_8h_source.html#l01804">1804</a> of file <a class="el" href="nvme_8h_source.html">nvme.h</a>.</p>
+
+</div>
+</div>
+<a id="ace3c0ae8dc18fbf78eb495c6a7bb2aa5" name="ace3c0ae8dc18fbf78eb495c6a7bb2aa5"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ace3c0ae8dc18fbf78eb495c6a7bb2aa5">&#9670;&#160;</a></span>disable_pcie_sgl_merge</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool spdk_nvme_io_qpair_opts::disable_pcie_sgl_merge</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>This flag if set to true disables the merging of physically contiguous SGL elements. </p>
+<p>Default mode is set to false to allow merging of physically contiguous SGL elements. </p>
+
+<p class="definition">Definition at line <a class="el" href="nvme_8h_source.html#l01856">1856</a> of file <a class="el" href="nvme_8h_source.html">nvme.h</a>.</p>
+
+</div>
+</div>
+<a id="a4af594ef7f8b7e590662633c926146b4" name="a4af594ef7f8b7e590662633c926146b4"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4af594ef7f8b7e590662633c926146b4">&#9670;&#160;</a></span>io_queue_requests</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">uint32_t spdk_nvme_io_qpair_opts::io_queue_requests</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>The number of requests to allocate for this NVMe I/O queue. </p>
+<p>Overrides <a class="el" href="structspdk__nvme__ctrlr__opts.html#a552e09920f8e8a21243dee31ab05f581" title="The number of requests to allocate for each NVMe I/O queue.">spdk_nvme_ctrlr_opts::io_queue_requests</a>.</p>
+<p>This should be at least as large as io_queue_size.</p>
+<p>A single I/O may allocate more than one request, since splitting may be necessary to conform to the device's maximum transfer size, PRP list compatibility requirements, or driver-assisted striping. </p>
+
+<p class="definition">Definition at line <a class="el" href="nvme_8h_source.html#l01786">1786</a> of file <a class="el" href="nvme_8h_source.html">nvme.h</a>.</p>
+
+</div>
+</div>
+<a id="adbb8aa3f64bc021ea5e9fddec6796341" name="adbb8aa3f64bc021ea5e9fddec6796341"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#adbb8aa3f64bc021ea5e9fddec6796341">&#9670;&#160;</a></span>io_queue_size</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">uint32_t spdk_nvme_io_qpair_opts::io_queue_size</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>The queue depth of this NVMe I/O queue. </p>
+<p>Overrides <a class="el" href="structspdk__nvme__ctrlr__opts.html#a1c91126df78ac91d651dfcdc5236332b" title="The queue depth of each NVMe I/O queue.">spdk_nvme_ctrlr_opts::io_queue_size</a>. </p>
+
+<p class="definition">Definition at line <a class="el" href="nvme_8h_source.html#l01773">1773</a> of file <a class="el" href="nvme_8h_source.html">nvme.h</a>.</p>
+
+</div>
+</div>
+<a id="aec580676efc2aab7586d78b26819b794" name="aec580676efc2aab7586d78b26819b794"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aec580676efc2aab7586d78b26819b794">&#9670;&#160;</a></span>opts_size</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">size_t spdk_nvme_io_qpair_opts::opts_size</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>The size of <a class="el" href="structspdk__nvme__io__qpair__opts.html" title="NVMe I/O queue pair initialization options.">spdk_nvme_io_qpair_opts</a> according to the caller of this library is used for ABI compatibility. </p>
+<p>The library uses this field to know how many fields in this structure are valid. And the library will populate any remaining fields with default values. New added fields should be put at the end of the struct. </p>
+
+<p class="definition">Definition at line <a class="el" href="nvme_8h_source.html#l01867">1867</a> of file <a class="el" href="nvme_8h_source.html">nvme.h</a>.</p>
+
+</div>
+</div>
+<a id="aa3d92d942325f923d4e1622a8522aa38" name="aa3d92d942325f923d4e1622a8522aa38"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa3d92d942325f923d4e1622a8522aa38">&#9670;&#160;</a></span>paddr</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">uint64_t spdk_nvme_io_qpair_opts::paddr</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="nvme_8h_source.html#l01829">1829</a> of file <a class="el" href="nvme_8h_source.html">nvme.h</a>.</p>
+
+</div>
+</div>
+<a id="a9a9ae75991da44a7fbf06a3c82161a6d" name="a9a9ae75991da44a7fbf06a3c82161a6d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9a9ae75991da44a7fbf06a3c82161a6d">&#9670;&#160;</a></span>qprio</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">enum <a class="el" href="nvme__spec_8h.html#ae83a61e254cf9d1fd59376ceedd1b4e6">spdk_nvme_qprio</a> spdk_nvme_io_qpair_opts::qprio</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Queue priority for weighted round robin arbitration. </p>
+<p>If a different arbitration method is in use, pass 0. </p>
+
+<p class="definition">Definition at line <a class="el" href="nvme_8h_source.html#l01768">1768</a> of file <a class="el" href="nvme_8h_source.html">nvme.h</a>.</p>
+
+</div>
+</div>
+<a id="a07d109dbf64b048e0fe692a970d52c81" name="a07d109dbf64b048e0fe692a970d52c81"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a07d109dbf64b048e0fe692a970d52c81">&#9670;&#160;</a></span>reserved13</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">uint8_t spdk_nvme_io_qpair_opts::reserved13[3]</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="nvme_8h_source.html#l01808">1808</a> of file <a class="el" href="nvme_8h_source.html">nvme.h</a>.</p>
+
+</div>
+</div>
+<a id="a8bef830b51ef7518c65dbbcf7c0be398" name="a8bef830b51ef7518c65dbbcf7c0be398"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8bef830b51ef7518c65dbbcf7c0be398">&#9670;&#160;</a></span>reserved67</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">uint8_t spdk_nvme_io_qpair_opts::reserved67[5]</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="nvme_8h_source.html#l01859">1859</a> of file <a class="el" href="nvme_8h_source.html">nvme.h</a>.</p>
+
+</div>
+</div>
+<a id="aedf6e3a9a150643694e846c8d01d6840" name="aedf6e3a9a150643694e846c8d01d6840"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aedf6e3a9a150643694e846c8d01d6840">&#9670;&#160;</a></span>[struct]</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">struct  { ... }  spdk_nvme_io_qpair_opts::sq</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>These fields allow specifying the memory buffers for the submission and/or completion queues. </p>
+<p>By default, vaddr is set to NULL meaning SPDK will allocate the memory to be used. If vaddr is NULL then paddr must be set to 0. If vaddr is non-NULL, and paddr is zero, SPDK derives the physical address for the NVMe device, in this case the memory must be registered. If a paddr value is non-zero, SPDK uses the vaddr and paddr as passed SPDK assumes that the memory passed is both virtually and physically contiguous. If these fields are used, SPDK will NOT impose any restriction on the number of elements in the queues. The buffer sizes are in number of bytes, and are used to confirm that the buffers are large enough to contain the appropriate queue. These fields are only used by PCIe attached NVMe devices. They are presently ignored for other transports. </p>
+
+</div>
+</div>
+<a id="adbd6f687ad6a315dd4a25d5947f52bd7" name="adbd6f687ad6a315dd4a25d5947f52bd7"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#adbd6f687ad6a315dd4a25d5947f52bd7">&#9670;&#160;</a></span>vaddr <span class="overload">[1/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">struct <a class="el" href="structspdk__nvme__cpl.html">spdk_nvme_cpl</a>* spdk_nvme_io_qpair_opts::vaddr</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="nvme_8h_source.html#l01833">1833</a> of file <a class="el" href="nvme_8h_source.html">nvme.h</a>.</p>
+
+</div>
+</div>
+<a id="a7236cf0caff96c7b46bda8c25e85fd01" name="a7236cf0caff96c7b46bda8c25e85fd01"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7236cf0caff96c7b46bda8c25e85fd01">&#9670;&#160;</a></span>vaddr <span class="overload">[2/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">struct <a class="el" href="structspdk__nvme__cmd.html">spdk_nvme_cmd</a>* spdk_nvme_io_qpair_opts::vaddr</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="nvme_8h_source.html#l01828">1828</a> of file <a class="el" href="nvme_8h_source.html">nvme.h</a>.</p>
+
+</div>
+</div>
+<hr/>The documentation for this struct was generated from the following file:<ul>
+<li><a class="el" href="nvme_8h_source.html">nvme.h</a></li>
+</ul>
+</div><!-- contents -->
+</div><!-- doc-content -->
+<div id="page-nav" class="page-nav-panel">
+<div id="page-nav-resize-handle"></div>
+<div id="page-nav-tree">
+<div id="page-nav-contents">
+</div><!-- page-nav-contents -->
+</div><!-- page-nav-tree -->
+</div><!-- page-nav -->
+</div><!-- container -->
+<footer class="footer" id="nav-path">
+  <div class="footer-inner">
+    <div class="footer-copy">
+      <small>Copyright &copy; SPDK a Series of LF Projects, LLC. For web site terms of use, trademark policy, and other
+      project policies please see <a href="https://lfprojects.org">lfprojects.org</a>.</small>
+    </div>
+  </div>
+</footer>
+<script type="text/javascript" src="page_outline.js"></script>
+<script type="text/javascript" src="spdk_nav.js"></script>
+<!-- Doxygen footer suffix – assembled by _build/common.sh:
+     _includes/footer.html (shared) + theme scripts (from spdk) + this file.
+     Theme scripts are extracted from spdk/doc/theme/footer.html at build
+     time so the script list is maintained in a single place. -->
+</body>
+</html>

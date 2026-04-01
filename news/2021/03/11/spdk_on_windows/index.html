@@ -1,0 +1,217 @@
+<!doctype html>
+<html lang="en">
+  <head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="The Storage Performance Development Kit (SPDK) provides a set of tools and libraries for writing high performance, scalable, user-mode storage applications. It achieves high performance by moving all of the necessary drivers into userspace and operating in a polled mode instead of relying on interrupts, which avoids kernel context switches and eliminates interrupt handling overhead.
+">
+  <meta name="author" content="Benjamin Walker">
+
+  <title>SPDK on Windows (Experimental)</title>
+
+  <link rel="icon" type="image/svg+xml" href="/spdk.github.io/assets/img/spdk.svg">
+  <link rel="icon" href="/spdk.github.io/assets/favicon.ico" sizes="32x32">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:400,700,900" type="text/css">
+  <link rel="stylesheet" href="/spdk.github.io/assets/css/spdk.css">
+
+  <link href="/spdk.github.io/feed.xml" type="application/atom+xml" rel="alternate" title="Atom Feed">
+</head>
+
+
+  <body>
+    <nav class="navbar">
+  <a class="navbar-brand" href="/spdk.github.io/" aria-label="SPDK">
+    <img src="/spdk.github.io/assets/img/spdk.svg" width="36" height="36" alt="Storage Performance Development Kit">
+  </a>
+  <div class="navbar-nav">
+    <a class="nav-link header-link" href="/spdk.github.io/doc/releases.html">download</a>
+    <a class="nav-link header-link" href="/spdk.github.io/doc/">documentation</a>
+    <a class="nav-link header-link" href="/spdk.github.io/doc/contributing.html">development</a>
+    <a class="nav-link header-link" href="/spdk.github.io/doc/ci_tools.html">CI status</a>
+    <a class="nav-link header-link" href="/spdk.github.io/community/">community</a>
+    <a class="nav-link header-link" href="/spdk.github.io/blog/">Blog</a>
+    <a class="nav-link header-link" href="https://github.com/orgs/spdk/projects/5">Roadmap</a>
+    <a class="nav-link header-link" href="/spdk.github.io/news/">News</a>
+  </div>
+  <div class="navbar-end">
+    <a class="nav-link header-link" href="https://github.com/spdk/spdk" aria-label="GitHub">
+      <svg xmlns="http://www.w3.org/2000/svg" class="navbar-nav-svg" aria-hidden="true"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
+    </a>
+    <a id="cn_lang_btn" href="/spdk.github.io/cn/doc/" class="nav-link header-link">中文</a>
+  </div>
+</nav>
+<script>
+(function() {
+    var p = location.pathname, best = null, bLen = 0;
+    document.querySelectorAll('.header-link[href]').forEach(function(a) {
+        var raw = a.getAttribute('href');
+        if (!raw) return;
+        try { var u = new URL(raw, location.href); } catch(e) { return; }
+        if (u.origin !== location.origin) return;
+        var h = u.pathname;
+        if (h === '/') return;
+        var ok = h.endsWith('.html') ? p === h : p.indexOf(h) === 0;
+        if (ok && h.length > bLen) { bLen = h.length; best = a; }
+    });
+    if (best) best.classList.add('active');
+})();
+</script>
+
+
+    <div class="page-content">
+  <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+  <header class="post-header">
+
+    <div class="page-header">
+      <h1>SPDK on Windows (Experimental)</h1>
+    </div>
+
+    <p class="post-meta">
+      <time datetime="2021-03-11T00:00:00+01:00" itemprop="datePublished">
+        Mar 11, 2021
+      </time>
+      
+      •
+      <span itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <span itemprop="name">Nick Connolly</span>
+      </span>
+      
+    </p>
+  </header>
+
+  <div class="content" itemprop="articleBody"><p>Yes, it <em>really does</em> say Windows and SPDK in the same sentence!
+It is now possible to experiment with SPDK on Windows.</p>
+
+<h2 id="introduction">Introduction</h2>
+
+<p>In a typical Data Centre, a significant percentage of the servers will
+be running Microsoft Windows. This represents a huge, untapped opportunity
+to extend the deployment of SPDK! Until now, it has been impossible to run
+SPDK-based applications on Windows because SPDK uses POSIX APIs. To address
+this, a simple POSIX emulation layer has been introduced to SPDK’s main
+branch for use on Windows, enabling cross-compilation with MinGW.</p>
+
+<p>What value does this add? A few potential use cases include:</p>
+
+<ul>
+  <li>Providing access to storage via a native NVMe-oF initiator.<br />
+Windows doesn’t have a baked-in driver and there aren’t any software only solutions available.</li>
+  <li>Delivering fast access to NVMe storage, avoiding kernel bottlenecks.</li>
+  <li>Constructing iSCSI and NVMF storage targets.</li>
+  <li>Integration into environments running Windows Containers.</li>
+</ul>
+
+<p>So, how has this been achieved?</p>
+
+<h2 id="portability-improvements">Portability Improvements</h2>
+
+<p>SPDK is intended to be portable to different platforms, but by focusing
+on Linux and FreeBSD a few minor assumptions had crept into the code.
+For example:</p>
+
+<ul>
+  <li>On Windows a ‘long’ is 32-bits whereas on Linux and FreeBSD it is 64-bits.
+Some assignments and casts needed to be changed and printf has to use
+ PRI64x to print 64-bit values.</li>
+  <li>Bitfields are handled differently if adjacent definitions
+have a different basic type.</li>
+  <li>A POSIX mutex must be initialized before use.</li>
+</ul>
+
+<p>It is a testimony to the high quality of the SPDK code that so few changes
+were required.</p>
+
+<h2 id="windows-platform-development-kit">Windows Platform Development Kit</h2>
+
+<p><a href="https://mayadata.io/">MayaData</a> has started a new project called the
+<a href="https://wpdk.github.io">Windows Platform Development Kit (WPDK)</a>
+to provide the POSIX functionality needed to run SPDK on Windows.
+WPDK implements a set of headers and a lightweight library specifically
+tailored to meet the needs of SPDK.</p>
+
+<p>The scope of the project is limited to SPDK support. Unlike Cygwin, it
+is not intended to be a generic POSIX emulation library. Functionality is
+mapped as closely as possible to existing Windows semantics with minimum
+emulation. It is intended to be a production quality layer that runs
+as native code, with no surprises, that can be tested independently.</p>
+
+<p>Supporting packages such as <em>libcunit</em>, which are required to build SPDK,
+are included to simplify the use of <a href="https://wpdk.github.io">WPDK</a>.</p>
+
+<h2 id="makefile-changes">Makefile Changes</h2>
+
+<p>The SPDK makefiles have been extended with a few strategic changes to:</p>
+
+<ul>
+  <li>Incorporate WPDK into the build in much the same way as DPDK (‘–with-wpdk=&lt;dir&gt;’).</li>
+  <li>Produce executables that end in ‘.exe’ as required by Windows.</li>
+  <li>Handle specific attributes of MinGW such as enforcing ‘-mstack-protector-guard=global’
+to avoid a stack protection bug.</li>
+</ul>
+
+<h2 id="current-status">Current Status</h2>
+
+<p>The project is currently at an early experimental stage:</p>
+
+<ul>
+  <li>All of the SPDK source compiles, apart from spdk_top which requires libcurses.</li>
+  <li>All of the SPDK Unit Tests pass.</li>
+  <li>The iSCSI target can serve storage.</li>
+  <li>The NVMe over TCP target can serve storage.</li>
+  <li>The SPDK stack can attach to a physical NVMe disk and issue I/O.</li>
+  <li>Unit tests exist for the majority of the WPDK functionality.</li>
+</ul>
+
+<h2 id="future-direction">Future Direction</h2>
+
+<p>The intent is to pursue the project to production quality, fully
+integrated into the SPDK CI and Test environment.</p>
+
+<h2 id="getting-started">Getting Started</h2>
+
+<p>A ‘Getting Started’ guide is available:</p>
+
+<ul>
+  <li><a href="https://github.com/wpdk/wpdk/blob/master/doc/build-spdk.md">Building SPDK for Windows</a></li>
+</ul>
+
+<h2 id="acknowledgements">Acknowledgements</h2>
+
+<p>The support and encouragement of the SPDK community has been much appreciated
+and has helped to turn this ‘crazy idea’ into an experimental reality in a
+short timeframe.</p>
+
+<p>The <a href="https://wpdk.github.io">Windows Platform Development Kit</a> has been developed
+and contributed by <a href="https://mayadata.io/">MayaData</a>, the Data Agility company.</p>
+
+<p>Portions of the code are based on work done by the
+<a href="https://www.dpdk.org/">DPDK community</a> to add support for Windows.</p>
+
+<h2 id="contributing">Contributing</h2>
+
+<p>Contributions are welcome and needed! Please head over to the
+<a href="https://github.com/wpdk/wpdk#windows-platform-development-kit">WPDK documentation</a>
+and <a href="https://github.com/wpdk/wpdk">WPDK repository</a> to get started.</p>
+
+<p>Please join the <a href="https://spdk.io/community">SPDK community</a> and tell us how you are using SPDK on Windows.
+For real-time discussions, the SPDK Slack contains a <a href="https://spdk-team.slack.com/archives/C01Q700GPGU">Windows channel</a>.</p>
+
+<p>Happy Experimenting!</p>
+</div>
+</article>
+</div>
+
+
+    <footer class="footer" id="nav-path">
+  <div class="footer-inner">
+    <div class="footer-copy">
+      <small>Copyright &copy; SPDK a Series of LF Projects, LLC. For web site terms of use, trademark policy, and other
+      project policies please see <a href="https://lfprojects.org">lfprojects.org</a>.</small>
+    </div>
+  </div>
+</footer>
+
+
+    
+  </body>
+</html>

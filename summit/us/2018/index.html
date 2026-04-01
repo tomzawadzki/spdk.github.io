@@ -1,0 +1,184 @@
+<!doctype html>
+<html lang="en">
+  <head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="The Storage Performance Development Kit (SPDK) provides a set of tools and libraries for writing high performance, scalable, user-mode storage applications. It achieves high performance by moving all of the necessary drivers into userspace and operating in a polled mode instead of relying on interrupts, which avoids kernel context switches and eliminates interrupt handling overhead.
+">
+  <meta name="author" content="Benjamin Walker">
+
+  <title>2018 SPDK US Summit</title>
+
+  <link rel="icon" type="image/svg+xml" href="/spdk.github.io/assets/img/spdk.svg">
+  <link rel="icon" href="/spdk.github.io/assets/favicon.ico" sizes="32x32">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:400,700,900" type="text/css">
+  <link rel="stylesheet" href="/spdk.github.io/assets/css/spdk.css">
+
+  <link href="/spdk.github.io/feed.xml" type="application/atom+xml" rel="alternate" title="Atom Feed">
+</head>
+
+
+  <body>
+    <nav class="navbar">
+  <a class="navbar-brand" href="/spdk.github.io/" aria-label="SPDK">
+    <img src="/spdk.github.io/assets/img/spdk.svg" width="36" height="36" alt="Storage Performance Development Kit">
+  </a>
+  <div class="navbar-nav">
+    <a class="nav-link header-link" href="/spdk.github.io/doc/releases.html">download</a>
+    <a class="nav-link header-link" href="/spdk.github.io/doc/">documentation</a>
+    <a class="nav-link header-link" href="/spdk.github.io/doc/contributing.html">development</a>
+    <a class="nav-link header-link" href="/spdk.github.io/doc/ci_tools.html">CI status</a>
+    <a class="nav-link header-link" href="/spdk.github.io/community/">community</a>
+    <a class="nav-link header-link" href="/spdk.github.io/blog/">Blog</a>
+    <a class="nav-link header-link" href="https://github.com/orgs/spdk/projects/5">Roadmap</a>
+    <a class="nav-link header-link" href="/spdk.github.io/news/">News</a>
+  </div>
+  <div class="navbar-end">
+    <a class="nav-link header-link" href="https://github.com/spdk/spdk" aria-label="GitHub">
+      <svg xmlns="http://www.w3.org/2000/svg" class="navbar-nav-svg" aria-hidden="true"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
+    </a>
+    <a id="cn_lang_btn" href="/spdk.github.io/cn/doc/" class="nav-link header-link">中文</a>
+  </div>
+</nav>
+<script>
+(function() {
+    var p = location.pathname, best = null, bLen = 0;
+    document.querySelectorAll('.header-link[href]').forEach(function(a) {
+        var raw = a.getAttribute('href');
+        if (!raw) return;
+        try { var u = new URL(raw, location.href); } catch(e) { return; }
+        if (u.origin !== location.origin) return;
+        var h = u.pathname;
+        if (h === '/') return;
+        var ok = h.endsWith('.html') ? p === h : p.indexOf(h) === 0;
+        if (ok && h.length > bLen) { bLen = h.length; best = a; }
+    });
+    if (best) best.classList.add('active');
+})();
+</script>
+
+
+    
+<div class="page-content">
+  <div class="page-header">
+    <h1>2018 SPDK US Summit</h1>
+  </div>
+  <div class="content"><div class="well">
+<p>
+2018 Storage Performance Development Kit (SPDK) Summit<br />
+May 15th-16th, 2018<br />
+</p>
+</div>
+
+<h1 id="presentations">Presentations</h1>
+
+<h2 id="day-1">Day 1</h2>
+
+<p><strong>Keynote: SPDK: Delivering Greater Impact for the Data Centric Era</strong> <br />
+Jennifer Huffstetler, Intel <br />
+<a href="https://review.spdk.io/download/events/2018-summit/day1_01_Jenniferkeynote.pdf">Presentation (PDF)</a>,
+<a href="https://www.youtube.com/watch?v=1D3TFbE-7xQ">Video (YouTube)</a></p>
+
+<p><strong>Storage Performance Development Kit State of the Project</strong> <br />
+Jim Harris, Intel <br />
+<a href="https://review.spdk.io/download/events/2018-summit/day1_02_HarrisStateoftheProject.pdf">Presentation (PDF)</a>,
+<a href="https://www.youtube.com/watch?v=6eVmmZVVt00">Video (YouTube)</a></p>
+
+<p><strong>SPDK and Nutanix AHV: Minimizing the Virtualization Overhead</strong> <br />
+Felipe Franciosi, Nutanix <br />
+<a href="https://review.spdk.io/download/events/2018-summit/day1_03_FelipeSPDKandAHV.pdf">Presentation (PDF)</a>,
+<a href="https://www.youtube.com/watch?v=659KIHfdLPQ">Video (YouTube)</a></p>
+
+<p><strong>Vhost-NVMe: A New Virtualization Solution to Accelerate Guest NVMe IOs</strong> <br />
+Changpeng Liu, Intel <br />
+<a href="https://review.spdk.io/download/events/2018-summit/day1_04_LiuVhostNVME.pdf">Presentation (PDF)</a>,
+<a href="https://www.youtube.com/watch?v=y2vXN10AveM">Video (YouTube)</a></p>
+
+<p><strong>Supporting SPDK in Oracle RDBMS</strong> <br />
+Akshay Shah, Oracle <br />
+Bang Nguyen, Oracle <br />
+<a href="https://review.spdk.io/download/events/2018-summit/day1_05_AkshayOracle.pdf">Presentation (PDF)</a>,
+<a href="https://www.youtube.com/watch?v=ZdK6jP5maD8">Video (YouTube)</a></p>
+
+<p><strong>NVMe over Fabrics: Scaling Up</strong> <br />
+Ben Walker, Intel <br />
+<a href="https://review.spdk.io/download/events/2018-summit/day1_06_WalkerNVMeoF.pdf">Presentation (PDF)</a>,
+<a href="https://www.youtube.com/watch?v=U6PvYVDBdEk">Video (YouTube)</a></p>
+
+<p><strong>Integrating VPP and SPDK: TCP in Userspace</strong> <br />
+Ed Warnicke, Cisco <br />
+Tomasz Zawadzki, Intel <br />
+<a href="https://review.spdk.io/download/events/2018-summit/day1_07_WarnickeZawadzkiVPP.pdf">Presentation (PDF)</a>,
+<a href="https://www.youtube.com/watch?v=m6RSZAi-YQw">Video (YouTube)</a></p>
+
+<p><strong>Alibaba: Using SPDK in Production</strong> <br />
+Ming Lin, Alibaba <br />
+Sheng Qiu, Alibaba <br />
+<a href="https://review.spdk.io/download/events/2018-summit/day1_08_ShengMingAlibaba.pdf">Presentation (PDF)</a>,
+<a href="https://www.youtube.com/watch?v=AbySTDtEH-o">Video (YouTube)</a></p>
+
+<p><strong>Open Channel SSDs: Extending SPDK’s Reach</strong> <br />
+Jim Harris, Intel <br />
+John Rudelic, Intel <br />
+<a href="https://review.spdk.io/download/events/2018-summit/day1_09_HarrisRudelicOpenChannelSSD.pdf">Presentation (PDF)</a>,
+<a href="https://www.youtube.com/watch?v=-6H2tJzpDTI">Video (YouTube)</a></p>
+
+<p><strong>SPDK &amp; PMDK: Two Open Source Development Kits for The Evolving NVM Landscape</strong> <br />
+Paul Luse, Intel <br />
+<a href="https://review.spdk.io/download/events/2018-summit/day1_10_LusePMDKSPDK.pdf">Presentation (PDF)</a>,
+<a href="https://www.youtube.com/watch?v=JE0tO6eK39k">Video (YouTube)</a></p>
+
+<p><strong>Disaggregated Storage and Role of Storage Stack</strong> <br />
+Manoj Wadekar, eBay <br />
+<a href="https://review.spdk.io/download/events/2018-summit/day1_11_ManojWadekarDisaggStorageandSPDK.pdf">Presentation (PDF)</a></p>
+
+<p><strong>Virtual bdevs: The Secret to Customizing SPDK</strong> <br />
+Paul Luse, Intel <br />
+<a href="https://review.spdk.io/download/events/2018-summit/day1_12_LuseVBDEVS.pdf">Presentation (PDF)</a>,
+<a href="https://www.youtube.com/watch?v=s7UE0k2QUtg">Video (YouTube)</a></p>
+
+<h2 id="day-2">Day 2</h2>
+
+<p><strong>SPDK Logical Volumes: It Slices, It Dices</strong> <br />
+Daniel Verkamp, Intel <br />
+<a href="https://review.spdk.io/download/events/2018-summit/day2_01_VerkampLogicalVolumes.pdf">Presentation (PDF)</a>,
+<a href="https://www.youtube.com/watch?v=1cWYKYyU1Xg">Video (YouTube)</a></p>
+
+<p><strong>QoS: IOPS Rate Limiting on SPDK Common Bdev and vBdev</strong> <br />
+Gang Cao, Intel <br />
+<a href="https://review.spdk.io/download/events/2018-summit/day2_02_CaoIOPSRateLimiting.pdf">Presentation (PDF)</a>,
+<a href="https://www.youtube.com/watch?v=HptY1s6b5TE">Video (YouTube)</a></p>
+
+<p><strong>A Match Made in Userspace Heaven: ISA-L, DPDK Framework, &amp; SPDK Virtual Block Devices</strong> <br />
+Prital Shah, Intel <br />
+Greg Tucker, Intel <br />
+<a href="https://review.spdk.io/download/events/2018-summit/day2_03_TuckerShah20ISA-LDPDKFWSPDKVBDEV.pdf">Presentation (PDF)</a>,
+<a href="https://www.youtube.com/watch?v=5y6EaCnGF5c">Video (YouTube)</a></p>
+
+<p><strong>SPDK Lab: Supercharge Your Application With Virtual Bdevs. Vroom!</strong> <br />
+John Kariuki, Intel <br />
+<a href="https://review.spdk.io/download/events/2018-summit/day2_04_KariukiSPDKLab.pdf">Presentation (PDF)</a>,
+<a href="https://www.youtube.com/watch?v=8ZJuMBwigXg">Video (YouTube)</a></p>
+
+<p><strong>APIs, ABIs, and Packaging</strong> <br />
+Ben Walker, Intel <br />
+<a href="https://review.spdk.io/download/events/2018-summit/day2_05_WalkerAPI-ABI.pdf">Presentation (PDF)</a>,
+<a href="https://www.youtube.com/watch?v=-r9VmltQgAI">Video (YouTube)</a></p>
+</div>
+</div>
+
+
+
+    <footer class="footer" id="nav-path">
+  <div class="footer-inner">
+    <div class="footer-copy">
+      <small>Copyright &copy; SPDK a Series of LF Projects, LLC. For web site terms of use, trademark policy, and other
+      project policies please see <a href="https://lfprojects.org">lfprojects.org</a>.</small>
+    </div>
+  </div>
+</footer>
+
+
+    
+  </body>
+</html>

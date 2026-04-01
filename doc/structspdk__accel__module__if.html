@@ -1,0 +1,528 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<meta name="generator" content="Doxygen 1.16.1">
+	<title>SPDK: spdk_accel_module_if Struct Reference</title>
+	<script type="text/javascript" src="jquery.js"></script>
+	<script type="text/javascript" src="dynsections.js"></script>
+	<script type="text/javascript" src="clipboard.js"></script>
+	<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
+<script type="text/javascript" src="cookie.js"></script>
+	<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<script type="text/javascript">
+  $(function() { init_search(); });
+</script>
+	<link rel="icon" type="image/svg+xml" href="../assets/img/spdk.svg">
+	<link rel="icon" href="../assets/favicon.ico" sizes="32x32">
+	<link href="doxygen.css" rel="stylesheet" type="text/css">
+	<script>(function(){var k='doxygen_width',w,bw=6;if(window.chrome){w=localStorage.getItem(k);if(!w){w='350';localStorage.setItem(k,w)}}else{var m=document.cookie.match(new RegExp(k+'=(\\d+)'));w=m?m[1]:null;if(!w){w='350';document.cookie=k+'=350;SameSite=Lax;path=/'}}document.documentElement.style.setProperty('--sn-w',(parseInt(w)+bw)+'px')})()</script>
+	<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:400,700,900" type="text/css">
+	<link href="spdk.css" rel="stylesheet" type="text/css"/>
+	<link href="../assets/css/spdk.css" rel="stylesheet" type="text/css">
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<nav class="navbar">
+  <a class="navbar-brand" href="../" aria-label="SPDK">
+    <img src="../assets/img/spdk.svg" width="36" height="36" alt="Storage Performance Development Kit">
+  </a>
+  <div class="navbar-nav">
+    <a class="nav-link header-link" href="../doc/releases.html">download</a>
+    <a class="nav-link header-link" href="../doc/">documentation</a>
+    <a class="nav-link header-link" href="../doc/contributing.html">development</a>
+    <a class="nav-link header-link" href="../doc/ci_tools.html">CI status</a>
+    <a class="nav-link header-link" href="../community/">community</a>
+    <a class="nav-link header-link" href="../blog/">Blog</a>
+    <a class="nav-link header-link" href="https://github.com/orgs/spdk/projects/5">Roadmap</a>
+    <a class="nav-link header-link" href="../news/">News</a>
+  </div>
+  <div class="navbar-end">
+    <a class="nav-link header-link" href="https://github.com/spdk/spdk" aria-label="GitHub">
+      <svg xmlns="http://www.w3.org/2000/svg" class="navbar-nav-svg" aria-hidden="true"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
+    </a>
+    <a id="cn_lang_btn" href="../cn/doc/" class="nav-link header-link">中文</a>
+  </div>
+</nav>
+<script>
+(function() {
+    var p = location.pathname, best = null, bLen = 0;
+    document.querySelectorAll('.header-link[href]').forEach(function(a) {
+        var raw = a.getAttribute('href');
+        if (!raw) return;
+        try { var u = new URL(raw, location.href); } catch(e) { return; }
+        if (u.origin !== location.origin) return;
+        var h = u.pathname;
+        if (h === '/') return;
+        var ok = h.endsWith('.html') ? p === h : p.indexOf(h) === 0;
+        if (ok && h.length > bLen) { bLen = h.length; best = a; }
+    });
+    if (best) best.classList.add('active');
+})();
+</script>
+<div id="doxygen-searchbox">        <div id="MSearchBox" class="MSearchBoxInactive">
+        <span class="left">
+          <span id="MSearchSelect" class="search-icon" onmouseover="return searchBox.OnSearchSelectShow()" onmouseout="return searchBox.OnSearchSelectHide()"><span class="search-icon-dropdown"></span></span>
+          <input type="text" id="MSearchField" value="" placeholder="Search" accesskey="S"
+               onfocus="searchBox.OnSearchFieldFocus(true)" 
+               onblur="searchBox.OnSearchFieldFocus(false)" 
+               onkeyup="searchBox.OnSearchFieldChange(event)"/>
+          </span><span class="right">
+            <a id="MSearchClose" href="javascript:searchBox.CloseResultsWindow()"><div id="MSearchCloseImg" class="close-icon"></div></a>
+          </span>
+        </div>
+</div>
+<!-- Generated by Doxygen 1.16.1 -->
+<script type="text/javascript">
+var searchBox = new SearchBox("searchBox", "search/",'.html');
+</script>
+<script type="text/javascript">
+$(function() { codefold.init(); });
+</script>
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+$(function(){initNavTree('structspdk__accel__module__if.html','',''); });
+</script>
+<div id="container">
+<div id="doc-content">
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">Loading...</div>
+<div class="SRStatus" id="Searching">Searching...</div>
+<div class="SRStatus" id="NoMatches">No Matches</div>
+</div>
+</div>
+</div>
+</div>
+
+<div class="header">
+  <div class="headertitle"><div class="title">spdk_accel_module_if Struct Reference</div></div>
+</div><!--header-->
+<div class="contents">
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 id="header-pub-methods" class="groupheader"><a id="pub-methods" name="pub-methods"></a>
+Public Member Functions</h2></td></tr>
+<tr class="memitem:a1de9db47e92a6c6321f02182cf75a21f" id="r_a1de9db47e92a6c6321f02182cf75a21f"><td class="memItemLeft"><a id="a1de9db47e92a6c6321f02182cf75a21f" name="a1de9db47e92a6c6321f02182cf75a21f"></a>
+&#160;</td><td class="memItemRight"><b>TAILQ_ENTRY</b> (<a class="el" href="structspdk__accel__module__if.html">spdk_accel_module_if</a>) tailq</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 id="header-pub-attribs" class="groupheader"><a id="pub-attribs" name="pub-attribs"></a>
+Data Fields</h2></td></tr>
+<tr class="memitem:ae918a45a62d5578f40ff7f90c88de1c6" id="r_ae918a45a62d5578f40ff7f90c88de1c6"><td class="memItemLeft">const char *&#160;</td><td class="memItemRight"><a class="el" href="#ae918a45a62d5578f40ff7f90c88de1c6">name</a></td></tr>
+<tr class="memdesc:ae918a45a62d5578f40ff7f90c88de1c6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Name of the module.  <br /></td></tr>
+<tr class="memitem:abcfd6469c7d697bfe2bc6352a2f1bac1" id="r_abcfd6469c7d697bfe2bc6352a2f1bac1"><td class="memItemLeft">int&#160;</td><td class="memItemRight"><a class="el" href="#abcfd6469c7d697bfe2bc6352a2f1bac1">priority</a></td></tr>
+<tr class="memdesc:abcfd6469c7d697bfe2bc6352a2f1bac1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Priority of the module.  <br /></td></tr>
+<tr class="memitem:a67ea670c5044c1201533a7e23b81c8b3" id="r_a67ea670c5044c1201533a7e23b81c8b3"><td class="memItemLeft">int(*&#160;</td><td class="memItemRight"><a class="el" href="#a67ea670c5044c1201533a7e23b81c8b3">module_init</a> )(void)</td></tr>
+<tr class="memdesc:a67ea670c5044c1201533a7e23b81c8b3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Initialization function for the module.  <br /></td></tr>
+<tr class="memitem:a3cba48f71887d03cb0b350a06e56ecf4" id="r_a3cba48f71887d03cb0b350a06e56ecf4"><td class="memItemLeft">void(*&#160;</td><td class="memItemRight"><a class="el" href="#a3cba48f71887d03cb0b350a06e56ecf4">module_fini</a> )(void *ctx)</td></tr>
+<tr class="memdesc:a3cba48f71887d03cb0b350a06e56ecf4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Finish function for the module.  <br /></td></tr>
+<tr class="memitem:aa935af52f46cb0aee6f15b6bb8c68726" id="r_aa935af52f46cb0aee6f15b6bb8c68726"><td class="memItemLeft">void(*&#160;</td><td class="memItemRight"><a class="el" href="#aa935af52f46cb0aee6f15b6bb8c68726">write_config_json</a> )(struct spdk_json_write_ctx *w)</td></tr>
+<tr class="memdesc:aa935af52f46cb0aee6f15b6bb8c68726"><td class="mdescLeft">&#160;</td><td class="mdescRight">Write Acceleration module configuration into provided JSON context.  <br /></td></tr>
+<tr class="memitem:acdfb086fb9aeb6e678d0e59dd4757935" id="r_acdfb086fb9aeb6e678d0e59dd4757935"><td class="memItemLeft">size_t(*&#160;</td><td class="memItemRight"><a class="el" href="#acdfb086fb9aeb6e678d0e59dd4757935">get_ctx_size</a> )(void)</td></tr>
+<tr class="memdesc:acdfb086fb9aeb6e678d0e59dd4757935"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the allocation size required for the modules to use for context.  <br /></td></tr>
+<tr class="memitem:af8472800fed11f279f6c1e96ac48a122" id="r_af8472800fed11f279f6c1e96ac48a122"><td class="memItemLeft">bool(*&#160;</td><td class="memItemRight"><a class="el" href="#af8472800fed11f279f6c1e96ac48a122">supports_opcode</a> )(enum spdk_accel_opcode)</td></tr>
+<tr class="memdesc:af8472800fed11f279f6c1e96ac48a122"><td class="mdescLeft">&#160;</td><td class="mdescRight">Reports whether the module supports a given operation.  <br /></td></tr>
+<tr class="memitem:af04dd19cbb86d9ce7cb7b94be00f2165" id="r_af04dd19cbb86d9ce7cb7b94be00f2165"><td class="memItemLeft">struct spdk_io_channel *(*&#160;</td><td class="memItemRight"><a class="el" href="#af04dd19cbb86d9ce7cb7b94be00f2165">get_io_channel</a> )(void)</td></tr>
+<tr class="memdesc:af04dd19cbb86d9ce7cb7b94be00f2165"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns module's IO channel on the calling thread.  <br /></td></tr>
+<tr class="memitem:a5ec7cb8d7de6948a45df39e3a486f976" id="r_a5ec7cb8d7de6948a45df39e3a486f976"><td class="memItemLeft">int(*&#160;</td><td class="memItemRight"><a class="el" href="#a5ec7cb8d7de6948a45df39e3a486f976">submit_tasks</a> )(struct spdk_io_channel *ch, struct <a class="el" href="structspdk__accel__task.html">spdk_accel_task</a> *accel_task)</td></tr>
+<tr class="memdesc:a5ec7cb8d7de6948a45df39e3a486f976"><td class="mdescLeft">&#160;</td><td class="mdescRight">Submit tasks to be executed by the module.  <br /></td></tr>
+<tr class="memitem:a05ac29ef44c9ad2dd81840d8e1a031f7" id="r_a05ac29ef44c9ad2dd81840d8e1a031f7"><td class="memItemLeft">int(*&#160;</td><td class="memItemRight"><a class="el" href="#a05ac29ef44c9ad2dd81840d8e1a031f7">crypto_key_init</a> )(struct <a class="el" href="structspdk__accel__crypto__key.html">spdk_accel_crypto_key</a> *key)</td></tr>
+<tr class="memdesc:a05ac29ef44c9ad2dd81840d8e1a031f7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Create crypto key function.  <br /></td></tr>
+<tr class="memitem:a78368381e6a26d59ddfc2b363de581fc" id="r_a78368381e6a26d59ddfc2b363de581fc"><td class="memItemLeft">void(*&#160;</td><td class="memItemRight"><a class="el" href="#a78368381e6a26d59ddfc2b363de581fc">crypto_key_deinit</a> )(struct <a class="el" href="structspdk__accel__crypto__key.html">spdk_accel_crypto_key</a> *key)</td></tr>
+<tr class="memdesc:a78368381e6a26d59ddfc2b363de581fc"><td class="mdescLeft">&#160;</td><td class="mdescRight">Free any resources associated with <span class="tt">key</span> allocated during <span class="tt"><a class="el" href="#a05ac29ef44c9ad2dd81840d8e1a031f7" title="Create crypto key function.">crypto_key_init()</a></span>.  <br /></td></tr>
+<tr class="memitem:aa773f55e3f32077e98932f6f67fca1f3" id="r_aa773f55e3f32077e98932f6f67fca1f3"><td class="memItemLeft">bool(*&#160;</td><td class="memItemRight"><a class="el" href="#aa773f55e3f32077e98932f6f67fca1f3">crypto_supports_tweak_mode</a> )(enum spdk_accel_crypto_tweak_mode tweak_mode)</td></tr>
+<tr class="memdesc:aa773f55e3f32077e98932f6f67fca1f3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns true if given tweak mode is supported.  <br /></td></tr>
+<tr class="memitem:ae6dfa91acb521f8605575ba431e5adb0" id="r_ae6dfa91acb521f8605575ba431e5adb0"><td class="memItemLeft">bool(*&#160;</td><td class="memItemRight"><a class="el" href="#ae6dfa91acb521f8605575ba431e5adb0">crypto_supports_cipher</a> )(enum spdk_accel_cipher cipher, size_t key_size)</td></tr>
+<tr class="memdesc:ae6dfa91acb521f8605575ba431e5adb0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns true if given pair (cipher, key size) is supported.  <br /></td></tr>
+<tr class="memitem:acbb53b2b5b1e149cf86ea7518c8a96b7" id="r_acbb53b2b5b1e149cf86ea7518c8a96b7"><td class="memItemLeft">bool(*&#160;</td><td class="memItemRight"><a class="el" href="#acbb53b2b5b1e149cf86ea7518c8a96b7">compress_supports_algo</a> )(enum spdk_accel_comp_algo algo)</td></tr>
+<tr class="memdesc:acbb53b2b5b1e149cf86ea7518c8a96b7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Return true if compresssion algo is supported, false otherwise.  <br /></td></tr>
+<tr class="memitem:a193ec0c0ef5133a90ae43296025bff61" id="r_a193ec0c0ef5133a90ae43296025bff61"><td class="memItemLeft">int(*&#160;</td><td class="memItemRight"><a class="el" href="#a193ec0c0ef5133a90ae43296025bff61">get_compress_level_range</a> )(enum spdk_accel_comp_algo algo, uint32_t *min_level, uint32_t *max_level)</td></tr>
+<tr class="memdesc:a193ec0c0ef5133a90ae43296025bff61"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the lowest and highest levels of the specified algorithm.  <br /></td></tr>
+<tr class="memitem:add80c515e6283f7dfbc89e203b1cf45c" id="r_add80c515e6283f7dfbc89e203b1cf45c"><td class="memItemLeft">int(*&#160;</td><td class="memItemRight"><a class="el" href="#add80c515e6283f7dfbc89e203b1cf45c">get_memory_domains</a> )(struct spdk_memory_domain **domains, int num_domains)</td></tr>
+<tr class="memdesc:add80c515e6283f7dfbc89e203b1cf45c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns memory domains supported by the module.  <br /></td></tr>
+<tr class="memitem:ae5fb6643626d8ab347d4d4e4fb0cee62" id="r_ae5fb6643626d8ab347d4d4e4fb0cee62"><td class="memItemLeft">int(*&#160;</td><td class="memItemRight"><a class="el" href="#ae5fb6643626d8ab347d4d4e4fb0cee62">get_operation_info</a> )(enum spdk_accel_opcode opcode, const struct <a class="el" href="structspdk__accel__operation__exec__ctx.html">spdk_accel_operation_exec_ctx</a> *ctx, struct <a class="el" href="structspdk__accel__opcode__info.html">spdk_accel_opcode_info</a> *info)</td></tr>
+<tr class="memdesc:ae5fb6643626d8ab347d4d4e4fb0cee62"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns information/constraints for a given operation.  <br /></td></tr>
+</table>
+<a name="details" id="details"></a><h2 id="header-details" class="groupheader">Detailed Description</h2>
+<div class="textblock">
+<p class="definition">Definition at line <a class="el" href="accel__module_8h_source.html#l00168">168</a> of file <a class="el" href="accel__module_8h_source.html">accel_module.h</a>.</p>
+</div><a name="doc-variable-members" id="doc-variable-members"></a><h2 id="header-doc-variable-members" class="groupheader">Field Documentation</h2>
+<a id="acbb53b2b5b1e149cf86ea7518c8a96b7" name="acbb53b2b5b1e149cf86ea7518c8a96b7"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#acbb53b2b5b1e149cf86ea7518c8a96b7">&#9670;&#160;</a></span>compress_supports_algo</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool(* spdk_accel_module_if::compress_supports_algo) (enum spdk_accel_comp_algo algo)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Return true if compresssion algo is supported, false otherwise. </p>
+
+<p class="definition">Definition at line <a class="el" href="accel__module_8h_source.html#l00241">241</a> of file <a class="el" href="accel__module_8h_source.html">accel_module.h</a>.</p>
+
+</div>
+</div>
+<a id="a78368381e6a26d59ddfc2b363de581fc" name="a78368381e6a26d59ddfc2b363de581fc"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a78368381e6a26d59ddfc2b363de581fc">&#9670;&#160;</a></span>crypto_key_deinit</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void(* spdk_accel_module_if::crypto_key_deinit) (struct <a class="el" href="structspdk__accel__crypto__key.html">spdk_accel_crypto_key</a> *key)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Free any resources associated with <span class="tt">key</span> allocated during <span class="tt"><a class="el" href="#a05ac29ef44c9ad2dd81840d8e1a031f7" title="Create crypto key function.">crypto_key_init()</a></span>. </p>
+
+<p class="definition">Definition at line <a class="el" href="accel__module_8h_source.html#l00226">226</a> of file <a class="el" href="accel__module_8h_source.html">accel_module.h</a>.</p>
+
+</div>
+</div>
+<a id="a05ac29ef44c9ad2dd81840d8e1a031f7" name="a05ac29ef44c9ad2dd81840d8e1a031f7"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a05ac29ef44c9ad2dd81840d8e1a031f7">&#9670;&#160;</a></span>crypto_key_init</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int(* spdk_accel_module_if::crypto_key_init) (struct <a class="el" href="structspdk__accel__crypto__key.html">spdk_accel_crypto_key</a> *key)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Create crypto key function. </p>
+<p>Module is responsible to fill all necessary parameters in <b><a class="el" href="structspdk__accel__crypto__key.html">spdk_accel_crypto_key</a></b> structure </p>
+
+<p class="definition">Definition at line <a class="el" href="accel__module_8h_source.html#l00223">223</a> of file <a class="el" href="accel__module_8h_source.html">accel_module.h</a>.</p>
+
+</div>
+</div>
+<a id="ae6dfa91acb521f8605575ba431e5adb0" name="ae6dfa91acb521f8605575ba431e5adb0"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae6dfa91acb521f8605575ba431e5adb0">&#9670;&#160;</a></span>crypto_supports_cipher</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool(* spdk_accel_module_if::crypto_supports_cipher) (enum spdk_accel_cipher cipher, size_t key_size)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Returns true if given pair (cipher, key size) is supported. </p>
+
+<p class="definition">Definition at line <a class="el" href="accel__module_8h_source.html#l00236">236</a> of file <a class="el" href="accel__module_8h_source.html">accel_module.h</a>.</p>
+
+</div>
+</div>
+<a id="aa773f55e3f32077e98932f6f67fca1f3" name="aa773f55e3f32077e98932f6f67fca1f3"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa773f55e3f32077e98932f6f67fca1f3">&#9670;&#160;</a></span>crypto_supports_tweak_mode</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool(* spdk_accel_module_if::crypto_supports_tweak_mode) (enum spdk_accel_crypto_tweak_mode tweak_mode)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Returns true if given tweak mode is supported. </p>
+<p>If module doesn't implement that function it shall support SIMPLE LBA mode. </p>
+
+<p class="definition">Definition at line <a class="el" href="accel__module_8h_source.html#l00231">231</a> of file <a class="el" href="accel__module_8h_source.html">accel_module.h</a>.</p>
+
+</div>
+</div>
+<a id="a193ec0c0ef5133a90ae43296025bff61" name="a193ec0c0ef5133a90ae43296025bff61"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a193ec0c0ef5133a90ae43296025bff61">&#9670;&#160;</a></span>get_compress_level_range</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int(* spdk_accel_module_if::get_compress_level_range) (enum spdk_accel_comp_algo algo, uint32_t *min_level, uint32_t *max_level)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Returns the lowest and highest levels of the specified algorithm. </p>
+
+<p class="definition">Definition at line <a class="el" href="accel__module_8h_source.html#l00246">246</a> of file <a class="el" href="accel__module_8h_source.html">accel_module.h</a>.</p>
+
+</div>
+</div>
+<a id="acdfb086fb9aeb6e678d0e59dd4757935" name="acdfb086fb9aeb6e678d0e59dd4757935"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#acdfb086fb9aeb6e678d0e59dd4757935">&#9670;&#160;</a></span>get_ctx_size</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">size_t(* spdk_accel_module_if::get_ctx_size) (void)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Returns the allocation size required for the modules to use for context. </p>
+
+<p class="definition">Definition at line <a class="el" href="accel__module_8h_source.html#l00204">204</a> of file <a class="el" href="accel__module_8h_source.html">accel_module.h</a>.</p>
+
+</div>
+</div>
+<a id="af04dd19cbb86d9ce7cb7b94be00f2165" name="af04dd19cbb86d9ce7cb7b94be00f2165"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af04dd19cbb86d9ce7cb7b94be00f2165">&#9670;&#160;</a></span>get_io_channel</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">struct spdk_io_channel *(* spdk_accel_module_if::get_io_channel) (void)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Returns module's IO channel on the calling thread. </p>
+
+<p class="definition">Definition at line <a class="el" href="accel__module_8h_source.html#l00207">207</a> of file <a class="el" href="accel__module_8h_source.html">accel_module.h</a>.</p>
+
+</div>
+</div>
+<a id="add80c515e6283f7dfbc89e203b1cf45c" name="add80c515e6283f7dfbc89e203b1cf45c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#add80c515e6283f7dfbc89e203b1cf45c">&#9670;&#160;</a></span>get_memory_domains</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int(* spdk_accel_module_if::get_memory_domains) (struct spdk_memory_domain **domains, int num_domains)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Returns memory domains supported by the module. </p>
+<p>If NULL, the module does not support memory domains. The <span class="tt">domains</span> array can be NULL, in which case this function only returns the number of supported memory domains.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">domains</td><td>Memory domain array. </td></tr>
+    <tr><td class="paramname">num_domains</td><td>Size of the <span class="tt">domains</span> array.</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>Number of supported memory domains. </dd></dl>
+
+<p class="definition">Definition at line <a class="el" href="accel__module_8h_source.html#l00259">259</a> of file <a class="el" href="accel__module_8h_source.html">accel_module.h</a>.</p>
+
+</div>
+</div>
+<a id="ae5fb6643626d8ab347d4d4e4fb0cee62" name="ae5fb6643626d8ab347d4d4e4fb0cee62"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae5fb6643626d8ab347d4d4e4fb0cee62">&#9670;&#160;</a></span>get_operation_info</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int(* spdk_accel_module_if::get_operation_info) (enum spdk_accel_opcode opcode, const struct <a class="el" href="structspdk__accel__operation__exec__ctx.html">spdk_accel_operation_exec_ctx</a> *ctx, struct <a class="el" href="structspdk__accel__opcode__info.html">spdk_accel_opcode_info</a> *info)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Returns information/constraints for a given operation. </p>
+<p>If unimplemented, it is assumed that the module doesn't have any constraints to execute any operation. </p>
+
+<p class="definition">Definition at line <a class="el" href="accel__module_8h_source.html#l00265">265</a> of file <a class="el" href="accel__module_8h_source.html">accel_module.h</a>.</p>
+
+</div>
+</div>
+<a id="a3cba48f71887d03cb0b350a06e56ecf4" name="a3cba48f71887d03cb0b350a06e56ecf4"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3cba48f71887d03cb0b350a06e56ecf4">&#9670;&#160;</a></span>module_fini</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void(* spdk_accel_module_if::module_fini) (void *ctx)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Finish function for the module. </p>
+<p>Called by the application before the application exits to perform any necessary cleanup.</p>
+<p>Modules are not required to define this function. </p>
+
+<p class="definition">Definition at line <a class="el" href="accel__module_8h_source.html#l00198">198</a> of file <a class="el" href="accel__module_8h_source.html">accel_module.h</a>.</p>
+
+</div>
+</div>
+<a id="a67ea670c5044c1201533a7e23b81c8b3" name="a67ea670c5044c1201533a7e23b81c8b3"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a67ea670c5044c1201533a7e23b81c8b3">&#9670;&#160;</a></span>module_init</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int(* spdk_accel_module_if::module_init) (void)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Initialization function for the module. </p>
+<p>Called by the application during startup.</p>
+<p>Return 0 on success or negative error code. If -ENODEV is returned - the module will not be used to handle any operation, but the error will not stop framework initialization.</p>
+<p>Modules are required to define this function. </p>
+
+<p class="definition">Definition at line <a class="el" href="accel__module_8h_source.html#l00190">190</a> of file <a class="el" href="accel__module_8h_source.html">accel_module.h</a>.</p>
+
+</div>
+</div>
+<a id="ae918a45a62d5578f40ff7f90c88de1c6" name="ae918a45a62d5578f40ff7f90c88de1c6"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae918a45a62d5578f40ff7f90c88de1c6">&#9670;&#160;</a></span>name</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">const char* spdk_accel_module_if::name</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Name of the module. </p>
+
+<p class="definition">Definition at line <a class="el" href="accel__module_8h_source.html#l00170">170</a> of file <a class="el" href="accel__module_8h_source.html">accel_module.h</a>.</p>
+
+</div>
+</div>
+<a id="abcfd6469c7d697bfe2bc6352a2f1bac1" name="abcfd6469c7d697bfe2bc6352a2f1bac1"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#abcfd6469c7d697bfe2bc6352a2f1bac1">&#9670;&#160;</a></span>priority</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int spdk_accel_module_if::priority</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Priority of the module. </p>
+<p>It's used to select a module to execute an operation when multiple modules support it. Higher value means higher priority. Software module has a priority of <span class="tt">SPDK_ACCEL_SW_PRIORITY</span>. Of course, this value is only relevant when none of the modules have been explicitly assigned to execute a given operation via <span class="tt"><a class="el" href="accel_8h.html#a040958d2cd363147d686e718edc8a305" title="Override the assignment of an opcode to an module.">spdk_accel_assign_opc()</a></span>. </p>
+
+<p class="definition">Definition at line <a class="el" href="accel__module_8h_source.html#l00179">179</a> of file <a class="el" href="accel__module_8h_source.html">accel_module.h</a>.</p>
+
+</div>
+</div>
+<a id="a5ec7cb8d7de6948a45df39e3a486f976" name="a5ec7cb8d7de6948a45df39e3a486f976"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5ec7cb8d7de6948a45df39e3a486f976">&#9670;&#160;</a></span>submit_tasks</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int(* spdk_accel_module_if::submit_tasks) (struct spdk_io_channel *ch, struct <a class="el" href="structspdk__accel__task.html">spdk_accel_task</a> *accel_task)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Submit tasks to be executed by the module. </p>
+<p>Once a task execution is done, the module is required to complete it using <span class="tt">spdk_accel_task_complete()</span>. <span class="tt">ch</span> is the IO channel obtained by <span class="tt"><a class="el" href="#af04dd19cbb86d9ce7cb7b94be00f2165" title="Returns module&#39;s IO channel on the calling thread.">get_io_channel()</a></span>. </p>
+
+<p class="definition">Definition at line <a class="el" href="accel__module_8h_source.html#l00217">217</a> of file <a class="el" href="accel__module_8h_source.html">accel_module.h</a>.</p>
+
+</div>
+</div>
+<a id="af8472800fed11f279f6c1e96ac48a122" name="af8472800fed11f279f6c1e96ac48a122"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af8472800fed11f279f6c1e96ac48a122">&#9670;&#160;</a></span>supports_opcode</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool(* spdk_accel_module_if::supports_opcode) (enum spdk_accel_opcode)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Reports whether the module supports a given operation. </p>
+
+<p class="definition">Definition at line <a class="el" href="accel__module_8h_source.html#l00207">207</a> of file <a class="el" href="accel__module_8h_source.html">accel_module.h</a>.</p>
+
+</div>
+</div>
+<a id="aa935af52f46cb0aee6f15b6bb8c68726" name="aa935af52f46cb0aee6f15b6bb8c68726"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa935af52f46cb0aee6f15b6bb8c68726">&#9670;&#160;</a></span>write_config_json</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void(* spdk_accel_module_if::write_config_json) (struct spdk_json_write_ctx *w)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Write Acceleration module configuration into provided JSON context. </p>
+
+<p class="definition">Definition at line <a class="el" href="accel__module_8h_source.html#l00201">201</a> of file <a class="el" href="accel__module_8h_source.html">accel_module.h</a>.</p>
+
+</div>
+</div>
+<hr/>The documentation for this struct was generated from the following file:<ul>
+<li><a class="el" href="accel__module_8h_source.html">accel_module.h</a></li>
+</ul>
+</div><!-- contents -->
+</div><!-- doc-content -->
+<div id="page-nav" class="page-nav-panel">
+<div id="page-nav-resize-handle"></div>
+<div id="page-nav-tree">
+<div id="page-nav-contents">
+</div><!-- page-nav-contents -->
+</div><!-- page-nav-tree -->
+</div><!-- page-nav -->
+</div><!-- container -->
+<footer class="footer" id="nav-path">
+  <div class="footer-inner">
+    <div class="footer-copy">
+      <small>Copyright &copy; SPDK a Series of LF Projects, LLC. For web site terms of use, trademark policy, and other
+      project policies please see <a href="https://lfprojects.org">lfprojects.org</a>.</small>
+    </div>
+  </div>
+</footer>
+<script type="text/javascript" src="page_outline.js"></script>
+<script type="text/javascript" src="spdk_nav.js"></script>
+<!-- Doxygen footer suffix – assembled by _build/common.sh:
+     _includes/footer.html (shared) + theme scripts (from spdk) + this file.
+     Theme scripts are extracted from spdk/doc/theme/footer.html at build
+     time so the script list is maintained in a single place. -->
+</body>
+</html>

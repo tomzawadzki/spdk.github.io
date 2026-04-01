@@ -1,0 +1,672 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<meta name="generator" content="Doxygen 1.16.1">
+	<title>SPDK: conf.h File Reference</title>
+	<script type="text/javascript" src="jquery.js"></script>
+	<script type="text/javascript" src="dynsections.js"></script>
+	<script type="text/javascript" src="clipboard.js"></script>
+	<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
+<script type="text/javascript" src="cookie.js"></script>
+	<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<script type="text/javascript">
+  $(function() { init_search(); });
+</script>
+	<link rel="icon" type="image/svg+xml" href="../assets/img/spdk.svg">
+	<link rel="icon" href="../assets/favicon.ico" sizes="32x32">
+	<link href="doxygen.css" rel="stylesheet" type="text/css">
+	<script>(function(){var k='doxygen_width',w,bw=6;if(window.chrome){w=localStorage.getItem(k);if(!w){w='350';localStorage.setItem(k,w)}}else{var m=document.cookie.match(new RegExp(k+'=(\\d+)'));w=m?m[1]:null;if(!w){w='350';document.cookie=k+'=350;SameSite=Lax;path=/'}}document.documentElement.style.setProperty('--sn-w',(parseInt(w)+bw)+'px')})()</script>
+	<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:400,700,900" type="text/css">
+	<link href="spdk.css" rel="stylesheet" type="text/css"/>
+	<link href="../assets/css/spdk.css" rel="stylesheet" type="text/css">
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<nav class="navbar">
+  <a class="navbar-brand" href="../" aria-label="SPDK">
+    <img src="../assets/img/spdk.svg" width="36" height="36" alt="Storage Performance Development Kit">
+  </a>
+  <div class="navbar-nav">
+    <a class="nav-link header-link" href="../doc/releases.html">download</a>
+    <a class="nav-link header-link" href="../doc/">documentation</a>
+    <a class="nav-link header-link" href="../doc/contributing.html">development</a>
+    <a class="nav-link header-link" href="../doc/ci_tools.html">CI status</a>
+    <a class="nav-link header-link" href="../community/">community</a>
+    <a class="nav-link header-link" href="../blog/">Blog</a>
+    <a class="nav-link header-link" href="https://github.com/orgs/spdk/projects/5">Roadmap</a>
+    <a class="nav-link header-link" href="../news/">News</a>
+  </div>
+  <div class="navbar-end">
+    <a class="nav-link header-link" href="https://github.com/spdk/spdk" aria-label="GitHub">
+      <svg xmlns="http://www.w3.org/2000/svg" class="navbar-nav-svg" aria-hidden="true"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
+    </a>
+    <a id="cn_lang_btn" href="../cn/doc/" class="nav-link header-link">中文</a>
+  </div>
+</nav>
+<script>
+(function() {
+    var p = location.pathname, best = null, bLen = 0;
+    document.querySelectorAll('.header-link[href]').forEach(function(a) {
+        var raw = a.getAttribute('href');
+        if (!raw) return;
+        try { var u = new URL(raw, location.href); } catch(e) { return; }
+        if (u.origin !== location.origin) return;
+        var h = u.pathname;
+        if (h === '/') return;
+        var ok = h.endsWith('.html') ? p === h : p.indexOf(h) === 0;
+        if (ok && h.length > bLen) { bLen = h.length; best = a; }
+    });
+    if (best) best.classList.add('active');
+})();
+</script>
+<div id="doxygen-searchbox">        <div id="MSearchBox" class="MSearchBoxInactive">
+        <span class="left">
+          <span id="MSearchSelect" class="search-icon" onmouseover="return searchBox.OnSearchSelectShow()" onmouseout="return searchBox.OnSearchSelectHide()"><span class="search-icon-dropdown"></span></span>
+          <input type="text" id="MSearchField" value="" placeholder="Search" accesskey="S"
+               onfocus="searchBox.OnSearchFieldFocus(true)" 
+               onblur="searchBox.OnSearchFieldFocus(false)" 
+               onkeyup="searchBox.OnSearchFieldChange(event)"/>
+          </span><span class="right">
+            <a id="MSearchClose" href="javascript:searchBox.CloseResultsWindow()"><div id="MSearchCloseImg" class="close-icon"></div></a>
+          </span>
+        </div>
+</div>
+<!-- Generated by Doxygen 1.16.1 -->
+<script type="text/javascript">
+var searchBox = new SearchBox("searchBox", "search/",'.html');
+</script>
+<script type="text/javascript">
+$(function() { codefold.init(); });
+</script>
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+$(function(){initNavTree('conf_8h.html','',''); });
+</script>
+<div id="container">
+<div id="doc-content">
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">Loading...</div>
+<div class="SRStatus" id="Searching">Searching...</div>
+<div class="SRStatus" id="NoMatches">No Matches</div>
+</div>
+</div>
+</div>
+</div>
+
+<div class="header">
+  <div class="headertitle"><div class="title">conf.h File Reference</div></div>
+</div><!--header-->
+<div class="contents">
+
+<p>Configuration file parser.  
+<a href="#details">More...</a></p>
+
+<p><a href="conf_8h_source.html">Go to the source code of this file.</a></p>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 id="header-func-members" class="groupheader"><a id="func-members" name="func-members"></a>
+Functions</h2></td></tr>
+<tr class="memitem:a89024cf202abba61ea813f911484fbb3" id="r_a89024cf202abba61ea813f911484fbb3"><td class="memItemLeft">struct spdk_conf *&#160;</td><td class="memItemRight"><a class="el" href="#a89024cf202abba61ea813f911484fbb3">spdk_conf_allocate</a> (void)</td></tr>
+<tr class="memdesc:a89024cf202abba61ea813f911484fbb3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Allocate a configuration struct used for the initialization of SPDK app.  <br /></td></tr>
+<tr class="memitem:adc6ca4eabe0f86a0e9560c464f982030" id="r_adc6ca4eabe0f86a0e9560c464f982030"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="#adc6ca4eabe0f86a0e9560c464f982030">spdk_conf_free</a> (struct spdk_conf *cp)</td></tr>
+<tr class="memdesc:adc6ca4eabe0f86a0e9560c464f982030"><td class="mdescLeft">&#160;</td><td class="mdescRight">Free the configuration struct.  <br /></td></tr>
+<tr class="memitem:a85d8fdbc25d15752e765240ce0d53d03" id="r_a85d8fdbc25d15752e765240ce0d53d03"><td class="memItemLeft">int&#160;</td><td class="memItemRight"><a class="el" href="#a85d8fdbc25d15752e765240ce0d53d03">spdk_conf_read</a> (struct spdk_conf *cp, const char *file)</td></tr>
+<tr class="memdesc:a85d8fdbc25d15752e765240ce0d53d03"><td class="mdescLeft">&#160;</td><td class="mdescRight">Read configuration file for spdk_conf struct.  <br /></td></tr>
+<tr class="memitem:a3068fb25521b99e32b1f88a9c0a7936e" id="r_a3068fb25521b99e32b1f88a9c0a7936e"><td class="memItemLeft">struct spdk_conf_section *&#160;</td><td class="memItemRight"><a class="el" href="#a3068fb25521b99e32b1f88a9c0a7936e">spdk_conf_find_section</a> (struct spdk_conf *cp, const char *name)</td></tr>
+<tr class="memdesc:a3068fb25521b99e32b1f88a9c0a7936e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Find the specified section of the configuration.  <br /></td></tr>
+<tr class="memitem:a9d13560b22f1c6119e68ff27dda92913" id="r_a9d13560b22f1c6119e68ff27dda92913"><td class="memItemLeft">struct spdk_conf_section *&#160;</td><td class="memItemRight"><a class="el" href="#a9d13560b22f1c6119e68ff27dda92913">spdk_conf_first_section</a> (struct spdk_conf *cp)</td></tr>
+<tr class="memdesc:a9d13560b22f1c6119e68ff27dda92913"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the first section of the configuration.  <br /></td></tr>
+<tr class="memitem:a6230c06a5bc8413b81f1324b04e6f4d0" id="r_a6230c06a5bc8413b81f1324b04e6f4d0"><td class="memItemLeft">struct spdk_conf_section *&#160;</td><td class="memItemRight"><a class="el" href="#a6230c06a5bc8413b81f1324b04e6f4d0">spdk_conf_next_section</a> (struct spdk_conf_section *sp)</td></tr>
+<tr class="memdesc:a6230c06a5bc8413b81f1324b04e6f4d0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the next section of the configuration.  <br /></td></tr>
+<tr class="memitem:a6c2dc4e953a430f1988af5f210506715" id="r_a6c2dc4e953a430f1988af5f210506715"><td class="memItemLeft">bool&#160;</td><td class="memItemRight"><a class="el" href="#a6c2dc4e953a430f1988af5f210506715">spdk_conf_section_match_prefix</a> (const struct spdk_conf_section *sp, const char *name_prefix)</td></tr>
+<tr class="memdesc:a6c2dc4e953a430f1988af5f210506715"><td class="mdescLeft">&#160;</td><td class="mdescRight">Match prefix of the name of section.  <br /></td></tr>
+<tr class="memitem:a7518da71f5ff88c71b15ebbf33a5931a" id="r_a7518da71f5ff88c71b15ebbf33a5931a"><td class="memItemLeft">const char *&#160;</td><td class="memItemRight"><a class="el" href="#a7518da71f5ff88c71b15ebbf33a5931a">spdk_conf_section_get_name</a> (const struct spdk_conf_section *sp)</td></tr>
+<tr class="memdesc:a7518da71f5ff88c71b15ebbf33a5931a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the name of the section.  <br /></td></tr>
+<tr class="memitem:a6f9abaa311e349ff268d005519c7450a" id="r_a6f9abaa311e349ff268d005519c7450a"><td class="memItemLeft">int&#160;</td><td class="memItemRight"><a class="el" href="#a6f9abaa311e349ff268d005519c7450a">spdk_conf_section_get_num</a> (const struct spdk_conf_section *sp)</td></tr>
+<tr class="memdesc:a6f9abaa311e349ff268d005519c7450a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the number of the section.  <br /></td></tr>
+<tr class="memitem:a3f138c4d1bfacb38bc2d771188698c8a" id="r_a3f138c4d1bfacb38bc2d771188698c8a"><td class="memItemLeft">char *&#160;</td><td class="memItemRight"><a class="el" href="#a3f138c4d1bfacb38bc2d771188698c8a">spdk_conf_section_get_nmval</a> (struct spdk_conf_section *sp, const char *key, int idx1, int idx2)</td></tr>
+<tr class="memdesc:a3f138c4d1bfacb38bc2d771188698c8a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the value of the item with name 'key' in the section.  <br /></td></tr>
+<tr class="memitem:a450410d0995359351c7e5adfe87a5132" id="r_a450410d0995359351c7e5adfe87a5132"><td class="memItemLeft">char *&#160;</td><td class="memItemRight"><a class="el" href="#a450410d0995359351c7e5adfe87a5132">spdk_conf_section_get_nval</a> (struct spdk_conf_section *sp, const char *key, int idx)</td></tr>
+<tr class="memdesc:a450410d0995359351c7e5adfe87a5132"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the first value of the item with name 'key' in the section.  <br /></td></tr>
+<tr class="memitem:a508694ccec3f872735c0187bce23ad31" id="r_a508694ccec3f872735c0187bce23ad31"><td class="memItemLeft">char *&#160;</td><td class="memItemRight"><a class="el" href="#a508694ccec3f872735c0187bce23ad31">spdk_conf_section_get_val</a> (struct spdk_conf_section *sp, const char *key)</td></tr>
+<tr class="memdesc:a508694ccec3f872735c0187bce23ad31"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the first value of the first item with name 'key' in the section.  <br /></td></tr>
+<tr class="memitem:a24b4df0d73d6c22e0534ff800ada9456" id="r_a24b4df0d73d6c22e0534ff800ada9456"><td class="memItemLeft">int&#160;</td><td class="memItemRight"><a class="el" href="#a24b4df0d73d6c22e0534ff800ada9456">spdk_conf_section_get_intval</a> (struct spdk_conf_section *sp, const char *key)</td></tr>
+<tr class="memdesc:a24b4df0d73d6c22e0534ff800ada9456"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the first value of the first item with name 'key' in the section.  <br /></td></tr>
+<tr class="memitem:a1526dbbe773ddf9a550bc3a455b66f02" id="r_a1526dbbe773ddf9a550bc3a455b66f02"><td class="memItemLeft">bool&#160;</td><td class="memItemRight"><a class="el" href="#a1526dbbe773ddf9a550bc3a455b66f02">spdk_conf_section_get_boolval</a> (struct spdk_conf_section *sp, const char *key, bool default_val)</td></tr>
+<tr class="memdesc:a1526dbbe773ddf9a550bc3a455b66f02"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the bool value of the item with name 'key' in the section.  <br /></td></tr>
+<tr class="memitem:a2c19833437dd2be7bafc4d7ca07668d8" id="r_a2c19833437dd2be7bafc4d7ca07668d8"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="#a2c19833437dd2be7bafc4d7ca07668d8">spdk_conf_set_as_default</a> (struct spdk_conf *cp)</td></tr>
+<tr class="memdesc:a2c19833437dd2be7bafc4d7ca07668d8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set the configuration as the default.  <br /></td></tr>
+<tr class="memitem:af9539a403b39779056af14942b1d7d95" id="r_af9539a403b39779056af14942b1d7d95"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="#af9539a403b39779056af14942b1d7d95">spdk_conf_disable_sections_merge</a> (struct spdk_conf *cp)</td></tr>
+<tr class="memdesc:af9539a403b39779056af14942b1d7d95"><td class="mdescLeft">&#160;</td><td class="mdescRight">Disable sections merging during '<a class="el" href="#a85d8fdbc25d15752e765240ce0d53d03" title="Read configuration file for spdk_conf struct.">spdk_conf_read()</a>'.  <br /></td></tr>
+</table>
+<a name="details" id="details"></a><h2 id="header-details" class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>Configuration file parser. </p>
+
+<p class="definition">Definition in file <a class="el" href="conf_8h_source.html">conf.h</a>.</p>
+</div><a name="doc-func-members" id="doc-func-members"></a><h2 id="header-doc-func-members" class="groupheader">Function Documentation</h2>
+<a id="a89024cf202abba61ea813f911484fbb3" name="a89024cf202abba61ea813f911484fbb3"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a89024cf202abba61ea813f911484fbb3">&#9670;&#160;</a></span>spdk_conf_allocate()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">struct spdk_conf * spdk_conf_allocate </td>
+          <td>(</td>
+          <td class="paramtype">void</td>          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Allocate a configuration struct used for the initialization of SPDK app. </p>
+<dl class="section return"><dt>Returns</dt><dd>a pointer to the allocated configuration struct. </dd></dl>
+
+</div>
+</div>
+<a id="af9539a403b39779056af14942b1d7d95" name="af9539a403b39779056af14942b1d7d95"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af9539a403b39779056af14942b1d7d95">&#9670;&#160;</a></span>spdk_conf_disable_sections_merge()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void spdk_conf_disable_sections_merge </td>
+          <td>(</td>
+          <td class="paramtype">struct spdk_conf *</td>          <td class="paramname"><span class="paramname"><em>cp</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Disable sections merging during '<a class="el" href="#a85d8fdbc25d15752e765240ce0d53d03" title="Read configuration file for spdk_conf struct.">spdk_conf_read()</a>'. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">cp</td><td>Configuration to be read </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a3068fb25521b99e32b1f88a9c0a7936e" name="a3068fb25521b99e32b1f88a9c0a7936e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3068fb25521b99e32b1f88a9c0a7936e">&#9670;&#160;</a></span>spdk_conf_find_section()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">struct spdk_conf_section * spdk_conf_find_section </td>
+          <td>(</td>
+          <td class="paramtype">struct spdk_conf *</td>          <td class="paramname"><span class="paramname"><em>cp</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const char *</td>          <td class="paramname"><span class="paramname"><em>name</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Find the specified section of the configuration. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">cp</td><td>Configuration struct used for the initialization of SPDK app. </td></tr>
+    <tr><td class="paramname">name</td><td>Name of section to find.</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>a pointer to the requested section on success or NULL otherwise. </dd></dl>
+
+</div>
+</div>
+<a id="a9d13560b22f1c6119e68ff27dda92913" name="a9d13560b22f1c6119e68ff27dda92913"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9d13560b22f1c6119e68ff27dda92913">&#9670;&#160;</a></span>spdk_conf_first_section()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">struct spdk_conf_section * spdk_conf_first_section </td>
+          <td>(</td>
+          <td class="paramtype">struct spdk_conf *</td>          <td class="paramname"><span class="paramname"><em>cp</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Get the first section of the configuration. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">cp</td><td>Configuration struct used for the initialization of SPDK app.</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>a pointer to the requested section on success or NULL otherwise. </dd></dl>
+
+</div>
+</div>
+<a id="adc6ca4eabe0f86a0e9560c464f982030" name="adc6ca4eabe0f86a0e9560c464f982030"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#adc6ca4eabe0f86a0e9560c464f982030">&#9670;&#160;</a></span>spdk_conf_free()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void spdk_conf_free </td>
+          <td>(</td>
+          <td class="paramtype">struct spdk_conf *</td>          <td class="paramname"><span class="paramname"><em>cp</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Free the configuration struct. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">cp</td><td>Configuration struct to free. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a6230c06a5bc8413b81f1324b04e6f4d0" name="a6230c06a5bc8413b81f1324b04e6f4d0"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6230c06a5bc8413b81f1324b04e6f4d0">&#9670;&#160;</a></span>spdk_conf_next_section()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">struct spdk_conf_section * spdk_conf_next_section </td>
+          <td>(</td>
+          <td class="paramtype">struct spdk_conf_section *</td>          <td class="paramname"><span class="paramname"><em>sp</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Get the next section of the configuration. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">sp</td><td>The current section of the configuration.</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>a pointer to the requested section on success or NULL otherwise. </dd></dl>
+
+</div>
+</div>
+<a id="a85d8fdbc25d15752e765240ce0d53d03" name="a85d8fdbc25d15752e765240ce0d53d03"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a85d8fdbc25d15752e765240ce0d53d03">&#9670;&#160;</a></span>spdk_conf_read()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int spdk_conf_read </td>
+          <td>(</td>
+          <td class="paramtype">struct spdk_conf *</td>          <td class="paramname"><span class="paramname"><em>cp</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const char *</td>          <td class="paramname"><span class="paramname"><em>file</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Read configuration file for spdk_conf struct. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">cp</td><td>Configuration struct used for the initialization of SPDK app. </td></tr>
+    <tr><td class="paramname">file</td><td>File to read that is created by user to configure SPDK app.</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>0 on success, -1 on failure. </dd></dl>
+
+</div>
+</div>
+<a id="a1526dbbe773ddf9a550bc3a455b66f02" name="a1526dbbe773ddf9a550bc3a455b66f02"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1526dbbe773ddf9a550bc3a455b66f02">&#9670;&#160;</a></span>spdk_conf_section_get_boolval()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool spdk_conf_section_get_boolval </td>
+          <td>(</td>
+          <td class="paramtype">struct spdk_conf_section *</td>          <td class="paramname"><span class="paramname"><em>sp</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const char *</td>          <td class="paramname"><span class="paramname"><em>key</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">bool</td>          <td class="paramname"><span class="paramname"><em>default_val</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Get the bool value of the item with name 'key' in the section. </p>
+<p>This is used to check whether the service is enabled.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">sp</td><td>The section of the configuration. </td></tr>
+    <tr><td class="paramname">key</td><td>Name of item. </td></tr>
+    <tr><td class="paramname">default_val</td><td>Default value.</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>true if matching 'Yes/Y/True', false if matching 'No/N/False', default value otherwise. </dd></dl>
+
+</div>
+</div>
+<a id="a24b4df0d73d6c22e0534ff800ada9456" name="a24b4df0d73d6c22e0534ff800ada9456"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a24b4df0d73d6c22e0534ff800ada9456">&#9670;&#160;</a></span>spdk_conf_section_get_intval()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int spdk_conf_section_get_intval </td>
+          <td>(</td>
+          <td class="paramtype">struct spdk_conf_section *</td>          <td class="paramname"><span class="paramname"><em>sp</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const char *</td>          <td class="paramname"><span class="paramname"><em>key</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Get the first value of the first item with name 'key' in the section. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">sp</td><td>The section of the configuration. </td></tr>
+    <tr><td class="paramname">key</td><td>Name of item.</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>the requested value on success or NULL otherwise. </dd></dl>
+
+</div>
+</div>
+<a id="a7518da71f5ff88c71b15ebbf33a5931a" name="a7518da71f5ff88c71b15ebbf33a5931a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7518da71f5ff88c71b15ebbf33a5931a">&#9670;&#160;</a></span>spdk_conf_section_get_name()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">const char * spdk_conf_section_get_name </td>
+          <td>(</td>
+          <td class="paramtype">const struct spdk_conf_section *</td>          <td class="paramname"><span class="paramname"><em>sp</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Get the name of the section. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">sp</td><td>The section of the configuration.</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>the name of the section. </dd></dl>
+
+</div>
+</div>
+<a id="a3f138c4d1bfacb38bc2d771188698c8a" name="a3f138c4d1bfacb38bc2d771188698c8a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3f138c4d1bfacb38bc2d771188698c8a">&#9670;&#160;</a></span>spdk_conf_section_get_nmval()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">char * spdk_conf_section_get_nmval </td>
+          <td>(</td>
+          <td class="paramtype">struct spdk_conf_section *</td>          <td class="paramname"><span class="paramname"><em>sp</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const char *</td>          <td class="paramname"><span class="paramname"><em>key</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int</td>          <td class="paramname"><span class="paramname"><em>idx1</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int</td>          <td class="paramname"><span class="paramname"><em>idx2</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Get the value of the item with name 'key' in the section. </p>
+<p>If key appears multiple times, idx1 will control which version to retrieve. Indices will start from the top of the configuration file at 0 and increment by one for each new appearance. If the configuration key contains multiple whitespace delimited values, idx2 controls which value is returned. The index begins at 0.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">sp</td><td>The section of the configuration. </td></tr>
+    <tr><td class="paramname">key</td><td>Name of item. </td></tr>
+    <tr><td class="paramname">idx1</td><td>The index into the item list for the key. </td></tr>
+    <tr><td class="paramname">idx2</td><td>The index into the value list for the item.</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>the requested value on success or NULL otherwise. </dd></dl>
+
+</div>
+</div>
+<a id="a6f9abaa311e349ff268d005519c7450a" name="a6f9abaa311e349ff268d005519c7450a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6f9abaa311e349ff268d005519c7450a">&#9670;&#160;</a></span>spdk_conf_section_get_num()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int spdk_conf_section_get_num </td>
+          <td>(</td>
+          <td class="paramtype">const struct spdk_conf_section *</td>          <td class="paramname"><span class="paramname"><em>sp</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Get the number of the section. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">sp</td><td>The section of the configuration.</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>the number of the section. </dd></dl>
+
+</div>
+</div>
+<a id="a450410d0995359351c7e5adfe87a5132" name="a450410d0995359351c7e5adfe87a5132"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a450410d0995359351c7e5adfe87a5132">&#9670;&#160;</a></span>spdk_conf_section_get_nval()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">char * spdk_conf_section_get_nval </td>
+          <td>(</td>
+          <td class="paramtype">struct spdk_conf_section *</td>          <td class="paramname"><span class="paramname"><em>sp</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const char *</td>          <td class="paramname"><span class="paramname"><em>key</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int</td>          <td class="paramname"><span class="paramname"><em>idx</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Get the first value of the item with name 'key' in the section. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">sp</td><td>The section of the configuration. </td></tr>
+    <tr><td class="paramname">key</td><td>Name of item. </td></tr>
+    <tr><td class="paramname">idx</td><td>The index into the value list for the item.</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>the requested value on success or NULL otherwise. </dd></dl>
+
+</div>
+</div>
+<a id="a508694ccec3f872735c0187bce23ad31" name="a508694ccec3f872735c0187bce23ad31"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a508694ccec3f872735c0187bce23ad31">&#9670;&#160;</a></span>spdk_conf_section_get_val()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">char * spdk_conf_section_get_val </td>
+          <td>(</td>
+          <td class="paramtype">struct spdk_conf_section *</td>          <td class="paramname"><span class="paramname"><em>sp</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const char *</td>          <td class="paramname"><span class="paramname"><em>key</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Get the first value of the first item with name 'key' in the section. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">sp</td><td>The section of the configuration. </td></tr>
+    <tr><td class="paramname">key</td><td>Name of item.</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>the requested value on success or NULL otherwise. </dd></dl>
+
+</div>
+</div>
+<a id="a6c2dc4e953a430f1988af5f210506715" name="a6c2dc4e953a430f1988af5f210506715"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6c2dc4e953a430f1988af5f210506715">&#9670;&#160;</a></span>spdk_conf_section_match_prefix()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool spdk_conf_section_match_prefix </td>
+          <td>(</td>
+          <td class="paramtype">const struct spdk_conf_section *</td>          <td class="paramname"><span class="paramname"><em>sp</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const char *</td>          <td class="paramname"><span class="paramname"><em>name_prefix</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Match prefix of the name of section. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">sp</td><td>The section of the configuration. </td></tr>
+    <tr><td class="paramname">name_prefix</td><td>Prefix name to match.</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>true on success, false on failure. </dd></dl>
+
+</div>
+</div>
+<a id="a2c19833437dd2be7bafc4d7ca07668d8" name="a2c19833437dd2be7bafc4d7ca07668d8"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2c19833437dd2be7bafc4d7ca07668d8">&#9670;&#160;</a></span>spdk_conf_set_as_default()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void spdk_conf_set_as_default </td>
+          <td>(</td>
+          <td class="paramtype">struct spdk_conf *</td>          <td class="paramname"><span class="paramname"><em>cp</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Set the configuration as the default. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">cp</td><td>Configuration to set. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+</div><!-- contents -->
+</div><!-- doc-content -->
+<div id="page-nav" class="page-nav-panel">
+<div id="page-nav-resize-handle"></div>
+<div id="page-nav-tree">
+<div id="page-nav-contents">
+</div><!-- page-nav-contents -->
+</div><!-- page-nav-tree -->
+</div><!-- page-nav -->
+</div><!-- container -->
+<footer class="footer" id="nav-path">
+  <div class="footer-inner">
+    <div class="footer-copy">
+      <small>Copyright &copy; SPDK a Series of LF Projects, LLC. For web site terms of use, trademark policy, and other
+      project policies please see <a href="https://lfprojects.org">lfprojects.org</a>.</small>
+    </div>
+  </div>
+</footer>
+<script type="text/javascript" src="page_outline.js"></script>
+<script type="text/javascript" src="spdk_nav.js"></script>
+<!-- Doxygen footer suffix – assembled by _build/common.sh:
+     _includes/footer.html (shared) + theme scripts (from spdk) + this file.
+     Theme scripts are extracted from spdk/doc/theme/footer.html at build
+     time so the script list is maintained in a single place. -->
+</body>
+</html>

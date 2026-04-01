@@ -1,0 +1,376 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<meta name="generator" content="Doxygen 1.16.1">
+	<title>SPDK: NVMe over Fabrics Target</title>
+	<script type="text/javascript" src="jquery.js"></script>
+	<script type="text/javascript" src="dynsections.js"></script>
+	<script type="text/javascript" src="clipboard.js"></script>
+	<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
+<script type="text/javascript" src="cookie.js"></script>
+	<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<script type="text/javascript">
+  $(function() { init_search(); });
+</script>
+	<link rel="icon" type="image/svg+xml" href="../assets/img/spdk.svg">
+	<link rel="icon" href="../assets/favicon.ico" sizes="32x32">
+	<link href="doxygen.css" rel="stylesheet" type="text/css">
+	<script>(function(){var k='doxygen_width',w,bw=6;if(window.chrome){w=localStorage.getItem(k);if(!w){w='350';localStorage.setItem(k,w)}}else{var m=document.cookie.match(new RegExp(k+'=(\\d+)'));w=m?m[1]:null;if(!w){w='350';document.cookie=k+'=350;SameSite=Lax;path=/'}}document.documentElement.style.setProperty('--sn-w',(parseInt(w)+bw)+'px')})()</script>
+	<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:400,700,900" type="text/css">
+	<link href="spdk.css" rel="stylesheet" type="text/css"/>
+	<link href="../assets/css/spdk.css" rel="stylesheet" type="text/css">
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<nav class="navbar">
+  <a class="navbar-brand" href="../" aria-label="SPDK">
+    <img src="../assets/img/spdk.svg" width="36" height="36" alt="Storage Performance Development Kit">
+  </a>
+  <div class="navbar-nav">
+    <a class="nav-link header-link" href="../doc/releases.html">download</a>
+    <a class="nav-link header-link" href="../doc/">documentation</a>
+    <a class="nav-link header-link" href="../doc/contributing.html">development</a>
+    <a class="nav-link header-link" href="../doc/ci_tools.html">CI status</a>
+    <a class="nav-link header-link" href="../community/">community</a>
+    <a class="nav-link header-link" href="../blog/">Blog</a>
+    <a class="nav-link header-link" href="https://github.com/orgs/spdk/projects/5">Roadmap</a>
+    <a class="nav-link header-link" href="../news/">News</a>
+  </div>
+  <div class="navbar-end">
+    <a class="nav-link header-link" href="https://github.com/spdk/spdk" aria-label="GitHub">
+      <svg xmlns="http://www.w3.org/2000/svg" class="navbar-nav-svg" aria-hidden="true"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
+    </a>
+    <a id="cn_lang_btn" href="../cn/doc/" class="nav-link header-link">中文</a>
+  </div>
+</nav>
+<script>
+(function() {
+    var p = location.pathname, best = null, bLen = 0;
+    document.querySelectorAll('.header-link[href]').forEach(function(a) {
+        var raw = a.getAttribute('href');
+        if (!raw) return;
+        try { var u = new URL(raw, location.href); } catch(e) { return; }
+        if (u.origin !== location.origin) return;
+        var h = u.pathname;
+        if (h === '/') return;
+        var ok = h.endsWith('.html') ? p === h : p.indexOf(h) === 0;
+        if (ok && h.length > bLen) { bLen = h.length; best = a; }
+    });
+    if (best) best.classList.add('active');
+})();
+</script>
+<div id="doxygen-searchbox">        <div id="MSearchBox" class="MSearchBoxInactive">
+        <span class="left">
+          <span id="MSearchSelect" class="search-icon" onmouseover="return searchBox.OnSearchSelectShow()" onmouseout="return searchBox.OnSearchSelectHide()"><span class="search-icon-dropdown"></span></span>
+          <input type="text" id="MSearchField" value="" placeholder="Search" accesskey="S"
+               onfocus="searchBox.OnSearchFieldFocus(true)" 
+               onblur="searchBox.OnSearchFieldFocus(false)" 
+               onkeyup="searchBox.OnSearchFieldChange(event)"/>
+          </span><span class="right">
+            <a id="MSearchClose" href="javascript:searchBox.CloseResultsWindow()"><div id="MSearchCloseImg" class="close-icon"></div></a>
+          </span>
+        </div>
+</div>
+<!-- Generated by Doxygen 1.16.1 -->
+<script type="text/javascript">
+var searchBox = new SearchBox("searchBox", "search/",'.html');
+</script>
+<script type="text/javascript">
+$(function() { codefold.init(); });
+</script>
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+$(function(){initNavTree('nvmf.html','',''); });
+</script>
+<div id="container">
+<div id="doc-content">
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">Loading...</div>
+<div class="SRStatus" id="Searching">Searching...</div>
+<div class="SRStatus" id="NoMatches">No Matches</div>
+</div>
+</div>
+</div>
+</div>
+
+<div><div class="header">
+  <div class="headertitle"><div class="title">NVMe over Fabrics Target </div></div>
+</div><!--header-->
+<div class="contents">
+<div class="textblock"><p><a class="anchor" id="md_guides_2user_2nvmf"></a></p>
+<dl class="section see"><dt>See also</dt><dd><a class="el" href="nvme.html#nvme_fabrics_host" title="NVMe over Fabrics Host Support">NVMe over Fabrics Host Support</a> </dd>
+<dd>
+<a class="el" href="tracepoints.html" title="Tracing Framework">Tracing Framework</a></dd></dl>
+<h1 class="doxsection"><a class="anchor" id="nvmf_getting_started"></a>
+NVMe-oF Target Getting Started Guide</h1>
+<p>The SPDK NVMe over Fabrics target is a user space application that presents block devices over a fabrics such as Ethernet, Infiniband or Fibre Channel. SPDK currently supports RDMA and TCP transports.</p>
+<p>The NVMe over Fabrics specification defines subsystems that can be exported over different transports. SPDK has chosen to call the software that exports these subsystems a "target", which is the term used for iSCSI. The specification refers to the "client" that connects to the target as a "host". Many people will also refer to the host as an "initiator", which is the equivalent thing in iSCSI parlance. SPDK will try to stick to the terms "target" and "host" to match the specification.</p>
+<p>The Linux kernel also implements an NVMe-oF target and host, and SPDK is tested for interoperability with the Linux kernel implementations.</p>
+<p>If you want to kill the application using signal, make sure use the SIGTERM, then the application will release all the share memory resource before exit, the SIGKILL will make the share memory resource have no chance to be released by application, you may need to release the resource manually.</p>
+<h1 class="doxsection"><a class="anchor" id="nvmf_rdma_transport"></a>
+RDMA transport support</h1>
+<p>It requires an RDMA-capable NIC with its corresponding OFED (OpenFabrics Enterprise Distribution) software package installed to run. Maybe OS distributions provide packages, but OFED is also available <a href="https://downloads.openfabrics.org/OFED/">here</a>.</p>
+<h2 class="doxsection"><a class="anchor" id="nvmf_prereqs"></a>
+Prerequisites</h2>
+<p>To build nvmf_tgt with the RDMA transport, there are some additional dependencies, which can be install using pkgdep.sh script.</p>
+<div class="fragment"><div class="line">sudo scripts/pkgdep.sh --rdma</div>
+</div><!-- fragment --><p>Then build SPDK with RDMA enabled:</p>
+<div class="fragment"><div class="line">./configure --with-rdma &lt;other config parameters&gt;</div>
+<div class="line">make</div>
+</div><!-- fragment --><p>Once built, the binary will be in <span class="tt">build/bin</span>.</p>
+<h2 class="doxsection"><a class="anchor" id="nvmf_prereqs_verbs"></a>
+Prerequisites for InfiniBand/RDMA Verbs</h2>
+<p>Before starting our NVMe-oF target with the RDMA transport we must load the InfiniBand and RDMA modules that allow userspace processes to use InfiniBand/RDMA verbs directly.</p>
+<div class="fragment"><div class="line">modprobe ib_cm</div>
+<div class="line">modprobe ib_core</div>
+<div class="line"># Please note that ib_ucm does not exist in newer versions of the kernel and is not required.</div>
+<div class="line">modprobe ib_ucm || true</div>
+<div class="line">modprobe ib_umad</div>
+<div class="line">modprobe ib_uverbs</div>
+<div class="line">modprobe iw_cm</div>
+<div class="line">modprobe rdma_cm</div>
+<div class="line">modprobe rdma_ucm</div>
+</div><!-- fragment --><h2 class="doxsection"><a class="anchor" id="nvmf_prereqs_rdma_nics"></a>
+Prerequisites for RDMA NICs</h2>
+<p>Before starting our NVMe-oF target we must detect RDMA NICs and assign them IP addresses.</p>
+<h2 class="doxsection"><a class="anchor" id="autotoc_md1293"></a>
+Finding RDMA NICs and associated network interfaces</h2>
+<div class="fragment"><div class="line">ls /sys/class/infiniband/*/device/net</div>
+</div><!-- fragment --><h3 class="doxsection"><a class="anchor" id="autotoc_md1295"></a>
+Mellanox ConnectX-3 RDMA NICs</h3>
+<div class="fragment"><div class="line">modprobe mlx4_core</div>
+<div class="line">modprobe mlx4_ib</div>
+<div class="line">modprobe mlx4_en</div>
+</div><!-- fragment --><h3 class="doxsection"><a class="anchor" id="autotoc_md1296"></a>
+Mellanox ConnectX-4 RDMA NICs</h3>
+<div class="fragment"><div class="line">modprobe mlx5_core</div>
+<div class="line">modprobe mlx5_ib</div>
+</div><!-- fragment --><h3 class="doxsection"><a class="anchor" id="autotoc_md1297"></a>
+Assigning IP addresses to RDMA NICs</h3>
+<div class="fragment"><div class="line">ifconfig eth1 192.168.100.8 netmask 255.255.255.0 up</div>
+<div class="line">ifconfig eth2 192.168.100.9 netmask 255.255.255.0 up</div>
+</div><!-- fragment --><h2 class="doxsection"><a class="anchor" id="nvmf_rdma_limitations"></a>
+RDMA Limitations</h2>
+<p>As RDMA NICs put a limitation on the number of memory regions registered, the SPDK NVMe-oF target application may eventually start failing to allocate more DMA-able memory. This is an imperfection of the DPDK dynamic memory management and is most likely to occur with too many 2MB hugepages reserved at runtime. One type of memory bottleneck is the number of NIC memory regions, e.g., some NICs report as many as 2048 for the maximum number of memory regions. This gives us a 4GB memory limit with 2MB hugepages for the total memory regions. It can be overcome by using 1GB hugepages or by pre-reserving memory at application startup with <span class="tt">--mem-size</span> or <span class="tt">-s</span> option. All pre-reserved memory will be registered as a single region, but won't be returned to the system until the SPDK application is terminated.</p>
+<p>Another known issue occurs when using the E810 NICs in RoCE mode. Specifically, the NVMe-oF target sometimes cannot destroy a qpair, because its posted work requests don't get flushed. It can cause the NVMe-oF target application unable to terminate cleanly.</p>
+<h1 class="doxsection"><a class="anchor" id="nvmf_tcp_transport"></a>
+TCP transport support</h1>
+<p>The transport is built into the nvmf_tgt by default, and it does not need any special libraries.</p>
+<h1 class="doxsection"><a class="anchor" id="nvmf_fc_transport"></a>
+FC transport support</h1>
+<p>To build nvmf_tgt with the FC transport, there is an additional FC LLD (Low Level Driver) code dependency. Please contact your FC vendor for instructions to obtain FC driver module.</p>
+<h2 class="doxsection"><a class="anchor" id="autotoc_md1300"></a>
+Broadcom FC LLD code</h2>
+<p>FC LLD driver for Broadcom FC NVMe capable adapters can be obtained from, <a href="https://github.com/ecdufcdrvr/bcmufctdrvr">https://github.com/ecdufcdrvr/bcmufctdrvr</a>.</p>
+<h2 class="doxsection"><a class="anchor" id="autotoc_md1301"></a>
+Fetch FC LLD module and then build SPDK with FC enabled</h2>
+<p>After cloning SPDK repo and initialize submodules, FC LLD library is built which then can be linked with the fc transport.</p>
+<div class="fragment"><div class="line">git clone https://github.com/spdk/spdk --recursive</div>
+<div class="line">git clone https://github.com/ecdufcdrvr/bcmufctdrvr fc</div>
+<div class="line">cd fc</div>
+<div class="line">make DPDK_DIR=../spdk/dpdk/build SPDK_DIR=../spdk</div>
+<div class="line">cd ../spdk</div>
+<div class="line">./configure --with-fc=../fc/build</div>
+<div class="line">make</div>
+</div><!-- fragment --><h1 class="doxsection"><a class="anchor" id="nvmf_config"></a>
+Configuring the SPDK NVMe over Fabrics Target</h1>
+<p>An NVMe over Fabrics target can be configured using JSON RPCs. The basic RPCs needed to configure the NVMe-oF subsystem are detailed below. More information about working with NVMe over Fabrics specific RPCs can be found on the <a class="el" href="jsonrpc.html#jsonrpc_components_nvmf_tgt" title="NVMe-oF Target">NVMe-oF Target</a> RPC page.</p>
+<h2 class="doxsection"><a class="anchor" id="nvmf_config_rpc"></a>
+Using RPCs</h2>
+<p>Start the nvmf_tgt application with elevated privileges. Once the target is started, the nvmf_create_transport rpc can be used to initialize a given transport. Below is an example where the target is started and configured with two different transports. The RDMA transport is configured with an I/O unit size of 8192 bytes, max I/O size 131072 and an in capsule data size of 8192 bytes. The TCP transport is configured with an I/O unit size of 16384 bytes, 8 max qpairs per controller, and an in capsule data size of 8192 bytes.</p>
+<div class="fragment"><div class="line">build/bin/nvmf_tgt</div>
+<div class="line">scripts/rpc.py nvmf_create_transport -t RDMA -u 8192 -i 131072 -c 8192</div>
+<div class="line">scripts/rpc.py nvmf_create_transport -t TCP -u 16384 -m 8 -c 8192</div>
+</div><!-- fragment --><p>Below is an example of creating a malloc bdev and assigning it to a subsystem. Adjust the bdevs, NQN, serial number, and IP address with RDMA transport to your own circumstances. If you replace "rdma" with "TCP", then the subsystem will add a listener with TCP transport.</p>
+<div class="fragment"><div class="line">scripts/rpc.py bdev_malloc_create -b Malloc0 512 512</div>
+<div class="line">scripts/rpc.py nvmf_create_subsystem nqn.2016-06.io.spdk:cnode1 -a -s SPDK00000000000001 -d SPDK_Controller1</div>
+<div class="line">scripts/rpc.py nvmf_subsystem_add_ns nqn.2016-06.io.spdk:cnode1 Malloc0</div>
+<div class="line">scripts/rpc.py nvmf_subsystem_add_listener nqn.2016-06.io.spdk:cnode1 -t rdma -a 192.168.100.8 -s 4420</div>
+</div><!-- fragment --><h2 class="doxsection"><a class="anchor" id="autotoc_md1304"></a>
+NQN Formal Definition</h2>
+<p>NVMe qualified names or NQNs are defined in section 7.9 of the <a href="http://nvmexpress.org/wp-content/uploads/NVM_Express_Revision_1.3.pdf">NVMe specification</a>. SPDK has attempted to formalize that definition using <a href="https://en.wikipedia.org/wiki/Extended_Backus%E2%80%93Naur_form">Extended Backus-Naur form</a>. SPDK modules use this formal definition (provided below) when validating NQNs.</p>
+<div class="fragment"><div class="line">Basic Types</div>
+<div class="line">year = 4 * digit ;</div>
+<div class="line">month = &#39;01&#39; | &#39;02&#39; | &#39;03&#39; | &#39;04&#39; | &#39;05&#39; | &#39;06&#39; | &#39;07&#39; | &#39;08&#39; | &#39;09&#39; | &#39;10&#39; | &#39;11&#39; | &#39;12&#39; ;</div>
+<div class="line">digit = &#39;0&#39; | &#39;1&#39; | &#39;2&#39; | &#39;3&#39; | &#39;4&#39; | &#39;5&#39; | &#39;6&#39; | &#39;7&#39; | &#39;8&#39; | &#39;9&#39; ;</div>
+<div class="line">hex digit = &#39;A&#39; | &#39;B&#39; | &#39;C&#39; | &#39;D&#39; | &#39;E&#39; | &#39;F&#39; | &#39;a&#39; | &#39;b&#39; | &#39;c&#39; | &#39;d&#39; | &#39;e&#39; | &#39;f&#39; | &#39;0&#39; |</div>
+<div class="line">&#39;1&#39; | &#39;2&#39; | &#39;3&#39; | &#39;4&#39; | &#39;5&#39; | &#39;6&#39; | &#39;7&#39; | &#39;8&#39; | &#39;9&#39; ;</div>
+<div class="line"> </div>
+<div class="line">NQN Definition</div>
+<div class="line">NVMe Qualified Name = ( NVMe-oF Discovery NQN | NVMe UUID NQN | NVMe Domain NQN ), &#39;\0&#39; ;</div>
+<div class="line">NVMe-oF Discovery NQN = &quot;nqn.2014-08.org.nvmexpress.discovery&quot; ;</div>
+<div class="line">NVMe UUID NQN = &quot;nqn.2014-08.org.nvmexpress:uuid:&quot;, string UUID ;</div>
+<div class="line">string UUID = 8 * hex digit, &#39;-&#39;, 3 * (4 * hex digit, &#39;-&#39;), 12 * hex digit ;</div>
+<div class="line">NVMe Domain NQN = &quot;nqn.&quot;, year, &#39;-&#39;, month, &#39;.&#39;, reverse domain, &#39;:&#39;, utf-8 string ;</div>
+</div><!-- fragment --><p>Please note that the following types from the definition above are defined elsewhere:</p>
+<ol type="1">
+<li>utf-8 string: Defined in <a href="https://tools.ietf.org/html/rfc3629">rfc 3629</a>.</li>
+<li>reverse domain: Equivalent to domain name as defined in <a href="https://tools.ietf.org/html/rfc1034">rfc 1034</a>.</li>
+</ol>
+<p>While not stated in the formal definition, SPDK enforces the requirement from the spec that the "maximum name is 223 bytes in length". SPDK does not include the null terminating character when defining the length of an nqn, and will accept an nqn containing up to 223 valid bytes with an additional null terminator. To be precise, SPDK follows the same conventions as the c standard library function <a href="http://man7.org/linux/man-pages/man3/strlen.3.html">strlen()</a>.</p>
+<h3 class="doxsection"><a class="anchor" id="autotoc_md1308"></a>
+NQN Comparisons</h3>
+<p>SPDK compares NQNs byte for byte without case matching or unicode normalization. This has specific implications for uuid based NQNs. The following pair of NQNs, for example, would not match when compared in the SPDK NVMe-oF Target:</p>
+<p>nqn.2014-08.org.nvmexpress:uuid:11111111-aaaa-bbdd-ffee-123456789abc nqn.2014-08.org.nvmexpress:uuid:11111111-AAAA-BBDD-FFEE-123456789ABC</p>
+<p>In order to ensure the consistency of uuid based NQNs while using SPDK, users should use lowercase when representing alphabetic hex digits in their NQNs.</p>
+<h2 class="doxsection"><a class="anchor" id="nvmf_config_lcore"></a>
+Assigning CPU Cores to the NVMe over Fabrics Target</h2>
+<p>SPDK uses the <a href="http://dpdk.org/doc/guides/prog_guide/env_abstraction_layer.html">DPDK Environment Abstraction Layer</a> to gain access to hardware resources such as huge memory pages and CPU core(s). DPDK EAL provides functions to assign threads to specific cores. To ensure the SPDK NVMe-oF target has the best performance, configure the NICs and NVMe devices to be located on the same NUMA node.</p>
+<p>The <span class="tt">-m</span> core mask option specifies a bit mask of the CPU cores that SPDK is allowed to execute work items on. For example, to allow SPDK to use cores 24, 25, 26 and 27: </p><div class="fragment"><div class="line">build/bin/nvmf_tgt -m 0xF000000</div>
+</div><!-- fragment --><h1 class="doxsection"><a class="anchor" id="nvmf_host"></a>
+Configuring the Linux NVMe over Fabrics Host</h1>
+<p>Both the Linux kernel and SPDK implement an NVMe over Fabrics host. The Linux kernel NVMe-oF RDMA host support is provided by the <span class="tt">nvme-rdma</span> driver (to support RDMA transport) and <span class="tt">nvme-tcp</span> (to support TCP transport). And the following shows two different commands for loading the driver.</p>
+<div class="fragment"><div class="line">modprobe nvme-rdma</div>
+<div class="line">modprobe nvme-tcp</div>
+</div><!-- fragment --><p>The nvme-cli tool may be used to interface with the Linux kernel NVMe over Fabrics host. See below for examples of the discover, connect and disconnect commands. In all three instances, the transport can be changed to TCP by interchanging 'rdma' for 'tcp'.</p>
+<p>Discovery: </p><div class="fragment"><div class="line">nvme discover -t rdma -a 192.168.100.8 -s 4420</div>
+</div><!-- fragment --><p>Connect: </p><div class="fragment"><div class="line">nvme connect -t rdma -n &quot;nqn.2016-06.io.spdk:cnode1&quot; -a 192.168.100.8 -s 4420</div>
+</div><!-- fragment --><p>Disconnect: </p><div class="fragment"><div class="line">nvme disconnect -n &quot;nqn.2016-06.io.spdk:cnode1&quot;</div>
+</div><!-- fragment --><h1 class="doxsection"><a class="anchor" id="nvmf_trace"></a>
+Enabling NVMe-oF target tracepoints for offline analysis and debug</h1>
+<p>SPDK has a tracing framework for capturing low-level event information at runtime. <a class="el" href="tracepoints.html" title="Tracing Framework">Tracing Framework</a> enable analysis of both performance and application crashes.</p>
+<h1 class="doxsection"><a class="anchor" id="autotoc_md1317"></a>
+Enabling NVMe-oF Multipath</h1>
+<p>The SPDK NVMe-oF target and initiator support multiple independent paths to the same NVMe-oF subsystem. For step-by-step instructions for configuring and switching between paths, see <a class="el" href="nvmf_multipath_howto.html" title="NVMe-oF Multipath HOWTO">NVMe-oF Multipath HOWTO</a> .</p>
+<h1 class="doxsection"><a class="anchor" id="autotoc_md1319"></a>
+Enabling NVMe-oF TLS</h1>
+<p>The SPDK NVMe-oF target and initiator support establishing a secure TCP connection using Transport Layer Security (TLS) protocol in compliance with NVMe TCP transport specification. Only version 1.3 of the TLS protocol is supported. This feature is considered experimental.</p>
+<p>Currently, it is only possible to establish a fabric secure channel using TLS. The channel is protected by a symmetric pre-shared key (PSK) using either <span class="tt">TLS_AES_256_GCM_SHA384</span> (recommended) or <span class="tt">TLS_AES_128_GCM_SHA256</span> cipher suite. The cipher suite is selected based on the hash function associated with a key. During configuration, the keys are expected to be in the PSK interchange format (see NVMe TCP transport specification 1.0c, section 3.6.1.5).</p>
+<p>The target supports assigning different keys for each host connecting to a given subsystem. It is also possible for a single host to use different keys for different subsystems. The keys are expected to be placed in separate files (with permissions configured only to allow read/write access to the owner) and can be configured using the <span class="tt">--psk</span> option in the <span class="tt">nvmf_subsystem_add_host</span> RPC. Additionally, to allow establishing TLS connections on a given listener, it must be created with <span class="tt">--secure-channel</span> option enabled. It's also worth noting that this option is mutually exclusive with <span class="tt">--allow-any-host</span> subsystem option and trying to add a listener to such a subsystem will result in an error.</p>
+<p>On the initiator side, the key can be specified using <span class="tt">--psk</span> option in the <span class="tt">bdev_nvme_attach_controller</span> RPC.</p>
+<p>Recommendations on the pre-shared keys:</p>
+<ul>
+<li>It is strongly recommended to change the keys at least once a year.</li>
+<li>Use a strong cryptographic random number generator that provides sufficient entropy to generate the keys (e.g. HSM).</li>
+<li>Use a single key to secure transmission between two systems only.</li>
+<li>Delete files containing PSKs as soon as they are not needed.</li>
+</ul>
+<p>Additionally, it is recommended to follow: <a href="https://www.rfc-editor.org/rfc/rfc9257.html">RFC 9257 'Guidance for External Pre-Shared Key (PSK) Usage in TLS'</a></p>
+<h2 class="doxsection"><a class="anchor" id="autotoc_md1340"></a>
+Target setup</h2>
+<div class="fragment"><div class="line">cat key.txt</div>
+<div class="line">NVMeTLSkey-1:01:MDAxMTIyMzM0NDU1NjY3Nzg4OTlhYWJiY2NkZGVlZmZwJEiQ:</div>
+<div class="line"> </div>
+<div class="line">build/bin/nvmf_tgt &amp;</div>
+<div class="line">scripts/rpc.py nvmf_create_transport -t TCP</div>
+<div class="line">scripts/rpc.py nvmf_create_subsystem nqn.2016-06.io.spdk:cnode1 -s SPDK00000000000001 -m 10</div>
+<div class="line">scripts/rpc.py nvmf_subsystem_add_listener nqn.2016-06.io.spdk:cnode1 -t tcp -a 127.0.0.1 -s 4420 \</div>
+<div class="line">               --secure-channel</div>
+<div class="line">scripts/rpc.py nvmf_subsystem_add_host nqn.2016-06.io.spdk:cnode1 nqn.2016-06.io.spdk:host1 \</div>
+<div class="line">               --psk key.txt</div>
+</div><!-- fragment --><h2 class="doxsection"><a class="anchor" id="autotoc_md1341"></a>
+Initiator setup</h2>
+<p>For SPDK initiator example, bdevperf application may be used, because it depends on SPDK's NVMe TCP driver.</p>
+<div class="fragment"><div class="line">cat key.txt</div>
+<div class="line">NVMeTLSkey-1:01:MDAxMTIyMzM0NDU1NjY3Nzg4OTlhYWJiY2NkZGVlZmZwJEiQ:</div>
+<div class="line"> </div>
+<div class="line">build/examples/bdevperf -m 0x2 -z -r /var/tmp/bdevperf.sock -q 128 -o 4096 -w verify -t 10 &amp;</div>
+<div class="line">scripts/rpc.py -s /var/tmp/bdevperf.sock bdev_nvme_attach_controller -b TLSTEST -t tcp -a 127.0.0.1 \</div>
+<div class="line">               -s 4420 -f ipv4 -n nqn.2016-06.io.spdk:cnode1 -q nqn.2016-06.io.spdk:host1 \</div>
+<div class="line">               --psk key.txt</div>
+</div><!-- fragment --><p>First of the two commands will launch bdevperf, the second one will attempt to construct NVMe bdev and establish TLS connection. Of course, the same PSK must be used on both the target and the initiator side.</p>
+<h1 class="doxsection"><a class="anchor" id="autotoc_md1342"></a>
+NVMe-oF in-band authentication</h1>
+<p>The NVMe-oF driver and NVMe-oF target both support in-band authentication using the DH-HMAC-CHAP protocol. It allows the target to authenticate the host and the host to authenticate the target (the latter part is optional).</p>
+<p>The authentication will be performed if a subsystem is configured to allow a host with a set of DH-HMAC-CHAP keys. Each host is allowed to use different keys to connect to different subsystems and each subsystem might use different keys for different hosts. For instance, the following configures three hosts, two of which can request bidirectional authentication:</p>
+<div class="fragment"><div class="line">$ scripts/rpc.py nvmf_subsystem_add_host nqn.2024-05.io.spdk:cnode0 nqn.2024-05.io.spdk:host0 \</div>
+<div class="line">    --dhchap-key key0 --dhchap-ctrlr-key ctrlr-key0</div>
+<div class="line">$ scripts/rpc.py nvmf_subsystem_add_host nqn.2024-05.io.spdk:cnode0 nqn.2024-05.io.spdk:host1 \</div>
+<div class="line">    --dhchap-key key1 --dhchap-ctrlr-key ctrlr-key1</div>
+<div class="line">$ scripts/rpc.py nvmf_subsystem_add_host nqn.2024-05.io.spdk:cnode0 nqn.2024-05.io.spdk:host2 \</div>
+<div class="line">    --dhchap-key key2</div>
+</div><!-- fragment --><p>Additionally, it's possible to change the keys while preserving existing connections to a subsystem via <span class="tt">nvmf_subsystem_set_keys</span>. After that's done, new connections and reauthentication requests will be required to use the new keys.</p>
+<div class="fragment"><div class="line">$ scripts/rpc.py nvmf_subsystem_add_host nqn.2024-05.io.spdk:cnode0 nqn.2024-05.io.spdk:host0 \</div>
+<div class="line">    --dhchap-key key0 --dhchap-ctrlr-key ctrlr-key0</div>
+<div class="line"># Host nqn.2024-05.io.spdk:host0 connects to subsystem nqn.2024-05.io.spdk:cnode0</div>
+<div class="line">$ scripts/rpc.py nvmf_subsystem_set_keys nqn.2024-05.io.spdk:cnode0 nqn.2024-05.io.spdk:host0 \</div>
+<div class="line">    --dhchap-key key1 --dhchap-ctrlr-key ctrlr-key1</div>
+</div><!-- fragment --><p>On the host side, the keys are specified when attaching controllers, e.g.:</p>
+<div class="fragment"><div class="line">$ scripts/rpc.py bdev_nvme_attach_controller -b nvme0 -t tcp -f ipv4 -a 127.0.0.1 -s 4420 \</div>
+<div class="line">    -n nqn.2024-05.io.spdk:cnode0 -q nqn.2024-05.io.spdk:host0 --dhchap-key key0 \</div>
+<div class="line">    --dhchap-ctrlr-key ctrlr-key0</div>
+</div><!-- fragment --><p>All hash functions/Diffie-Hellman groups defined in the NVMe Base Specification 2.0d are supported and the algorithms used for a given DH-HMAC-CHAP transaction are negotiated at the beginning. The SPDK NVMe-oF target selects the strongest available hash/group depending on its configuration and the capabilities of a peer. Users can limit the allowed hash functions and/or Diffie-Hellman groups via RPCs. For example, the following limits the target (<span class="tt">nvmf_set_config</span>) and the driver (<span class="tt">bdev_nvme_set_options</span>) to use sha384, sha512 and ffdhe6144, ffdhe8192:</p>
+<div class="fragment"><div class="line">$ scripts/rpc.py nvmf_set_config --dhchap-digests sha384,sha512 \</div>
+<div class="line">    --dhchap-dhgroups ffdhe6144,ffdhe8192</div>
+<div class="line">$ scripts/rpc.py bdev_nvme_set_options --dhchap-digests sha384,sha512 \</div>
+<div class="line">    --dhchap-dhgroups ffdhe6144,ffdhe8192</div>
+</div><!-- fragment --><p>The NVMe specification describes the method for using in-band authentication in conjunction with establishing a secure channel (e.g. TLS). However, that isn't supported currently, so in order to perform in-band authentication, hosts must connect over regular listeners (i.e. those that weren't created with the <span class="tt">--secure-channel</span> option).</p>
+<h1 class="doxsection"><a class="anchor" id="autotoc_md1344"></a>
+NVMe Subsystem Reset (NSSR)</h1>
+<p>NVM Subsystem Reset (NSSR) is optionally supported. When an NSSR occurs the entire NVM subsystem is reset including Controller Level Reset (CLR) on each controller in the subsystem and disabling of the Persistent Memory Regions (PMR) associated with those controllers. This feature is currently limited to namespaces (bdevs) with PCIe transport.</p>
+<p>NSSR support is disabled by default and can be enabled during creation of the subsystem. Please see <span class="tt">nvmf_create_subsystem</span> RPC's call parameters.</p>
+<p>During an NSSR each namespace (bdev) will additionally be reset. For bdev_nvme-backed namespaces an NSSR will prefer to trigger an NSSR on the underlying controller. If not supported, a CLR will be performed instead. For other bdev types a standard bdev reset operation is performed.</p>
+<p>NSSR resets the PCIe link and so NVMe devices appear to be hot-removed and then hot-inserted. The same configuration steps to support PCIe hotplug of NVMe devices is required to re-discover NVMe devices during an NSSR.</p>
+<p>Those steps might contain:</p>
+<ul>
+<li>Unbinding the NVMe device from kernel's NVMe driver</li>
+<li>Binding it to vfio driver</li>
+<li>Attaching controller to SPDK via <span class="tt">bdev_nvme_attach_controller</span> RPC call (unless hotplug is not enabled via <span class="tt">bdev_nvme_set_hotplug</span>)</li>
+<li>Adding namespace to the nvmf subsystem</li>
+</ul>
+<p>If bdev has multiple namespaces connected to multiple subsystems - executing NSSR on one namespace affects the other, since the whole bdev would be removed from and added back to the system.</p>
+<p>If a bdev is of type bdev_nvme and this underlying NVMe namespace is part of an NVM subsystem containing multiple namespaces, then all bdevs associated with that underlying subsystem will be destroyed and re-added, even if they are in a separate NVMe-oF subsystem that wasn't being reset. Beware of side effects.</p>
+<h1 class="doxsection"><a class="anchor" id="autotoc_md1348"></a>
+NVMe firmware update</h1>
+<p>NVMe firmware update process involves use of two admin commands: firmware download and firmware commit. FW download is used only to get the FW image to the drive, then FW commit is used to tell the drive to:</p>
+<ol type="1">
+<li>store the FW image in particular firmware slot</li>
+<li>store and activate the image after controller reset (or NSSR)</li>
+<li>store and activate immediately without any reset (if NVMe drive supports that)</li>
+</ol>
+<p>Drive is never unregistered from the system after FW commit. User needs to trigger Reset/NSSR separately (in case of second option). Please refer to firmware commit/firmware download admin command section of NVMe spec for further details. </p>
+</div></div><!-- contents -->
+</div><!-- PageDoc -->
+</div><!-- doc-content -->
+<div id="page-nav" class="page-nav-panel">
+<div id="page-nav-resize-handle"></div>
+<div id="page-nav-tree">
+<div id="page-nav-contents">
+</div><!-- page-nav-contents -->
+</div><!-- page-nav-tree -->
+</div><!-- page-nav -->
+</div><!-- container -->
+<footer class="footer" id="nav-path">
+  <div class="footer-inner">
+    <div class="footer-copy">
+      <small>Copyright &copy; SPDK a Series of LF Projects, LLC. For web site terms of use, trademark policy, and other
+      project policies please see <a href="https://lfprojects.org">lfprojects.org</a>.</small>
+    </div>
+  </div>
+</footer>
+<script type="text/javascript" src="page_outline.js"></script>
+<script type="text/javascript" src="spdk_nav.js"></script>
+<!-- Doxygen footer suffix – assembled by _build/common.sh:
+     _includes/footer.html (shared) + theme scripts (from spdk) + this file.
+     Theme scripts are extracted from spdk/doc/theme/footer.html at build
+     time so the script list is maintained in a single place. -->
+</body>
+</html>

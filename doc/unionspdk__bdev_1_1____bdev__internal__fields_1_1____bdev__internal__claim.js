@@ -1,0 +1,5 @@
+var unionspdk__bdev_1_1____bdev__internal__fields_1_1____bdev__internal__claim =
+[
+    [ "__bdev_internal_claim_v1", "structspdk__bdev_1_1____bdev__internal__fields_1_1____bdev__internal__claim_1_1____bdev__internal__claim__v1.html", "structspdk__bdev_1_1____bdev__internal__fields_1_1____bdev__internal__claim_1_1____bdev__internal__claim__v1" ],
+    [ "__bdev_internal_claim_v2", "structspdk__bdev_1_1____bdev__internal__fields_1_1____bdev__internal__claim_1_1____bdev__internal__claim__v2.html", "structspdk__bdev_1_1____bdev__internal__fields_1_1____bdev__internal__claim_1_1____bdev__internal__claim__v2" ]
+];

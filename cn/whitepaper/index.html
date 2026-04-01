@@ -1,0 +1,234 @@
+<!doctype html>
+<html lang="en">
+  <head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="The Storage Performance Development Kit (SPDK) provides a set of tools and libraries for writing high performance, scalable, user-mode storage applications. It achieves high performance by moving all of the necessary drivers into userspace and operating in a polled mode instead of relying on interrupts, which avoids kernel context switches and eliminates interrupt handling overhead.
+">
+  <meta name="author" content="Benjamin Walker">
+
+  <title>白皮书</title>
+
+  <link rel="icon" type="image/svg+xml" href="/spdk.github.io/assets/img/spdk.svg">
+  <link rel="icon" href="/spdk.github.io/assets/favicon.ico" sizes="32x32">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:400,700,900" type="text/css">
+  <link rel="stylesheet" href="/spdk.github.io/assets/css/spdk.css">
+
+  <link href="/spdk.github.io/feed.xml" type="application/atom+xml" rel="alternate" title="Atom Feed">
+</head>
+
+
+  <body>
+    <nav class="navbar">
+  <a class="navbar-brand" href="/spdk.github.io/" aria-label="SPDK">
+    <img src="/spdk.github.io/assets/img/spdk.svg" width="36" height="36" alt="Storage Performance Development Kit">
+  </a>
+  <div class="navbar-nav">
+    <a class="nav-link header-link" href="/spdk.github.io/doc/releases.html">download</a>
+    <a class="nav-link header-link" href="/spdk.github.io/doc/">documentation</a>
+    <a class="nav-link header-link" href="/spdk.github.io/doc/contributing.html">development</a>
+    <a class="nav-link header-link" href="/spdk.github.io/doc/ci_tools.html">CI status</a>
+    <a class="nav-link header-link" href="/spdk.github.io/community/">community</a>
+    <a class="nav-link header-link" href="/spdk.github.io/blog/">Blog</a>
+    <a class="nav-link header-link" href="https://github.com/orgs/spdk/projects/5">Roadmap</a>
+    <a class="nav-link header-link" href="/spdk.github.io/news/">News</a>
+  </div>
+  <div class="navbar-end">
+    <a class="nav-link header-link" href="https://github.com/spdk/spdk" aria-label="GitHub">
+      <svg xmlns="http://www.w3.org/2000/svg" class="navbar-nav-svg" aria-hidden="true"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
+    </a>
+    <a id="cn_lang_btn" href="/spdk.github.io/cn/doc/" class="nav-link header-link">中文</a>
+  </div>
+</nav>
+<script>
+(function() {
+    var p = location.pathname, best = null, bLen = 0;
+    document.querySelectorAll('.header-link[href]').forEach(function(a) {
+        var raw = a.getAttribute('href');
+        if (!raw) return;
+        try { var u = new URL(raw, location.href); } catch(e) { return; }
+        if (u.origin !== location.origin) return;
+        var h = u.pathname;
+        if (h === '/') return;
+        var ok = h.endsWith('.html') ? p === h : p.indexOf(h) === 0;
+        if (ok && h.length > bLen) { bLen = h.length; best = a; }
+    });
+    if (best) best.classList.add('active');
+})();
+</script>
+
+
+    
+<div class="page-with-toc">
+  <aside class="site-toc">
+    <ul>
+      
+        <li>
+          <a href="../news/">用户案例</a>
+          
+        </li>
+      
+        <li>
+          <a href="../articles/">技术文章</a>
+          
+        </li>
+      
+        <li>
+          <a href="../whitepaper/">白皮书</a>
+          
+        </li>
+      
+        <li>
+          <a href="../webinar/">在线分享</a>
+          
+        </li>
+      
+    </ul>
+  </aside>
+
+  <div class="page-content">
+    <div class="page-header">
+      <h1>白皮书</h1>
+    </div>
+    <div class="content"><h2 id="浪潮">浪潮</h2>
+<ul>
+  <li><a href="https://review.spdk.io/download/papers/202208_Inspur_InCloud_Rail_HCI_All-in-One_Based_on_Intel_Technologies_CN.pdf">基于英特尔®技术的浪潮云海®超融合一体机InCloud Rail解决方案</a>
+    <blockquote>
+      <p>“为了提升存储子系统的性能，浪潮使用了英特尔®存储性能开发套件(SPDK)，并通过NVMe over Fabrics(NVMe-oF)协议进行加速。”</p>
+    </blockquote>
+  </li>
+</ul>
+
+<h2 id="爱奇艺">爱奇艺</h2>
+<ul>
+  <li><a href="https://review.spdk.io/download/papers/202202_CN_Intel_Helps_iQIYI_Optimize_the_Performance_of_MySQL_Database_Engines_to_Improve_Customer_Experience.pdf">英特尔助力爱奇艺深度优化 MySQL 数据库引擎性能，提供优质客户体验</a>
+    <blockquote>
+      <p>“为了进一步挖掘MySQL潜能，爱奇艺使用英特尔®SPDK(Storage Performance Development Kit)对MySQL进行进一步优化。SPDK提供了一组用于编写高性能、可伸缩、用户态存储应用程序的工具和库。”</p>
+    </blockquote>
+  </li>
+</ul>
+
+<h2 id="移动云">移动云</h2>
+<ul>
+  <li><a href="https://review.spdk.io/download/papers/202112_Intel_Accelerates_CMCC_Cloud_for_1M_IOPS_Cloud_Disk_with_Ultra_Cloud_Storage_Experience_CN.pdf">Intel助力移动云百万IOPS云硬盘，打造极速云存储体验</a>
+    <blockquote>
+      <p>“鉴于Intel SPDK IO低延时、高吞吐的巨大优势，移动云云存储团队与Intel进行深度合作，在结合Intel SPDK的基础上设计实现了百万IOPS的移动云极速型云硬盘产品。”</p>
+    </blockquote>
+  </li>
+</ul>
+
+<h2 id="青云">青云</h2>
+<ul>
+  <li><a href="https://www.intel.cn/content/www/cn/zh/architecture-and-technology/qingyun-casestudy.html?from=singlemessage&amp;isappinstalled=0">青云用英特尔存储“黑科技”加速关键业务高性能存储系统</a>
+    <blockquote>
+      <p>“极致的存储性能表现：全闪存 + SPDK”</p>
+    </blockquote>
+  </li>
+</ul>
+
+<h2 id="h3c">H3C</h2>
+<ul>
+  <li><a href="https://www.intel.cn/content/www/cn/zh/technology-provider/products-and-solutions/storage/nvme-storage.html">H3C分布式架构全闪存存储集成SPDK NVMe-oF技术来实现高性能和易扩展性</a>
+    <blockquote>
+      <p>“高性能和易扩展性：全闪存 + SPDK NVMe-oF”</p>
+    </blockquote>
+  </li>
+  <li><a href="https://www.intel.cn/content/www/cn/zh/architecture-and-technology/h3c-onestor-distributed-storag-system.html">基于全新英特尔® 架构的新华三 ONEStor 分布式存储系统</a>
+    <blockquote>
+      <p>“为了提升 H3C ONEStor 分布式存储系统的性能，H3C 与英特尔进行了合作，结合英特尔® 傲腾™ 持久内存、第二代英特尔®至强® 可扩展处理器、英特尔® SPDK 性能工具包等产品，对全闪存分布式存储进行了针对性的性能优化。”</p>
+    </blockquote>
+  </li>
+</ul>
+
+<h2 id="百度">百度</h2>
+<ul>
+  <li><a href="https://review.spdk.io/download/papers/Introduction_of_Baidu_Chitu_Storage_with_SPDK_NVMe-oF_CN.pdf">百度赤兔存储结合SPDK NVMe-oF应用介绍</a>
+    <blockquote>
+      <p>“数据通路关键模块以及用户态程序高效开发和运维：SPDK NVMe-oF”</p>
+    </blockquote>
+  </li>
+  <li><a href="https://review.spdk.io/download/papers/202105_Baidu_PMem_SPDK_Storage_Engine_CN.pdf">英特尔® 傲腾™ 持久内存SPDK双重加持助力百度新一代用户态存储引擎</a>
+    <blockquote>
+      <p>“SPDK 可以高效整合英特尔的 CPU 处理、存储和网络技术，将高性能存储介质的性能充分发挥出来，同时SPDK高性能框架提供了统一的设备管理来支持多种多样的存储后端。”</p>
+    </blockquote>
+  </li>
+</ul>
+
+<h2 id="ucloud">UCloud</h2>
+<ul>
+  <li><a href="https://mp.weixin.qq.com/s?__biz=MzUwOTA1NDg4NQ==&amp;mid=2247486423&amp;idx=1&amp;sn=0eeea9af452742e600296989135df2d9&amp;chksm=f919511dce6ed80bd2b2506543f3c6817b05a8cc830481632ab70c1fd8c98378af0bee691ed4&amp;mpshare=1&amp;scene=1&amp;srcid=&amp;sharer_sharetime=1573555664316&amp;sharer_shareid=bce63ba0449f498eb13c109c5eaef06d&amp;pass_ticket=fLkzI%2B2BoXe5Mn2QLbJmd%2FGkh85uylN96CNFIMsJDlOfwhTiyYk9d%2BaYfyIMcSre#rd">All in one &amp; One for all，“快杰”云主机的技术进阶之路</a>
+    <blockquote>
+      <p>“全面搭载Intel最新一代Cascade Lake处理器，实现了云盘的全面优化：使用SPDK Vhost代替QEMU，实现虚机到存储客户端的数据零拷贝；存储引擎由SPDK代替libaio，高并发下依然可以保持较低的时延…”</p>
+    </blockquote>
+  </li>
+</ul>
+
+<h2 id="alicloud">AliCloud</h2>
+<ul>
+  <li><a href="https://www.intel.com/content/dam/www/public/us/en/documents/solution-briefs/alibaba-polardb-solution-brief.pdf">阿里云POLARDB:一个革新的云上数据库</a>
+    <blockquote>
+      <p>“软件定义的POLARDB革新架构，使用了分布式存储、SPDK、RDMA及其他创新技术。实现了一个高性能、可扩展、基于云的数据库。”</p>
+    </blockquote>
+  </li>
+</ul>
+
+<h2 id="深信服">深信服</h2>
+<ul>
+  <li><a href="https://mp.weixin.qq.com/s?__biz=MzI3NDA4ODY4MA==&amp;mid=2653337220&amp;idx=1&amp;sn=6b9b97739f8c3cd72a65ebaef531bac1&amp;chksm=f0cb4103c7bcc815398e2905cfb29c0ecc5067805e9ff930a2aa6356411d9a3267c6ed86c302&amp;mpshare=1&amp;scene=1&amp;srcid=0709TnWbQGyYMKjrKjKuKqDP&amp;sharer_sharetime=1594299545037&amp;sharer_shareid=bce63ba0449f498eb13c109c5eaef06d&amp;exportkey=AzO8WIfAkDPV%2F3Jb7FH8hok%3D&amp;pass_ticket=uQuJ1Meb%2BWlub1ZGYEXdpLrLxAvbfxFU%2FcnIZnB%2FUSEEHD3GrlvKUhxm%2FL5EZCv9&amp;wx_header=0#rd">深信服EDS与Intel合作，让性能与低价不必“二选一”</a>
+    <blockquote>
+      <p>“这次合作中，深信服EDS基于SPDK开发套件设计的存储引擎，不仅充分发挥出Intel硬件的性能，还构筑起高性能、低成本的存储架构，这其中离不开深信服EDS研发团队在软件定义存储领域的深厚积累与软件开发能力，期待今后进一步合作，为用户的数字化转型构建存储基石。”</p>
+    </blockquote>
+  </li>
+  <li><a href="https://www.intel.cn/content/www/cn/zh/architecture-and-technology/intel-select-solution-for-sangfor-hci-sds.html">基于深信服 HCI &amp; SDS 的英特尔® 精选解决方案</a>
+    <blockquote>
+      <p>“结合硬件和第二代英特尔至强可扩展处理器中集成的英特尔技术，通过优化的软件技术可以进一步提高精选方案的性能与可扩展性：存储性能开发套件(SPDK)提供了一组用于编写高性能、可扩展、用户态存储应用程序的工具、模块和方案。”</p>
+    </blockquote>
+  </li>
+</ul>
+
+<h2 id="金山云">金山云</h2>
+<ul>
+  <li><a href="https://review.spdk.io/download/papers/Intel_Technology_Accelerates_Kingsoft_Cloud_For_Hybrid_Cloud_Storage_Products_CN.pdf">英特尔助力金山云构建混合云存储产品，加速企业数字化转型</a>
+    <blockquote>
+      <p>“使用SPDK之后，用户态的驱动通过轮询硬件而不是依赖中断来完成，这可以降低总延迟和减少延迟差异，并且和内核驱动相比，在每个CPU内核的IOPS上具有更明显的性能优势；此外，SPDK具备I/O路径的无锁高性能模式，避免了所有在I/O关键路径中的锁，而是依靠消息传递在多个线程中共享资源，从而提高了并行性。总体而言，SPDK可以有效整合英特尔的网络、数据和存储技术，将固态存储介质的性能潜力充分发挥出来。”</p>
+    </blockquote>
+  </li>
+</ul>
+
+<h2 id="腾讯云">腾讯云</h2>
+<ul>
+  <li><a href="https://review.spdk.io/download/papers/202106_CN_Intel_Helps_Tencent_Cloud_Deeply_Optimize_its_Cloud_Block_Storage_to_Create_Ultra_Fast_Cloud_Storage_Experience.pdf">英特尔助力腾讯云深度优化云硬盘CBS 产品，打造极速云存储体验</a>
+    <blockquote>
+      <p>“针对CBS产品的架构、存储引擎以及硬件基础设施，腾讯云加入了对远程直接数据存取(Remote Direct Memory Access，RDMA)协议的支持，并与英特尔携手，开展了多方位的优化，包括：加入轮询、算法优化、消除竞争以及消除锁等机制，优化CBS存储引擎；引入由英特尔提供的SPDK(Storage Performance Development Kit)开发套件，优化NVMe固态盘的IOPS和时延性能。”</p>
+    </blockquote>
+  </li>
+</ul>
+
+<h2 id="华瑞指数云">华瑞指数云</h2>
+<ul>
+  <li><a href="https://review.spdk.io/download/papers/202208_Joint_Technical_Whitepaper_of_WiDE_Distributed_Storage_Engine_with_Intel_New_Platform_CN.pdf">WiDE分布式引擎与英特尔®新一代平台联合解决方案技术白皮书</a>
+    <blockquote>
+      <p>“为了适应高速IO处理的需求，过去十多年来学术界和工业界在本领域也提出了许多新想法，新技术，比如内存零拷贝、远程直接地址访问RDMA、无锁零中断IO处理、内核旁路(Bypass Kernel)、全用户态、RTC(Run to Completion)IO处理模型和异步轮询等。英特尔公司为了配合新的网络和存储介质的需要，主导推广了DPDK、SPDK开发套件和社区。”</p>
+    </blockquote>
+  </li>
+</ul>
+</div>
+  </div>
+</div>
+
+
+
+
+    <footer class="footer" id="nav-path">
+  <div class="footer-inner">
+    <div class="footer-copy">
+      <small>Copyright &copy; SPDK a Series of LF Projects, LLC. For web site terms of use, trademark policy, and other
+      project policies please see <a href="https://lfprojects.org">lfprojects.org</a>.</small>
+    </div>
+  </div>
+</footer>
+
+
+    
+  </body>
+</html>

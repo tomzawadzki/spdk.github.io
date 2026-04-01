@@ -1,0 +1,384 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<meta name="generator" content="Doxygen 1.16.1">
+	<title>SPDK: spdk_vfu_endpoint_ops Struct Reference</title>
+	<script type="text/javascript" src="jquery.js"></script>
+	<script type="text/javascript" src="dynsections.js"></script>
+	<script type="text/javascript" src="clipboard.js"></script>
+	<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
+<script type="text/javascript" src="cookie.js"></script>
+	<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<script type="text/javascript">
+  $(function() { init_search(); });
+</script>
+	<link rel="icon" type="image/svg+xml" href="../assets/img/spdk.svg">
+	<link rel="icon" href="../assets/favicon.ico" sizes="32x32">
+	<link href="doxygen.css" rel="stylesheet" type="text/css">
+	<script>(function(){var k='doxygen_width',w,bw=6;if(window.chrome){w=localStorage.getItem(k);if(!w){w='350';localStorage.setItem(k,w)}}else{var m=document.cookie.match(new RegExp(k+'=(\\d+)'));w=m?m[1]:null;if(!w){w='350';document.cookie=k+'=350;SameSite=Lax;path=/'}}document.documentElement.style.setProperty('--sn-w',(parseInt(w)+bw)+'px')})()</script>
+	<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:400,700,900" type="text/css">
+	<link href="spdk.css" rel="stylesheet" type="text/css"/>
+	<link href="../assets/css/spdk.css" rel="stylesheet" type="text/css">
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<nav class="navbar">
+  <a class="navbar-brand" href="../" aria-label="SPDK">
+    <img src="../assets/img/spdk.svg" width="36" height="36" alt="Storage Performance Development Kit">
+  </a>
+  <div class="navbar-nav">
+    <a class="nav-link header-link" href="../doc/releases.html">download</a>
+    <a class="nav-link header-link" href="../doc/">documentation</a>
+    <a class="nav-link header-link" href="../doc/contributing.html">development</a>
+    <a class="nav-link header-link" href="../doc/ci_tools.html">CI status</a>
+    <a class="nav-link header-link" href="../community/">community</a>
+    <a class="nav-link header-link" href="../blog/">Blog</a>
+    <a class="nav-link header-link" href="https://github.com/orgs/spdk/projects/5">Roadmap</a>
+    <a class="nav-link header-link" href="../news/">News</a>
+  </div>
+  <div class="navbar-end">
+    <a class="nav-link header-link" href="https://github.com/spdk/spdk" aria-label="GitHub">
+      <svg xmlns="http://www.w3.org/2000/svg" class="navbar-nav-svg" aria-hidden="true"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
+    </a>
+    <a id="cn_lang_btn" href="../cn/doc/" class="nav-link header-link">中文</a>
+  </div>
+</nav>
+<script>
+(function() {
+    var p = location.pathname, best = null, bLen = 0;
+    document.querySelectorAll('.header-link[href]').forEach(function(a) {
+        var raw = a.getAttribute('href');
+        if (!raw) return;
+        try { var u = new URL(raw, location.href); } catch(e) { return; }
+        if (u.origin !== location.origin) return;
+        var h = u.pathname;
+        if (h === '/') return;
+        var ok = h.endsWith('.html') ? p === h : p.indexOf(h) === 0;
+        if (ok && h.length > bLen) { bLen = h.length; best = a; }
+    });
+    if (best) best.classList.add('active');
+})();
+</script>
+<div id="doxygen-searchbox">        <div id="MSearchBox" class="MSearchBoxInactive">
+        <span class="left">
+          <span id="MSearchSelect" class="search-icon" onmouseover="return searchBox.OnSearchSelectShow()" onmouseout="return searchBox.OnSearchSelectHide()"><span class="search-icon-dropdown"></span></span>
+          <input type="text" id="MSearchField" value="" placeholder="Search" accesskey="S"
+               onfocus="searchBox.OnSearchFieldFocus(true)" 
+               onblur="searchBox.OnSearchFieldFocus(false)" 
+               onkeyup="searchBox.OnSearchFieldChange(event)"/>
+          </span><span class="right">
+            <a id="MSearchClose" href="javascript:searchBox.CloseResultsWindow()"><div id="MSearchCloseImg" class="close-icon"></div></a>
+          </span>
+        </div>
+</div>
+<!-- Generated by Doxygen 1.16.1 -->
+<script type="text/javascript">
+var searchBox = new SearchBox("searchBox", "search/",'.html');
+</script>
+<script type="text/javascript">
+$(function() { codefold.init(); });
+</script>
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+$(function(){initNavTree('structspdk__vfu__endpoint__ops.html','',''); });
+</script>
+<div id="container">
+<div id="doc-content">
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">Loading...</div>
+<div class="SRStatus" id="Searching">Searching...</div>
+<div class="SRStatus" id="NoMatches">No Matches</div>
+</div>
+</div>
+</div>
+</div>
+
+<div class="header">
+  <div class="headertitle"><div class="title">spdk_vfu_endpoint_ops Struct Reference</div></div>
+</div><!--header-->
+<div class="contents">
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 id="header-pub-attribs" class="groupheader"><a id="pub-attribs" name="pub-attribs"></a>
+Data Fields</h2></td></tr>
+<tr class="memitem:a72fd2cc7fbb787f9dc785083900de668" id="r_a72fd2cc7fbb787f9dc785083900de668"><td class="memItemLeft">char&#160;</td><td class="memItemRight"><a class="el" href="#a72fd2cc7fbb787f9dc785083900de668">name</a> [SPDK_VFU_MAX_NAME_LEN]</td></tr>
+<tr class="memdesc:a72fd2cc7fbb787f9dc785083900de668"><td class="mdescLeft">&#160;</td><td class="mdescRight">Backend emulated PCI device type name.  <br /></td></tr>
+<tr class="memitem:aec0faf7b087c328eae30dc22732916a9" id="r_aec0faf7b087c328eae30dc22732916a9"><td class="memItemLeft">void *(*&#160;</td><td class="memItemRight"><a class="el" href="#aec0faf7b087c328eae30dc22732916a9">init</a> )(struct spdk_vfu_endpoint *endpoint, char *basename, const char *endpoint_name)</td></tr>
+<tr class="memdesc:aec0faf7b087c328eae30dc22732916a9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Initialize endpoint to PCI device with base path.  <br /></td></tr>
+<tr class="memitem:a3d0a126f68ccaaaff332d355013450f7" id="r_a3d0a126f68ccaaaff332d355013450f7"><td class="memItemLeft">int(*&#160;</td><td class="memItemRight"><a class="el" href="#a3d0a126f68ccaaaff332d355013450f7">get_device_info</a> )(struct spdk_vfu_endpoint *endpoint, struct <a class="el" href="structspdk__vfu__pci__device.html">spdk_vfu_pci_device</a> *device_info)</td></tr>
+<tr class="memdesc:a3d0a126f68ccaaaff332d355013450f7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get PCI device information from backend device module.  <br /></td></tr>
+<tr class="memitem:a7867ffd354b1e31889cd8e865ba588d7" id="r_a7867ffd354b1e31889cd8e865ba588d7"><td class="memItemLeft">uint16_t(*&#160;</td><td class="memItemRight"><a class="el" href="#a7867ffd354b1e31889cd8e865ba588d7">get_vendor_capability</a> )(struct spdk_vfu_endpoint *endpoint, char *buf, uint16_t buf_len, uint16_t idx)</td></tr>
+<tr class="memdesc:a7867ffd354b1e31889cd8e865ba588d7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get vendor capability based on ID in PCI configuration space.  <br /></td></tr>
+<tr class="memitem:a797b54b7685b855adfd9dd72dfeaaecb" id="r_a797b54b7685b855adfd9dd72dfeaaecb"><td class="memItemLeft">int(*&#160;</td><td class="memItemRight"><a class="el" href="#a797b54b7685b855adfd9dd72dfeaaecb">attach_device</a> )(struct spdk_vfu_endpoint *endpoint)</td></tr>
+<tr class="memdesc:a797b54b7685b855adfd9dd72dfeaaecb"><td class="mdescLeft">&#160;</td><td class="mdescRight">Attach active connection to the PCI endpoint.  <br /></td></tr>
+<tr class="memitem:a69ef95e6406e57fac1fe4ca32a95aa20" id="r_a69ef95e6406e57fac1fe4ca32a95aa20"><td class="memItemLeft">int(*&#160;</td><td class="memItemRight"><a class="el" href="#a69ef95e6406e57fac1fe4ca32a95aa20">detach_device</a> )(struct spdk_vfu_endpoint *endpoint)</td></tr>
+<tr class="memdesc:a69ef95e6406e57fac1fe4ca32a95aa20"><td class="mdescLeft">&#160;</td><td class="mdescRight">Detach the active connection of the PCI endpoint.  <br /></td></tr>
+<tr class="memitem:ab3b853dbe1e51763b880e73f43ba560f" id="r_ab3b853dbe1e51763b880e73f43ba560f"><td class="memItemLeft">int(*&#160;</td><td class="memItemRight"><a class="el" href="#ab3b853dbe1e51763b880e73f43ba560f">destruct</a> )(struct spdk_vfu_endpoint *endpoint)</td></tr>
+<tr class="memdesc:ab3b853dbe1e51763b880e73f43ba560f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Destruct the PCI endpoint.  <br /></td></tr>
+<tr class="memitem:ac6739696eb232d4a07fcabce312cb888" id="r_ac6739696eb232d4a07fcabce312cb888"><td class="memItemLeft">int(*&#160;</td><td class="memItemRight"><a class="el" href="#ac6739696eb232d4a07fcabce312cb888">post_memory_add</a> )(struct spdk_vfu_endpoint *endpoint, void *map_start, void *map_end)</td></tr>
+<tr class="memdesc:ac6739696eb232d4a07fcabce312cb888"><td class="mdescLeft">&#160;</td><td class="mdescRight">Post-notification to backend module after a new memory region is added.  <br /></td></tr>
+<tr class="memitem:a00f7d1fb286931725b14f5f410bbcd33" id="r_a00f7d1fb286931725b14f5f410bbcd33"><td class="memItemLeft">int(*&#160;</td><td class="memItemRight"><a class="el" href="#a00f7d1fb286931725b14f5f410bbcd33">pre_memory_remove</a> )(struct spdk_vfu_endpoint *endpoint, void *map_start, void *map_end)</td></tr>
+<tr class="memdesc:a00f7d1fb286931725b14f5f410bbcd33"><td class="mdescLeft">&#160;</td><td class="mdescRight">Pre-notification to backend module before removing the memory region.  <br /></td></tr>
+<tr class="memitem:aa03b83e4619fc137e847e3e327428a87" id="r_aa03b83e4619fc137e847e3e327428a87"><td class="memItemLeft">int(*&#160;</td><td class="memItemRight"><a class="el" href="#aa03b83e4619fc137e847e3e327428a87">reset_device</a> )(struct spdk_vfu_endpoint *endpoint)</td></tr>
+<tr class="memdesc:aa03b83e4619fc137e847e3e327428a87"><td class="mdescLeft">&#160;</td><td class="mdescRight">PCI device reset callback.  <br /></td></tr>
+<tr class="memitem:affb0058441fbe6b1782cf71400006c6c" id="r_affb0058441fbe6b1782cf71400006c6c"><td class="memItemLeft">int(*&#160;</td><td class="memItemRight"><a class="el" href="#affb0058441fbe6b1782cf71400006c6c">quiesce_device</a> )(struct spdk_vfu_endpoint *endpoint)</td></tr>
+<tr class="memdesc:affb0058441fbe6b1782cf71400006c6c"><td class="mdescLeft">&#160;</td><td class="mdescRight">PCI device quiesce callback, after this callback, the backend device module should stopping processing any IOs.  <br /></td></tr>
+</table>
+<a name="details" id="details"></a><h2 id="header-details" class="groupheader">Detailed Description</h2>
+<div class="textblock">
+<p class="definition">Definition at line <a class="el" href="vfu__target_8h_source.html#l00169">169</a> of file <a class="el" href="vfu__target_8h_source.html">vfu_target.h</a>.</p>
+</div><a name="doc-variable-members" id="doc-variable-members"></a><h2 id="header-doc-variable-members" class="groupheader">Field Documentation</h2>
+<a id="a797b54b7685b855adfd9dd72dfeaaecb" name="a797b54b7685b855adfd9dd72dfeaaecb"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a797b54b7685b855adfd9dd72dfeaaecb">&#9670;&#160;</a></span>attach_device</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int(* spdk_vfu_endpoint_ops::attach_device) (struct spdk_vfu_endpoint *endpoint)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Attach active connection to the PCI endpoint. </p>
+
+<p class="definition">Definition at line <a class="el" href="vfu__target_8h_source.html#l00196">196</a> of file <a class="el" href="vfu__target_8h_source.html">vfu_target.h</a>.</p>
+
+</div>
+</div>
+<a id="ab3b853dbe1e51763b880e73f43ba560f" name="ab3b853dbe1e51763b880e73f43ba560f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab3b853dbe1e51763b880e73f43ba560f">&#9670;&#160;</a></span>destruct</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int(* spdk_vfu_endpoint_ops::destruct) (struct spdk_vfu_endpoint *endpoint)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Destruct the PCI endpoint. </p>
+
+<p class="definition">Definition at line <a class="el" href="vfu__target_8h_source.html#l00206">206</a> of file <a class="el" href="vfu__target_8h_source.html">vfu_target.h</a>.</p>
+
+</div>
+</div>
+<a id="a69ef95e6406e57fac1fe4ca32a95aa20" name="a69ef95e6406e57fac1fe4ca32a95aa20"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a69ef95e6406e57fac1fe4ca32a95aa20">&#9670;&#160;</a></span>detach_device</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int(* spdk_vfu_endpoint_ops::detach_device) (struct spdk_vfu_endpoint *endpoint)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Detach the active connection of the PCI endpoint. </p>
+
+<p class="definition">Definition at line <a class="el" href="vfu__target_8h_source.html#l00201">201</a> of file <a class="el" href="vfu__target_8h_source.html">vfu_target.h</a>.</p>
+
+</div>
+</div>
+<a id="a3d0a126f68ccaaaff332d355013450f7" name="a3d0a126f68ccaaaff332d355013450f7"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3d0a126f68ccaaaff332d355013450f7">&#9670;&#160;</a></span>get_device_info</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int(* spdk_vfu_endpoint_ops::get_device_info) (struct spdk_vfu_endpoint *endpoint, struct <a class="el" href="structspdk__vfu__pci__device.html">spdk_vfu_pci_device</a> *device_info)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Get PCI device information from backend device module. </p>
+
+<p class="definition">Definition at line <a class="el" href="vfu__target_8h_source.html#l00184">184</a> of file <a class="el" href="vfu__target_8h_source.html">vfu_target.h</a>.</p>
+
+</div>
+</div>
+<a id="a7867ffd354b1e31889cd8e865ba588d7" name="a7867ffd354b1e31889cd8e865ba588d7"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7867ffd354b1e31889cd8e865ba588d7">&#9670;&#160;</a></span>get_vendor_capability</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">uint16_t(* spdk_vfu_endpoint_ops::get_vendor_capability) (struct spdk_vfu_endpoint *endpoint, char *buf, uint16_t buf_len, uint16_t idx)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Get vendor capability based on ID in PCI configuration space. </p>
+
+<p class="definition">Definition at line <a class="el" href="vfu__target_8h_source.html#l00190">190</a> of file <a class="el" href="vfu__target_8h_source.html">vfu_target.h</a>.</p>
+
+</div>
+</div>
+<a id="aec0faf7b087c328eae30dc22732916a9" name="aec0faf7b087c328eae30dc22732916a9"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aec0faf7b087c328eae30dc22732916a9">&#9670;&#160;</a></span>init</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void *(* spdk_vfu_endpoint_ops::init) (struct spdk_vfu_endpoint *endpoint, char *basename, const char *endpoint_name)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Initialize endpoint to PCI device with base path. </p>
+
+<p class="definition">Definition at line <a class="el" href="vfu__target_8h_source.html#l00178">178</a> of file <a class="el" href="vfu__target_8h_source.html">vfu_target.h</a>.</p>
+
+</div>
+</div>
+<a id="a72fd2cc7fbb787f9dc785083900de668" name="a72fd2cc7fbb787f9dc785083900de668"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a72fd2cc7fbb787f9dc785083900de668">&#9670;&#160;</a></span>name</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">char spdk_vfu_endpoint_ops::name[SPDK_VFU_MAX_NAME_LEN]</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Backend emulated PCI device type name. </p>
+
+<p class="definition">Definition at line <a class="el" href="vfu__target_8h_source.html#l00173">173</a> of file <a class="el" href="vfu__target_8h_source.html">vfu_target.h</a>.</p>
+
+</div>
+</div>
+<a id="ac6739696eb232d4a07fcabce312cb888" name="ac6739696eb232d4a07fcabce312cb888"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac6739696eb232d4a07fcabce312cb888">&#9670;&#160;</a></span>post_memory_add</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int(* spdk_vfu_endpoint_ops::post_memory_add) (struct spdk_vfu_endpoint *endpoint, void *map_start, void *map_end)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Post-notification to backend module after a new memory region is added. </p>
+
+<p class="definition">Definition at line <a class="el" href="vfu__target_8h_source.html#l00211">211</a> of file <a class="el" href="vfu__target_8h_source.html">vfu_target.h</a>.</p>
+
+</div>
+</div>
+<a id="a00f7d1fb286931725b14f5f410bbcd33" name="a00f7d1fb286931725b14f5f410bbcd33"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a00f7d1fb286931725b14f5f410bbcd33">&#9670;&#160;</a></span>pre_memory_remove</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int(* spdk_vfu_endpoint_ops::pre_memory_remove) (struct spdk_vfu_endpoint *endpoint, void *map_start, void *map_end)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Pre-notification to backend module before removing the memory region. </p>
+
+<p class="definition">Definition at line <a class="el" href="vfu__target_8h_source.html#l00216">216</a> of file <a class="el" href="vfu__target_8h_source.html">vfu_target.h</a>.</p>
+
+</div>
+</div>
+<a id="affb0058441fbe6b1782cf71400006c6c" name="affb0058441fbe6b1782cf71400006c6c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#affb0058441fbe6b1782cf71400006c6c">&#9670;&#160;</a></span>quiesce_device</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int(* spdk_vfu_endpoint_ops::quiesce_device) (struct spdk_vfu_endpoint *endpoint)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>PCI device quiesce callback, after this callback, the backend device module should stopping processing any IOs. </p>
+
+<p class="definition">Definition at line <a class="el" href="vfu__target_8h_source.html#l00227">227</a> of file <a class="el" href="vfu__target_8h_source.html">vfu_target.h</a>.</p>
+
+</div>
+</div>
+<a id="aa03b83e4619fc137e847e3e327428a87" name="aa03b83e4619fc137e847e3e327428a87"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa03b83e4619fc137e847e3e327428a87">&#9670;&#160;</a></span>reset_device</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int(* spdk_vfu_endpoint_ops::reset_device) (struct spdk_vfu_endpoint *endpoint)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>PCI device reset callback. </p>
+
+<p class="definition">Definition at line <a class="el" href="vfu__target_8h_source.html#l00221">221</a> of file <a class="el" href="vfu__target_8h_source.html">vfu_target.h</a>.</p>
+
+</div>
+</div>
+<hr/>The documentation for this struct was generated from the following file:<ul>
+<li><a class="el" href="vfu__target_8h_source.html">vfu_target.h</a></li>
+</ul>
+</div><!-- contents -->
+</div><!-- doc-content -->
+<div id="page-nav" class="page-nav-panel">
+<div id="page-nav-resize-handle"></div>
+<div id="page-nav-tree">
+<div id="page-nav-contents">
+</div><!-- page-nav-contents -->
+</div><!-- page-nav-tree -->
+</div><!-- page-nav -->
+</div><!-- container -->
+<footer class="footer" id="nav-path">
+  <div class="footer-inner">
+    <div class="footer-copy">
+      <small>Copyright &copy; SPDK a Series of LF Projects, LLC. For web site terms of use, trademark policy, and other
+      project policies please see <a href="https://lfprojects.org">lfprojects.org</a>.</small>
+    </div>
+  </div>
+</footer>
+<script type="text/javascript" src="page_outline.js"></script>
+<script type="text/javascript" src="spdk_nav.js"></script>
+<!-- Doxygen footer suffix – assembled by _build/common.sh:
+     _includes/footer.html (shared) + theme scripts (from spdk) + this file.
+     Theme scripts are extracted from spdk/doc/theme/footer.html at build
+     time so the script list is maintained in a single place. -->
+</body>
+</html>

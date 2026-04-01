@@ -1,0 +1,235 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<meta name="generator" content="Doxygen 1.16.1">
+	<title>SPDK: VMD driver</title>
+	<script type="text/javascript" src="jquery.js"></script>
+	<script type="text/javascript" src="dynsections.js"></script>
+	<script type="text/javascript" src="clipboard.js"></script>
+	<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
+<script type="text/javascript" src="cookie.js"></script>
+	<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<script type="text/javascript">
+  $(function() { init_search(); });
+</script>
+	<link rel="icon" type="image/svg+xml" href="../assets/img/spdk.svg">
+	<link rel="icon" href="../assets/favicon.ico" sizes="32x32">
+	<link href="doxygen.css" rel="stylesheet" type="text/css">
+	<script>(function(){var k='doxygen_width',w,bw=6;if(window.chrome){w=localStorage.getItem(k);if(!w){w='350';localStorage.setItem(k,w)}}else{var m=document.cookie.match(new RegExp(k+'=(\\d+)'));w=m?m[1]:null;if(!w){w='350';document.cookie=k+'=350;SameSite=Lax;path=/'}}document.documentElement.style.setProperty('--sn-w',(parseInt(w)+bw)+'px')})()</script>
+	<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:400,700,900" type="text/css">
+	<link href="spdk.css" rel="stylesheet" type="text/css"/>
+	<link href="../assets/css/spdk.css" rel="stylesheet" type="text/css">
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<nav class="navbar">
+  <a class="navbar-brand" href="../" aria-label="SPDK">
+    <img src="../assets/img/spdk.svg" width="36" height="36" alt="Storage Performance Development Kit">
+  </a>
+  <div class="navbar-nav">
+    <a class="nav-link header-link" href="../doc/releases.html">download</a>
+    <a class="nav-link header-link" href="../doc/">documentation</a>
+    <a class="nav-link header-link" href="../doc/contributing.html">development</a>
+    <a class="nav-link header-link" href="../doc/ci_tools.html">CI status</a>
+    <a class="nav-link header-link" href="../community/">community</a>
+    <a class="nav-link header-link" href="../blog/">Blog</a>
+    <a class="nav-link header-link" href="https://github.com/orgs/spdk/projects/5">Roadmap</a>
+    <a class="nav-link header-link" href="../news/">News</a>
+  </div>
+  <div class="navbar-end">
+    <a class="nav-link header-link" href="https://github.com/spdk/spdk" aria-label="GitHub">
+      <svg xmlns="http://www.w3.org/2000/svg" class="navbar-nav-svg" aria-hidden="true"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
+    </a>
+    <a id="cn_lang_btn" href="../cn/doc/" class="nav-link header-link">中文</a>
+  </div>
+</nav>
+<script>
+(function() {
+    var p = location.pathname, best = null, bLen = 0;
+    document.querySelectorAll('.header-link[href]').forEach(function(a) {
+        var raw = a.getAttribute('href');
+        if (!raw) return;
+        try { var u = new URL(raw, location.href); } catch(e) { return; }
+        if (u.origin !== location.origin) return;
+        var h = u.pathname;
+        if (h === '/') return;
+        var ok = h.endsWith('.html') ? p === h : p.indexOf(h) === 0;
+        if (ok && h.length > bLen) { bLen = h.length; best = a; }
+    });
+    if (best) best.classList.add('active');
+})();
+</script>
+<div id="doxygen-searchbox">        <div id="MSearchBox" class="MSearchBoxInactive">
+        <span class="left">
+          <span id="MSearchSelect" class="search-icon" onmouseover="return searchBox.OnSearchSelectShow()" onmouseout="return searchBox.OnSearchSelectHide()"><span class="search-icon-dropdown"></span></span>
+          <input type="text" id="MSearchField" value="" placeholder="Search" accesskey="S"
+               onfocus="searchBox.OnSearchFieldFocus(true)" 
+               onblur="searchBox.OnSearchFieldFocus(false)" 
+               onkeyup="searchBox.OnSearchFieldChange(event)"/>
+          </span><span class="right">
+            <a id="MSearchClose" href="javascript:searchBox.CloseResultsWindow()"><div id="MSearchCloseImg" class="close-icon"></div></a>
+          </span>
+        </div>
+</div>
+<!-- Generated by Doxygen 1.16.1 -->
+<script type="text/javascript">
+var searchBox = new SearchBox("searchBox", "search/",'.html');
+</script>
+<script type="text/javascript">
+$(function() { codefold.init(); });
+</script>
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+$(function(){initNavTree('vmd.html','',''); });
+</script>
+<div id="container">
+<div id="doc-content">
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">Loading...</div>
+<div class="SRStatus" id="Searching">Searching...</div>
+<div class="SRStatus" id="NoMatches">No Matches</div>
+</div>
+</div>
+</div>
+</div>
+
+<div><div class="header">
+  <div class="headertitle"><div class="title">VMD driver </div></div>
+</div><!--header-->
+<div class="contents">
+<div class="textblock"><p><a class="anchor" id="md_drivers_2vmd"></a></p>
+<h1 class="doxsection"><a class="anchor" id="vmd_toc"></a>
+In this document</h1>
+<ul>
+<li><a class="el" href="#vmd_intro" title="Introduction">Introduction</a></li>
+<li><a class="el" href="#vmd_interface" title="Public Interface">Public Interface</a></li>
+<li><a class="el" href="#vmd_key_functions" title="Key Functions">Key Functions</a></li>
+<li><a class="el" href="#vmd_config" title="Configuration">Configuration</a></li>
+<li><a class="el" href="#vmd_app_frame" title="Application framework">Application framework</a></li>
+<li><a class="el" href="#vmd_app" title="Applications w/o application framework">Applications w/o application framework</a></li>
+<li><a class="el" href="#vmd_led" title="LED management">LED management</a></li>
+</ul>
+<h1 class="doxsection"><a class="anchor" id="vmd_intro"></a>
+Introduction</h1>
+<p>Intel Volume Management Device is a hardware logic inside processor's Root Complex responsible for management of PCIe NVMe SSDs. It provides robust Hot Plug support and Status LED management.</p>
+<p>The driver is responsible for enumeration and hooking NVMe devices behind VMD into SPDK PCIe subsystem. It also provides API for LED management and hot plug.</p>
+<h1 class="doxsection"><a class="anchor" id="vmd_interface"></a>
+Public Interface</h1>
+<ul>
+<li><a class="el" href="vmd_8h.html" title="VMD driver public interface.">spdk/vmd.h</a></li>
+</ul>
+<h1 class="doxsection"><a class="anchor" id="vmd_key_functions"></a>
+Key Functions</h1>
+<table class="markdownTable">
+<tr class="markdownTableHead">
+<th class="markdownTableHeadNone">Function  </th><th class="markdownTableHeadNone">Description  </th></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyNone"><a class="el" href="vmd_8h.html#a8ab093f9cdad46a637fac6aa07739ace" title="Enumerate VMD devices and hook them into the spdk pci subsystem.">spdk_vmd_init()</a>  </td><td class="markdownTableBodyNone">Enumerate VMD devices and hook them into the spdk pci subsystem.     </td></tr>
+<tr class="markdownTableRowEven">
+<td class="markdownTableBodyNone"><a class="el" href="vmd_8h.html#a5372b99a3024346162b47b9890d88f28" title="Returns a list of nvme devices found on the given vmd pci BDF.">spdk_vmd_pci_device_list()</a>  </td><td class="markdownTableBodyNone">Returns a list of nvme devices found on the given vmd pci BDF.     </td></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyNone"><a class="el" href="vmd_8h.html#aca3923828bec8148b3e671420ba0f547" title="Sets the state of the LED on specified PCI device.">spdk_vmd_set_led_state()</a>  </td><td class="markdownTableBodyNone">Sets the state of the LED on specified PCI device.     </td></tr>
+<tr class="markdownTableRowEven">
+<td class="markdownTableBodyNone"><a class="el" href="vmd_8h.html#a302cba203fd0abdafd3729c34822c3f3" title="Retrieves the state of the LED on specified PCI device.">spdk_vmd_get_led_state()</a>  </td><td class="markdownTableBodyNone">Retrieves the state of the LED on specified PCI device.     </td></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyNone"><a class="el" href="vmd_8h.html#a290d82c8bf3daf4a4d9b8aa414142e2f" title="Checks for hotplug/hotremove events of the devices behind the VMD.">spdk_vmd_hotplug_monitor()</a>  </td><td class="markdownTableBodyNone">Checks for hotplug/hotremove events of the devices behind the VMD.     </td></tr>
+</table>
+<h1 class="doxsection"><a class="anchor" id="vmd_config"></a>
+Configuration</h1>
+<p>To enable VMD driver enumeration, the following steps are required:</p>
+<p>Check for available VMD devices (VMD needs to be properly set up in BIOS first).</p>
+<p>Example: </p><div class="fragment"><div class="line">$ lspci | grep 201d</div>
+<div class="line"> </div>
+<div class="line">$ 5d:05.5 RAID bus controller: Intel Corporation Device 201d (rev 04)</div>
+<div class="line">$ d7:05.5 RAID bus controller: Intel Corporation Device 201d (rev 04)</div>
+</div><!-- fragment --><p>Run setup.sh script with VMD devices set in PCI_ALLOWED.</p>
+<p>Example: </p><div class="fragment"><div class="line">$ PCI_ALLOWED=&quot;0000:5d:05.5 0000:d7:05.5&quot; scripts/setup.sh</div>
+</div><!-- fragment --><p>Check for available devices behind the VMD with spdk_lspci.</p>
+<p>Example: </p><div class="fragment"><div class="line">$ ./build/bin/spdk_lspci</div>
+<div class="line"> </div>
+<div class="line"> 5d0505:01:00.0 (8086 a54) (NVMe disk behind VMD)</div>
+<div class="line"> 5d0505:03:00.0 (8086 a54) (NVMe disk behind VMD)</div>
+<div class="line"> d70505:01:00.0 (8086 a54) (NVMe disk behind VMD)</div>
+<div class="line"> d70505:03:00.0 (8086 a54) (NVMe disk behind VMD)</div>
+<div class="line"> 0000:5d:05.5 (8086 201d) (VMD)</div>
+<div class="line"> 0000:d7:05.5 (8086 201d) (VMD)</div>
+</div><!-- fragment --><p>VMD NVMe BDF could be used as regular NVMe BDF.</p>
+<p>Example: </p><div class="fragment"><div class="line">$ ./scripts/rpc.py bdev_nvme_attach_controller -b NVMe1 -t PCIe -a 5d0505:01:00.0</div>
+</div><!-- fragment --><h1 class="doxsection"><a class="anchor" id="vmd_app_frame"></a>
+Application framework</h1>
+<p>When application framework is used, VMD section needs to be added to the configuration file:</p>
+<p>JSON config: </p><div class="fragment"><div class="line">{</div>
+<div class="line">    &quot;subsystem&quot;: &quot;vmd&quot;,</div>
+<div class="line">    &quot;config&quot;: [</div>
+<div class="line">      {</div>
+<div class="line">        &quot;method&quot;: &quot;vmd_enable&quot;,</div>
+<div class="line">        &quot;params&quot;: {}</div>
+<div class="line">      }</div>
+<div class="line">    ]</div>
+<div class="line">}</div>
+</div><!-- fragment --><p>or use RPC call before framework starts e.g. </p><div class="fragment"><div class="line">$ ./build/bin/spdk_tgt --wait_for_rpc</div>
+<div class="line">$ ./scripts/rpc.py vmd_enable</div>
+<div class="line">$ ./scripts/rpc.py framework_start_init</div>
+</div><!-- fragment --> <h1 class="doxsection"><a class="anchor" id="vmd_app"></a>
+Applications w/o application framework</h1>
+<p>To enable VMD enumeration in SPDK application that are not using application framework e.g <span class="tt">spdk_nvme_perf</span>, <span class="tt">spdk_nvme_identify</span> <span class="tt">-V</span> flag is required - please refer to app help if it supports VMD.</p>
+<p>Applications need to call <a class="el" href="vmd_8h.html#a8ab093f9cdad46a637fac6aa07739ace" title="Enumerate VMD devices and hook them into the spdk pci subsystem.">spdk_vmd_init()</a> to enumerate NVMe devices behind the VMD prior to calling spdk_nvme_(probe|connect). To support hot plugs <a class="el" href="vmd_8h.html#a290d82c8bf3daf4a4d9b8aa414142e2f" title="Checks for hotplug/hotremove events of the devices behind the VMD.">spdk_vmd_hotplug_monitor()</a> needs to be called periodically.</p>
+<h1 class="doxsection"><a class="anchor" id="vmd_led"></a>
+LED management</h1>
+<p>VMD LED utility in the <a href="https://github.com/spdk/spdk/tree/master/examples/vmd/led">examples/vmd/led</a> could be used to set LED states.</p>
+<p>In order to verify that a platform is correctly configured to support LED management, ledctl(8) can be utilized. For instructions on how to use it, consult the manual page of this utility. </p>
+</div></div><!-- contents -->
+</div><!-- PageDoc -->
+</div><!-- doc-content -->
+<div id="page-nav" class="page-nav-panel">
+<div id="page-nav-resize-handle"></div>
+<div id="page-nav-tree">
+<div id="page-nav-contents">
+</div><!-- page-nav-contents -->
+</div><!-- page-nav-tree -->
+</div><!-- page-nav -->
+</div><!-- container -->
+<footer class="footer" id="nav-path">
+  <div class="footer-inner">
+    <div class="footer-copy">
+      <small>Copyright &copy; SPDK a Series of LF Projects, LLC. For web site terms of use, trademark policy, and other
+      project policies please see <a href="https://lfprojects.org">lfprojects.org</a>.</small>
+    </div>
+  </div>
+</footer>
+<script type="text/javascript" src="page_outline.js"></script>
+<script type="text/javascript" src="spdk_nav.js"></script>
+<!-- Doxygen footer suffix – assembled by _build/common.sh:
+     _includes/footer.html (shared) + theme scripts (from spdk) + this file.
+     Theme scripts are extracted from spdk/doc/theme/footer.html at build
+     time so the script list is maintained in a single place. -->
+</body>
+</html>

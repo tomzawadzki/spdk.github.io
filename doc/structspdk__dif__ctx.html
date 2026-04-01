@@ -1,0 +1,484 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<meta name="generator" content="Doxygen 1.16.1">
+	<title>SPDK: spdk_dif_ctx Struct Reference</title>
+	<script type="text/javascript" src="jquery.js"></script>
+	<script type="text/javascript" src="dynsections.js"></script>
+	<script type="text/javascript" src="clipboard.js"></script>
+	<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
+<script type="text/javascript" src="cookie.js"></script>
+	<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<script type="text/javascript">
+  $(function() { init_search(); });
+</script>
+	<link rel="icon" type="image/svg+xml" href="../assets/img/spdk.svg">
+	<link rel="icon" href="../assets/favicon.ico" sizes="32x32">
+	<link href="doxygen.css" rel="stylesheet" type="text/css">
+	<script>(function(){var k='doxygen_width',w,bw=6;if(window.chrome){w=localStorage.getItem(k);if(!w){w='350';localStorage.setItem(k,w)}}else{var m=document.cookie.match(new RegExp(k+'=(\\d+)'));w=m?m[1]:null;if(!w){w='350';document.cookie=k+'=350;SameSite=Lax;path=/'}}document.documentElement.style.setProperty('--sn-w',(parseInt(w)+bw)+'px')})()</script>
+	<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:400,700,900" type="text/css">
+	<link href="spdk.css" rel="stylesheet" type="text/css"/>
+	<link href="../assets/css/spdk.css" rel="stylesheet" type="text/css">
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<nav class="navbar">
+  <a class="navbar-brand" href="../" aria-label="SPDK">
+    <img src="../assets/img/spdk.svg" width="36" height="36" alt="Storage Performance Development Kit">
+  </a>
+  <div class="navbar-nav">
+    <a class="nav-link header-link" href="../doc/releases.html">download</a>
+    <a class="nav-link header-link" href="../doc/">documentation</a>
+    <a class="nav-link header-link" href="../doc/contributing.html">development</a>
+    <a class="nav-link header-link" href="../doc/ci_tools.html">CI status</a>
+    <a class="nav-link header-link" href="../community/">community</a>
+    <a class="nav-link header-link" href="../blog/">Blog</a>
+    <a class="nav-link header-link" href="https://github.com/orgs/spdk/projects/5">Roadmap</a>
+    <a class="nav-link header-link" href="../news/">News</a>
+  </div>
+  <div class="navbar-end">
+    <a class="nav-link header-link" href="https://github.com/spdk/spdk" aria-label="GitHub">
+      <svg xmlns="http://www.w3.org/2000/svg" class="navbar-nav-svg" aria-hidden="true"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
+    </a>
+    <a id="cn_lang_btn" href="../cn/doc/" class="nav-link header-link">中文</a>
+  </div>
+</nav>
+<script>
+(function() {
+    var p = location.pathname, best = null, bLen = 0;
+    document.querySelectorAll('.header-link[href]').forEach(function(a) {
+        var raw = a.getAttribute('href');
+        if (!raw) return;
+        try { var u = new URL(raw, location.href); } catch(e) { return; }
+        if (u.origin !== location.origin) return;
+        var h = u.pathname;
+        if (h === '/') return;
+        var ok = h.endsWith('.html') ? p === h : p.indexOf(h) === 0;
+        if (ok && h.length > bLen) { bLen = h.length; best = a; }
+    });
+    if (best) best.classList.add('active');
+})();
+</script>
+<div id="doxygen-searchbox">        <div id="MSearchBox" class="MSearchBoxInactive">
+        <span class="left">
+          <span id="MSearchSelect" class="search-icon" onmouseover="return searchBox.OnSearchSelectShow()" onmouseout="return searchBox.OnSearchSelectHide()"><span class="search-icon-dropdown"></span></span>
+          <input type="text" id="MSearchField" value="" placeholder="Search" accesskey="S"
+               onfocus="searchBox.OnSearchFieldFocus(true)" 
+               onblur="searchBox.OnSearchFieldFocus(false)" 
+               onkeyup="searchBox.OnSearchFieldChange(event)"/>
+          </span><span class="right">
+            <a id="MSearchClose" href="javascript:searchBox.CloseResultsWindow()"><div id="MSearchCloseImg" class="close-icon"></div></a>
+          </span>
+        </div>
+</div>
+<!-- Generated by Doxygen 1.16.1 -->
+<script type="text/javascript">
+var searchBox = new SearchBox("searchBox", "search/",'.html');
+</script>
+<script type="text/javascript">
+$(function() { codefold.init(); });
+</script>
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+$(function(){initNavTree('structspdk__dif__ctx.html','',''); });
+</script>
+<div id="container">
+<div id="doc-content">
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">Loading...</div>
+<div class="SRStatus" id="Searching">Searching...</div>
+<div class="SRStatus" id="NoMatches">No Matches</div>
+</div>
+</div>
+</div>
+</div>
+
+<div class="header">
+  <div class="headertitle"><div class="title">spdk_dif_ctx Struct Reference</div></div>
+</div><!--header-->
+<div class="contents">
+
+<p>DIF context information.  
+ <a href="#details">More...</a></p>
+
+<p><code>#include &lt;<a class="el" href="dif_8h_source.html">dif.h</a>&gt;</code></p>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 id="header-pub-attribs" class="groupheader"><a id="pub-attribs" name="pub-attribs"></a>
+Data Fields</h2></td></tr>
+<tr class="memitem:a2853eeaf8a9c7bb372d4632748c5105a" id="r_a2853eeaf8a9c7bb372d4632748c5105a"><td class="memItemLeft">uint32_t&#160;</td><td class="memItemRight"><a class="el" href="#a2853eeaf8a9c7bb372d4632748c5105a">block_size</a></td></tr>
+<tr class="memdesc:a2853eeaf8a9c7bb372d4632748c5105a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Block size.  <br /></td></tr>
+<tr class="memitem:a593aef5de5694c4abd05554ed4ac92a7" id="r_a593aef5de5694c4abd05554ed4ac92a7"><td class="memItemLeft">uint32_t&#160;</td><td class="memItemRight"><a class="el" href="#a593aef5de5694c4abd05554ed4ac92a7">guard_interval</a></td></tr>
+<tr class="memdesc:a593aef5de5694c4abd05554ed4ac92a7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Interval for guard computation for DIF.  <br /></td></tr>
+<tr class="memitem:a70bae2b0c71c14a91163f89d4e215802" id="r_a70bae2b0c71c14a91163f89d4e215802"><td class="memItemLeft">uint32_t&#160;</td><td class="memItemRight"><a class="el" href="#a70bae2b0c71c14a91163f89d4e215802">md_size</a></td></tr>
+<tr class="memdesc:a70bae2b0c71c14a91163f89d4e215802"><td class="mdescLeft">&#160;</td><td class="mdescRight">Metadata size.  <br /></td></tr>
+<tr class="memitem:a341adc2959c3449ba630601ebfb14cb9" id="r_a341adc2959c3449ba630601ebfb14cb9"><td class="memItemLeft">bool&#160;</td><td class="memItemRight"><a class="el" href="#a341adc2959c3449ba630601ebfb14cb9">md_interleave</a></td></tr>
+<tr class="memdesc:a341adc2959c3449ba630601ebfb14cb9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Metadata location.  <br /></td></tr>
+<tr class="memitem:a74a53ae88b8d68eeaaf3dd3f8890aa79" id="r_a74a53ae88b8d68eeaaf3dd3f8890aa79"><td class="memItemLeft">uint8_t&#160;</td><td class="memItemRight"><a class="el" href="#a74a53ae88b8d68eeaaf3dd3f8890aa79">dif_type</a></td></tr>
+<tr class="memdesc:a74a53ae88b8d68eeaaf3dd3f8890aa79"><td class="mdescLeft">&#160;</td><td class="mdescRight">DIF type.  <br /></td></tr>
+<tr class="memitem:ad1a89eaf588c33974026520788e5b026" id="r_ad1a89eaf588c33974026520788e5b026"><td class="memItemLeft">uint8_t&#160;</td><td class="memItemRight"><a class="el" href="#ad1a89eaf588c33974026520788e5b026">dif_pi_format</a></td></tr>
+<tr class="memdesc:ad1a89eaf588c33974026520788e5b026"><td class="mdescLeft">&#160;</td><td class="mdescRight">DIF Protection Information format.  <br /></td></tr>
+<tr class="memitem:adb99f9ece7a58847701ea78810bae7f0" id="r_adb99f9ece7a58847701ea78810bae7f0"><td class="memItemLeft">uint8_t&#160;</td><td class="memItemRight"><a class="el" href="#adb99f9ece7a58847701ea78810bae7f0">rsvd</a> [1]</td></tr>
+<tr class="memitem:a49e9befa6a66be7c01205a42f3746bb5" id="r_a49e9befa6a66be7c01205a42f3746bb5"><td class="memItemLeft">uint32_t&#160;</td><td class="memItemRight"><a class="el" href="#a49e9befa6a66be7c01205a42f3746bb5">dif_flags</a></td></tr>
+<tr class="memitem:ac0f6908c0f539696823d08ce36166437" id="r_ac0f6908c0f539696823d08ce36166437"><td class="memItemLeft">uint8_t&#160;</td><td class="memItemRight"><a class="el" href="#ac0f6908c0f539696823d08ce36166437">rsvd2</a> [4]</td></tr>
+<tr class="memitem:a417ad87cea53a4eb434b5e050ee31b6f" id="r_a417ad87cea53a4eb434b5e050ee31b6f"><td class="memItemLeft">uint64_t&#160;</td><td class="memItemRight"><a class="el" href="#a417ad87cea53a4eb434b5e050ee31b6f">init_ref_tag</a></td></tr>
+<tr class="memitem:a1a7fa6ed12d7ca935e24e20f1a4fac88" id="r_a1a7fa6ed12d7ca935e24e20f1a4fac88"><td class="memItemLeft">uint16_t&#160;</td><td class="memItemRight"><a class="el" href="#a1a7fa6ed12d7ca935e24e20f1a4fac88">app_tag</a></td></tr>
+<tr class="memdesc:a1a7fa6ed12d7ca935e24e20f1a4fac88"><td class="mdescLeft">&#160;</td><td class="mdescRight">Application tag.  <br /></td></tr>
+<tr class="memitem:ac30213e15851be73f73780752b5c49a2" id="r_ac30213e15851be73f73780752b5c49a2"><td class="memItemLeft">uint16_t&#160;</td><td class="memItemRight"><a class="el" href="#ac30213e15851be73f73780752b5c49a2">apptag_mask</a></td></tr>
+<tr class="memitem:a3ec98963b1c1a4c69e45e7b0b5841151" id="r_a3ec98963b1c1a4c69e45e7b0b5841151"><td class="memItemLeft">uint32_t&#160;</td><td class="memItemRight"><a class="el" href="#a3ec98963b1c1a4c69e45e7b0b5841151">data_offset</a></td></tr>
+<tr class="memitem:aef0637cad47cfd8bc20bb0f085c59479" id="r_aef0637cad47cfd8bc20bb0f085c59479"><td class="memItemLeft">uint32_t&#160;</td><td class="memItemRight"><a class="el" href="#aef0637cad47cfd8bc20bb0f085c59479">ref_tag_offset</a></td></tr>
+<tr class="memitem:adac7e6a0e70395682a50e1b3d678d792" id="r_adac7e6a0e70395682a50e1b3d678d792"><td class="memItemLeft">uint32_t&#160;</td><td class="memItemRight"><a class="el" href="#adac7e6a0e70395682a50e1b3d678d792">remapped_init_ref_tag</a></td></tr>
+<tr class="memitem:aa016934bdac704aa8f170a2e2a891a30" id="r_aa016934bdac704aa8f170a2e2a891a30"><td class="memItemLeft">uint64_t&#160;</td><td class="memItemRight"><a class="el" href="#aa016934bdac704aa8f170a2e2a891a30">last_guard</a></td></tr>
+<tr class="memdesc:aa016934bdac704aa8f170a2e2a891a30"><td class="mdescLeft">&#160;</td><td class="mdescRight">Guard value of the last data block.  <br /></td></tr>
+<tr class="memitem:a0e60ef9f51ed777000ad09925489d498" id="r_a0e60ef9f51ed777000ad09925489d498"><td class="memItemLeft">uint64_t&#160;</td><td class="memItemRight"><a class="el" href="#a0e60ef9f51ed777000ad09925489d498">guard_seed</a></td></tr>
+</table>
+<a name="details" id="details"></a><h2 id="header-details" class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>DIF context information. </p>
+
+<p class="definition">Definition at line <a class="el" href="dif_8h_source.html#l00065">65</a> of file <a class="el" href="dif_8h_source.html">dif.h</a>.</p>
+</div><a name="doc-variable-members" id="doc-variable-members"></a><h2 id="header-doc-variable-members" class="groupheader">Field Documentation</h2>
+<a id="a1a7fa6ed12d7ca935e24e20f1a4fac88" name="a1a7fa6ed12d7ca935e24e20f1a4fac88"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1a7fa6ed12d7ca935e24e20f1a4fac88">&#9670;&#160;</a></span>app_tag</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">uint16_t spdk_dif_ctx::app_tag</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Application tag. </p>
+
+<p class="definition">Definition at line <a class="el" href="dif_8h_source.html#l00095">95</a> of file <a class="el" href="dif_8h_source.html">dif.h</a>.</p>
+
+</div>
+</div>
+<a id="ac30213e15851be73f73780752b5c49a2" name="ac30213e15851be73f73780752b5c49a2"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac30213e15851be73f73780752b5c49a2">&#9670;&#160;</a></span>apptag_mask</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">uint16_t spdk_dif_ctx::apptag_mask</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="dif_8h_source.html#l00098">98</a> of file <a class="el" href="dif_8h_source.html">dif.h</a>.</p>
+
+</div>
+</div>
+<a id="a2853eeaf8a9c7bb372d4632748c5105a" name="a2853eeaf8a9c7bb372d4632748c5105a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2853eeaf8a9c7bb372d4632748c5105a">&#9670;&#160;</a></span>block_size</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">uint32_t spdk_dif_ctx::block_size</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Block size. </p>
+
+<p class="definition">Definition at line <a class="el" href="dif_8h_source.html#l00067">67</a> of file <a class="el" href="dif_8h_source.html">dif.h</a>.</p>
+
+</div>
+</div>
+<a id="a3ec98963b1c1a4c69e45e7b0b5841151" name="a3ec98963b1c1a4c69e45e7b0b5841151"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3ec98963b1c1a4c69e45e7b0b5841151">&#9670;&#160;</a></span>data_offset</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">uint32_t spdk_dif_ctx::data_offset</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="dif_8h_source.html#l00101">101</a> of file <a class="el" href="dif_8h_source.html">dif.h</a>.</p>
+
+</div>
+</div>
+<a id="a49e9befa6a66be7c01205a42f3746bb5" name="a49e9befa6a66be7c01205a42f3746bb5"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a49e9befa6a66be7c01205a42f3746bb5">&#9670;&#160;</a></span>dif_flags</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">uint32_t spdk_dif_ctx::dif_flags</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="dif_8h_source.html#l00087">87</a> of file <a class="el" href="dif_8h_source.html">dif.h</a>.</p>
+
+</div>
+</div>
+<a id="ad1a89eaf588c33974026520788e5b026" name="ad1a89eaf588c33974026520788e5b026"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad1a89eaf588c33974026520788e5b026">&#9670;&#160;</a></span>dif_pi_format</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">uint8_t spdk_dif_ctx::dif_pi_format</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>DIF Protection Information format. </p>
+
+<p class="definition">Definition at line <a class="el" href="dif_8h_source.html#l00082">82</a> of file <a class="el" href="dif_8h_source.html">dif.h</a>.</p>
+
+</div>
+</div>
+<a id="a74a53ae88b8d68eeaaf3dd3f8890aa79" name="a74a53ae88b8d68eeaaf3dd3f8890aa79"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a74a53ae88b8d68eeaaf3dd3f8890aa79">&#9670;&#160;</a></span>dif_type</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">uint8_t spdk_dif_ctx::dif_type</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>DIF type. </p>
+
+<p class="definition">Definition at line <a class="el" href="dif_8h_source.html#l00079">79</a> of file <a class="el" href="dif_8h_source.html">dif.h</a>.</p>
+
+</div>
+</div>
+<a id="a593aef5de5694c4abd05554ed4ac92a7" name="a593aef5de5694c4abd05554ed4ac92a7"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a593aef5de5694c4abd05554ed4ac92a7">&#9670;&#160;</a></span>guard_interval</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">uint32_t spdk_dif_ctx::guard_interval</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Interval for guard computation for DIF. </p>
+
+<p class="definition">Definition at line <a class="el" href="dif_8h_source.html#l00070">70</a> of file <a class="el" href="dif_8h_source.html">dif.h</a>.</p>
+
+</div>
+</div>
+<a id="a0e60ef9f51ed777000ad09925489d498" name="a0e60ef9f51ed777000ad09925489d498"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0e60ef9f51ed777000ad09925489d498">&#9670;&#160;</a></span>guard_seed</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">uint64_t spdk_dif_ctx::guard_seed</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="dif_8h_source.html#l00117">117</a> of file <a class="el" href="dif_8h_source.html">dif.h</a>.</p>
+
+</div>
+</div>
+<a id="a417ad87cea53a4eb434b5e050ee31b6f" name="a417ad87cea53a4eb434b5e050ee31b6f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a417ad87cea53a4eb434b5e050ee31b6f">&#9670;&#160;</a></span>init_ref_tag</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">uint64_t spdk_dif_ctx::init_ref_tag</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="dif_8h_source.html#l00092">92</a> of file <a class="el" href="dif_8h_source.html">dif.h</a>.</p>
+
+</div>
+</div>
+<a id="aa016934bdac704aa8f170a2e2a891a30" name="aa016934bdac704aa8f170a2e2a891a30"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa016934bdac704aa8f170a2e2a891a30">&#9670;&#160;</a></span>last_guard</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">uint64_t spdk_dif_ctx::last_guard</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Guard value of the last data block. </p>
+<p>Interim guard value is set if the last data block is partial, or seed value is set otherwise. </p>
+
+<p class="definition">Definition at line <a class="el" href="dif_8h_source.html#l00114">114</a> of file <a class="el" href="dif_8h_source.html">dif.h</a>.</p>
+
+</div>
+</div>
+<a id="a341adc2959c3449ba630601ebfb14cb9" name="a341adc2959c3449ba630601ebfb14cb9"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a341adc2959c3449ba630601ebfb14cb9">&#9670;&#160;</a></span>md_interleave</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool spdk_dif_ctx::md_interleave</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Metadata location. </p>
+
+<p class="definition">Definition at line <a class="el" href="dif_8h_source.html#l00076">76</a> of file <a class="el" href="dif_8h_source.html">dif.h</a>.</p>
+
+</div>
+</div>
+<a id="a70bae2b0c71c14a91163f89d4e215802" name="a70bae2b0c71c14a91163f89d4e215802"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a70bae2b0c71c14a91163f89d4e215802">&#9670;&#160;</a></span>md_size</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">uint32_t spdk_dif_ctx::md_size</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Metadata size. </p>
+
+<p class="definition">Definition at line <a class="el" href="dif_8h_source.html#l00073">73</a> of file <a class="el" href="dif_8h_source.html">dif.h</a>.</p>
+
+</div>
+</div>
+<a id="aef0637cad47cfd8bc20bb0f085c59479" name="aef0637cad47cfd8bc20bb0f085c59479"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aef0637cad47cfd8bc20bb0f085c59479">&#9670;&#160;</a></span>ref_tag_offset</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">uint32_t spdk_dif_ctx::ref_tag_offset</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="dif_8h_source.html#l00104">104</a> of file <a class="el" href="dif_8h_source.html">dif.h</a>.</p>
+
+</div>
+</div>
+<a id="adac7e6a0e70395682a50e1b3d678d792" name="adac7e6a0e70395682a50e1b3d678d792"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#adac7e6a0e70395682a50e1b3d678d792">&#9670;&#160;</a></span>remapped_init_ref_tag</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">uint32_t spdk_dif_ctx::remapped_init_ref_tag</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="dif_8h_source.html#l00107">107</a> of file <a class="el" href="dif_8h_source.html">dif.h</a>.</p>
+
+</div>
+</div>
+<a id="adb99f9ece7a58847701ea78810bae7f0" name="adb99f9ece7a58847701ea78810bae7f0"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#adb99f9ece7a58847701ea78810bae7f0">&#9670;&#160;</a></span>rsvd</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">uint8_t spdk_dif_ctx::rsvd[1]</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="dif_8h_source.html#l00084">84</a> of file <a class="el" href="dif_8h_source.html">dif.h</a>.</p>
+
+</div>
+</div>
+<a id="ac0f6908c0f539696823d08ce36166437" name="ac0f6908c0f539696823d08ce36166437"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac0f6908c0f539696823d08ce36166437">&#9670;&#160;</a></span>rsvd2</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">uint8_t spdk_dif_ctx::rsvd2[4]</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="dif_8h_source.html#l00089">89</a> of file <a class="el" href="dif_8h_source.html">dif.h</a>.</p>
+
+</div>
+</div>
+<hr/>The documentation for this struct was generated from the following file:<ul>
+<li><a class="el" href="dif_8h_source.html">dif.h</a></li>
+</ul>
+</div><!-- contents -->
+</div><!-- doc-content -->
+<div id="page-nav" class="page-nav-panel">
+<div id="page-nav-resize-handle"></div>
+<div id="page-nav-tree">
+<div id="page-nav-contents">
+</div><!-- page-nav-contents -->
+</div><!-- page-nav-tree -->
+</div><!-- page-nav -->
+</div><!-- container -->
+<footer class="footer" id="nav-path">
+  <div class="footer-inner">
+    <div class="footer-copy">
+      <small>Copyright &copy; SPDK a Series of LF Projects, LLC. For web site terms of use, trademark policy, and other
+      project policies please see <a href="https://lfprojects.org">lfprojects.org</a>.</small>
+    </div>
+  </div>
+</footer>
+<script type="text/javascript" src="page_outline.js"></script>
+<script type="text/javascript" src="spdk_nav.js"></script>
+<!-- Doxygen footer suffix – assembled by _build/common.sh:
+     _includes/footer.html (shared) + theme scripts (from spdk) + this file.
+     Theme scripts are extracted from spdk/doc/theme/footer.html at build
+     time so the script list is maintained in a single place. -->
+</body>
+</html>

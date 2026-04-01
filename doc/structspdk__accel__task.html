@@ -1,0 +1,745 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<meta name="generator" content="Doxygen 1.16.1">
+	<title>SPDK: spdk_accel_task Struct Reference</title>
+	<script type="text/javascript" src="jquery.js"></script>
+	<script type="text/javascript" src="dynsections.js"></script>
+	<script type="text/javascript" src="clipboard.js"></script>
+	<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
+<script type="text/javascript" src="cookie.js"></script>
+	<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<script type="text/javascript">
+  $(function() { init_search(); });
+</script>
+	<link rel="icon" type="image/svg+xml" href="../assets/img/spdk.svg">
+	<link rel="icon" href="../assets/favicon.ico" sizes="32x32">
+	<link href="doxygen.css" rel="stylesheet" type="text/css">
+	<script>(function(){var k='doxygen_width',w,bw=6;if(window.chrome){w=localStorage.getItem(k);if(!w){w='350';localStorage.setItem(k,w)}}else{var m=document.cookie.match(new RegExp(k+'=(\\d+)'));w=m?m[1]:null;if(!w){w='350';document.cookie=k+'=350;SameSite=Lax;path=/'}}document.documentElement.style.setProperty('--sn-w',(parseInt(w)+bw)+'px')})()</script>
+	<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:400,700,900" type="text/css">
+	<link href="spdk.css" rel="stylesheet" type="text/css"/>
+	<link href="../assets/css/spdk.css" rel="stylesheet" type="text/css">
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<nav class="navbar">
+  <a class="navbar-brand" href="../" aria-label="SPDK">
+    <img src="../assets/img/spdk.svg" width="36" height="36" alt="Storage Performance Development Kit">
+  </a>
+  <div class="navbar-nav">
+    <a class="nav-link header-link" href="../doc/releases.html">download</a>
+    <a class="nav-link header-link" href="../doc/">documentation</a>
+    <a class="nav-link header-link" href="../doc/contributing.html">development</a>
+    <a class="nav-link header-link" href="../doc/ci_tools.html">CI status</a>
+    <a class="nav-link header-link" href="../community/">community</a>
+    <a class="nav-link header-link" href="../blog/">Blog</a>
+    <a class="nav-link header-link" href="https://github.com/orgs/spdk/projects/5">Roadmap</a>
+    <a class="nav-link header-link" href="../news/">News</a>
+  </div>
+  <div class="navbar-end">
+    <a class="nav-link header-link" href="https://github.com/spdk/spdk" aria-label="GitHub">
+      <svg xmlns="http://www.w3.org/2000/svg" class="navbar-nav-svg" aria-hidden="true"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
+    </a>
+    <a id="cn_lang_btn" href="../cn/doc/" class="nav-link header-link">中文</a>
+  </div>
+</nav>
+<script>
+(function() {
+    var p = location.pathname, best = null, bLen = 0;
+    document.querySelectorAll('.header-link[href]').forEach(function(a) {
+        var raw = a.getAttribute('href');
+        if (!raw) return;
+        try { var u = new URL(raw, location.href); } catch(e) { return; }
+        if (u.origin !== location.origin) return;
+        var h = u.pathname;
+        if (h === '/') return;
+        var ok = h.endsWith('.html') ? p === h : p.indexOf(h) === 0;
+        if (ok && h.length > bLen) { bLen = h.length; best = a; }
+    });
+    if (best) best.classList.add('active');
+})();
+</script>
+<div id="doxygen-searchbox">        <div id="MSearchBox" class="MSearchBoxInactive">
+        <span class="left">
+          <span id="MSearchSelect" class="search-icon" onmouseover="return searchBox.OnSearchSelectShow()" onmouseout="return searchBox.OnSearchSelectHide()"><span class="search-icon-dropdown"></span></span>
+          <input type="text" id="MSearchField" value="" placeholder="Search" accesskey="S"
+               onfocus="searchBox.OnSearchFieldFocus(true)" 
+               onblur="searchBox.OnSearchFieldFocus(false)" 
+               onkeyup="searchBox.OnSearchFieldChange(event)"/>
+          </span><span class="right">
+            <a id="MSearchClose" href="javascript:searchBox.CloseResultsWindow()"><div id="MSearchCloseImg" class="close-icon"></div></a>
+          </span>
+        </div>
+</div>
+<!-- Generated by Doxygen 1.16.1 -->
+<script type="text/javascript">
+var searchBox = new SearchBox("searchBox", "search/",'.html');
+</script>
+<script type="text/javascript">
+$(function() { codefold.init(); });
+</script>
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+$(function(){initNavTree('structspdk__accel__task.html','',''); });
+</script>
+<div id="container">
+<div id="doc-content">
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">Loading...</div>
+<div class="SRStatus" id="Searching">Searching...</div>
+<div class="SRStatus" id="NoMatches">No Matches</div>
+</div>
+</div>
+</div>
+</div>
+
+<div class="header">
+  <div class="headertitle"><div class="title">spdk_accel_task Struct Reference</div></div>
+</div><!--header-->
+<div class="contents">
+<div class="dynheader">
+Collaboration diagram for spdk_accel_task:</div>
+<div class="dyncontent">
+<div class="center"><div class="zoom"><iframe scrolling="no" loading="lazy" frameborder="0" src="structspdk__accel__task__coll__graph.svg" width="100%" height="509"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div></div>
+<center><span class="legend">[<a target="top" href="graph_legend.html">legend</a>]</span></center></div>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 id="header-pub-methods" class="groupheader"><a id="pub-methods" name="pub-methods"></a>
+Public Member Functions</h2></td></tr>
+<tr class="memitem:a17e0b619072ee2d43f4088465ca79a84" id="r_a17e0b619072ee2d43f4088465ca79a84"><td class="memItemLeft"><a id="a17e0b619072ee2d43f4088465ca79a84" name="a17e0b619072ee2d43f4088465ca79a84"></a>
+&#160;</td><td class="memItemRight"><b>TAILQ_ENTRY</b> (<a class="el" href="structspdk__accel__task.html">spdk_accel_task</a>) seq_link</td></tr>
+<tr class="memitem:a932b5e6fbe39e5133d61aa360e1925f8" id="r_a932b5e6fbe39e5133d61aa360e1925f8"><td class="memItemLeft"><a id="a932b5e6fbe39e5133d61aa360e1925f8" name="a932b5e6fbe39e5133d61aa360e1925f8"></a>
+&#160;</td><td class="memItemRight"><b>STAILQ_ENTRY</b> (<a class="el" href="structspdk__accel__task.html">spdk_accel_task</a>) link</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 id="header-pub-attribs" class="groupheader"><a id="pub-attribs" name="pub-attribs"></a>
+Data Fields</h2></td></tr>
+<tr class="memitem:a556f84523b752542528bacebc40a19e0" id="r_a556f84523b752542528bacebc40a19e0"><td class="memItemLeft">uint8_t&#160;</td><td class="memItemRight"><a class="el" href="#a556f84523b752542528bacebc40a19e0">op_code</a></td></tr>
+<tr class="memitem:aac6e7cdfb02ada8f7545fa3874de8f26" id="r_aac6e7cdfb02ada8f7545fa3874de8f26"><td class="memItemLeft">bool&#160;</td><td class="memItemRight"><a class="el" href="#aac6e7cdfb02ada8f7545fa3874de8f26">has_aux</a></td></tr>
+<tr class="memitem:a42e1459b7ca584326df4740459c0ced6" id="r_a42e1459b7ca584326df4740459c0ced6"><td class="memItemLeft">int16_t&#160;</td><td class="memItemRight"><a class="el" href="#a42e1459b7ca584326df4740459c0ced6">status</a></td></tr>
+<tr class="memitem:a951efb682a812645d2dc4250fbbb476c" id="r_a951efb682a812645d2dc4250fbbb476c"><td class="memItemLeft">uint8_t&#160;</td><td class="memItemRight"><a class="el" href="#a951efb682a812645d2dc4250fbbb476c">reserved</a> [4]</td></tr>
+<tr class="memitem:a7934b2783e587e22d9ae8cfaa867b85b" id="r_a7934b2783e587e22d9ae8cfaa867b85b"><td class="memItemLeft">struct accel_io_channel *&#160;</td><td class="memItemRight"><a class="el" href="#a7934b2783e587e22d9ae8cfaa867b85b">accel_ch</a></td></tr>
+<tr class="memitem:a75a22d5896649a83100014d7eb0f36ff" id="r_a75a22d5896649a83100014d7eb0f36ff"><td class="memItemLeft">struct spdk_accel_sequence *&#160;</td><td class="memItemRight"><a class="el" href="#a75a22d5896649a83100014d7eb0f36ff">seq</a></td></tr>
+<tr class="memitem:"><td class="memItemLeft anon"><a id="a0102b21bc3a7a0dabde83a9b06f9bbb7" name="a0102b21bc3a7a0dabde83a9b06f9bbb7"></a>
+union {&#160;</td><td class="memItemRight"></td></tr>
+<tr class="memitem:a073f840986cafd452a13225393bd1fa2" id="r_a073f840986cafd452a13225393bd1fa2"><td class="memItemLeft anon">&#160;&#160;&#160;<a class="el" href="accel_8h.html#a6ba836b7b128829ba185eadb2c60476a">spdk_accel_completion_cb</a>&#160;&#160;&#160;<a class="el" href="#a5a31a9ffdd919f87d16194fd540b5844">cb_fn</a>&#160;</td><td class="memItemRight"></td></tr>
+<tr class="memitem:a6cf53cc68f2d978df111f4c5b5942bda" id="r_a6cf53cc68f2d978df111f4c5b5942bda"><td class="memItemLeft anon">&#160;&#160;&#160;<a class="el" href="accel_8h.html#abaf556b5e1b63b5237faff3952a3bb46">spdk_accel_step_cb</a>&#160;&#160;&#160;<a class="el" href="#ab7ba53c53da8f16f8a16c5ad0c459095">step_cb_fn</a>&#160;</td><td class="memItemRight"></td></tr>
+<tr class="memitem:a0102b21bc3a7a0dabde83a9b06f9bbb7" id="r_a0102b21bc3a7a0dabde83a9b06f9bbb7"><td class="memItemLeft anonEnd">};&#160;</td><td class="memItemRight"></td></tr>
+<tr class="memitem:a58813d4eefdee0a341ab625217b531ad" id="r_a58813d4eefdee0a341ab625217b531ad"><td class="memItemLeft">void *&#160;</td><td class="memItemRight"><a class="el" href="#a58813d4eefdee0a341ab625217b531ad">cb_arg</a></td></tr>
+<tr class="memitem:ade9e2419698b94c865650609c2075793" id="r_ade9e2419698b94c865650609c2075793"><td class="memItemLeft">struct spdk_memory_domain *&#160;</td><td class="memItemRight"><a class="el" href="#ade9e2419698b94c865650609c2075793">src_domain</a></td></tr>
+<tr class="memitem:aed059405be01561a2c0f3c72de2a505f" id="r_aed059405be01561a2c0f3c72de2a505f"><td class="memItemLeft">void *&#160;</td><td class="memItemRight"><a class="el" href="#aed059405be01561a2c0f3c72de2a505f">src_domain_ctx</a></td></tr>
+<tr class="memitem:a7826f789ebb8e691e76cf2d05307a009" id="r_a7826f789ebb8e691e76cf2d05307a009"><td class="memItemLeft">struct spdk_memory_domain *&#160;</td><td class="memItemRight"><a class="el" href="#a7826f789ebb8e691e76cf2d05307a009">dst_domain</a></td></tr>
+<tr class="memitem:ae165612117fa07c17784020823f1870e" id="r_ae165612117fa07c17784020823f1870e"><td class="memItemLeft">void *&#160;</td><td class="memItemRight"><a class="el" href="#ae165612117fa07c17784020823f1870e">dst_domain_ctx</a></td></tr>
+<tr class="memitem:a70697ed3412474269e45da0d1d23c770" id="r_a70697ed3412474269e45da0d1d23c770"><td class="memItemLeft">uint64_t&#160;</td><td class="memItemRight"><a class="el" href="#a70697ed3412474269e45da0d1d23c770">nbytes</a></td></tr>
+<tr class="memitem:"><td class="memItemLeft anon"><a id="a22e1c10581f6e99e7f96e72bb95f921e" name="a22e1c10581f6e99e7f96e72bb95f921e"></a>
+union {&#160;</td><td class="memItemRight"></td></tr>
+<tr class="memitem:"><td class="memItemLeft anon">
+&#160;&#160;&#160;struct {&#160;</td><td class="memItemRight"></td></tr>
+<tr class="memitem:ae208a0a91aa6a48934b94e554be99679" id="r_ae208a0a91aa6a48934b94e554be99679"><td class="memItemLeft anon">&#160;&#160;&#160;&#160;&#160;&#160;struct iovec *&#160;&#160;&#160;<a class="el" href="#ab85098380a0240b12f2617b01f1c4d7c">iovs</a>&#160;</td><td class="memItemRight"></td></tr>
+<tr class="memitem:a871bc92f99c2b62eb02547916e615fd7" id="r_a871bc92f99c2b62eb02547916e615fd7"><td class="memItemLeft anon">&#160;&#160;&#160;&#160;&#160;&#160;uint32_t&#160;&#160;&#160;<a class="el" href="#aa2391383cefef8b2eb778e867789db84">iovcnt</a>&#160;</td><td class="memItemRight"></td></tr>
+<tr class="memitem:adaeafb02b96cee226c35c49e5ed8a6ae" id="r_adaeafb02b96cee226c35c49e5ed8a6ae"><td class="memItemLeft anonEnd">&#160;&#160;&#160;}&#160;&#160;&#160;<b>s</b></td></tr>
+<tr class="memitem:"><td class="memItemLeft anon">
+&#160;&#160;&#160;struct {&#160;</td><td class="memItemRight"></td></tr>
+<tr class="memitem:a3130e590bbb90c750d1055e0474e81cf" id="r_a3130e590bbb90c750d1055e0474e81cf"><td class="memItemLeft anon">&#160;&#160;&#160;&#160;&#160;&#160;void **&#160;&#160;&#160;<a class="el" href="#ab6de5096eb075896e750dfa0ba087a6e">srcs</a>&#160;</td><td class="memItemRight"></td></tr>
+<tr class="memitem:a888dc64523f5bbb827379c82080e6d57" id="r_a888dc64523f5bbb827379c82080e6d57"><td class="memItemLeft anon">&#160;&#160;&#160;&#160;&#160;&#160;uint32_t&#160;&#160;&#160;<a class="el" href="#af3bb51213d012468e3712e9609773100">cnt</a>&#160;</td><td class="memItemRight"></td></tr>
+<tr class="memitem:a0f8ad0984069e4d8c56f92a64ef02c43" id="r_a0f8ad0984069e4d8c56f92a64ef02c43"><td class="memItemLeft anonEnd">&#160;&#160;&#160;}&#160;&#160;&#160;<b>nsrcs</b></td></tr>
+<tr class="memitem:a22e1c10581f6e99e7f96e72bb95f921e" id="r_a22e1c10581f6e99e7f96e72bb95f921e"><td class="memItemLeft anonEnd">};&#160;</td><td class="memItemRight"></td></tr>
+<tr class="memitem:"><td class="memItemLeft anon"><a id="a7ac10cbb7fa8d6a70c174540156f6b10" name="a7ac10cbb7fa8d6a70c174540156f6b10"></a>
+union {&#160;</td><td class="memItemRight"></td></tr>
+<tr class="memitem:"><td class="memItemLeft anon">
+&#160;&#160;&#160;struct {&#160;</td><td class="memItemRight"></td></tr>
+<tr class="memitem:ad9e9a1beb266fc392d2911582c6cab44" id="r_ad9e9a1beb266fc392d2911582c6cab44"><td class="memItemLeft anon">&#160;&#160;&#160;&#160;&#160;&#160;struct iovec *&#160;&#160;&#160;<a class="el" href="#ab85098380a0240b12f2617b01f1c4d7c">iovs</a>&#160;</td><td class="memItemRight"></td></tr>
+<tr class="memitem:a47574daf29399b6c4c421c3c64773724" id="r_a47574daf29399b6c4c421c3c64773724"><td class="memItemLeft anon">&#160;&#160;&#160;&#160;&#160;&#160;uint32_t&#160;&#160;&#160;<a class="el" href="#aa2391383cefef8b2eb778e867789db84">iovcnt</a>&#160;</td><td class="memItemRight"></td></tr>
+<tr class="memitem:a4a63123514c12e76aefa14145e46c431" id="r_a4a63123514c12e76aefa14145e46c431"><td class="memItemLeft anonEnd">&#160;&#160;&#160;}&#160;&#160;&#160;<b>d</b></td></tr>
+<tr class="memitem:"><td class="memItemLeft anon">
+&#160;&#160;&#160;struct {&#160;</td><td class="memItemRight"></td></tr>
+<tr class="memitem:aa0dfbbdcacc5ea19aff97a325c81acd3" id="r_aa0dfbbdcacc5ea19aff97a325c81acd3"><td class="memItemLeft anon">&#160;&#160;&#160;&#160;&#160;&#160;struct iovec *&#160;&#160;&#160;<a class="el" href="#ab85098380a0240b12f2617b01f1c4d7c">iovs</a>&#160;</td><td class="memItemRight"></td></tr>
+<tr class="memitem:a3972ce3cfc57a88726a48e90c4e84542" id="r_a3972ce3cfc57a88726a48e90c4e84542"><td class="memItemLeft anon">&#160;&#160;&#160;&#160;&#160;&#160;uint32_t&#160;&#160;&#160;<a class="el" href="#aa2391383cefef8b2eb778e867789db84">iovcnt</a>&#160;</td><td class="memItemRight"></td></tr>
+<tr class="memitem:a1460701eaff16b040070eb7c5dfa5983" id="r_a1460701eaff16b040070eb7c5dfa5983"><td class="memItemLeft anonEnd">&#160;&#160;&#160;}&#160;&#160;&#160;<b>s2</b></td></tr>
+<tr class="memitem:a7ac10cbb7fa8d6a70c174540156f6b10" id="r_a7ac10cbb7fa8d6a70c174540156f6b10"><td class="memItemLeft anonEnd">};&#160;</td><td class="memItemRight"></td></tr>
+<tr class="memitem:"><td class="memItemLeft anon"><a id="aa756a9ad4b11775d85de4aa8fa8f63ec" name="aa756a9ad4b11775d85de4aa8fa8f63ec"></a>
+union {&#160;</td><td class="memItemRight"></td></tr>
+<tr class="memitem:"><td class="memItemLeft anon">
+&#160;&#160;&#160;struct {&#160;</td><td class="memItemRight"></td></tr>
+<tr class="memitem:ae94d1887d0913b05faa31487b4464a64" id="r_ae94d1887d0913b05faa31487b4464a64"><td class="memItemLeft anon">&#160;&#160;&#160;&#160;&#160;&#160;struct iovec *&#160;&#160;&#160;<a class="el" href="#ab85098380a0240b12f2617b01f1c4d7c">iovs</a>&#160;</td><td class="memItemRight"></td></tr>
+<tr class="memitem:adad83b4b7898b796757181eb905981ea" id="r_adad83b4b7898b796757181eb905981ea"><td class="memItemLeft anon">&#160;&#160;&#160;&#160;&#160;&#160;uint32_t&#160;&#160;&#160;<a class="el" href="#aa2391383cefef8b2eb778e867789db84">iovcnt</a>&#160;</td><td class="memItemRight"></td></tr>
+<tr class="memitem:a4aecfe095343d6ac9249d15ded32fc71" id="r_a4aecfe095343d6ac9249d15ded32fc71"><td class="memItemLeft anonEnd">&#160;&#160;&#160;}&#160;&#160;&#160;<b>d2</b></td></tr>
+<tr class="memitem:aa9b4071512f8865d4d3b0dc3d3cdbe1c" id="r_aa9b4071512f8865d4d3b0dc3d3cdbe1c"><td class="memItemLeft anon">&#160;&#160;&#160;uint32_t&#160;&#160;&#160;<a class="el" href="#aa088bd23a1b4617e7cf287412f9c499c">seed</a>&#160;</td><td class="memItemRight"></td></tr>
+<tr class="memitem:a98b593de4ed67fa0faef7fcd8f42b78f" id="r_a98b593de4ed67fa0faef7fcd8f42b78f"><td class="memItemLeft anon">&#160;&#160;&#160;uint64_t&#160;&#160;&#160;<a class="el" href="#a6d116fe4ea5b601ad1f9d055c457d2fe">fill_pattern</a>&#160;</td><td class="memItemRight"></td></tr>
+<tr class="memitem:ab496f64f6ab23851922a027c265508fa" id="r_ab496f64f6ab23851922a027c265508fa"><td class="memItemLeft anon">&#160;&#160;&#160;struct <a class="el" href="structspdk__accel__crypto__key.html">spdk_accel_crypto_key</a> *&#160;&#160;&#160;<a class="el" href="#af3dc7bd42cfb918799578526a464335e">crypto_key</a>&#160;</td><td class="memItemRight"></td></tr>
+<tr class="memitem:"><td class="memItemLeft anon">
+&#160;&#160;&#160;struct {&#160;</td><td class="memItemRight"></td></tr>
+<tr class="memitem:a8841aa616865ef80d2a5562ed6f11a09" id="r_a8841aa616865ef80d2a5562ed6f11a09"><td class="memItemLeft anon">&#160;&#160;&#160;&#160;&#160;&#160;const struct <a class="el" href="structspdk__dif__ctx.html">spdk_dif_ctx</a> *&#160;&#160;&#160;<a class="el" href="#a3c51617151e777df5bb85165356a17fe">ctx</a>&#160;</td><td class="memItemRight"></td></tr>
+<tr class="memitem:ad848a02b9075cacd314fb72f1b597295" id="r_ad848a02b9075cacd314fb72f1b597295"><td class="memItemLeft anon">&#160;&#160;&#160;&#160;&#160;&#160;struct <a class="el" href="structspdk__dif__error.html">spdk_dif_error</a> *&#160;&#160;&#160;<a class="el" href="#a353e1c8e1db7d608e071b2d10a90f16e">err</a>&#160;</td><td class="memItemRight"></td></tr>
+<tr class="memitem:a077694c7314b8297efc4a4be2230b429" id="r_a077694c7314b8297efc4a4be2230b429"><td class="memItemLeft anon">&#160;&#160;&#160;&#160;&#160;&#160;uint32_t&#160;&#160;&#160;<a class="el" href="#a5406237e25daf5a8192f7336a84e4c89">num_blocks</a>&#160;</td><td class="memItemRight"></td></tr>
+<tr class="memitem:a7a6101375a933fc127c52a57caaee606" id="r_a7a6101375a933fc127c52a57caaee606"><td class="memItemLeft anonEnd">&#160;&#160;&#160;}&#160;&#160;&#160;<b>dif</b></td></tr>
+<tr class="memitem:"><td class="memItemLeft anon">
+&#160;&#160;&#160;struct {&#160;</td><td class="memItemRight"></td></tr>
+<tr class="memitem:ac4b5a7a6d0379eef4602253d29c7f2f3" id="r_ac4b5a7a6d0379eef4602253d29c7f2f3"><td class="memItemLeft anon">&#160;&#160;&#160;&#160;&#160;&#160;enum spdk_accel_comp_algo&#160;&#160;&#160;<a class="el" href="#ab834e7f59b171ebc4cc22ecbc60835fe">algo</a>&#160;</td><td class="memItemRight"></td></tr>
+<tr class="memitem:a3efaf278d102df270fe1625df65ca940" id="r_a3efaf278d102df270fe1625df65ca940"><td class="memItemLeft anon">&#160;&#160;&#160;&#160;&#160;&#160;uint32_t&#160;&#160;&#160;<a class="el" href="#a1baadead65bf9c41db60675f58b2be92">level</a>&#160;</td><td class="memItemRight"></td></tr>
+<tr class="memitem:a2125969913e8ddeb333ec8cad6e24271" id="r_a2125969913e8ddeb333ec8cad6e24271"><td class="memItemLeft anonEnd">&#160;&#160;&#160;}&#160;&#160;&#160;<b>comp</b></td></tr>
+<tr class="memitem:aa756a9ad4b11775d85de4aa8fa8f63ec" id="r_aa756a9ad4b11775d85de4aa8fa8f63ec"><td class="memItemLeft anonEnd">};&#160;</td><td class="memItemRight"></td></tr>
+<tr class="memitem:"><td class="memItemLeft anon"><a id="a673a89be98320fd53fe79e498de8b684" name="a673a89be98320fd53fe79e498de8b684"></a>
+union {&#160;</td><td class="memItemRight"></td></tr>
+<tr class="memitem:ae3f382e97e52f960031ee10572711bdd" id="r_ae3f382e97e52f960031ee10572711bdd"><td class="memItemLeft anon">&#160;&#160;&#160;uint32_t *&#160;&#160;&#160;<a class="el" href="#a4c25399862a36c16f790d912f391be98">crc_dst</a>&#160;</td><td class="memItemRight"></td></tr>
+<tr class="memitem:ac75c79b4449c8e267106ba6387e07264" id="r_ac75c79b4449c8e267106ba6387e07264"><td class="memItemLeft anon">&#160;&#160;&#160;uint32_t *&#160;&#160;&#160;<a class="el" href="#a819147fc9c5a735923a7029852794ae5">output_size</a>&#160;</td><td class="memItemRight"></td></tr>
+<tr class="memitem:a005771da93490bb8874942802c59ba4a" id="r_a005771da93490bb8874942802c59ba4a"><td class="memItemLeft anon">&#160;&#160;&#160;uint32_t&#160;&#160;&#160;<a class="el" href="#a7efde313c05682ba1314709ab2d686c1">block_size</a>&#160;</td><td class="memItemRight"></td></tr>
+<tr class="memitem:a673a89be98320fd53fe79e498de8b684" id="r_a673a89be98320fd53fe79e498de8b684"><td class="memItemLeft anonEnd">};&#160;</td><td class="memItemRight"></td></tr>
+<tr class="memitem:a8f4418a860c9bbe1ff2976681c1ed47b" id="r_a8f4418a860c9bbe1ff2976681c1ed47b"><td class="memItemLeft">uint64_t&#160;</td><td class="memItemRight"><a class="el" href="#a8f4418a860c9bbe1ff2976681c1ed47b">iv</a></td></tr>
+<tr class="memitem:af360c5424930279e8fd4fbcf388eb577" id="r_af360c5424930279e8fd4fbcf388eb577"><td class="memItemLeft">struct <a class="el" href="structspdk__accel__task__aux__data.html">spdk_accel_task_aux_data</a> *&#160;</td><td class="memItemRight"><a class="el" href="#af360c5424930279e8fd4fbcf388eb577">aux</a></td></tr>
+</table>
+<a name="details" id="details"></a><h2 id="header-details" class="groupheader">Detailed Description</h2>
+<div class="textblock">
+<p class="definition">Definition at line <a class="el" href="accel__module_8h_source.html#l00091">91</a> of file <a class="el" href="accel__module_8h_source.html">accel_module.h</a>.</p>
+</div><a name="doc-variable-members" id="doc-variable-members"></a><h2 id="header-doc-variable-members" class="groupheader">Field Documentation</h2>
+<a id="a7934b2783e587e22d9ae8cfaa867b85b" name="a7934b2783e587e22d9ae8cfaa867b85b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7934b2783e587e22d9ae8cfaa867b85b">&#9670;&#160;</a></span>accel_ch</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">struct accel_io_channel* spdk_accel_task::accel_ch</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="accel__module_8h_source.html#l00099">99</a> of file <a class="el" href="accel__module_8h_source.html">accel_module.h</a>.</p>
+
+</div>
+</div>
+<a id="ab834e7f59b171ebc4cc22ecbc60835fe" name="ab834e7f59b171ebc4cc22ecbc60835fe"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab834e7f59b171ebc4cc22ecbc60835fe">&#9670;&#160;</a></span>algo</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">enum spdk_accel_comp_algo spdk_accel_task::algo</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="accel__module_8h_source.html#l00147">147</a> of file <a class="el" href="accel__module_8h_source.html">accel_module.h</a>.</p>
+
+</div>
+</div>
+<a id="af360c5424930279e8fd4fbcf388eb577" name="af360c5424930279e8fd4fbcf388eb577"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af360c5424930279e8fd4fbcf388eb577">&#9670;&#160;</a></span>aux</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">struct <a class="el" href="structspdk__accel__task__aux__data.html">spdk_accel_task_aux_data</a>* spdk_accel_task::aux</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="accel__module_8h_source.html#l00157">157</a> of file <a class="el" href="accel__module_8h_source.html">accel_module.h</a>.</p>
+
+</div>
+</div>
+<a id="a7efde313c05682ba1314709ab2d686c1" name="a7efde313c05682ba1314709ab2d686c1"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7efde313c05682ba1314709ab2d686c1">&#9670;&#160;</a></span>block_size</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">uint32_t spdk_accel_task::block_size</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="accel__module_8h_source.html#l00154">154</a> of file <a class="el" href="accel__module_8h_source.html">accel_module.h</a>.</p>
+
+</div>
+</div>
+<a id="a58813d4eefdee0a341ab625217b531ad" name="a58813d4eefdee0a341ab625217b531ad"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a58813d4eefdee0a341ab625217b531ad">&#9670;&#160;</a></span>cb_arg</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void* spdk_accel_task::cb_arg</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="accel__module_8h_source.html#l00107">107</a> of file <a class="el" href="accel__module_8h_source.html">accel_module.h</a>.</p>
+
+</div>
+</div>
+<a id="a5a31a9ffdd919f87d16194fd540b5844" name="a5a31a9ffdd919f87d16194fd540b5844"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5a31a9ffdd919f87d16194fd540b5844">&#9670;&#160;</a></span>cb_fn</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="accel_8h.html#a6ba836b7b128829ba185eadb2c60476a">spdk_accel_completion_cb</a> spdk_accel_task::cb_fn</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="accel__module_8h_source.html#l00103">103</a> of file <a class="el" href="accel__module_8h_source.html">accel_module.h</a>.</p>
+
+</div>
+</div>
+<a id="af3bb51213d012468e3712e9609773100" name="af3bb51213d012468e3712e9609773100"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af3bb51213d012468e3712e9609773100">&#9670;&#160;</a></span>cnt</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">uint32_t spdk_accel_task::cnt</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="accel__module_8h_source.html#l00120">120</a> of file <a class="el" href="accel__module_8h_source.html">accel_module.h</a>.</p>
+
+</div>
+</div>
+<a id="a4c25399862a36c16f790d912f391be98" name="a4c25399862a36c16f790d912f391be98"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4c25399862a36c16f790d912f391be98">&#9670;&#160;</a></span>crc_dst</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">uint32_t* spdk_accel_task::crc_dst</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="accel__module_8h_source.html#l00152">152</a> of file <a class="el" href="accel__module_8h_source.html">accel_module.h</a>.</p>
+
+</div>
+</div>
+<a id="af3dc7bd42cfb918799578526a464335e" name="af3dc7bd42cfb918799578526a464335e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af3dc7bd42cfb918799578526a464335e">&#9670;&#160;</a></span>crypto_key</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">struct <a class="el" href="structspdk__accel__crypto__key.html">spdk_accel_crypto_key</a>* spdk_accel_task::crypto_key</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="accel__module_8h_source.html#l00140">140</a> of file <a class="el" href="accel__module_8h_source.html">accel_module.h</a>.</p>
+
+</div>
+</div>
+<a id="a3c51617151e777df5bb85165356a17fe" name="a3c51617151e777df5bb85165356a17fe"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3c51617151e777df5bb85165356a17fe">&#9670;&#160;</a></span>ctx</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">const struct <a class="el" href="structspdk__dif__ctx.html">spdk_dif_ctx</a>* spdk_accel_task::ctx</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="accel__module_8h_source.html#l00142">142</a> of file <a class="el" href="accel__module_8h_source.html">accel_module.h</a>.</p>
+
+</div>
+</div>
+<a id="a7826f789ebb8e691e76cf2d05307a009" name="a7826f789ebb8e691e76cf2d05307a009"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7826f789ebb8e691e76cf2d05307a009">&#9670;&#160;</a></span>dst_domain</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">struct spdk_memory_domain* spdk_accel_task::dst_domain</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="accel__module_8h_source.html#l00110">110</a> of file <a class="el" href="accel__module_8h_source.html">accel_module.h</a>.</p>
+
+</div>
+</div>
+<a id="ae165612117fa07c17784020823f1870e" name="ae165612117fa07c17784020823f1870e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae165612117fa07c17784020823f1870e">&#9670;&#160;</a></span>dst_domain_ctx</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void* spdk_accel_task::dst_domain_ctx</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="accel__module_8h_source.html#l00111">111</a> of file <a class="el" href="accel__module_8h_source.html">accel_module.h</a>.</p>
+
+</div>
+</div>
+<a id="a353e1c8e1db7d608e071b2d10a90f16e" name="a353e1c8e1db7d608e071b2d10a90f16e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a353e1c8e1db7d608e071b2d10a90f16e">&#9670;&#160;</a></span>err</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">struct <a class="el" href="structspdk__dif__error.html">spdk_dif_error</a>* spdk_accel_task::err</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="accel__module_8h_source.html#l00143">143</a> of file <a class="el" href="accel__module_8h_source.html">accel_module.h</a>.</p>
+
+</div>
+</div>
+<a id="a6d116fe4ea5b601ad1f9d055c457d2fe" name="a6d116fe4ea5b601ad1f9d055c457d2fe"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6d116fe4ea5b601ad1f9d055c457d2fe">&#9670;&#160;</a></span>fill_pattern</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">uint64_t spdk_accel_task::fill_pattern</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="accel__module_8h_source.html#l00139">139</a> of file <a class="el" href="accel__module_8h_source.html">accel_module.h</a>.</p>
+
+</div>
+</div>
+<a id="aac6e7cdfb02ada8f7545fa3874de8f26" name="aac6e7cdfb02ada8f7545fa3874de8f26"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aac6e7cdfb02ada8f7545fa3874de8f26">&#9670;&#160;</a></span>has_aux</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool spdk_accel_task::has_aux</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="accel__module_8h_source.html#l00096">96</a> of file <a class="el" href="accel__module_8h_source.html">accel_module.h</a>.</p>
+
+</div>
+</div>
+<a id="aa2391383cefef8b2eb778e867789db84" name="aa2391383cefef8b2eb778e867789db84"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa2391383cefef8b2eb778e867789db84">&#9670;&#160;</a></span>iovcnt</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">uint32_t spdk_accel_task::iovcnt</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="accel__module_8h_source.html#l00116">116</a> of file <a class="el" href="accel__module_8h_source.html">accel_module.h</a>.</p>
+
+</div>
+</div>
+<a id="ab85098380a0240b12f2617b01f1c4d7c" name="ab85098380a0240b12f2617b01f1c4d7c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab85098380a0240b12f2617b01f1c4d7c">&#9670;&#160;</a></span>iovs</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">struct iovec* spdk_accel_task::iovs</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="accel__module_8h_source.html#l00115">115</a> of file <a class="el" href="accel__module_8h_source.html">accel_module.h</a>.</p>
+
+</div>
+</div>
+<a id="a8f4418a860c9bbe1ff2976681c1ed47b" name="a8f4418a860c9bbe1ff2976681c1ed47b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8f4418a860c9bbe1ff2976681c1ed47b">&#9670;&#160;</a></span>iv</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">uint64_t spdk_accel_task::iv</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="accel__module_8h_source.html#l00156">156</a> of file <a class="el" href="accel__module_8h_source.html">accel_module.h</a>.</p>
+
+</div>
+</div>
+<a id="a1baadead65bf9c41db60675f58b2be92" name="a1baadead65bf9c41db60675f58b2be92"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1baadead65bf9c41db60675f58b2be92">&#9670;&#160;</a></span>level</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">uint32_t spdk_accel_task::level</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="accel__module_8h_source.html#l00148">148</a> of file <a class="el" href="accel__module_8h_source.html">accel_module.h</a>.</p>
+
+</div>
+</div>
+<a id="a70697ed3412474269e45da0d1d23c770" name="a70697ed3412474269e45da0d1d23c770"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a70697ed3412474269e45da0d1d23c770">&#9670;&#160;</a></span>nbytes</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">uint64_t spdk_accel_task::nbytes</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="accel__module_8h_source.html#l00112">112</a> of file <a class="el" href="accel__module_8h_source.html">accel_module.h</a>.</p>
+
+</div>
+</div>
+<a id="a5406237e25daf5a8192f7336a84e4c89" name="a5406237e25daf5a8192f7336a84e4c89"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5406237e25daf5a8192f7336a84e4c89">&#9670;&#160;</a></span>num_blocks</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">uint32_t spdk_accel_task::num_blocks</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="accel__module_8h_source.html#l00144">144</a> of file <a class="el" href="accel__module_8h_source.html">accel_module.h</a>.</p>
+
+</div>
+</div>
+<a id="a556f84523b752542528bacebc40a19e0" name="a556f84523b752542528bacebc40a19e0"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a556f84523b752542528bacebc40a19e0">&#9670;&#160;</a></span>op_code</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">uint8_t spdk_accel_task::op_code</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="accel__module_8h_source.html#l00095">95</a> of file <a class="el" href="accel__module_8h_source.html">accel_module.h</a>.</p>
+
+</div>
+</div>
+<a id="a819147fc9c5a735923a7029852794ae5" name="a819147fc9c5a735923a7029852794ae5"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a819147fc9c5a735923a7029852794ae5">&#9670;&#160;</a></span>output_size</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">uint32_t* spdk_accel_task::output_size</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="accel__module_8h_source.html#l00153">153</a> of file <a class="el" href="accel__module_8h_source.html">accel_module.h</a>.</p>
+
+</div>
+</div>
+<a id="a951efb682a812645d2dc4250fbbb476c" name="a951efb682a812645d2dc4250fbbb476c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a951efb682a812645d2dc4250fbbb476c">&#9670;&#160;</a></span>reserved</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">uint8_t spdk_accel_task::reserved[4]</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="accel__module_8h_source.html#l00098">98</a> of file <a class="el" href="accel__module_8h_source.html">accel_module.h</a>.</p>
+
+</div>
+</div>
+<a id="aa088bd23a1b4617e7cf287412f9c499c" name="aa088bd23a1b4617e7cf287412f9c499c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa088bd23a1b4617e7cf287412f9c499c">&#9670;&#160;</a></span>seed</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">uint32_t spdk_accel_task::seed</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="accel__module_8h_source.html#l00138">138</a> of file <a class="el" href="accel__module_8h_source.html">accel_module.h</a>.</p>
+
+</div>
+</div>
+<a id="a75a22d5896649a83100014d7eb0f36ff" name="a75a22d5896649a83100014d7eb0f36ff"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a75a22d5896649a83100014d7eb0f36ff">&#9670;&#160;</a></span>seq</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">struct spdk_accel_sequence* spdk_accel_task::seq</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="accel__module_8h_source.html#l00100">100</a> of file <a class="el" href="accel__module_8h_source.html">accel_module.h</a>.</p>
+
+</div>
+</div>
+<a id="ade9e2419698b94c865650609c2075793" name="ade9e2419698b94c865650609c2075793"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ade9e2419698b94c865650609c2075793">&#9670;&#160;</a></span>src_domain</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">struct spdk_memory_domain* spdk_accel_task::src_domain</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="accel__module_8h_source.html#l00108">108</a> of file <a class="el" href="accel__module_8h_source.html">accel_module.h</a>.</p>
+
+</div>
+</div>
+<a id="aed059405be01561a2c0f3c72de2a505f" name="aed059405be01561a2c0f3c72de2a505f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aed059405be01561a2c0f3c72de2a505f">&#9670;&#160;</a></span>src_domain_ctx</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void* spdk_accel_task::src_domain_ctx</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="accel__module_8h_source.html#l00109">109</a> of file <a class="el" href="accel__module_8h_source.html">accel_module.h</a>.</p>
+
+</div>
+</div>
+<a id="ab6de5096eb075896e750dfa0ba087a6e" name="ab6de5096eb075896e750dfa0ba087a6e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab6de5096eb075896e750dfa0ba087a6e">&#9670;&#160;</a></span>srcs</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void** spdk_accel_task::srcs</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="accel__module_8h_source.html#l00119">119</a> of file <a class="el" href="accel__module_8h_source.html">accel_module.h</a>.</p>
+
+</div>
+</div>
+<a id="a42e1459b7ca584326df4740459c0ced6" name="a42e1459b7ca584326df4740459c0ced6"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a42e1459b7ca584326df4740459c0ced6">&#9670;&#160;</a></span>status</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int16_t spdk_accel_task::status</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="accel__module_8h_source.html#l00097">97</a> of file <a class="el" href="accel__module_8h_source.html">accel_module.h</a>.</p>
+
+</div>
+</div>
+<a id="ab7ba53c53da8f16f8a16c5ad0c459095" name="ab7ba53c53da8f16f8a16c5ad0c459095"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab7ba53c53da8f16f8a16c5ad0c459095">&#9670;&#160;</a></span>step_cb_fn</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="accel_8h.html#abaf556b5e1b63b5237faff3952a3bb46">spdk_accel_step_cb</a> spdk_accel_task::step_cb_fn</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="accel__module_8h_source.html#l00105">105</a> of file <a class="el" href="accel__module_8h_source.html">accel_module.h</a>.</p>
+
+</div>
+</div>
+<hr/>The documentation for this struct was generated from the following file:<ul>
+<li><a class="el" href="accel__module_8h_source.html">accel_module.h</a></li>
+</ul>
+</div><!-- contents -->
+</div><!-- doc-content -->
+<div id="page-nav" class="page-nav-panel">
+<div id="page-nav-resize-handle"></div>
+<div id="page-nav-tree">
+<div id="page-nav-contents">
+</div><!-- page-nav-contents -->
+</div><!-- page-nav-tree -->
+</div><!-- page-nav -->
+</div><!-- container -->
+<footer class="footer" id="nav-path">
+  <div class="footer-inner">
+    <div class="footer-copy">
+      <small>Copyright &copy; SPDK a Series of LF Projects, LLC. For web site terms of use, trademark policy, and other
+      project policies please see <a href="https://lfprojects.org">lfprojects.org</a>.</small>
+    </div>
+  </div>
+</footer>
+<script type="text/javascript" src="page_outline.js"></script>
+<script type="text/javascript" src="spdk_nav.js"></script>
+<!-- Doxygen footer suffix – assembled by _build/common.sh:
+     _includes/footer.html (shared) + theme scripts (from spdk) + this file.
+     Theme scripts are extracted from spdk/doc/theme/footer.html at build
+     time so the script list is maintained in a single place. -->
+</body>
+</html>
