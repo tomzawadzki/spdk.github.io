@@ -1,0 +1,111 @@
+<!doctype html>
+<html lang="en">
+  <head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="The Storage Performance Development Kit (SPDK) provides a set of tools and libraries for writing high performance, scalable, user-mode storage applications. It achieves high performance by moving all of the necessary drivers into userspace and operating in a polled mode instead of relying on interrupts, which avoids kernel context switches and eliminates interrupt handling overhead.
+">
+  <meta name="author" content="Benjamin Walker">
+
+  <title>VFIO-USER: A new virtualization protocol</title>
+
+  <link rel="icon" type="image/svg+xml" href="/spdk.github.io/assets/img/spdk.svg">
+  <link rel="icon" href="/spdk.github.io/assets/favicon.ico" sizes="32x32">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:400,700,900" type="text/css">
+  <link rel="stylesheet" href="/spdk.github.io/assets/css/spdk.css">
+
+  <link href="/spdk.github.io/feed.xml" type="application/atom+xml" rel="alternate" title="Atom Feed">
+</head>
+
+
+  <body>
+    <nav class="navbar">
+  <a class="navbar-brand" href="/spdk.github.io/" aria-label="SPDK">
+    <img src="/spdk.github.io/assets/img/spdk.svg" width="36" height="36" alt="Storage Performance Development Kit">
+  </a>
+  <div class="navbar-nav">
+    <a class="nav-link header-link" href="/spdk.github.io/doc/releases.html">download</a>
+    <a class="nav-link header-link" href="/spdk.github.io/doc/">documentation</a>
+    <a class="nav-link header-link" href="/spdk.github.io/doc/contributing.html">development</a>
+    <a class="nav-link header-link" href="/spdk.github.io/doc/ci_tools.html">CI status</a>
+    <a class="nav-link header-link" href="/spdk.github.io/community/">community</a>
+    <a class="nav-link header-link" href="/spdk.github.io/blog/">Blog</a>
+    <a class="nav-link header-link" href="https://github.com/orgs/spdk/projects/5">Roadmap</a>
+    <a class="nav-link header-link" href="/spdk.github.io/news/">News</a>
+  </div>
+  <div class="navbar-end">
+    <a class="nav-link header-link" href="https://github.com/spdk/spdk" aria-label="GitHub">
+      <svg xmlns="http://www.w3.org/2000/svg" class="navbar-nav-svg" aria-hidden="true"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
+    </a>
+    <a id="cn_lang_btn" href="/spdk.github.io/cn/doc/" class="nav-link header-link">中文</a>
+  </div>
+</nav>
+<script>
+(function() {
+    var p = location.pathname, best = null, bLen = 0;
+    document.querySelectorAll('.header-link[href]').forEach(function(a) {
+        var raw = a.getAttribute('href');
+        if (!raw) return;
+        try { var u = new URL(raw, location.href); } catch(e) { return; }
+        if (u.origin !== location.origin) return;
+        var h = u.pathname;
+        if (h === '/') return;
+        var ok = h.endsWith('.html') ? p === h : p.indexOf(h) === 0;
+        if (ok && h.length > bLen) { bLen = h.length; best = a; }
+    });
+    if (best) best.classList.add('active');
+})();
+</script>
+
+
+    <div class="page-content">
+  <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+  <header class="post-header">
+
+    <div class="page-header">
+      <h1>VFIO-USER: A new virtualization protocol</h1>
+    </div>
+
+    <p class="post-meta">
+      <time datetime="2021-05-04T00:00:00+02:00" itemprop="datePublished">
+        May 4, 2021
+      </time>
+      
+      •
+      <span itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <span itemprop="name">Ben Walker</span>
+      </span>
+      
+    </p>
+  </header>
+
+  <div class="content" itemprop="articleBody"><p>We’re excited to announce support for NVMe over vfio-user, a technology that allows SPDK to present fully emulated NVMe devices into virtual machines. Virtual machines can leverage their existing NVMe drivers to communicate with the devices and data is transferred efficiently to or from SPDK using shared memory. In other words, just like vhost-user but able to emulate NVMe devices instead of virtio-blk or virtio-scsi devices.</p>
+
+<p>Standardization and support for vfio-user is currently underway in the QEMU community. The <a href="https://github.com/tmakatos/qemu/blob/master/docs/devel/vfio-user.rst">draft specification</a> has all interested parties aligned and is maturing quickly. The protocol itself is capable of emulating any physical device, not just NVMe, but emulating NVMe devices with SPDK has been the first and primary consumer of the new interface so far.</p>
+
+<p>Nutanix has released a <a href="https://github.com/nutanix/libvfio-user">convenience library</a> that helps implement a server for the protocol and SPDK leverages this in its implementation.</p>
+
+<p>The NVMe device emulation is implemented using SPDK’s existing NVMe-oF target, treating vfio-user as a shared memory “transport” in the same way it supports TCP, RDMA, PCIe, and Fibre Channel. The NVMe-oF specification already happened to require extensive emulation of an NVMe device to implement, so almost all of the required logic to emulate a physical NVMe SSD was already present. It really was as simple as adding a new transport plugin for vfio-user. While this transport is not officially part of the NVMe-oF specification, the transport plugin system has been set up to allow for custom transports such as this. These transport plugins can even exist in shared libraries outside of the SPDK repository and discovered at run time, although the vfio-user transport is built in to SPDK itself.</p>
+
+<p>We’re excited about this advance in virtualization technology. By emulating a physical NVMe device, any operating system with an NVMe driver (i.e. all of them) can talk to the device. This is especially important for Windows - no more loading virtio drivers! It also allows for virtual machines to boot from the emulated NVMe devices because the UEFI BIOS contains an NVMe driver.</p>
+
+<p>Long term, we fully expect vfio-user to gain market share not only in the storage industry, but also in networking and elsewhere. We expect the performance to be excellent - at least as good as virtio-blk but likely better - and we’ll be excited to share benchmarks as soon as they’re available.</p>
+</div>
+</article>
+</div>
+
+
+    <footer class="footer" id="nav-path">
+  <div class="footer-inner">
+    <div class="footer-copy">
+      <small>Copyright &copy; SPDK a Series of LF Projects, LLC. For web site terms of use, trademark policy, and other
+      project policies please see <a href="https://lfprojects.org">lfprojects.org</a>.</small>
+      <br><small>Built from spdk 91893349edff / site e5878500f</small>
+    </div>
+  </div>
+</footer>
+
+
+    
+  </body>
+</html>

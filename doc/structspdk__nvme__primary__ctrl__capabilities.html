@@ -1,0 +1,530 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<meta name="generator" content="Doxygen 1.16.1">
+	<title>SPDK: spdk_nvme_primary_ctrl_capabilities Struct Reference</title>
+	<script type="text/javascript" src="jquery.js"></script>
+	<script type="text/javascript" src="dynsections.js"></script>
+	<script type="text/javascript" src="clipboard.js"></script>
+	<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
+<script type="text/javascript" src="cookie.js"></script>
+	<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<script type="text/javascript">
+  $(function() { init_search(); });
+</script>
+	<link rel="icon" type="image/svg+xml" href="../assets/img/spdk.svg">
+	<link rel="icon" href="../assets/favicon.ico" sizes="32x32">
+	<link href="doxygen.css" rel="stylesheet" type="text/css">
+	<script>(function(){var k='doxygen_width',w,bw=6;if(window.chrome){w=localStorage.getItem(k);if(!w){w='350';localStorage.setItem(k,w)}}else{var m=document.cookie.match(new RegExp(k+'=(\\d+)'));w=m?m[1]:null;if(!w){w='350';document.cookie=k+'=350;SameSite=Lax;path=/'}}document.documentElement.style.setProperty('--sn-w',(parseInt(w)+bw)+'px')})()</script>
+	<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:400,700,900" type="text/css">
+	<link href="spdk.css" rel="stylesheet" type="text/css"/>
+	<link href="../assets/css/spdk.css" rel="stylesheet" type="text/css">
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<nav class="navbar">
+  <a class="navbar-brand" href="../" aria-label="SPDK">
+    <img src="../assets/img/spdk.svg" width="36" height="36" alt="Storage Performance Development Kit">
+  </a>
+  <div class="navbar-nav">
+    <a class="nav-link header-link" href="../doc/releases.html">download</a>
+    <a class="nav-link header-link" href="../doc/">documentation</a>
+    <a class="nav-link header-link" href="../doc/contributing.html">development</a>
+    <a class="nav-link header-link" href="../doc/ci_tools.html">CI status</a>
+    <a class="nav-link header-link" href="../community/">community</a>
+    <a class="nav-link header-link" href="../blog/">Blog</a>
+    <a class="nav-link header-link" href="https://github.com/orgs/spdk/projects/5">Roadmap</a>
+    <a class="nav-link header-link" href="../news/">News</a>
+  </div>
+  <div class="navbar-end">
+    <a class="nav-link header-link" href="https://github.com/spdk/spdk" aria-label="GitHub">
+      <svg xmlns="http://www.w3.org/2000/svg" class="navbar-nav-svg" aria-hidden="true"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
+    </a>
+    <a id="cn_lang_btn" href="../cn/doc/" class="nav-link header-link">中文</a>
+  </div>
+</nav>
+<script>
+(function() {
+    var p = location.pathname, best = null, bLen = 0;
+    document.querySelectorAll('.header-link[href]').forEach(function(a) {
+        var raw = a.getAttribute('href');
+        if (!raw) return;
+        try { var u = new URL(raw, location.href); } catch(e) { return; }
+        if (u.origin !== location.origin) return;
+        var h = u.pathname;
+        if (h === '/') return;
+        var ok = h.endsWith('.html') ? p === h : p.indexOf(h) === 0;
+        if (ok && h.length > bLen) { bLen = h.length; best = a; }
+    });
+    if (best) best.classList.add('active');
+})();
+</script>
+<div id="doxygen-searchbox">        <div id="MSearchBox" class="MSearchBoxInactive">
+        <span class="left">
+          <span id="MSearchSelect" class="search-icon" onmouseover="return searchBox.OnSearchSelectShow()" onmouseout="return searchBox.OnSearchSelectHide()"><span class="search-icon-dropdown"></span></span>
+          <input type="text" id="MSearchField" value="" placeholder="Search" accesskey="S"
+               onfocus="searchBox.OnSearchFieldFocus(true)" 
+               onblur="searchBox.OnSearchFieldFocus(false)" 
+               onkeyup="searchBox.OnSearchFieldChange(event)"/>
+          </span><span class="right">
+            <a id="MSearchClose" href="javascript:searchBox.CloseResultsWindow()"><div id="MSearchCloseImg" class="close-icon"></div></a>
+          </span>
+        </div>
+</div>
+<!-- Generated by Doxygen 1.16.1 -->
+<script type="text/javascript">
+var searchBox = new SearchBox("searchBox", "search/",'.html');
+</script>
+<script type="text/javascript">
+$(function() { codefold.init(); });
+</script>
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+$(function(){initNavTree('structspdk__nvme__primary__ctrl__capabilities.html','',''); });
+</script>
+<div id="container">
+<div id="doc-content">
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">Loading...</div>
+<div class="SRStatus" id="Searching">Searching...</div>
+<div class="SRStatus" id="NoMatches">No Matches</div>
+</div>
+</div>
+</div>
+</div>
+
+<div class="header">
+  <div class="headertitle"><div class="title">spdk_nvme_primary_ctrl_capabilities Struct Reference</div></div>
+</div><!--header-->
+<div class="contents">
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 id="header-pub-attribs" class="groupheader"><a id="pub-attribs" name="pub-attribs"></a>
+Data Fields</h2></td></tr>
+<tr class="memitem:a9d7bd410ed4ccef3060a9cd36530896e" id="r_a9d7bd410ed4ccef3060a9cd36530896e"><td class="memItemLeft">uint16_t&#160;</td><td class="memItemRight"><a class="el" href="#a9d7bd410ed4ccef3060a9cd36530896e">cntlid</a></td></tr>
+<tr class="memdesc:a9d7bd410ed4ccef3060a9cd36530896e"><td class="mdescLeft">&#160;</td><td class="mdescRight">controller id  <br /></td></tr>
+<tr class="memitem:af8c71651dc0bb0fc40917e3bfc55183d" id="r_af8c71651dc0bb0fc40917e3bfc55183d"><td class="memItemLeft">uint16_t&#160;</td><td class="memItemRight"><a class="el" href="#af8c71651dc0bb0fc40917e3bfc55183d">portid</a></td></tr>
+<tr class="memdesc:af8c71651dc0bb0fc40917e3bfc55183d"><td class="mdescLeft">&#160;</td><td class="mdescRight">port identifier  <br /></td></tr>
+<tr class="memitem:"><td class="memItemLeft anon"><a id="a4e12f0e10a1c80dbb5e0c6461e32425e" name="a4e12f0e10a1c80dbb5e0c6461e32425e"></a>
+struct {&#160;</td><td class="memItemRight"></td></tr>
+<tr class="memitem:aaa7f96847b0af34c88baa1add78aeffe" id="r_aaa7f96847b0af34c88baa1add78aeffe"><td class="memItemLeft anon">&#160;&#160;&#160;uint8_t&#160;&#160;&#160;<a class="el" href="#ad656bd7e104327d7b85959b0b5a4196e">vq_supported</a>: 1&#160;</td><td class="memItemRight"></td></tr>
+<tr class="memitem:a14e26088ba2bae304a69beb9e06c0360" id="r_a14e26088ba2bae304a69beb9e06c0360"><td class="memItemLeft anon">&#160;&#160;&#160;uint8_t&#160;&#160;&#160;<a class="el" href="#a82048e8cef4b70d0ea4f1782d0087a4e">vi_supported</a>: 1&#160;</td><td class="memItemRight"></td></tr>
+<tr class="memitem:ad619d5b9e1776bf00af7acdbbe760d17" id="r_ad619d5b9e1776bf00af7acdbbe760d17"><td class="memItemLeft anon">&#160;&#160;&#160;uint8_t&#160;&#160;&#160;<a class="el" href="#ab6d0e25ef2c3bc43f7db4ebdcdb3784e">reserved</a>: 6&#160;</td><td class="memItemRight"></td></tr>
+<tr class="memitem:a4e12f0e10a1c80dbb5e0c6461e32425e" id="r_a4e12f0e10a1c80dbb5e0c6461e32425e"><td class="memItemLeft anonEnd">}&#160;</td><td class="memItemRight"><b>crt</b></td></tr>
+<tr class="memdesc:a4e12f0e10a1c80dbb5e0c6461e32425e"><td class="mdescLeft">&#160;</td><td class="mdescRight">controller resource types <br /></td></tr>
+<tr class="memitem:a6b22f6c1cc50ed2395c5e86a4883ca1c" id="r_a6b22f6c1cc50ed2395c5e86a4883ca1c"><td class="memItemLeft">uint32_t&#160;</td><td class="memItemRight"><a class="el" href="#a6b22f6c1cc50ed2395c5e86a4883ca1c">vqfrt</a></td></tr>
+<tr class="memdesc:a6b22f6c1cc50ed2395c5e86a4883ca1c"><td class="mdescLeft">&#160;</td><td class="mdescRight">total number of VQ flexible resources  <br /></td></tr>
+<tr class="memitem:aeab109efd1eae5f155c06105e8d097ed" id="r_aeab109efd1eae5f155c06105e8d097ed"><td class="memItemLeft">uint32_t&#160;</td><td class="memItemRight"><a class="el" href="#aeab109efd1eae5f155c06105e8d097ed">vqrfa</a></td></tr>
+<tr class="memdesc:aeab109efd1eae5f155c06105e8d097ed"><td class="mdescLeft">&#160;</td><td class="mdescRight">total number of VQ flexible resources assigned to secondary controllers  <br /></td></tr>
+<tr class="memitem:a9d87b4832999b7aed3ef612d1c80669a" id="r_a9d87b4832999b7aed3ef612d1c80669a"><td class="memItemLeft">uint16_t&#160;</td><td class="memItemRight"><a class="el" href="#a9d87b4832999b7aed3ef612d1c80669a">vqrfap</a></td></tr>
+<tr class="memdesc:a9d87b4832999b7aed3ef612d1c80669a"><td class="mdescLeft">&#160;</td><td class="mdescRight">total number of VQ flexible resources allocated to primary controller  <br /></td></tr>
+<tr class="memitem:aaaf9d5315feacf97866f81c55c4b7889" id="r_aaaf9d5315feacf97866f81c55c4b7889"><td class="memItemLeft">uint16_t&#160;</td><td class="memItemRight"><a class="el" href="#aaaf9d5315feacf97866f81c55c4b7889">vqprt</a></td></tr>
+<tr class="memdesc:aaaf9d5315feacf97866f81c55c4b7889"><td class="mdescLeft">&#160;</td><td class="mdescRight">total number of VQ Private resources for the primary controller  <br /></td></tr>
+<tr class="memitem:a8b523874842beb9c88efbd2962a0950f" id="r_a8b523874842beb9c88efbd2962a0950f"><td class="memItemLeft">uint16_t&#160;</td><td class="memItemRight"><a class="el" href="#a8b523874842beb9c88efbd2962a0950f">vqfrsm</a></td></tr>
+<tr class="memdesc:a8b523874842beb9c88efbd2962a0950f"><td class="mdescLeft">&#160;</td><td class="mdescRight">max number of VQ flexible Resources that may be assigned to a secondary controller  <br /></td></tr>
+<tr class="memitem:a6232822783419f4f479f28aba250e9f4" id="r_a6232822783419f4f479f28aba250e9f4"><td class="memItemLeft">uint16_t&#160;</td><td class="memItemRight"><a class="el" href="#a6232822783419f4f479f28aba250e9f4">vqgran</a></td></tr>
+<tr class="memdesc:a6232822783419f4f479f28aba250e9f4"><td class="mdescLeft">&#160;</td><td class="mdescRight">preferred granularity of assigning and removing VQ Flexible Resources  <br /></td></tr>
+<tr class="memitem:a56e90091032a7b46bfe465dc87d8db10" id="r_a56e90091032a7b46bfe465dc87d8db10"><td class="memItemLeft">uint8_t&#160;</td><td class="memItemRight"><a class="el" href="#a56e90091032a7b46bfe465dc87d8db10">reserved1</a> [16]</td></tr>
+<tr class="memitem:a931c061c11e9c31b6f33f09d5bc251dc" id="r_a931c061c11e9c31b6f33f09d5bc251dc"><td class="memItemLeft">uint32_t&#160;</td><td class="memItemRight"><a class="el" href="#a931c061c11e9c31b6f33f09d5bc251dc">vifrt</a></td></tr>
+<tr class="memdesc:a931c061c11e9c31b6f33f09d5bc251dc"><td class="mdescLeft">&#160;</td><td class="mdescRight">total number of VI flexible resources for the primary and its secondary controllers  <br /></td></tr>
+<tr class="memitem:af479618cd4737243b1ef31942c690282" id="r_af479618cd4737243b1ef31942c690282"><td class="memItemLeft">uint32_t&#160;</td><td class="memItemRight"><a class="el" href="#af479618cd4737243b1ef31942c690282">virfa</a></td></tr>
+<tr class="memdesc:af479618cd4737243b1ef31942c690282"><td class="mdescLeft">&#160;</td><td class="mdescRight">total number of VI flexible resources assigned to the secondary controllers  <br /></td></tr>
+<tr class="memitem:a4f54107ade9a50eba4d82e18aca5b39b" id="r_a4f54107ade9a50eba4d82e18aca5b39b"><td class="memItemLeft">uint16_t&#160;</td><td class="memItemRight"><a class="el" href="#a4f54107ade9a50eba4d82e18aca5b39b">virfap</a></td></tr>
+<tr class="memdesc:a4f54107ade9a50eba4d82e18aca5b39b"><td class="mdescLeft">&#160;</td><td class="mdescRight">total number of VI flexible resources currently allocated to the primary controller  <br /></td></tr>
+<tr class="memitem:a999d8c62755219847e4925ee2c22db84" id="r_a999d8c62755219847e4925ee2c22db84"><td class="memItemLeft">uint16_t&#160;</td><td class="memItemRight"><a class="el" href="#a999d8c62755219847e4925ee2c22db84">viprt</a></td></tr>
+<tr class="memdesc:a999d8c62755219847e4925ee2c22db84"><td class="mdescLeft">&#160;</td><td class="mdescRight">total number of VI private resources for the primary controller  <br /></td></tr>
+<tr class="memitem:a188fc422eddd794a1af2d164a29942a7" id="r_a188fc422eddd794a1af2d164a29942a7"><td class="memItemLeft">uint16_t&#160;</td><td class="memItemRight"><a class="el" href="#a188fc422eddd794a1af2d164a29942a7">vifrsm</a></td></tr>
+<tr class="memdesc:a188fc422eddd794a1af2d164a29942a7"><td class="mdescLeft">&#160;</td><td class="mdescRight">max number of VI flexible resources that may be assigned to a secondary controller  <br /></td></tr>
+<tr class="memitem:a0932f0fb2038aff45b5e25788e62eadc" id="r_a0932f0fb2038aff45b5e25788e62eadc"><td class="memItemLeft">uint16_t&#160;</td><td class="memItemRight"><a class="el" href="#a0932f0fb2038aff45b5e25788e62eadc">vigran</a></td></tr>
+<tr class="memdesc:a0932f0fb2038aff45b5e25788e62eadc"><td class="mdescLeft">&#160;</td><td class="mdescRight">preferred granularity of assigning and removing VI flexible resources  <br /></td></tr>
+<tr class="memitem:aac767ce2d5adb7208e3276c906816e3b" id="r_aac767ce2d5adb7208e3276c906816e3b"><td class="memItemLeft">uint8_t&#160;</td><td class="memItemRight"><a class="el" href="#aac767ce2d5adb7208e3276c906816e3b">reserved2</a> [4016]</td></tr>
+</table>
+<a name="details" id="details"></a><h2 id="header-details" class="groupheader">Detailed Description</h2>
+<div class="textblock">
+<p class="definition">Definition at line <a class="el" href="nvme__spec_8h_source.html#l02900">2900</a> of file <a class="el" href="nvme__spec_8h_source.html">nvme_spec.h</a>.</p>
+</div><a name="doc-variable-members" id="doc-variable-members"></a><h2 id="header-doc-variable-members" class="groupheader">Field Documentation</h2>
+<a id="a9d7bd410ed4ccef3060a9cd36530896e" name="a9d7bd410ed4ccef3060a9cd36530896e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9d7bd410ed4ccef3060a9cd36530896e">&#9670;&#160;</a></span>cntlid</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">uint16_t spdk_nvme_primary_ctrl_capabilities::cntlid</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>controller id </p>
+
+<p class="definition">Definition at line <a class="el" href="nvme__spec_8h_source.html#l02902">2902</a> of file <a class="el" href="nvme__spec_8h_source.html">nvme_spec.h</a>.</p>
+
+</div>
+</div>
+<a id="af8c71651dc0bb0fc40917e3bfc55183d" name="af8c71651dc0bb0fc40917e3bfc55183d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af8c71651dc0bb0fc40917e3bfc55183d">&#9670;&#160;</a></span>portid</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">uint16_t spdk_nvme_primary_ctrl_capabilities::portid</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>port identifier </p>
+
+<p class="definition">Definition at line <a class="el" href="nvme__spec_8h_source.html#l02904">2904</a> of file <a class="el" href="nvme__spec_8h_source.html">nvme_spec.h</a>.</p>
+
+</div>
+</div>
+<a id="ab6d0e25ef2c3bc43f7db4ebdcdb3784e" name="ab6d0e25ef2c3bc43f7db4ebdcdb3784e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab6d0e25ef2c3bc43f7db4ebdcdb3784e">&#9670;&#160;</a></span>reserved</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">uint8_t spdk_nvme_primary_ctrl_capabilities::reserved</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="nvme__spec_8h_source.html#l02909">2909</a> of file <a class="el" href="nvme__spec_8h_source.html">nvme_spec.h</a>.</p>
+
+</div>
+</div>
+<a id="a56e90091032a7b46bfe465dc87d8db10" name="a56e90091032a7b46bfe465dc87d8db10"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a56e90091032a7b46bfe465dc87d8db10">&#9670;&#160;</a></span>reserved1</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">uint8_t spdk_nvme_primary_ctrl_capabilities::reserved1[16]</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="nvme__spec_8h_source.html#l02924">2924</a> of file <a class="el" href="nvme__spec_8h_source.html">nvme_spec.h</a>.</p>
+
+</div>
+</div>
+<a id="aac767ce2d5adb7208e3276c906816e3b" name="aac767ce2d5adb7208e3276c906816e3b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aac767ce2d5adb7208e3276c906816e3b">&#9670;&#160;</a></span>reserved2</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">uint8_t spdk_nvme_primary_ctrl_capabilities::reserved2[4016]</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="nvme__spec_8h_source.html#l02937">2937</a> of file <a class="el" href="nvme__spec_8h_source.html">nvme_spec.h</a>.</p>
+
+</div>
+</div>
+<a id="a82048e8cef4b70d0ea4f1782d0087a4e" name="a82048e8cef4b70d0ea4f1782d0087a4e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a82048e8cef4b70d0ea4f1782d0087a4e">&#9670;&#160;</a></span>vi_supported</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">uint8_t spdk_nvme_primary_ctrl_capabilities::vi_supported</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="nvme__spec_8h_source.html#l02908">2908</a> of file <a class="el" href="nvme__spec_8h_source.html">nvme_spec.h</a>.</p>
+
+</div>
+</div>
+<a id="a188fc422eddd794a1af2d164a29942a7" name="a188fc422eddd794a1af2d164a29942a7"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a188fc422eddd794a1af2d164a29942a7">&#9670;&#160;</a></span>vifrsm</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">uint16_t spdk_nvme_primary_ctrl_capabilities::vifrsm</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>max number of VI flexible resources that may be assigned to a secondary controller </p>
+
+<p class="definition">Definition at line <a class="el" href="nvme__spec_8h_source.html#l02934">2934</a> of file <a class="el" href="nvme__spec_8h_source.html">nvme_spec.h</a>.</p>
+
+</div>
+</div>
+<a id="a931c061c11e9c31b6f33f09d5bc251dc" name="a931c061c11e9c31b6f33f09d5bc251dc"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a931c061c11e9c31b6f33f09d5bc251dc">&#9670;&#160;</a></span>vifrt</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">uint32_t spdk_nvme_primary_ctrl_capabilities::vifrt</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>total number of VI flexible resources for the primary and its secondary controllers </p>
+
+<p class="definition">Definition at line <a class="el" href="nvme__spec_8h_source.html#l02926">2926</a> of file <a class="el" href="nvme__spec_8h_source.html">nvme_spec.h</a>.</p>
+
+</div>
+</div>
+<a id="a0932f0fb2038aff45b5e25788e62eadc" name="a0932f0fb2038aff45b5e25788e62eadc"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0932f0fb2038aff45b5e25788e62eadc">&#9670;&#160;</a></span>vigran</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">uint16_t spdk_nvme_primary_ctrl_capabilities::vigran</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>preferred granularity of assigning and removing VI flexible resources </p>
+
+<p class="definition">Definition at line <a class="el" href="nvme__spec_8h_source.html#l02936">2936</a> of file <a class="el" href="nvme__spec_8h_source.html">nvme_spec.h</a>.</p>
+
+</div>
+</div>
+<a id="a999d8c62755219847e4925ee2c22db84" name="a999d8c62755219847e4925ee2c22db84"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a999d8c62755219847e4925ee2c22db84">&#9670;&#160;</a></span>viprt</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">uint16_t spdk_nvme_primary_ctrl_capabilities::viprt</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>total number of VI private resources for the primary controller </p>
+
+<p class="definition">Definition at line <a class="el" href="nvme__spec_8h_source.html#l02932">2932</a> of file <a class="el" href="nvme__spec_8h_source.html">nvme_spec.h</a>.</p>
+
+</div>
+</div>
+<a id="af479618cd4737243b1ef31942c690282" name="af479618cd4737243b1ef31942c690282"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af479618cd4737243b1ef31942c690282">&#9670;&#160;</a></span>virfa</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">uint32_t spdk_nvme_primary_ctrl_capabilities::virfa</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>total number of VI flexible resources assigned to the secondary controllers </p>
+
+<p class="definition">Definition at line <a class="el" href="nvme__spec_8h_source.html#l02928">2928</a> of file <a class="el" href="nvme__spec_8h_source.html">nvme_spec.h</a>.</p>
+
+</div>
+</div>
+<a id="a4f54107ade9a50eba4d82e18aca5b39b" name="a4f54107ade9a50eba4d82e18aca5b39b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4f54107ade9a50eba4d82e18aca5b39b">&#9670;&#160;</a></span>virfap</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">uint16_t spdk_nvme_primary_ctrl_capabilities::virfap</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>total number of VI flexible resources currently allocated to the primary controller </p>
+
+<p class="definition">Definition at line <a class="el" href="nvme__spec_8h_source.html#l02930">2930</a> of file <a class="el" href="nvme__spec_8h_source.html">nvme_spec.h</a>.</p>
+
+</div>
+</div>
+<a id="ad656bd7e104327d7b85959b0b5a4196e" name="ad656bd7e104327d7b85959b0b5a4196e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad656bd7e104327d7b85959b0b5a4196e">&#9670;&#160;</a></span>vq_supported</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">uint8_t spdk_nvme_primary_ctrl_capabilities::vq_supported</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="nvme__spec_8h_source.html#l02907">2907</a> of file <a class="el" href="nvme__spec_8h_source.html">nvme_spec.h</a>.</p>
+
+</div>
+</div>
+<a id="a8b523874842beb9c88efbd2962a0950f" name="a8b523874842beb9c88efbd2962a0950f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8b523874842beb9c88efbd2962a0950f">&#9670;&#160;</a></span>vqfrsm</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">uint16_t spdk_nvme_primary_ctrl_capabilities::vqfrsm</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>max number of VQ flexible Resources that may be assigned to a secondary controller </p>
+
+<p class="definition">Definition at line <a class="el" href="nvme__spec_8h_source.html#l02921">2921</a> of file <a class="el" href="nvme__spec_8h_source.html">nvme_spec.h</a>.</p>
+
+</div>
+</div>
+<a id="a6b22f6c1cc50ed2395c5e86a4883ca1c" name="a6b22f6c1cc50ed2395c5e86a4883ca1c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6b22f6c1cc50ed2395c5e86a4883ca1c">&#9670;&#160;</a></span>vqfrt</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">uint32_t spdk_nvme_primary_ctrl_capabilities::vqfrt</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>total number of VQ flexible resources </p>
+
+<p class="definition">Definition at line <a class="el" href="nvme__spec_8h_source.html#l02913">2913</a> of file <a class="el" href="nvme__spec_8h_source.html">nvme_spec.h</a>.</p>
+
+</div>
+</div>
+<a id="a6232822783419f4f479f28aba250e9f4" name="a6232822783419f4f479f28aba250e9f4"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6232822783419f4f479f28aba250e9f4">&#9670;&#160;</a></span>vqgran</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">uint16_t spdk_nvme_primary_ctrl_capabilities::vqgran</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>preferred granularity of assigning and removing VQ Flexible Resources </p>
+
+<p class="definition">Definition at line <a class="el" href="nvme__spec_8h_source.html#l02923">2923</a> of file <a class="el" href="nvme__spec_8h_source.html">nvme_spec.h</a>.</p>
+
+</div>
+</div>
+<a id="aaaf9d5315feacf97866f81c55c4b7889" name="aaaf9d5315feacf97866f81c55c4b7889"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aaaf9d5315feacf97866f81c55c4b7889">&#9670;&#160;</a></span>vqprt</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">uint16_t spdk_nvme_primary_ctrl_capabilities::vqprt</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>total number of VQ Private resources for the primary controller </p>
+
+<p class="definition">Definition at line <a class="el" href="nvme__spec_8h_source.html#l02919">2919</a> of file <a class="el" href="nvme__spec_8h_source.html">nvme_spec.h</a>.</p>
+
+</div>
+</div>
+<a id="aeab109efd1eae5f155c06105e8d097ed" name="aeab109efd1eae5f155c06105e8d097ed"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aeab109efd1eae5f155c06105e8d097ed">&#9670;&#160;</a></span>vqrfa</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">uint32_t spdk_nvme_primary_ctrl_capabilities::vqrfa</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>total number of VQ flexible resources assigned to secondary controllers </p>
+
+<p class="definition">Definition at line <a class="el" href="nvme__spec_8h_source.html#l02915">2915</a> of file <a class="el" href="nvme__spec_8h_source.html">nvme_spec.h</a>.</p>
+
+</div>
+</div>
+<a id="a9d87b4832999b7aed3ef612d1c80669a" name="a9d87b4832999b7aed3ef612d1c80669a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9d87b4832999b7aed3ef612d1c80669a">&#9670;&#160;</a></span>vqrfap</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">uint16_t spdk_nvme_primary_ctrl_capabilities::vqrfap</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>total number of VQ flexible resources allocated to primary controller </p>
+
+<p class="definition">Definition at line <a class="el" href="nvme__spec_8h_source.html#l02917">2917</a> of file <a class="el" href="nvme__spec_8h_source.html">nvme_spec.h</a>.</p>
+
+</div>
+</div>
+<hr/>The documentation for this struct was generated from the following file:<ul>
+<li><a class="el" href="nvme__spec_8h_source.html">nvme_spec.h</a></li>
+</ul>
+</div><!-- contents -->
+</div><!-- doc-content -->
+<div id="page-nav" class="page-nav-panel">
+<div id="page-nav-resize-handle"></div>
+<div id="page-nav-tree">
+<div id="page-nav-contents">
+</div><!-- page-nav-contents -->
+</div><!-- page-nav-tree -->
+</div><!-- page-nav -->
+</div><!-- container -->
+<footer class="footer" id="nav-path">
+  <div class="footer-inner">
+    <div class="footer-copy">
+      <small>Copyright &copy; SPDK a Series of LF Projects, LLC. For web site terms of use, trademark policy, and other
+      project policies please see <a href="https://lfprojects.org">lfprojects.org</a>.</small>
+      <br><small>Built from spdk 91893349edff / site e5878500f</small>
+    </div>
+  </div>
+</footer>
+<script type="text/javascript" src="page_outline.js"></script>
+<script type="text/javascript" src="spdk_nav.js"></script>
+</body>
+</html>

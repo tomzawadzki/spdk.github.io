@@ -1,0 +1,116 @@
+<!doctype html>
+<html lang="en">
+  <head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="The Storage Performance Development Kit (SPDK) provides a set of tools and libraries for writing high performance, scalable, user-mode storage applications. It achieves high performance by moving all of the necessary drivers into userspace and operating in a polled mode instead of relying on interrupts, which avoids kernel context switches and eliminates interrupt handling overhead.
+">
+  <meta name="author" content="Benjamin Walker">
+
+  <title>SPDK 17.03 Release: VM Optimization & Blobstore</title>
+
+  <link rel="icon" type="image/svg+xml" href="/spdk.github.io/assets/img/spdk.svg">
+  <link rel="icon" href="/spdk.github.io/assets/favicon.ico" sizes="32x32">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:400,700,900" type="text/css">
+  <link rel="stylesheet" href="/spdk.github.io/assets/css/spdk.css">
+
+  <link href="/spdk.github.io/feed.xml" type="application/atom+xml" rel="alternate" title="Atom Feed">
+</head>
+
+
+  <body>
+    <nav class="navbar">
+  <a class="navbar-brand" href="/spdk.github.io/" aria-label="SPDK">
+    <img src="/spdk.github.io/assets/img/spdk.svg" width="36" height="36" alt="Storage Performance Development Kit">
+  </a>
+  <div class="navbar-nav">
+    <a class="nav-link header-link" href="/spdk.github.io/doc/releases.html">download</a>
+    <a class="nav-link header-link" href="/spdk.github.io/doc/">documentation</a>
+    <a class="nav-link header-link" href="/spdk.github.io/doc/contributing.html">development</a>
+    <a class="nav-link header-link" href="/spdk.github.io/doc/ci_tools.html">CI status</a>
+    <a class="nav-link header-link" href="/spdk.github.io/community/">community</a>
+    <a class="nav-link header-link" href="/spdk.github.io/blog/">Blog</a>
+    <a class="nav-link header-link" href="https://github.com/orgs/spdk/projects/5">Roadmap</a>
+    <a class="nav-link header-link" href="/spdk.github.io/news/">News</a>
+  </div>
+  <div class="navbar-end">
+    <a class="nav-link header-link" href="https://github.com/spdk/spdk" aria-label="GitHub">
+      <svg xmlns="http://www.w3.org/2000/svg" class="navbar-nav-svg" aria-hidden="true"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
+    </a>
+    <a id="cn_lang_btn" href="/spdk.github.io/cn/doc/" class="nav-link header-link">中文</a>
+  </div>
+</nav>
+<script>
+(function() {
+    var p = location.pathname, best = null, bLen = 0;
+    document.querySelectorAll('.header-link[href]').forEach(function(a) {
+        var raw = a.getAttribute('href');
+        if (!raw) return;
+        try { var u = new URL(raw, location.href); } catch(e) { return; }
+        if (u.origin !== location.origin) return;
+        var h = u.pathname;
+        if (h === '/') return;
+        var ok = h.endsWith('.html') ? p === h : p.indexOf(h) === 0;
+        if (ok && h.length > bLen) { bLen = h.length; best = a; }
+    });
+    if (best) best.classList.add('active');
+})();
+</script>
+
+
+    <div class="page-content">
+  <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+  <header class="post-header">
+
+    <div class="page-header">
+      <h1>SPDK 17.03 Release: VM Optimization & Blobstore</h1>
+    </div>
+
+    <p class="post-meta">
+      <time datetime="2017-03-31T00:00:00+02:00" itemprop="datePublished">
+        Mar 31, 2017
+      </time>
+      
+      •
+      <span itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <span itemprop="name">Jonathan Stern and Jim Harris</span>
+      </span>
+      
+    </p>
+  </header>
+
+  <div class="content" itemprop="articleBody"><p>Today, the SPDK team is proud to announce the <a href="https://github.com/spdk/spdk/releases/tag/v17.03">v17.03 release</a>.  This release features two significant new sets of components which will unlock a broader set of use cases for SPDK.</p>
+
+<p>The first new set of components is a vhost-scsi library and vhost-scsi target application.  These components give QEMU guest VMs direct access to an SPDK storage service running on the host system.  SPDK vhost-scsi leverages software such as <a href="http://dpdk.org/doc/guides/prog_guide/vhost_lib.html">DPDK rte_vhost</a> to extend existing accelerations for networking to a storage context.  Note this requires a few unmerged QEMU patches that are available <a href="https://github.com/spdk/qemu">here</a>.  We hope these patches are merged to mainline QEMU shortly.  A vhost-based storage stack can have the following effects on systems running QEMU/KVM:</p>
+
+<ol>
+  <li>Applications in VMs will notice improved latency, especially for small-block I/O, by eliminating a substantial amount of software overhead from each I/O.  The impact of this reduced latency is especially critical with next-generation NVMe media based on Intel Optane(tm).</li>
+  <li>Systems using vhost-scsi will use substantially fewer CPU cycles to perform block I/O, allowing additional VMs to be deployed.</li>
+</ol>
+
+<p>You can read the <a href="https://www.spdk.io/doc/vhost.html#vhost_getting_started">SPDK vhost Getting Started Guide</a> for more details.</p>
+
+<p>The second major set of components released in 17.03 are the SPDK Blobstore and BlobFS. The vast majority of applications require file semantics such as creating and opening files based on a filename.  Adapting these applications to interface directly to a block-focused SPDK can be challenging.  Fortunately, some applications such as databases tend to require a smaller subset of filesystem features than are available in mainstream filesystems such as ext4 and XFS.  Blobstore and BlobFS have been designed specifically to enable accelerated performance for these types of applications.  See <a href="https://www.spdk.io/doc/blob.html">Blobstore Design Overview</a> and the <a href="https://www.spdk.io/doc/blobfs.html#blobfs_getting_started">BlobFS Getting Started Guide</a> for additional information.</p>
+
+<p>To demonstrate the value of Blobstore and BlobFS, SPDK was integrated with <a href="http://rocksdb.org">RocksDB</a>. RocksDB is a popular persistent, transactional key-value store with a modular, pluggable back-end.  Details for setting up RocksDB with SPDK can be found in the <a href="https://www.spdk.io/doc/blobfs.html#blobfs_getting_started">SPDK BlobFS Getting Started Guide</a>.</p>
+
+<p>While we are very excited about the arrival of these new SPDK components, we must take a moment to set expectations. <em>This code is brand new and subject to change:</em> APIs for the new components are still taking their final form as the broader community looks at them through the lens of specific applications and expertise. The best way to stay in sync going forward is to participate: on the mailing list, at SPDK Meetups, or directly with other contributors via GitHub. Together, we’ll build the framework for tomorrow’s storage!</p>
+</div>
+</article>
+</div>
+
+
+    <footer class="footer" id="nav-path">
+  <div class="footer-inner">
+    <div class="footer-copy">
+      <small>Copyright &copy; SPDK a Series of LF Projects, LLC. For web site terms of use, trademark policy, and other
+      project policies please see <a href="https://lfprojects.org">lfprojects.org</a>.</small>
+      <br><small>Built from spdk 91893349edff / site e5878500f</small>
+    </div>
+  </div>
+</footer>
+
+
+    
+  </body>
+</html>

@@ -1,0 +1,270 @@
+<!doctype html>
+<html lang="en">
+  <head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="The Storage Performance Development Kit (SPDK) provides a set of tools and libraries for writing high performance, scalable, user-mode storage applications. It achieves high performance by moving all of the necessary drivers into userspace and operating in a polled mode instead of relying on interrupts, which avoids kernel context switches and eliminates interrupt handling overhead.
+">
+  <meta name="author" content="Benjamin Walker">
+
+  <title>2018 SPDK US Summit Recap</title>
+
+  <link rel="icon" type="image/svg+xml" href="/spdk.github.io/assets/img/spdk.svg">
+  <link rel="icon" href="/spdk.github.io/assets/favicon.ico" sizes="32x32">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:400,700,900" type="text/css">
+  <link rel="stylesheet" href="/spdk.github.io/assets/css/spdk.css">
+
+  <link href="/spdk.github.io/feed.xml" type="application/atom+xml" rel="alternate" title="Atom Feed">
+</head>
+
+
+  <body>
+    <nav class="navbar">
+  <a class="navbar-brand" href="/spdk.github.io/" aria-label="SPDK">
+    <img src="/spdk.github.io/assets/img/spdk.svg" width="36" height="36" alt="Storage Performance Development Kit">
+  </a>
+  <div class="navbar-nav">
+    <a class="nav-link header-link" href="/spdk.github.io/doc/releases.html">download</a>
+    <a class="nav-link header-link" href="/spdk.github.io/doc/">documentation</a>
+    <a class="nav-link header-link" href="/spdk.github.io/doc/contributing.html">development</a>
+    <a class="nav-link header-link" href="/spdk.github.io/doc/ci_tools.html">CI status</a>
+    <a class="nav-link header-link" href="/spdk.github.io/community/">community</a>
+    <a class="nav-link header-link" href="/spdk.github.io/blog/">Blog</a>
+    <a class="nav-link header-link" href="https://github.com/orgs/spdk/projects/5">Roadmap</a>
+    <a class="nav-link header-link" href="/spdk.github.io/news/">News</a>
+  </div>
+  <div class="navbar-end">
+    <a class="nav-link header-link" href="https://github.com/spdk/spdk" aria-label="GitHub">
+      <svg xmlns="http://www.w3.org/2000/svg" class="navbar-nav-svg" aria-hidden="true"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
+    </a>
+    <a id="cn_lang_btn" href="/spdk.github.io/cn/doc/" class="nav-link header-link">中文</a>
+  </div>
+</nav>
+<script>
+(function() {
+    var p = location.pathname, best = null, bLen = 0;
+    document.querySelectorAll('.header-link[href]').forEach(function(a) {
+        var raw = a.getAttribute('href');
+        if (!raw) return;
+        try { var u = new URL(raw, location.href); } catch(e) { return; }
+        if (u.origin !== location.origin) return;
+        var h = u.pathname;
+        if (h === '/') return;
+        var ok = h.endsWith('.html') ? p === h : p.indexOf(h) === 0;
+        if (ok && h.length > bLen) { bLen = h.length; best = a; }
+    });
+    if (best) best.classList.add('active');
+})();
+</script>
+
+
+    <div class="page-content">
+  <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+  <header class="post-header">
+
+    <div class="page-header">
+      <h1>2018 SPDK US Summit Recap</h1>
+    </div>
+
+    <p class="post-meta">
+      <time datetime="2018-06-13T00:00:00+02:00" itemprop="datePublished">
+        Jun 13, 2018
+      </time>
+      
+      •
+      <span itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <span itemprop="name">Anu Rao</span>
+      </span>
+      
+    </p>
+  </header>
+
+  <div class="content" itemprop="articleBody"><p>Here is a recap of 2018 SPDK Summit at the beautiful Dolce Hayes Mansion, San Jose
+on May 15th and 16th.
+We had a successful event and achieved all of our goals.
+Thanks to the dedication and support of many contributors and great participation
+from SPDK community members.</p>
+
+<p><img src="/assets/img/summit-us-2018/dolce-hayes-mansion.jpg" alt="Dolce Hayes Mansion" title="Dolce Hayes Mansion" /></p>
+
+<h1 id="executive-summary">Executive Summary</h1>
+
+<p>2018 SPDK Summit started with a keynote from Jennifer Huffstetler, VP,
+Data Center Group, Intel Corp and Jim Harris, Principal Engineer, Intel Corp.
+Presenters from Nutanix, Alibaba, Oracle, eBay and Cisco shared how SPDK can help
+with their storage solutions to accelerate performance.
+We had over 170 attendees from 51 different companies represented at the Summit.
+Audience enjoyed the sessions which included technical deep dive as well as talks
+from SPDK community partners highlighting various ways SPDK was integrated
+into their storage solutions.
+Overall it was a successful event and we look forward to your participation in
+our upcoming events.
+Thanks for making time to provide actionable feedback on the Summit.</p>
+
+<h1 id="attendance">Attendance</h1>
+
+<ul>
+  <li>We had over 253 attendees registered for the event with about 80% coming from
+the Bay Area. On day 1 we had 166 attendees and day 2 there were ~120 attendees
+out of which ~70 attended SPDK developers lab. SPDK Summit sessions were also
+live streamed on SPDK YouTube channel. We had ~40 online viewers.</li>
+  <li>51 companies were represented, including VMWare, Dell, HPE, IBM, Cisco, Nutanix,
+Alibaba, SAP, Oracle, eBay, Facebook, NetApp, Mellanox, Micron, Samsung, WD,
+Fujitsu, and Intel among many others.</li>
+  <li>General attendee profile was technical in nature, largely developers.</li>
+</ul>
+
+<h1 id="thank-you">Thank you!</h1>
+
+<ul>
+  <li>Thanks to following groups at Intel Corp for sponsoring the event
+Data Center Product Marketing Group and Cloud Platform group for funding the event,
+Non-Volatile Memory Group for sponsoring SSDs for the raffle,
+Intel Builders for sponsoring Starbucks gift cards,
+Software Solutions Group for giving away VTune licenses as part of the raffle.</li>
+  <li>Many thanks to all the presenters from Intel Corp, Nutanix, Cisco Systems, Oracle,
+Alibaba and eBay for all the hard work in preparing, reviewing and presenting
+at the Summit.</li>
+  <li>Thanks to all the volunteers who manned the Demo booths and the registration desk
+at the event.</li>
+  <li>Last but not least, thanks to all the attendees for participation in the summit.
+Without your participation, this event wouldn’t have been successful.
+Also thanks for submitting surveys and great feedback.
+We will make every attempt to incorporate the feedback into our next event.</li>
+</ul>
+
+<h1 id="agenda">Agenda</h1>
+
+<ul>
+  <li>The two day agenda focused on SPDK key features deep dive, presentations from
+community partners on how SPDK helped them, their learnings and future work.</li>
+  <li>Nate Marushak, Director of Storage Acceleration Software at Intel, was the MC for the
+two-day event and did a magnificent job of keeping the speakers on time and
+well-stocked with questions from the audience. <br />
+<img src="/assets/img/summit-us-2018/nate-marushak.jpg" alt="Nate Marushak" title="Nate Marushak" /></li>
+</ul>
+
+<h2 id="day-1">Day 1</h2>
+
+<ul>
+  <li>SPDK Summit was kick started by an Opening keynote from Jennifer Huffstetler,
+VP, Data Center Group, Intel Corp, on how the storage industry is changing and
+why optimizing storage software is becoming more critical.
+She highlighted the importance of Intel’s investment in Open Source Storage
+Acceleration Software like SPDK, ISA-L, PMDK, DPDK, etc. <br />
+<img src="/assets/img/summit-us-2018/jennifer-keynote.jpg" alt="Jennifer Huffstetler" title="Jennifer Huffstetler" /></li>
+  <li>Jim Harris, Principal SPDK Architect, Intel Corp, presented on the state of
+the project, future plans and goals and why it’s important for SPDK community
+members to participate and contribute to the Project. <br />
+<img src="/assets/img/summit-us-2018/jim-harris-state-of-project.jpg" alt="Jim Harris" title="Jim Harris" /></li>
+  <li>Felipe Franciosi from Nutanix shared why Nutanix adopted SPDK and how it has
+helped extract maximum performance while reducing latency and improving CPU
+utilization. He showed performance testing result using Intel® Optane™ SSDs
+and how he could extract over 5 million IOPS while scaling VMs. <br />
+<img src="/assets/img/summit-us-2018/nutanix-presentation.jpg" alt="Nutanix presentation" title="SPDK and Nutanix AHV" />
+<img src="/assets/img/summit-us-2018/nutanix-felipe.jpg" alt="Felipe Franciosi" title="Felipe Franciosi" /></li>
+  <li>Changpeng Liu, Software engineer from Intel Corp, presented Vhost-NVMe deep dive
+followed by talk from Oracle on NVMe-oF and how Oracle has integrated SPDK in
+Oracle RDBMS and future work using SPDK. <br />
+<img src="/assets/img/summit-us-2018/changpeng.jpg" alt="Changpeng Liu" title="Changpeng Liu" /></li>
+  <li>Ben Walker, Software Engineer, Intel Corp, presented deep-dive on NVMe-oF
+SPDK driver followed by much awaited talk from Ed Warnicke from Cisco and
+Tomasz from SPDK team, Intel Corp, on user-space VPP integration with SPDK. <br />
+<img src="/assets/img/summit-us-2018/ben.jpg" alt="Ben Walker" />
+<img src="/assets/img/summit-us-2018/tomasz-ed-vpp.jpg" alt="Tomasz Zawadzki and Ed Warnicke" title="Tomasz Zawadzki and Ed Warnicke" /></li>
+  <li>After the break, Jim Harris, Principal Architect from Intel Corp and John Rudelic,
+Architect in Non-volatile SSD Group, Intel Corp, presented Open Channel SSD
+introduction and SPDK project plans to support Open Channel SSD. <br />
+<img src="/assets/img/summit-us-2018/open-channel-presentation.jpg" alt="Open Channel SSDs" title="Open Channel SSDs: Extending SPDK's Reach" />
+<img src="/assets/img/summit-us-2018/john-rudelic.jpg" alt="John Rudelic" title="John Rudelic" />
+<img src="/assets/img/summit-us-2018/jim-harris-open-channel.jpg" alt="Jim Harris" title="Jim Harris" /></li>
+  <li>Ming Lin and Sheng Qiu from Alibaba gave a talk highlighting good, bad and ugly
+side of production deployments highlighting why they used SPDK and how it helped
+improve performance, key learnings and ended the talk with future plans
+to contribute to SPDK community. <br />
+<img src="/assets/img/summit-us-2018/alibaba-presentation-title.jpg" alt="Alibaba; Using SPDK in Production" title="Alibaba: Using SPDK in Production" />
+<img src="/assets/img/summit-us-2018/alibaba-presentation-slide.jpg" alt="Alibaba presentation" title="Alibaba presentation" />
+<img src="/assets/img/summit-us-2018/alibaba3.jpg" alt="Ming Lin" title="Ming Lin" />
+<img src="/assets/img/summit-us-2018/alibaba4.jpg" alt="Sheng Qiu" title="Sheng Qiu" /></li>
+  <li>Paul Luse, Principal Engineer from SPDK team, Intel Corp presented PMDK library
+integration with SPDK. He highlighted how SPDK enabled applications can access
+Persistent memory using SPDK. <br />
+<img src="/assets/img/summit-us-2018/paul-luse-pmdk.jpg" alt="Paul Luse" title="Paul Luse" /></li>
+  <li>Paul Luse from Intel Corp gave a talk on
+Virtual BDevs and how it can be customized for various use cases. <br />
+<img src="/assets/img/summit-us-2018/virtual-bdevs-presentation.jpg" alt="Virtual bdevs presentation" title="Virtual bdevs presentation" /></li>
+  <li>We concluded the first day of the SPDK Summit with a Networking Event.
+Everyone enjoyed snacks and drinks while networking with their SPDK community peers.</li>
+  <li>Each session appeared to gain significant interest; audience members asked deeply
+technical and knowledgeable questions.</li>
+  <li>To support the presentations with actual data, we had a slew of Demos hosted at
+the foyer, outside the ballroom. We had over 50 people visiting the demo booths
+between talks and during breaks. We had the following demos hosted:
+    <ul>
+      <li>SPDK demo using Vhost and user space NVMe-oF driver, to showcase performance
+accessing NVMe=oF devices</li>
+      <li>SPDK integrated with Rack Scale Design</li>
+      <li>SPDK integrated with Cache Acceleration Software</li>
+      <li>SPDK integrated with OpenStack Cinder</li>
+      <li>SPDK profiling using VTune System Studio</li>
+    </ul>
+  </li>
+</ul>
+
+<h2 id="day-2">Day 2</h2>
+
+<ul>
+  <li>Day 2 opened with a highly-interactive technical deep-dive on the SPDK
+Logical Volumes feature delivered by Daniel Verkamp, Software Engineer,
+Intel Corp, followed by talk on BDev QOS features of SPDK by Gang Cao,
+Lead Engineer, Intel Corp. <br />
+<img src="/assets/img/summit-us-2018/daniel-logical-volumes.jpg" alt="Daniel Verkamp" title="Daniel Verkamp" />
+<img src="/assets/img/summit-us-2018/gang-bdev-qos.jpg" alt="Gang Cao" title="Gang Cao" /></li>
+  <li>Prital Shah and Greg Tucker delivered introductory talk on ISA-L, an open source
+software that optimizes storage functions like Encryption, Compression, Hashing,
+Deduplication etc. and how spdk vbdev can be created to do encryption etc using
+ISA-L via DPDK FW. <br />
+<img src="/assets/img/summit-us-2018/prital-isa-l.jpg" alt="Prital Shah" title="Prital Shah" />
+<img src="/assets/img/summit-us-2018/greg-isa-l.jpg" alt="Greg Tucker" title="Greg Tucker" /></li>
+  <li>John Kariuki, Software Engineer from Intel Corp hosted hands on developers lab
+at the Summit. We had over 70 participants attend the lab, and it was very well
+received. Attendees got to leverage the Virtual Bdev session from Day 1 to try out
+coding their first virtual Bdev using vbdev_passthrough template. Thanks to all
+the attendees for submitting the survey for the lab. Your feedback is very
+valuable to us. <br />
+<img src="/assets/img/summit-us-2018/john-kariuki-lab.jpg" alt="John Kariuki" title="John Kariuki" /></li>
+  <li>After lunch, we dove into a talk on ABI, APIs and packaging delivered by Ben Walker.
+There was good amount of participation from the audience leading to good discussion. <br />
+<img src="/assets/img/summit-us-2018/ben-api.jpg" alt="Ben Walker" title="Ben Walker" /></li>
+  <li>The event concluded with developers meetup hosted by Paul Luse, Intel Corp. and
+final raffle ticket drawings.</li>
+  <li>Congratulations to all the lucky winners of the Raffle!!!!!!</li>
+  <li>Presentations from the event are posted on <a href="../../../../../summit/us/2018/">SPDK.io</a>.
+Videos of the event are posted on <a href="https://www.youtube.com/channel/UCBJymdv0AXCcnbLtEw7jvBQ/videos">YouTube</a>.</li>
+</ul>
+
+<h1 id="promotional-engagement">Promotional Engagement</h1>
+
+<ul>
+  <li>The event was cross promoted by Intel Field team, Market Star, Intel® Builders,
+multiple DCG organizations, Twitter and SPDK mailing list.</li>
+</ul>
+</div>
+</article>
+</div>
+
+
+    <footer class="footer" id="nav-path">
+  <div class="footer-inner">
+    <div class="footer-copy">
+      <small>Copyright &copy; SPDK a Series of LF Projects, LLC. For web site terms of use, trademark policy, and other
+      project policies please see <a href="https://lfprojects.org">lfprojects.org</a>.</small>
+      <br><small>Built from spdk 91893349edff / site e5878500f</small>
+    </div>
+  </div>
+</footer>
+
+
+    
+  </body>
+</html>

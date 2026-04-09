@@ -1,0 +1,1661 @@
+<!doctype html>
+<html lang="en">
+  <head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="The Storage Performance Development Kit (SPDK) provides a set of tools and libraries for writing high performance, scalable, user-mode storage applications. It achieves high performance by moving all of the necessary drivers into userspace and operating in a polled mode instead of relying on interrupts, which avoids kernel context switches and eliminates interrupt handling overhead.
+">
+  <meta name="author" content="Benjamin Walker">
+
+  <title>Storage Performance Development Kit Blog</title>
+
+  <link rel="icon" type="image/svg+xml" href="/spdk.github.io/assets/img/spdk.svg">
+  <link rel="icon" href="/spdk.github.io/assets/favicon.ico" sizes="32x32">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:400,700,900" type="text/css">
+  <link rel="stylesheet" href="/spdk.github.io/assets/css/spdk.css">
+
+  <link href="/spdk.github.io/feed.xml" type="application/atom+xml" rel="alternate" title="Atom Feed">
+</head>
+
+
+  <body>
+    <nav class="navbar">
+  <a class="navbar-brand" href="/spdk.github.io/" aria-label="SPDK">
+    <img src="/spdk.github.io/assets/img/spdk.svg" width="36" height="36" alt="Storage Performance Development Kit">
+  </a>
+  <div class="navbar-nav">
+    <a class="nav-link header-link" href="/spdk.github.io/doc/releases.html">download</a>
+    <a class="nav-link header-link" href="/spdk.github.io/doc/">documentation</a>
+    <a class="nav-link header-link" href="/spdk.github.io/doc/contributing.html">development</a>
+    <a class="nav-link header-link" href="/spdk.github.io/doc/ci_tools.html">CI status</a>
+    <a class="nav-link header-link" href="/spdk.github.io/community/">community</a>
+    <a class="nav-link header-link" href="/spdk.github.io/blog/">Blog</a>
+    <a class="nav-link header-link" href="https://github.com/orgs/spdk/projects/5">Roadmap</a>
+    <a class="nav-link header-link" href="/spdk.github.io/news/">News</a>
+  </div>
+  <div class="navbar-end">
+    <a class="nav-link header-link" href="https://github.com/spdk/spdk" aria-label="GitHub">
+      <svg xmlns="http://www.w3.org/2000/svg" class="navbar-nav-svg" aria-hidden="true"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
+    </a>
+    <a id="cn_lang_btn" href="/spdk.github.io/cn/doc/" class="nav-link header-link">中文</a>
+  </div>
+</nav>
+<script>
+(function() {
+    var p = location.pathname, best = null, bLen = 0;
+    document.querySelectorAll('.header-link[href]').forEach(function(a) {
+        var raw = a.getAttribute('href');
+        if (!raw) return;
+        try { var u = new URL(raw, location.href); } catch(e) { return; }
+        if (u.origin !== location.origin) return;
+        var h = u.pathname;
+        if (h === '/') return;
+        var ok = h.endsWith('.html') ? p === h : p.indexOf(h) === 0;
+        if (ok && h.length > bLen) { bLen = h.length; best = a; }
+    });
+    if (best) best.classList.add('active');
+})();
+</script>
+
+
+    
+<div class="page-content">
+  <div class="page-header">
+    <h1>Storage Performance Development Kit Blog</h1>
+  </div>
+  <div class="content"><section id="blog" class="blog">
+    
+      <div class="blog-section">
+        <a class="spdk-link" href="/release/2026/01/28/v26.01_release/"><h2 class="blog-heading spdk-link">SPDK v26.01: NVMe 2.0 target support, NVMe target RDMA interrupt support</h2></a>
+        <div class="blog-author">Jan 28, 2026 • Jim Harris</div>
+        <div class="content"><p>On behalf of the SPDK community, I’m proud to announce the release of
+<a href="https://github.com/spdk/spdk/releases/tag/v26.01">SPDK v26.01 LTS</a>!
+This release is a Long Term Support (LTS) version that will be supported for 1 year.</p>
+  <a class="spdk-link" href="/release/2026/01/28/v26.01_release/">Continue...</a></div>
+      </div>
+    
+      <div class="blog-section">
+        <a class="spdk-link" href="/news/2025/11/07/dev_meetup_summary/"><h2 class="blog-heading spdk-link">2025 SPDK Developer Meetup Hosted by Nutanix</h2></a>
+        <div class="blog-author">Nov 7, 2025 • Tomasz Zawadzki</div>
+        <div class="content"><p>This year Nutanix hosted the 5th SPDK Developer Meetup in Cambridge, UK.
+The event was a great success, attracting around 30 attendees from 11 different companies.
+The agenda was packed with a variety of activities, including technical
+presentations, open discussions, and collaborative whiteboard design work.
+Attendees had the opportunity to network, learn, and contribute to the growth of the SPDK community.</p>
+  <a class="spdk-link" href="/news/2025/11/07/dev_meetup_summary/">Continue...</a></div>
+      </div>
+    
+      <div class="blog-section">
+        <a class="spdk-link" href="/release/2025/09/26/v25.09_release/"><h2 class="blog-heading spdk-link">SPDK v25.09: NVMe 1.4 support in NVMe-oF target, NVMe-oF NSSR</h2></a>
+        <div class="blog-author">Sep 26, 2025 • Tomasz Zawadzki</div>
+        <div class="content"><p>On behalf of the SPDK community, I’m proud to announce the release of
+<a href="https://github.com/spdk/spdk/releases/tag/v25.09">SPDK v25.09</a>!</p>
+  <a class="spdk-link" href="/release/2025/09/26/v25.09_release/">Continue...</a></div>
+      </div>
+    
+      <div class="blog-section">
+        <a class="spdk-link" href="/release/2025/09/25/v25.05.1_release/"><h2 class="blog-heading spdk-link">SPDK v25.05.1 Maintenance LTS Release</h2></a>
+        <div class="blog-author">Sep 25, 2025 • Tomasz Zawadzki</div>
+        <div class="content"><p>On behalf of the SPDK community, I’m proud to announce the release of
+<a href="https://github.com/spdk/spdk/releases/tag/v25.05.1">SPDK v25.05.1</a>!</p>
+  <a class="spdk-link" href="/release/2025/09/25/v25.05.1_release/">Continue...</a></div>
+      </div>
+    
+      <div class="blog-section">
+        <a class="spdk-link" href="/news/2025/09/17/new-core-maintainer/"><h2 class="blog-heading spdk-link">New Core Maintainer - Jacek Kalwas</h2></a>
+        <div class="blog-author">Sep 17, 2025 • Jim Harris</div>
+        <div class="content"><p>The SPDK project has a team of core maintainers who are responsible for providing
+technical oversight for the SPDK project, including final review and merging of
+patches into the SPDK code base. The core maintainer team looks to add to its
+team with contributors who are demonstrating technical skill and
+leadership within the project over an extended period of time. So we are
+pleased to announce that we are adding Jacek Kalwas to the core
+maintainer team!</p>
+  <a class="spdk-link" href="/news/2025/09/17/new-core-maintainer/">Continue...</a></div>
+      </div>
+    
+      <div class="blog-section">
+        <a class="spdk-link" href="/news/2025/08/08/dev_meetup/"><h2 class="blog-heading spdk-link">Announcing the 2025 SPDK Developer Meetup Hosted by Nutanix</h2></a>
+        <div class="blog-author">Aug 8, 2025 • Tomasz Zawadzki</div>
+        <div class="content"><p>We are happy to announce the 2025 SPDK Developer Meetup hosted at Nutanix offices in Cambridge, UK! The meetup will be Thursday and Friday, November 6 and 7, 2025.</p>
+  <a class="spdk-link" href="/news/2025/08/08/dev_meetup/">Continue...</a></div>
+      </div>
+    
+      <div class="blog-section">
+        <a class="spdk-link" href="/release/2025/05/29/v25.05_release/"><h2 class="blog-heading spdk-link">SPDK v25.05: NVMe PCIe interrupt mode, DIF insert/strip, mlx5 accel platform driver</h2></a>
+        <div class="blog-author">May 29, 2025 • Tomasz Zawadzki</div>
+        <div class="content"><p>On behalf of the SPDK community, I’m proud to announce the release of
+<a href="https://github.com/spdk/spdk/releases/tag/v25.05">SPDK v25.05 LTS</a>!</p>
+  <a class="spdk-link" href="/release/2025/05/29/v25.05_release/">Continue...</a></div>
+      </div>
+    
+      <div class="blog-section">
+        <a class="spdk-link" href="/news/2024/12/16/transition/"><h2 class="blog-heading spdk-link">Updates on SPDK Linux Foundation Transition</h2></a>
+        <div class="blog-author">Dec 16, 2024 • Jim Harris</div>
+        <div class="content"><p>After Intel’s recent <a href="https://spdk.io/news/2024/12/05/LF/">announcement</a> about
+SPDK’s transition to the Linux Foundation (LF), SPDK needs to have an orderly
+shutdown of the SPDK project resources provided by Intel to facilitate the
+transition.</p>
+  <a class="spdk-link" href="/news/2024/12/16/transition/">Continue...</a></div>
+      </div>
+    
+      <div class="blog-section">
+        <a class="spdk-link" href="/news/2024/12/05/LF/"><h2 class="blog-heading spdk-link">Intel's SPDK Transition to the Linux Foundation</h2></a>
+        <div class="blog-author">Dec 5, 2024 • Bill Pearson, Paul Luse</div>
+        <div class="content"><p>Intel is pleased to announce that the Storage Performance Development Kit (SPDK) project will be
+transitioning to the Linux Foundation in 2025. This move aims to ensure the long-term sustainability
+and growth of SPDK, fostering a vibrant community and driving innovation in storage performance.</p>
+  <a class="spdk-link" href="/news/2024/12/05/LF/">Continue...</a></div>
+      </div>
+    
+      <div class="blog-section">
+        <a class="spdk-link" href="/release/2024/09/27/v24.09_release/"><h2 class="blog-heading spdk-link">SPDK v24.09: fsdev, NVMe-oF TCP interrupt mode</h2></a>
+        <div class="blog-author">Sep 27, 2024 • Konrad Sztyber</div>
+        <div class="content"><p>On behalf of the SPDK community, I’m proud to announce the release of
+<a href="https://github.com/spdk/spdk/releases/tag/v24.09">SPDK v24.09</a>!</p>
+  <a class="spdk-link" href="/release/2024/09/27/v24.09_release/">Continue...</a></div>
+      </div>
+    
+      <div class="blog-section">
+        <a class="spdk-link" href="/news/2024/08/13/Performance_Report_Update/"><h2 class="blog-heading spdk-link">24.05 SPDK NVMe-oF RDMA and Vhost Performance Reports</h2></a>
+        <div class="blog-author">Aug 13, 2024 • Jaroslaw Chachulski</div>
+        <div class="content"><p>The performance reports for SPDK 24.05 have been published. One report presents the results for
+RDMA NVMe-oF, utilizing the Intel E810-CQDA2 NIC with RoCEv2 protocol enabled in the hardware setup.
+The other report covers the Vhost performance results.</p>
+  <a class="spdk-link" href="/news/2024/08/13/Performance_Report_Update/">Continue...</a></div>
+      </div>
+    
+      <div class="blog-section">
+        <a class="spdk-link" href="/news/2024/07/22/dev_meetup_summary/"><h2 class="blog-heading spdk-link">2024 SPDK Developer Meetup Hosted by Intel</h2></a>
+        <div class="blog-author">Jul 22, 2024 • Tomasz Zawadzki</div>
+        <div class="content"><p>This year Intel hosted the 4th SPDK Developer Meetup in Gdansk, Poland.
+The event was a great success, attracting around 30 attendees from 7 different companies.
+The agenda was packed with a variety of activities, including technical
+presentations, open discussions, and collaborative whiteboard design work.
+Attendees had the opportunity to network, learn, and contribute to the growth of the SPDK community.</p>
+  <a class="spdk-link" href="/news/2024/07/22/dev_meetup_summary/">Continue...</a></div>
+      </div>
+    
+      <div class="blog-section">
+        <a class="spdk-link" href="/news/2024/07/15/Performance_Report_Update/"><h2 class="blog-heading spdk-link">24.05 SPDK NVMe-oF TCP Performance Reports</h2></a>
+        <div class="blog-author">Jul 15, 2024 • Jaroslaw Chachulski</div>
+        <div class="content"><p>SPDK TCP NVMe-oF 24.05 performance report documents have been published.
+Report documents contain results of benchmark tests carried out using
+two different NICs:</p>
+  <a class="spdk-link" href="/news/2024/07/15/Performance_Report_Update/">Continue...</a></div>
+      </div>
+    
+      <div class="blog-section">
+        <a class="spdk-link" href="/news/2024/06/26/Performance_Report_Update/"><h2 class="blog-heading spdk-link">24.05 SPDK NVMe Bdev and NVMe-oF RDMA Performance Reports</h2></a>
+        <div class="blog-author">Jun 26, 2024 • Jaroslaw Chachulski</div>
+        <div class="content"><p>Another part of SPDK 24.05 performance report documents is now available.</p>
+  <a class="spdk-link" href="/news/2024/06/26/Performance_Report_Update/">Continue...</a></div>
+      </div>
+    
+      <div class="blog-section">
+        <a class="spdk-link" href="/news/2024/06/24/Performance_Report_Update/"><h2 class="blog-heading spdk-link">24.05 SPDK NVMe Bdev Performance Report</h2></a>
+        <div class="blog-author">Jun 24, 2024 • Jaroslaw Chachulski</div>
+        <div class="content"><p>The first part of the SPDK 24.05 performance report documents is now available.</p>
+  <a class="spdk-link" href="/news/2024/06/24/Performance_Report_Update/">Continue...</a></div>
+      </div>
+    
+      <div class="blog-section">
+        <a class="spdk-link" href="/release/2024/05/24/24.05_release/"><h2 class="blog-heading spdk-link">SPDK v24.05: NVMe in-band authentication, keyring lib,  blob shallow copy</h2></a>
+        <div class="blog-author">May 24, 2024 • Tomasz Zawadzki</div>
+        <div class="content"><p>On behalf of the SPDK community I’m pleased to announce the release of <a href="https://github.com/spdk/spdk/releases/tag/v24.05">SPDK 24.05</a>!!</p>
+  <a class="spdk-link" href="/release/2024/05/24/24.05_release/">Continue...</a></div>
+      </div>
+    
+      <div class="blog-section">
+        <a class="spdk-link" href="/news/2024/04/11/Performance_Report_update/"><h2 class="blog-heading spdk-link">Introducing aRFS insights to our 24.01 NVMe-oF TCP performance reports</h2></a>
+        <div class="blog-author">Apr 11, 2024 • Karol Latecki</div>
+        <div class="content"><p>We would like to announce the integration of Accelerated Receive Flow Steering (aRFS) results into
+our 24.01 SPDK TCP NVMe-oF 24.01 performance report document (Mellanox ConnectX-5 Ex version).
+We have added data showcasing aRFS’s impact on NVMe-oF TCP performance - throughput, latency and
+CPU utilization.</p>
+  <a class="spdk-link" href="/news/2024/04/11/Performance_Report_update/">Continue...</a></div>
+      </div>
+    
+      <div class="blog-section">
+        <a class="spdk-link" href="/news/2024/04/10/Performance_Report_Update/"><h2 class="blog-heading spdk-link">24.01 SPDK NVMe-oF RDMA Performance Report</h2></a>
+        <div class="blog-author">Apr 10, 2024 • Jaroslaw Chachulski</div>
+        <div class="content"><p>SPDK RDMA NVMe-oF 24.01 performance report document has been published.
+This report presents performance results using Intel E810-CQDA2 NIC with
+RoCEv2 protocol enabled in the hardware setup.</p>
+  <a class="spdk-link" href="/news/2024/04/10/Performance_Report_Update/">Continue...</a></div>
+      </div>
+    
+      <div class="blog-section">
+        <a class="spdk-link" href="/news/2024/03/12/Performance_Report_Update/"><h2 class="blog-heading spdk-link">24.01 SPDK Vhost Performance Report</h2></a>
+        <div class="blog-author">Mar 12, 2024 • Jaroslaw Chachulski</div>
+        <div class="content"><p>SPDK 24.01 Vhost performance report document has been published.</p>
+  <a class="spdk-link" href="/news/2024/03/12/Performance_Report_Update/">Continue...</a></div>
+      </div>
+    
+      <div class="blog-section">
+        <a class="spdk-link" href="/news/2024/03/07/dev_meetup/"><h2 class="blog-heading spdk-link">Announcing the 2024 SPDK Developer Meetup Hosted by Intel</h2></a>
+        <div class="blog-author">Mar 7, 2024 • Tomasz Zawadzki</div>
+        <div class="content"><p>Come and join us for the 4th SPDK Developer Meetup, hosted by Intel in the picturesque city of Gdansk, Poland!</p>
+  <a class="spdk-link" href="/news/2024/03/07/dev_meetup/">Continue...</a></div>
+      </div>
+    
+      <div class="blog-section">
+        <a class="spdk-link" href="/news/2024/03/07/Performance_Report_Update/"><h2 class="blog-heading spdk-link">24.01 SPDK NVMe-oF TCP Performance Reports</h2></a>
+        <div class="blog-author">Mar 7, 2024 • Jaroslaw Chachulski</div>
+        <div class="content"><p>SPDK TCP NVMe-oF 24.01 performance report documents have been published.
+Report documents contain results of benchmark tests carried out using
+two different NICs:</p>
+  <a class="spdk-link" href="/news/2024/03/07/Performance_Report_Update/">Continue...</a></div>
+      </div>
+    
+      <div class="blog-section">
+        <a class="spdk-link" href="/news/2024/02/19/Performance_Report_Update/"><h2 class="blog-heading spdk-link">24.01 SPDK NVMe Bdev and NVMe-oF RDMA Performance Reports</h2></a>
+        <div class="blog-author">Feb 19, 2024 • Jaroslaw Chachulski</div>
+        <div class="content"><p>First part of SPDK 24.01 performance report documents is now available.</p>
+  <a class="spdk-link" href="/news/2024/02/19/Performance_Report_Update/">Continue...</a></div>
+      </div>
+    
+      <div class="blog-section">
+        <a class="spdk-link" href="/news/2024/02/12/raid5f/"><h2 class="blog-heading spdk-link">raid5f: the SPDK RAID 5 implementation</h2></a>
+        <div class="blog-author">Feb 12, 2024 • Artur Paszkiewicz</div>
+        <div class="content"><p>RAID 5 is a popular RAID level which, similarly to RAID 1 (mirroring), protects
+data in the array against failure of a member drive and can improve read
+performance by reading from multiple drives in parallel. It is often preferred
+over mirroring because it “wastes” less storage capacity - the array can have
+many member drives but the total available capacity is always reduced only by
+the size of one member. Meanwhile, RAID 1 exposes the capacity of only one
+member. That’s 50% in the most common two-way mirror case, which provides the
+same level of protection as RAID 5 - protection from failure of one drive.</p>
+  <a class="spdk-link" href="/news/2024/02/12/raid5f/">Continue...</a></div>
+      </div>
+    
+      <div class="blog-section">
+        <a class="spdk-link" href="/release/2024/01/25/24.01_release/"><h2 class="blog-heading spdk-link">SPDK v24.01: DIF in accel, RAID rebuild, Blobstore grow</h2></a>
+        <div class="blog-author">Jan 25, 2024 • Tomasz Zawadzki</div>
+        <div class="content"><p>On behalf of the SPDK community I’m pleased to announce the release of <a href="https://github.com/spdk/spdk/releases/tag/v24.01">SPDK 24.01 LTS</a>!!
+The SPDK 24.01 release is a long term support release that will be supported for 1 year.</p>
+  <a class="spdk-link" href="/release/2024/01/25/24.01_release/">Continue...</a></div>
+      </div>
+    
+      <div class="blog-section">
+        <a class="spdk-link" href="/news/2023/12/12/Performance_Report_Update/"><h2 class="blog-heading spdk-link">23.09 SPDK NVMe-oF TCP Performance Reports</h2></a>
+        <div class="blog-author">Dec 12, 2023 • Jaroslaw Chachulski</div>
+        <div class="content"><p>SPDK TCP NVMe-oF 23.09 performance report documents have been published.
+Report documents contain results of benchmark tests carried out using
+two different NICs:</p>
+  <a class="spdk-link" href="/news/2023/12/12/Performance_Report_Update/">Continue...</a></div>
+      </div>
+    
+      <div class="blog-section">
+        <a class="spdk-link" href="/news/2023/11/22/Performance_Report_Update/"><h2 class="blog-heading spdk-link">23.09 SPDK Vhost Performance Report</h2></a>
+        <div class="blog-author">Nov 22, 2023 • Jaroslaw Chachulski</div>
+        <div class="content"><p>SPDK 23.09 Vhost performance report document has been published.</p>
+  <a class="spdk-link" href="/news/2023/11/22/Performance_Report_Update/">Continue...</a></div>
+      </div>
+    
+      <div class="blog-section">
+        <a class="spdk-link" href="/news/2023/11/03/Performance_Report_Update/"><h2 class="blog-heading spdk-link">23.09 SPDK NVMe-oF RDMA Performance Reports</h2></a>
+        <div class="blog-author">Nov 3, 2023 • Karol Latecki</div>
+        <div class="content"><p>SPDK RDMA NVMe-oF 23.09 performance report documents have been published.
+Report documents come in different flavors, using different NICs and protocols
+for NVMe-oF target to NVMe-oF initiator connections:</p>
+  <a class="spdk-link" href="/news/2023/11/03/Performance_Report_Update/">Continue...</a></div>
+      </div>
+    
+      <div class="blog-section">
+        <a class="spdk-link" href="/news/2023/10/27/Performance_Report_Update/"><h2 class="blog-heading spdk-link">23.09 SPDK NVMe Bdev Performance Report</h2></a>
+        <div class="blog-author">Oct 27, 2023 • Karol Latecki</div>
+        <div class="content"><p>SPDK 23.09 performance report document for SPDK NVMe Bdev has been published.</p>
+  <a class="spdk-link" href="/news/2023/10/27/Performance_Report_Update/">Continue...</a></div>
+      </div>
+    
+      <div class="blog-section">
+        <a class="spdk-link" href="/release/2023/09/28/23.09_release/"><h2 class="blog-heading spdk-link">SPDK v23.09: NVMe-oF TCP data digest chaining, JSON-RPC Go client, DIF/DIX CRC32/64</h2></a>
+        <div class="blog-author">Sep 28, 2023 • Tomasz Zawadzki</div>
+        <div class="content"><p>On behalf of the SPDK community I’m pleased to announce the release of <a href="https://github.com/spdk/spdk/releases/tag/v23.09">SPDK 23.09</a>!!</p>
+  <a class="spdk-link" href="/release/2023/09/28/23.09_release/">Continue...</a></div>
+      </div>
+    
+      <div class="blog-section">
+        <a class="spdk-link" href="/news/2023/07/28/Performance_Report_Update/"><h2 class="blog-heading spdk-link">23.05 SPDK Vhost Performance Report</h2></a>
+        <div class="blog-author">Jul 28, 2023 • Karol Latecki</div>
+        <div class="content"><p>SPDK 23.05 performance report document for SPDK Vhost has been published.</p>
+  <a class="spdk-link" href="/news/2023/07/28/Performance_Report_Update/">Continue...</a></div>
+      </div>
+    
+      <div class="blog-section">
+        <a class="spdk-link" href="/news/2023/07/27/Performance_Report_Update/"><h2 class="blog-heading spdk-link">23.05 SPDK NVMe-oF TCP Performance Reports</h2></a>
+        <div class="blog-author">Jul 27, 2023 • Karol Latecki</div>
+        <div class="content"><p>SPDK TCP NVMe-oF 23.05 performance report documents have been published.
+Report documents contain results of benchmark tests carried out using
+two different NICs:</p>
+  <a class="spdk-link" href="/news/2023/07/27/Performance_Report_Update/">Continue...</a></div>
+      </div>
+    
+      <div class="blog-section">
+        <a class="spdk-link" href="/news/2023/07/11/Performance_Report_Update/"><h2 class="blog-heading spdk-link">23.05 SPDK NVMe-oF RDMA Intel E810 RoCEv2 Performance Report</h2></a>
+        <div class="blog-author">Jul 11, 2023 • Karol Latecki</div>
+        <div class="content"><p>SPDK RDMA NVMe-oF 23.05 performance report document has been published.
+This report presents performance results using Intel E810-CQDA2 NIC with
+RoCEv2 protocol enabled in the hardware setup.</p>
+  <a class="spdk-link" href="/news/2023/07/11/Performance_Report_Update/">Continue...</a></div>
+      </div>
+    
+      <div class="blog-section">
+        <a class="spdk-link" href="/news/2023/06/16/Performance_Report_Update/"><h2 class="blog-heading spdk-link">23.05 SPDK NVMe-oF RDMA Performance Reports</h2></a>
+        <div class="blog-author">Jun 16, 2023 • Karol Latecki</div>
+        <div class="content"><p>SPDK RDMA NVMe-oF 23.05 performance report documents have been published.
+Report documents come in different flavors, using different NICs and protocols
+for NVMe-oF target to NVMe-oF initiator connections:</p>
+  <a class="spdk-link" href="/news/2023/06/16/Performance_Report_Update/">Continue...</a></div>
+      </div>
+    
+      <div class="blog-section">
+        <a class="spdk-link" href="/news/2023/06/15/Performance_Report_Update/"><h2 class="blog-heading spdk-link">23.05 SPDK NVMe Bdev Performance Report</h2></a>
+        <div class="blog-author">Jun 15, 2023 • Karol Latecki</div>
+        <div class="content"><p>SPDK 23.05 performance report document for SPDK NVMe Bdev has been published.</p>
+  <a class="spdk-link" href="/news/2023/06/15/Performance_Report_Update/">Continue...</a></div>
+      </div>
+    
+      <div class="blog-section">
+        <a class="spdk-link" href="/dev/2023/05/31/memory-domains-3/"><h2 class="blog-heading spdk-link">SPDK As IPU Firmware - Part 3</h2></a>
+        <div class="blog-author">May 31, 2023 • Ben Walker</div>
+        <div class="content"><p>Welcome to the third and final post in our series on SPDK as IPU firmware! In
+<a href="https://spdk.io/dev/2023/04/20/memory-domains-1/">part 1</a> we discussed the
+addition of memory domains and in
+<a href="https://spdk.io/dev/2023/05/10/memory-domains-2/">part 2</a> we focused on
+avoiding data copies for crypto and on address translation. So let’s pick up
+from there.</p>
+  <a class="spdk-link" href="/dev/2023/05/31/memory-domains-3/">Continue...</a></div>
+      </div>
+    
+      <div class="blog-section">
+        <a class="spdk-link" href="/release/2023/05/26/23.05_release/"><h2 class="blog-heading spdk-link">SPDK v23.05: NVMe-oF/TCP TLS, Logical Volume External Snapshots</h2></a>
+        <div class="blog-author">May 26, 2023 • Konrad Sztyber</div>
+        <div class="content"><p>On behalf of the SPDK community I’m pleased to announce the release of <a href="https://github.com/spdk/spdk/releases/tag/v23.05">SPDK v23.05</a>!</p>
+  <a class="spdk-link" href="/release/2023/05/26/23.05_release/">Continue...</a></div>
+      </div>
+    
+      <div class="blog-section">
+        <a class="spdk-link" href="/dev/2023/05/10/memory-domains-2/"><h2 class="blog-heading spdk-link">SPDK As IPU Firmware - Part 2</h2></a>
+        <div class="blog-author">May 10, 2023 • Ben Walker</div>
+        <div class="content"><p>Welcome to the second post in our series on SPDK as IPU firmware. The
+<a href="https://spdk.io/dev/2023/04/20/memory-domains-1/">previous post</a> laid the
+groundwork for using SPDK on an IPU. Now we’re going to focus on enabling
+inline, block-level encryption in a more efficient way. If it isn’t fresh in
+your mind, take a moment to review our example scenario from the last post.
+We’ll start from there.</p>
+  <a class="spdk-link" href="/dev/2023/05/10/memory-domains-2/">Continue...</a></div>
+      </div>
+    
+      <div class="blog-section">
+        <a class="spdk-link" href="/release/2023/04/26/23.01.1_release/"><h2 class="blog-heading spdk-link">SPDK v23.01.1: Maintenance Release</h2></a>
+        <div class="blog-author">Apr 26, 2023 • Konrad Sztyber</div>
+        <div class="content"><p>On behalf of the SPDK community I’m pleased to announce the release of <a href="https://github.com/spdk/spdk/releases/tag/v23.01.1">SPDK v23.01.1</a>.</p>
+  <a class="spdk-link" href="/release/2023/04/26/23.01.1_release/">Continue...</a></div>
+      </div>
+    
+      <div class="blog-section">
+        <a class="spdk-link" href="/news/2023/04/21/fuzzing/"><h2 class="blog-heading spdk-link">Fuzz testing SPDK</h2></a>
+        <div class="blog-author">Apr 21, 2023 • Sebastian Brzezinka</div>
+        <div class="content"><p>Fuzzing is a software testing technique that incorporates feeding random, unexpected input
+to a computer program to test unexpected paths of software execution. The SPDK project uses
+two approaches to fuzz testing:</p>
+  <a class="spdk-link" href="/news/2023/04/21/fuzzing/">Continue...</a></div>
+      </div>
+    
+      <div class="blog-section">
+        <a class="spdk-link" href="/dev/2023/04/20/memory-domains-1/"><h2 class="blog-heading spdk-link">SPDK As IPU Firmware - Part 1</h2></a>
+        <div class="blog-author">Apr 20, 2023 • Ben Walker</div>
+        <div class="content"><p>Welcome to the first post in a new series on SPDK as IPU firmware. For those not
+familiar with the term Infrastructure Processing Unit (IPU), these are PCIe
+cards attached to a host system that offload “infrastructure” work, usually for
+a cloud or hyper-converged service provider. In terms familiar to SPDK
+developers, these cards typically have some hardware that’s capable of
+presenting what appear to be physical NVMe or virtio-blk/scsi devices to the
+host system, but then may forward any I/O sent to that device over the network.</p>
+  <a class="spdk-link" href="/dev/2023/04/20/memory-domains-1/">Continue...</a></div>
+      </div>
+    
+      <div class="blog-section">
+        <a class="spdk-link" href="/news/2023/04/07/Performance_Report_Update/"><h2 class="blog-heading spdk-link">23.01 SPDK NVMe-oF TCP Performance Report</h2></a>
+        <div class="blog-author">Apr 7, 2023 • Karol Latecki</div>
+        <div class="content"><p>SPDK TCP NVMe-oF 23.01 performance report document has been published.
+This report contains results of benchmark tests carried out using
+Intel E810-CQDA2 NICs.</p>
+  <a class="spdk-link" href="/news/2023/04/07/Performance_Report_Update/">Continue...</a></div>
+      </div>
+    
+      <div class="blog-section">
+        <a class="spdk-link" href="/news/2023/04/03/Performance_Report_Update/"><h2 class="blog-heading spdk-link">23.01 SPDK NVMe-oF TCP Performance Report</h2></a>
+        <div class="blog-author">Apr 3, 2023 • Karol Latecki</div>
+        <div class="content"><p>SPDK TCP NVMe-oF 23.01 performance report document has been published.
+This report contains results of benchmark tests carried out using
+Mellanox ConnectX-5 Ex NICs.</p>
+  <a class="spdk-link" href="/news/2023/04/03/Performance_Report_Update/">Continue...</a></div>
+      </div>
+    
+      <div class="blog-section">
+        <a class="spdk-link" href="/news/2023/03/28/ublk/"><h2 class="blog-heading spdk-link">ublk: the new and improved way to serve SPDK storage locally!</h2></a>
+        <div class="blog-author">Mar 28, 2023 • Jim Harris</div>
+        <div class="content"><p>SPDK v23.01 added a new ublk library that can expose SPDK block devices as
+Linux kernel block devices using the Linux ublk framework added in the Linux
+6.0 kernel.
+The <a href="https://docs.kernel.org/block/ublk.html">Linux kernel doc for ublk</a> describes
+ublk as:</p>
+  <a class="spdk-link" href="/news/2023/03/28/ublk/">Continue...</a></div>
+      </div>
+    
+      <div class="blog-section">
+        <a class="spdk-link" href="/news/2023/03/23/new-core-maintainers/"><h2 class="blog-heading spdk-link">New Core Maintainers For SPDK CSI</h2></a>
+        <div class="blog-author">Mar 23, 2023 • Ben Walker</div>
+        <div class="content"><p>The SPDK project has a team of core maintainers who are responsible for providing
+technical oversight for the SPDK project, including final review and merging of
+patches into the SPDK code base. As the SPDK project continues to grow, the core
+maintainer team also needs to grow by adding contributors who are already
+demonstrating technical skill and leadership within the project. SPDK has seen increased
+interest in orchestration, especially the SPDK CSI Kubernetes plugin, so we are pleased
+to announce that Yibo Cai and Antti Kervinen are joining the core maintainer team
+with a specific focus on the spdk-csi project. Yibo and Antti will be responsible
+for helping define and refine the architecture and design for spdk-csi, as well as
+being primary reviewers for all incoming patches.</p>
+  <a class="spdk-link" href="/news/2023/03/23/new-core-maintainers/">Continue...</a></div>
+      </div>
+    
+      <div class="blog-section">
+        <a class="spdk-link" href="/news/2023/03/10/Performance_Report_Update/"><h2 class="blog-heading spdk-link">23.01 SPDK NVMe-oF RDMA Performance Reports</h2></a>
+        <div class="blog-author">Mar 10, 2023 • Karol Latecki</div>
+        <div class="content"><p>SPDK RDMA NVMe-oF 23.01 performance report documents have been published.
+Report documents come in different flavors, using different NICs and protocols
+for NVMe-oF target to NVMe-oF initiator connections:</p>
+  <a class="spdk-link" href="/news/2023/03/10/Performance_Report_Update/">Continue...</a></div>
+      </div>
+    
+      <div class="blog-section">
+        <a class="spdk-link" href="/news/2023/02/24/Performance_Report_Update/"><h2 class="blog-heading spdk-link">23.01 SPDK NVMe Bdev &amp; Vhost Performance Reports</h2></a>
+        <div class="blog-author">Feb 24, 2023 • Karol Latecki</div>
+        <div class="content"><p>SPDK 23.01 performance report documents for SPDK NVMe Bdev and SPDK Vhost have been published.</p>
+  <a class="spdk-link" href="/news/2023/02/24/Performance_Report_Update/">Continue...</a></div>
+      </div>
+    
+      <div class="blog-section">
+        <a class="spdk-link" href="/news/2023/02/01/nvme-120m-iops/"><h2 class="blog-heading spdk-link">120 Million I/O Per Second with a Standard 2U Intel® Xeon® System</h2></a>
+        <div class="blog-author">Feb 1, 2023 • John Kariuki</div>
+        <div class="content"><p>In 2013, Intel started the Storage Performance Development Kit (SPDK) project
+to reimagine the storage software stack. Although NVMe was still in its infancy,
+organizations integrating NVMe SSDs recognized the challenges they faced as the
+performance and efficiency of the storage software became increasingly critical
+to overall system performance. When Intel kicked off the SPDK Open-Source Community
+in 2015, a global phenomenon was born that was laser-focused on demonstrating the
+outstanding performance and efficiency enabled by running software designed for
+NVMe devices. In the beginning, the community demonstrated that it’s possible to
+build systems capable of millions of IOPS (I/O operations per second) using
+standard hardware. However, when solid-state media based on technologies like
+the Intel® Optane™ arrived, a whole new class of NVMe SSDs with higher throughput
+and an order of magnitude reduction in hardware latency the community saw an
+opportunity to redesign the SPDK NVMe driver. In 2019, a new SPDK NVMe driver
+capable of over 10 million IOPS (using a single CPU core!) was released and
+accompanied by a <a href="https://spdk.io/news/2019/05/06/nvme/">blog</a> with deep technical
+insights on the techniques SPDK employs to achieved great performance.
+But the SPDK community is about both performance and scalability,
+so in 2021 we demonstrated a system that scaled to <a href="https://spdk.io/news/2021/05/06/nvme-80m-iops/">80 million IOPS</a>.
+We’re kicking off 2023 with another <em>mind-blowing</em> accomplishment.</p>
+  <a class="spdk-link" href="/news/2023/02/01/nvme-120m-iops/">Continue...</a></div>
+      </div>
+    
+      <div class="blog-section">
+        <a class="spdk-link" href="/release/2023/01/26/23.01_release/"><h2 class="blog-heading spdk-link">SPDK v23.01: accel chained ops, accel crypto, ublk target</h2></a>
+        <div class="blog-author">Jan 26, 2023 • Tomasz Zawadzki</div>
+        <div class="content"><p>On behalf of the SPDK community I’m pleased to announce the release of <a href="https://github.com/spdk/spdk/releases/tag/v23.01">SPDK 23.01 LTS</a>!!
+The SPDK 23.01 release is a long term support release that will be supported for 1 year.</p>
+  <a class="spdk-link" href="/release/2023/01/26/23.01_release/">Continue...</a></div>
+      </div>
+    
+      <div class="blog-section">
+        <a class="spdk-link" href="/news/2023/01/11/prc_virtual_forum_presentations/"><h2 class="blog-heading spdk-link">Presentations: SPDK PRC Virtual Forum on Dec 21-22, 2022</h2></a>
+        <div class="blog-author">Jan 11, 2023 • Gang Cao</div>
+        <div class="content"><p>Thank you all for attending the SPDK PRC Virtual Forum. We had a very successful Virtual Forum this year with awesome content and presenters. You can download the presentations using the links below. Please note these are static PDFs, but many of the presentations made extensive use of animations, so something may be lost in translation.</p>
+  <a class="spdk-link" href="/news/2023/01/11/prc_virtual_forum_presentations/">Continue...</a></div>
+      </div>
+    
+      <div class="blog-section">
+        <a class="spdk-link" href="/spdk_spinlock/2023/01/04/spdk_lock/"><h2 class="blog-heading spdk-link">SPDK Spinlocks Introduction</h2></a>
+        <div class="blog-author">Jan 4, 2023 • Mike Gerdts</div>
+        <div class="content"><p>The recently introduced <code class="language-plaintext highlighter-rouge">spdk_spinlock</code> offers safety and debugging improvements
+over <code class="language-plaintext highlighter-rouge">pthread_mutex_t</code>.</p>
+  <a class="spdk-link" href="/spdk_spinlock/2023/01/04/spdk_lock/">Continue...</a></div>
+      </div>
+    
+      <div class="blog-section">
+        <a class="spdk-link" href="/news/2022/12/13/prc_virtual_forum_announce/"><h2 class="blog-heading spdk-link">Announcing The 2022 PRC SPDK Virtual Forum!</h2></a>
+        <div class="blog-author">Dec 13, 2022 • Gang Cao</div>
+        <div class="content"><h1 id="save-the-date">Save The Date</h1>
+  <a class="spdk-link" href="/news/2022/12/13/prc_virtual_forum_announce/">Continue...</a></div>
+      </div>
+    
+      <div class="blog-section">
+        <a class="spdk-link" href="/news/2022/11/29/Performance_Report_Update/"><h2 class="blog-heading spdk-link">22.09 SPDK NVMe-oF RDMA Performance Report</h2></a>
+        <div class="blog-author">Nov 29, 2022 • Karol Latecki</div>
+        <div class="content"><p>SPDK RDMA NVMe-oF 22.09 performance report document has been published.
+This report document version uses Mellanox ConnectX-5 Ex NICs for NVMe-oF
+target to NVMe-oF initiator connections.</p>
+  <a class="spdk-link" href="/news/2022/11/29/Performance_Report_Update/">Continue...</a></div>
+      </div>
+    
+      <div class="blog-section">
+        <a class="spdk-link" href="/spdk_trace/2022/11/25/tracing-library-guide-pt2/"><h2 class="blog-heading spdk-link">Tracing Framework Guide Part 2</h2></a>
+        <div class="blog-author">Nov 25, 2022 • Krzysztof Karas</div>
+        <div class="content"><h2 id="introduction">Introduction</h2>
+  <a class="spdk-link" href="/spdk_trace/2022/11/25/tracing-library-guide-pt2/">Continue...</a></div>
+      </div>
+    
+      <div class="blog-section">
+        <a class="spdk-link" href="/release/2022/11/22/22.01.2_release/"><h2 class="blog-heading spdk-link">SPDK v22.01.2: Maintenance Release</h2></a>
+        <div class="blog-author">Nov 22, 2022 • Tomasz Zawadzki</div>
+        <div class="content"><p>On behalf of the SPDK community I’m pleased to announce the release of <a href="https://github.com/spdk/spdk/releases/tag/v22.01.2">SPDK 22.01.2 LTS</a>.
+Due to DPDK vhost CVE fixes users are strongly encouraged to upgrade.</p>
+  <a class="spdk-link" href="/release/2022/11/22/22.01.2_release/">Continue...</a></div>
+      </div>
+    
+      <div class="blog-section">
+        <a class="spdk-link" href="/news/2022/11/21/us_virtual_forum_presentations/"><h2 class="blog-heading spdk-link">Presentations: SPDK Virtual Forum on Nov 15-16, 2022</h2></a>
+        <div class="blog-author">Nov 21, 2022 • John Kariuki</div>
+        <div class="content"><p>Thank you all for attending the SPDK Virtual Forum. We had a very successful Virtual Forum this year with awesome content and presenters. You can download the presentations using the links below. Please note these are static PDFs, but many of the presentations made extensive use of animations, so something may be lost in translation.</p>
+  <a class="spdk-link" href="/news/2022/11/21/us_virtual_forum_presentations/">Continue...</a></div>
+      </div>
+    
+      <div class="blog-section">
+        <a class="spdk-link" href="/news/2022/11/08/Performance_Report_Update/"><h2 class="blog-heading spdk-link">22.09 SPDK NVMe-oF TCP Performance Reports</h2></a>
+        <div class="blog-author">Nov 8, 2022 • Karol Latecki</div>
+        <div class="content"><p>SPDK TCP NVMe-oF 22.09 performance report documents have been published.
+This time the report comes in two flavors, using different NICs for
+NVMe-oF target to NVMe-oF initiator connections:</p>
+  <a class="spdk-link" href="/news/2022/11/08/Performance_Report_Update/">Continue...</a></div>
+      </div>
+    
+      <div class="blog-section">
+        <a class="spdk-link" href="/news/2022/11/04/Performance_Report_Update/"><h2 class="blog-heading spdk-link">22.09 SPDK NVMe Bdev &amp; Vhost Performance Reports</h2></a>
+        <div class="blog-author">Nov 4, 2022 • Karol Latecki</div>
+        <div class="content"><p>SPDK 22.09 performance report documents for SPDK NVMe Bdev and SPDK Vhost have been published.</p>
+  <a class="spdk-link" href="/news/2022/11/04/Performance_Report_Update/">Continue...</a></div>
+      </div>
+    
+      <div class="blog-section">
+        <a class="spdk-link" href="/news/2022/10/07/us_virtual_forum_announce/"><h2 class="blog-heading spdk-link">Announcing The 2022 US SPDK Virtual Forum!</h2></a>
+        <div class="blog-author">Oct 7, 2022 • John Kariuki</div>
+        <div class="content"><h1 id="save-the-date">Save The Date</h1>
+  <a class="spdk-link" href="/news/2022/10/07/us_virtual_forum_announce/">Continue...</a></div>
+      </div>
+    
+      <div class="blog-section">
+        <a class="spdk-link" href="/release/2022/09/29/22.09_release/"><h2 class="blog-heading spdk-link">SPDK v22.09: FTL, xNVMe bdev, DAOS bdev, SMA crypto and QoS</h2></a>
+        <div class="blog-author">Sep 29, 2022 • Tomasz Zawadzki</div>
+        <div class="content"><p>On behalf of the SPDK community I’m pleased to announce the release of <a href="https://github.com/spdk/spdk/releases/tag/v22.09">SPDK 22.09</a>!!</p>
+  <a class="spdk-link" href="/release/2022/09/29/22.09_release/">Continue...</a></div>
+      </div>
+    
+      <div class="blog-section">
+        <a class="spdk-link" href="/spdk_trace/2022/09/26/tracing-library-guide-pt1/"><h2 class="blog-heading spdk-link">Tracing Framework Guide Part 1</h2></a>
+        <div class="blog-author">Sep 26, 2022 • Krzysztof Karas</div>
+        <div class="content"><h2 id="introduction">Introduction</h2>
+  <a class="spdk-link" href="/spdk_trace/2022/09/26/tracing-library-guide-pt1/">Continue...</a></div>
+      </div>
+    
+      <div class="blog-section">
+        <a class="spdk-link" href="/news/2022/07/11/Performance_Report_Update/"><h2 class="blog-heading spdk-link">22.05 SPDK NVMe Bdev Performance Report</h2></a>
+        <div class="blog-author">Jul 11, 2022 • Karol Latecki</div>
+        <div class="content"><p>Performance report document for SPDK NVMe Bdev 22.05 release has been published.</p>
+  <a class="spdk-link" href="/news/2022/07/11/Performance_Report_Update/">Continue...</a></div>
+      </div>
+    
+      <div class="blog-section">
+        <a class="spdk-link" href="/release/2022/05/26/22.05_release/"><h2 class="blog-heading spdk-link">SPDK v22.05: SMA, accel_fw IAA, virtio-blk transport abstraction</h2></a>
+        <div class="blog-author">May 26, 2022 • Tomasz Zawadzki</div>
+        <div class="content"><p>On behalf of the SPDK community I’m pleased to announce the release of <a href="https://github.com/spdk/spdk/releases/tag/v22.05">SPDK 22.05</a>!!</p>
+  <a class="spdk-link" href="/release/2022/05/26/22.05_release/">Continue...</a></div>
+      </div>
+    
+      <div class="blog-section">
+        <a class="spdk-link" href="/release/2022/05/12/22.01.1_release/"><h2 class="blog-heading spdk-link">SPDK v22.01.1: Maintenance Releases</h2></a>
+        <div class="blog-author">May 12, 2022 • Tomasz Zawadzki</div>
+        <div class="content"><p>On behalf of the SPDK community I’m pleased to announce the release of <a href="https://github.com/spdk/spdk/releases/tag/v22.01.1">SPDK 22.01.1 LTS</a>.
+Due to DPDK vhost CVE fixes users are strongly encouraged to upgrade.</p>
+  <a class="spdk-link" href="/release/2022/05/12/22.01.1_release/">Continue...</a></div>
+      </div>
+    
+      <div class="blog-section">
+        <a class="spdk-link" href="/news/2022/04/07/Performance_Report_Update/"><h2 class="blog-heading spdk-link">22.01 SPDK NVMe Bdev PCIe Gen4 Performance Report</h2></a>
+        <div class="blog-author">Apr 7, 2022 • Karol Latecki</div>
+        <div class="content"><p>New version of 22.01 SPDK NVMe Bdev performance report document has been published.
+Updated version presents performance results measured using new PCIe Gen4 platform:
+Supermicro SYS-220U-TNR with Intel(R) Xeon(R) Gold 6348 Ice Lake and twenty two
+Kioxia(R) KCM61VUL3T20 Gen4 NVMe drives.</p>
+  <a class="spdk-link" href="/news/2022/04/07/Performance_Report_Update/">Continue...</a></div>
+      </div>
+    
+      <div class="blog-section">
+        <a class="spdk-link" href="/news/2022/04/06/Performance_Report_Update/"><h2 class="blog-heading spdk-link">22.01 SPDK Vhost Performance Report - vfio-user update</h2></a>
+        <div class="blog-author">Apr 6, 2022 • Karol Latecki</div>
+        <div class="content"><p>SPDK Vhost 22.01 performance report document has been updated with Vfio-User update.</p>
+  <a class="spdk-link" href="/news/2022/04/06/Performance_Report_Update/">Continue...</a></div>
+      </div>
+    
+      <div class="blog-section">
+        <a class="spdk-link" href="/news/2022/03/22/Hackathon/"><h2 class="blog-heading spdk-link">Announcing SPDK 2022 Hackathon</h2></a>
+        <div class="blog-author">Mar 22, 2022 • Monica Kenguva</div>
+        <div class="content"><p>We are excited to announce the SPDK Community Hackathon will be held virtually on April 28th,2022 8am to 12:30pm PDT.
+Hackathon will be focused on NVMe vfio-user - Overview of the architecture, its threat model, and how to improve
+and extend testing (including fuzzing) of the SPDK nvme vfio-user target stack.
+<a href="https://teams.microsoft.com/registration/iI3JRkTj1E6Elk7XcS4lXQ,kemVK82320u6Ozy2ZGc4dQ,kG-9XEZXKEyDI8aXugFltw,lAlDvaCL9U6VcqK5j3MxWQ,aJJxPV6l-kKqpF18fi_3XQ,uO0U5ZEuhkKSWjee0JkeCg?mode=read&amp;tenantId=46c98d88-e344-4ed4-8496-4ed7712e255d">REGISTER</a> today to collaborate with other community developers for technical and interactive discussions.</p>
+  <a class="spdk-link" href="/news/2022/03/22/Hackathon/">Continue...</a></div>
+      </div>
+    
+      <div class="blog-section">
+        <a class="spdk-link" href="/news/2022/02/25/Performance_Report_Update/"><h2 class="blog-heading spdk-link">22.01 SPDK NVMe Bdev &amp; NVMe-oF RDMA Performance Reports</h2></a>
+        <div class="blog-author">Feb 25, 2022 • Karol Latecki</div>
+        <div class="content"><p>SPDK NVMe Bdev and NVMe-oF RDMA 22.01 performance report documents have been published.</p>
+  <a class="spdk-link" href="/news/2022/02/25/Performance_Report_Update/">Continue...</a></div>
+      </div>
+    
+      <div class="blog-section">
+        <a class="spdk-link" href="/news/2022/02/21/Performance_Report_Update/"><h2 class="blog-heading spdk-link">22.01 SPDK NVMe-oF TCP &amp; Vhost Performance Reports</h2></a>
+        <div class="blog-author">Feb 21, 2022 • Karol Latecki</div>
+        <div class="content"><p>SPDK TCP NVMe-oF and SPDK Vhost 22.01 performance report documents have been published.</p>
+  <a class="spdk-link" href="/news/2022/02/21/Performance_Report_Update/">Continue...</a></div>
+      </div>
+    
+      <div class="blog-section">
+        <a class="spdk-link" href="/release/2022/01/27/22.01_release/"><h2 class="blog-heading spdk-link">SPDK v22.01: NVMe multipath, NVMe TCP zero-copy, NVMe-oF discovery service</h2></a>
+        <div class="blog-author">Jan 27, 2022 • Tomasz Zawadzki</div>
+        <div class="content"><p>On behalf of the SPDK community I’m pleased to announce the release of <a href="https://github.com/spdk/spdk/releases/tag/v22.01">SPDK 22.01 LTS</a>!!
+The SPDK 22.01 release is a long term support release that will be supported for 1 year.</p>
+  <a class="spdk-link" href="/release/2022/01/27/22.01_release/">Continue...</a></div>
+      </div>
+    
+      <div class="blog-section">
+        <a class="spdk-link" href="/spdk_trace/2022/01/17/tracing_library_post/"><h2 class="blog-heading spdk-link">Tracing Framework</h2></a>
+        <div class="blog-author">Jan 17, 2022 • Krzysztof Karas</div>
+        <div class="content"><h2 id="introduction">Introduction</h2>
+  <a class="spdk-link" href="/spdk_trace/2022/01/17/tracing_library_post/">Continue...</a></div>
+      </div>
+    
+      <div class="blog-section">
+        <a class="spdk-link" href="/news/2021/12/23/Performance_Regression_Dashboards/"><h2 class="blog-heading spdk-link">SPDK Performance Regression Test Dashboards</h2></a>
+        <div class="blog-author">Dec 23, 2021 • Karol Latecki</div>
+        <div class="content"><p> SPDK Continuous Integration system provides functional test results for patches submitted
+at <a href="https://review.spdk.io">https://review.spdk.io</a>.
+These tests however, do not provide information about the impact of submitted changes on SPDK's
+overall performance. Because of that, we decided to make performance regression test results
+available for the community. The tests are scheduled to run roughly every two hours using the
+most recent SPDK code base available on master branch. Result are presented using Grafana
+dashboards containing information about IOPS, Bandwidth and Latency (along with visual
+representation) are available on
+<a href="https://performance.spdk.io">https://performance.spdk.io</a>.</p>
+  <a class="spdk-link" href="/news/2021/12/23/Performance_Regression_Dashboards/">Continue...</a></div>
+      </div>
+    
+      <div class="blog-section">
+        <a class="spdk-link" href="/news/2021/12/22/prc_virtual_forum_presentations/"><h2 class="blog-heading spdk-link">Presentations: SPDK, PMDK and Intel® Performance Analyzers PRC Online Forum on December 15, 2021</h2></a>
+        <div class="blog-author">Dec 22, 2021 • Gang Cao</div>
+        <div class="content"><p>Thank you all for attending the SPDK, PMDK and Intel® Performance Analyzers PRC Online Forum. We had a very successful Online Forum this year with awesome content and presenters. You can download the presentations using the links below. Please note these are static PDFs, but some of the presentations made use of animations, so something may be lost in translation.</p>
+  <a class="spdk-link" href="/news/2021/12/22/prc_virtual_forum_presentations/">Continue...</a></div>
+      </div>
+    
+      <div class="blog-section">
+        <a class="spdk-link" href="/news/2021/12/07/new-core-maintainer/"><h2 class="blog-heading spdk-link">New Core Maintainer - Konrad Sztyber</h2></a>
+        <div class="blog-author">Dec 7, 2021 • Jim Harris</div>
+        <div class="content"><p>The SPDK project has a team of core maintainers who are responsible for providing
+technical oversight for the SPDK project, including final review and merging of
+patches into the SPDK code base. As the SPDK project continues to grow, the core
+maintainer team also needs to grow by adding contributors who are already
+demonstrating technical skill and leadership within the project. So we are
+pleased to announce that we are adding Konrad Sztyber to the core maintainer team!</p>
+  <a class="spdk-link" href="/news/2021/12/07/new-core-maintainer/">Continue...</a></div>
+      </div>
+    
+      <div class="blog-section">
+        <a class="spdk-link" href="/news/2021/12/06/Performance_Report_Update/"><h2 class="blog-heading spdk-link">21.10 SPDK NVMe Bdev Performance report</h2></a>
+        <div class="blog-author">Dec 6, 2021 • Karol Latecki</div>
+        <div class="content"><p>Performance report document for SPDK NVMe Bdev 21.10 release has been published.</p>
+  <a class="spdk-link" href="/news/2021/12/06/Performance_Report_Update/">Continue...</a></div>
+      </div>
+    
+      <div class="blog-section">
+        <a class="spdk-link" href="/news/2021/12/01/Performance_Report_Update/"><h2 class="blog-heading spdk-link">21.10 SPDK NVMe-oF TCP Performance report</h2></a>
+        <div class="blog-author">Dec 1, 2021 • Karol Latecki</div>
+        <div class="content"><p>Performance report document for SPDK NVMe-oF TCP 21.10 release has been published.</p>
+  <a class="spdk-link" href="/news/2021/12/01/Performance_Report_Update/">Continue...</a></div>
+      </div>
+    
+      <div class="blog-section">
+        <a class="spdk-link" href="/news/2021/11/22/Performance_Report_Update/"><h2 class="blog-heading spdk-link">21.10 SPDK NVMe-oF RDMA Performance report</h2></a>
+        <div class="blog-author">Nov 22, 2021 • Karol Latecki</div>
+        <div class="content"><p>Performance report document for SPDK NVMe-oF RDMA 21.10 release has been published.</p>
+  <a class="spdk-link" href="/news/2021/11/22/Performance_Report_Update/">Continue...</a></div>
+      </div>
+    
+      <div class="blog-section">
+        <a class="spdk-link" href="/news/2021/11/19/Performance_Report_Update/"><h2 class="blog-heading spdk-link">21.10 SPDK Vhost Performance report</h2></a>
+        <div class="blog-author">Nov 19, 2021 • Karol Latecki</div>
+        <div class="content"><p>Performance report document for SPDK Vhost 21.10 release has been published.</p>
+  <a class="spdk-link" href="/news/2021/11/19/Performance_Report_Update/">Continue...</a></div>
+      </div>
+    
+      <div class="blog-section">
+        <a class="spdk-link" href="/release/2021/10/28/21.10_release/"><h2 class="blog-heading spdk-link">SPDK v21.10: DMA lib, Async NVMe driver, Container scripts</h2></a>
+        <div class="blog-author">Oct 28, 2021 • Tomasz Zawadzki</div>
+        <div class="content"><p>On behalf of the SPDK community I’m pleased to announce the release of <a href="https://github.com/spdk/spdk/releases/tag/v21.10">SPDK 21.10</a>!!</p>
+  <a class="spdk-link" href="/release/2021/10/28/21.10_release/">Continue...</a></div>
+      </div>
+    
+      <div class="blog-section">
+        <a class="spdk-link" href="/news/2021/09/28/bpf_tracing_with_spdk/"><h2 class="blog-heading spdk-link">BPF tracing with SPDK</h2></a>
+        <div class="blog-author">Sep 28, 2021 • Konrad Sztyber</div>
+        <div class="content"><p>Recently, in the <a href="https://spdk.io/release/2021/07/29/21.07_release">v21.07 release</a>, SPDK got
+support for BPF tracing.  It consists of a set of scripts and static probes defined within the SPDK
+libraries giving the user yet another way to inspect SPDK-based applications. SPDK already had a
+tracing library, called <code class="language-plaintext highlighter-rouge">libtrace</code>, for a long time.  BPF tracing isn’t supposed to replace it, but
+rather complement it.  Both have slightly different capabilities - <code class="language-plaintext highlighter-rouge">libtrace</code> has significantly
+lower overhead, but is less flexible.  BPF traces, on the other hand, are more costly (they require
+a kernel trap), but are more robust and can even be attached dynamically, without having to define
+the probes in code.</p>
+  <a class="spdk-link" href="/news/2021/09/28/bpf_tracing_with_spdk/">Continue...</a></div>
+      </div>
+    
+      <div class="blog-section">
+        <a class="spdk-link" href="/news/2021/09/23/Performance_Report_Update/"><h2 class="blog-heading spdk-link">21.07 SPDK NVMe Bdev Performance report</h2></a>
+        <div class="blog-author">Sep 23, 2021 • Karol Latecki</div>
+        <div class="content"><p>Performance report document for SPDK NVMe Bdev 21.07 release has been published.</p>
+  <a class="spdk-link" href="/news/2021/09/23/Performance_Report_Update/">Continue...</a></div>
+      </div>
+    
+      <div class="blog-section">
+        <a class="spdk-link" href="/news/2021/09/22/Performance_Report_Update/"><h2 class="blog-heading spdk-link">21.07 SPDK NVMe-oF TCP Performance report</h2></a>
+        <div class="blog-author">Sep 22, 2021 • Karol Latecki</div>
+        <div class="content"><p>Performance report document for SPDK NVMe-oF TCP 21.07 release has been published.</p>
+  <a class="spdk-link" href="/news/2021/09/22/Performance_Report_Update/">Continue...</a></div>
+      </div>
+    
+      <div class="blog-section">
+        <a class="spdk-link" href="/news/2021/09/08/Performance_Report_Update/"><h2 class="blog-heading spdk-link">21.07 SPDK NVMe-oF RDMA Performance report</h2></a>
+        <div class="blog-author">Sep 8, 2021 • Karol Latecki</div>
+        <div class="content"><p>Performance report document for SPDK NVMe-oF RDMA 21.07 release has been published.</p>
+  <a class="spdk-link" href="/news/2021/09/08/Performance_Report_Update/">Continue...</a></div>
+      </div>
+    
+      <div class="blog-section">
+        <a class="spdk-link" href="/news/2021/09/01/Performance_Report_Update/"><h2 class="blog-heading spdk-link">21.07 SPDK Vhost Performance report</h2></a>
+        <div class="blog-author">Sep 1, 2021 • Karol Latecki</div>
+        <div class="content"><p>Performance report document for SPDK Vhost 21.07 release has been published.</p>
+  <a class="spdk-link" href="/news/2021/09/01/Performance_Report_Update/">Continue...</a></div>
+      </div>
+    
+      <div class="blog-section">
+        <a class="spdk-link" href="/release/2021/07/29/21.07_release/"><h2 class="blog-heading spdk-link">SPDK v21.07: Kernel DSA, Init lib, Userspace DTrace</h2></a>
+        <div class="blog-author">Jul 29, 2021 • Tomasz Zawadzki</div>
+        <div class="content"><p>On behalf of the SPDK community I’m pleased to announce the release of <a href="https://github.com/spdk/spdk/releases/tag/v21.07">SPDK 21.07</a>!!</p>
+  <a class="spdk-link" href="/release/2021/07/29/21.07_release/">Continue...</a></div>
+      </div>
+    
+      <div class="blog-section">
+        <a class="spdk-link" href="/news/2021/07/12/Performance_Report_Update/"><h2 class="blog-heading spdk-link">21.04 SPDK Performance reports</h2></a>
+        <div class="blog-author">Jul 12, 2021 • Karol Latecki</div>
+        <div class="content"><p>Performance report documents for SPDK 21.04 release have been published.</p>
+  <a class="spdk-link" href="/news/2021/07/12/Performance_Report_Update/">Continue...</a></div>
+      </div>
+    
+      <div class="blog-section">
+        <a class="spdk-link" href="/news/2021/06/25/us_virtual_forum_presentations/"><h2 class="blog-heading spdk-link">Presentations: SPDK, PMDK and Intel® VTune™ Amplifier Virtual Forum on June 22-24, 2021</h2></a>
+        <div class="blog-author">Jun 25, 2021 • John Kariuki</div>
+        <div class="content"><p>Thank you all for attending the SPDK, PMDK and Intel® Performance Analyzers Virtual Forum. We had a very successful Virtual Forum this year with awesome content and presenters. You can download the presentations using the links below. Please note these are static PDFs, but many of the presentations made extensive use of animations, so something may be lost in translation.</p>
+  <a class="spdk-link" href="/news/2021/06/25/us_virtual_forum_presentations/">Continue...</a></div>
+      </div>
+    
+      <div class="blog-section">
+        <a class="spdk-link" href="/news/2021/05/18/us_virtual_forum_announce/"><h2 class="blog-heading spdk-link">Announcing The 2021 US SPDK, PMDK and Intel® Performance Analyzers Virtual Forum!</h2></a>
+        <div class="blog-author">May 18, 2021 • John Kariuki</div>
+        <div class="content"><h1 id="save-the-date">Save The Date</h1>
+  <a class="spdk-link" href="/news/2021/05/18/us_virtual_forum_announce/">Continue...</a></div>
+      </div>
+    
+      <div class="blog-section">
+        <a class="spdk-link" href="/news/2021/05/06/nvme-80m-iops/"><h2 class="blog-heading spdk-link">What? 80 Million I/O Per Second with a Standard 2U Intel® Xeon® System!</h2></a>
+        <div class="blog-author">May 6, 2021 • John Kariuki</div>
+        <div class="content"><p>The adoption of NVM Express® SSDs in the data center is unleashing performance
+that was unprecedented just a few years ago. Since the inception of the SPDK project,
+the community has demonstrated that it’s possible to build systems capable of
+tens of millions of IOPS (I/O operations per second) using commodity hardware.
+Over the last couple of years, we have demonstrated systems capable of over
+10 million IOPS (using a single CPU core!), but now we’re ready to significantly
+advance the state of the art. Yes, 80 Million IOPS.</p>
+  <a class="spdk-link" href="/news/2021/05/06/nvme-80m-iops/">Continue...</a></div>
+      </div>
+    
+      <div class="blog-section">
+        <a class="spdk-link" href="/news/2021/05/04/vfio-user/"><h2 class="blog-heading spdk-link">VFIO-USER: A new virtualization protocol</h2></a>
+        <div class="blog-author">May 4, 2021 • Ben Walker</div>
+        <div class="content"><p>We’re excited to announce support for NVMe over vfio-user, a technology that allows SPDK to present fully emulated NVMe devices into virtual machines. Virtual machines can leverage their existing NVMe drivers to communicate with the devices and data is transferred efficiently to or from SPDK using shared memory. In other words, just like vhost-user but able to emulate NVMe devices instead of virtio-blk or virtio-scsi devices.</p>
+  <a class="spdk-link" href="/news/2021/05/04/vfio-user/">Continue...</a></div>
+      </div>
+    
+      <div class="blog-section">
+        <a class="spdk-link" href="/release/2021/04/29/21.04_release/"><h2 class="blog-heading spdk-link">SPDK v21.04: ZNS NVMe bdev, PMR, ADQ initiator, RPM</h2></a>
+        <div class="blog-author">Apr 29, 2021 • Tomasz Zawadzki</div>
+        <div class="content"><p>On behalf of the SPDK community I’m pleased to announce the release of <a href="https://github.com/spdk/spdk/releases/tag/v21.04">SPDK 21.04</a>!!</p>
+  <a class="spdk-link" href="/release/2021/04/29/21.04_release/">Continue...</a></div>
+      </div>
+    
+      <div class="blog-section">
+        <a class="spdk-link" href="/news/2021/04/22/Performance_Report_Update/"><h2 class="blog-heading spdk-link">21.01 SPDK NVMe Bdev Performance Report</h2></a>
+        <div class="blog-author">Apr 22, 2021 • Karol Latecki</div>
+        <div class="content"><p>New performance report for SPDK NVMe Bdev has been published.</p>
+  <a class="spdk-link" href="/news/2021/04/22/Performance_Report_Update/">Continue...</a></div>
+      </div>
+    
+      <div class="blog-section">
+        <a class="spdk-link" href="/news/2021/04/09/Performance_Report_Update/"><h2 class="blog-heading spdk-link">21.01 SPDK Vhost Performance Report</h2></a>
+        <div class="blog-author">Apr 9, 2021 • Karol Latecki</div>
+        <div class="content"><p>New performance report for SPDK Vhost has been published.</p>
+  <a class="spdk-link" href="/news/2021/04/09/Performance_Report_Update/">Continue...</a></div>
+      </div>
+    
+      <div class="blog-section">
+        <a class="spdk-link" href="/spdk_top/2021/03/31/spdk_top_new_in_21_01/"><h2 class="blog-heading spdk-link">spdk_top - what's new in 21.01</h2></a>
+        <div class="blog-author">Mar 31, 2021 • Krzysztof Karaś</div>
+        <div class="content"><p>In SPDK’s <a href="https://github.com/spdk/spdk/releases/tag/v21.01">21.01</a> release <code class="language-plaintext highlighter-rouge">spdk_top</code> received a few improvements that we’re excited to share.</p>
+  <a class="spdk-link" href="/spdk_top/2021/03/31/spdk_top_new_in_21_01/">Continue...</a></div>
+      </div>
+    
+      <div class="blog-section">
+        <a class="spdk-link" href="/news/2021/03/29/Performance_Report_Update/"><h2 class="blog-heading spdk-link">21.01 SPDK NVMe-oF TCP &amp; RDMA Performance Reports</h2></a>
+        <div class="blog-author">Mar 29, 2021 • Karol Latecki</div>
+        <div class="content"><p>New performance report for SPDK NVMe-oF TCP and SPDK NVMe-oF RDMA have been published.</p>
+  <a class="spdk-link" href="/news/2021/03/29/Performance_Report_Update/">Continue...</a></div>
+      </div>
+    
+      <div class="blog-section">
+        <a class="spdk-link" href="/news/2021/03/17/spdk_symbol/"><h2 class="blog-heading spdk-link">Introducing the SPDK symbol</h2></a>
+        <div class="blog-author">Mar 17, 2021 • John Kariuki</div>
+        <div class="content"><p>We’re excited to announce that SPDK has its very own symbol:</p>
+  <a class="spdk-link" href="/news/2021/03/17/spdk_symbol/">Continue...</a></div>
+      </div>
+    
+      <div class="blog-section">
+        <a class="spdk-link" href="/news/2021/03/11/spdk_on_windows/"><h2 class="blog-heading spdk-link">SPDK on Windows (Experimental)</h2></a>
+        <div class="blog-author">Mar 11, 2021 • Nick Connolly</div>
+        <div class="content"><p>Yes, it <em>really does</em> say Windows and SPDK in the same sentence!
+It is now possible to experiment with SPDK on Windows.</p>
+  <a class="spdk-link" href="/news/2021/03/11/spdk_on_windows/">Continue...</a></div>
+      </div>
+    
+      <div class="blog-section">
+        <a class="spdk-link" href="/release/2021/03/08/21.01.1_release/"><h2 class="blog-heading spdk-link">SPDK v21.01.1: Maintenance Releases</h2></a>
+        <div class="blog-author">Mar 8, 2021 • Tomasz Zawadzki</div>
+        <div class="content"><p>On behalf of the SPDK community I’m pleased to announce the release of <a href="https://github.com/spdk/spdk/releases/tag/v21.01.1">SPDK 21.01.1</a> LTS.</p>
+  <a class="spdk-link" href="/release/2021/03/08/21.01.1_release/">Continue...</a></div>
+      </div>
+    
+      <div class="blog-section">
+        <a class="spdk-link" href="/release/2021/01/29/21.01_release/"><h2 class="blog-heading spdk-link">SPDK v21.01 LTS: Dynamic scheduler, vfio-user, ZNS Zone Append</h2></a>
+        <div class="blog-author">Jan 29, 2021 • Tomasz Zawadzki</div>
+        <div class="content"><p>On behalf of the SPDK community I’m pleased to announce the release of <a href="https://github.com/spdk/spdk/releases/tag/v21.01">SPDK 21.01 LTS</a>!!</p>
+  <a class="spdk-link" href="/release/2021/01/29/21.01_release/">Continue...</a></div>
+      </div>
+    
+      <div class="blog-section">
+        <a class="spdk-link" href="/news/2021/01/19/Performance_Report_Update/"><h2 class="blog-heading spdk-link">20.10 SPDK NVMe Bdev Performance Report</h2></a>
+        <div class="blog-author">Jan 19, 2021 • Karol Latecki</div>
+        <div class="content"><p>New performance report for SPDK NVMe Bdev has been published.</p>
+  <a class="spdk-link" href="/news/2021/01/19/Performance_Report_Update/">Continue...</a></div>
+      </div>
+    
+      <div class="blog-section">
+        <a class="spdk-link" href="/news/2020/12/17/Performance_Report_Update/"><h2 class="blog-heading spdk-link">20.10 SPDK NVMe-oF RDMA Performance Report</h2></a>
+        <div class="blog-author">Dec 17, 2020 • Karol Latecki</div>
+        <div class="content"><p>New performance report for SPDK NVMe-OF RDMA has been published.</p>
+  <a class="spdk-link" href="/news/2020/12/17/Performance_Report_Update/">Continue...</a></div>
+      </div>
+    
+      <div class="blog-section">
+        <a class="spdk-link" href="/news/2020/12/11/Performance_Report_Update/"><h2 class="blog-heading spdk-link">20.10 SPDK NVMe-oF TCP Performance Report</h2></a>
+        <div class="blog-author">Dec 11, 2020 • Karol Latecki</div>
+        <div class="content"><p>New performance report for SPDK NVMe-OF TCP has been published.</p>
+  <a class="spdk-link" href="/news/2020/12/11/Performance_Report_Update/">Continue...</a></div>
+      </div>
+    
+      <div class="blog-section">
+        <a class="spdk-link" href="/news/2020/11/25/Performance_Report_Update/"><h2 class="blog-heading spdk-link">20.10 SPDK Vhost Performance Report</h2></a>
+        <div class="blog-author">Nov 25, 2020 • Karol Latecki</div>
+        <div class="content"><p>New performance report for SPDK Vhost has been published.</p>
+  <a class="spdk-link" href="/news/2020/11/25/Performance_Report_Update/">Continue...</a></div>
+      </div>
+    
+      <div class="blog-section">
+        <a class="spdk-link" href="/news/2020/11/22/prc_virtual_forum_presentations/"><h2 class="blog-heading spdk-link">Presentations: 2020 PRC SPDK, PMDK and Intel® VTune™ Profiler Virtual Forum on November 14, 2020</h2></a>
+        <div class="blog-author">Nov 22, 2020 • Gang Cao</div>
+        <div class="content"><p>Thank you all for attending the 2020 PRC SPDK, PMDK and Intel® VTune™ Profiler Virtual Forum. We had a very successful Virtual Forum this year with awesome content and presenters. You can download the presentations using the links below. Please note these are static PDFs, but many of the presentations made extensive use of animations, so something may be lost in translation.</p>
+  <a class="spdk-link" href="/news/2020/11/22/prc_virtual_forum_presentations/">Continue...</a></div>
+      </div>
+    
+      <div class="blog-section">
+        <a class="spdk-link" href="/release/2020/10/30/20.10_release/"><h2 class="blog-heading spdk-link">SPDK v20.10: NVMe-oF multipath, NVMe ZNS, iSCSI login redirection</h2></a>
+        <div class="blog-author">Oct 30, 2020 • Tomasz Zawadzki</div>
+        <div class="content"><p>On behalf of the SPDK community I’m pleased to announce the release of <a href="https://github.com/spdk/spdk/releases/tag/v20.10">SPDK 20.10</a>!</p>
+  <a class="spdk-link" href="/release/2020/10/30/20.10_release/">Continue...</a></div>
+      </div>
+    
+      <div class="blog-section">
+        <a class="spdk-link" href="/news/2020/10/22/prc_virtual_forum_announce/"><h2 class="blog-heading spdk-link">Announcing The 2020 PRC SPDK, PMDK and VTune Virtual Forum!</h2></a>
+        <div class="blog-author">Oct 22, 2020 • Gang Cao</div>
+        <div class="content"><div class="well">
+<h3>Save The Date</h3>
+<p>
+2020 Storage Performance Development Kit (SPDK), Persistent Memory Development Kit (PMDK) and Intel® Vtune Amplifier Virtual Forum<br />
+November 14th<br />
+</p>
+</div>
+  <a class="spdk-link" href="/news/2020/10/22/prc_virtual_forum_announce/">Continue...</a></div>
+      </div>
+    
+      <div class="blog-section">
+        <a class="spdk-link" href="/news/2020/09/10/Performance_Report_Update/"><h2 class="blog-heading spdk-link">20.07 SPDK NVMe-oF TCP Performance Report</h2></a>
+        <div class="blog-author">Sep 10, 2020 • Karol Latecki</div>
+        <div class="content"><p>New performance report for SPDK NVMe-oF TCP has been published.</p>
+  <a class="spdk-link" href="/news/2020/09/10/Performance_Report_Update/">Continue...</a></div>
+      </div>
+    
+      <div class="blog-section">
+        <a class="spdk-link" href="/news/2020/09/02/SPDK-Whitepapers/"><h2 class="blog-heading spdk-link">Recent Technical Whitepapers Referencing SPDK</h2></a>
+        <div class="blog-author">Sep 2, 2020 • Gang Cao</div>
+        <div class="content"><p>Several companies have recently published whitepapers referencing SPDK.</p>
+  <a class="spdk-link" href="/news/2020/09/02/SPDK-Whitepapers/">Continue...</a></div>
+      </div>
+    
+      <div class="blog-section">
+        <a class="spdk-link" href="/news/2020/08/25/Performance_Report_Update/"><h2 class="blog-heading spdk-link">20.07 SPDK NVMe-oF RDMA Performance Report</h2></a>
+        <div class="blog-author">Aug 25, 2020 • Karol Latecki</div>
+        <div class="content"><p>New performance report for SPDK NVMe-oF RDMA has been published.</p>
+  <a class="spdk-link" href="/news/2020/08/25/Performance_Report_Update/">Continue...</a></div>
+      </div>
+    
+      <div class="blog-section">
+        <a class="spdk-link" href="/news/2020/08/24/Performance_Report_Update/"><h2 class="blog-heading spdk-link">20.07 SPDK Vhost Performance Report</h2></a>
+        <div class="blog-author">Aug 24, 2020 • Karol Latecki</div>
+        <div class="content"><p>New performance report for SPDK Vhost has been published.</p>
+  <a class="spdk-link" href="/news/2020/08/24/Performance_Report_Update/">Continue...</a></div>
+      </div>
+    
+      <div class="blog-section">
+        <a class="spdk-link" href="/release/2020/07/31/20.07_release/"><h2 class="blog-heading spdk-link">SPDK v20.07: SPDK CSI driver, new accel_fw commands, I/O abort support</h2></a>
+        <div class="blog-author">Jul 31, 2020 • Tomasz Zawadzki</div>
+        <div class="content"><p>On behalf of the SPDK community I’m pleased to announce the release of <a href="https://github.com/spdk/spdk/releases/tag/v20.07">SPDK 20.07</a>!</p>
+  <a class="spdk-link" href="/release/2020/07/31/20.07_release/">Continue...</a></div>
+      </div>
+    
+      <div class="blog-section">
+        <a class="spdk-link" href="/news/2020/06/30/us_virtual_forum_presentations/"><h2 class="blog-heading spdk-link">Presentations: SPDK, PMDK and Intel® VTune™ Amplifier Virtual Forum on June 23-25, 2020</h2></a>
+        <div class="blog-author">Jun 30, 2020 • John Kariuki</div>
+        <div class="content"><p>Thank you all for attending the SPDK, PMDK and Intel® VTune™ Amplifier Virtual Forum. We had a very successful Virtual Forum this year with awesome content and presenters. You can download the presentations using the links below. Please note these are static PDFs, but many of the presentations made extensive use of animations, so something may be lost in translation.</p>
+  <a class="spdk-link" href="/news/2020/06/30/us_virtual_forum_presentations/">Continue...</a></div>
+      </div>
+    
+      <div class="blog-section">
+        <a class="spdk-link" href="/news/2020/06/24/Performance_Report_Update/"><h2 class="blog-heading spdk-link">20.04 SPDK NVMe-oF RDMA Performance Report</h2></a>
+        <div class="blog-author">Jun 24, 2020 • Karol Latecki</div>
+        <div class="content"><p>New performance report for SPDK NVMe-oF has been published.</p>
+  <a class="spdk-link" href="/news/2020/06/24/Performance_Report_Update/">Continue...</a></div>
+      </div>
+    
+      <div class="blog-section">
+        <a class="spdk-link" href="/news/2020/06/15/Performance_Report_Update/"><h2 class="blog-heading spdk-link">20.04 SPDK Vhost Performance Report</h2></a>
+        <div class="blog-author">Jun 15, 2020 • Karol Latecki</div>
+        <div class="content"><p>New performance report for SPDK Vhost has been published.</p>
+  <a class="spdk-link" href="/news/2020/06/15/Performance_Report_Update/">Continue...</a></div>
+      </div>
+    
+      <div class="blog-section">
+        <a class="spdk-link" href="/news/2020/06/10/Performance_Report_Update/"><h2 class="blog-heading spdk-link">20.01 SPDK NVMe-oF RDMA Performance Report</h2></a>
+        <div class="blog-author">Jun 10, 2020 • Karol Latecki</div>
+        <div class="content"><p>New performance report for SPDK NVMe-oF RDMA has been published.</p>
+  <a class="spdk-link" href="/news/2020/06/10/Performance_Report_Update/">Continue...</a></div>
+      </div>
+    
+      <div class="blog-section">
+        <a class="spdk-link" href="/news/2020/06/09/Performance_Report_Update/"><h2 class="blog-heading spdk-link">20.04 SPDK NVMe-oF TCP Performance Report</h2></a>
+        <div class="blog-author">Jun 9, 2020 • Karol Latecki</div>
+        <div class="content"><p>New performance report for SPDK NVMe-oF TCP has been published.</p>
+  <a class="spdk-link" href="/news/2020/06/09/Performance_Report_Update/">Continue...</a></div>
+      </div>
+    
+      <div class="blog-section">
+        <a class="spdk-link" href="/release/2020/06/01/20.01.2_20.04.1_release/"><h2 class="blog-heading spdk-link">SPDK v20.01.2 and v20.04.1: Maintenance Releases</h2></a>
+        <div class="blog-author">Jun 1, 2020 • Tomasz Zawadzki</div>
+        <div class="content"><p>On behalf of the SPDK community I’m pleased to announce the releases of <a href="https://github.com/spdk/spdk/releases/tag/v20.01.2">SPDK 20.01.2</a> LTS
+and <a href="https://github.com/spdk/spdk/releases/tag/v20.04.1">SPDK 20.04.1</a>!</p>
+  <a class="spdk-link" href="/release/2020/06/01/20.01.2_20.04.1_release/">Continue...</a></div>
+      </div>
+    
+      <div class="blog-section">
+        <a class="spdk-link" href="/news/2020/05/28/us_virtual_forum_announce/"><h2 class="blog-heading spdk-link">Announcing The 2020 US SPDK, PMDK and VTune Virtual Forum!</h2></a>
+        <div class="blog-author">May 28, 2020 • John Kariuki</div>
+        <div class="content"><div class="well">
+<h3>Save The Date</h3>
+<p>
+2020 Storage Performance Development Kit (SPDK), Persistent Memory Development
+Kit (PMDK) and Intel® Vtune Amplifier Virtual Forum<br />
+June 23rd-25th<br />
+</p>
+</div>
+  <a class="spdk-link" href="/news/2020/05/28/us_virtual_forum_announce/">Continue...</a></div>
+      </div>
+    
+      <div class="blog-section">
+        <a class="spdk-link" href="/news/2020/05/06/Performance_Report_Update/"><h2 class="blog-heading spdk-link">20.01 SPDK NVMe-oF TCP Performance Report</h2></a>
+        <div class="blog-author">May 6, 2020 • Karol Latecki</div>
+        <div class="content"><p>New performance report for SPDK NVMe-oF TCP has been published.</p>
+  <a class="spdk-link" href="/news/2020/05/06/Performance_Report_Update/">Continue...</a></div>
+      </div>
+    
+      <div class="blog-section">
+        <a class="spdk-link" href="/release/2020/04/30/20.04_release/"><h2 class="blog-heading spdk-link">SPDK v20.04: SPDK Top, IDXD, NVMe qpair groups</h2></a>
+        <div class="blog-author">Apr 30, 2020 • Tomasz Zawadzki</div>
+        <div class="content"><p>On behalf of the SPDK community I’m pleased to announce the release of <a href="https://github.com/spdk/spdk/releases/tag/v20.04">SPDK 20.04</a>!</p>
+  <a class="spdk-link" href="/release/2020/04/30/20.04_release/">Continue...</a></div>
+      </div>
+    
+      <div class="blog-section">
+        <a class="spdk-link" href="/news/2020/04/27/spdk_top/"><h2 class="blog-heading spdk-link">New spdk_top application</h2></a>
+        <div class="blog-author">Apr 27, 2020 • Maciej Szwed</div>
+        <div class="content"><p>A new application has just joined SPDK family - spdk_top. Designed to resemble standard
+top, spdk_top provides additional insight into SPDK cores, lightweight threads, and
+pollers. Have you ever wondered which core is used most by your SPDK instance? Are you
+building your own bdev or library and want to know if your code is running efficiently?
+Are your new pollers busy most of the time? You can check that now with spdk_top and
+tune your implementation with the provided information to get even more from SPDK!</p>
+  <a class="spdk-link" href="/news/2020/04/27/spdk_top/">Continue...</a></div>
+      </div>
+    
+      <div class="blog-section">
+        <a class="spdk-link" href="/news/2020/04/14/Performance_Report_Update/"><h2 class="blog-heading spdk-link">20.01 SPDK Vhost Performance Report</h2></a>
+        <div class="blog-author">Apr 14, 2020 • Karol Latecki</div>
+        <div class="content"><p>New performance report for SPDK Vhost has been published.</p>
+  <a class="spdk-link" href="/news/2020/04/14/Performance_Report_Update/">Continue...</a></div>
+      </div>
+    
+      <div class="blog-section">
+        <a class="spdk-link" href="/release/2020/03/20/20.01.1_release/"><h2 class="blog-heading spdk-link">SPDK v20.01.1: Maintenance LTS Release</h2></a>
+        <div class="blog-author">Mar 20, 2020 • Tomasz Zawadzki</div>
+        <div class="content"><p>On behalf of the SPDK community I’m pleased to announce the release of <a href="https://github.com/spdk/spdk/releases/tag/v20.01.1">SPDK 20.01.1</a> LTS!</p>
+  <a class="spdk-link" href="/release/2020/03/20/20.01.1_release/">Continue...</a></div>
+      </div>
+    
+      <div class="blog-section">
+        <a class="spdk-link" href="/news/2020/02/28/us_summit_announce/"><h2 class="blog-heading spdk-link">Rescheduling The 2020 US SPDK, PMDK and VTune Summit!</h2></a>
+        <div class="blog-author">Feb 28, 2020 • John Kariuki</div>
+        <div class="content"><p>We are rescheduling the SPDK, PMDK and VTune™ Profiler Summit for later in 2020
+due to the continued concern over the spread of the coronavirus.</p>
+  <a class="spdk-link" href="/news/2020/02/28/us_summit_announce/">Continue...</a></div>
+      </div>
+    
+      <div class="blog-section">
+        <a class="spdk-link" href="/release/2020/01/30/20.01_release/"><h2 class="blog-heading spdk-link">SPDK v20.01: Optimized thin provisioning, FTL bdev, VMD hot plug, FUSED support</h2></a>
+        <div class="blog-author">Jan 30, 2020 • Tomasz Zawadzki</div>
+        <div class="content"><p>On behalf of the SPDK community I’m pleased to announce the release of <a href="https://github.com/spdk/spdk/releases/tag/v20.01">SPDK 20.01</a>!</p>
+  <a class="spdk-link" href="/release/2020/01/30/20.01_release/">Continue...</a></div>
+      </div>
+    
+      <div class="blog-section">
+        <a class="spdk-link" href="/news/2020/01/28/us_summit_announce/"><h2 class="blog-heading spdk-link">Announcing The 2020 US SPDK, PMDK and VTune Summit!</h2></a>
+        <div class="blog-author">Jan 28, 2020 • John Kariuki</div>
+        <div class="content"><div class="well">
+<h3>Save The Date</h3>
+<p>
+2020 Storage Performance Development Kit (SPDK), Persistent Memory Development
+Kit (PMDK) and Intel® Vtune Amplifier Summit<br />
+April 21st-22nd<br />
+Dolce Hayes Mansion, San Jose<br />
+<a href="https://goo.gl/maps/mj9sYL9Un232">200 Edenvale Ave, San Jose, CA 95136</a><br />
+<a href="http://www.hayesmansion.com">http://www.hayesmansion.com</a>
+</p>
+</div>
+  <a class="spdk-link" href="/news/2020/01/28/us_summit_announce/">Continue...</a></div>
+      </div>
+    
+      <div class="blog-section">
+        <a class="spdk-link" href="/news/2020/01/23/Performance_Report_Update/"><h2 class="blog-heading spdk-link">19.10 SPDK SPDK NVMe-oF RDMA Performance Report</h2></a>
+        <div class="blog-author">Jan 23, 2020 • Karol Latecki</div>
+        <div class="content"><p>New performance report for SPDK NVMe-oF RDMA has been published.</p>
+  <a class="spdk-link" href="/news/2020/01/23/Performance_Report_Update/">Continue...</a></div>
+      </div>
+    
+      <div class="blog-section">
+        <a class="spdk-link" href="/release/2020/01/02/19.10.1_release/"><h2 class="blog-heading spdk-link">SPDK v19.10.1: Maintenance Release</h2></a>
+        <div class="blog-author">Jan 2, 2020 • Tomasz Zawadzki</div>
+        <div class="content"><p>On behalf of the SPDK community I’m pleased to announce the release of <a href="https://github.com/spdk/spdk/releases/tag/v19.10.1">SPDK 19.10.1</a>!</p>
+  <a class="spdk-link" href="/release/2020/01/02/19.10.1_release/">Continue...</a></div>
+      </div>
+    
+      <div class="blog-section">
+        <a class="spdk-link" href="/news/2019/12/10/new-core-maintainer/"><h2 class="blog-heading spdk-link">New Core Maintainer - Alexey Marchuk</h2></a>
+        <div class="blog-author">Dec 10, 2019 • Jim Harris</div>
+        <div class="content"><p>The SPDK project has a team of core maintainers who are responsible for providing
+technical oversight for the SPDK project, including final review and merging of
+patches into the SPDK code base. As the SPDK project continues to grow, the core
+maintainer team also needs to grow by adding contributors who are already
+demonstrating technical skill and leadership within the project. So I am pleased
+to announce that we are adding Alexey Marchuk to the core maintainer team!</p>
+  <a class="spdk-link" href="/news/2019/12/10/new-core-maintainer/">Continue...</a></div>
+      </div>
+    
+      <div class="blog-section">
+        <a class="spdk-link" href="/news/2019/12/06/Performance_Report_Update/"><h2 class="blog-heading spdk-link">19.10 SPDK SPDK NVMe-oF TCP Performance Report</h2></a>
+        <div class="blog-author">Dec 6, 2019 • Karol Latecki</div>
+        <div class="content"><p>New performance report for SPDK NVMe-oF TCP has been published.</p>
+  <a class="spdk-link" href="/news/2019/12/06/Performance_Report_Update/">Continue...</a></div>
+      </div>
+    
+      <div class="blog-section">
+        <a class="spdk-link" href="/news/2019/12/03/Performance_Report_Update/"><h2 class="blog-heading spdk-link">19.10 SPDK Vhost Performance Report</h2></a>
+        <div class="blog-author">Dec 3, 2019 • Karol Latecki</div>
+        <div class="content"><p>New performance report for SPDK Vhost has been published.</p>
+  <a class="spdk-link" href="/news/2019/12/03/Performance_Report_Update/">Continue...</a></div>
+      </div>
+    
+      <div class="blog-section">
+        <a class="spdk-link" href="/release/2019/10/31/19.10_release/"><h2 class="blog-heading spdk-link">SPDK v19.10: NVMe character devices, Zoned bdev API, Opal support</h2></a>
+        <div class="blog-author">Oct 31, 2019 • Tomasz Zawadzki</div>
+        <div class="content"><p>On behalf of the SPDK community I’m pleased to announce the release of <a href="https://github.com/spdk/spdk/releases/tag/v19.10">SPDK 19.10</a>!</p>
+  <a class="spdk-link" href="/release/2019/10/31/19.10_release/">Continue...</a></div>
+      </div>
+    
+      <div class="blog-section">
+        <a class="spdk-link" href="/news/2019/10/23/Performance_Report_Update/"><h2 class="blog-heading spdk-link">19.07 SPDK NVMe-oF TCP &amp; Vhost Performance Reports</h2></a>
+        <div class="blog-author">Oct 23, 2019 • Karol Latecki</div>
+        <div class="content"><p>New performance reports for SPDK NVMe-oF TCP transport and for Vhost have been published.</p>
+  <a class="spdk-link" href="/news/2019/10/23/Performance_Report_Update/">Continue...</a></div>
+      </div>
+    
+      <div class="blog-section">
+        <a class="spdk-link" href="/release/2019/09/27/19.07.1_release/"><h2 class="blog-heading spdk-link">SPDK v19.07.1: Maintenance Release</h2></a>
+        <div class="blog-author">Sep 27, 2019 • Tomasz Zawadzki</div>
+        <div class="content"><p>On behalf of the SPDK community I’m pleased to announce the release of <a href="https://github.com/spdk/spdk/releases/tag/v19.07.1">SPDK 19.07.1</a>!</p>
+  <a class="spdk-link" href="/release/2019/09/27/19.07.1_release/">Continue...</a></div>
+      </div>
+    
+      <div class="blog-section">
+        <a class="spdk-link" href="/news/2019/09/24/prc_summit_presentations/"><h2 class="blog-heading spdk-link">Presentations: SPDK, PMDK and Intel® VTune™ Amplifier PRC Summit on September 5-6, 2019</h2></a>
+        <div class="blog-author">Sep 24, 2019 • Gang Cao</div>
+        <div class="content"><p>Thank you all for attending the SPDK, PMDK and Intel® VTune™ Amplifier PRC Summit. We had a very successful summit this year with awesome content and presenters. You can download the presentations including opening, keynotes, technical sessions and hands on labs using the links below. Please note these are static PDFs, but many of the presentations made extensive use of animations, so something may be lost in translation.</p>
+  <a class="spdk-link" href="/news/2019/09/24/prc_summit_presentations/">Continue...</a></div>
+      </div>
+    
+      <div class="blog-section">
+        <a class="spdk-link" href="/news/2019/09/06/dev_meetup/"><h2 class="blog-heading spdk-link">Announcing the 2019 SPDK Developer Meetup Hosted by Nutanix</h2></a>
+        <div class="blog-author">Sep 6, 2019 • Paul Luse</div>
+        <div class="content"><p>Come and join the 3rd annual SPDK Developer Meet-up, this year hosted by Nutanix in beautiful San Jose, CA!
+It’s an excellent opportunity for networking, learning, coding, and generally strengthening the community.
+We’ll be covering all sorts of topics so there’s sure to be something for everyone!</p>
+  <a class="spdk-link" href="/news/2019/09/06/dev_meetup/">Continue...</a></div>
+      </div>
+    
+      <div class="blog-section">
+        <a class="spdk-link" href="/news/2019/08/28/prc_summit_announce/"><h2 class="blog-heading spdk-link">Announcing The PRC SPDK Summit!</h2></a>
+        <div class="blog-author">Aug 28, 2019 • Gang Cao</div>
+        <div class="content"><div class="well">
+<h3>Save The Date</h3>
+<p>
+2019 Storage Performance Development Kit (SPDK) PRC Summit<br />
+September 5th-6th<br />
+Crowne Plaza Zhongguancun, Beijing<br />
+<a href="https://binged.it/2Zh9pL0">No.106 Zhichun Road, Haidian District, Beijing</a><br />
+<a href="https://www.ihg.com.cn/crowneplaza/hotels/cn/zh/beijing/pegzg/hoteldetail?fromRedirect=true&amp;qSrt=sBR&amp;qIta=99602392&amp;icdv=99602392&amp;glat=SEAR_mdpr-_-Baidu-_-PC-_-Search-_-GC-_-B-GC-CHN-Beijing-PEGZG-_-CHN-Beijing-N-M-_-%E5%8C%97%E4%BA%AC%E4%B8%AD%E5%85%B3%E6%9D%91%E7%9A%87%E5%86%A0%E5%81%87%E6%97%A5&amp;qSlH=PEGZG&amp;setPMCookies=true&amp;qDest=No.%20106%20Zhi%20Chun%20Road,%20Hai%20Dian%20District,%20Beijing,%20BJ,%20CN&amp;cm_mmc=mdpr-_-Baidu-_-PC-_-Search-_-GC-_-B-GC-CHN-Beijing-PEGZG-_-CHN-Beijing-N-M-_-?????????&amp;srb_u=1">Crowne Plaza Zhongguancun</a>
+</p>
+</div>
+  <a class="spdk-link" href="/news/2019/08/28/prc_summit_announce/">Continue...</a></div>
+      </div>
+    
+      <div class="blog-section">
+        <a class="spdk-link" href="/news/2019/08/27/new-core-maintainer/"><h2 class="blog-heading spdk-link">New Core Maintainer - Tomek Zawadzki</h2></a>
+        <div class="blog-author">Aug 27, 2019 • Jim Harris</div>
+        <div class="content"><p>The SPDK project has a team of core maintainers who are responsible for providing
+technical oversight for the SPDK project, including final review and merging of
+patches into the SPDK code base. As the SPDK project continues to grow, the core
+maintainer team also needs to grow by adding contributors who are already
+demonstrating technical skill and leadership within the project. So I am pleased
+to announce that we are adding Tomasz (Tomek) Zawadzki to the core maintainer team!</p>
+  <a class="spdk-link" href="/news/2019/08/27/new-core-maintainer/">Continue...</a></div>
+      </div>
+    
+      <div class="blog-section">
+        <a class="spdk-link" href="/release/2019/07/31/19.07_release/"><h2 class="blog-heading spdk-link">SPDK v19.07 Release: NVMe-oF FC Transport, VMD, NVMe-oF Persistent reservations, Bdev I/O with separate metadata</h2></a>
+        <div class="blog-author">Jul 31, 2019 • Tomasz Zawadzki</div>
+        <div class="content"><p>On behalf of the SPDK community I’m pleased to announce the release of <a href="https://github.com/spdk/spdk/releases/tag/v19.07">SPDK 19.07</a>!</p>
+  <a class="spdk-link" href="/release/2019/07/31/19.07_release/">Continue...</a></div>
+      </div>
+    
+      <div class="blog-section">
+        <a class="spdk-link" href="/release/2019/06/19/19.04.1_release/"><h2 class="blog-heading spdk-link">SPDK v19.04.1: Maintenance Release</h2></a>
+        <div class="blog-author">Jun 19, 2019 • Tomasz Zawadzki</div>
+        <div class="content"><p>On behalf of the SPDK community I’m pleased to announce the release of <a href="https://github.com/spdk/spdk/releases/tag/v19.04.1">SPDK 19.04.1</a>!</p>
+  <a class="spdk-link" href="/release/2019/06/19/19.04.1_release/">Continue...</a></div>
+      </div>
+    
+      <div class="blog-section">
+        <a class="spdk-link" href="/news/2019/05/06/nvme/"><h2 class="blog-heading spdk-link">10.39M Storage I/O Per Second From One Thread</h2></a>
+        <div class="blog-author">May 6, 2019 • Ben Walker and Jim Harris</div>
+        <div class="content"><p>Yes, you’re reading that right. That’s <strong>10.39 MILLION</strong> 4KiB random read I/O
+operations per second on a single thread. Mind blown? Don’t believe it? This
+blog post will explain exactly how we’ve done it.</p>
+  <a class="spdk-link" href="/news/2019/05/06/nvme/">Continue...</a></div>
+      </div>
+    
+      <div class="blog-section">
+        <a class="spdk-link" href="/release/2019/04/30/19.04_release/"><h2 class="blog-heading spdk-link">SPDK v19.04: Compression bdev, Notification library, NVMe Opal support</h2></a>
+        <div class="blog-author">Apr 30, 2019 • Tomasz Zawadzki</div>
+        <div class="content"><p>On behalf of the SPDK community I’m pleased to announce the release of <a href="https://github.com/spdk/spdk/releases/tag/v19.04">SPDK 19.04</a>!</p>
+  <a class="spdk-link" href="/release/2019/04/30/19.04_release/">Continue...</a></div>
+      </div>
+    
+      <div class="blog-section">
+        <a class="spdk-link" href="/news/2019/04/24/summit_presentations/"><h2 class="blog-heading spdk-link">Presentations: SPDK, PMDK and Intel® VTune™ Amplifier Summit on April 16-17, 2019</h2></a>
+        <div class="blog-author">Apr 24, 2019 • John Kariuki</div>
+        <div class="content"><p>Thank you all for attending the SPDK, PMDK and Intel® VTune™ Amplifier Summit. We had a very successful SPDK summit this year with awesome content and presenters. You can download the presentations using the links below. Please note these are static PDFs, but many of the presentations made extensive use of animations, so something may be lost in translation.</p>
+  <a class="spdk-link" href="/news/2019/04/24/summit_presentations/">Continue...</a></div>
+      </div>
+    
+      <div class="blog-section">
+        <a class="spdk-link" href="/news/2019/04/10/openstack-release/"><h2 class="blog-heading spdk-link">SPDK and OpenStack</h2></a>
+        <div class="blog-author">Apr 10, 2019 • Maciej Szwed</div>
+        <div class="content"><p>The official OpenStack Stein release has been
+<a href="http://lists.openstack.org/pipermail/openstack-announce/2019-April/002019.html">announced</a>
+and for the first time it includes new SPDK Cinder target
+and volume drivers. This adds support for SPDK NVMe-oF
+target in OpenStack. Details about the OpenStack Cinder
+Block Storage service release can be found in the
+<a href="https://docs.openstack.org/releasenotes/cinder/stein.html">release notes</a>
+and detailed documentation on drivers can be found in the
+<a href="https://docs.openstack.org/cinder/latest/configuration/block-storage/drivers/spdk-volume-driver.html">SPDK Cinder drivers documentation</a>.</p>
+  <a class="spdk-link" href="/news/2019/04/10/openstack-release/">Continue...</a></div>
+      </div>
+    
+      <div class="blog-section">
+        <a class="spdk-link" href="/news/2019/04/03/19011-spdk_perf/"><h2 class="blog-heading spdk-link">19.01.1 SPDK NVMe-oF Performance Report</h2></a>
+        <div class="blog-author">Apr 3, 2019 • Karol Latecki</div>
+        <div class="content"><p>Performance report for SPDK 19.01.1 NVMe-OF has been published in the <a href="https://spdk.io/doc/">Documentation</a> section on <a href="https://spdk.io">www.spdk.io</a>.
+<a href="https://review.spdk.io/download/performance-reports/SPDK_nvmeof_perf_report_19.01.1.pdf">SPDK 19.01.1 NVMe-oF Performance Report</a></p>
+  <a class="spdk-link" href="/news/2019/04/03/19011-spdk_perf/">Continue...</a></div>
+      </div>
+    
+      <div class="blog-section">
+        <a class="spdk-link" href="/release/2019/03/15/19.01.1_release/"><h2 class="blog-heading spdk-link">SPDK v19.01.1: Maintenance Release</h2></a>
+        <div class="blog-author">Mar 15, 2019 • Tomasz Zawadzki</div>
+        <div class="content"><p>On behalf of the SPDK community I’m pleased to announce the release of <a href="https://github.com/spdk/spdk/releases/tag/v19.01.1">SPDK 19.01.1</a>!</p>
+  <a class="spdk-link" href="/release/2019/03/15/19.01.1_release/">Continue...</a></div>
+      </div>
+    
+      <div class="blog-section">
+        <a class="spdk-link" href="/news/2019/02/26/Mention_of_SPDK_on_Oracle_Linux/"><h2 class="blog-heading spdk-link">SPDK Introduction on Oracle Linux</h2></a>
+        <div class="blog-author">Feb 26, 2019 • Lance Hartmann</div>
+        <div class="content"><p>An introduction to the SPDK and its coming availability to Oracle Linux
+was published on Oracle’s Linux <a href="https://blogs.oracle.com/linux/introducing-spdk-for-oracle-linux">blog site</a>.  This will be the first Linux distribution
+that packages SPDK!</p>
+  <a class="spdk-link" href="/news/2019/02/26/Mention_of_SPDK_on_Oracle_Linux/">Continue...</a></div>
+      </div>
+    
+      <div class="blog-section">
+        <a class="spdk-link" href="/news/2019/02/20/summit_announce/"><h2 class="blog-heading spdk-link">Announcing The US SPDK Summit!</h2></a>
+        <div class="blog-author">Feb 20, 2019 • Ben Walker</div>
+        <div class="content"><div class="well">
+<h3>Save The Date</h3>
+<p>
+2019 Storage Performance Development Kit (SPDK) Summit<br />
+April 16th-17th<br />
+Dolce Hayes Mansion, San Jose<br />
+<a href="https://goo.gl/maps/mj9sYL9Un232">200 Edenvale Ave, San Jose, CA 95136</a><br />
+<a href="http://www.hayesmansion.com">http://www.hayesmansion.com</a>
+</p>
+</div>
+  <a class="spdk-link" href="/news/2019/02/20/summit_announce/">Continue...</a></div>
+      </div>
+    
+      <div class="blog-section">
+        <a class="spdk-link" href="/release/2019/02/01/19.01_release/"><h2 class="blog-heading spdk-link">SPDK v19.01: NVMe-oF TCP/IP Transport, Open Channel SSD Flash Translation Layer, Caching bdev based on OCF, ISA-L Support, DIF/DIX library</h2></a>
+        <div class="blog-author">Feb 1, 2019 • Tomasz Zawadzki</div>
+        <div class="content"><p>On behalf of the SPDK community I’m pleased to announce the release of <a href="https://github.com/spdk/spdk/releases/tag/v19.01">SPDK 19.01</a>!</p>
+  <a class="spdk-link" href="/release/2019/02/01/19.01_release/">Continue...</a></div>
+      </div>
+    
+      <div class="blog-section">
+        <a class="spdk-link" href="/release/2018/12/20/18.10.1_release/"><h2 class="blog-heading spdk-link">SPDK v18.10.1: Packaging release</h2></a>
+        <div class="blog-author">Dec 20, 2018 • Tomasz Zawadzki</div>
+        <div class="content"><p>On behalf of the SPDK community I’m pleased to announce the release of <a href="https://github.com/spdk/spdk/releases/tag/v18.10.1">SPDK 18.10.1</a>!</p>
+  <a class="spdk-link" href="/release/2018/12/20/18.10.1_release/">Continue...</a></div>
+      </div>
+    
+      <div class="blog-section">
+        <a class="spdk-link" href="/news/2018/11/15/nvme_tcp/"><h2 class="blog-heading spdk-link">SPDK NVMe-oF TCP Transport</h2></a>
+        <div class="blog-author">Nov 15, 2018 • Jim Harris</div>
+        <div class="content"><p>NVM Express has ratified TCP as a new transport for NVMe-oF!  The announcement can be
+found <a href="https://nvmexpress.org/welcome-nvme-tcp-to-the-nvme-of-family-of-transports/">here</a>.
+Quoting from the NVM Express announcement:</p>
+  <a class="spdk-link" href="/news/2018/11/15/nvme_tcp/">Continue...</a></div>
+      </div>
+    
+      <div class="blog-section">
+        <a class="spdk-link" href="/news/2018/11/08/Performance_Report_Update/"><h2 class="blog-heading spdk-link">Hitachi SPDK NVMe-oF Performance Report</h2></a>
+        <div class="blog-author">Nov 8, 2018 • Shuhei Matsumoto</div>
+        <div class="content"><p>We have been doing some work to evaluate the performance of SPDK and gain some hands-on experience with the SPDK NVMe-oF Target and Initiator.
+The <a href="https://review.spdk.io/download/papers/Hitachi_SPDK_NVMe_oF_Performance_Report.pdf">Hitachi SPDK NVMe-oF Performance Report</a> contains our test configuration and performance results.
+In summary, we observed up to 8x more IOPS/Core with SPDK NVMe-oF Target and Initiator, vs the Linux Kernel, and a 90% reduction in the software latency.
+Many thanks to John Kariuki and the SPDK team.</p>
+  <a class="spdk-link" href="/news/2018/11/08/Performance_Report_Update/">Continue...</a></div>
+      </div>
+    
+      <div class="blog-section">
+        <a class="spdk-link" href="/news/2018/11/07/new-core-maintainers/"><h2 class="blog-heading spdk-link">New Core Maintainer - Darek Stojaczyk</h2></a>
+        <div class="blog-author">Nov 7, 2018 • Jim Harris</div>
+        <div class="content"><p>The SPDK project has a team of core maintainers who are responsible for providing technical
+oversight for the SPDK project, including final review and merging of patches into the SPDK
+code base.  As the SPDK project continues to grow, the core maintainer team needs to grow as
+well.  With that in mind, I am pleased to announce that we are adding Dariusz (Darek)
+Stojaczyk to the core maintainer team!</p>
+  <a class="spdk-link" href="/news/2018/11/07/new-core-maintainers/">Continue...</a></div>
+      </div>
+    
+      <div class="blog-section">
+        <a class="spdk-link" href="/release/2018/10/31/18.10_release/"><h2 class="blog-heading spdk-link">SPDK v18.10: Dynamic memory allocation, Crypto vbdev, jsonrpc-client, SPDKCLI iSCSI and NVMe-oF support</h2></a>
+        <div class="blog-author">Oct 31, 2018 • Tomasz Zawadzki</div>
+        <div class="content"><p>On behalf of the SPDK community I’m pleased to announce the release of <a href="https://github.com/spdk/spdk/releases/tag/v18.10">SPDK 18.10</a>!</p>
+  <a class="spdk-link" href="/release/2018/10/31/18.10_release/">Continue...</a></div>
+      </div>
+    
+      <div class="blog-section">
+        <a class="spdk-link" href="/news/2018/10/28/dev-meetup/"><h2 class="blog-heading spdk-link">The 2018 SPDK Developer Meetup Hosted by NetApp</h2></a>
+        <div class="blog-author">Oct 28, 2018 • Paul Luse</div>
+        <div class="content"><p>This year NetApp hosted the SPDK Developer Meetup in beautiful Sunnyvale CA on 10/16 and 10/17.  HUGE thanks to
+John Meneghini and the rest of the NetApp crew.  We had community members from all over the world present with
+a record breaking attendance of over 30 developers!</p>
+  <a class="spdk-link" href="/news/2018/10/28/dev-meetup/">Continue...</a></div>
+      </div>
+    
+      <div class="blog-section">
+        <a class="spdk-link" href="/news/2018/10/18/Performance_Report_Update/"><h2 class="blog-heading spdk-link">SPDK 18.04 Performance Reports</h2></a>
+        <div class="blog-author">Oct 18, 2018 • John Kariuki</div>
+        <div class="content"><p>The following SPDK 18.04 Performance Reports have been published in the <a href="https://www.spdk.io/doc/">Documentation</a> tab on www.spdk.io.</p>
+  <a class="spdk-link" href="/news/2018/10/18/Performance_Report_Update/">Continue...</a></div>
+      </div>
+    
+      <div class="blog-section">
+        <a class="spdk-link" href="/news/2018/09/06/optane_lab/"><h2 class="blog-heading spdk-link">Test your SPDK application with Intel® Optane™ SSDs</h2></a>
+        <div class="blog-author">Sep 6, 2018 • John Kariuki</div>
+        <div class="content"><p>Intel and Packet are working together to bring free infrastructure for testing and benchmarking with Intel® Optane™ SSDs to the developer community.  This community lab is a perfect fit for the SPDK community that cares about getting the most from their storage applications.  Interested in testing your SPDK application on the world’s most responsive data center SSD?  Head over to <a href="https://www.acceleratewithoptane.com/">Accelerate with Optane</a> for more information, and, once you’re ready, <a href="https://github.com/AccelerateWithOptane/lab/issues">request access</a>.  The lab will provide you with a highly capable bare metal server powered by Intel Xeon® Scalable processors, with three 750GB Intel Optane™ SSD DC P4800X and one 4TB Intel SSD DC P4500 for comparison purposes.</p>
+  <a class="spdk-link" href="/news/2018/09/06/optane_lab/">Continue...</a></div>
+      </div>
+    
+      <div class="blog-section">
+        <a class="spdk-link" href="/news/2018/08/08/dev_meetup/"><h2 class="blog-heading spdk-link">Announcing the 2018 SPDK Developer Meetup hosted by NetApp</h2></a>
+        <div class="blog-author">Aug 8, 2018 • Paul Luse</div>
+        <div class="content"><p>Come and join the 2nd annual SPDK Developer Meetup, this year hosted by NetApp in beautiful Sunnyvale CA! It’s an excellent opportunity for networking, learning and making forward progress on the code and generally making the community more productive. We’ll be covering all sorts of topics but a major theme this year will be NVMeOF (including FC support) so if you’re interested in these topics you won’t want to miss this meet-up.</p>
+  <a class="spdk-link" href="/news/2018/08/08/dev_meetup/">Continue...</a></div>
+      </div>
+    
+      <div class="blog-section">
+        <a class="spdk-link" href="/news/2018/06/13/summit-recap/"><h2 class="blog-heading spdk-link">2018 SPDK US Summit Recap</h2></a>
+        <div class="blog-author">Jun 13, 2018 • Anu Rao</div>
+        <div class="content"><p>Here is a recap of 2018 SPDK Summit at the beautiful Dolce Hayes Mansion, San Jose
+on May 15th and 16th.
+We had a successful event and achieved all of our goals.
+Thanks to the dedication and support of many contributors and great participation
+from SPDK community members.</p>
+  <a class="spdk-link" href="/news/2018/06/13/summit-recap/">Continue...</a></div>
+      </div>
+    
+      <div class="blog-section">
+        <a class="spdk-link" href="/news/2018/06/11/summit_videos/"><h2 class="blog-heading spdk-link">Videos: SPDK PRC Summit on March 23, 2018 at Beijing</h2></a>
+        <div class="blog-author">Jun 11, 2018 • Gang Cao</div>
+        <div class="content"><p>All the videos from the 2018 SPDK PRC Summit are located <a href="https://pan.baidu.com/s/1cYy9RTr1A1xrLJXUSjlhHQ#list/path=%2FSPDK_2018_Beijing_Summit_Video">here</a>. Brief introduction about these videos are also included in the same folder.</p>
+  <a class="spdk-link" href="/news/2018/06/11/summit_videos/">Continue...</a></div>
+      </div>
+    
+      <div class="blog-section">
+        <a class="spdk-link" href="/news/2018/05/31/summit_presentations/"><h2 class="blog-heading spdk-link">2018 SPDK PRC Summit presentations now available</h2></a>
+        <div class="blog-author">May 31, 2018 • Gang Cao</div>
+        <div class="content"><p>Thank you all for attending the SPDK PRC Summit held at March, Beijing, China.
+We had a very successful SPDK summit this year with awesome content and presenters.</p>
+  <a class="spdk-link" href="/news/2018/05/31/summit_presentations/">Continue...</a></div>
+      </div>
+    
+      <div class="blog-section">
+        <a class="spdk-link" href="/news/2018/05/18/summit_presentations/"><h2 class="blog-heading spdk-link">2018 SPDK US Summit presentations now available</h2></a>
+        <div class="blog-author">May 18, 2018 • Anu Rao</div>
+        <div class="content"><p>Thank you all for attending the SPDK Summit.
+We had a very successful SPDK summit this year with awesome content and presenters.</p>
+  <a class="spdk-link" href="/news/2018/05/18/summit_presentations/">Continue...</a></div>
+      </div>
+    
+      <div class="blog-section">
+        <a class="spdk-link" href="/release/2018/04/27/18.04_release/"><h2 class="blog-heading spdk-link">SPDK v18.04: Logical Volume Snapshot/Clone, iSCSI Initiator, Bdev QoS, VPP Userspace TCP/IP</h2></a>
+        <div class="blog-author">Apr 27, 2018 • Prital Shah</div>
+        <div class="content"><p>Today, the SPDK team is proud to announce the <a href="https://github.com/spdk/spdk/releases/tag/v18.04">v18.04 release</a>.</p>
+  <a class="spdk-link" href="/release/2018/04/27/18.04_release/">Continue...</a></div>
+      </div>
+    
+      <div class="blog-section">
+        <a class="spdk-link" href="/news/2018/04/20/spdk_summit_registration/"><h2 class="blog-heading spdk-link">Register Now for the 2018 US SPDK Summit</h2></a>
+        <div class="blog-author">Apr 20, 2018 • Anu Rao and Daniel Verkamp</div>
+        <div class="content"><div class="well">
+<h3><a href="http://www.cvent.com/d/qgqnn3">Register Now</a></h3>
+<p>
+2018 Storage Performance Development Kit (SPDK) Summit<br />
+May 15th -16th<br />
+Dolce Hayes Mansion, San Jose<br />
+<a href="https://goo.gl/maps/mj9sYL9Un232">200 Edenvale Ave, San Jose, CA 95136</a><br />
+<a href="http://www.hayesmansion.com">http://www.hayesmansion.com</a>
+</p>
+</div>
+  <a class="spdk-link" href="/news/2018/04/20/spdk_summit_registration/">Continue...</a></div>
+      </div>
+    
+      <div class="blog-section">
+        <a class="spdk-link" href="/news/2018/04/04/spdk_summit_announce/"><h2 class="blog-heading spdk-link">Announcing The US SPDK Summit!</h2></a>
+        <div class="blog-author">Apr 4, 2018 • Anu Rao</div>
+        <div class="content"><div class="well">
+<h3>Save The Date</h3>
+<p>
+2018 Storage Performance Development Kit (SPDK) Summit<br />
+May 15th -16th<br />
+Dolce Hayes Mansion, San Jose<br />
+<a href="https://goo.gl/maps/mj9sYL9Un232">200 Edenvale Ave, San Jose, CA 95136</a><br />
+<a href="http://www.hayesmansion.com">http://www.hayesmansion.com</a>
+</p>
+</div>
+  <a class="spdk-link" href="/news/2018/04/04/spdk_summit_announce/">Continue...</a></div>
+      </div>
+    
+      <div class="blog-section">
+        <a class="spdk-link" href="/update/2018/03/15/test-hierarchy/"><h2 class="blog-heading spdk-link">SPDK Test Script Hierarchy</h2></a>
+        <div class="blog-author">Mar 15, 2018 • Seth Howell</div>
+        <div class="content"><p>As the SPDK code base has been growing, so has the collection of test scripts
+used by the automated build pool to perform continuous integration testing.
+The SPDK test bed is comprised of a hierarchy of bash scripts which make calls
+to example applications (located under spdk/examples) and tools written for
+testing (located under spdk/test). By running these test scripts and aggregating
+the results, the SPDK automated test pool helps contributors identify
+code errors or continuous integration issues introduced by their patches.</p>
+  <a class="spdk-link" href="/update/2018/03/15/test-hierarchy/">Continue...</a></div>
+      </div>
+    
+      <div class="blog-section">
+        <a class="spdk-link" href="/news/2018/02/20/meetings/"><h2 class="blog-heading spdk-link">New SPDK Community Meetings!</h2></a>
+        <div class="blog-author">Feb 20, 2018 • Paul Luse</div>
+        <div class="content"><p>SPDK Community meetings are open to everyone and all are encouraged to
+participate. Here are the details:</p>
+  <a class="spdk-link" href="/news/2018/02/20/meetings/">Continue...</a></div>
+      </div>
+    
+      <div class="blog-section">
+        <a class="spdk-link" href="/news/2018/02/07/test-timing/"><h2 class="blog-heading spdk-link">How Long Did My Test Take?</h2></a>
+        <div class="blog-author">Feb 7, 2018 • Paul Luse</div>
+        <div class="content"><p>When submitting a new unit test, it’s not necessary to worry too much
+about how long the test takes because there’s no real hardware involved
+so the unit tests execute super-fast.</p>
+  <a class="spdk-link" href="/news/2018/02/07/test-timing/">Continue...</a></div>
+      </div>
+    
+      <div class="blog-section">
+        <a class="spdk-link" href="/release/2018/01/31/18.01_release/"><h2 class="blog-heading spdk-link">SPDK v18.01: Blobstore Thin Provisioning</h2></a>
+        <div class="blog-author">Jan 31, 2018 • Daniel Verkamp</div>
+        <div class="content"><p>The SPDK team is proud to announce the <a href="https://github.com/spdk/spdk/releases/tag/v18.01">v18.01 release</a>.</p>
+  <a class="spdk-link" href="/release/2018/01/31/18.01_release/">Continue...</a></div>
+      </div>
+    
+      <div class="blog-section">
+        <a class="spdk-link" href="/news/2017/12/22/new-core-maintainers/"><h2 class="blog-heading spdk-link">Core Maintainers - New Additions</h2></a>
+        <div class="blog-author">Dec 22, 2017 • Jim Harris</div>
+        <div class="content"><p>The SPDK project has a team of core maintainers who are responsible
+for providing technical oversight for the SPDK project.
+I am pleased to announce that we are adding Shuhei Matsumoto and
+Changpeng Liu to the core maintainer team!</p>
+  <a class="spdk-link" href="/news/2017/12/22/new-core-maintainers/">Continue...</a></div>
+      </div>
+    
+      <div class="blog-section">
+        <a class="spdk-link" href="/release/2017/12/04/17.10_release/"><h2 class="blog-heading spdk-link">SPDK v17.10 and v17.10.1: Logical Volumes</h2></a>
+        <div class="blog-author">Dec 4, 2017 • Daniel Verkamp</div>
+        <div class="content"><p>The SPDK team is proud to announce the v17.10 release,
+as well as the <a href="https://github.com/spdk/spdk/releases/tag/v17.10.1">v17.10.1 release</a>
+(see below for details on the changes between v17.10 and v17.10.1).
+This release adds a major new feature, <a href="https://www.spdk.io/doc/logical_volumes.html">Logical Volumes</a>.</p>
+  <a class="spdk-link" href="/release/2017/12/04/17.10_release/">Continue...</a></div>
+      </div>
+    
+      <div class="blog-section">
+        <a class="spdk-link" href="/news/2017/11/09/dev_meetup/"><h2 class="blog-heading spdk-link">Success! SPDK's First Developer Meetup...</h2></a>
+        <div class="blog-author">Nov 9, 2017 • Paul Luse</div>
+        <div class="content"><p>This week members of the growing SPDK Community met for the first ever SPDK Developer Meetup. Engineers
+from Massachusetts, Arizona, California, Washington, China, Japan and the United Kingdom all came together
+in Chandler, AZ, to meet for 2 days of discussions on everything from NVMe to vhost to the community test
+strategy, roadmap and upcoming improvements.</p>
+  <a class="spdk-link" href="/news/2017/11/09/dev_meetup/">Continue...</a></div>
+      </div>
+    
+      <div class="blog-section">
+        <a class="spdk-link" href="/news/2017/10/13/Performance_Report_Update/"><h2 class="blog-heading spdk-link">Performance Report Section</h2></a>
+        <div class="blog-author">Oct 13, 2017 • Prital Shah</div>
+        <div class="content"><p>Performance Report section has been added under <a href="https://www.spdk.io/doc/">Documentation</a> tab on www.spdk.io.</p>
+  <a class="spdk-link" href="/news/2017/10/13/Performance_Report_Update/">Continue...</a></div>
+      </div>
+    
+      <div class="blog-section">
+        <a class="spdk-link" href="/news/2017/09/01/dev_meetup_update/"><h2 class="blog-heading spdk-link">SPDK Developer Meetup is Now Full!</h2></a>
+        <div class="blog-author">Sep 1, 2017 • Paul Luse</div>
+        <div class="content"><p>It’s going to be awesome! Although we’re now at capacity, please feel
+free to email <a href="mailto:paul.e.luse@intel.com">Paul</a> and we’ll make sure we
+do everything we can to accommodate you.</p>
+  <a class="spdk-link" href="/news/2017/09/01/dev_meetup_update/">Continue...</a></div>
+      </div>
+    
+      <div class="blog-section">
+        <a class="spdk-link" href="/news/2017/08/21/dev_meetup/"><h2 class="blog-heading spdk-link">Announcing the first SPDK Developer Meetup</h2></a>
+        <div class="blog-author">Aug 21, 2017 • Paul Luse</div>
+        <div class="content"><p>Come and join the very first SPDK Developer Meetup! It’s an excellent
+opportunity for networking, learning and making forward progress on
+the code and generally making the community more productive.
+There won’t be any presentations at this meeting, instead be prepared
+for the following types of activities:</p>
+  <a class="spdk-link" href="/news/2017/08/21/dev_meetup/">Continue...</a></div>
+      </div>
+    
+      <div class="blog-section">
+        <a class="spdk-link" href="/release/2017/07/31/17.07_release/"><h2 class="blog-heading spdk-link">SPDK 17.07 Release: Build system improvements, userspace vhost-blk target, and GPT bdev</h2></a>
+        <div class="blog-author">Jul 31, 2017 • Daniel Verkamp</div>
+        <div class="content"><p>The SPDK team is proud to announce the <a href="https://github.com/spdk/spdk/releases/tag/v17.07">v17.07 release</a>.
+This release incorporates a number of ease-of-use improvements and API cleanups.</p>
+  <a class="spdk-link" href="/release/2017/07/31/17.07_release/">Continue...</a></div>
+      </div>
+    
+      <div class="blog-section">
+        <a class="spdk-link" href="/news/2017/06/21/summit_videos/"><h2 class="blog-heading spdk-link">Videos: Intel® Builders Developer Summit on April 19-20, 2017</h2></a>
+        <div class="blog-author">Jun 21, 2017 • John Kariuki</div>
+        <div class="content"><p>Videos from the Intel Builders Developers Summit featuring SPDK and ISA-L held in Santa Clara on April 19th and 20th are posted <a href="https://www.youtube.com/playlist?list=PLj-81kG3zG5ZIE-4CvqsvlFEHoOoWRIHZ">here</a>.</p>
+  <a class="spdk-link" href="/news/2017/06/21/summit_videos/">Continue...</a></div>
+      </div>
+    
+      <div class="blog-section">
+        <a class="spdk-link" href="/news/2017/05/03/summit_presentations/"><h2 class="blog-heading spdk-link">Presentations: Intel® Builders Developer Summit on April 19-20, 2017</h2></a>
+        <div class="blog-author">May 3, 2017 • Jonathan Stern</div>
+        <div class="content"><p>Please note these are static PDFs, but many of the presentations made extensive use of animations, so something may be lost in translation. There will be video available soon; links will be added in a separate post.</p>
+  <a class="spdk-link" href="/news/2017/05/03/summit_presentations/">Continue...</a></div>
+      </div>
+    
+      <div class="blog-section">
+        <a class="spdk-link" href="/release/2017/03/31/17.03_release/"><h2 class="blog-heading spdk-link">SPDK 17.03 Release: VM Optimization &amp; Blobstore</h2></a>
+        <div class="blog-author">Mar 31, 2017 • Jonathan Stern and Jim Harris</div>
+        <div class="content"><p>Today, the SPDK team is proud to announce the <a href="https://github.com/spdk/spdk/releases/tag/v17.03">v17.03 release</a>.  This release features two significant new sets of components which will unlock a broader set of use cases for SPDK.</p>
+  <a class="spdk-link" href="/release/2017/03/31/17.03_release/">Continue...</a></div>
+      </div>
+    
+      <div class="blog-section">
+        <a class="spdk-link" href="/release/2017/03/16/spdk_summit/"><h2 class="blog-heading spdk-link">Intel Builders Developer Summit Featuring SPDK &amp; ISA-L</h2></a>
+        <div class="blog-author">Mar 16, 2017 • Jonathan Stern</div>
+        <div class="content"><p>Meet with key contributors to SPDK, learn details about the latest and upcoming SPDK ingredients, and participate in roundtable discussions that will shape the SPDK community. The two day event also includes introductions to adjacent software libraries and opportunities for informal networking and private discussions.</p>
+  <a class="spdk-link" href="/release/2017/03/16/spdk_summit/">Continue...</a></div>
+      </div>
+    
+      <div class="blog-section">
+        <a class="spdk-link" href="/release/2016/12/19/16.12_release/"><h2 class="blog-heading spdk-link">SPDK 16.12 Release</h2></a>
+        <div class="blog-author">Dec 19, 2016 • Jim Harris and Jonathan Stern</div>
+        <div class="content"><p>Today we have released SPDK 16.12.  This release contains the following major additions since our last release:</p>
+  <a class="spdk-link" href="/release/2016/12/19/16.12_release/">Continue...</a></div>
+      </div>
+    
+      <div class="blog-section">
+        <a class="spdk-link" href="/feature/2016/06/07/announce-nvmf/"><h2 class="blog-heading spdk-link">Announcing the SPDK NVMf Target</h2></a>
+        <div class="blog-author">Jun 7, 2016 • Jonathan Stern</div>
+        <div class="content"><p><a href="http://www.nvmexpress.org/wp-content/uploads/NVM_Express_oF-1_2_Press_Release.pdf">Much</a> <a href="http://www.nvmexpress.org/about/nvm-express-overview/">has</a> <a href="https://www.openfabrics.org/images/eventpresos/workshops2015/DevWorkshop/Monday/monday_10.pdf">already</a> <a href="http://www.flashmemorysummit.com/English/Collaterals/Proceedings/2015/20150811_FA12_Overview.pdf">been</a> <a href="http://www.chelsio.com/wp-content/uploads/resources/NVM_Express_Over_Fabrics.pdf">said</a> <a href="http://www.roceinitiative.org/uncategorized/rdma-interconnects-paving-the-way-for-nvme-over-fabrics-technology">about</a> <a href="http://nvmexpress.org/wp-content/uploads/2013/04/NVM_whitepaper.pdf">NVMe</a> <a href="http://www.snia.org/sites/default/files/SDC15_presentations/networking/WaelNoureddine_Implementing_%20NVMe_revision.pdf">over</a> <a href="http://www.flashmemorysummit.com/English/Collaterals/Proceedings/2015/20150813_S303A_Davis.pdf">Fabrics</a>. It was first publicly demonstrated in 2014 and the 1.0 specification is finally complete. In essence, NVMe over Fabrics (NVMf) is the NVM Express* (NVMe) block protocol tunneled through an RDMA fabric, and it has <em>enormous</em> potential to enable the next generation of datacenter storage development.
+To support broad adoption of NVMf, the <a href="http://spdk.io">Storage Performance Development Kit</a> (SPDK) has created a reference user-space NVMf target implementation for Linux, released for community involvement via GitHub under BSD license. In parallel, community-based Linux* kernel efforts have created <a href="http://git.infradead.org/nvme-fabrics.git">both a host and a target</a> under GPL license. All three of these implementations are now released with the <a href="http://www.nvmexpress.org/wp-content/uploads/NVMe_over_Fabrics_1_0_Gold_20160605.pdf">final 1.0 specification</a> as of June 8, 2016.</p>
+  <a class="spdk-link" href="/feature/2016/06/07/announce-nvmf/">Continue...</a></div>
+      </div>
+    
+      <div class="blog-section">
+        <a class="spdk-link" href="/update/2016/04/13/not-your-mothers-storage/"><h2 class="blog-heading spdk-link">Why SPDK?</h2></a>
+        <div class="blog-author">Apr 13, 2016 • Jonathan Stern</div>
+        <div class="content"><p>Solid-state storage media is in the process of taking over the data center. Current-generation flash storage enjoys significant advantages in performance, power consumption, and rack density over rotational media. These advantages will continue to grow as next-generation media enter the marketplace.</p>
+  <a class="spdk-link" href="/update/2016/04/13/not-your-mothers-storage/">Continue...</a></div>
+      </div>
+    
+      <div class="blog-section">
+        <a class="spdk-link" href="/feature/2016/03/03/nvme-api/"><h2 class="blog-heading spdk-link">NVMe API Changes</h2></a>
+        <div class="blog-author">Mar 3, 2016 • Ben Walker</div>
+        <div class="content"><p>Over the last month, the API of the NVMe driver in SPDK has changed significantly. First, on behalf of the SPDK team, I’m sorry for breaking any existing code! SPDK is still in its infancy, so dramatic API changes will be a fact of life for the next few months. By the end of the year, we’d like to have a plan in place to manage future API changes in a more formal way. Second, I’d like to take a few moments to explain what changes were made and why we made them. I’ll stick to a mostly high level overview of the API changes for now, but we hope to produce some additional blog posts that detail each one in the future.</p>
+  <a class="spdk-link" href="/feature/2016/03/03/nvme-api/">Continue...</a></div>
+      </div>
+    
+      <div class="blog-section">
+        <a class="spdk-link" href="/news/2016/03/02/spdk_intro/"><h2 class="blog-heading spdk-link">Introduction to the Storage Performance Development Kit</h2></a>
+        <div class="blog-author">Mar 2, 2016 • Ben Walker</div>
+        <div class="content"><p>The Storage Performance Development Kit (SPDK) provides a set of tools and libraries for writing high performance, scalable storage applications. It achieves high performance by moving all of the necessary drivers into userspace and operating in a polled mode instead of relying on interrupts. It is primarily designed to be leveraged by OEMs and cloud service providers to optimize their storage solutions. Generally, guidelines from the related networking project <a href="http://www.dpdk.org">DPDK</a> should be followed. Specifically, their <a href="http://dpdk.org/doc/guides/prog_guide/writing_efficient_code.html">guide for writing efficient code</a> almost all applies to SPDK.</p>
+  <a class="spdk-link" href="/news/2016/03/02/spdk_intro/">Continue...</a></div>
+      </div>
+    
+  </section>
+
+</div>
+</div>
+
+
+
+    <footer class="footer" id="nav-path">
+  <div class="footer-inner">
+    <div class="footer-copy">
+      <small>Copyright &copy; SPDK a Series of LF Projects, LLC. For web site terms of use, trademark policy, and other
+      project policies please see <a href="https://lfprojects.org">lfprojects.org</a>.</small>
+      <br><small>Built from spdk 91893349edff / site e5878500f</small>
+    </div>
+  </div>
+</footer>
+
+
+    
+  </body>
+</html>

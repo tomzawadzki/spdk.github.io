@@ -1,0 +1,1395 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<meta name="generator" content="Doxygen 1.16.1">
+	<title>SPDK: spdk_fsdev_io Struct Reference</title>
+	<script type="text/javascript" src="jquery.js"></script>
+	<script type="text/javascript" src="dynsections.js"></script>
+	<script type="text/javascript" src="clipboard.js"></script>
+	<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
+<script type="text/javascript" src="cookie.js"></script>
+	<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<script type="text/javascript">
+  $(function() { init_search(); });
+</script>
+	<link rel="icon" type="image/svg+xml" href="../assets/img/spdk.svg">
+	<link rel="icon" href="../assets/favicon.ico" sizes="32x32">
+	<link href="doxygen.css" rel="stylesheet" type="text/css">
+	<script>(function(){var k='doxygen_width',w,bw=6;if(window.chrome){w=localStorage.getItem(k);if(!w){w='350';localStorage.setItem(k,w)}}else{var m=document.cookie.match(new RegExp(k+'=(\\d+)'));w=m?m[1]:null;if(!w){w='350';document.cookie=k+'=350;SameSite=Lax;path=/'}}document.documentElement.style.setProperty('--sn-w',(parseInt(w)+bw)+'px')})()</script>
+	<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:400,700,900" type="text/css">
+	<link href="spdk.css" rel="stylesheet" type="text/css"/>
+	<link href="../assets/css/spdk.css" rel="stylesheet" type="text/css">
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<nav class="navbar">
+  <a class="navbar-brand" href="../" aria-label="SPDK">
+    <img src="../assets/img/spdk.svg" width="36" height="36" alt="Storage Performance Development Kit">
+  </a>
+  <div class="navbar-nav">
+    <a class="nav-link header-link" href="../doc/releases.html">download</a>
+    <a class="nav-link header-link" href="../doc/">documentation</a>
+    <a class="nav-link header-link" href="../doc/contributing.html">development</a>
+    <a class="nav-link header-link" href="../doc/ci_tools.html">CI status</a>
+    <a class="nav-link header-link" href="../community/">community</a>
+    <a class="nav-link header-link" href="../blog/">Blog</a>
+    <a class="nav-link header-link" href="https://github.com/orgs/spdk/projects/5">Roadmap</a>
+    <a class="nav-link header-link" href="../news/">News</a>
+  </div>
+  <div class="navbar-end">
+    <a class="nav-link header-link" href="https://github.com/spdk/spdk" aria-label="GitHub">
+      <svg xmlns="http://www.w3.org/2000/svg" class="navbar-nav-svg" aria-hidden="true"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
+    </a>
+    <a id="cn_lang_btn" href="../cn/doc/" class="nav-link header-link">中文</a>
+  </div>
+</nav>
+<script>
+(function() {
+    var p = location.pathname, best = null, bLen = 0;
+    document.querySelectorAll('.header-link[href]').forEach(function(a) {
+        var raw = a.getAttribute('href');
+        if (!raw) return;
+        try { var u = new URL(raw, location.href); } catch(e) { return; }
+        if (u.origin !== location.origin) return;
+        var h = u.pathname;
+        if (h === '/') return;
+        var ok = h.endsWith('.html') ? p === h : p.indexOf(h) === 0;
+        if (ok && h.length > bLen) { bLen = h.length; best = a; }
+    });
+    if (best) best.classList.add('active');
+})();
+</script>
+<div id="doxygen-searchbox">        <div id="MSearchBox" class="MSearchBoxInactive">
+        <span class="left">
+          <span id="MSearchSelect" class="search-icon" onmouseover="return searchBox.OnSearchSelectShow()" onmouseout="return searchBox.OnSearchSelectHide()"><span class="search-icon-dropdown"></span></span>
+          <input type="text" id="MSearchField" value="" placeholder="Search" accesskey="S"
+               onfocus="searchBox.OnSearchFieldFocus(true)" 
+               onblur="searchBox.OnSearchFieldFocus(false)" 
+               onkeyup="searchBox.OnSearchFieldChange(event)"/>
+          </span><span class="right">
+            <a id="MSearchClose" href="javascript:searchBox.CloseResultsWindow()"><div id="MSearchCloseImg" class="close-icon"></div></a>
+          </span>
+        </div>
+</div>
+<!-- Generated by Doxygen 1.16.1 -->
+<script type="text/javascript">
+var searchBox = new SearchBox("searchBox", "search/",'.html');
+</script>
+<script type="text/javascript">
+$(function() { codefold.init(); });
+</script>
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+$(function(){initNavTree('structspdk__fsdev__io.html','',''); });
+</script>
+<div id="container">
+<div id="doc-content">
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">Loading...</div>
+<div class="SRStatus" id="Searching">Searching...</div>
+<div class="SRStatus" id="NoMatches">No Matches</div>
+</div>
+</div>
+</div>
+</div>
+
+<div class="header">
+  <div class="headertitle"><div class="title">spdk_fsdev_io Struct Reference</div></div>
+</div><!--header-->
+<div class="contents">
+<div class="dynheader">
+Collaboration diagram for spdk_fsdev_io:</div>
+<div class="dyncontent">
+<div class="center"><div class="zoom"><iframe scrolling="no" loading="lazy" frameborder="0" src="structspdk__fsdev__io__coll__graph.svg" width="100%" height="539"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div></div>
+<center><span class="legend">[<a target="top" href="graph_legend.html">legend</a>]</span></center></div>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 id="header-nested-classes" class="groupheader"><a id="nested-classes" name="nested-classes"></a>
+Data Structures</h2></td></tr>
+<tr class="memitem:_5F_5Ffsdev_5Fio_5Finternal_5Ffields" id="r__5F_5Ffsdev_5Fio_5Finternal_5Ffields"><td class="memItemLeft">struct &#160;</td><td class="memItemRight"><a class="el" href="structspdk__fsdev__io_1_1____fsdev__io__internal__fields.html">__fsdev_io_internal_fields</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Fields that are used internally by the fsdev subsystem.  <a href="structspdk__fsdev__io_1_1____fsdev__io__internal__fields.html#details">More...</a><br /></td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 id="header-pub-attribs" class="groupheader"><a id="pub-attribs" name="pub-attribs"></a>
+Data Fields</h2></td></tr>
+<tr class="memitem:ae7ea51d9f81fe25258995f332ae09910" id="r_ae7ea51d9f81fe25258995f332ae09910"><td class="memItemLeft">struct <a class="el" href="structspdk__fsdev.html">spdk_fsdev</a> *&#160;</td><td class="memItemRight"><a class="el" href="#ae7ea51d9f81fe25258995f332ae09910">fsdev</a></td></tr>
+<tr class="memdesc:ae7ea51d9f81fe25258995f332ae09910"><td class="mdescLeft">&#160;</td><td class="mdescRight">The filesystem device that this I/O belongs to.  <br /></td></tr>
+<tr class="memitem:a93a49dabe63606eaa054f6f40473a14d" id="r_a93a49dabe63606eaa054f6f40473a14d"><td class="memItemLeft">uint8_t&#160;</td><td class="memItemRight"><a class="el" href="#a93a49dabe63606eaa054f6f40473a14d">type</a></td></tr>
+<tr class="memdesc:a93a49dabe63606eaa054f6f40473a14d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Enumerated value representing the I/O type.  <br /></td></tr>
+<tr class="memitem:ad706ca14397251312caf586c968fb712" id="r_ad706ca14397251312caf586c968fb712"><td class="memItemLeft">struct iovec&#160;</td><td class="memItemRight"><a class="el" href="#ad706ca14397251312caf586c968fb712">iov</a></td></tr>
+<tr class="memdesc:ad706ca14397251312caf586c968fb712"><td class="mdescLeft">&#160;</td><td class="mdescRight">A single iovec element for use by this fsdev_io.  <br /></td></tr>
+<tr class="memitem:"><td class="memItemLeft anon"><a id="abb8e1dfae8988cb1f83469877b82deb4" name="abb8e1dfae8988cb1f83469877b82deb4"></a>
+union {&#160;</td><td class="memItemRight"></td></tr>
+<tr class="memitem:"><td class="memItemLeft anon">
+&#160;&#160;&#160;struct {&#160;</td><td class="memItemRight"></td></tr>
+<tr class="memitem:a4f935bff3bc5087340050c56c1bbc5fa" id="r_a4f935bff3bc5087340050c56c1bbc5fa"><td class="memItemLeft anon">&#160;&#160;&#160;&#160;&#160;&#160;struct <a class="el" href="structspdk__fsdev__mount__opts.html">spdk_fsdev_mount_opts</a>&#160;&#160;&#160;<a class="el" href="#a3adf23d111267568c80f774b3368bc89">opts</a>&#160;</td><td class="memItemRight"></td></tr>
+<tr class="memitem:accf178bb631cc6064a2ccd3825578a42" id="r_accf178bb631cc6064a2ccd3825578a42"><td class="memItemLeft anonEnd">&#160;&#160;&#160;}&#160;&#160;&#160;<b>mount</b></td></tr>
+<tr class="memitem:"><td class="memItemLeft anon">
+&#160;&#160;&#160;struct {&#160;</td><td class="memItemRight"></td></tr>
+<tr class="memitem:a8b8471cc4a8523d71125297d03bf25e4" id="r_a8b8471cc4a8523d71125297d03bf25e4"><td class="memItemLeft anon">&#160;&#160;&#160;&#160;&#160;&#160;struct spdk_fsdev_file_object *&#160;&#160;&#160;<a class="el" href="#a3b71c836a08bc3804303a503255f322b">parent_fobject</a>&#160;</td><td class="memItemRight"></td></tr>
+<tr class="memitem:aea47b4f77e1a0a4ff5c1939e81be7121" id="r_aea47b4f77e1a0a4ff5c1939e81be7121"><td class="memItemLeft anon">&#160;&#160;&#160;&#160;&#160;&#160;char *&#160;&#160;&#160;<a class="el" href="#a0fd0af6cf73c75ae94edf9ff90b0eef8">name</a>&#160;</td><td class="memItemRight"></td></tr>
+<tr class="memitem:abe73fcfbed8bc490f26e92e3f6c80105" id="r_abe73fcfbed8bc490f26e92e3f6c80105"><td class="memItemLeft anonEnd">&#160;&#160;&#160;}&#160;&#160;&#160;<b>lookup</b></td></tr>
+<tr class="memitem:"><td class="memItemLeft anon">
+&#160;&#160;&#160;struct {&#160;</td><td class="memItemRight"></td></tr>
+<tr class="memitem:a455e28625f409b8caf908849466e9883" id="r_a455e28625f409b8caf908849466e9883"><td class="memItemLeft anon">&#160;&#160;&#160;&#160;&#160;&#160;struct spdk_fsdev_file_object *&#160;&#160;&#160;<a class="el" href="#ada220e01744d2b749bf81a088079dee5">fobject</a>&#160;</td><td class="memItemRight"></td></tr>
+<tr class="memitem:adfab8e830bb2c12d84677a0e7a52f37e" id="r_adfab8e830bb2c12d84677a0e7a52f37e"><td class="memItemLeft anon">&#160;&#160;&#160;&#160;&#160;&#160;uint64_t&#160;&#160;&#160;<a class="el" href="#a3c9f59d7160940ad4581073307190c0b">nlookup</a>&#160;</td><td class="memItemRight"></td></tr>
+<tr class="memitem:a4e486572af44dd9107a0b1e8d0e51f49" id="r_a4e486572af44dd9107a0b1e8d0e51f49"><td class="memItemLeft anonEnd">&#160;&#160;&#160;}&#160;&#160;&#160;<b>forget</b></td></tr>
+<tr class="memitem:"><td class="memItemLeft anon">
+&#160;&#160;&#160;struct {&#160;</td><td class="memItemRight"></td></tr>
+<tr class="memitem:af6503d751aedae17f33d9c76f5afab1c" id="r_af6503d751aedae17f33d9c76f5afab1c"><td class="memItemLeft anon">&#160;&#160;&#160;&#160;&#160;&#160;struct spdk_fsdev_file_object *&#160;&#160;&#160;<a class="el" href="#ada220e01744d2b749bf81a088079dee5">fobject</a>&#160;</td><td class="memItemRight"></td></tr>
+<tr class="memitem:a39b1dc17a8cb6039a0780c2e3f127288" id="r_a39b1dc17a8cb6039a0780c2e3f127288"><td class="memItemLeft anon">&#160;&#160;&#160;&#160;&#160;&#160;struct spdk_fsdev_file_handle *&#160;&#160;&#160;<a class="el" href="#a332e850c1b9b22226facc79a5dcd1789">fhandle</a>&#160;</td><td class="memItemRight"></td></tr>
+<tr class="memitem:a5a5967ecdbed4c6276291d26c974c0a3" id="r_a5a5967ecdbed4c6276291d26c974c0a3"><td class="memItemLeft anonEnd">&#160;&#160;&#160;}&#160;&#160;&#160;<b>getattr</b></td></tr>
+<tr class="memitem:"><td class="memItemLeft anon">
+&#160;&#160;&#160;struct {&#160;</td><td class="memItemRight"></td></tr>
+<tr class="memitem:a470c991aa35aed5f05c3b6b829a30588" id="r_a470c991aa35aed5f05c3b6b829a30588"><td class="memItemLeft anon">&#160;&#160;&#160;&#160;&#160;&#160;struct spdk_fsdev_file_object *&#160;&#160;&#160;<a class="el" href="#ada220e01744d2b749bf81a088079dee5">fobject</a>&#160;</td><td class="memItemRight"></td></tr>
+<tr class="memitem:a598d3e95e367a0a76f55552745c67c33" id="r_a598d3e95e367a0a76f55552745c67c33"><td class="memItemLeft anon">&#160;&#160;&#160;&#160;&#160;&#160;struct spdk_fsdev_file_handle *&#160;&#160;&#160;<a class="el" href="#a332e850c1b9b22226facc79a5dcd1789">fhandle</a>&#160;</td><td class="memItemRight"></td></tr>
+<tr class="memitem:a44334a3e6aa7ab7f7c3081c62e10ae32" id="r_a44334a3e6aa7ab7f7c3081c62e10ae32"><td class="memItemLeft anon">&#160;&#160;&#160;&#160;&#160;&#160;struct <a class="el" href="structspdk__fsdev__file__attr.html">spdk_fsdev_file_attr</a>&#160;&#160;&#160;<a class="el" href="#a547dac8fb7405e67f594f2c50b5a75a4">attr</a>&#160;</td><td class="memItemRight"></td></tr>
+<tr class="memitem:a5562dc3e6d6500fea9364a13b77a9d9c" id="r_a5562dc3e6d6500fea9364a13b77a9d9c"><td class="memItemLeft anon">&#160;&#160;&#160;&#160;&#160;&#160;uint32_t&#160;&#160;&#160;<a class="el" href="#ad54147d21ffad303e08c4ddd57740252">to_set</a>&#160;</td><td class="memItemRight"></td></tr>
+<tr class="memitem:a5b274edabc894acc004cea58259fdb76" id="r_a5b274edabc894acc004cea58259fdb76"><td class="memItemLeft anonEnd">&#160;&#160;&#160;}&#160;&#160;&#160;<b>setattr</b></td></tr>
+<tr class="memitem:"><td class="memItemLeft anon">
+&#160;&#160;&#160;struct {&#160;</td><td class="memItemRight"></td></tr>
+<tr class="memitem:a6864a1df295906c0987c7a7039863826" id="r_a6864a1df295906c0987c7a7039863826"><td class="memItemLeft anon">&#160;&#160;&#160;&#160;&#160;&#160;struct spdk_fsdev_file_object *&#160;&#160;&#160;<a class="el" href="#ada220e01744d2b749bf81a088079dee5">fobject</a>&#160;</td><td class="memItemRight"></td></tr>
+<tr class="memitem:a32de7dc2253b512234d182e2cc695a33" id="r_a32de7dc2253b512234d182e2cc695a33"><td class="memItemLeft anonEnd">&#160;&#160;&#160;}&#160;&#160;&#160;<b>readlink</b></td></tr>
+<tr class="memitem:"><td class="memItemLeft anon">
+&#160;&#160;&#160;struct {&#160;</td><td class="memItemRight"></td></tr>
+<tr class="memitem:aff5d9f110ae57ec4af2b889e7af808eb" id="r_aff5d9f110ae57ec4af2b889e7af808eb"><td class="memItemLeft anon">&#160;&#160;&#160;&#160;&#160;&#160;struct spdk_fsdev_file_object *&#160;&#160;&#160;<a class="el" href="#a3b71c836a08bc3804303a503255f322b">parent_fobject</a>&#160;</td><td class="memItemRight"></td></tr>
+<tr class="memitem:aa60922277a505037a7622a976063ed76" id="r_aa60922277a505037a7622a976063ed76"><td class="memItemLeft anon">&#160;&#160;&#160;&#160;&#160;&#160;char *&#160;&#160;&#160;<a class="el" href="#a180fad4a191dd79c4d6ebdc0602d7414">target</a>&#160;</td><td class="memItemRight"></td></tr>
+<tr class="memitem:a978fa1a1bd479cebb7e0d8aaeda67abe" id="r_a978fa1a1bd479cebb7e0d8aaeda67abe"><td class="memItemLeft anon">&#160;&#160;&#160;&#160;&#160;&#160;char *&#160;&#160;&#160;<a class="el" href="#ab6d1fed6be71c363dcf94fefeaff6f9d">linkpath</a>&#160;</td><td class="memItemRight"></td></tr>
+<tr class="memitem:a6553ca87e95c5739ddb6d73a54528598" id="r_a6553ca87e95c5739ddb6d73a54528598"><td class="memItemLeft anon">&#160;&#160;&#160;&#160;&#160;&#160;uid_t&#160;&#160;&#160;<a class="el" href="#a719e02e1dbe73ec102d2069c2952330f">euid</a>&#160;</td><td class="memItemRight"></td></tr>
+<tr class="memitem:accc856077c0e58a78d66a7f50168a2cf" id="r_accc856077c0e58a78d66a7f50168a2cf"><td class="memItemLeft anon">&#160;&#160;&#160;&#160;&#160;&#160;gid_t&#160;&#160;&#160;<a class="el" href="#ab6bff1eb10a794a7bef8385a57b78891">egid</a>&#160;</td><td class="memItemRight"></td></tr>
+<tr class="memitem:ad614d5a5a65c88965fc805413d919d85" id="r_ad614d5a5a65c88965fc805413d919d85"><td class="memItemLeft anonEnd">&#160;&#160;&#160;}&#160;&#160;&#160;<b>symlink</b></td></tr>
+<tr class="memitem:"><td class="memItemLeft anon">
+&#160;&#160;&#160;struct {&#160;</td><td class="memItemRight"></td></tr>
+<tr class="memitem:aaa07cfa03bc68bfd25ddab8a2fcc3e13" id="r_aaa07cfa03bc68bfd25ddab8a2fcc3e13"><td class="memItemLeft anon">&#160;&#160;&#160;&#160;&#160;&#160;struct spdk_fsdev_file_object *&#160;&#160;&#160;<a class="el" href="#a3b71c836a08bc3804303a503255f322b">parent_fobject</a>&#160;</td><td class="memItemRight"></td></tr>
+<tr class="memitem:a914573a7db8f56e52d7c586e73094f78" id="r_a914573a7db8f56e52d7c586e73094f78"><td class="memItemLeft anon">&#160;&#160;&#160;&#160;&#160;&#160;char *&#160;&#160;&#160;<a class="el" href="#a0fd0af6cf73c75ae94edf9ff90b0eef8">name</a>&#160;</td><td class="memItemRight"></td></tr>
+<tr class="memitem:ae1be544cc9107256bad7d41eb6adff81" id="r_ae1be544cc9107256bad7d41eb6adff81"><td class="memItemLeft anon">&#160;&#160;&#160;&#160;&#160;&#160;mode_t&#160;&#160;&#160;<a class="el" href="#a87185f51cdd242f4824301c606d9ee88">mode</a>&#160;</td><td class="memItemRight"></td></tr>
+<tr class="memitem:a70ec391ba5d161ebe776743a1f534ce9" id="r_a70ec391ba5d161ebe776743a1f534ce9"><td class="memItemLeft anon">&#160;&#160;&#160;&#160;&#160;&#160;dev_t&#160;&#160;&#160;<a class="el" href="#adf10c28e958ef9a0fb8e7929852661e6">rdev</a>&#160;</td><td class="memItemRight"></td></tr>
+<tr class="memitem:a74a3649680f826ba74fdca733e3bf819" id="r_a74a3649680f826ba74fdca733e3bf819"><td class="memItemLeft anon">&#160;&#160;&#160;&#160;&#160;&#160;uid_t&#160;&#160;&#160;<a class="el" href="#a719e02e1dbe73ec102d2069c2952330f">euid</a>&#160;</td><td class="memItemRight"></td></tr>
+<tr class="memitem:a9aba6741dd2ae1fb2ae2b0ef885880d5" id="r_a9aba6741dd2ae1fb2ae2b0ef885880d5"><td class="memItemLeft anon">&#160;&#160;&#160;&#160;&#160;&#160;gid_t&#160;&#160;&#160;<a class="el" href="#ab6bff1eb10a794a7bef8385a57b78891">egid</a>&#160;</td><td class="memItemRight"></td></tr>
+<tr class="memitem:ad0b76042057f7e209a5449b1b681476a" id="r_ad0b76042057f7e209a5449b1b681476a"><td class="memItemLeft anonEnd">&#160;&#160;&#160;}&#160;&#160;&#160;<b>mknod</b></td></tr>
+<tr class="memitem:"><td class="memItemLeft anon">
+&#160;&#160;&#160;struct {&#160;</td><td class="memItemRight"></td></tr>
+<tr class="memitem:ac745d23c8108f013dd51b47ad1ee2d0a" id="r_ac745d23c8108f013dd51b47ad1ee2d0a"><td class="memItemLeft anon">&#160;&#160;&#160;&#160;&#160;&#160;struct spdk_fsdev_file_object *&#160;&#160;&#160;<a class="el" href="#a3b71c836a08bc3804303a503255f322b">parent_fobject</a>&#160;</td><td class="memItemRight"></td></tr>
+<tr class="memitem:abeb882fefdc0d052c24fb19405b0e82b" id="r_abeb882fefdc0d052c24fb19405b0e82b"><td class="memItemLeft anon">&#160;&#160;&#160;&#160;&#160;&#160;char *&#160;&#160;&#160;<a class="el" href="#a0fd0af6cf73c75ae94edf9ff90b0eef8">name</a>&#160;</td><td class="memItemRight"></td></tr>
+<tr class="memitem:a48b7112d31ee49c7e8885e671eee86d9" id="r_a48b7112d31ee49c7e8885e671eee86d9"><td class="memItemLeft anon">&#160;&#160;&#160;&#160;&#160;&#160;mode_t&#160;&#160;&#160;<a class="el" href="#a87185f51cdd242f4824301c606d9ee88">mode</a>&#160;</td><td class="memItemRight"></td></tr>
+<tr class="memitem:a7c53be721e811b1e59c214d1d776c7b6" id="r_a7c53be721e811b1e59c214d1d776c7b6"><td class="memItemLeft anon">&#160;&#160;&#160;&#160;&#160;&#160;uid_t&#160;&#160;&#160;<a class="el" href="#a719e02e1dbe73ec102d2069c2952330f">euid</a>&#160;</td><td class="memItemRight"></td></tr>
+<tr class="memitem:af3118d843361799f32a9bbcecfd7fd97" id="r_af3118d843361799f32a9bbcecfd7fd97"><td class="memItemLeft anon">&#160;&#160;&#160;&#160;&#160;&#160;gid_t&#160;&#160;&#160;<a class="el" href="#ab6bff1eb10a794a7bef8385a57b78891">egid</a>&#160;</td><td class="memItemRight"></td></tr>
+<tr class="memitem:aecf9f05b088f32fdbc1c121133c68f7c" id="r_aecf9f05b088f32fdbc1c121133c68f7c"><td class="memItemLeft anonEnd">&#160;&#160;&#160;}&#160;&#160;&#160;<b>mkdir</b></td></tr>
+<tr class="memitem:"><td class="memItemLeft anon">
+&#160;&#160;&#160;struct {&#160;</td><td class="memItemRight"></td></tr>
+<tr class="memitem:ac3d446fc71aa65a8a4ebdf756ed01232" id="r_ac3d446fc71aa65a8a4ebdf756ed01232"><td class="memItemLeft anon">&#160;&#160;&#160;&#160;&#160;&#160;struct spdk_fsdev_file_object *&#160;&#160;&#160;<a class="el" href="#a3b71c836a08bc3804303a503255f322b">parent_fobject</a>&#160;</td><td class="memItemRight"></td></tr>
+<tr class="memitem:a93670d94dd4014206180e57bddc5b5ff" id="r_a93670d94dd4014206180e57bddc5b5ff"><td class="memItemLeft anon">&#160;&#160;&#160;&#160;&#160;&#160;char *&#160;&#160;&#160;<a class="el" href="#a0fd0af6cf73c75ae94edf9ff90b0eef8">name</a>&#160;</td><td class="memItemRight"></td></tr>
+<tr class="memitem:a1278f806d102e39c163dd79a7e37296b" id="r_a1278f806d102e39c163dd79a7e37296b"><td class="memItemLeft anonEnd">&#160;&#160;&#160;}&#160;&#160;&#160;<b>unlink</b></td></tr>
+<tr class="memitem:"><td class="memItemLeft anon">
+&#160;&#160;&#160;struct {&#160;</td><td class="memItemRight"></td></tr>
+<tr class="memitem:a0df79a2a96cf039d030f14fc12163a1a" id="r_a0df79a2a96cf039d030f14fc12163a1a"><td class="memItemLeft anon">&#160;&#160;&#160;&#160;&#160;&#160;struct spdk_fsdev_file_object *&#160;&#160;&#160;<a class="el" href="#a3b71c836a08bc3804303a503255f322b">parent_fobject</a>&#160;</td><td class="memItemRight"></td></tr>
+<tr class="memitem:aea2c51fb26c9a1024185f9b50dac23f4" id="r_aea2c51fb26c9a1024185f9b50dac23f4"><td class="memItemLeft anon">&#160;&#160;&#160;&#160;&#160;&#160;char *&#160;&#160;&#160;<a class="el" href="#a0fd0af6cf73c75ae94edf9ff90b0eef8">name</a>&#160;</td><td class="memItemRight"></td></tr>
+<tr class="memitem:ad0cc0ceed1d42717d1f6911aa7560af1" id="r_ad0cc0ceed1d42717d1f6911aa7560af1"><td class="memItemLeft anonEnd">&#160;&#160;&#160;}&#160;&#160;&#160;<b>rmdir</b></td></tr>
+<tr class="memitem:"><td class="memItemLeft anon">
+&#160;&#160;&#160;struct {&#160;</td><td class="memItemRight"></td></tr>
+<tr class="memitem:a2a3a7243518092bf4283604ba32cbe1f" id="r_a2a3a7243518092bf4283604ba32cbe1f"><td class="memItemLeft anon">&#160;&#160;&#160;&#160;&#160;&#160;struct spdk_fsdev_file_object *&#160;&#160;&#160;<a class="el" href="#a3b71c836a08bc3804303a503255f322b">parent_fobject</a>&#160;</td><td class="memItemRight"></td></tr>
+<tr class="memitem:aef6a51e56ddf5a1186cde3f424ce86a9" id="r_aef6a51e56ddf5a1186cde3f424ce86a9"><td class="memItemLeft anon">&#160;&#160;&#160;&#160;&#160;&#160;char *&#160;&#160;&#160;<a class="el" href="#a0fd0af6cf73c75ae94edf9ff90b0eef8">name</a>&#160;</td><td class="memItemRight"></td></tr>
+<tr class="memitem:aacfc885d80722fb0c53275bac7365dd1" id="r_aacfc885d80722fb0c53275bac7365dd1"><td class="memItemLeft anon">&#160;&#160;&#160;&#160;&#160;&#160;struct spdk_fsdev_file_object *&#160;&#160;&#160;<a class="el" href="#a9e683e35b102a1f928230829e85d1c46">new_parent_fobject</a>&#160;</td><td class="memItemRight"></td></tr>
+<tr class="memitem:aed75f748662fe5b43821e8d9cf8b56fd" id="r_aed75f748662fe5b43821e8d9cf8b56fd"><td class="memItemLeft anon">&#160;&#160;&#160;&#160;&#160;&#160;char *&#160;&#160;&#160;<a class="el" href="#ab8195b02d824e32c16e140d5160f8e0e">new_name</a>&#160;</td><td class="memItemRight"></td></tr>
+<tr class="memitem:a6b276aec1e9d058f982736223a92e719" id="r_a6b276aec1e9d058f982736223a92e719"><td class="memItemLeft anon">&#160;&#160;&#160;&#160;&#160;&#160;uint32_t&#160;&#160;&#160;<a class="el" href="#a2d2323480e538495dc3e660e6cf9af7a">flags</a>&#160;</td><td class="memItemRight"></td></tr>
+<tr class="memitem:a8a1e651ad6a586c2826b6517075ec980" id="r_a8a1e651ad6a586c2826b6517075ec980"><td class="memItemLeft anonEnd">&#160;&#160;&#160;}&#160;&#160;&#160;<b>rename</b></td></tr>
+<tr class="memitem:"><td class="memItemLeft anon">
+&#160;&#160;&#160;struct {&#160;</td><td class="memItemRight"></td></tr>
+<tr class="memitem:a3348875bf8cdf550618d6cf38edb4f51" id="r_a3348875bf8cdf550618d6cf38edb4f51"><td class="memItemLeft anon">&#160;&#160;&#160;&#160;&#160;&#160;struct spdk_fsdev_file_object *&#160;&#160;&#160;<a class="el" href="#ada220e01744d2b749bf81a088079dee5">fobject</a>&#160;</td><td class="memItemRight"></td></tr>
+<tr class="memitem:a76dfccd789cbb85da79230b2b8a79473" id="r_a76dfccd789cbb85da79230b2b8a79473"><td class="memItemLeft anon">&#160;&#160;&#160;&#160;&#160;&#160;struct spdk_fsdev_file_object *&#160;&#160;&#160;<a class="el" href="#a9e683e35b102a1f928230829e85d1c46">new_parent_fobject</a>&#160;</td><td class="memItemRight"></td></tr>
+<tr class="memitem:a9d0e18ab4554e1d908f912b4e080cfed" id="r_a9d0e18ab4554e1d908f912b4e080cfed"><td class="memItemLeft anon">&#160;&#160;&#160;&#160;&#160;&#160;char *&#160;&#160;&#160;<a class="el" href="#a0fd0af6cf73c75ae94edf9ff90b0eef8">name</a>&#160;</td><td class="memItemRight"></td></tr>
+<tr class="memitem:a969896e609af59bd49b954dc351a76b7" id="r_a969896e609af59bd49b954dc351a76b7"><td class="memItemLeft anonEnd">&#160;&#160;&#160;}&#160;&#160;&#160;<b>link</b></td></tr>
+<tr class="memitem:"><td class="memItemLeft anon">
+&#160;&#160;&#160;struct {&#160;</td><td class="memItemRight"></td></tr>
+<tr class="memitem:ac00b0099e2ce27b89ccb6c8c541341f6" id="r_ac00b0099e2ce27b89ccb6c8c541341f6"><td class="memItemLeft anon">&#160;&#160;&#160;&#160;&#160;&#160;struct spdk_fsdev_file_object *&#160;&#160;&#160;<a class="el" href="#ada220e01744d2b749bf81a088079dee5">fobject</a>&#160;</td><td class="memItemRight"></td></tr>
+<tr class="memitem:a4af1b7033bb8a258ca2ad446d20e567b" id="r_a4af1b7033bb8a258ca2ad446d20e567b"><td class="memItemLeft anon">&#160;&#160;&#160;&#160;&#160;&#160;uint32_t&#160;&#160;&#160;<a class="el" href="#a2d2323480e538495dc3e660e6cf9af7a">flags</a>&#160;</td><td class="memItemRight"></td></tr>
+<tr class="memitem:a026b08fc1dfb590185fb0a1c5a12a2ff" id="r_a026b08fc1dfb590185fb0a1c5a12a2ff"><td class="memItemLeft anonEnd">&#160;&#160;&#160;}&#160;&#160;&#160;<b>open</b></td></tr>
+<tr class="memitem:"><td class="memItemLeft anon">
+&#160;&#160;&#160;struct {&#160;</td><td class="memItemRight"></td></tr>
+<tr class="memitem:a14d11da129c4677b136ca4869d369e51" id="r_a14d11da129c4677b136ca4869d369e51"><td class="memItemLeft anon">&#160;&#160;&#160;&#160;&#160;&#160;struct spdk_fsdev_file_object *&#160;&#160;&#160;<a class="el" href="#ada220e01744d2b749bf81a088079dee5">fobject</a>&#160;</td><td class="memItemRight"></td></tr>
+<tr class="memitem:a2c7a27fcd371b5402997a460e29dff70" id="r_a2c7a27fcd371b5402997a460e29dff70"><td class="memItemLeft anon">&#160;&#160;&#160;&#160;&#160;&#160;struct spdk_fsdev_file_handle *&#160;&#160;&#160;<a class="el" href="#a332e850c1b9b22226facc79a5dcd1789">fhandle</a>&#160;</td><td class="memItemRight"></td></tr>
+<tr class="memitem:ade1eff11e0372eaf424b4594a0680241" id="r_ade1eff11e0372eaf424b4594a0680241"><td class="memItemLeft anon">&#160;&#160;&#160;&#160;&#160;&#160;size_t&#160;&#160;&#160;<a class="el" href="#a8c20f405f45d22805d0ba7a7925419e0">size</a>&#160;</td><td class="memItemRight"></td></tr>
+<tr class="memitem:a2ee08914a3f842e4c13c0bfbc10d9e79" id="r_a2ee08914a3f842e4c13c0bfbc10d9e79"><td class="memItemLeft anon">&#160;&#160;&#160;&#160;&#160;&#160;uint64_t&#160;&#160;&#160;<a class="el" href="#a606ab0016f28351f5c45027b83b98175">offs</a>&#160;</td><td class="memItemRight"></td></tr>
+<tr class="memitem:ae75e4d6193621f3136edfa743552e5a6" id="r_ae75e4d6193621f3136edfa743552e5a6"><td class="memItemLeft anon">&#160;&#160;&#160;&#160;&#160;&#160;uint32_t&#160;&#160;&#160;<a class="el" href="#a2d2323480e538495dc3e660e6cf9af7a">flags</a>&#160;</td><td class="memItemRight"></td></tr>
+<tr class="memitem:a114acce3658de15ae1d3ba0df0a62d4e" id="r_a114acce3658de15ae1d3ba0df0a62d4e"><td class="memItemLeft anon">&#160;&#160;&#160;&#160;&#160;&#160;struct iovec *&#160;&#160;&#160;<a class="el" href="#abdd57f06b5e9c6dfbf7e98cf0800311c">iov</a>&#160;</td><td class="memItemRight"></td></tr>
+<tr class="memitem:a5ae0bb22f964cad18516f2e77ac47d75" id="r_a5ae0bb22f964cad18516f2e77ac47d75"><td class="memItemLeft anon">&#160;&#160;&#160;&#160;&#160;&#160;uint32_t&#160;&#160;&#160;<a class="el" href="#abf2c2d74369c4eadfe3e83ea29cbad33">iovcnt</a>&#160;</td><td class="memItemRight"></td></tr>
+<tr class="memitem:a5cf5f4bfe5f50b0581f6c25587e3da0a" id="r_a5cf5f4bfe5f50b0581f6c25587e3da0a"><td class="memItemLeft anon">&#160;&#160;&#160;&#160;&#160;&#160;struct <a class="el" href="structspdk__fsdev__io__opts.html">spdk_fsdev_io_opts</a> *&#160;&#160;&#160;<a class="el" href="#aeeaa7ab957f6e49116d70afd08556a2d">opts</a>&#160;</td><td class="memItemRight"></td></tr>
+<tr class="memitem:af66a8acffd022bfb442354ca6f3a79f6" id="r_af66a8acffd022bfb442354ca6f3a79f6"><td class="memItemLeft anonEnd">&#160;&#160;&#160;}&#160;&#160;&#160;<b>read</b></td></tr>
+<tr class="memitem:"><td class="memItemLeft anon">
+&#160;&#160;&#160;struct {&#160;</td><td class="memItemRight"></td></tr>
+<tr class="memitem:ac63ab23a26634a51d117c23526d381ea" id="r_ac63ab23a26634a51d117c23526d381ea"><td class="memItemLeft anon">&#160;&#160;&#160;&#160;&#160;&#160;struct spdk_fsdev_file_object *&#160;&#160;&#160;<a class="el" href="#ada220e01744d2b749bf81a088079dee5">fobject</a>&#160;</td><td class="memItemRight"></td></tr>
+<tr class="memitem:aed65733361eceedab04baa0743aaa60d" id="r_aed65733361eceedab04baa0743aaa60d"><td class="memItemLeft anon">&#160;&#160;&#160;&#160;&#160;&#160;struct spdk_fsdev_file_handle *&#160;&#160;&#160;<a class="el" href="#a332e850c1b9b22226facc79a5dcd1789">fhandle</a>&#160;</td><td class="memItemRight"></td></tr>
+<tr class="memitem:afa7f30c6a3154b39fdd0fe69174e0d74" id="r_afa7f30c6a3154b39fdd0fe69174e0d74"><td class="memItemLeft anon">&#160;&#160;&#160;&#160;&#160;&#160;size_t&#160;&#160;&#160;<a class="el" href="#a8c20f405f45d22805d0ba7a7925419e0">size</a>&#160;</td><td class="memItemRight"></td></tr>
+<tr class="memitem:a806a5404d1d494b59a309faa0307415a" id="r_a806a5404d1d494b59a309faa0307415a"><td class="memItemLeft anon">&#160;&#160;&#160;&#160;&#160;&#160;uint64_t&#160;&#160;&#160;<a class="el" href="#a606ab0016f28351f5c45027b83b98175">offs</a>&#160;</td><td class="memItemRight"></td></tr>
+<tr class="memitem:a146d0c835151fda4e0f7cbc2c2b500a6" id="r_a146d0c835151fda4e0f7cbc2c2b500a6"><td class="memItemLeft anon">&#160;&#160;&#160;&#160;&#160;&#160;uint64_t&#160;&#160;&#160;<a class="el" href="#a5c52a78a22238cf178460488c453e103">flags</a>&#160;</td><td class="memItemRight"></td></tr>
+<tr class="memitem:a0245b87ce8a3f6c8a9a73dec3039aff8" id="r_a0245b87ce8a3f6c8a9a73dec3039aff8"><td class="memItemLeft anon">&#160;&#160;&#160;&#160;&#160;&#160;const struct iovec *&#160;&#160;&#160;<a class="el" href="#a559f9361c4fa0ca07e179a25cfbdb978">iov</a>&#160;</td><td class="memItemRight"></td></tr>
+<tr class="memitem:a0fff605b0190816ef24657441da3add3" id="r_a0fff605b0190816ef24657441da3add3"><td class="memItemLeft anon">&#160;&#160;&#160;&#160;&#160;&#160;uint32_t&#160;&#160;&#160;<a class="el" href="#abf2c2d74369c4eadfe3e83ea29cbad33">iovcnt</a>&#160;</td><td class="memItemRight"></td></tr>
+<tr class="memitem:add9b2ea0fc99c61d62ff55a271e7a5f7" id="r_add9b2ea0fc99c61d62ff55a271e7a5f7"><td class="memItemLeft anon">&#160;&#160;&#160;&#160;&#160;&#160;struct <a class="el" href="structspdk__fsdev__io__opts.html">spdk_fsdev_io_opts</a> *&#160;&#160;&#160;<a class="el" href="#aeeaa7ab957f6e49116d70afd08556a2d">opts</a>&#160;</td><td class="memItemRight"></td></tr>
+<tr class="memitem:ad101e43a699bef706bf6aeb4fc41fe32" id="r_ad101e43a699bef706bf6aeb4fc41fe32"><td class="memItemLeft anonEnd">&#160;&#160;&#160;}&#160;&#160;&#160;<b>write</b></td></tr>
+<tr class="memitem:"><td class="memItemLeft anon">
+&#160;&#160;&#160;struct {&#160;</td><td class="memItemRight"></td></tr>
+<tr class="memitem:a37a77dd205c7440437f9277d90c549bd" id="r_a37a77dd205c7440437f9277d90c549bd"><td class="memItemLeft anon">&#160;&#160;&#160;&#160;&#160;&#160;struct spdk_fsdev_file_object *&#160;&#160;&#160;<a class="el" href="#ada220e01744d2b749bf81a088079dee5">fobject</a>&#160;</td><td class="memItemRight"></td></tr>
+<tr class="memitem:a4b4d2ad46dcb8e7c392dc50b2fbc6aa2" id="r_a4b4d2ad46dcb8e7c392dc50b2fbc6aa2"><td class="memItemLeft anonEnd">&#160;&#160;&#160;}&#160;&#160;&#160;<b>statfs</b></td></tr>
+<tr class="memitem:"><td class="memItemLeft anon">
+&#160;&#160;&#160;struct {&#160;</td><td class="memItemRight"></td></tr>
+<tr class="memitem:aae2eb9571640c2e5482fb754e7f06e8b" id="r_aae2eb9571640c2e5482fb754e7f06e8b"><td class="memItemLeft anon">&#160;&#160;&#160;&#160;&#160;&#160;struct spdk_fsdev_file_object *&#160;&#160;&#160;<a class="el" href="#ada220e01744d2b749bf81a088079dee5">fobject</a>&#160;</td><td class="memItemRight"></td></tr>
+<tr class="memitem:a7454a17983aa523ee2dacf837cfd0421" id="r_a7454a17983aa523ee2dacf837cfd0421"><td class="memItemLeft anon">&#160;&#160;&#160;&#160;&#160;&#160;struct spdk_fsdev_file_handle *&#160;&#160;&#160;<a class="el" href="#a332e850c1b9b22226facc79a5dcd1789">fhandle</a>&#160;</td><td class="memItemRight"></td></tr>
+<tr class="memitem:adf2b0178eeb18cd5a516ed6d2b179b67" id="r_adf2b0178eeb18cd5a516ed6d2b179b67"><td class="memItemLeft anonEnd">&#160;&#160;&#160;}&#160;&#160;&#160;<b>release</b></td></tr>
+<tr class="memitem:"><td class="memItemLeft anon">
+&#160;&#160;&#160;struct {&#160;</td><td class="memItemRight"></td></tr>
+<tr class="memitem:a51e1604f8e0cc85b06440717f8287f60" id="r_a51e1604f8e0cc85b06440717f8287f60"><td class="memItemLeft anon">&#160;&#160;&#160;&#160;&#160;&#160;struct spdk_fsdev_file_object *&#160;&#160;&#160;<a class="el" href="#ada220e01744d2b749bf81a088079dee5">fobject</a>&#160;</td><td class="memItemRight"></td></tr>
+<tr class="memitem:a750a531cd63061663b835bb75959f3d3" id="r_a750a531cd63061663b835bb75959f3d3"><td class="memItemLeft anon">&#160;&#160;&#160;&#160;&#160;&#160;struct spdk_fsdev_file_handle *&#160;&#160;&#160;<a class="el" href="#a332e850c1b9b22226facc79a5dcd1789">fhandle</a>&#160;</td><td class="memItemRight"></td></tr>
+<tr class="memitem:ad98d6f6e2c4e45bda3d69878615d61ae" id="r_ad98d6f6e2c4e45bda3d69878615d61ae"><td class="memItemLeft anon">&#160;&#160;&#160;&#160;&#160;&#160;bool&#160;&#160;&#160;<a class="el" href="#a74bdeb0a1ceb60adfda6f2b208ed200b">datasync</a>&#160;</td><td class="memItemRight"></td></tr>
+<tr class="memitem:a250ce6d700064c8c5a05ecb678bf2bac" id="r_a250ce6d700064c8c5a05ecb678bf2bac"><td class="memItemLeft anonEnd">&#160;&#160;&#160;}&#160;&#160;&#160;<b>fsync</b></td></tr>
+<tr class="memitem:"><td class="memItemLeft anon">
+&#160;&#160;&#160;struct {&#160;</td><td class="memItemRight"></td></tr>
+<tr class="memitem:a9971cb1e09ddac301de0587a49a33d8a" id="r_a9971cb1e09ddac301de0587a49a33d8a"><td class="memItemLeft anon">&#160;&#160;&#160;&#160;&#160;&#160;struct spdk_fsdev_file_object *&#160;&#160;&#160;<a class="el" href="#ada220e01744d2b749bf81a088079dee5">fobject</a>&#160;</td><td class="memItemRight"></td></tr>
+<tr class="memitem:ace709c4fe24de96331158cf46cf029bf" id="r_ace709c4fe24de96331158cf46cf029bf"><td class="memItemLeft anon">&#160;&#160;&#160;&#160;&#160;&#160;char *&#160;&#160;&#160;<a class="el" href="#a0fd0af6cf73c75ae94edf9ff90b0eef8">name</a>&#160;</td><td class="memItemRight"></td></tr>
+<tr class="memitem:ad955e3804ba48e479f11f5b92cc1fd3c" id="r_ad955e3804ba48e479f11f5b92cc1fd3c"><td class="memItemLeft anon">&#160;&#160;&#160;&#160;&#160;&#160;char *&#160;&#160;&#160;<a class="el" href="#a0f64788ca79a9f8b8a71b239e1a24aef">value</a>&#160;</td><td class="memItemRight"></td></tr>
+<tr class="memitem:a5be0209079a3fab63cac0432bebf262c" id="r_a5be0209079a3fab63cac0432bebf262c"><td class="memItemLeft anon">&#160;&#160;&#160;&#160;&#160;&#160;size_t&#160;&#160;&#160;<a class="el" href="#a8c20f405f45d22805d0ba7a7925419e0">size</a>&#160;</td><td class="memItemRight"></td></tr>
+<tr class="memitem:a74161932e91cb6fb906acd8004a303f3" id="r_a74161932e91cb6fb906acd8004a303f3"><td class="memItemLeft anon">&#160;&#160;&#160;&#160;&#160;&#160;uint32_t&#160;&#160;&#160;<a class="el" href="#a2d2323480e538495dc3e660e6cf9af7a">flags</a>&#160;</td><td class="memItemRight"></td></tr>
+<tr class="memitem:a26cc0754ea6e36762b0802c5573a9348" id="r_a26cc0754ea6e36762b0802c5573a9348"><td class="memItemLeft anonEnd">&#160;&#160;&#160;}&#160;&#160;&#160;<b>setxattr</b></td></tr>
+<tr class="memitem:"><td class="memItemLeft anon">
+&#160;&#160;&#160;struct {&#160;</td><td class="memItemRight"></td></tr>
+<tr class="memitem:ab94e64d72a99e60ec5ca8f267a0ea7ee" id="r_ab94e64d72a99e60ec5ca8f267a0ea7ee"><td class="memItemLeft anon">&#160;&#160;&#160;&#160;&#160;&#160;struct spdk_fsdev_file_object *&#160;&#160;&#160;<a class="el" href="#ada220e01744d2b749bf81a088079dee5">fobject</a>&#160;</td><td class="memItemRight"></td></tr>
+<tr class="memitem:aab6b7e0e485d40f0197384234c0f6bd9" id="r_aab6b7e0e485d40f0197384234c0f6bd9"><td class="memItemLeft anon">&#160;&#160;&#160;&#160;&#160;&#160;char *&#160;&#160;&#160;<a class="el" href="#a0fd0af6cf73c75ae94edf9ff90b0eef8">name</a>&#160;</td><td class="memItemRight"></td></tr>
+<tr class="memitem:ade3a458883f231e093ec2a8b78137753" id="r_ade3a458883f231e093ec2a8b78137753"><td class="memItemLeft anon">&#160;&#160;&#160;&#160;&#160;&#160;void *&#160;&#160;&#160;<a class="el" href="#ae1bd6a98f5c03149f0e7f23f25fd1ffe">buffer</a>&#160;</td><td class="memItemRight"></td></tr>
+<tr class="memitem:acfa2668264b65e2b47badf188b32e1ab" id="r_acfa2668264b65e2b47badf188b32e1ab"><td class="memItemLeft anon">&#160;&#160;&#160;&#160;&#160;&#160;size_t&#160;&#160;&#160;<a class="el" href="#a8c20f405f45d22805d0ba7a7925419e0">size</a>&#160;</td><td class="memItemRight"></td></tr>
+<tr class="memitem:a81436801da20c41068883f974827084f" id="r_a81436801da20c41068883f974827084f"><td class="memItemLeft anonEnd">&#160;&#160;&#160;}&#160;&#160;&#160;<b>getxattr</b></td></tr>
+<tr class="memitem:"><td class="memItemLeft anon">
+&#160;&#160;&#160;struct {&#160;</td><td class="memItemRight"></td></tr>
+<tr class="memitem:a0f50cdb54b05e0d24b037012c517e5e7" id="r_a0f50cdb54b05e0d24b037012c517e5e7"><td class="memItemLeft anon">&#160;&#160;&#160;&#160;&#160;&#160;struct spdk_fsdev_file_object *&#160;&#160;&#160;<a class="el" href="#ada220e01744d2b749bf81a088079dee5">fobject</a>&#160;</td><td class="memItemRight"></td></tr>
+<tr class="memitem:a57592f649ec00b8ed55090268f00cbaf" id="r_a57592f649ec00b8ed55090268f00cbaf"><td class="memItemLeft anon">&#160;&#160;&#160;&#160;&#160;&#160;char *&#160;&#160;&#160;<a class="el" href="#a8950124846f97a1d51e86c35d2594457">buffer</a>&#160;</td><td class="memItemRight"></td></tr>
+<tr class="memitem:a53e75fde1e5dadccf61812fa3948c2ba" id="r_a53e75fde1e5dadccf61812fa3948c2ba"><td class="memItemLeft anon">&#160;&#160;&#160;&#160;&#160;&#160;size_t&#160;&#160;&#160;<a class="el" href="#a8c20f405f45d22805d0ba7a7925419e0">size</a>&#160;</td><td class="memItemRight"></td></tr>
+<tr class="memitem:a53ec9867a57e36d622759c612c6aa3b7" id="r_a53ec9867a57e36d622759c612c6aa3b7"><td class="memItemLeft anonEnd">&#160;&#160;&#160;}&#160;&#160;&#160;<b>listxattr</b></td></tr>
+<tr class="memitem:"><td class="memItemLeft anon">
+&#160;&#160;&#160;struct {&#160;</td><td class="memItemRight"></td></tr>
+<tr class="memitem:abc7f41195dc547fe117df9da4ad67fc7" id="r_abc7f41195dc547fe117df9da4ad67fc7"><td class="memItemLeft anon">&#160;&#160;&#160;&#160;&#160;&#160;struct spdk_fsdev_file_object *&#160;&#160;&#160;<a class="el" href="#ada220e01744d2b749bf81a088079dee5">fobject</a>&#160;</td><td class="memItemRight"></td></tr>
+<tr class="memitem:acc15e952a1ed283ad1669823032bae55" id="r_acc15e952a1ed283ad1669823032bae55"><td class="memItemLeft anon">&#160;&#160;&#160;&#160;&#160;&#160;char *&#160;&#160;&#160;<a class="el" href="#a0fd0af6cf73c75ae94edf9ff90b0eef8">name</a>&#160;</td><td class="memItemRight"></td></tr>
+<tr class="memitem:a2f2b5908f4eb4fa5ad8f921706d00879" id="r_a2f2b5908f4eb4fa5ad8f921706d00879"><td class="memItemLeft anonEnd">&#160;&#160;&#160;}&#160;&#160;&#160;<b>removexattr</b></td></tr>
+<tr class="memitem:"><td class="memItemLeft anon">
+&#160;&#160;&#160;struct {&#160;</td><td class="memItemRight"></td></tr>
+<tr class="memitem:a9b59826456789c0a5d6ec404686fc166" id="r_a9b59826456789c0a5d6ec404686fc166"><td class="memItemLeft anon">&#160;&#160;&#160;&#160;&#160;&#160;struct spdk_fsdev_file_object *&#160;&#160;&#160;<a class="el" href="#ada220e01744d2b749bf81a088079dee5">fobject</a>&#160;</td><td class="memItemRight"></td></tr>
+<tr class="memitem:a31ae04c4dd3cfd5077cda8aa8d369994" id="r_a31ae04c4dd3cfd5077cda8aa8d369994"><td class="memItemLeft anon">&#160;&#160;&#160;&#160;&#160;&#160;struct spdk_fsdev_file_handle *&#160;&#160;&#160;<a class="el" href="#a332e850c1b9b22226facc79a5dcd1789">fhandle</a>&#160;</td><td class="memItemRight"></td></tr>
+<tr class="memitem:afdd16ccc88eaa2b72f64df26b36adeb9" id="r_afdd16ccc88eaa2b72f64df26b36adeb9"><td class="memItemLeft anonEnd">&#160;&#160;&#160;}&#160;&#160;&#160;<b>flush</b></td></tr>
+<tr class="memitem:"><td class="memItemLeft anon">
+&#160;&#160;&#160;struct {&#160;</td><td class="memItemRight"></td></tr>
+<tr class="memitem:a1feaa4e35a73dbeda4bfafd46d807942" id="r_a1feaa4e35a73dbeda4bfafd46d807942"><td class="memItemLeft anon">&#160;&#160;&#160;&#160;&#160;&#160;struct spdk_fsdev_file_object *&#160;&#160;&#160;<a class="el" href="#ada220e01744d2b749bf81a088079dee5">fobject</a>&#160;</td><td class="memItemRight"></td></tr>
+<tr class="memitem:a6c676c613f52cd13c70ef50ff2cf704b" id="r_a6c676c613f52cd13c70ef50ff2cf704b"><td class="memItemLeft anon">&#160;&#160;&#160;&#160;&#160;&#160;uint32_t&#160;&#160;&#160;<a class="el" href="#a2d2323480e538495dc3e660e6cf9af7a">flags</a>&#160;</td><td class="memItemRight"></td></tr>
+<tr class="memitem:a4d4b3345946aaaef439f52581789b4b8" id="r_a4d4b3345946aaaef439f52581789b4b8"><td class="memItemLeft anonEnd">&#160;&#160;&#160;}&#160;&#160;&#160;<b>opendir</b></td></tr>
+<tr class="memitem:"><td class="memItemLeft anon">
+&#160;&#160;&#160;struct {&#160;</td><td class="memItemRight"></td></tr>
+<tr class="memitem:ab440ebb23cbf9b6a4526eded0884df07" id="r_ab440ebb23cbf9b6a4526eded0884df07"><td class="memItemLeft anon">&#160;&#160;&#160;&#160;&#160;&#160;struct spdk_fsdev_file_object *&#160;&#160;&#160;<a class="el" href="#ada220e01744d2b749bf81a088079dee5">fobject</a>&#160;</td><td class="memItemRight"></td></tr>
+<tr class="memitem:adc6a55a711fdfaefb2cd0c5bf769707f" id="r_adc6a55a711fdfaefb2cd0c5bf769707f"><td class="memItemLeft anon">&#160;&#160;&#160;&#160;&#160;&#160;struct spdk_fsdev_file_handle *&#160;&#160;&#160;<a class="el" href="#a332e850c1b9b22226facc79a5dcd1789">fhandle</a>&#160;</td><td class="memItemRight"></td></tr>
+<tr class="memitem:adf95dacb89cc60dd6060643588869017" id="r_adf95dacb89cc60dd6060643588869017"><td class="memItemLeft anon">&#160;&#160;&#160;&#160;&#160;&#160;uint64_t&#160;&#160;&#160;<a class="el" href="#a95bf305b970058bd4fb4191e123f4e07">offset</a>&#160;</td><td class="memItemRight"></td></tr>
+<tr class="memitem:a981b641c6b20465ce4c554f3aa2d699f" id="r_a981b641c6b20465ce4c554f3aa2d699f"><td class="memItemLeft anon">&#160;&#160;&#160;&#160;&#160;&#160;int(*&#160;&#160;&#160;<a class="el" href="#a45a38518fc4f162fb939086bbc9cd564">entry_cb_fn</a> )(struct <a class="el" href="structspdk__fsdev__io.html">spdk_fsdev_io</a> <br class="typebreak" />
+&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;*fsdev_io, void *cb_arg)&#160;</td><td class="memItemRight"></td></tr>
+<tr class="memitem:ad5fc2cf4a050e1efb0e7976949813eba" id="r_ad5fc2cf4a050e1efb0e7976949813eba"><td class="memItemLeft anon">&#160;&#160;&#160;&#160;&#160;&#160;<a class="el" href="fsdev_8h.html#a1aa47bc61002d7f310c31bdc80ef435f">spdk_fsdev_readdir_entry_cb</a> *&#160;&#160;&#160;<a class="el" href="#aa6a985ff2b7c1eef9886c30a046c031a">usr_entry_cb_fn</a>&#160;</td><td class="memItemRight"></td></tr>
+<tr class="memitem:a784a93818f67c3c9f81a6e4f131b2206" id="r_a784a93818f67c3c9f81a6e4f131b2206"><td class="memItemLeft anonEnd">&#160;&#160;&#160;}&#160;&#160;&#160;<b>readdir</b></td></tr>
+<tr class="memitem:"><td class="memItemLeft anon">
+&#160;&#160;&#160;struct {&#160;</td><td class="memItemRight"></td></tr>
+<tr class="memitem:aec90bb7f5b855dafd86804bd80458481" id="r_aec90bb7f5b855dafd86804bd80458481"><td class="memItemLeft anon">&#160;&#160;&#160;&#160;&#160;&#160;struct spdk_fsdev_file_object *&#160;&#160;&#160;<a class="el" href="#ada220e01744d2b749bf81a088079dee5">fobject</a>&#160;</td><td class="memItemRight"></td></tr>
+<tr class="memitem:ab321e992c3fcfeedc620a27e6d34faae" id="r_ab321e992c3fcfeedc620a27e6d34faae"><td class="memItemLeft anon">&#160;&#160;&#160;&#160;&#160;&#160;struct spdk_fsdev_file_handle *&#160;&#160;&#160;<a class="el" href="#a332e850c1b9b22226facc79a5dcd1789">fhandle</a>&#160;</td><td class="memItemRight"></td></tr>
+<tr class="memitem:a50f1bd6f363c475b83af84e5fe911713" id="r_a50f1bd6f363c475b83af84e5fe911713"><td class="memItemLeft anonEnd">&#160;&#160;&#160;}&#160;&#160;&#160;<b>releasedir</b></td></tr>
+<tr class="memitem:"><td class="memItemLeft anon">
+&#160;&#160;&#160;struct {&#160;</td><td class="memItemRight"></td></tr>
+<tr class="memitem:ad9562753ea613640bf4476516fe4393c" id="r_ad9562753ea613640bf4476516fe4393c"><td class="memItemLeft anon">&#160;&#160;&#160;&#160;&#160;&#160;struct spdk_fsdev_file_object *&#160;&#160;&#160;<a class="el" href="#ada220e01744d2b749bf81a088079dee5">fobject</a>&#160;</td><td class="memItemRight"></td></tr>
+<tr class="memitem:a5e402102018bbfdf70edc75bbefbb398" id="r_a5e402102018bbfdf70edc75bbefbb398"><td class="memItemLeft anon">&#160;&#160;&#160;&#160;&#160;&#160;struct spdk_fsdev_file_handle *&#160;&#160;&#160;<a class="el" href="#a332e850c1b9b22226facc79a5dcd1789">fhandle</a>&#160;</td><td class="memItemRight"></td></tr>
+<tr class="memitem:a978416067d52db28171f707973407b3e" id="r_a978416067d52db28171f707973407b3e"><td class="memItemLeft anon">&#160;&#160;&#160;&#160;&#160;&#160;bool&#160;&#160;&#160;<a class="el" href="#a74bdeb0a1ceb60adfda6f2b208ed200b">datasync</a>&#160;</td><td class="memItemRight"></td></tr>
+<tr class="memitem:ae34ae98daa667a18d0531c85eb35a644" id="r_ae34ae98daa667a18d0531c85eb35a644"><td class="memItemLeft anonEnd">&#160;&#160;&#160;}&#160;&#160;&#160;<b>fsyncdir</b></td></tr>
+<tr class="memitem:"><td class="memItemLeft anon">
+&#160;&#160;&#160;struct {&#160;</td><td class="memItemRight"></td></tr>
+<tr class="memitem:ac4c66ef6cdb1825cb08c4f6b34aa6d22" id="r_ac4c66ef6cdb1825cb08c4f6b34aa6d22"><td class="memItemLeft anon">&#160;&#160;&#160;&#160;&#160;&#160;struct spdk_fsdev_file_object *&#160;&#160;&#160;<a class="el" href="#ada220e01744d2b749bf81a088079dee5">fobject</a>&#160;</td><td class="memItemRight"></td></tr>
+<tr class="memitem:a3a2137f30ee9cb41b26df4f1b869db50" id="r_a3a2137f30ee9cb41b26df4f1b869db50"><td class="memItemLeft anon">&#160;&#160;&#160;&#160;&#160;&#160;struct spdk_fsdev_file_handle *&#160;&#160;&#160;<a class="el" href="#a332e850c1b9b22226facc79a5dcd1789">fhandle</a>&#160;</td><td class="memItemRight"></td></tr>
+<tr class="memitem:a3393e5fef98c8315d72a8366449426b5" id="r_a3393e5fef98c8315d72a8366449426b5"><td class="memItemLeft anon">&#160;&#160;&#160;&#160;&#160;&#160;int&#160;&#160;&#160;<a class="el" href="#a79b90393be7670d58efda5d73c1455a7">operation</a>&#160;</td><td class="memItemRight"></td></tr>
+<tr class="memitem:ace77ec9b03a4c975c60ae5cd05d50f4f" id="r_ace77ec9b03a4c975c60ae5cd05d50f4f"><td class="memItemLeft anonEnd">&#160;&#160;&#160;}&#160;&#160;&#160;<b>flock</b></td></tr>
+<tr class="memitem:"><td class="memItemLeft anon">
+&#160;&#160;&#160;struct {&#160;</td><td class="memItemRight"></td></tr>
+<tr class="memitem:a5fa7d9c6d1c7d2a88e9a6a2bf1b721ce" id="r_a5fa7d9c6d1c7d2a88e9a6a2bf1b721ce"><td class="memItemLeft anon">&#160;&#160;&#160;&#160;&#160;&#160;struct spdk_fsdev_file_object *&#160;&#160;&#160;<a class="el" href="#a3b71c836a08bc3804303a503255f322b">parent_fobject</a>&#160;</td><td class="memItemRight"></td></tr>
+<tr class="memitem:a68521ba965c87ed4754150955ab45916" id="r_a68521ba965c87ed4754150955ab45916"><td class="memItemLeft anon">&#160;&#160;&#160;&#160;&#160;&#160;char *&#160;&#160;&#160;<a class="el" href="#a0fd0af6cf73c75ae94edf9ff90b0eef8">name</a>&#160;</td><td class="memItemRight"></td></tr>
+<tr class="memitem:a950d693b4b7a5e0080df9b0f6c555a00" id="r_a950d693b4b7a5e0080df9b0f6c555a00"><td class="memItemLeft anon">&#160;&#160;&#160;&#160;&#160;&#160;mode_t&#160;&#160;&#160;<a class="el" href="#a87185f51cdd242f4824301c606d9ee88">mode</a>&#160;</td><td class="memItemRight"></td></tr>
+<tr class="memitem:a7cbfcbaa7c33b5dcf64c493413a67a46" id="r_a7cbfcbaa7c33b5dcf64c493413a67a46"><td class="memItemLeft anon">&#160;&#160;&#160;&#160;&#160;&#160;uint32_t&#160;&#160;&#160;<a class="el" href="#a2d2323480e538495dc3e660e6cf9af7a">flags</a>&#160;</td><td class="memItemRight"></td></tr>
+<tr class="memitem:aa3c13673b852a69caf077af230ed3a8d" id="r_aa3c13673b852a69caf077af230ed3a8d"><td class="memItemLeft anon">&#160;&#160;&#160;&#160;&#160;&#160;mode_t&#160;&#160;&#160;<a class="el" href="#a0ae5c9729318a43ed7063d9c3b60c1c8">umask</a>&#160;</td><td class="memItemRight"></td></tr>
+<tr class="memitem:a48ba522169d74f4660b0d56c87e27a3d" id="r_a48ba522169d74f4660b0d56c87e27a3d"><td class="memItemLeft anon">&#160;&#160;&#160;&#160;&#160;&#160;uid_t&#160;&#160;&#160;<a class="el" href="#a719e02e1dbe73ec102d2069c2952330f">euid</a>&#160;</td><td class="memItemRight"></td></tr>
+<tr class="memitem:a480d7d87133dfb2ee7330e4b20bb61e0" id="r_a480d7d87133dfb2ee7330e4b20bb61e0"><td class="memItemLeft anon">&#160;&#160;&#160;&#160;&#160;&#160;gid_t&#160;&#160;&#160;<a class="el" href="#ab6bff1eb10a794a7bef8385a57b78891">egid</a>&#160;</td><td class="memItemRight"></td></tr>
+<tr class="memitem:a659fdaaf38512ad6ef2b810aa7be98ab" id="r_a659fdaaf38512ad6ef2b810aa7be98ab"><td class="memItemLeft anonEnd">&#160;&#160;&#160;}&#160;&#160;&#160;<b>create</b></td></tr>
+<tr class="memitem:"><td class="memItemLeft anon">
+&#160;&#160;&#160;struct {&#160;</td><td class="memItemRight"></td></tr>
+<tr class="memitem:a6c3d3fa8c388e28981e213c77d48e02d" id="r_a6c3d3fa8c388e28981e213c77d48e02d"><td class="memItemLeft anon">&#160;&#160;&#160;&#160;&#160;&#160;uint64_t&#160;&#160;&#160;<a class="el" href="#a88ae7a2fede3bfaa990ee992af331c08">unique_to_abort</a>&#160;</td><td class="memItemRight"></td></tr>
+<tr class="memitem:a4783e27c5f1e78159c1279d40b950114" id="r_a4783e27c5f1e78159c1279d40b950114"><td class="memItemLeft anonEnd">&#160;&#160;&#160;}&#160;&#160;&#160;<b>abort</b></td></tr>
+<tr class="memitem:"><td class="memItemLeft anon">
+&#160;&#160;&#160;struct {&#160;</td><td class="memItemRight"></td></tr>
+<tr class="memitem:ac0a8c5ed59909386cb4f6bab588f46d2" id="r_ac0a8c5ed59909386cb4f6bab588f46d2"><td class="memItemLeft anon">&#160;&#160;&#160;&#160;&#160;&#160;struct spdk_fsdev_file_object *&#160;&#160;&#160;<a class="el" href="#ada220e01744d2b749bf81a088079dee5">fobject</a>&#160;</td><td class="memItemRight"></td></tr>
+<tr class="memitem:aba4950e517b0754c8a741e11d38bebe0" id="r_aba4950e517b0754c8a741e11d38bebe0"><td class="memItemLeft anon">&#160;&#160;&#160;&#160;&#160;&#160;struct spdk_fsdev_file_handle *&#160;&#160;&#160;<a class="el" href="#a332e850c1b9b22226facc79a5dcd1789">fhandle</a>&#160;</td><td class="memItemRight"></td></tr>
+<tr class="memitem:acab2c661d83523b69e425af8715ab0df" id="r_acab2c661d83523b69e425af8715ab0df"><td class="memItemLeft anon">&#160;&#160;&#160;&#160;&#160;&#160;int&#160;&#160;&#160;<a class="el" href="#a71382bb71fff141df10cc6b070fddffe">mode</a>&#160;</td><td class="memItemRight"></td></tr>
+<tr class="memitem:a7ee92170ae9b8f5ba5393c27f8f9dd35" id="r_a7ee92170ae9b8f5ba5393c27f8f9dd35"><td class="memItemLeft anon">&#160;&#160;&#160;&#160;&#160;&#160;off_t&#160;&#160;&#160;<a class="el" href="#a87d630baa8bd9d1d9385d6fa5254d51c">offset</a>&#160;</td><td class="memItemRight"></td></tr>
+<tr class="memitem:a77f2a35f73c003539e491b48fed8091e" id="r_a77f2a35f73c003539e491b48fed8091e"><td class="memItemLeft anon">&#160;&#160;&#160;&#160;&#160;&#160;off_t&#160;&#160;&#160;<a class="el" href="#a7b50f39f8ddef82552c9c79259b799a2">length</a>&#160;</td><td class="memItemRight"></td></tr>
+<tr class="memitem:af89edbd14cd4127c7b01626dd2a8d5ca" id="r_af89edbd14cd4127c7b01626dd2a8d5ca"><td class="memItemLeft anonEnd">&#160;&#160;&#160;}&#160;&#160;&#160;<b>fallocate</b></td></tr>
+<tr class="memitem:"><td class="memItemLeft anon">
+&#160;&#160;&#160;struct {&#160;</td><td class="memItemRight"></td></tr>
+<tr class="memitem:ae48bbfd3bb5bb955b643755a65a1db2f" id="r_ae48bbfd3bb5bb955b643755a65a1db2f"><td class="memItemLeft anon">&#160;&#160;&#160;&#160;&#160;&#160;struct spdk_fsdev_file_object *&#160;&#160;&#160;<a class="el" href="#a7bed4216577693d8fc37627a06ac7718">fobject_in</a>&#160;</td><td class="memItemRight"></td></tr>
+<tr class="memitem:afcbd6ad78b32bd1cd3a21774829b6a10" id="r_afcbd6ad78b32bd1cd3a21774829b6a10"><td class="memItemLeft anon">&#160;&#160;&#160;&#160;&#160;&#160;struct spdk_fsdev_file_handle *&#160;&#160;&#160;<a class="el" href="#a5f9ade8c1bf995d6ed2f32daad2047e8">fhandle_in</a>&#160;</td><td class="memItemRight"></td></tr>
+<tr class="memitem:a9449bdc9240273256282aa0ed1232d40" id="r_a9449bdc9240273256282aa0ed1232d40"><td class="memItemLeft anon">&#160;&#160;&#160;&#160;&#160;&#160;off_t&#160;&#160;&#160;<a class="el" href="#a0454b053db79aaea83177317f3f71871">off_in</a>&#160;</td><td class="memItemRight"></td></tr>
+<tr class="memitem:a2cbeeacabd3bbf6156eea9523ce51bc8" id="r_a2cbeeacabd3bbf6156eea9523ce51bc8"><td class="memItemLeft anon">&#160;&#160;&#160;&#160;&#160;&#160;struct spdk_fsdev_file_object *&#160;&#160;&#160;<a class="el" href="#a8adfb8fb7402bce937680cdba89e0bd1">fobject_out</a>&#160;</td><td class="memItemRight"></td></tr>
+<tr class="memitem:a04897742f7e3f5a1a105180d59aa41e1" id="r_a04897742f7e3f5a1a105180d59aa41e1"><td class="memItemLeft anon">&#160;&#160;&#160;&#160;&#160;&#160;struct spdk_fsdev_file_handle *&#160;&#160;&#160;<a class="el" href="#ad270121dbc8f082b5d4f526f4bcc63fd">fhandle_out</a>&#160;</td><td class="memItemRight"></td></tr>
+<tr class="memitem:a3311a33f79e5774ab2b45cb2200e5637" id="r_a3311a33f79e5774ab2b45cb2200e5637"><td class="memItemLeft anon">&#160;&#160;&#160;&#160;&#160;&#160;off_t&#160;&#160;&#160;<a class="el" href="#abcde82e0310b36b473b2e739304f8397">off_out</a>&#160;</td><td class="memItemRight"></td></tr>
+<tr class="memitem:ab8c123d4cd761771df15b436d483a439" id="r_ab8c123d4cd761771df15b436d483a439"><td class="memItemLeft anon">&#160;&#160;&#160;&#160;&#160;&#160;size_t&#160;&#160;&#160;<a class="el" href="#a9fec5e4ed0a845ecfb5f9ad96b272712">len</a>&#160;</td><td class="memItemRight"></td></tr>
+<tr class="memitem:a6da2ee18228d60ed6e8de85ce80e7fa0" id="r_a6da2ee18228d60ed6e8de85ce80e7fa0"><td class="memItemLeft anon">&#160;&#160;&#160;&#160;&#160;&#160;uint32_t&#160;&#160;&#160;<a class="el" href="#a2d2323480e538495dc3e660e6cf9af7a">flags</a>&#160;</td><td class="memItemRight"></td></tr>
+<tr class="memitem:a525bbfbdca19cfb15e2f6def64ecb221" id="r_a525bbfbdca19cfb15e2f6def64ecb221"><td class="memItemLeft anonEnd">&#160;&#160;&#160;}&#160;&#160;&#160;<b>copy_file_range</b></td></tr>
+<tr class="memitem:abb8e1dfae8988cb1f83469877b82deb4" id="r_abb8e1dfae8988cb1f83469877b82deb4"><td class="memItemLeft anonEnd">}&#160;</td><td class="memItemRight"><b>u_in</b></td></tr>
+<tr class="memitem:"><td class="memItemLeft anon"><a id="a178305e6ae5f7edaa16d7d55552310fe" name="a178305e6ae5f7edaa16d7d55552310fe"></a>
+union {&#160;</td><td class="memItemRight"></td></tr>
+<tr class="memitem:"><td class="memItemLeft anon">
+&#160;&#160;&#160;struct {&#160;</td><td class="memItemRight"></td></tr>
+<tr class="memitem:aa4a36174d79bc399976b7d056440183f" id="r_aa4a36174d79bc399976b7d056440183f"><td class="memItemLeft anon">&#160;&#160;&#160;&#160;&#160;&#160;struct <a class="el" href="structspdk__fsdev__mount__opts.html">spdk_fsdev_mount_opts</a>&#160;&#160;&#160;<a class="el" href="#a3adf23d111267568c80f774b3368bc89">opts</a>&#160;</td><td class="memItemRight"></td></tr>
+<tr class="memitem:a1cde629f11495ac75ab0d7222721c8e4" id="r_a1cde629f11495ac75ab0d7222721c8e4"><td class="memItemLeft anon">&#160;&#160;&#160;&#160;&#160;&#160;struct spdk_fsdev_file_object *&#160;&#160;&#160;<a class="el" href="#af7ec0bb41670f17d329b77811543f429">root_fobject</a>&#160;</td><td class="memItemRight"></td></tr>
+<tr class="memitem:afabf209ae4cddfae9071fc7e2f0df25a" id="r_afabf209ae4cddfae9071fc7e2f0df25a"><td class="memItemLeft anonEnd">&#160;&#160;&#160;}&#160;&#160;&#160;<b>mount</b></td></tr>
+<tr class="memitem:"><td class="memItemLeft anon">
+&#160;&#160;&#160;struct {&#160;</td><td class="memItemRight"></td></tr>
+<tr class="memitem:a677b6ec16bc0dbabe7077649f1c06f3b" id="r_a677b6ec16bc0dbabe7077649f1c06f3b"><td class="memItemLeft anon">&#160;&#160;&#160;&#160;&#160;&#160;struct spdk_fsdev_file_object *&#160;&#160;&#160;<a class="el" href="#ada220e01744d2b749bf81a088079dee5">fobject</a>&#160;</td><td class="memItemRight"></td></tr>
+<tr class="memitem:a9fb684f3c807b8b486296b4ef9da3512" id="r_a9fb684f3c807b8b486296b4ef9da3512"><td class="memItemLeft anon">&#160;&#160;&#160;&#160;&#160;&#160;struct <a class="el" href="structspdk__fsdev__file__attr.html">spdk_fsdev_file_attr</a>&#160;&#160;&#160;<a class="el" href="#a547dac8fb7405e67f594f2c50b5a75a4">attr</a>&#160;</td><td class="memItemRight"></td></tr>
+<tr class="memitem:a84e207e924a1865080367ddc83228e0b" id="r_a84e207e924a1865080367ddc83228e0b"><td class="memItemLeft anonEnd">&#160;&#160;&#160;}&#160;&#160;&#160;<b>lookup</b></td></tr>
+<tr class="memitem:"><td class="memItemLeft anon">
+&#160;&#160;&#160;struct {&#160;</td><td class="memItemRight"></td></tr>
+<tr class="memitem:ab87784b72f2a98484166c7df64ae379f" id="r_ab87784b72f2a98484166c7df64ae379f"><td class="memItemLeft anon">&#160;&#160;&#160;&#160;&#160;&#160;struct <a class="el" href="structspdk__fsdev__file__attr.html">spdk_fsdev_file_attr</a>&#160;&#160;&#160;<a class="el" href="#a547dac8fb7405e67f594f2c50b5a75a4">attr</a>&#160;</td><td class="memItemRight"></td></tr>
+<tr class="memitem:aaa05917549d4c477ad7a0133c7f38760" id="r_aaa05917549d4c477ad7a0133c7f38760"><td class="memItemLeft anonEnd">&#160;&#160;&#160;}&#160;&#160;&#160;<b>getattr</b></td></tr>
+<tr class="memitem:"><td class="memItemLeft anon">
+&#160;&#160;&#160;struct {&#160;</td><td class="memItemRight"></td></tr>
+<tr class="memitem:a80efa3bd5879c8d949ac8a0b1b30afd2" id="r_a80efa3bd5879c8d949ac8a0b1b30afd2"><td class="memItemLeft anon">&#160;&#160;&#160;&#160;&#160;&#160;struct <a class="el" href="structspdk__fsdev__file__attr.html">spdk_fsdev_file_attr</a>&#160;&#160;&#160;<a class="el" href="#a547dac8fb7405e67f594f2c50b5a75a4">attr</a>&#160;</td><td class="memItemRight"></td></tr>
+<tr class="memitem:ac4202e6f8cae81a382b3dec0c35cf450" id="r_ac4202e6f8cae81a382b3dec0c35cf450"><td class="memItemLeft anonEnd">&#160;&#160;&#160;}&#160;&#160;&#160;<b>setattr</b></td></tr>
+<tr class="memitem:"><td class="memItemLeft anon">
+&#160;&#160;&#160;struct {&#160;</td><td class="memItemRight"></td></tr>
+<tr class="memitem:a2069bb96180fb7b5e40861a3a862d06b" id="r_a2069bb96180fb7b5e40861a3a862d06b"><td class="memItemLeft anon">&#160;&#160;&#160;&#160;&#160;&#160;char *&#160;&#160;&#160;<a class="el" href="#a413b8f22c318bf0cb24b06ce7a816800">linkname</a>&#160;</td><td class="memItemRight"></td></tr>
+<tr class="memitem:a0a43aa7c452ec7dc2154b59c4f56b763" id="r_a0a43aa7c452ec7dc2154b59c4f56b763"><td class="memItemLeft anonEnd">&#160;&#160;&#160;}&#160;&#160;&#160;<b>readlink</b></td></tr>
+<tr class="memitem:"><td class="memItemLeft anon">
+&#160;&#160;&#160;struct {&#160;</td><td class="memItemRight"></td></tr>
+<tr class="memitem:af652b55def8684cffe935672f28b55fd" id="r_af652b55def8684cffe935672f28b55fd"><td class="memItemLeft anon">&#160;&#160;&#160;&#160;&#160;&#160;struct spdk_fsdev_file_object *&#160;&#160;&#160;<a class="el" href="#ada220e01744d2b749bf81a088079dee5">fobject</a>&#160;</td><td class="memItemRight"></td></tr>
+<tr class="memitem:aa9fba19cd4223e38ffd6c43b358016a7" id="r_aa9fba19cd4223e38ffd6c43b358016a7"><td class="memItemLeft anon">&#160;&#160;&#160;&#160;&#160;&#160;struct <a class="el" href="structspdk__fsdev__file__attr.html">spdk_fsdev_file_attr</a>&#160;&#160;&#160;<a class="el" href="#a547dac8fb7405e67f594f2c50b5a75a4">attr</a>&#160;</td><td class="memItemRight"></td></tr>
+<tr class="memitem:a69e7b01eea3e22cfafdedbac9c1f2480" id="r_a69e7b01eea3e22cfafdedbac9c1f2480"><td class="memItemLeft anonEnd">&#160;&#160;&#160;}&#160;&#160;&#160;<b>symlink</b></td></tr>
+<tr class="memitem:"><td class="memItemLeft anon">
+&#160;&#160;&#160;struct {&#160;</td><td class="memItemRight"></td></tr>
+<tr class="memitem:a5e8e001ce7e23ad85e095f271847791b" id="r_a5e8e001ce7e23ad85e095f271847791b"><td class="memItemLeft anon">&#160;&#160;&#160;&#160;&#160;&#160;struct spdk_fsdev_file_object *&#160;&#160;&#160;<a class="el" href="#ada220e01744d2b749bf81a088079dee5">fobject</a>&#160;</td><td class="memItemRight"></td></tr>
+<tr class="memitem:aceb2500bf09498c41bf4a45784e814d6" id="r_aceb2500bf09498c41bf4a45784e814d6"><td class="memItemLeft anon">&#160;&#160;&#160;&#160;&#160;&#160;struct <a class="el" href="structspdk__fsdev__file__attr.html">spdk_fsdev_file_attr</a>&#160;&#160;&#160;<a class="el" href="#a547dac8fb7405e67f594f2c50b5a75a4">attr</a>&#160;</td><td class="memItemRight"></td></tr>
+<tr class="memitem:a4461d432c276fe6fed8b09dbee0c5e0c" id="r_a4461d432c276fe6fed8b09dbee0c5e0c"><td class="memItemLeft anonEnd">&#160;&#160;&#160;}&#160;&#160;&#160;<b>mknod</b></td></tr>
+<tr class="memitem:"><td class="memItemLeft anon">
+&#160;&#160;&#160;struct {&#160;</td><td class="memItemRight"></td></tr>
+<tr class="memitem:a4ab2f1b4a1cb531acf68744f6dd23108" id="r_a4ab2f1b4a1cb531acf68744f6dd23108"><td class="memItemLeft anon">&#160;&#160;&#160;&#160;&#160;&#160;struct spdk_fsdev_file_object *&#160;&#160;&#160;<a class="el" href="#ada220e01744d2b749bf81a088079dee5">fobject</a>&#160;</td><td class="memItemRight"></td></tr>
+<tr class="memitem:a183f05e661746cfa8bf61bb23ebc5cd5" id="r_a183f05e661746cfa8bf61bb23ebc5cd5"><td class="memItemLeft anon">&#160;&#160;&#160;&#160;&#160;&#160;struct <a class="el" href="structspdk__fsdev__file__attr.html">spdk_fsdev_file_attr</a>&#160;&#160;&#160;<a class="el" href="#a547dac8fb7405e67f594f2c50b5a75a4">attr</a>&#160;</td><td class="memItemRight"></td></tr>
+<tr class="memitem:a70e7b39d39af569c420a8a3aad832c78" id="r_a70e7b39d39af569c420a8a3aad832c78"><td class="memItemLeft anonEnd">&#160;&#160;&#160;}&#160;&#160;&#160;<b>mkdir</b></td></tr>
+<tr class="memitem:"><td class="memItemLeft anon">
+&#160;&#160;&#160;struct {&#160;</td><td class="memItemRight"></td></tr>
+<tr class="memitem:a642e7ba6356c4f566af8095b91a92381" id="r_a642e7ba6356c4f566af8095b91a92381"><td class="memItemLeft anon">&#160;&#160;&#160;&#160;&#160;&#160;struct spdk_fsdev_file_object *&#160;&#160;&#160;<a class="el" href="#ada220e01744d2b749bf81a088079dee5">fobject</a>&#160;</td><td class="memItemRight"></td></tr>
+<tr class="memitem:a4e33e061d049bf0533a50420439666c3" id="r_a4e33e061d049bf0533a50420439666c3"><td class="memItemLeft anon">&#160;&#160;&#160;&#160;&#160;&#160;struct <a class="el" href="structspdk__fsdev__file__attr.html">spdk_fsdev_file_attr</a>&#160;&#160;&#160;<a class="el" href="#a547dac8fb7405e67f594f2c50b5a75a4">attr</a>&#160;</td><td class="memItemRight"></td></tr>
+<tr class="memitem:a82e49bcb1060bf993a9d71a448866b7f" id="r_a82e49bcb1060bf993a9d71a448866b7f"><td class="memItemLeft anonEnd">&#160;&#160;&#160;}&#160;&#160;&#160;<b>link</b></td></tr>
+<tr class="memitem:"><td class="memItemLeft anon">
+&#160;&#160;&#160;struct {&#160;</td><td class="memItemRight"></td></tr>
+<tr class="memitem:a5961760cfb54af08716536b3a7e55ad4" id="r_a5961760cfb54af08716536b3a7e55ad4"><td class="memItemLeft anon">&#160;&#160;&#160;&#160;&#160;&#160;struct spdk_fsdev_file_handle *&#160;&#160;&#160;<a class="el" href="#a332e850c1b9b22226facc79a5dcd1789">fhandle</a>&#160;</td><td class="memItemRight"></td></tr>
+<tr class="memitem:a02de54754e4b59a2698d67763beb45a1" id="r_a02de54754e4b59a2698d67763beb45a1"><td class="memItemLeft anonEnd">&#160;&#160;&#160;}&#160;&#160;&#160;<b>open</b></td></tr>
+<tr class="memitem:"><td class="memItemLeft anon">
+&#160;&#160;&#160;struct {&#160;</td><td class="memItemRight"></td></tr>
+<tr class="memitem:a51eea61531b38a3f44cba7a7086c1819" id="r_a51eea61531b38a3f44cba7a7086c1819"><td class="memItemLeft anon">&#160;&#160;&#160;&#160;&#160;&#160;uint32_t&#160;&#160;&#160;<a class="el" href="#a5ec7fab67cf5fce46a8d9002f9e226fb">data_size</a>&#160;</td><td class="memItemRight"></td></tr>
+<tr class="memitem:a6367366d0d6dc3b515df34425d8f7fbd" id="r_a6367366d0d6dc3b515df34425d8f7fbd"><td class="memItemLeft anonEnd">&#160;&#160;&#160;}&#160;&#160;&#160;<b>read</b></td></tr>
+<tr class="memitem:"><td class="memItemLeft anon">
+&#160;&#160;&#160;struct {&#160;</td><td class="memItemRight"></td></tr>
+<tr class="memitem:a2623e49a6e1bd03984ea5780df325999" id="r_a2623e49a6e1bd03984ea5780df325999"><td class="memItemLeft anon">&#160;&#160;&#160;&#160;&#160;&#160;uint32_t&#160;&#160;&#160;<a class="el" href="#a5ec7fab67cf5fce46a8d9002f9e226fb">data_size</a>&#160;</td><td class="memItemRight"></td></tr>
+<tr class="memitem:aff401ec4d87efa4a88930c56852dc883" id="r_aff401ec4d87efa4a88930c56852dc883"><td class="memItemLeft anonEnd">&#160;&#160;&#160;}&#160;&#160;&#160;<b>write</b></td></tr>
+<tr class="memitem:"><td class="memItemLeft anon">
+&#160;&#160;&#160;struct {&#160;</td><td class="memItemRight"></td></tr>
+<tr class="memitem:a7821a74e85dd17759ef27a797c80d3dc" id="r_a7821a74e85dd17759ef27a797c80d3dc"><td class="memItemLeft anon">&#160;&#160;&#160;&#160;&#160;&#160;struct <a class="el" href="structspdk__fsdev__file__statfs.html">spdk_fsdev_file_statfs</a>&#160;&#160;&#160;<a class="el" href="#a4e21e3032a4c909373eb13411e434bff">statfs</a>&#160;</td><td class="memItemRight"></td></tr>
+<tr class="memitem:a14a847f4e5f323219bf3c18804631880" id="r_a14a847f4e5f323219bf3c18804631880"><td class="memItemLeft anonEnd">&#160;&#160;&#160;}&#160;&#160;&#160;<b>statfs</b></td></tr>
+<tr class="memitem:"><td class="memItemLeft anon">
+&#160;&#160;&#160;struct {&#160;</td><td class="memItemRight"></td></tr>
+<tr class="memitem:a21163ddc103d66f4d226d0db0b537c27" id="r_a21163ddc103d66f4d226d0db0b537c27"><td class="memItemLeft anon">&#160;&#160;&#160;&#160;&#160;&#160;size_t&#160;&#160;&#160;<a class="el" href="#abf36852b7ec979a6a8ad7faca1c12e9f">value_size</a>&#160;</td><td class="memItemRight"></td></tr>
+<tr class="memitem:aa3bc9240ea0d44888e9fb64c1eae8caa" id="r_aa3bc9240ea0d44888e9fb64c1eae8caa"><td class="memItemLeft anonEnd">&#160;&#160;&#160;}&#160;&#160;&#160;<b>getxattr</b></td></tr>
+<tr class="memitem:"><td class="memItemLeft anon">
+&#160;&#160;&#160;struct {&#160;</td><td class="memItemRight"></td></tr>
+<tr class="memitem:a644d479d5b8cae4facb92f95ee6b16a3" id="r_a644d479d5b8cae4facb92f95ee6b16a3"><td class="memItemLeft anon">&#160;&#160;&#160;&#160;&#160;&#160;size_t&#160;&#160;&#160;<a class="el" href="#a685d7f8657a0ffa4b235d1a306bd0146">data_size</a>&#160;</td><td class="memItemRight"></td></tr>
+<tr class="memitem:a660d45424f8795ace049b5ffdb6701a3" id="r_a660d45424f8795ace049b5ffdb6701a3"><td class="memItemLeft anon">&#160;&#160;&#160;&#160;&#160;&#160;bool&#160;&#160;&#160;<a class="el" href="#af6b1306d8b9a2c6c97a7a61257c2af11">size_only</a>&#160;</td><td class="memItemRight"></td></tr>
+<tr class="memitem:a77c9cc5767598d3a2be776d86777f634" id="r_a77c9cc5767598d3a2be776d86777f634"><td class="memItemLeft anonEnd">&#160;&#160;&#160;}&#160;&#160;&#160;<b>listxattr</b></td></tr>
+<tr class="memitem:"><td class="memItemLeft anon">
+&#160;&#160;&#160;struct {&#160;</td><td class="memItemRight"></td></tr>
+<tr class="memitem:aa998b990f7dfe5216007ca654e7e68e4" id="r_aa998b990f7dfe5216007ca654e7e68e4"><td class="memItemLeft anon">&#160;&#160;&#160;&#160;&#160;&#160;struct spdk_fsdev_file_handle *&#160;&#160;&#160;<a class="el" href="#a332e850c1b9b22226facc79a5dcd1789">fhandle</a>&#160;</td><td class="memItemRight"></td></tr>
+<tr class="memitem:ac26e10b3015018b8b1420c122d830114" id="r_ac26e10b3015018b8b1420c122d830114"><td class="memItemLeft anonEnd">&#160;&#160;&#160;}&#160;&#160;&#160;<b>opendir</b></td></tr>
+<tr class="memitem:"><td class="memItemLeft anon">
+&#160;&#160;&#160;struct {&#160;</td><td class="memItemRight"></td></tr>
+<tr class="memitem:a6dc73e94f65f7a92187f67fe98b55e68" id="r_a6dc73e94f65f7a92187f67fe98b55e68"><td class="memItemLeft anon">&#160;&#160;&#160;&#160;&#160;&#160;const char *&#160;&#160;&#160;<a class="el" href="#a55f54db0d04a08e8dcc12858e5385ab9">name</a>&#160;</td><td class="memItemRight"></td></tr>
+<tr class="memitem:aa9e9a48380c2b361b1a9befc8fa5fd7e" id="r_aa9e9a48380c2b361b1a9befc8fa5fd7e"><td class="memItemLeft anon">&#160;&#160;&#160;&#160;&#160;&#160;struct spdk_fsdev_file_object *&#160;&#160;&#160;<a class="el" href="#ada220e01744d2b749bf81a088079dee5">fobject</a>&#160;</td><td class="memItemRight"></td></tr>
+<tr class="memitem:ac729e6eb9e4b08eeb552b5558ea84ee8" id="r_ac729e6eb9e4b08eeb552b5558ea84ee8"><td class="memItemLeft anon">&#160;&#160;&#160;&#160;&#160;&#160;struct <a class="el" href="structspdk__fsdev__file__attr.html">spdk_fsdev_file_attr</a>&#160;&#160;&#160;<a class="el" href="#a547dac8fb7405e67f594f2c50b5a75a4">attr</a>&#160;</td><td class="memItemRight"></td></tr>
+<tr class="memitem:a3cc17d0661693b7653b6478614651792" id="r_a3cc17d0661693b7653b6478614651792"><td class="memItemLeft anon">&#160;&#160;&#160;&#160;&#160;&#160;off_t&#160;&#160;&#160;<a class="el" href="#a87d630baa8bd9d1d9385d6fa5254d51c">offset</a>&#160;</td><td class="memItemRight"></td></tr>
+<tr class="memitem:ace4c1ff38d7c578070d00fbdf39848fd" id="r_ace4c1ff38d7c578070d00fbdf39848fd"><td class="memItemLeft anonEnd">&#160;&#160;&#160;}&#160;&#160;&#160;<b>readdir</b></td></tr>
+<tr class="memitem:"><td class="memItemLeft anon">
+&#160;&#160;&#160;struct {&#160;</td><td class="memItemRight"></td></tr>
+<tr class="memitem:a38e2b20aeeb97a0e85af3a8816bf4c23" id="r_a38e2b20aeeb97a0e85af3a8816bf4c23"><td class="memItemLeft anon">&#160;&#160;&#160;&#160;&#160;&#160;struct spdk_fsdev_file_object *&#160;&#160;&#160;<a class="el" href="#ada220e01744d2b749bf81a088079dee5">fobject</a>&#160;</td><td class="memItemRight"></td></tr>
+<tr class="memitem:ae9cb8e5421b667b8bfff53e81b1ad573" id="r_ae9cb8e5421b667b8bfff53e81b1ad573"><td class="memItemLeft anon">&#160;&#160;&#160;&#160;&#160;&#160;struct spdk_fsdev_file_handle *&#160;&#160;&#160;<a class="el" href="#a332e850c1b9b22226facc79a5dcd1789">fhandle</a>&#160;</td><td class="memItemRight"></td></tr>
+<tr class="memitem:a0fbde781344a96af4a602fcce5a08be7" id="r_a0fbde781344a96af4a602fcce5a08be7"><td class="memItemLeft anon">&#160;&#160;&#160;&#160;&#160;&#160;struct <a class="el" href="structspdk__fsdev__file__attr.html">spdk_fsdev_file_attr</a>&#160;&#160;&#160;<a class="el" href="#a547dac8fb7405e67f594f2c50b5a75a4">attr</a>&#160;</td><td class="memItemRight"></td></tr>
+<tr class="memitem:a770018b28882952e6a19ce18627c9aba" id="r_a770018b28882952e6a19ce18627c9aba"><td class="memItemLeft anonEnd">&#160;&#160;&#160;}&#160;&#160;&#160;<b>create</b></td></tr>
+<tr class="memitem:"><td class="memItemLeft anon">
+&#160;&#160;&#160;struct {&#160;</td><td class="memItemRight"></td></tr>
+<tr class="memitem:a2d2225c80bed81de00a1dd79076cbeb7" id="r_a2d2225c80bed81de00a1dd79076cbeb7"><td class="memItemLeft anon">&#160;&#160;&#160;&#160;&#160;&#160;size_t&#160;&#160;&#160;<a class="el" href="#a685d7f8657a0ffa4b235d1a306bd0146">data_size</a>&#160;</td><td class="memItemRight"></td></tr>
+<tr class="memitem:a7c6e82a727d2ff2a25a6f4f353410741" id="r_a7c6e82a727d2ff2a25a6f4f353410741"><td class="memItemLeft anonEnd">&#160;&#160;&#160;}&#160;&#160;&#160;<b>copy_file_range</b></td></tr>
+<tr class="memitem:a178305e6ae5f7edaa16d7d55552310fe" id="r_a178305e6ae5f7edaa16d7d55552310fe"><td class="memItemLeft anonEnd">}&#160;</td><td class="memItemRight"><b>u_out</b></td></tr>
+<tr class="memitem:a681fe75431f9eb55a86af3488d0e88f1" id="r_a681fe75431f9eb55a86af3488d0e88f1"><td class="memItemLeft"><a id="a681fe75431f9eb55a86af3488d0e88f1" name="a681fe75431f9eb55a86af3488d0e88f1"></a>
+struct <a class="el" href="structspdk__fsdev__io_1_1____fsdev__io__internal__fields.html">spdk_fsdev_io::__fsdev_io_internal_fields</a>&#160;</td><td class="memItemRight"><b>internal</b></td></tr>
+<tr class="memitem:adcbccb77c4ab9a5a215050d335702d68" id="r_adcbccb77c4ab9a5a215050d335702d68"><td class="memItemLeft">uint8_t&#160;</td><td class="memItemRight"><a class="el" href="#adcbccb77c4ab9a5a215050d335702d68">driver_ctx</a> [0]</td></tr>
+<tr class="memdesc:adcbccb77c4ab9a5a215050d335702d68"><td class="mdescLeft">&#160;</td><td class="mdescRight">Per I/O context for use by the fsdev module.  <br /></td></tr>
+</table>
+<a name="details" id="details"></a><h2 id="header-details" class="groupheader">Detailed Description</h2>
+<div class="textblock">
+<p class="definition">Definition at line <a class="el" href="fsdev__module_8h_source.html#l00215">215</a> of file <a class="el" href="fsdev__module_8h_source.html">fsdev_module.h</a>.</p>
+</div><a name="doc-variable-members" id="doc-variable-members"></a><h2 id="header-doc-variable-members" class="groupheader">Field Documentation</h2>
+<a id="a547dac8fb7405e67f594f2c50b5a75a4" name="a547dac8fb7405e67f594f2c50b5a75a4"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a547dac8fb7405e67f594f2c50b5a75a4">&#9670;&#160;</a></span>attr</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">struct <a class="el" href="structspdk__fsdev__file__attr.html">spdk_fsdev_file_attr</a> spdk_fsdev_io::attr</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="fsdev__module_8h_source.html#l00244">244</a> of file <a class="el" href="fsdev__module_8h_source.html">fsdev_module.h</a>.</p>
+
+</div>
+</div>
+<a id="a8950124846f97a1d51e86c35d2594457" name="a8950124846f97a1d51e86c35d2594457"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8950124846f97a1d51e86c35d2594457">&#9670;&#160;</a></span>buffer <span class="overload">[1/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">char* spdk_fsdev_io::buffer</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="fsdev__module_8h_source.html#l00343">343</a> of file <a class="el" href="fsdev__module_8h_source.html">fsdev_module.h</a>.</p>
+
+</div>
+</div>
+<a id="ae1bd6a98f5c03149f0e7f23f25fd1ffe" name="ae1bd6a98f5c03149f0e7f23f25fd1ffe"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae1bd6a98f5c03149f0e7f23f25fd1ffe">&#9670;&#160;</a></span>buffer <span class="overload">[2/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void* spdk_fsdev_io::buffer</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="fsdev__module_8h_source.html#l00338">338</a> of file <a class="el" href="fsdev__module_8h_source.html">fsdev_module.h</a>.</p>
+
+</div>
+</div>
+<a id="a685d7f8657a0ffa4b235d1a306bd0146" name="a685d7f8657a0ffa4b235d1a306bd0146"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a685d7f8657a0ffa4b235d1a306bd0146">&#9670;&#160;</a></span>data_size <span class="overload">[1/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">size_t spdk_fsdev_io::data_size</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="fsdev__module_8h_source.html#l00460">460</a> of file <a class="el" href="fsdev__module_8h_source.html">fsdev_module.h</a>.</p>
+
+</div>
+</div>
+<a id="a5ec7fab67cf5fce46a8d9002f9e226fb" name="a5ec7fab67cf5fce46a8d9002f9e226fb"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5ec7fab67cf5fce46a8d9002f9e226fb">&#9670;&#160;</a></span>data_size <span class="overload">[2/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">uint32_t spdk_fsdev_io::data_size</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="fsdev__module_8h_source.html#l00448">448</a> of file <a class="el" href="fsdev__module_8h_source.html">fsdev_module.h</a>.</p>
+
+</div>
+</div>
+<a id="a74bdeb0a1ceb60adfda6f2b208ed200b" name="a74bdeb0a1ceb60adfda6f2b208ed200b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a74bdeb0a1ceb60adfda6f2b208ed200b">&#9670;&#160;</a></span>datasync</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool spdk_fsdev_io::datasync</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="fsdev__module_8h_source.html#l00326">326</a> of file <a class="el" href="fsdev__module_8h_source.html">fsdev_module.h</a>.</p>
+
+</div>
+</div>
+<a id="adcbccb77c4ab9a5a215050d335702d68" name="adcbccb77c4ab9a5a215050d335702d68"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#adcbccb77c4ab9a5a215050d335702d68">&#9670;&#160;</a></span>driver_ctx</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">uint8_t spdk_fsdev_io::driver_ctx[0]</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Per I/O context for use by the fsdev module. </p>
+
+<p class="definition">Definition at line <a class="el" href="fsdev__module_8h_source.html#l00535">535</a> of file <a class="el" href="fsdev__module_8h_source.html">fsdev_module.h</a>.</p>
+
+</div>
+</div>
+<a id="ab6bff1eb10a794a7bef8385a57b78891" name="ab6bff1eb10a794a7bef8385a57b78891"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab6bff1eb10a794a7bef8385a57b78891">&#9670;&#160;</a></span>egid</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">gid_t spdk_fsdev_io::egid</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="fsdev__module_8h_source.html#l00255">255</a> of file <a class="el" href="fsdev__module_8h_source.html">fsdev_module.h</a>.</p>
+
+</div>
+</div>
+<a id="a45a38518fc4f162fb939086bbc9cd564" name="a45a38518fc4f162fb939086bbc9cd564"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a45a38518fc4f162fb939086bbc9cd564">&#9670;&#160;</a></span>entry_cb_fn</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int(* spdk_fsdev_io::entry_cb_fn) (struct <a class="el" href="structspdk__fsdev__io.html">spdk_fsdev_io</a> *fsdev_io, void *cb_arg)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="fsdev__module_8h_source.html#l00362">362</a> of file <a class="el" href="fsdev__module_8h_source.html">fsdev_module.h</a>.</p>
+
+</div>
+</div>
+<a id="a719e02e1dbe73ec102d2069c2952330f" name="a719e02e1dbe73ec102d2069c2952330f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a719e02e1dbe73ec102d2069c2952330f">&#9670;&#160;</a></span>euid</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">uid_t spdk_fsdev_io::euid</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="fsdev__module_8h_source.html#l00254">254</a> of file <a class="el" href="fsdev__module_8h_source.html">fsdev_module.h</a>.</p>
+
+</div>
+</div>
+<a id="a332e850c1b9b22226facc79a5dcd1789" name="a332e850c1b9b22226facc79a5dcd1789"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a332e850c1b9b22226facc79a5dcd1789">&#9670;&#160;</a></span>fhandle</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">struct spdk_fsdev_file_handle* spdk_fsdev_io::fhandle</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="fsdev__module_8h_source.html#l00239">239</a> of file <a class="el" href="fsdev__module_8h_source.html">fsdev_module.h</a>.</p>
+
+</div>
+</div>
+<a id="a5f9ade8c1bf995d6ed2f32daad2047e8" name="a5f9ade8c1bf995d6ed2f32daad2047e8"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5f9ade8c1bf995d6ed2f32daad2047e8">&#9670;&#160;</a></span>fhandle_in</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">struct spdk_fsdev_file_handle* spdk_fsdev_io::fhandle_in</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="fsdev__module_8h_source.html#l00400">400</a> of file <a class="el" href="fsdev__module_8h_source.html">fsdev_module.h</a>.</p>
+
+</div>
+</div>
+<a id="ad270121dbc8f082b5d4f526f4bcc63fd" name="ad270121dbc8f082b5d4f526f4bcc63fd"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad270121dbc8f082b5d4f526f4bcc63fd">&#9670;&#160;</a></span>fhandle_out</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">struct spdk_fsdev_file_handle* spdk_fsdev_io::fhandle_out</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="fsdev__module_8h_source.html#l00403">403</a> of file <a class="el" href="fsdev__module_8h_source.html">fsdev_module.h</a>.</p>
+
+</div>
+</div>
+<a id="a5c52a78a22238cf178460488c453e103" name="a5c52a78a22238cf178460488c453e103"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5c52a78a22238cf178460488c453e103">&#9670;&#160;</a></span>flags <span class="overload">[1/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">uint64_t spdk_fsdev_io::flags</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="fsdev__module_8h_source.html#l00311">311</a> of file <a class="el" href="fsdev__module_8h_source.html">fsdev_module.h</a>.</p>
+
+</div>
+</div>
+<a id="a2d2323480e538495dc3e660e6cf9af7a" name="a2d2323480e538495dc3e660e6cf9af7a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2d2323480e538495dc3e660e6cf9af7a">&#9670;&#160;</a></span>flags <span class="overload">[2/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">uint32_t spdk_fsdev_io::flags</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="fsdev__module_8h_source.html#l00285">285</a> of file <a class="el" href="fsdev__module_8h_source.html">fsdev_module.h</a>.</p>
+
+</div>
+</div>
+<a id="ada220e01744d2b749bf81a088079dee5" name="ada220e01744d2b749bf81a088079dee5"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ada220e01744d2b749bf81a088079dee5">&#9670;&#160;</a></span>fobject</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">struct spdk_fsdev_file_object* spdk_fsdev_io::fobject</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="fsdev__module_8h_source.html#l00234">234</a> of file <a class="el" href="fsdev__module_8h_source.html">fsdev_module.h</a>.</p>
+
+</div>
+</div>
+<a id="a7bed4216577693d8fc37627a06ac7718" name="a7bed4216577693d8fc37627a06ac7718"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7bed4216577693d8fc37627a06ac7718">&#9670;&#160;</a></span>fobject_in</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">struct spdk_fsdev_file_object* spdk_fsdev_io::fobject_in</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="fsdev__module_8h_source.html#l00399">399</a> of file <a class="el" href="fsdev__module_8h_source.html">fsdev_module.h</a>.</p>
+
+</div>
+</div>
+<a id="a8adfb8fb7402bce937680cdba89e0bd1" name="a8adfb8fb7402bce937680cdba89e0bd1"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8adfb8fb7402bce937680cdba89e0bd1">&#9670;&#160;</a></span>fobject_out</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">struct spdk_fsdev_file_object* spdk_fsdev_io::fobject_out</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="fsdev__module_8h_source.html#l00402">402</a> of file <a class="el" href="fsdev__module_8h_source.html">fsdev_module.h</a>.</p>
+
+</div>
+</div>
+<a id="ae7ea51d9f81fe25258995f332ae09910" name="ae7ea51d9f81fe25258995f332ae09910"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae7ea51d9f81fe25258995f332ae09910">&#9670;&#160;</a></span>fsdev</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">struct <a class="el" href="structspdk__fsdev.html">spdk_fsdev</a>* spdk_fsdev_io::fsdev</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>The filesystem device that this I/O belongs to. </p>
+
+<p class="definition">Definition at line <a class="el" href="fsdev__module_8h_source.html#l00217">217</a> of file <a class="el" href="fsdev__module_8h_source.html">fsdev_module.h</a>.</p>
+
+</div>
+</div>
+<a id="a559f9361c4fa0ca07e179a25cfbdb978" name="a559f9361c4fa0ca07e179a25cfbdb978"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a559f9361c4fa0ca07e179a25cfbdb978">&#9670;&#160;</a></span>iov <span class="overload">[1/3]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">const struct iovec* spdk_fsdev_io::iov</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="fsdev__module_8h_source.html#l00312">312</a> of file <a class="el" href="fsdev__module_8h_source.html">fsdev_module.h</a>.</p>
+
+</div>
+</div>
+<a id="abdd57f06b5e9c6dfbf7e98cf0800311c" name="abdd57f06b5e9c6dfbf7e98cf0800311c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#abdd57f06b5e9c6dfbf7e98cf0800311c">&#9670;&#160;</a></span>iov <span class="overload">[2/3]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">struct iovec* spdk_fsdev_io::iov</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="fsdev__module_8h_source.html#l00302">302</a> of file <a class="el" href="fsdev__module_8h_source.html">fsdev_module.h</a>.</p>
+
+</div>
+</div>
+<a id="ad706ca14397251312caf586c968fb712" name="ad706ca14397251312caf586c968fb712"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad706ca14397251312caf586c968fb712">&#9670;&#160;</a></span>iov <span class="overload">[3/3]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">struct iovec spdk_fsdev_io::iov</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>A single iovec element for use by this fsdev_io. </p>
+
+<p class="definition">Definition at line <a class="el" href="fsdev__module_8h_source.html#l00223">223</a> of file <a class="el" href="fsdev__module_8h_source.html">fsdev_module.h</a>.</p>
+
+</div>
+</div>
+<a id="abf2c2d74369c4eadfe3e83ea29cbad33" name="abf2c2d74369c4eadfe3e83ea29cbad33"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#abf2c2d74369c4eadfe3e83ea29cbad33">&#9670;&#160;</a></span>iovcnt</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">uint32_t spdk_fsdev_io::iovcnt</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="fsdev__module_8h_source.html#l00303">303</a> of file <a class="el" href="fsdev__module_8h_source.html">fsdev_module.h</a>.</p>
+
+</div>
+</div>
+<a id="a9fec5e4ed0a845ecfb5f9ad96b272712" name="a9fec5e4ed0a845ecfb5f9ad96b272712"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9fec5e4ed0a845ecfb5f9ad96b272712">&#9670;&#160;</a></span>len</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">size_t spdk_fsdev_io::len</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="fsdev__module_8h_source.html#l00405">405</a> of file <a class="el" href="fsdev__module_8h_source.html">fsdev_module.h</a>.</p>
+
+</div>
+</div>
+<a id="a7b50f39f8ddef82552c9c79259b799a2" name="a7b50f39f8ddef82552c9c79259b799a2"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7b50f39f8ddef82552c9c79259b799a2">&#9670;&#160;</a></span>length</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">off_t spdk_fsdev_io::length</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="fsdev__module_8h_source.html#l00396">396</a> of file <a class="el" href="fsdev__module_8h_source.html">fsdev_module.h</a>.</p>
+
+</div>
+</div>
+<a id="a413b8f22c318bf0cb24b06ce7a816800" name="a413b8f22c318bf0cb24b06ce7a816800"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a413b8f22c318bf0cb24b06ce7a816800">&#9670;&#160;</a></span>linkname</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">char* spdk_fsdev_io::linkname</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="fsdev__module_8h_source.html#l00426">426</a> of file <a class="el" href="fsdev__module_8h_source.html">fsdev_module.h</a>.</p>
+
+</div>
+</div>
+<a id="ab6d1fed6be71c363dcf94fefeaff6f9d" name="ab6d1fed6be71c363dcf94fefeaff6f9d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab6d1fed6be71c363dcf94fefeaff6f9d">&#9670;&#160;</a></span>linkpath</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">char* spdk_fsdev_io::linkpath</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="fsdev__module_8h_source.html#l00253">253</a> of file <a class="el" href="fsdev__module_8h_source.html">fsdev_module.h</a>.</p>
+
+</div>
+</div>
+<a id="a71382bb71fff141df10cc6b070fddffe" name="a71382bb71fff141df10cc6b070fddffe"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a71382bb71fff141df10cc6b070fddffe">&#9670;&#160;</a></span>mode <span class="overload">[1/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int spdk_fsdev_io::mode</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="fsdev__module_8h_source.html#l00394">394</a> of file <a class="el" href="fsdev__module_8h_source.html">fsdev_module.h</a>.</p>
+
+</div>
+</div>
+<a id="a87185f51cdd242f4824301c606d9ee88" name="a87185f51cdd242f4824301c606d9ee88"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a87185f51cdd242f4824301c606d9ee88">&#9670;&#160;</a></span>mode <span class="overload">[2/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">mode_t spdk_fsdev_io::mode</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="fsdev__module_8h_source.html#l00260">260</a> of file <a class="el" href="fsdev__module_8h_source.html">fsdev_module.h</a>.</p>
+
+</div>
+</div>
+<a id="a55f54db0d04a08e8dcc12858e5385ab9" name="a55f54db0d04a08e8dcc12858e5385ab9"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a55f54db0d04a08e8dcc12858e5385ab9">&#9670;&#160;</a></span>name <span class="overload">[1/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">const char* spdk_fsdev_io::name</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="fsdev__module_8h_source.html#l00467">467</a> of file <a class="el" href="fsdev__module_8h_source.html">fsdev_module.h</a>.</p>
+
+</div>
+</div>
+<a id="a0fd0af6cf73c75ae94edf9ff90b0eef8" name="a0fd0af6cf73c75ae94edf9ff90b0eef8"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0fd0af6cf73c75ae94edf9ff90b0eef8">&#9670;&#160;</a></span>name <span class="overload">[2/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">char* spdk_fsdev_io::name</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="fsdev__module_8h_source.html#l00231">231</a> of file <a class="el" href="fsdev__module_8h_source.html">fsdev_module.h</a>.</p>
+
+</div>
+</div>
+<a id="ab8195b02d824e32c16e140d5160f8e0e" name="ab8195b02d824e32c16e140d5160f8e0e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab8195b02d824e32c16e140d5160f8e0e">&#9670;&#160;</a></span>new_name</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">char* spdk_fsdev_io::new_name</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="fsdev__module_8h_source.html#l00284">284</a> of file <a class="el" href="fsdev__module_8h_source.html">fsdev_module.h</a>.</p>
+
+</div>
+</div>
+<a id="a9e683e35b102a1f928230829e85d1c46" name="a9e683e35b102a1f928230829e85d1c46"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9e683e35b102a1f928230829e85d1c46">&#9670;&#160;</a></span>new_parent_fobject</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">struct spdk_fsdev_file_object* spdk_fsdev_io::new_parent_fobject</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="fsdev__module_8h_source.html#l00283">283</a> of file <a class="el" href="fsdev__module_8h_source.html">fsdev_module.h</a>.</p>
+
+</div>
+</div>
+<a id="a3c9f59d7160940ad4581073307190c0b" name="a3c9f59d7160940ad4581073307190c0b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3c9f59d7160940ad4581073307190c0b">&#9670;&#160;</a></span>nlookup</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">uint64_t spdk_fsdev_io::nlookup</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="fsdev__module_8h_source.html#l00235">235</a> of file <a class="el" href="fsdev__module_8h_source.html">fsdev_module.h</a>.</p>
+
+</div>
+</div>
+<a id="a0454b053db79aaea83177317f3f71871" name="a0454b053db79aaea83177317f3f71871"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0454b053db79aaea83177317f3f71871">&#9670;&#160;</a></span>off_in</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">off_t spdk_fsdev_io::off_in</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="fsdev__module_8h_source.html#l00401">401</a> of file <a class="el" href="fsdev__module_8h_source.html">fsdev_module.h</a>.</p>
+
+</div>
+</div>
+<a id="abcde82e0310b36b473b2e739304f8397" name="abcde82e0310b36b473b2e739304f8397"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#abcde82e0310b36b473b2e739304f8397">&#9670;&#160;</a></span>off_out</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">off_t spdk_fsdev_io::off_out</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="fsdev__module_8h_source.html#l00404">404</a> of file <a class="el" href="fsdev__module_8h_source.html">fsdev_module.h</a>.</p>
+
+</div>
+</div>
+<a id="a606ab0016f28351f5c45027b83b98175" name="a606ab0016f28351f5c45027b83b98175"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a606ab0016f28351f5c45027b83b98175">&#9670;&#160;</a></span>offs</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">uint64_t spdk_fsdev_io::offs</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="fsdev__module_8h_source.html#l00300">300</a> of file <a class="el" href="fsdev__module_8h_source.html">fsdev_module.h</a>.</p>
+
+</div>
+</div>
+<a id="a87d630baa8bd9d1d9385d6fa5254d51c" name="a87d630baa8bd9d1d9385d6fa5254d51c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a87d630baa8bd9d1d9385d6fa5254d51c">&#9670;&#160;</a></span>offset <span class="overload">[1/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">off_t spdk_fsdev_io::offset</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="fsdev__module_8h_source.html#l00395">395</a> of file <a class="el" href="fsdev__module_8h_source.html">fsdev_module.h</a>.</p>
+
+</div>
+</div>
+<a id="a95bf305b970058bd4fb4191e123f4e07" name="a95bf305b970058bd4fb4191e123f4e07"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a95bf305b970058bd4fb4191e123f4e07">&#9670;&#160;</a></span>offset <span class="overload">[2/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">uint64_t spdk_fsdev_io::offset</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="fsdev__module_8h_source.html#l00361">361</a> of file <a class="el" href="fsdev__module_8h_source.html">fsdev_module.h</a>.</p>
+
+</div>
+</div>
+<a id="a79b90393be7670d58efda5d73c1455a7" name="a79b90393be7670d58efda5d73c1455a7"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a79b90393be7670d58efda5d73c1455a7">&#9670;&#160;</a></span>operation</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int spdk_fsdev_io::operation</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="fsdev__module_8h_source.html#l00377">377</a> of file <a class="el" href="fsdev__module_8h_source.html">fsdev_module.h</a>.</p>
+
+</div>
+</div>
+<a id="aeeaa7ab957f6e49116d70afd08556a2d" name="aeeaa7ab957f6e49116d70afd08556a2d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aeeaa7ab957f6e49116d70afd08556a2d">&#9670;&#160;</a></span>opts <span class="overload">[1/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">struct <a class="el" href="structspdk__fsdev__io__opts.html">spdk_fsdev_io_opts</a>* spdk_fsdev_io::opts</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="fsdev__module_8h_source.html#l00304">304</a> of file <a class="el" href="fsdev__module_8h_source.html">fsdev_module.h</a>.</p>
+
+</div>
+</div>
+<a id="a3adf23d111267568c80f774b3368bc89" name="a3adf23d111267568c80f774b3368bc89"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3adf23d111267568c80f774b3368bc89">&#9670;&#160;</a></span>opts <span class="overload">[2/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">struct <a class="el" href="structspdk__fsdev__mount__opts.html">spdk_fsdev_mount_opts</a> spdk_fsdev_io::opts</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="fsdev__module_8h_source.html#l00227">227</a> of file <a class="el" href="fsdev__module_8h_source.html">fsdev_module.h</a>.</p>
+
+</div>
+</div>
+<a id="a3b71c836a08bc3804303a503255f322b" name="a3b71c836a08bc3804303a503255f322b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3b71c836a08bc3804303a503255f322b">&#9670;&#160;</a></span>parent_fobject</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">struct spdk_fsdev_file_object* spdk_fsdev_io::parent_fobject</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="fsdev__module_8h_source.html#l00230">230</a> of file <a class="el" href="fsdev__module_8h_source.html">fsdev_module.h</a>.</p>
+
+</div>
+</div>
+<a id="adf10c28e958ef9a0fb8e7929852661e6" name="adf10c28e958ef9a0fb8e7929852661e6"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#adf10c28e958ef9a0fb8e7929852661e6">&#9670;&#160;</a></span>rdev</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">dev_t spdk_fsdev_io::rdev</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="fsdev__module_8h_source.html#l00261">261</a> of file <a class="el" href="fsdev__module_8h_source.html">fsdev_module.h</a>.</p>
+
+</div>
+</div>
+<a id="af7ec0bb41670f17d329b77811543f429" name="af7ec0bb41670f17d329b77811543f429"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af7ec0bb41670f17d329b77811543f429">&#9670;&#160;</a></span>root_fobject</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">struct spdk_fsdev_file_object* spdk_fsdev_io::root_fobject</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="fsdev__module_8h_source.html#l00413">413</a> of file <a class="el" href="fsdev__module_8h_source.html">fsdev_module.h</a>.</p>
+
+</div>
+</div>
+<a id="a8c20f405f45d22805d0ba7a7925419e0" name="a8c20f405f45d22805d0ba7a7925419e0"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8c20f405f45d22805d0ba7a7925419e0">&#9670;&#160;</a></span>size</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">size_t spdk_fsdev_io::size</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="fsdev__module_8h_source.html#l00299">299</a> of file <a class="el" href="fsdev__module_8h_source.html">fsdev_module.h</a>.</p>
+
+</div>
+</div>
+<a id="af6b1306d8b9a2c6c97a7a61257c2af11" name="af6b1306d8b9a2c6c97a7a61257c2af11"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af6b1306d8b9a2c6c97a7a61257c2af11">&#9670;&#160;</a></span>size_only</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool spdk_fsdev_io::size_only</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="fsdev__module_8h_source.html#l00461">461</a> of file <a class="el" href="fsdev__module_8h_source.html">fsdev_module.h</a>.</p>
+
+</div>
+</div>
+<a id="a4e21e3032a4c909373eb13411e434bff" name="a4e21e3032a4c909373eb13411e434bff"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4e21e3032a4c909373eb13411e434bff">&#9670;&#160;</a></span>statfs</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">struct <a class="el" href="structspdk__fsdev__file__statfs.html">spdk_fsdev_file_statfs</a> spdk_fsdev_io::statfs</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="fsdev__module_8h_source.html#l00454">454</a> of file <a class="el" href="fsdev__module_8h_source.html">fsdev_module.h</a>.</p>
+
+</div>
+</div>
+<a id="a180fad4a191dd79c4d6ebdc0602d7414" name="a180fad4a191dd79c4d6ebdc0602d7414"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a180fad4a191dd79c4d6ebdc0602d7414">&#9670;&#160;</a></span>target</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">char* spdk_fsdev_io::target</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="fsdev__module_8h_source.html#l00252">252</a> of file <a class="el" href="fsdev__module_8h_source.html">fsdev_module.h</a>.</p>
+
+</div>
+</div>
+<a id="ad54147d21ffad303e08c4ddd57740252" name="ad54147d21ffad303e08c4ddd57740252"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad54147d21ffad303e08c4ddd57740252">&#9670;&#160;</a></span>to_set</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">uint32_t spdk_fsdev_io::to_set</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="fsdev__module_8h_source.html#l00245">245</a> of file <a class="el" href="fsdev__module_8h_source.html">fsdev_module.h</a>.</p>
+
+</div>
+</div>
+<a id="a93a49dabe63606eaa054f6f40473a14d" name="a93a49dabe63606eaa054f6f40473a14d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a93a49dabe63606eaa054f6f40473a14d">&#9670;&#160;</a></span>type</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">uint8_t spdk_fsdev_io::type</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Enumerated value representing the I/O type. </p>
+
+<p class="definition">Definition at line <a class="el" href="fsdev__module_8h_source.html#l00220">220</a> of file <a class="el" href="fsdev__module_8h_source.html">fsdev_module.h</a>.</p>
+
+</div>
+</div>
+<a id="a0ae5c9729318a43ed7063d9c3b60c1c8" name="a0ae5c9729318a43ed7063d9c3b60c1c8"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0ae5c9729318a43ed7063d9c3b60c1c8">&#9670;&#160;</a></span>umask</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">mode_t spdk_fsdev_io::umask</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="fsdev__module_8h_source.html#l00384">384</a> of file <a class="el" href="fsdev__module_8h_source.html">fsdev_module.h</a>.</p>
+
+</div>
+</div>
+<a id="a88ae7a2fede3bfaa990ee992af331c08" name="a88ae7a2fede3bfaa990ee992af331c08"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a88ae7a2fede3bfaa990ee992af331c08">&#9670;&#160;</a></span>unique_to_abort</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">uint64_t spdk_fsdev_io::unique_to_abort</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="fsdev__module_8h_source.html#l00389">389</a> of file <a class="el" href="fsdev__module_8h_source.html">fsdev_module.h</a>.</p>
+
+</div>
+</div>
+<a id="aa6a985ff2b7c1eef9886c30a046c031a" name="aa6a985ff2b7c1eef9886c30a046c031a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa6a985ff2b7c1eef9886c30a046c031a">&#9670;&#160;</a></span>usr_entry_cb_fn</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="fsdev_8h.html#a1aa47bc61002d7f310c31bdc80ef435f">spdk_fsdev_readdir_entry_cb</a>* spdk_fsdev_io::usr_entry_cb_fn</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="fsdev__module_8h_source.html#l00363">363</a> of file <a class="el" href="fsdev__module_8h_source.html">fsdev_module.h</a>.</p>
+
+</div>
+</div>
+<a id="a0f64788ca79a9f8b8a71b239e1a24aef" name="a0f64788ca79a9f8b8a71b239e1a24aef"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0f64788ca79a9f8b8a71b239e1a24aef">&#9670;&#160;</a></span>value</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">char* spdk_fsdev_io::value</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="fsdev__module_8h_source.html#l00331">331</a> of file <a class="el" href="fsdev__module_8h_source.html">fsdev_module.h</a>.</p>
+
+</div>
+</div>
+<a id="abf36852b7ec979a6a8ad7faca1c12e9f" name="abf36852b7ec979a6a8ad7faca1c12e9f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#abf36852b7ec979a6a8ad7faca1c12e9f">&#9670;&#160;</a></span>value_size</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">size_t spdk_fsdev_io::value_size</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="fsdev__module_8h_source.html#l00457">457</a> of file <a class="el" href="fsdev__module_8h_source.html">fsdev_module.h</a>.</p>
+
+</div>
+</div>
+<hr/>The documentation for this struct was generated from the following file:<ul>
+<li><a class="el" href="fsdev__module_8h_source.html">fsdev_module.h</a></li>
+</ul>
+</div><!-- contents -->
+</div><!-- doc-content -->
+<div id="page-nav" class="page-nav-panel">
+<div id="page-nav-resize-handle"></div>
+<div id="page-nav-tree">
+<div id="page-nav-contents">
+</div><!-- page-nav-contents -->
+</div><!-- page-nav-tree -->
+</div><!-- page-nav -->
+</div><!-- container -->
+<footer class="footer" id="nav-path">
+  <div class="footer-inner">
+    <div class="footer-copy">
+      <small>Copyright &copy; SPDK a Series of LF Projects, LLC. For web site terms of use, trademark policy, and other
+      project policies please see <a href="https://lfprojects.org">lfprojects.org</a>.</small>
+      <br><small>Built from spdk 91893349edff / site e5878500f</small>
+    </div>
+  </div>
+</footer>
+<script type="text/javascript" src="page_outline.js"></script>
+<script type="text/javascript" src="spdk_nav.js"></script>
+</body>
+</html>

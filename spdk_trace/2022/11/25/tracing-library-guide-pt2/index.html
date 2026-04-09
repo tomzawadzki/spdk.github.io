@@ -1,0 +1,279 @@
+<!doctype html>
+<html lang="en">
+  <head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="The Storage Performance Development Kit (SPDK) provides a set of tools and libraries for writing high performance, scalable, user-mode storage applications. It achieves high performance by moving all of the necessary drivers into userspace and operating in a polled mode instead of relying on interrupts, which avoids kernel context switches and eliminates interrupt handling overhead.
+">
+  <meta name="author" content="Benjamin Walker">
+
+  <title>Tracing Framework Guide Part 2</title>
+
+  <link rel="icon" type="image/svg+xml" href="/spdk.github.io/assets/img/spdk.svg">
+  <link rel="icon" href="/spdk.github.io/assets/favicon.ico" sizes="32x32">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:400,700,900" type="text/css">
+  <link rel="stylesheet" href="/spdk.github.io/assets/css/spdk.css">
+
+  <link href="/spdk.github.io/feed.xml" type="application/atom+xml" rel="alternate" title="Atom Feed">
+</head>
+
+
+  <body>
+    <nav class="navbar">
+  <a class="navbar-brand" href="/spdk.github.io/" aria-label="SPDK">
+    <img src="/spdk.github.io/assets/img/spdk.svg" width="36" height="36" alt="Storage Performance Development Kit">
+  </a>
+  <div class="navbar-nav">
+    <a class="nav-link header-link" href="/spdk.github.io/doc/releases.html">download</a>
+    <a class="nav-link header-link" href="/spdk.github.io/doc/">documentation</a>
+    <a class="nav-link header-link" href="/spdk.github.io/doc/contributing.html">development</a>
+    <a class="nav-link header-link" href="/spdk.github.io/doc/ci_tools.html">CI status</a>
+    <a class="nav-link header-link" href="/spdk.github.io/community/">community</a>
+    <a class="nav-link header-link" href="/spdk.github.io/blog/">Blog</a>
+    <a class="nav-link header-link" href="https://github.com/orgs/spdk/projects/5">Roadmap</a>
+    <a class="nav-link header-link" href="/spdk.github.io/news/">News</a>
+  </div>
+  <div class="navbar-end">
+    <a class="nav-link header-link" href="https://github.com/spdk/spdk" aria-label="GitHub">
+      <svg xmlns="http://www.w3.org/2000/svg" class="navbar-nav-svg" aria-hidden="true"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
+    </a>
+    <a id="cn_lang_btn" href="/spdk.github.io/cn/doc/" class="nav-link header-link">中文</a>
+  </div>
+</nav>
+<script>
+(function() {
+    var p = location.pathname, best = null, bLen = 0;
+    document.querySelectorAll('.header-link[href]').forEach(function(a) {
+        var raw = a.getAttribute('href');
+        if (!raw) return;
+        try { var u = new URL(raw, location.href); } catch(e) { return; }
+        if (u.origin !== location.origin) return;
+        var h = u.pathname;
+        if (h === '/') return;
+        var ok = h.endsWith('.html') ? p === h : p.indexOf(h) === 0;
+        if (ok && h.length > bLen) { bLen = h.length; best = a; }
+    });
+    if (best) best.classList.add('active');
+})();
+</script>
+
+
+    <div class="page-content">
+  <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+  <header class="post-header">
+
+    <div class="page-header">
+      <h1>Tracing Framework Guide Part 2</h1>
+    </div>
+
+    <p class="post-meta">
+      <time datetime="2022-11-25T00:00:00+01:00" itemprop="datePublished">
+        Nov 25, 2022
+      </time>
+      
+      •
+      <span itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <span itemprop="name">Krzysztof Karas</span>
+      </span>
+      
+    </p>
+  </header>
+
+  <div class="content" itemprop="articleBody"><h2 id="introduction">Introduction</h2>
+
+<p>Hello again! Last time I posted the first part of SPDK trace guide, focusing on SPDK
+tracepoints. This time we will take a close look at BPF probes, which are very different
+from the SPDK tracepoints.</p>
+
+<h3 id="a-little-reminder">A little reminder</h3>
+
+<p>As I mentioned before (in the previous post), we use two types of traces in SPDK: our own SPDK
+tracepoints and BPF PROBES. The former are usually used in performance sensitive places such
+as the I/O path where we want as little overhead as possible. The latter we use where there are
+no time limitations and we can afford higher overhead due to software interrupts.</p>
+
+<h2 id="recording-bpf-probes">Recording BPF probes</h2>
+
+<h3 id="definition">Definition</h3>
+
+<p>To define a BPF probes we need to edit appropriate file in <code class="language-plaintext highlighter-rouge">scripts/bpf/</code>.
+If we wanted to add a trace somewhere in bdev module, for example in
+<code class="language-plaintext highlighter-rouge">module/bdev/nvme/bdev_nvme.c</code>, we would need to do two things:</p>
+
+<ol>
+  <li>Add a trace in the code, similarly to what we did with SPDK tracepoints.</li>
+  <li>Edit a <code class="language-plaintext highlighter-rouge">.bt</code> file in <code class="language-plaintext highlighter-rouge">scripts/bpf/</code>, or add it if it does not exist,</li>
+</ol>
+
+<p>We usually pick a name that is preceded by module name. This is a string that will display each
+time a trace event is captured, so it should be descriptive. Here is an example:</p>
+
+<p><code class="language-plaintext highlighter-rouge">bdev_nvme_ctrlr_delete</code> - this name tells us that the event was captured in bdev NVMe module
+(<code class="language-plaintext highlighter-rouge">module/bdev/nvme</code>) related code, during controller deletion. General template for naming BPF
+traces looks like this:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>&lt;probe name&gt; <span class="o">=</span> &lt;library or module name&gt;_&lt;related event&gt;
+</code></pre></div></div>
+
+<p>Keep in mind that probe name, argument number and their types must match exactly what we put
+in <code class="language-plaintext highlighter-rouge">C</code> code to capture the events. The macro definitions can be found in
+<code class="language-plaintext highlighter-rouge">include/spdk_internal/usdt.h</code>. For our example <code class="language-plaintext highlighter-rouge">bdev_nvme_ctrlr_delete</code>, <code class="language-plaintext highlighter-rouge">C</code> probe definition
+looks like this:</p>
+
+<pre><code class="language-C">SPDK_DTRACE_PROBE1(bdev_nvme_ctrlr_delete, nvme_ctrlr-&gt;nbdev_ctrlr-&gt;name);
+</code></pre>
+
+<p>and <code class="language-plaintext highlighter-rouge">bdev_nvme_create_qpair</code> mentioned before as well:</p>
+
+<pre><code class="language-C">SPDK_DTRACE_PROBE3(bdev_nvme_create_qpair, nvme_ctrlr-&gt;nbdev_ctrlr-&gt;name,
+                   spdk_nvme_qpair_get_id(qpair), spdk_thread_get_id(nvme_ctrlr-&gt;thread));
+</code></pre>
+
+<p><code class="language-plaintext highlighter-rouge">nvme_ctrlr-&gt;nbdev_ctrlr-&gt;name</code> is a string, <code class="language-plaintext highlighter-rouge">spdk_nvme_qpair_get_id()</code> and <code class="language-plaintext highlighter-rouge">spdk_thread_get_id()</code>
+return unsigned integers.</p>
+
+<p>If we chose a name for our BPF probe, we can proceed to writing some code enabling our trace.
+BPF probe definitions in SPDK look similar to function definition in <code class="language-plaintext highlighter-rouge">C</code> language. We use
+<code class="language-plaintext highlighter-rouge">printf</code> to write timestamps, probe name and additional arguments.
+Depending on what kind of information we want to include in the trace, entries might have only
+one argument:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>usdt:__EXE__:bdev_nvme_ctrlr_delete <span class="o">{</span>
+        <span class="nb">printf</span><span class="o">(</span><span class="s2">"%d.%06d: delete bdev controller %s</span><span class="se">\n</span><span class="s2">"</span>,
+                elapsed / <span class="o">(</span>uint64<span class="o">)(</span>1000 <span class="k">*</span> 1000<span class="o">)</span>, elapsed % <span class="o">(</span>uint64<span class="o">)(</span>1000 <span class="k">*</span> 1000<span class="o">)</span>,
+                str<span class="o">(</span>arg1<span class="o">))</span><span class="p">;</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p>or multiple arguments, like this:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>usdt:__EXE__:bdev_nvme_create_qpair <span class="o">{</span>
+        <span class="nb">printf</span><span class="o">(</span><span class="s2">"%d.%06d: controller: %s create qpair with ID: %d on thread: %d</span><span class="se">\n</span><span class="s2">"</span>,
+                elapsed / <span class="o">(</span>uint64<span class="o">)(</span>1000 <span class="k">*</span> 1000<span class="o">)</span>, elapsed % <span class="o">(</span>uint64<span class="o">)(</span>1000 <span class="k">*</span> 1000<span class="o">)</span>,
+                str<span class="o">(</span>arg1<span class="o">)</span>, arg2, arg3<span class="o">)</span><span class="p">;</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p>Arguments can be added by writing <code class="language-plaintext highlighter-rouge">arg</code> and adding the first number available starting from <code class="language-plaintext highlighter-rouge">1</code>.
+String arguments must have a prefix and be enclosed with parentheses: <code class="language-plaintext highlighter-rouge">str(argX)</code>, where X is the
+argument number.
+Integer and pointer arguments do not need to be preceded with any prefix.
+We can add up to 4 arguments to each BPF probe.</p>
+
+<p>Now we should add the trace definition to one of our <code class="language-plaintext highlighter-rouge">.bt</code> files. We were looking at
+<code class="language-plaintext highlighter-rouge">bdev_nvme_ctrlr_delete</code> earlier, so lets open the file containing it: <code class="language-plaintext highlighter-rouge">nvme.bt</code>.
+The traces are not sorted inside these files, but we should keep in mind that grouping
+them by the related subject is very welcome. For example if we were adding a trace
+near <code class="language-plaintext highlighter-rouge">bdev_nvme_ctrlr_delete</code>, we should place it under already existing <code class="language-plaintext highlighter-rouge">bdev_nvme_ctrlr_*</code>
+definitions, to keep them grouped for easier access.</p>
+
+<p>If you wonder about <code class="language-plaintext highlighter-rouge">__EXE__</code>, this is a special marker that allows us to fulfill Bpftrace’s
+requirement for a full path to the binary file. Later we’ll be using <code class="language-plaintext highlighter-rouge">bpftrace.sh</code> script to
+dynamically replace this string with needed path using information from <code class="language-plaintext highlighter-rouge">procfs</code>. SPDK BPF probes
+also recognize <code class="language-plaintext highlighter-rouge">__PID__</code> marker, which is used to dynamically replace with PID of probed process.
+These markers are used later by <code class="language-plaintext highlighter-rouge">bpftrace.sh</code> wrapper script. This mechanism is useful when
+filtering certain kernel events (like system calls).</p>
+
+<p>Now that we went over defining the traces, we can go to the next section to place them in
+the code.</p>
+
+<h3 id="recording-a-trace">Recording a trace</h3>
+
+<p>We will have to include a header in the file, where we want to place our BPF probe. This is
+the same file all BPF macros live in:</p>
+
+<pre><code class="language-C">#include "spdk_internal/usdt.h"
+</code></pre>
+
+<p>The declaration in the code would look very similar to what we already seen in the previous
+section:</p>
+
+<pre><code class="language-C">SPDK_DTRACE_PROBE4(&lt;probe name&gt;, arg1, arg2, arg3, arg4);
+</code></pre>
+
+<p>probe name, the number and the type of arguments must match what we defined in <code class="language-plaintext highlighter-rouge">.bt</code> file earlier.
+You can use up to 4 arguments, using different macros for this purpose:</p>
+
+<pre><code class="language-C">SPDK_DTRACE_PROBE(&lt;probe name&gt;)
+SPDK_DTRACE_PROBE1(&lt;probe name&gt;,a1)
+SPDK_DTRACE_PROBE2(&lt;probe name&gt;,a1,a2)
+SPDK_DTRACE_PROBE3(&lt;probe name&gt;,a1,a2,a3)
+SPDK_DTRACE_PROBE4(&lt;probe name&gt;,a1,a2,a3,a4)
+</code></pre>
+
+<h3 id="getting-the-recorded-data">Getting the recorded data</h3>
+
+<p>To get the information from BPF probes, we need to run <code class="language-plaintext highlighter-rouge">./configure --with-usdt</code>. This will assure
+SPDK is built with bpf probes enabled. Now we need to run the SPDK application (for example
+spdk_tgt) and in the second terminal</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>scripts/bpftrace.sh <span class="sb">`</span>pidof spdk_tgt<span class="sb">`</span> scripts/bpf/nvmf.bt
+</code></pre></div></div>
+
+<p>This will run the application responsible for catching and printing BPF probes.
+A new entry will appear each time a BPF probe is hit in the code.</p>
+
+<p><code class="language-plaintext highlighter-rouge">bpftrace.sh</code> is a wrapper for bpftrace itself, which uses special markers explained earlier.
+The whole script boils down to one command:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>bpftrace <span class="nt">-p</span> <span class="nv">$1</span> <span class="nt">-e</span> <span class="s2">"</span><span class="nv">$BPF_SCRIPT</span><span class="s2">"</span> <span class="k">${</span><span class="nv">BPF_OUTFILE</span>:+-o<span class="p"> </span><span class="s2">"</span><span class="nv">$BPF_OUTFILE</span><span class="s2">"</span><span class="k">}</span>
+</code></pre></div></div>
+
+<ul>
+  <li>bpftrace is a command to run BPF probes and record their events.</li>
+  <li>-p $1 takes provided PID of the process to run probes on.</li>
+  <li>-e “$BPF_SCRIPT” represent two scripts inside SPDK: <code class="language-plaintext highlighter-rouge">bpf/gen.py</code> and <code class="language-plaintext highlighter-rouge">bpf/gen_enums.sh</code>,
+first of which is responsible for replacing <code class="language-plaintext highlighter-rouge">__EXE__</code> and <code class="language-plaintext highlighter-rouge">__PID__</code> markers with appropriate
+values during execution. Second prints out enumerated states of SPDK target and subsystems.</li>
+  <li>BPF_OUTFILE is an output file to be created and filled with captured events.</li>
+</ul>
+
+<h2 id="final-words">Final words</h2>
+
+<h3 id="summary">Summary</h3>
+
+<p>Traces are an important part of SPDK and a way of gathering data during application runtime.
+They are neatly organized into SPDK and BPF probes, which differ in their use cases:</p>
+
+<ul>
+  <li>SPDK tracepoints are faster and usually used where time is of the essence</li>
+  <li>BPF probes are slower and require higher overhead due to software interrupts.</li>
+</ul>
+
+<p>The main reason for the slowness in BPF probes is the time needed for the code to execute.
+Before user registers a probe, a handler has to be written to the kernel module, which then
+is installed to the already running kernel. When user registers a probe, the addresses at which
+the probe has to activate contains interrupt instruction (int3 for x86). As soon as execution
+reches the probed address, interrupt is executed, which causes control to reaches the handler.
+That handler is called through an interrupt gate and interrupts are disabled upon entering
+there. After that the handler notifies the probes that the breakpoint occurred. The probes then
+check if the breakpoint was set by BPF probe registration. If yes, then the probe function is
+executed, otherwise 0 is returned.</p>
+
+<p>To read more about BPF probes, I encourage you visit <a href="https://github.com/iovisor/bpftrace">BPF repository on GitHub</a>.</p>
+
+<h3 id="questions">Questions?</h3>
+
+<p>If you have any questions related to this topic, or any other in SPDK do not hesitate to ask on our
+Slack channels or on our GitHub!
+You may also prepare your own patches with traces in SPDK, if you feel like we should have them in
+a certain place.</p>
+</div>
+</article>
+</div>
+
+
+    <footer class="footer" id="nav-path">
+  <div class="footer-inner">
+    <div class="footer-copy">
+      <small>Copyright &copy; SPDK a Series of LF Projects, LLC. For web site terms of use, trademark policy, and other
+      project policies please see <a href="https://lfprojects.org">lfprojects.org</a>.</small>
+      <br><small>Built from spdk 91893349edff / site e5878500f</small>
+    </div>
+  </div>
+</footer>
+
+
+    
+  </body>
+</html>

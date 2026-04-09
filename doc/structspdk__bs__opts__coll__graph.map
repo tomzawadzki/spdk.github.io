@@ -1,0 +1,9 @@
+<map id="spdk_bs_opts" name="spdk_bs_opts">
+<area shape="rect" id="Node000001" title=" " alt="" coords="47,207,156,234"/>
+<area shape="rect" id="Node000002" href="$structspdk__bs__type.html" title=" " alt="" coords="5,106,116,134"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="74,147,88,182,98,205,94,207,83,184,69,149"/>
+<area shape="rect" id="Node000003" href="$structspdk__bs__dev.html" title=" " alt="" coords="140,106,245,134"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="173,147,140,184,117,208,113,204,136,181,170,144"/>
+<area shape="rect" id="Node000004" href="$structspdk__bdev.html" title=" " alt="" coords="147,5,238,33"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="195,49,195,105,190,105,190,49"/>
+</map>

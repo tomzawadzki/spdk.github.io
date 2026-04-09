@@ -1,0 +1,297 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<meta name="generator" content="Doxygen 1.16.1">
+	<title>SPDK: spdk_opal_locking_range_info Struct Reference</title>
+	<script type="text/javascript" src="jquery.js"></script>
+	<script type="text/javascript" src="dynsections.js"></script>
+	<script type="text/javascript" src="clipboard.js"></script>
+	<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
+<script type="text/javascript" src="cookie.js"></script>
+	<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<script type="text/javascript">
+  $(function() { init_search(); });
+</script>
+	<link rel="icon" type="image/svg+xml" href="../assets/img/spdk.svg">
+	<link rel="icon" href="../assets/favicon.ico" sizes="32x32">
+	<link href="doxygen.css" rel="stylesheet" type="text/css">
+	<script>(function(){var k='doxygen_width',w,bw=6;if(window.chrome){w=localStorage.getItem(k);if(!w){w='350';localStorage.setItem(k,w)}}else{var m=document.cookie.match(new RegExp(k+'=(\\d+)'));w=m?m[1]:null;if(!w){w='350';document.cookie=k+'=350;SameSite=Lax;path=/'}}document.documentElement.style.setProperty('--sn-w',(parseInt(w)+bw)+'px')})()</script>
+	<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:400,700,900" type="text/css">
+	<link href="spdk.css" rel="stylesheet" type="text/css"/>
+	<link href="../assets/css/spdk.css" rel="stylesheet" type="text/css">
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<nav class="navbar">
+  <a class="navbar-brand" href="../" aria-label="SPDK">
+    <img src="../assets/img/spdk.svg" width="36" height="36" alt="Storage Performance Development Kit">
+  </a>
+  <div class="navbar-nav">
+    <a class="nav-link header-link" href="../doc/releases.html">download</a>
+    <a class="nav-link header-link" href="../doc/">documentation</a>
+    <a class="nav-link header-link" href="../doc/contributing.html">development</a>
+    <a class="nav-link header-link" href="../doc/ci_tools.html">CI status</a>
+    <a class="nav-link header-link" href="../community/">community</a>
+    <a class="nav-link header-link" href="../blog/">Blog</a>
+    <a class="nav-link header-link" href="https://github.com/orgs/spdk/projects/5">Roadmap</a>
+    <a class="nav-link header-link" href="../news/">News</a>
+  </div>
+  <div class="navbar-end">
+    <a class="nav-link header-link" href="https://github.com/spdk/spdk" aria-label="GitHub">
+      <svg xmlns="http://www.w3.org/2000/svg" class="navbar-nav-svg" aria-hidden="true"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
+    </a>
+    <a id="cn_lang_btn" href="../cn/doc/" class="nav-link header-link">中文</a>
+  </div>
+</nav>
+<script>
+(function() {
+    var p = location.pathname, best = null, bLen = 0;
+    document.querySelectorAll('.header-link[href]').forEach(function(a) {
+        var raw = a.getAttribute('href');
+        if (!raw) return;
+        try { var u = new URL(raw, location.href); } catch(e) { return; }
+        if (u.origin !== location.origin) return;
+        var h = u.pathname;
+        if (h === '/') return;
+        var ok = h.endsWith('.html') ? p === h : p.indexOf(h) === 0;
+        if (ok && h.length > bLen) { bLen = h.length; best = a; }
+    });
+    if (best) best.classList.add('active');
+})();
+</script>
+<div id="doxygen-searchbox">        <div id="MSearchBox" class="MSearchBoxInactive">
+        <span class="left">
+          <span id="MSearchSelect" class="search-icon" onmouseover="return searchBox.OnSearchSelectShow()" onmouseout="return searchBox.OnSearchSelectHide()"><span class="search-icon-dropdown"></span></span>
+          <input type="text" id="MSearchField" value="" placeholder="Search" accesskey="S"
+               onfocus="searchBox.OnSearchFieldFocus(true)" 
+               onblur="searchBox.OnSearchFieldFocus(false)" 
+               onkeyup="searchBox.OnSearchFieldChange(event)"/>
+          </span><span class="right">
+            <a id="MSearchClose" href="javascript:searchBox.CloseResultsWindow()"><div id="MSearchCloseImg" class="close-icon"></div></a>
+          </span>
+        </div>
+</div>
+<!-- Generated by Doxygen 1.16.1 -->
+<script type="text/javascript">
+var searchBox = new SearchBox("searchBox", "search/",'.html');
+</script>
+<script type="text/javascript">
+$(function() { codefold.init(); });
+</script>
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+$(function(){initNavTree('structspdk__opal__locking__range__info.html','',''); });
+</script>
+<div id="container">
+<div id="doc-content">
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">Loading...</div>
+<div class="SRStatus" id="Searching">Searching...</div>
+<div class="SRStatus" id="NoMatches">No Matches</div>
+</div>
+</div>
+</div>
+</div>
+
+<div class="header">
+  <div class="headertitle"><div class="title">spdk_opal_locking_range_info Struct Reference</div></div>
+</div><!--header-->
+<div class="contents">
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 id="header-pub-attribs" class="groupheader"><a id="pub-attribs" name="pub-attribs"></a>
+Data Fields</h2></td></tr>
+<tr class="memitem:a58d311d66377bb3683319d47898a20c3" id="r_a58d311d66377bb3683319d47898a20c3"><td class="memItemLeft">uint8_t&#160;</td><td class="memItemRight"><a class="el" href="#a58d311d66377bb3683319d47898a20c3">locking_range_id</a></td></tr>
+<tr class="memitem:aef10c2546c5157dd06024526caa8eae0" id="r_aef10c2546c5157dd06024526caa8eae0"><td class="memItemLeft">uint8_t&#160;</td><td class="memItemRight"><a class="el" href="#aef10c2546c5157dd06024526caa8eae0">_padding</a> [7]</td></tr>
+<tr class="memitem:a50efe2297b86d0a610e53111f992249d" id="r_a50efe2297b86d0a610e53111f992249d"><td class="memItemLeft">uint64_t&#160;</td><td class="memItemRight"><a class="el" href="#a50efe2297b86d0a610e53111f992249d">range_start</a></td></tr>
+<tr class="memitem:a2e5280c59512e237e41b7bcd35eede3f" id="r_a2e5280c59512e237e41b7bcd35eede3f"><td class="memItemLeft">uint64_t&#160;</td><td class="memItemRight"><a class="el" href="#a2e5280c59512e237e41b7bcd35eede3f">range_length</a></td></tr>
+<tr class="memitem:a17d47c3079e96cb05729d38a9e8c615b" id="r_a17d47c3079e96cb05729d38a9e8c615b"><td class="memItemLeft">bool&#160;</td><td class="memItemRight"><a class="el" href="#a17d47c3079e96cb05729d38a9e8c615b">read_lock_enabled</a></td></tr>
+<tr class="memitem:ac4d2ff3af11244142466a28e029acbc2" id="r_ac4d2ff3af11244142466a28e029acbc2"><td class="memItemLeft">bool&#160;</td><td class="memItemRight"><a class="el" href="#ac4d2ff3af11244142466a28e029acbc2">write_lock_enabled</a></td></tr>
+<tr class="memitem:abd31e1bf1d46a4e155b2f5883f649e4d" id="r_abd31e1bf1d46a4e155b2f5883f649e4d"><td class="memItemLeft">bool&#160;</td><td class="memItemRight"><a class="el" href="#abd31e1bf1d46a4e155b2f5883f649e4d">read_locked</a></td></tr>
+<tr class="memitem:ab4bb3213b899d3fb9bf24caf36082e60" id="r_ab4bb3213b899d3fb9bf24caf36082e60"><td class="memItemLeft">bool&#160;</td><td class="memItemRight"><a class="el" href="#ab4bb3213b899d3fb9bf24caf36082e60">write_locked</a></td></tr>
+</table>
+<a name="details" id="details"></a><h2 id="header-details" class="groupheader">Detailed Description</h2>
+<div class="textblock">
+<p class="definition">Definition at line <a class="el" href="opal_8h_source.html#l00063">63</a> of file <a class="el" href="opal_8h_source.html">opal.h</a>.</p>
+</div><a name="doc-variable-members" id="doc-variable-members"></a><h2 id="header-doc-variable-members" class="groupheader">Field Documentation</h2>
+<a id="aef10c2546c5157dd06024526caa8eae0" name="aef10c2546c5157dd06024526caa8eae0"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aef10c2546c5157dd06024526caa8eae0">&#9670;&#160;</a></span>_padding</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">uint8_t spdk_opal_locking_range_info::_padding[7]</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="opal_8h_source.html#l00065">65</a> of file <a class="el" href="opal_8h_source.html">opal.h</a>.</p>
+
+</div>
+</div>
+<a id="a58d311d66377bb3683319d47898a20c3" name="a58d311d66377bb3683319d47898a20c3"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a58d311d66377bb3683319d47898a20c3">&#9670;&#160;</a></span>locking_range_id</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">uint8_t spdk_opal_locking_range_info::locking_range_id</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="opal_8h_source.html#l00064">64</a> of file <a class="el" href="opal_8h_source.html">opal.h</a>.</p>
+
+</div>
+</div>
+<a id="a2e5280c59512e237e41b7bcd35eede3f" name="a2e5280c59512e237e41b7bcd35eede3f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2e5280c59512e237e41b7bcd35eede3f">&#9670;&#160;</a></span>range_length</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">uint64_t spdk_opal_locking_range_info::range_length</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="opal_8h_source.html#l00067">67</a> of file <a class="el" href="opal_8h_source.html">opal.h</a>.</p>
+
+</div>
+</div>
+<a id="a50efe2297b86d0a610e53111f992249d" name="a50efe2297b86d0a610e53111f992249d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a50efe2297b86d0a610e53111f992249d">&#9670;&#160;</a></span>range_start</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">uint64_t spdk_opal_locking_range_info::range_start</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="opal_8h_source.html#l00066">66</a> of file <a class="el" href="opal_8h_source.html">opal.h</a>.</p>
+
+</div>
+</div>
+<a id="a17d47c3079e96cb05729d38a9e8c615b" name="a17d47c3079e96cb05729d38a9e8c615b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a17d47c3079e96cb05729d38a9e8c615b">&#9670;&#160;</a></span>read_lock_enabled</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool spdk_opal_locking_range_info::read_lock_enabled</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="opal_8h_source.html#l00068">68</a> of file <a class="el" href="opal_8h_source.html">opal.h</a>.</p>
+
+</div>
+</div>
+<a id="abd31e1bf1d46a4e155b2f5883f649e4d" name="abd31e1bf1d46a4e155b2f5883f649e4d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#abd31e1bf1d46a4e155b2f5883f649e4d">&#9670;&#160;</a></span>read_locked</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool spdk_opal_locking_range_info::read_locked</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="opal_8h_source.html#l00070">70</a> of file <a class="el" href="opal_8h_source.html">opal.h</a>.</p>
+
+</div>
+</div>
+<a id="ac4d2ff3af11244142466a28e029acbc2" name="ac4d2ff3af11244142466a28e029acbc2"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac4d2ff3af11244142466a28e029acbc2">&#9670;&#160;</a></span>write_lock_enabled</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool spdk_opal_locking_range_info::write_lock_enabled</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="opal_8h_source.html#l00069">69</a> of file <a class="el" href="opal_8h_source.html">opal.h</a>.</p>
+
+</div>
+</div>
+<a id="ab4bb3213b899d3fb9bf24caf36082e60" name="ab4bb3213b899d3fb9bf24caf36082e60"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab4bb3213b899d3fb9bf24caf36082e60">&#9670;&#160;</a></span>write_locked</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool spdk_opal_locking_range_info::write_locked</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="opal_8h_source.html#l00071">71</a> of file <a class="el" href="opal_8h_source.html">opal.h</a>.</p>
+
+</div>
+</div>
+<hr/>The documentation for this struct was generated from the following file:<ul>
+<li><a class="el" href="opal_8h_source.html">opal.h</a></li>
+</ul>
+</div><!-- contents -->
+</div><!-- doc-content -->
+<div id="page-nav" class="page-nav-panel">
+<div id="page-nav-resize-handle"></div>
+<div id="page-nav-tree">
+<div id="page-nav-contents">
+</div><!-- page-nav-contents -->
+</div><!-- page-nav-tree -->
+</div><!-- page-nav -->
+</div><!-- container -->
+<footer class="footer" id="nav-path">
+  <div class="footer-inner">
+    <div class="footer-copy">
+      <small>Copyright &copy; SPDK a Series of LF Projects, LLC. For web site terms of use, trademark policy, and other
+      project policies please see <a href="https://lfprojects.org">lfprojects.org</a>.</small>
+      <br><small>Built from spdk 91893349edff / site e5878500f</small>
+    </div>
+  </div>
+</footer>
+<script type="text/javascript" src="page_outline.js"></script>
+<script type="text/javascript" src="spdk_nav.js"></script>
+</body>
+</html>

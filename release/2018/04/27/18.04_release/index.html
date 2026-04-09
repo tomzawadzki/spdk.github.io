@@ -1,0 +1,171 @@
+<!doctype html>
+<html lang="en">
+  <head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="The Storage Performance Development Kit (SPDK) provides a set of tools and libraries for writing high performance, scalable, user-mode storage applications. It achieves high performance by moving all of the necessary drivers into userspace and operating in a polled mode instead of relying on interrupts, which avoids kernel context switches and eliminates interrupt handling overhead.
+">
+  <meta name="author" content="Benjamin Walker">
+
+  <title>SPDK v18.04: Logical Volume Snapshot/Clone, iSCSI Initiator, Bdev QoS, VPP Userspace TCP/IP</title>
+
+  <link rel="icon" type="image/svg+xml" href="/spdk.github.io/assets/img/spdk.svg">
+  <link rel="icon" href="/spdk.github.io/assets/favicon.ico" sizes="32x32">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:400,700,900" type="text/css">
+  <link rel="stylesheet" href="/spdk.github.io/assets/css/spdk.css">
+
+  <link href="/spdk.github.io/feed.xml" type="application/atom+xml" rel="alternate" title="Atom Feed">
+</head>
+
+
+  <body>
+    <nav class="navbar">
+  <a class="navbar-brand" href="/spdk.github.io/" aria-label="SPDK">
+    <img src="/spdk.github.io/assets/img/spdk.svg" width="36" height="36" alt="Storage Performance Development Kit">
+  </a>
+  <div class="navbar-nav">
+    <a class="nav-link header-link" href="/spdk.github.io/doc/releases.html">download</a>
+    <a class="nav-link header-link" href="/spdk.github.io/doc/">documentation</a>
+    <a class="nav-link header-link" href="/spdk.github.io/doc/contributing.html">development</a>
+    <a class="nav-link header-link" href="/spdk.github.io/doc/ci_tools.html">CI status</a>
+    <a class="nav-link header-link" href="/spdk.github.io/community/">community</a>
+    <a class="nav-link header-link" href="/spdk.github.io/blog/">Blog</a>
+    <a class="nav-link header-link" href="https://github.com/orgs/spdk/projects/5">Roadmap</a>
+    <a class="nav-link header-link" href="/spdk.github.io/news/">News</a>
+  </div>
+  <div class="navbar-end">
+    <a class="nav-link header-link" href="https://github.com/spdk/spdk" aria-label="GitHub">
+      <svg xmlns="http://www.w3.org/2000/svg" class="navbar-nav-svg" aria-hidden="true"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
+    </a>
+    <a id="cn_lang_btn" href="/spdk.github.io/cn/doc/" class="nav-link header-link">中文</a>
+  </div>
+</nav>
+<script>
+(function() {
+    var p = location.pathname, best = null, bLen = 0;
+    document.querySelectorAll('.header-link[href]').forEach(function(a) {
+        var raw = a.getAttribute('href');
+        if (!raw) return;
+        try { var u = new URL(raw, location.href); } catch(e) { return; }
+        if (u.origin !== location.origin) return;
+        var h = u.pathname;
+        if (h === '/') return;
+        var ok = h.endsWith('.html') ? p === h : p.indexOf(h) === 0;
+        if (ok && h.length > bLen) { bLen = h.length; best = a; }
+    });
+    if (best) best.classList.add('active');
+})();
+</script>
+
+
+    <div class="page-content">
+  <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+  <header class="post-header">
+
+    <div class="page-header">
+      <h1>SPDK v18.04: Logical Volume Snapshot/Clone, iSCSI Initiator, Bdev QoS, VPP Userspace TCP/IP</h1>
+    </div>
+
+    <p class="post-meta">
+      <time datetime="2018-04-27T00:00:00+02:00" itemprop="datePublished">
+        Apr 27, 2018
+      </time>
+      
+      •
+      <span itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <span itemprop="name">Prital Shah</span>
+      </span>
+      
+    </p>
+  </header>
+
+  <div class="content" itemprop="articleBody"><p>Today, the SPDK team is proud to announce the <a href="https://github.com/spdk/spdk/releases/tag/v18.04">v18.04 release</a>.</p>
+
+<p>This release contains the following new features:</p>
+
+<ul>
+  <li><strong>iSCSI target integration with VPP Userspace TCP/IP:</strong> The SPDK iSCSI target now supports the fd.io Vector Packet Processing (VPP) framework userspace TCP/IP stack.</li>
+  <li><strong>Logical Volume Snapshot/Clone:</strong> Users may create snapshots of existing logical volumes and clones of existing snapshots.</li>
+  <li><strong>Bdev QoS:</strong> Enforcement of IOPS limits for quality of service (QoS) has been added to the bdev layer. This capability will enable congestion management by throttling I/Os to block devices at the QoS rate.</li>
+  <li><strong>Vhost:</strong> The SPDK vhost-scsi, vhost-blk and vhost-nvme applications have fixes to address the DPDK rte_vhost vulnerability <a href="http://cve.mitre.org/cgi-bin/cvename.cgi?name=cve-2018-1059">CVE-2018-1059</a>. Please see this <a href="https://access.redhat.com/security/cve/cve-2018-1059">security advisory</a> for additional information on the DPDK vulnerability.</li>
+  <li><strong>Unified Target Application:</strong> A new unified SPDK target application has been added. This application combines the functionality of iSCSI target, NVMe-oF target, and vhost target.</li>
+  <li><strong>Virtio Block device:</strong> A userspace driver for Virtio Block devices has been added.</li>
+  <li><strong>Virtio with 2MB hugepages:</strong> Enables SPDK Virtio to work with 2MB hugepages.</li>
+</ul>
+
+<p>Also, we have added the following experimental features:</p>
+<ul>
+  <li><strong>iSCSI Initiator:</strong> A SPDK iSCSI initiator bdev module has been added.</li>
+  <li><strong>Vhost NVMe:</strong> Support for vhost-nvme has been added to the SPDK vhost target.</li>
+  <li><strong>SPDKCLI:</strong> Interactive command tool for managing SPDK is available.</li>
+  <li><strong>NVMe CMB:</strong> Support for WDS and RDS capable CMBs in NVMe controllers has been added.</li>
+  <li><strong>RPC:</strong> Partial JSON configuration save/load support has been added to several subsystems.</li>
+</ul>
+
+<h1 id="contributors">Contributors</h1>
+
+<p>Thanks to everyone who contributed patches to the SPDK v18.04 release:</p>
+
+<ul>
+  <li>Andrey Kuzmin</li>
+  <li>Ben Walker</li>
+  <li>Changpeng Liu</li>
+  <li>Chen Long</li>
+  <li>Chen Wang</li>
+  <li>Cunyin Chang</li>
+  <li>Daniel Verkamp</li>
+  <li>Dariusz Stojaczyk</li>
+  <li>Ed Rodriguez</li>
+  <li>Ehud Naim</li>
+  <li>GangCao</li>
+  <li>Hailiang Wang</li>
+  <li>Huagen Xu</li>
+  <li>Jim Harris</li>
+  <li>John Kariuki</li>
+  <li>Jonathan Richardson</li>
+  <li>Karol Latecki</li>
+  <li>Lance Hartmann</li>
+  <li>Liang Yan</li>
+  <li>Maciej Szwed</li>
+  <li>Pan Liu</li>
+  <li>param</li>
+  <li>Paul Luse</li>
+  <li>Pawel Kaminski</li>
+  <li>Pawel Niedzwiecki</li>
+  <li>Pawel Wodkowski</li>
+  <li>Piotr Pelplinski</li>
+  <li>Roman Sudarikov</li>
+  <li>Sebastian Basierski</li>
+  <li>Seth Howell</li>
+  <li>Shuhei Matsumoto</li>
+  <li>Slawomir Mrozowicz</li>
+  <li>Stephen Bates</li>
+  <li>Suman Chakraborty</li>
+  <li>Tomasz Kulasek</li>
+  <li>Tomasz Zawadzki</li>
+  <li>Wenzhong Wu</li>
+  <li>Xiaodong Liu</li>
+  <li>Yanbo Zhou</li>
+  <li>Young Tack Jin</li>
+  <li>Ziye Yang</li>
+  <li>Zahra Khatami</li>
+</ul>
+</div>
+</article>
+</div>
+
+
+    <footer class="footer" id="nav-path">
+  <div class="footer-inner">
+    <div class="footer-copy">
+      <small>Copyright &copy; SPDK a Series of LF Projects, LLC. For web site terms of use, trademark policy, and other
+      project policies please see <a href="https://lfprojects.org">lfprojects.org</a>.</small>
+      <br><small>Built from spdk 91893349edff / site e5878500f</small>
+    </div>
+  </div>
+</footer>
+
+
+    
+  </body>
+</html>

@@ -1,0 +1,234 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<meta name="generator" content="Doxygen 1.16.1">
+	<title>SPDK: Acceleration Framework</title>
+	<script type="text/javascript" src="jquery.js"></script>
+	<script type="text/javascript" src="dynsections.js"></script>
+	<script type="text/javascript" src="clipboard.js"></script>
+	<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
+<script type="text/javascript" src="cookie.js"></script>
+	<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<script type="text/javascript">
+  $(function() { init_search(); });
+</script>
+	<link rel="icon" type="image/svg+xml" href="../assets/img/spdk.svg">
+	<link rel="icon" href="../assets/favicon.ico" sizes="32x32">
+	<link href="doxygen.css" rel="stylesheet" type="text/css">
+	<script>(function(){var k='doxygen_width',w,bw=6;if(window.chrome){w=localStorage.getItem(k);if(!w){w='350';localStorage.setItem(k,w)}}else{var m=document.cookie.match(new RegExp(k+'=(\\d+)'));w=m?m[1]:null;if(!w){w='350';document.cookie=k+'=350;SameSite=Lax;path=/'}}document.documentElement.style.setProperty('--sn-w',(parseInt(w)+bw)+'px')})()</script>
+	<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:400,700,900" type="text/css">
+	<link href="spdk.css" rel="stylesheet" type="text/css"/>
+	<link href="../assets/css/spdk.css" rel="stylesheet" type="text/css">
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<nav class="navbar">
+  <a class="navbar-brand" href="../" aria-label="SPDK">
+    <img src="../assets/img/spdk.svg" width="36" height="36" alt="Storage Performance Development Kit">
+  </a>
+  <div class="navbar-nav">
+    <a class="nav-link header-link" href="../doc/releases.html">download</a>
+    <a class="nav-link header-link" href="../doc/">documentation</a>
+    <a class="nav-link header-link" href="../doc/contributing.html">development</a>
+    <a class="nav-link header-link" href="../doc/ci_tools.html">CI status</a>
+    <a class="nav-link header-link" href="../community/">community</a>
+    <a class="nav-link header-link" href="../blog/">Blog</a>
+    <a class="nav-link header-link" href="https://github.com/orgs/spdk/projects/5">Roadmap</a>
+    <a class="nav-link header-link" href="../news/">News</a>
+  </div>
+  <div class="navbar-end">
+    <a class="nav-link header-link" href="https://github.com/spdk/spdk" aria-label="GitHub">
+      <svg xmlns="http://www.w3.org/2000/svg" class="navbar-nav-svg" aria-hidden="true"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
+    </a>
+    <a id="cn_lang_btn" href="../cn/doc/" class="nav-link header-link">中文</a>
+  </div>
+</nav>
+<script>
+(function() {
+    var p = location.pathname, best = null, bLen = 0;
+    document.querySelectorAll('.header-link[href]').forEach(function(a) {
+        var raw = a.getAttribute('href');
+        if (!raw) return;
+        try { var u = new URL(raw, location.href); } catch(e) { return; }
+        if (u.origin !== location.origin) return;
+        var h = u.pathname;
+        if (h === '/') return;
+        var ok = h.endsWith('.html') ? p === h : p.indexOf(h) === 0;
+        if (ok && h.length > bLen) { bLen = h.length; best = a; }
+    });
+    if (best) best.classList.add('active');
+})();
+</script>
+<div id="doxygen-searchbox">        <div id="MSearchBox" class="MSearchBoxInactive">
+        <span class="left">
+          <span id="MSearchSelect" class="search-icon" onmouseover="return searchBox.OnSearchSelectShow()" onmouseout="return searchBox.OnSearchSelectHide()"><span class="search-icon-dropdown"></span></span>
+          <input type="text" id="MSearchField" value="" placeholder="Search" accesskey="S"
+               onfocus="searchBox.OnSearchFieldFocus(true)" 
+               onblur="searchBox.OnSearchFieldFocus(false)" 
+               onkeyup="searchBox.OnSearchFieldChange(event)"/>
+          </span><span class="right">
+            <a id="MSearchClose" href="javascript:searchBox.CloseResultsWindow()"><div id="MSearchCloseImg" class="close-icon"></div></a>
+          </span>
+        </div>
+</div>
+<!-- Generated by Doxygen 1.16.1 -->
+<script type="text/javascript">
+var searchBox = new SearchBox("searchBox", "search/",'.html');
+</script>
+<script type="text/javascript">
+$(function() { codefold.init(); });
+</script>
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+$(function(){initNavTree('accel_fw.html','',''); });
+</script>
+<div id="container">
+<div id="doc-content">
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">Loading...</div>
+<div class="SRStatus" id="Searching">Searching...</div>
+<div class="SRStatus" id="NoMatches">No Matches</div>
+</div>
+</div>
+</div>
+</div>
+
+<div><div class="header">
+  <div class="headertitle"><div class="title">Acceleration Framework </div></div>
+</div><!--header-->
+<div class="contents">
+<div class="textblock"><p><a class="anchor" id="md_general_2accel__fw"></a></p>
+<p>SPDK provides a framework for abstracting general acceleration capabilities that can be implemented through plug-in modules and low-level libraries. These plug-in modules include support for hardware acceleration engines such as the Intel(R) I/O Acceleration Technology (IOAT) engine and the Intel(R) Data Streaming Accelerator (DSA) engine. Additionally, a software plug-in module exists to enable use of the framework in environments without hardware acceleration capabilities. ISA/L is used for optimized CRC32C calculation within the software module.</p>
+<h1 class="doxsection"><a class="anchor" id="accel_functions"></a>
+Acceleration Framework Functions</h1>
+<p>Functions implemented via the framework can be found in the DoxyGen documentation of the framework public header file here <a href="https://spdk.io/doc/accel_8h.html">accel.h</a></p>
+<h1 class="doxsection"><a class="anchor" id="accel_dc"></a>
+Acceleration Framework Design Considerations</h1>
+<p>The general interface is defined by <span class="tt">/include/spdk/accel.h</span> and implemented in <span class="tt">/lib/accel</span>. These functions may be called by an SPDK application and in most cases, except where otherwise documented, are asynchronous and follow the standard SPDK model for callbacks with a callback argument.</p>
+<p>If the acceleration framework is started without initializing a hardware module, optimized software implementations of the operations will back the public API. All operations supported by the framework have a backing software implementation in the event that no hardware accelerators have been enabled for that operation.</p>
+<p>When multiple hardware modules are enabled the framework will assign each operation to a module based on the order in which it was initialized. So, for example if two modules are enabled, IOAT and software, the software module will be used for every operation except those supported by IOAT.</p>
+<h1 class="doxsection"><a class="anchor" id="accel_libs"></a>
+Acceleration Low Level Libraries</h1>
+<p>Low level libraries provide only the most basic functions that are specific to the hardware. Low level libraries are located in the '/lib' directory with the exception of the software implementation which is implemented as part of the framework itself. The software low level library does not expose a public API. Applications may choose to interact directly with a low level library if there are specific needs/considerations not met via accessing the library through the framework/module. Note that when using the low level libraries directly, the framework abstracted interface is bypassed as the application will call the public functions exposed by the individual low level libraries. Thus, code written this way needs to be certain that the underlying hardware exists everywhere that it runs.</p>
+<p>The low level library for IOAT is located in <span class="tt">/lib/ioat</span>. The low level library for DSA and IAA is in <span class="tt">/lib/idxd</span> (IDXD stands for Intel(R) Data Acceleration Driver and supports both DSA and IAA hardware accelerators). In <span class="tt">/lib/idxd</span> folder, SPDK supports the ability to use either user space and kernel space drivers. The following describes each usage scenario:</p>
+<p>Leveraging user space idxd driver: The DSA devices are managed by the SPDK user space driver in a dedicated SPDK process, then the device cannot be shared by another process. The benefit of this usage is no kernel dependency.</p>
+<p>Leveraging kernel space driver: The DSA devices are managed by kernel space drivers. And the Work queues inside the DSA device can be shared among different processes. Naturally, it can be used in cloud native scenario. The drawback of this usage is the kernel dependency, i.e., idxd kernel driver must be supported and loaded in the kernel.</p>
+<h1 class="doxsection"><a class="anchor" id="accel_modules"></a>
+Acceleration Plug-In Modules</h1>
+<p>Plug-in modules depend on low level libraries to interact with the hardware and add additional functionality such as queueing during busy conditions or flow control in some cases. The framework in turn depends on the modules to provide the complete implementation of the acceleration component. A module must be selected via startup RPC when the application is started. Otherwise, if no startup RPC is provided, the framework is available and will use the software plug-in module.</p>
+<h2 class="doxsection"><a class="anchor" id="accel_ioat"></a>
+IOAT Module</h2>
+<p>To use the IOAT module, use the RPC <a href="https://spdk.io/doc/jsonrpc.html"><span class="tt">ioat_scan_accel_module</span></a> before starting the application.</p>
+<h2 class="doxsection"><a class="anchor" id="accel_dsa"></a>
+DSA Module</h2>
+<p>The DSA module supports the DSA hardware and relies on the low level IDXD library.</p>
+<p>To use the DSA module, use the RPC <a href="https://spdk.io/doc/jsonrpc.html"><span class="tt">dsa_scan_accel_module</span></a>. By default, this will attempt to load the SPDK user-space idxd driver. To use the built-in kernel driver on Linux, add the <span class="tt">-k</span> parameter. See the next section for details on using the kernel driver.</p>
+<p>The DSA hardware supports a limited queue depth and channels. This means that only a limited number of <span class="tt">spdk_thread</span>s will be able to acquire a channel. Design software to deal with the inability to get a channel.</p>
+<p><b>Important</b>: The devices <span class="tt">PCI_DEVICE_ID_INTEL_DSA_SPR0</span> and <span class="tt">PCI_DEVICE_ID_INTEL_IAX_SPR0</span> have been added to the vfio_pci denylist. This prevents the use of userspace DSA and IAA drivers from SPDK on systems that are affected.</p>
+<p><b>Additionally</b>, to use the kernel DSA driver from SPDK, users are required to possess the <span class="tt">CAP_SYS_RAWIO</span> capability.</p>
+<h3 class="doxsection"><a class="anchor" id="accel_idxd_kernel"></a>
+How to use kernel idxd driver</h3>
+<p>There are several dependencies to leverage the Linux idxd driver for driving DSA devices.</p>
+<p>1 Linux kernel support: You need to have a Linux kernel with the <span class="tt">idxd</span> driver loaded. Further, add the following command line options to the kernel boot commands:</p>
+<div class="fragment"><div class="line">intel_iommu=on,sm_on</div>
+</div><!-- fragment --><p>2 User library dependency: Users need to install the developer version of the <span class="tt">accel-config</span> library. This is often packaged, but the source is available on <a href="https://github.com/intel/idxd-config">GitHub</a>. After the library is installed, users can use the <span class="tt">accel-config</span> command to configure the work queues(WQs) of the idxd devices managed by the kernel with the following steps:</p>
+<p>Note: this library must be installed before you run <span class="tt">configure</span></p>
+<div class="fragment"><div class="line">accel-config disable-wq dsa0/wq0.1</div>
+<div class="line">accel-config disable-device dsa0</div>
+<div class="line">accel-config config-wq --group-id=0 --mode=dedicated --wq-size=128 --type=user --name=&quot;MyApp1&quot;</div>
+<div class="line"> --priority=10 --block-on-fault=1 dsa0/wq0.1</div>
+<div class="line">accel-config config-engine dsa0/engine0.0 --group-id=0</div>
+<div class="line">accel-config config-engine dsa0/engine0.1 --group-id=0</div>
+<div class="line">accel-config config-engine dsa0/engine0.2 --group-id=0</div>
+<div class="line">accel-config config-engine dsa0/engine0.3 --group-id=0</div>
+<div class="line">accel-config enable-device dsa0</div>
+<div class="line">accel-config enable-wq dsa0/wq0.1</div>
+</div><!-- fragment --><p>DSA can be configured in many ways, but the above configuration is needed for use with SPDK. Before you can run using the kernel driver you need to make sure that the hardware is bound to the kernel driver and not VFIO. By default when you run <span class="tt">setup.sh</span> DSA devices will be bound to VFIO. To exclude DSA devices, pass a whitespace separated list of DSA devices BDF using the PCI_BLOCKED parameter as shown below.</p>
+<div class="fragment"><div class="line">sudo PCI_BLOCKED=&quot;0000:04:00.0 0000:05:00.0&quot; ./setup.sh</div>
+</div><!-- fragment --><p>Note: you might need to run <span class="tt">sudo ./setup.sh reset</span> to unbind all drivers before performing the step above.</p>
+<h2 class="doxsection"><a class="anchor" id="accel_ae4dma"></a>
+AE4DMA Module</h2>
+<p>The AE4DMA module enables SPDK applications to offload memory-to-memory copy operations to the AE4DMA engines on AMD Embedded EPYC processors. To use the AE4DMA module, use the RPC [<span class="tt">ae4dma_scan_accel_module</span>] (<a href="https://spdk.io/doc/jsonrpc.html#rpc_ae4dma_scan_accel_module">https://spdk.io/doc/jsonrpc.html#rpc_ae4dma_scan_accel_module</a> ) before starting the application.</p>
+<h2 class="doxsection"><a class="anchor" id="accel_sw"></a>
+Software Module</h2>
+<p>The software module is enabled by default. If no hardware module is explicitly enabled via startup RPC as discussed earlier, the software module will use ISA-L if available for functions such as CRC32C. Otherwise, standard glibc calls are used to back the framework API.</p>
+<h2 class="doxsection"><a class="anchor" id="accel_dpdk_cryptodev"></a>
+dpdk_cryptodev</h2>
+<p>The dpdk_cryptodev module uses DPDK CryptoDev API to implement crypto operations. The following ciphers and PMDs are supported:</p>
+<ul>
+<li>AESN-NI Multi Buffer Crypto Poll Mode Driver: RTE_CRYPTO_CIPHER_AES128_CBC</li>
+<li>Intel(R) QuickAssist (QAT) Crypto Poll Mode Driver: RTE_CRYPTO_CIPHER_AES128_CBC, RTE_CRYPTO_CIPHER_AES128_XTS (Note: QAT is functional however is marked as experimental until the hardware has been fully integrated with the SPDK CI system.)</li>
+<li>MLX5 Crypto Poll Mode Driver: RTE_CRYPTO_CIPHER_AES256_XTS, RTE_CRYPTO_CIPHER_AES512_XTS</li>
+<li>UADK Crypto Poll Mode Driver: RTE_CRYPTO_CIPHER_AES256_XTS, RTE_CRYPTO_CIPHER_AES512_XTS</li>
+</ul>
+<p>To enable this module, use <a href="https://spdk.io/doc/jsonrpc.html"><span class="tt">dpdk_cryptodev_scan_accel_module</span></a>, this RPC is available in STARTUP state and the SPDK application needs to be run with <span class="tt">--wait-for-rpc</span> CLI parameter. To select a specific PMD, use <a href="https://spdk.io/doc/jsonrpc.html"><span class="tt">dpdk_cryptodev_set_driver</span></a></p>
+<h2 class="doxsection"><a class="anchor" id="accel_assignments"></a>
+Module to Operation Code Assignment</h2>
+<p>When multiple modules are initialized, the accel framework will assign op codes to modules by first assigning all op codes to the Software Module and then overriding op code assignments to Hardware Modules in the order in which they were initialized. The RPC <span class="tt">accel_get_opc_assignments</span> can be used at any time to see the current assignment map including the names of valid operations. The RPC <span class="tt">accel_assign_opc</span> can be used after initializing the desired Hardware Modules but before starting the framework in the event that a specific override is desired. Note that to start an application and send startup RPC's use the <span class="tt">--wait-for-rpc</span> parameter and then use the <span class="tt">framework_start_init</span> RPC to continue. For example, assume the DSA Module is initialized but for some reason the desire is to have the Software Module handle copies instead. The following RPCs would accomplish the copy override:</p>
+<div class="fragment"><div class="line">./scripts/rpc.py dsa_scan_accel_module</div>
+<div class="line">./scripts/rpc.py accel_assign_opc -o copy -m software</div>
+<div class="line">./scripts/rpc.py framework_start_init</div>
+<div class="line">./scripts/rpc.py accel_get_opc_assignments</div>
+<div class="line">{</div>
+<div class="line">  &quot;copy&quot;: &quot;software&quot;,</div>
+<div class="line">  &quot;fill&quot;: &quot;dsa&quot;,</div>
+<div class="line">  &quot;dualcast&quot;: &quot;dsa&quot;,</div>
+<div class="line">  &quot;compare&quot;: &quot;dsa&quot;,</div>
+<div class="line">  &quot;crc32c&quot;: &quot;dsa&quot;,</div>
+<div class="line">  &quot;copy_crc32c&quot;: &quot;dsa&quot;,</div>
+<div class="line">  &quot;compress&quot;: &quot;software&quot;,</div>
+<div class="line">  &quot;decompress&quot;: &quot;software&quot;</div>
+<div class="line">}</div>
+</div><!-- fragment --><p>To determine the name of available modules and their supported operations use the RPC <span class="tt">accel_get_module_info</span>. </p>
+</div></div><!-- contents -->
+</div><!-- PageDoc -->
+</div><!-- doc-content -->
+<div id="page-nav" class="page-nav-panel">
+<div id="page-nav-resize-handle"></div>
+<div id="page-nav-tree">
+<div id="page-nav-contents">
+</div><!-- page-nav-contents -->
+</div><!-- page-nav-tree -->
+</div><!-- page-nav -->
+</div><!-- container -->
+<footer class="footer" id="nav-path">
+  <div class="footer-inner">
+    <div class="footer-copy">
+      <small>Copyright &copy; SPDK a Series of LF Projects, LLC. For web site terms of use, trademark policy, and other
+      project policies please see <a href="https://lfprojects.org">lfprojects.org</a>.</small>
+      <br><small>Built from spdk 91893349edff / site e5878500f</small>
+    </div>
+  </div>
+</footer>
+<script type="text/javascript" src="page_outline.js"></script>
+<script type="text/javascript" src="spdk_nav.js"></script>
+</body>
+</html>

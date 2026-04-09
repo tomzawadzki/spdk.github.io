@@ -1,0 +1,372 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<meta name="generator" content="Doxygen 1.16.1">
+	<title>SPDK: nvme_ocssd_spec.h File Reference</title>
+	<script type="text/javascript" src="jquery.js"></script>
+	<script type="text/javascript" src="dynsections.js"></script>
+	<script type="text/javascript" src="clipboard.js"></script>
+	<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
+<script type="text/javascript" src="cookie.js"></script>
+	<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<script type="text/javascript">
+  $(function() { init_search(); });
+</script>
+	<link rel="icon" type="image/svg+xml" href="../assets/img/spdk.svg">
+	<link rel="icon" href="../assets/favicon.ico" sizes="32x32">
+	<link href="doxygen.css" rel="stylesheet" type="text/css">
+	<script>(function(){var k='doxygen_width',w,bw=6;if(window.chrome){w=localStorage.getItem(k);if(!w){w='350';localStorage.setItem(k,w)}}else{var m=document.cookie.match(new RegExp(k+'=(\\d+)'));w=m?m[1]:null;if(!w){w='350';document.cookie=k+'=350;SameSite=Lax;path=/'}}document.documentElement.style.setProperty('--sn-w',(parseInt(w)+bw)+'px')})()</script>
+	<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:400,700,900" type="text/css">
+	<link href="spdk.css" rel="stylesheet" type="text/css"/>
+	<link href="../assets/css/spdk.css" rel="stylesheet" type="text/css">
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<nav class="navbar">
+  <a class="navbar-brand" href="../" aria-label="SPDK">
+    <img src="../assets/img/spdk.svg" width="36" height="36" alt="Storage Performance Development Kit">
+  </a>
+  <div class="navbar-nav">
+    <a class="nav-link header-link" href="../doc/releases.html">download</a>
+    <a class="nav-link header-link" href="../doc/">documentation</a>
+    <a class="nav-link header-link" href="../doc/contributing.html">development</a>
+    <a class="nav-link header-link" href="../doc/ci_tools.html">CI status</a>
+    <a class="nav-link header-link" href="../community/">community</a>
+    <a class="nav-link header-link" href="../blog/">Blog</a>
+    <a class="nav-link header-link" href="https://github.com/orgs/spdk/projects/5">Roadmap</a>
+    <a class="nav-link header-link" href="../news/">News</a>
+  </div>
+  <div class="navbar-end">
+    <a class="nav-link header-link" href="https://github.com/spdk/spdk" aria-label="GitHub">
+      <svg xmlns="http://www.w3.org/2000/svg" class="navbar-nav-svg" aria-hidden="true"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
+    </a>
+    <a id="cn_lang_btn" href="../cn/doc/" class="nav-link header-link">中文</a>
+  </div>
+</nav>
+<script>
+(function() {
+    var p = location.pathname, best = null, bLen = 0;
+    document.querySelectorAll('.header-link[href]').forEach(function(a) {
+        var raw = a.getAttribute('href');
+        if (!raw) return;
+        try { var u = new URL(raw, location.href); } catch(e) { return; }
+        if (u.origin !== location.origin) return;
+        var h = u.pathname;
+        if (h === '/') return;
+        var ok = h.endsWith('.html') ? p === h : p.indexOf(h) === 0;
+        if (ok && h.length > bLen) { bLen = h.length; best = a; }
+    });
+    if (best) best.classList.add('active');
+})();
+</script>
+<div id="doxygen-searchbox">        <div id="MSearchBox" class="MSearchBoxInactive">
+        <span class="left">
+          <span id="MSearchSelect" class="search-icon" onmouseover="return searchBox.OnSearchSelectShow()" onmouseout="return searchBox.OnSearchSelectHide()"><span class="search-icon-dropdown"></span></span>
+          <input type="text" id="MSearchField" value="" placeholder="Search" accesskey="S"
+               onfocus="searchBox.OnSearchFieldFocus(true)" 
+               onblur="searchBox.OnSearchFieldFocus(false)" 
+               onkeyup="searchBox.OnSearchFieldChange(event)"/>
+          </span><span class="right">
+            <a id="MSearchClose" href="javascript:searchBox.CloseResultsWindow()"><div id="MSearchCloseImg" class="close-icon"></div></a>
+          </span>
+        </div>
+</div>
+<!-- Generated by Doxygen 1.16.1 -->
+<script type="text/javascript">
+var searchBox = new SearchBox("searchBox", "search/",'.html');
+</script>
+<script type="text/javascript">
+$(function() { codefold.init(); });
+</script>
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+$(function(){initNavTree('nvme__ocssd__spec_8h.html','',''); });
+</script>
+<div id="container">
+<div id="doc-content">
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">Loading...</div>
+<div class="SRStatus" id="Searching">Searching...</div>
+<div class="SRStatus" id="NoMatches">No Matches</div>
+</div>
+</div>
+</div>
+</div>
+
+<div class="header">
+  <div class="headertitle"><div class="title">nvme_ocssd_spec.h File Reference</div></div>
+</div><!--header-->
+<div class="contents">
+
+<p>Open-Channel specification definitions.  
+<a href="#details">More...</a></p>
+
+<p><a href="nvme__ocssd__spec_8h_source.html">Go to the source code of this file.</a></p>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 id="header-nested-classes" class="groupheader"><a id="nested-classes" name="nested-classes"></a>
+Data Structures</h2></td></tr>
+<tr class="memitem:spdk_5Focssd_5Fdev_5Flba_5Ffmt" id="r_spdk_5Focssd_5Fdev_5Flba_5Ffmt"><td class="memItemLeft">struct &#160;</td><td class="memItemRight"><a class="el" href="structspdk__ocssd__dev__lba__fmt.html">spdk_ocssd_dev_lba_fmt</a></td></tr>
+<tr class="memitem:spdk_5Focssd_5Fgeometry_5Fdata" id="r_spdk_5Focssd_5Fgeometry_5Fdata"><td class="memItemLeft">struct &#160;</td><td class="memItemRight"><a class="el" href="structspdk__ocssd__geometry__data.html">spdk_ocssd_geometry_data</a></td></tr>
+<tr class="memitem:spdk_5Focssd_5Fchunk_5Finformation_5Fentry" id="r_spdk_5Focssd_5Fchunk_5Finformation_5Fentry"><td class="memItemLeft">struct &#160;</td><td class="memItemRight"><a class="el" href="structspdk__ocssd__chunk__information__entry.html">spdk_ocssd_chunk_information_entry</a></td></tr>
+<tr class="memitem:spdk_5Focssd_5Fchunk_5Fnotification_5Fentry" id="r_spdk_5Focssd_5Fchunk_5Fnotification_5Fentry"><td class="memItemLeft">struct &#160;</td><td class="memItemRight"><a class="el" href="structspdk__ocssd__chunk__notification__entry.html">spdk_ocssd_chunk_notification_entry</a></td></tr>
+<tr class="memitem:spdk_5Focssd_5Fvector_5Fcpl" id="r_spdk_5Focssd_5Fvector_5Fcpl"><td class="memItemLeft">struct &#160;</td><td class="memItemRight"><a class="el" href="structspdk__ocssd__vector__cpl.html">spdk_ocssd_vector_cpl</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Vector completion queue entry.  <a href="structspdk__ocssd__vector__cpl.html#details">More...</a><br /></td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 id="header-define-members" class="groupheader"><a id="define-members" name="define-members"></a>
+Macros</h2></td></tr>
+<tr class="memitem:a7d96f9d96a27db374c495e271f84d765" id="r_a7d96f9d96a27db374c495e271f84d765"><td class="memItemLeft">#define&#160;</td><td class="memItemRight"><a class="el" href="#a7d96f9d96a27db374c495e271f84d765">SPDK_NVME_OCSSD_MAX_LBAL_ENTRIES</a>&#160;&#160;&#160;64</td></tr>
+<tr class="memdesc:a7d96f9d96a27db374c495e271f84d765"><td class="mdescLeft">&#160;</td><td class="mdescRight">A maximum number of LBAs that can be issued by vector I/O commands.  <br /></td></tr>
+<tr class="memitem:a191404a5f78f1cadcadb5443e874f84f" id="r_a191404a5f78f1cadcadb5443e874f84f"><td class="memItemLeft">#define&#160;</td><td class="memItemRight"><a class="el" href="#a191404a5f78f1cadcadb5443e874f84f">SPDK_OCSSD_IO_FLAGS_LIMITED_RETRY</a>&#160;&#160;&#160;(1U &lt;&lt; 31)</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 id="header-enum-members" class="groupheader"><a id="enum-members" name="enum-members"></a>
+Enumerations</h2></td></tr>
+<tr class="memitem:a42b34558cb1809ea9157f873441c919d" id="r_a42b34558cb1809ea9157f873441c919d"><td class="memItemLeft">enum &#160;</td><td class="memItemRight"><a class="el" href="#a42b34558cb1809ea9157f873441c919d">spdk_ocssd_admin_opcode</a> { <b>SPDK_OCSSD_OPC_GEOMETRY</b> = 0xE2
+ }</td></tr>
+<tr class="memdesc:a42b34558cb1809ea9157f873441c919d"><td class="mdescLeft">&#160;</td><td class="mdescRight">OCSSD admin command set opcodes.  <a href="#a42b34558cb1809ea9157f873441c919d">More...</a><br /></td></tr>
+<tr class="memitem:abd099b6b977a8e059b306ad0fe9935c5" id="r_abd099b6b977a8e059b306ad0fe9935c5"><td class="memItemLeft">enum &#160;</td><td class="memItemRight"><a class="el" href="#abd099b6b977a8e059b306ad0fe9935c5">spdk_ocssd_io_opcode</a> { <b>SPDK_OCSSD_OPC_VECTOR_RESET</b> = 0x90
+, <b>SPDK_OCSSD_OPC_VECTOR_WRITE</b> = 0x91
+, <b>SPDK_OCSSD_OPC_VECTOR_READ</b> = 0x92
+, <b>SPDK_OCSSD_OPC_VECTOR_COPY</b> = 0x93
+ }</td></tr>
+<tr class="memdesc:abd099b6b977a8e059b306ad0fe9935c5"><td class="mdescLeft">&#160;</td><td class="mdescRight">OCSSD I/O command set opcodes.  <a href="#abd099b6b977a8e059b306ad0fe9935c5">More...</a><br /></td></tr>
+<tr class="memitem:ad778bee13251d6cdca7bb1bbadfbeb1d" id="r_ad778bee13251d6cdca7bb1bbadfbeb1d"><td class="memItemLeft">enum &#160;</td><td class="memItemRight"><a class="el" href="#ad778bee13251d6cdca7bb1bbadfbeb1d">spdk_ocssd_log_page</a> { <a class="el" href="#ad778bee13251d6cdca7bb1bbadfbeb1da9e8c50bfc1f5f2bf2802544b45dcca68">SPDK_OCSSD_LOG_CHUNK_INFO</a> = 0xCA
+, <a class="el" href="#ad778bee13251d6cdca7bb1bbadfbeb1da0287b7dbe8af751b7da29134a045b220">SPDK_OCSSD_LOG_CHUNK_NOTIFICATION</a> = 0xD0
+ }</td></tr>
+<tr class="memdesc:ad778bee13251d6cdca7bb1bbadfbeb1d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Log page identifiers for SPDK_NVME_OPC_GET_LOG_PAGE.  <a href="#ad778bee13251d6cdca7bb1bbadfbeb1d">More...</a><br /></td></tr>
+<tr class="memitem:a95b16b2164a4f7812a2d3b8dd461cfa5" id="r_a95b16b2164a4f7812a2d3b8dd461cfa5"><td class="memItemLeft">enum &#160;</td><td class="memItemRight"><a class="el" href="#a95b16b2164a4f7812a2d3b8dd461cfa5">spdk_ocssd_feat</a> { <a class="el" href="#a95b16b2164a4f7812a2d3b8dd461cfa5a6540204690d8c653892f749e5c04f7bc">SPDK_OCSSD_FEAT_MEDIA_FEEDBACK</a> = 0xCA
+ }</td></tr>
+<tr class="memdesc:a95b16b2164a4f7812a2d3b8dd461cfa5"><td class="mdescLeft">&#160;</td><td class="mdescRight">OCSSD feature identifiers Defines OCSSD specific features that may be configured with Set Features and retrieved with Get Features.  <a href="#a95b16b2164a4f7812a2d3b8dd461cfa5">More...</a><br /></td></tr>
+<tr class="memitem:ae66ff1776aa8a6560e7c762726777dea" id="r_ae66ff1776aa8a6560e7c762726777dea"><td class="memItemLeft">enum &#160;</td><td class="memItemRight"><a class="el" href="#ae66ff1776aa8a6560e7c762726777dea">spdk_ocssd_media_error_status_code</a> { <br />
+&#160;&#160;<a class="el" href="#ae66ff1776aa8a6560e7c762726777deaaf46a12306da17afa5de6231857a7b323">SPDK_OCSSD_SC_OFFLINE_CHUNK</a> = 0xC0
+, <a class="el" href="#ae66ff1776aa8a6560e7c762726777deaaebb29b4122d37f7bed73d1698ab845d9">SPDK_OCSSD_SC_INVALID_RESET</a> = 0xC1
+, <a class="el" href="#ae66ff1776aa8a6560e7c762726777deaa8e7b52037df17cbd3544bbe53e0dd8a6">SPDK_OCSSD_SC_WRITE_FAIL_WRITE_NEXT_UNIT</a> = 0xF0
+, <a class="el" href="#ae66ff1776aa8a6560e7c762726777deaaf5eb09087e3802a8d720aeb006012fcd">SPDK_OCSSD_SC_WRITE_FAIL_CHUNK_EARLY_CLOSE</a> = 0xF1
+, <br />
+&#160;&#160;<a class="el" href="#ae66ff1776aa8a6560e7c762726777deaa52972575b3058bfd5a4ccd9eb172da26">SPDK_OCSSD_SC_OUT_OF_ORDER_WRITE</a> = 0xF2
+, <a class="el" href="#ae66ff1776aa8a6560e7c762726777deaa56501d789236d739e033e609d627b2f2">SPDK_OCSSD_SC_READ_HIGH_ECC</a> = 0xD0
+<br />
+ }</td></tr>
+<tr class="memdesc:ae66ff1776aa8a6560e7c762726777dea"><td class="mdescLeft">&#160;</td><td class="mdescRight">OCSSD media error status codes extension.  <a href="#ae66ff1776aa8a6560e7c762726777dea">More...</a><br /></td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 id="header-func-members" class="groupheader"><a id="func-members" name="func-members"></a>
+Functions</h2></td></tr>
+<tr class="memitem:a795ecd2378b97c445193b2cdc1be99bb" id="r_a795ecd2378b97c445193b2cdc1be99bb"><td class="memItemLeft"><a id="a795ecd2378b97c445193b2cdc1be99bb" name="a795ecd2378b97c445193b2cdc1be99bb"></a>
+&#160;</td><td class="memItemRight"><b>SPDK_STATIC_ASSERT</b> (sizeof(struct <a class="el" href="structspdk__ocssd__dev__lba__fmt.html">spdk_ocssd_dev_lba_fmt</a>)==8, &quot;Incorrect size&quot;)</td></tr>
+<tr class="memitem:a584df915ebdcf6a753a2370d5cbd784f" id="r_a584df915ebdcf6a753a2370d5cbd784f"><td class="memItemLeft"><a id="a584df915ebdcf6a753a2370d5cbd784f" name="a584df915ebdcf6a753a2370d5cbd784f"></a>
+&#160;</td><td class="memItemRight"><b>SPDK_STATIC_ASSERT</b> (sizeof(struct <a class="el" href="structspdk__ocssd__geometry__data.html">spdk_ocssd_geometry_data</a>)==4096, &quot;Incorrect size&quot;)</td></tr>
+<tr class="memitem:ae47104483611b04414d0a421b248d178" id="r_ae47104483611b04414d0a421b248d178"><td class="memItemLeft"><a id="ae47104483611b04414d0a421b248d178" name="ae47104483611b04414d0a421b248d178"></a>
+&#160;</td><td class="memItemRight"><b>SPDK_STATIC_ASSERT</b> (sizeof(struct <a class="el" href="structspdk__ocssd__chunk__information__entry.html">spdk_ocssd_chunk_information_entry</a>)==32, &quot;Incorrect size&quot;)</td></tr>
+<tr class="memitem:a4b36d556463b5fe4bb924a3da299fca0" id="r_a4b36d556463b5fe4bb924a3da299fca0"><td class="memItemLeft"><a id="a4b36d556463b5fe4bb924a3da299fca0" name="a4b36d556463b5fe4bb924a3da299fca0"></a>
+&#160;</td><td class="memItemRight"><b>SPDK_STATIC_ASSERT</b> (sizeof(struct <a class="el" href="structspdk__ocssd__chunk__notification__entry.html">spdk_ocssd_chunk_notification_entry</a>)==64, &quot;Incorrect size&quot;)</td></tr>
+<tr class="memitem:a6e889e465d0062a5325c457c07d39adb" id="r_a6e889e465d0062a5325c457c07d39adb"><td class="memItemLeft"><a id="a6e889e465d0062a5325c457c07d39adb" name="a6e889e465d0062a5325c457c07d39adb"></a>
+&#160;</td><td class="memItemRight"><b>SPDK_STATIC_ASSERT</b> (sizeof(struct <a class="el" href="structspdk__ocssd__vector__cpl.html">spdk_ocssd_vector_cpl</a>)==16, &quot;Incorrect size&quot;)</td></tr>
+</table>
+<a name="details" id="details"></a><h2 id="header-details" class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>Open-Channel specification definitions. </p>
+
+<p class="definition">Definition in file <a class="el" href="nvme__ocssd__spec_8h_source.html">nvme_ocssd_spec.h</a>.</p>
+</div><a name="doc-define-members" id="doc-define-members"></a><h2 id="header-doc-define-members" class="groupheader">Macro Definition Documentation</h2>
+<a id="a7d96f9d96a27db374c495e271f84d765" name="a7d96f9d96a27db374c495e271f84d765"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7d96f9d96a27db374c495e271f84d765">&#9670;&#160;</a></span>SPDK_NVME_OCSSD_MAX_LBAL_ENTRIES</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define SPDK_NVME_OCSSD_MAX_LBAL_ENTRIES&#160;&#160;&#160;64</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>A maximum number of LBAs that can be issued by vector I/O commands. </p>
+
+<p class="definition">Definition at line <a class="el" href="nvme__ocssd__spec_8h_source.html#l00024">24</a> of file <a class="el" href="nvme__ocssd__spec_8h_source.html">nvme_ocssd_spec.h</a>.</p>
+
+</div>
+</div>
+<a id="a191404a5f78f1cadcadb5443e874f84f" name="a191404a5f78f1cadcadb5443e874f84f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a191404a5f78f1cadcadb5443e874f84f">&#9670;&#160;</a></span>SPDK_OCSSD_IO_FLAGS_LIMITED_RETRY</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define SPDK_OCSSD_IO_FLAGS_LIMITED_RETRY&#160;&#160;&#160;(1U &lt;&lt; 31)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="nvme__ocssd__spec_8h_source.html#l00380">380</a> of file <a class="el" href="nvme__ocssd__spec_8h_source.html">nvme_ocssd_spec.h</a>.</p>
+
+</div>
+</div>
+<a name="doc-enum-members" id="doc-enum-members"></a><h2 id="header-doc-enum-members" class="groupheader">Enumeration Type Documentation</h2>
+<a id="a42b34558cb1809ea9157f873441c919d" name="a42b34558cb1809ea9157f873441c919d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a42b34558cb1809ea9157f873441c919d">&#9670;&#160;</a></span>spdk_ocssd_admin_opcode</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">enum <a class="el" href="#a42b34558cb1809ea9157f873441c919d">spdk_ocssd_admin_opcode</a></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>OCSSD admin command set opcodes. </p>
+
+<p class="definition">Definition at line <a class="el" href="nvme__ocssd__spec_8h_source.html#l00303">303</a> of file <a class="el" href="nvme__ocssd__spec_8h_source.html">nvme_ocssd_spec.h</a>.</p>
+
+</div>
+</div>
+<a id="a95b16b2164a4f7812a2d3b8dd461cfa5" name="a95b16b2164a4f7812a2d3b8dd461cfa5"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a95b16b2164a4f7812a2d3b8dd461cfa5">&#9670;&#160;</a></span>spdk_ocssd_feat</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">enum <a class="el" href="#a95b16b2164a4f7812a2d3b8dd461cfa5">spdk_ocssd_feat</a></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>OCSSD feature identifiers Defines OCSSD specific features that may be configured with Set Features and retrieved with Get Features. </p>
+<table class="fieldtable">
+<tr><th colspan="2">Enumerator</th></tr><tr><td class="fieldname"><a id="a95b16b2164a4f7812a2d3b8dd461cfa5a6540204690d8c653892f749e5c04f7bc" name="a95b16b2164a4f7812a2d3b8dd461cfa5a6540204690d8c653892f749e5c04f7bc"></a>SPDK_OCSSD_FEAT_MEDIA_FEEDBACK&#160;</td><td class="fielddoc"><p>Media Feedback feature identifier. </p>
+</td></tr>
+</table>
+
+<p class="definition">Definition at line <a class="el" href="nvme__ocssd__spec_8h_source.html#l00333">333</a> of file <a class="el" href="nvme__ocssd__spec_8h_source.html">nvme_ocssd_spec.h</a>.</p>
+
+</div>
+</div>
+<a id="abd099b6b977a8e059b306ad0fe9935c5" name="abd099b6b977a8e059b306ad0fe9935c5"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#abd099b6b977a8e059b306ad0fe9935c5">&#9670;&#160;</a></span>spdk_ocssd_io_opcode</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">enum <a class="el" href="#abd099b6b977a8e059b306ad0fe9935c5">spdk_ocssd_io_opcode</a></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>OCSSD I/O command set opcodes. </p>
+
+<p class="definition">Definition at line <a class="el" href="nvme__ocssd__spec_8h_source.html#l00310">310</a> of file <a class="el" href="nvme__ocssd__spec_8h_source.html">nvme_ocssd_spec.h</a>.</p>
+
+</div>
+</div>
+<a id="ad778bee13251d6cdca7bb1bbadfbeb1d" name="ad778bee13251d6cdca7bb1bbadfbeb1d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad778bee13251d6cdca7bb1bbadfbeb1d">&#9670;&#160;</a></span>spdk_ocssd_log_page</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">enum <a class="el" href="#ad778bee13251d6cdca7bb1bbadfbeb1d">spdk_ocssd_log_page</a></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Log page identifiers for SPDK_NVME_OPC_GET_LOG_PAGE. </p>
+<table class="fieldtable">
+<tr><th colspan="2">Enumerator</th></tr><tr><td class="fieldname"><a id="ad778bee13251d6cdca7bb1bbadfbeb1da9e8c50bfc1f5f2bf2802544b45dcca68" name="ad778bee13251d6cdca7bb1bbadfbeb1da9e8c50bfc1f5f2bf2802544b45dcca68"></a>SPDK_OCSSD_LOG_CHUNK_INFO&#160;</td><td class="fielddoc"><p>Chunk Information. </p>
+</td></tr>
+<tr><td class="fieldname"><a id="ad778bee13251d6cdca7bb1bbadfbeb1da0287b7dbe8af751b7da29134a045b220" name="ad778bee13251d6cdca7bb1bbadfbeb1da0287b7dbe8af751b7da29134a045b220"></a>SPDK_OCSSD_LOG_CHUNK_NOTIFICATION&#160;</td><td class="fielddoc"><p>Chunk Notification Log. </p>
+</td></tr>
+</table>
+
+<p class="definition">Definition at line <a class="el" href="nvme__ocssd__spec_8h_source.html#l00320">320</a> of file <a class="el" href="nvme__ocssd__spec_8h_source.html">nvme_ocssd_spec.h</a>.</p>
+
+</div>
+</div>
+<a id="ae66ff1776aa8a6560e7c762726777dea" name="ae66ff1776aa8a6560e7c762726777dea"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae66ff1776aa8a6560e7c762726777dea">&#9670;&#160;</a></span>spdk_ocssd_media_error_status_code</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">enum <a class="el" href="#ae66ff1776aa8a6560e7c762726777dea">spdk_ocssd_media_error_status_code</a></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>OCSSD media error status codes extension. </p>
+<p>Additional error codes for status code type “2h” (media errors) </p>
+<table class="fieldtable">
+<tr><th colspan="2">Enumerator</th></tr><tr><td class="fieldname"><a id="ae66ff1776aa8a6560e7c762726777deaaf46a12306da17afa5de6231857a7b323" name="ae66ff1776aa8a6560e7c762726777deaaf46a12306da17afa5de6231857a7b323"></a>SPDK_OCSSD_SC_OFFLINE_CHUNK&#160;</td><td class="fielddoc"><p>The chunk was either marked offline by the reset or the state of the chunk is already offline. </p>
+</td></tr>
+<tr><td class="fieldname"><a id="ae66ff1776aa8a6560e7c762726777deaaebb29b4122d37f7bed73d1698ab845d9" name="ae66ff1776aa8a6560e7c762726777deaaebb29b4122d37f7bed73d1698ab845d9"></a>SPDK_OCSSD_SC_INVALID_RESET&#160;</td><td class="fielddoc"><p>Invalid reset if chunk state is either “Free” or “Open” </p>
+</td></tr>
+<tr><td class="fieldname"><a id="ae66ff1776aa8a6560e7c762726777deaa8e7b52037df17cbd3544bbe53e0dd8a6" name="ae66ff1776aa8a6560e7c762726777deaa8e7b52037df17cbd3544bbe53e0dd8a6"></a>SPDK_OCSSD_SC_WRITE_FAIL_WRITE_NEXT_UNIT&#160;</td><td class="fielddoc"><p>Write failed, chunk remains open. </p>
+<p>Host should proceed to write to next write unit. </p>
+</td></tr>
+<tr><td class="fieldname"><a id="ae66ff1776aa8a6560e7c762726777deaaf5eb09087e3802a8d720aeb006012fcd" name="ae66ff1776aa8a6560e7c762726777deaaf5eb09087e3802a8d720aeb006012fcd"></a>SPDK_OCSSD_SC_WRITE_FAIL_CHUNK_EARLY_CLOSE&#160;</td><td class="fielddoc"><p>The writes ended prematurely. </p>
+<p>The chunk state is set to closed. The host can read up to the value of the write pointer. </p>
+</td></tr>
+<tr><td class="fieldname"><a id="ae66ff1776aa8a6560e7c762726777deaa52972575b3058bfd5a4ccd9eb172da26" name="ae66ff1776aa8a6560e7c762726777deaa52972575b3058bfd5a4ccd9eb172da26"></a>SPDK_OCSSD_SC_OUT_OF_ORDER_WRITE&#160;</td><td class="fielddoc"><p>The write corresponds to a write out of order within an open chunk or the write is to a closed or offline chunk. </p>
+</td></tr>
+<tr><td class="fieldname"><a id="ae66ff1776aa8a6560e7c762726777deaa56501d789236d739e033e609d627b2f2" name="ae66ff1776aa8a6560e7c762726777deaa56501d789236d739e033e609d627b2f2"></a>SPDK_OCSSD_SC_READ_HIGH_ECC&#160;</td><td class="fielddoc"><p>The data retrieved is nearing its limit for reading. </p>
+<p>The limit is vendor specific, and only provides a hint to the host that should refresh its data in the future. </p>
+</td></tr>
+</table>
+
+<p class="definition">Definition at line <a class="el" href="nvme__ocssd__spec_8h_source.html#l00342">342</a> of file <a class="el" href="nvme__ocssd__spec_8h_source.html">nvme_ocssd_spec.h</a>.</p>
+
+</div>
+</div>
+</div><!-- contents -->
+</div><!-- doc-content -->
+<div id="page-nav" class="page-nav-panel">
+<div id="page-nav-resize-handle"></div>
+<div id="page-nav-tree">
+<div id="page-nav-contents">
+</div><!-- page-nav-contents -->
+</div><!-- page-nav-tree -->
+</div><!-- page-nav -->
+</div><!-- container -->
+<footer class="footer" id="nav-path">
+  <div class="footer-inner">
+    <div class="footer-copy">
+      <small>Copyright &copy; SPDK a Series of LF Projects, LLC. For web site terms of use, trademark policy, and other
+      project policies please see <a href="https://lfprojects.org">lfprojects.org</a>.</small>
+      <br><small>Built from spdk 91893349edff / site e5878500f</small>
+    </div>
+  </div>
+</footer>
+<script type="text/javascript" src="page_outline.js"></script>
+<script type="text/javascript" src="spdk_nav.js"></script>
+</body>
+</html>

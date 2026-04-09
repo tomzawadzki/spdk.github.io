@@ -1,0 +1,128 @@
+<!doctype html>
+<html lang="en">
+  <head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="The Storage Performance Development Kit (SPDK) provides a set of tools and libraries for writing high performance, scalable, user-mode storage applications. It achieves high performance by moving all of the necessary drivers into userspace and operating in a polled mode instead of relying on interrupts, which avoids kernel context switches and eliminates interrupt handling overhead.
+">
+  <meta name="author" content="Benjamin Walker">
+
+  <title>Presentations: 2020 PRC SPDK, PMDK and Intel® VTune™ Profiler Virtual Forum on November 14, 2020</title>
+
+  <link rel="icon" type="image/svg+xml" href="/spdk.github.io/assets/img/spdk.svg">
+  <link rel="icon" href="/spdk.github.io/assets/favicon.ico" sizes="32x32">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:400,700,900" type="text/css">
+  <link rel="stylesheet" href="/spdk.github.io/assets/css/spdk.css">
+
+  <link href="/spdk.github.io/feed.xml" type="application/atom+xml" rel="alternate" title="Atom Feed">
+</head>
+
+
+  <body>
+    <nav class="navbar">
+  <a class="navbar-brand" href="/spdk.github.io/" aria-label="SPDK">
+    <img src="/spdk.github.io/assets/img/spdk.svg" width="36" height="36" alt="Storage Performance Development Kit">
+  </a>
+  <div class="navbar-nav">
+    <a class="nav-link header-link" href="/spdk.github.io/doc/releases.html">download</a>
+    <a class="nav-link header-link" href="/spdk.github.io/doc/">documentation</a>
+    <a class="nav-link header-link" href="/spdk.github.io/doc/contributing.html">development</a>
+    <a class="nav-link header-link" href="/spdk.github.io/doc/ci_tools.html">CI status</a>
+    <a class="nav-link header-link" href="/spdk.github.io/community/">community</a>
+    <a class="nav-link header-link" href="/spdk.github.io/blog/">Blog</a>
+    <a class="nav-link header-link" href="https://github.com/orgs/spdk/projects/5">Roadmap</a>
+    <a class="nav-link header-link" href="/spdk.github.io/news/">News</a>
+  </div>
+  <div class="navbar-end">
+    <a class="nav-link header-link" href="https://github.com/spdk/spdk" aria-label="GitHub">
+      <svg xmlns="http://www.w3.org/2000/svg" class="navbar-nav-svg" aria-hidden="true"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
+    </a>
+    <a id="cn_lang_btn" href="/spdk.github.io/cn/doc/" class="nav-link header-link">中文</a>
+  </div>
+</nav>
+<script>
+(function() {
+    var p = location.pathname, best = null, bLen = 0;
+    document.querySelectorAll('.header-link[href]').forEach(function(a) {
+        var raw = a.getAttribute('href');
+        if (!raw) return;
+        try { var u = new URL(raw, location.href); } catch(e) { return; }
+        if (u.origin !== location.origin) return;
+        var h = u.pathname;
+        if (h === '/') return;
+        var ok = h.endsWith('.html') ? p === h : p.indexOf(h) === 0;
+        if (ok && h.length > bLen) { bLen = h.length; best = a; }
+    });
+    if (best) best.classList.add('active');
+})();
+</script>
+
+
+    <div class="page-content">
+  <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+  <header class="post-header">
+
+    <div class="page-header">
+      <h1>Presentations: 2020 PRC SPDK, PMDK and Intel® VTune™ Profiler Virtual Forum on November 14, 2020</h1>
+    </div>
+
+    <p class="post-meta">
+      <time datetime="2020-11-22T00:00:00+01:00" itemprop="datePublished">
+        Nov 22, 2020
+      </time>
+      
+      •
+      <span itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <span itemprop="name">Gang Cao</span>
+      </span>
+      
+    </p>
+  </header>
+
+  <div class="content" itemprop="articleBody"><p>Thank you all for attending the 2020 PRC SPDK, PMDK and Intel® VTune™ Profiler Virtual Forum. We had a very successful Virtual Forum this year with awesome content and presenters. You can download the presentations using the links below. Please note these are static PDFs, but many of the presentations made extensive use of animations, so something may be lost in translation.</p>
+
+<p>The videos will be available in our <a href="https://www.youtube.com/channel/UCBJymdv0AXCcnbLtEw7jvBQ">YouTube channel</a>.</p>
+
+<h2 id="spdk-presentations">SPDK Presentations</h2>
+<ol>
+  <li><a href="https://review.spdk.io/download/2020-virtual-forum-prc/Topic_1_2020_PRC_SPDK_PMDK_VTune_Virtual_Forum_SPDK_State_Of_The_Union_Intel_Jim.pdf">SPDK: (Intel)State of the Project</a></li>
+  <li><a href="https://review.spdk.io/download/2020-virtual-forum-prc/Topic_4_2020_PRC_SPDK_PMDK_VTune_Virtual_Forum_Optimizing_User_Space_NVMe-oF_TCP_Transport_Solution_Intel_Ziye.pdf">SPDK: (Intel)Optimizing user space NVMe-oF TCP transport solution with both software and hardware methodologies</a></li>
+  <li><a href="https://review.spdk.io/download/2020-virtual-forum-prc/Topic_5_2020_PRC_SPDK_PMDK_VTune_Virtual_Forum_Userspace_Protocol_ZTCP_To_Accelerate_SPDK_Based_Cloud_Disk_Tencent_Miao.pdf">SPDK: (Tencent)Practice sharing of user space protocol zTCP to accelerate SPDK based cloud disk</a></li>
+  <li><a href="https://review.spdk.io/download/2020-virtual-forum-prc/Topic_7_2020_PRC_SPDK_PMDK_VTune_Virtual_Forum_Time_To_Change_SPDK_VHOST_Evolutional_Solution_Intel_Changpeng.pdf">SPDK: (Intel)Time to change! SPDK VHOST evolutional solution</a></li>
+  <li><a href="https://review.spdk.io/download/2020-virtual-forum-prc/Topic_9_2020_PRC_SPDK_PMDK_VTune_Virtual_Forum_Unified_Single_Node_Storage_Engine_With_Optimized_SW_And_HW_Baidu_Zhen.pdf">SPDK: (Baidu)Unified single node storage engine with optimized software and hardware</a></li>
+  <li><a href="https://review.spdk.io/download/2020-virtual-forum-prc/Topic_11_2020_PRC_SPDK_PMDK_VTune_Virtual_Forum_Accelerate_Sangfor_Enterprise_Distributed_Storage_With_SPDK_Sangfor_Wei.pdf">SPDK: (Sangfor)Accelerating Sangfor Enterprise Distributed Storage with SPDK</a></li>
+  <li><a href="https://review.spdk.io/download/2020-virtual-forum-prc/Topic_12_2020_PRC_SPDK_PMDK_VTune_Virtual_Forum_Container_Exploration_With_SPDK_Intel_Xiaodong.pdf">SPDK: (Intel)Container Exploration with SPDK</a></li>
+</ol>
+
+<h2 id="vtune-presentations">VTune Presentations</h2>
+<ol>
+  <li><a href="https://review.spdk.io/download/2020-virtual-forum-prc/Topic_3_2020_PRC_SPDK_PMDK_VTune_Virtual_Forum_VTune_State_Of_The_Project_Intel_Sri.pdf">VTune: (Intel)State of the Union</a></li>
+  <li><a href="https://review.spdk.io/download/2020-virtual-forum-prc/Topic_6_2020_PRC_SPDK_PMDK_VTune_Virtual_Forum_Science_Of_Performance_Tackling_Issues_Scaling_And_Saving_Money_Verizon.pdf">VTune: (Verizon)Science of Performance</a></li>
+  <li><a href="https://review.spdk.io/download/2020-virtual-forum-prc/Topic_10_2020_PRC_SPDK_PMDK_VTune_Virtual_Forum_Can_Your_App_Benefit_From_Intel_OPTANE_PMem_Intel_Vineet.pdf">VTune: (Intel)Can Your Application Benefit from Intel® Optane™ Persistent Memory?</a></li>
+</ol>
+
+<h2 id="pmdk-presentations">PMDK Presentations</h2>
+<ol>
+  <li><a href="https://review.spdk.io/download/2020-virtual-forum-prc/Topic_2_2020_PRC_SPDK_PMDK_VTune_Virtual_Forum_PMDK_State_Of_The_Project_Intel_Andy_Piotr.pdf">PMDK: (Intel)State of the Project</a></li>
+  <li><a href="https://review.spdk.io/download/2020-virtual-forum-prc/Topic_8_2020_PRC_SPDK_PMDK_VTune_Virtual_Forum_DSS_Solution_Update_Intel_Dennis.pdf">PMDK: (Intel)Solution of Intel® Optane™ DC persistent memory</a></li>
+  <li><a href="https://review.spdk.io/download/2020-virtual-forum-prc/Topic_13_2020_PRC_SPDK_PMDK_VTune_Virtual_Forum_Endurance_Benefits_With_Persistent_Memory_Intel_Sergey.pdf">PMDK: (Intel)Endurance Benefits with Persistent Memory</a></li>
+</ol>
+</div>
+</article>
+</div>
+
+
+    <footer class="footer" id="nav-path">
+  <div class="footer-inner">
+    <div class="footer-copy">
+      <small>Copyright &copy; SPDK a Series of LF Projects, LLC. For web site terms of use, trademark policy, and other
+      project policies please see <a href="https://lfprojects.org">lfprojects.org</a>.</small>
+      <br><small>Built from spdk 91893349edff / site e5878500f</small>
+    </div>
+  </div>
+</footer>
+
+
+    
+  </body>
+</html>

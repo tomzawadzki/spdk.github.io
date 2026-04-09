@@ -1,0 +1,214 @@
+<!doctype html>
+<html lang="en">
+  <head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="The Storage Performance Development Kit (SPDK) provides a set of tools and libraries for writing high performance, scalable, user-mode storage applications. It achieves high performance by moving all of the necessary drivers into userspace and operating in a polled mode instead of relying on interrupts, which avoids kernel context switches and eliminates interrupt handling overhead.
+">
+  <meta name="author" content="Benjamin Walker">
+
+  <title>SPDK Community</title>
+
+  <link rel="icon" type="image/svg+xml" href="/spdk.github.io/assets/img/spdk.svg">
+  <link rel="icon" href="/spdk.github.io/assets/favicon.ico" sizes="32x32">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:400,700,900" type="text/css">
+  <link rel="stylesheet" href="/spdk.github.io/assets/css/spdk.css">
+
+  <link href="/spdk.github.io/feed.xml" type="application/atom+xml" rel="alternate" title="Atom Feed">
+</head>
+
+
+  <body>
+    <nav class="navbar">
+  <a class="navbar-brand" href="/spdk.github.io/" aria-label="SPDK">
+    <img src="/spdk.github.io/assets/img/spdk.svg" width="36" height="36" alt="Storage Performance Development Kit">
+  </a>
+  <div class="navbar-nav">
+    <a class="nav-link header-link" href="/spdk.github.io/doc/releases.html">download</a>
+    <a class="nav-link header-link" href="/spdk.github.io/doc/">documentation</a>
+    <a class="nav-link header-link" href="/spdk.github.io/doc/contributing.html">development</a>
+    <a class="nav-link header-link" href="/spdk.github.io/doc/ci_tools.html">CI status</a>
+    <a class="nav-link header-link" href="/spdk.github.io/community/">community</a>
+    <a class="nav-link header-link" href="/spdk.github.io/blog/">Blog</a>
+    <a class="nav-link header-link" href="https://github.com/orgs/spdk/projects/5">Roadmap</a>
+    <a class="nav-link header-link" href="/spdk.github.io/news/">News</a>
+  </div>
+  <div class="navbar-end">
+    <a class="nav-link header-link" href="https://github.com/spdk/spdk" aria-label="GitHub">
+      <svg xmlns="http://www.w3.org/2000/svg" class="navbar-nav-svg" aria-hidden="true"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
+    </a>
+    <a id="cn_lang_btn" href="/spdk.github.io/cn/doc/" class="nav-link header-link">中文</a>
+  </div>
+</nav>
+<script>
+(function() {
+    var p = location.pathname, best = null, bLen = 0;
+    document.querySelectorAll('.header-link[href]').forEach(function(a) {
+        var raw = a.getAttribute('href');
+        if (!raw) return;
+        try { var u = new URL(raw, location.href); } catch(e) { return; }
+        if (u.origin !== location.origin) return;
+        var h = u.pathname;
+        if (h === '/') return;
+        var ok = h.endsWith('.html') ? p === h : p.indexOf(h) === 0;
+        if (ok && h.length > bLen) { bLen = h.length; best = a; }
+    });
+    if (best) best.classList.add('active');
+})();
+</script>
+
+
+    
+<div class="page-with-toc">
+  <aside class="site-toc">
+    <ul>
+      
+        <li>
+          <a href="#slack">Slack</a>
+          
+        </li>
+      
+        <li>
+          <a href="#enhancements">Enhancement Requests</a>
+          
+        </li>
+      
+        <li>
+          <a href="#meetings">Community Meetings</a>
+          
+        </li>
+      
+        <li>
+          <a href="#contributing">Become a Contributor</a>
+          
+        </li>
+      
+        <li>
+          <a href="#holidays">Holidays</a>
+          
+        </li>
+      
+    </ul>
+  </aside>
+
+  <div class="page-content">
+    <div class="page-header">
+      <h1>SPDK Community</h1>
+    </div>
+    <div class="content"><p><a id="slack"></a></p>
+<h1 id="slack">Slack</h1>
+
+<p>For real-time discussions, join us on <a href="https://join.slack.com/t/spdk-team/shared_invite/enQtNzg2NTgxNTgzNzEyLWQ2Y2NmOGFkN2FlYjczMWY1ZDZiMzFjZTI4ZGIyZDc0YTA3ZjE5YWQ3MGVjYzI1MTg0OGYzMjFhZDczZDYwZmY">Slack</a>.</p>
+
+<p><a id="enhancements"></a></p>
+<h1 id="enhancement-requests">Enhancement Requests</h1>
+
+<p>Find something to work on the backlog in your area of interest, or start/participate in a design discussion on any of the <a href="https://github.com/spdk/spdk/issues?q=is:issue+is:open+label:enhancement">enhancement requests</a>.</p>
+
+<p><a id="meetings"></a></p>
+<h1 id="community-meetings">Community Meetings</h1>
+
+<p>SPDK Community Meetings are weekly calls open to everyone and all are encouraged to
+participate. The primary purpose is to cover topics where verbal communication
+is more efficient than Slack. The meetings are hosted using Zoom.</p>
+
+<p>Please see the bottom of this <a href="#holidays">page</a> for holidays when regularly
+scheduled community meetings will be cancelled.</p>
+
+<p>Please post proposed topics on the SPDK Community Meeting
+<a href="https://github.com/orgs/spdk/projects/8/views/1?pane=info">board</a> prior to the meeting. If we are able to cover the
+posted topics before the end of the meeting we can use the time to discuss additional items.</p>
+
+<h2 id="spdk-community-meeting-conference-information">SPDK Community Meeting Conference Information</h2>
+
+<p><a href="https://nutanix.zoom.us/j/91224777940?pwd=8bjbmQKPlgovn4t4IDt7FH3eMzgAza.1">Join on your computer or mobile app</a></p>
+
+<h2 id="next-spdk-community-meeting">Next SPDK Community Meeting</h2>
+<div id="community-mtg"></div>
+
+<p><a id="contributing"></a></p>
+<h1 id="contributing">Contributing</h1>
+
+<p>See the <a href="../development/">Development</a> page for more information on how to contribute to SPDK.</p>
+
+<h1 id="technical-steering-committee-tsc">Technical Steering Committee (TSC)</h1>
+
+<p>As part of joining the Linux Foundation, a Technical Steering Committee (TSC) was established to oversee the project.
+TSC contains representatives from following companies:</p>
+<ul>
+  <li>Arm</li>
+  <li>Dell</li>
+  <li>HPE</li>
+  <li>Nutanix</li>
+  <li>NVIDIA</li>
+  <li>Oracle</li>
+  <li>Samsung</li>
+  <li>Solidigm</li>
+  <li>StarWind</li>
+  <li>Tencent</li>
+</ul>
+
+<p>Notes below are a summary of TSC meetings:</p>
+
+<details>
+  <summary>February 13, 2025</summary>
+
+  <h2 id="self-hosted-runners">Self-Hosted Runners</h2>
+  <p>Discussion on the current state and plans for self-hosted runners infrastructure for spdk-ci.</p>
+
+  <ul>
+    <li>Michael (HPE) is working on adding self-hosted runners.</li>
+    <li>Simon (Samsung) has secured resources for a pool of self-hosted runners in the future.</li>
+    <li>Boris (Dell) has set up access to the OPI lab for SPDK.</li>
+    <li>Ben (Nvidia) confirmed plans to restore CI and move it to a GitHub Actions-based approach.</li>
+    <li>Tomek (Nutanix) will provide a description of the current approach for GitHub workflows and self-hosted runners as a README on the spdk-ci repository.</li>
+  </ul>
+
+  <h2 id="spdk-ci-development-process">spdk-ci Development Process</h2>
+  <p>Until spdk-ci is operational and voting on patches, a more relaxed approach will be taken on pull requests submitted to that repository.
+This is crucial for restoring the process for merging patches to SPDK proper.</p>
+
+</details>
+
+<p><a id="holidays"></a></p>
+<h1 id="holidays">Holidays</h1>
+
+<p>Community meetings scheduled on the following days will be cancelled:</p>
+
+<h2 id="us-holidays-based-on-the-americaphoenix-iana-timezone">U.S. Holidays (Based on the America/Phoenix IANA timezone):</h2>
+
+<ul>
+  <li>Christmas Eve</li>
+  <li>Christmas Day</li>
+  <li>Boxing Day</li>
+  <li>New Years Eve</li>
+  <li>New Years Day</li>
+  <li>The Fourth of July</li>
+  <li>Memorial Day</li>
+  <li>Labor Day</li>
+  <li>Thanksgiving Day</li>
+  <li>Day after Thanksgiving</li>
+</ul>
+</div>
+  </div>
+</div>
+
+
+
+
+    <footer class="footer" id="nav-path">
+  <div class="footer-inner">
+    <div class="footer-copy">
+      <small>Copyright &copy; SPDK a Series of LF Projects, LLC. For web site terms of use, trademark policy, and other
+      project policies please see <a href="https://lfprojects.org">lfprojects.org</a>.</small>
+      <br><small>Built from spdk 91893349edff / site e5878500f</small>
+    </div>
+  </div>
+</footer>
+
+
+    
+    <script type="text/javascript" src="/spdk.github.io/assets/js/meetings.js"></script>
+    
+  </body>
+</html>

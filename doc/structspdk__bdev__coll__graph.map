@@ -1,0 +1,28 @@
+<map id="spdk_bdev" name="spdk_bdev">
+<area shape="rect" id="Node000001" title=" " alt="" coords="802,136,894,164"/>
+<area shape="rect" id="Node000012" href="$structspdk__bdev__io.html" title=" " alt="" coords="1035,70,1146,98"/>
+<area shape="poly" id="edge11_Node000012_Node000001" title=" " alt="" coords="890,127,917,117,977,101,1034,89,1035,95,978,106,918,122,892,132"/>
+<area shape="rect" id="Node000052" href="$structspdk__bdev__name.html" title=" " alt="" coords="1023,122,1158,150"/>
+<area shape="poly" id="edge14_Node000052_Node000001" title=" " alt="" coords="909,145,958,142,1022,138,1022,143,958,147,910,150"/>
+<area shape="rect" id="Node000002" href="$structspdk__uuid.html" title=" " alt="" coords="560,192,647,220"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="662,199,719,191,778,178,818,162,820,167,779,183,720,197,663,204"/>
+<area shape="rect" id="Node000003" href="$unionspdk__bdev__nvme__ctratt.html" title="Controller attributes indicating optional bdev capabilities (e.g." alt="" coords="515,248,692,276"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="707,248,743,238,777,222,812,193,836,163,840,166,816,197,780,227,745,243,709,253"/>
+<area shape="rect" id="Node000004" href="$structspdk__bdev__module.html" title="Block device module." alt="" coords="530,83,677,111"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="693,104,779,121,815,133,813,138,778,126,692,109"/>
+<area shape="rect" id="Node000005" href="$structspdk__bdev__module_1_1____bdev__module__internal__fields.html" title="Fields that are used by the internal bdev subsystem." alt="" coords="229,68,409,129"/>
+<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="425,95,530,95,530,100,425,101"/>
+<area shape="rect" id="Node000006" href="$structspdk__spinlock.html" title="A spinlock augmented with safety checks for use with SPDK." alt="" coords="5,50,119,78"/>
+<area shape="poly" id="edge5_Node000005_Node000006" title=" " alt="" coords="135,71,229,84,228,89,134,76"/>
+<area shape="rect" id="Node000008" href="$structspdk__bdev_1_1____bdev__internal__fields.html" title="Fields that are used internally by the bdev subsystem." alt="" coords="1370,147,1571,191"/>
+<area shape="poly" id="edge8_Node000008_Node000006" title=" " alt="" coords="133,47,221,34,317,28,1092,28,1165,27,1223,28,1279,39,1347,64,1378,81,1407,102,1451,144,1448,148,1403,106,1375,86,1345,69,1278,44,1222,34,1165,32,1092,33,318,33,221,39,134,52"/>
+<area shape="rect" id="Node000007" href="$structspdk__bdev__fn__table.html" title="Function table for a block device backend." alt="" coords="528,136,679,164"/>
+<area shape="poly" id="edge6_Node000001_Node000007" title=" " alt="" coords="694,148,802,148,802,153,694,153"/>
+<area shape="poly" id="edge7_Node000001_Node000008" title=" " alt="" coords="1355,186,1272,193,1179,198,1079,197,981,189,934,179,891,167,892,162,935,174,982,183,1080,191,1178,192,1272,188,1354,181"/>
+<area shape="rect" id="Node000009" href="$unionspdk__bdev_1_1____bdev__internal__fields_1_1____bdev__internal__claim.html" title="Which module has claimed this bdev." alt="" coords="982,247,1199,291"/>
+<area shape="poly" id="edge9_Node000008_Node000009" title=" " alt="" coords="1214,264,1280,255,1345,239,1395,217,1438,190,1441,194,1398,221,1347,245,1281,261,1215,269"/>
+<area shape="poly" id="edge10_Node000008_Node000012" title=" " alt="" coords="1161,86,1250,97,1347,117,1421,144,1419,149,1345,122,1249,103,1160,92"/>
+<area shape="rect" id="Node000051" href="$structspdk__bdev__io__stat.html" title=" " alt="" coords="1019,315,1162,343"/>
+<area shape="poly" id="edge12_Node000008_Node000051" title=" " alt="" coords="1176,329,1260,321,1304,311,1345,294,1379,272,1409,245,1453,190,1457,194,1413,248,1382,276,1347,299,1305,316,1261,326,1177,335"/>
+<area shape="poly" id="edge13_Node000008_Node000052" title=" " alt="" coords="1173,140,1370,158,1369,163,1173,146"/>
+</map>

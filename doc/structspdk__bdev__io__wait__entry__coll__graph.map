@@ -1,0 +1,15 @@
+<map id="spdk_bdev_io_wait_entry" name="spdk_bdev_io_wait_entry">
+<area shape="rect" id="Node000001" title="Structure to register a callback when an spdk_bdev_io becomes available." alt="" coords="495,117,681,145"/>
+<area shape="rect" id="Node000002" href="$structspdk__bdev.html" title=" " alt="" coords="316,117,407,145"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="423,128,494,128,494,134,423,134"/>
+<area shape="rect" id="Node000003" href="$structspdk__uuid.html" title=" " alt="" coords="62,5,150,33"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="166,21,229,33,262,44,293,58,328,86,352,115,348,119,324,90,290,63,260,49,227,38,165,26"/>
+<area shape="rect" id="Node000004" href="$unionspdk__bdev__nvme__ctratt.html" title="Controller attributes indicating optional bdev capabilities (e.g." alt="" coords="17,61,195,89"/>
+<area shape="poly" id="edge3_Node000002_Node000004" title=" " alt="" coords="211,85,292,102,328,114,326,119,291,107,209,90"/>
+<area shape="rect" id="Node000005" href="$structspdk__bdev__module.html" title="Block device module." alt="" coords="32,117,180,145"/>
+<area shape="poly" id="edge4_Node000002_Node000005" title=" " alt="" coords="195,128,315,128,315,134,195,134"/>
+<area shape="rect" id="Node000008" href="$structspdk__bdev__fn__table.html" title="Function table for a block device backend." alt="" coords="30,173,182,201"/>
+<area shape="poly" id="edge5_Node000002_Node000008" title=" " alt="" coords="197,177,244,170,291,159,332,143,334,148,292,164,245,175,198,182"/>
+<area shape="rect" id="Node000009" href="$structspdk__bdev_1_1____bdev__internal__fields.html" title="Fields that are used internally by the bdev subsystem." alt="" coords="5,225,207,270"/>
+<area shape="poly" id="edge6_Node000002_Node000009" title=" " alt="" coords="221,230,257,219,290,203,325,175,349,144,353,147,328,178,293,208,259,224,223,235"/>
+</map>

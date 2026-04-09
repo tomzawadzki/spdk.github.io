@@ -1,0 +1,249 @@
+<!doctype html>
+<html lang="en">
+  <head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="The Storage Performance Development Kit (SPDK) provides a set of tools and libraries for writing high performance, scalable, user-mode storage applications. It achieves high performance by moving all of the necessary drivers into userspace and operating in a polled mode instead of relying on interrupts, which avoids kernel context switches and eliminates interrupt handling overhead.
+">
+  <meta name="author" content="Benjamin Walker">
+
+  <title>BPF tracing with SPDK</title>
+
+  <link rel="icon" type="image/svg+xml" href="/spdk.github.io/assets/img/spdk.svg">
+  <link rel="icon" href="/spdk.github.io/assets/favicon.ico" sizes="32x32">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:400,700,900" type="text/css">
+  <link rel="stylesheet" href="/spdk.github.io/assets/css/spdk.css">
+
+  <link href="/spdk.github.io/feed.xml" type="application/atom+xml" rel="alternate" title="Atom Feed">
+</head>
+
+
+  <body>
+    <nav class="navbar">
+  <a class="navbar-brand" href="/spdk.github.io/" aria-label="SPDK">
+    <img src="/spdk.github.io/assets/img/spdk.svg" width="36" height="36" alt="Storage Performance Development Kit">
+  </a>
+  <div class="navbar-nav">
+    <a class="nav-link header-link" href="/spdk.github.io/doc/releases.html">download</a>
+    <a class="nav-link header-link" href="/spdk.github.io/doc/">documentation</a>
+    <a class="nav-link header-link" href="/spdk.github.io/doc/contributing.html">development</a>
+    <a class="nav-link header-link" href="/spdk.github.io/doc/ci_tools.html">CI status</a>
+    <a class="nav-link header-link" href="/spdk.github.io/community/">community</a>
+    <a class="nav-link header-link" href="/spdk.github.io/blog/">Blog</a>
+    <a class="nav-link header-link" href="https://github.com/orgs/spdk/projects/5">Roadmap</a>
+    <a class="nav-link header-link" href="/spdk.github.io/news/">News</a>
+  </div>
+  <div class="navbar-end">
+    <a class="nav-link header-link" href="https://github.com/spdk/spdk" aria-label="GitHub">
+      <svg xmlns="http://www.w3.org/2000/svg" class="navbar-nav-svg" aria-hidden="true"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
+    </a>
+    <a id="cn_lang_btn" href="/spdk.github.io/cn/doc/" class="nav-link header-link">中文</a>
+  </div>
+</nav>
+<script>
+(function() {
+    var p = location.pathname, best = null, bLen = 0;
+    document.querySelectorAll('.header-link[href]').forEach(function(a) {
+        var raw = a.getAttribute('href');
+        if (!raw) return;
+        try { var u = new URL(raw, location.href); } catch(e) { return; }
+        if (u.origin !== location.origin) return;
+        var h = u.pathname;
+        if (h === '/') return;
+        var ok = h.endsWith('.html') ? p === h : p.indexOf(h) === 0;
+        if (ok && h.length > bLen) { bLen = h.length; best = a; }
+    });
+    if (best) best.classList.add('active');
+})();
+</script>
+
+
+    <div class="page-content">
+  <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+  <header class="post-header">
+
+    <div class="page-header">
+      <h1>BPF tracing with SPDK</h1>
+    </div>
+
+    <p class="post-meta">
+      <time datetime="2021-09-28T00:00:00+02:00" itemprop="datePublished">
+        Sep 28, 2021
+      </time>
+      
+      •
+      <span itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <span itemprop="name">Konrad Sztyber</span>
+      </span>
+      
+    </p>
+  </header>
+
+  <div class="content" itemprop="articleBody"><p>Recently, in the <a href="https://spdk.io/release/2021/07/29/21.07_release">v21.07 release</a>, SPDK got
+support for BPF tracing.  It consists of a set of scripts and static probes defined within the SPDK
+libraries giving the user yet another way to inspect SPDK-based applications. SPDK already had a
+tracing library, called <code class="language-plaintext highlighter-rouge">libtrace</code>, for a long time.  BPF tracing isn’t supposed to replace it, but
+rather complement it.  Both have slightly different capabilities - <code class="language-plaintext highlighter-rouge">libtrace</code> has significantly
+lower overhead, but is less flexible.  BPF traces, on the other hand, are more costly (they require
+a kernel trap), but are more robust and can even be attached dynamically, without having to define
+the probes in code.</p>
+
+<h2 id="user-level-tracing">User-level tracing</h2>
+
+<p>Firstly, let’s discuss what BPF tracing is and how SPDK is utilizing it.  BPF, Berkeley Packet
+Filter, is a technology that was originally developed to analyze and filter network traffic.  It
+allows the user to run user-supplied programs inside the operating system kernel in a special BPF
+virtual machine.  Later on, in Linux, it was extended (hence eBPF - extended BPF) to support more
+use-cases, among-others, tracing.  It lets users to leverage Linux tracing subsystem to attach
+probes at certain places in the program and, once hit, run an eBPF program tied to that probe
+[<a href="https://lwn.net/Articles/740157">1</a>].  In user-space applications, it works by placing an
+instruction (<code class="language-plaintext highlighter-rouge">int3</code> on x86) generating <code class="language-plaintext highlighter-rouge">SIGTRAP</code>, which is then caught by the kernel triggering the
+execution of the eBPF program.  SPDK uses <a href="https://github.com/iovisor/bpftrace">bpftrace</a> to define
+and attach probes.  This tool uses a high-level scripting language (described by its authors as a
+mix of awk and C) to describe the actions to be taken when a given probe is triggered.</p>
+
+<p>The probes can be divided into two categories: statically and dynamically defined.  Static probes,
+called USDT (User Statically-Defined Tracing), are placed by the programmer in various critical
+locations in code (using one of the <code class="language-plaintext highlighter-rouge">SPDK_DTRACE_PROBE*</code> macros).  Dynamic probes, on the other
+hand, can be enabled at the start of <em>any</em> function without having to change the code or recompile
+the application.  There’s one caveat though: some of the static function calls might get inlined by
+the compiler, in which case the probe won’t get executed when expected.</p>
+
+<h2 id="tools-and-examples">Tools and examples</h2>
+
+<p>In order for USDT probes to be compiled-in, SPDK must be configured with <code class="language-plaintext highlighter-rouge">--with-usdt</code>.  It’s also
+recommended to build a recent version of bpftrace from source, as we’ve encountered a number of
+issues with packaged versions on both Ubuntu 20.04 and Fedora 33.  <code class="language-plaintext highlighter-rouge">scripts/bpftrace.sh</code> can be used
+to attach and display the traces.  It expects two parameters - PID of the process to trace and the
+bpftrace script to attach.  These scripts are capable of gathering and displaying a variety of
+different information and statistics.  For instance, it’s possible to print parameters of a function
+each time it’s called, count how many times a given code path is executed, or even create and
+display a histogram from a set of values.  SPDK already provides several useful scripts, located in
+the <code class="language-plaintext highlighter-rouge">scripts/bpf</code> directory.</p>
+
+<p>Let’s take a look at one of them, <code class="language-plaintext highlighter-rouge">scripts/bpf/send_msg.bt</code>, see how it works and how it can be used
+to inspect an SPDK application.  The goal of this script is to count the number of times a function
+is executed through <code class="language-plaintext highlighter-rouge">spdk_thread_send_msg()</code> and <code class="language-plaintext highlighter-rouge">spdk_for_each_channel()</code>.  The contents of the
+script are pretty straight-forward:</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>uprobe:__EXE__:spdk_thread_send_msg {
+	@send_msg[usym(arg1)] = count();
+}
+
+uprobe:__EXE__:spdk_for_each_channel {
+	@for_each_channel[usym(arg1)] = count();
+}
+</code></pre></div></div>
+<p>It defines two dynamic probes (via the <code class="language-plaintext highlighter-rouge">uprobe</code> keyword) that saves the number of calls to each
+function in a map (called <code class="language-plaintext highlighter-rouge">send_msg</code> and <code class="language-plaintext highlighter-rouge">for_each_channel</code> respectively). The first argument,
+<code class="language-plaintext highlighter-rouge">arg1</code>, is used as a key in the map and, in both cases, refers to the pointer to the function to be
+executed.  The script uses two helper functions: <code class="language-plaintext highlighter-rouge">usym()</code> returning the name of a symbol at given
+address, and <code class="language-plaintext highlighter-rouge">count()</code>, which counts the number of times a function has been called.  For more
+information on the available functions and the general syntax of the scripts, consult the
+<a href="https://github.com/iovisor/bpftrace/blob/master/man/adoc/bpftrace.adoc">bpftrace manual</a>.</p>
+
+<p>There’s one extra special variable called <code class="language-plaintext highlighter-rouge">__EXE__</code>.  This one is SPDK-specific and is replaced by
+<code class="language-plaintext highlighter-rouge">scripts/bpftrace.sh</code> with the name of the executable (which is expected by bpftrace).  There’s also
+<code class="language-plaintext highlighter-rouge">__PID__</code>, which is replaced by the PID of the traced process.  Both of them offer a convenient way
+of using the same scripts with different applications.  More details can be found in
+<a href="https://spdk.io/doc/usdt.html">SPDK documentation</a>.</p>
+
+<p>Once the script is attached, it’ll run until the application exits (or the script is stopped).  When
+that happens, it’ll print out the name of each function along with the number of times it was
+called.  The sample output below was gathered by attaching to an NVMe/TCP target:</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>@for_each_channel[nvmf_ctrlr_disconnect_io_qpairs_on_pg]: 1
+@for_each_channel[_nvmf_tgt_add_transport]: 1
+@for_each_channel[subsystem_state_change_on_pg]: 5
+
+@send_msg[_nvmf_ctrlr_add_admin_qpair]: 1
+@send_msg[_nvmf_subsystem_add_ctrlr]: 1
+@send_msg[_nvmf_ctrlr_destruct]: 1
+@send_msg[_finish_unregister]: 1
+@send_msg[_nvmf_ctrlr_destruct]: 1
+@send_msg[put_io_channel]: 4
+@send_msg[_call_completion]: 7
+@send_msg[_call_channel]: 7
+@send_msg[nvmf_ctrlr_add_io_qpair]: 24
+@send_msg[_nvmf_ctrlr_add_io_qpair]: 24
+@send_msg[_nvmf_ctrlr_free_from_qpair]: 25
+@send_msg[_nvmf_poll_group_add]: 25
+@send_msg[_nvmf_transport_qpair_fini]: 25
+</code></pre></div></div>
+
+<p>The other available scripts can be used to track system calls (<code class="language-plaintext highlighter-rouge">syscalls.bt</code>), NVMeoF subsystem
+state transitions (<code class="language-plaintext highlighter-rouge">nvmf.bt</code>), and readv calls with the number of bytes read (<code class="language-plaintext highlighter-rouge">readv.bt</code>).  These,
+on their own, provide a lot of information, but they can also be used as a guideline for writing
+scripts aimed to track different properties of an application.</p>
+
+<h2 id="spdk-and-bpf-traces-together">SPDK and BPF traces together</h2>
+
+<p>As stated before, one of the main goals of the SPDK trace library was to have minimal overhead. This
+means that each tracepoint is allowed to record only the most critical data.  It makes it possible
+to place tracepoints in I/O path without major effect on performance.  But now, with BPF traces, we
+can put bpftrace probes in places where objects are created, gather all kinds of their properties,
+and then use that data to annotate SPDK traces.</p>
+
+<p>For instance, in NVMe/RDMA I/O path we record the pointer to a qpair on which a request is executed.
+We can use bpftrace to record information about a qpair such as its queue ID, thread ID, subsystem
+NQN, and host NQN and display it along with the pointer when showing SPDK traces. This is what the
+<code class="language-plaintext highlighter-rouge">scripts/bpf/trace.py</code> script is responsible for.</p>
+
+<p>Let’s see how it works in practice.  Firstly, bpftraces have to be recorded (assuming we’re tracing
+<code class="language-plaintext highlighter-rouge">spdk_tgt</code> app exposing an NVMe/RDMA target):</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ scripts/bpf/trace.py --record `pidof spdk_tgt` &gt; bpftraces
+</code></pre></div></div>
+<p>Then, we can use it to annotate the traces:</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ build/bin/spdk_trace -f /dev/shm/spdk_tgt_trace.pid`pidof spdk_tgt` -j | scripts/bpf/trace.py --bpftrace bpftraces
+</code></pre></div></div>
+<p>This will transform the output from:</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code> 0  39100254.090     RDMA_REQ_COMPLETING     id: r10  time: 49.692   qpair: 0x1178af0
+ 0  39100320.354     RDMA_REQ_COMPLETED      id: r10  time: 115.956  qpair: 0x1178af0
+ 0  39100494.100     RDMA_REQ_NEW            id: r11  qpair: 0x11790a0
+ 0  39100494.454     RDMA_REQ_NEED_BUFFER    id: r11  time: 0.354    qpair: 0x11790a0
+ 0  39100494.684     RDMA_REQ_RDY_TO_EXECUTE id: r11  time: 0.584    qpair: 0x11790a0
+ 0  39100500.546     RDMA_REQ_EXECUTING      id: r11  time: 6.446    qpair: 0x11790a0
+ 0  39100516.727     RDMA_REQ_EXECUTED       id: r11  time: 22.627   qpair: 0x11790a0
+ 0  39100516.903     RDMA_REQ_RDY_TO_COMPL   id: r11  time: 22.803   qpair: 0x11790a0
+ 0  39100517.333     RDMA_REQ_COMPLETING     id: r11  time: 23.233   qpair: 0x11790a0
+ 0  39100550.895     RDMA_REQ_COMPLETED      id: r11  time: 56.795   qpair: 0x11790a0
+</code></pre></div></div>
+<p>to:</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code> 0  39100254.090     RDMA_REQ_COMPLETING     id: r10  time: 49.692   qpair(ptr=0x1178af0, thread=2, qid=1, subnqn=nqn.2016-06.io.spdk:cnode0, hostnqn=nqn.2014-08.org.nvmexpress:uuid:8da29bed555a45e8b9bc378e115f4c2)
+ 0  39100320.354     RDMA_REQ_COMPLETED      id: r10  time: 115.956  qpair(ptr=0x1178af0, thread=2, qid=1, subnqn=nqn.2016-06.io.spdk:cnode0, hostnqn=nqn.2014-08.org.nvmexpress:uuid:8da29bed555a45e8b9bc378e115f4c2)
+ 0  39100494.100     RDMA_REQ_NEW            id: r11  qpair(ptr=0x11790a0, thread=2, qid=2, subnqn=nqn.2016-06.io.spdk:cnode0, hostnqn=nqn.2014-08.org.nvmexpress:uuid:8da29bed555a45e8b9bc378e115f4c2)
+ 0  39100494.454     RDMA_REQ_NEED_BUFFER    id: r11  time: 0.354    qpair(ptr=0x11790a0, thread=2, qid=2, subnqn=nqn.2016-06.io.spdk:cnode0, hostnqn=nqn.2014-08.org.nvmexpress:uuid:8da29bed555a45e8b9bc378e115f4c2)
+ 0  39100494.684     RDMA_REQ_RDY_TO_EXECUTE id: r11  time: 0.584    qpair(ptr=0x11790a0, thread=2, qid=2, subnqn=nqn.2016-06.io.spdk:cnode0, hostnqn=nqn.2014-08.org.nvmexpress:uuid:8da29bed555a45e8b9bc378e115f4c2)
+ 0  39100500.546     RDMA_REQ_EXECUTING      id: r11  time: 6.446    qpair(ptr=0x11790a0, thread=2, qid=2, subnqn=nqn.2016-06.io.spdk:cnode0, hostnqn=nqn.2014-08.org.nvmexpress:uuid:8da29bed555a45e8b9bc378e115f4c2)
+ 0  39100516.727     RDMA_REQ_EXECUTED       id: r11  time: 22.627   qpair(ptr=0x11790a0, thread=2, qid=2, subnqn=nqn.2016-06.io.spdk:cnode0, hostnqn=nqn.2014-08.org.nvmexpress:uuid:8da29bed555a45e8b9bc378e115f4c2)
+ 0  39100516.903     RDMA_REQ_RDY_TO_COMPL   id: r11  time: 22.803   qpair(ptr=0x11790a0, thread=2, qid=2, subnqn=nqn.2016-06.io.spdk:cnode0, hostnqn=nqn.2014-08.org.nvmexpress:uuid:8da29bed555a45e8b9bc378e115f4c2)
+ 0  39100517.333     RDMA_REQ_COMPLETING     id: r11  time: 23.233   qpair(ptr=0x11790a0, thread=2, qid=2, subnqn=nqn.2016-06.io.spdk:cnode0, hostnqn=nqn.2014-08.org.nvmexpress:uuid:8da29bed555a45e8b9bc378e115f4c2)
+ 0  39100550.895     RDMA_REQ_COMPLETED      id: r11  time: 56.795   qpair(ptr=0x11790a0, thread=2, qid=2, subnqn=nqn.2016-06.io.spdk:cnode0, hostnqn=nqn.2014-08.org.nvmexpress:uuid:8da29bed555a45e8b9bc378e115f4c2)
+</code></pre></div></div>
+
+<p>For now, only RDMA qpairs can be annotated, however, expect more to come in the future.</p>
+
+<h2 id="conclusion">Conclusion</h2>
+
+<p>Summing up, SPDK now has another robust way of inspecting its applications via BPF tracing.  It
+consists of a set of bpftrace programs, USDT probes defined in SPDK libraries, and several scripts
+that simplify BPF tracing and make it possible to combine it with regular SPDK traces.</p>
+
+<p>Stay tuned for more blog posts on this topic.  Happy tracing!</p>
+</div>
+</article>
+</div>
+
+
+    <footer class="footer" id="nav-path">
+  <div class="footer-inner">
+    <div class="footer-copy">
+      <small>Copyright &copy; SPDK a Series of LF Projects, LLC. For web site terms of use, trademark policy, and other
+      project policies please see <a href="https://lfprojects.org">lfprojects.org</a>.</small>
+      <br><small>Built from spdk 91893349edff / site e5878500f</small>
+    </div>
+  </div>
+</footer>
+
+
+    
+  </body>
+</html>

@@ -1,0 +1,329 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<meta name="generator" content="Doxygen 1.16.1">
+	<title>SPDK: spdk_nvme_cdata_nvmf_specific Struct Reference</title>
+	<script type="text/javascript" src="jquery.js"></script>
+	<script type="text/javascript" src="dynsections.js"></script>
+	<script type="text/javascript" src="clipboard.js"></script>
+	<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
+<script type="text/javascript" src="cookie.js"></script>
+	<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<script type="text/javascript">
+  $(function() { init_search(); });
+</script>
+	<link rel="icon" type="image/svg+xml" href="../assets/img/spdk.svg">
+	<link rel="icon" href="../assets/favicon.ico" sizes="32x32">
+	<link href="doxygen.css" rel="stylesheet" type="text/css">
+	<script>(function(){var k='doxygen_width',w,bw=6;if(window.chrome){w=localStorage.getItem(k);if(!w){w='350';localStorage.setItem(k,w)}}else{var m=document.cookie.match(new RegExp(k+'=(\\d+)'));w=m?m[1]:null;if(!w){w='350';document.cookie=k+'=350;SameSite=Lax;path=/'}}document.documentElement.style.setProperty('--sn-w',(parseInt(w)+bw)+'px')})()</script>
+	<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:400,700,900" type="text/css">
+	<link href="spdk.css" rel="stylesheet" type="text/css"/>
+	<link href="../assets/css/spdk.css" rel="stylesheet" type="text/css">
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<nav class="navbar">
+  <a class="navbar-brand" href="../" aria-label="SPDK">
+    <img src="../assets/img/spdk.svg" width="36" height="36" alt="Storage Performance Development Kit">
+  </a>
+  <div class="navbar-nav">
+    <a class="nav-link header-link" href="../doc/releases.html">download</a>
+    <a class="nav-link header-link" href="../doc/">documentation</a>
+    <a class="nav-link header-link" href="../doc/contributing.html">development</a>
+    <a class="nav-link header-link" href="../doc/ci_tools.html">CI status</a>
+    <a class="nav-link header-link" href="../community/">community</a>
+    <a class="nav-link header-link" href="../blog/">Blog</a>
+    <a class="nav-link header-link" href="https://github.com/orgs/spdk/projects/5">Roadmap</a>
+    <a class="nav-link header-link" href="../news/">News</a>
+  </div>
+  <div class="navbar-end">
+    <a class="nav-link header-link" href="https://github.com/spdk/spdk" aria-label="GitHub">
+      <svg xmlns="http://www.w3.org/2000/svg" class="navbar-nav-svg" aria-hidden="true"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
+    </a>
+    <a id="cn_lang_btn" href="../cn/doc/" class="nav-link header-link">中文</a>
+  </div>
+</nav>
+<script>
+(function() {
+    var p = location.pathname, best = null, bLen = 0;
+    document.querySelectorAll('.header-link[href]').forEach(function(a) {
+        var raw = a.getAttribute('href');
+        if (!raw) return;
+        try { var u = new URL(raw, location.href); } catch(e) { return; }
+        if (u.origin !== location.origin) return;
+        var h = u.pathname;
+        if (h === '/') return;
+        var ok = h.endsWith('.html') ? p === h : p.indexOf(h) === 0;
+        if (ok && h.length > bLen) { bLen = h.length; best = a; }
+    });
+    if (best) best.classList.add('active');
+})();
+</script>
+<div id="doxygen-searchbox">        <div id="MSearchBox" class="MSearchBoxInactive">
+        <span class="left">
+          <span id="MSearchSelect" class="search-icon" onmouseover="return searchBox.OnSearchSelectShow()" onmouseout="return searchBox.OnSearchSelectHide()"><span class="search-icon-dropdown"></span></span>
+          <input type="text" id="MSearchField" value="" placeholder="Search" accesskey="S"
+               onfocus="searchBox.OnSearchFieldFocus(true)" 
+               onblur="searchBox.OnSearchFieldFocus(false)" 
+               onkeyup="searchBox.OnSearchFieldChange(event)"/>
+          </span><span class="right">
+            <a id="MSearchClose" href="javascript:searchBox.CloseResultsWindow()"><div id="MSearchCloseImg" class="close-icon"></div></a>
+          </span>
+        </div>
+</div>
+<!-- Generated by Doxygen 1.16.1 -->
+<script type="text/javascript">
+var searchBox = new SearchBox("searchBox", "search/",'.html');
+</script>
+<script type="text/javascript">
+$(function() { codefold.init(); });
+</script>
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+$(function(){initNavTree('structspdk__nvme__cdata__nvmf__specific.html','',''); });
+</script>
+<div id="container">
+<div id="doc-content">
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">Loading...</div>
+<div class="SRStatus" id="Searching">Searching...</div>
+<div class="SRStatus" id="NoMatches">No Matches</div>
+</div>
+</div>
+</div>
+</div>
+
+<div class="header">
+  <div class="headertitle"><div class="title">spdk_nvme_cdata_nvmf_specific Struct Reference</div></div>
+</div><!--header-->
+<div class="contents">
+
+<p>Identify Controller data NVMe over Fabrics-specific fields.  
+ <a href="#details">More...</a></p>
+
+<p><code>#include &lt;<a class="el" href="nvme__spec_8h_source.html">nvme_spec.h</a>&gt;</code></p>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 id="header-pub-attribs" class="groupheader"><a id="pub-attribs" name="pub-attribs"></a>
+Data Fields</h2></td></tr>
+<tr class="memitem:a760ac459f1386e94310809765b5577d8" id="r_a760ac459f1386e94310809765b5577d8"><td class="memItemLeft">uint32_t&#160;</td><td class="memItemRight"><a class="el" href="#a760ac459f1386e94310809765b5577d8">ioccsz</a></td></tr>
+<tr class="memdesc:a760ac459f1386e94310809765b5577d8"><td class="mdescLeft">&#160;</td><td class="mdescRight">I/O queue command capsule supported size (16-byte units).  <br /></td></tr>
+<tr class="memitem:ac2ad3d852b70ca6fd78dad1f6fac8fd6" id="r_ac2ad3d852b70ca6fd78dad1f6fac8fd6"><td class="memItemLeft">uint32_t&#160;</td><td class="memItemRight"><a class="el" href="#ac2ad3d852b70ca6fd78dad1f6fac8fd6">iorcsz</a></td></tr>
+<tr class="memdesc:ac2ad3d852b70ca6fd78dad1f6fac8fd6"><td class="mdescLeft">&#160;</td><td class="mdescRight">I/O queue response capsule supported size (16-byte units).  <br /></td></tr>
+<tr class="memitem:ae07d73592397eefff0a54086d11161db" id="r_ae07d73592397eefff0a54086d11161db"><td class="memItemLeft">uint16_t&#160;</td><td class="memItemRight"><a class="el" href="#ae07d73592397eefff0a54086d11161db">icdoff</a></td></tr>
+<tr class="memdesc:ae07d73592397eefff0a54086d11161db"><td class="mdescLeft">&#160;</td><td class="mdescRight">In-capsule data offset (16-byte units).  <br /></td></tr>
+<tr class="memitem:"><td class="memItemLeft anon"><a id="aebf7331f9d7561b2e9eec1c29afcd633" name="aebf7331f9d7561b2e9eec1c29afcd633"></a>
+struct {&#160;</td><td class="memItemRight"></td></tr>
+<tr class="memitem:a30bd752816a603f3f452fa938a864bd1" id="r_a30bd752816a603f3f452fa938a864bd1"><td class="memItemLeft anon">&#160;&#160;&#160;uint8_t&#160;&#160;&#160;<a class="el" href="#a80557e12aafab3a50037fc7e2feb1326">ctrlr_model</a>: 1&#160;</td><td class="memItemRight"></td></tr>
+<tr class="memdesc:a30bd752816a603f3f452fa938a864bd1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Controller model: <a class="el" href="nvme__spec_8h.html#a2b71fb615deb505826eaeddd093e06bc" title="spdk_nvmf_ctrlr_model">spdk_nvmf_ctrlr_model</a>.  <a href="#a80557e12aafab3a50037fc7e2feb1326">More...</a><br /></td></tr>
+<tr class="memitem:a18dc4758d8d5291b2ac8c99d0973ff25" id="r_a18dc4758d8d5291b2ac8c99d0973ff25"><td class="memItemLeft anon">&#160;&#160;&#160;uint8_t&#160;&#160;&#160;<a class="el" href="#a4ceb298053dfd204fc5892b60c772996">reserved</a>: 7&#160;</td><td class="memItemRight"></td></tr>
+<tr class="memitem:aebf7331f9d7561b2e9eec1c29afcd633" id="r_aebf7331f9d7561b2e9eec1c29afcd633"><td class="memItemLeft anonEnd">}&#160;</td><td class="memItemRight"><b>ctrattr</b></td></tr>
+<tr class="memdesc:aebf7331f9d7561b2e9eec1c29afcd633"><td class="mdescLeft">&#160;</td><td class="mdescRight">Controller attributes. <br /></td></tr>
+<tr class="memitem:a30dd8499d8d90df19f411be4aba7f10b" id="r_a30dd8499d8d90df19f411be4aba7f10b"><td class="memItemLeft">uint8_t&#160;</td><td class="memItemRight"><a class="el" href="#a30dd8499d8d90df19f411be4aba7f10b">msdbd</a></td></tr>
+<tr class="memdesc:a30dd8499d8d90df19f411be4aba7f10b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Maximum SGL block descriptors (0 = no limit).  <br /></td></tr>
+<tr class="memitem:"><td class="memItemLeft anon"><a id="aa8ed62081d9d78a8b51b7a4ecc4645c9" name="aa8ed62081d9d78a8b51b7a4ecc4645c9"></a>
+struct {&#160;</td><td class="memItemRight"></td></tr>
+<tr class="memitem:a90c20bddfe3c4dc601d5ecfb90aa41ea" id="r_a90c20bddfe3c4dc601d5ecfb90aa41ea"><td class="memItemLeft anon">&#160;&#160;&#160;uint16_t&#160;&#160;&#160;<a class="el" href="#a081118199a7c8c9ad3408fb69bb6868f">disconnect</a>: 1&#160;</td><td class="memItemRight"></td></tr>
+<tr class="memdesc:a90c20bddfe3c4dc601d5ecfb90aa41ea"><td class="mdescLeft">&#160;</td><td class="mdescRight">Support disconnect command and individual I/O queue deletion.  <a href="#a081118199a7c8c9ad3408fb69bb6868f">More...</a><br /></td></tr>
+<tr class="memitem:a99a0751ccdda3e27b4e6669f273f503c" id="r_a99a0751ccdda3e27b4e6669f273f503c"><td class="memItemLeft anon">&#160;&#160;&#160;uint16_t&#160;&#160;&#160;<a class="el" href="#a9cf4b6ba7d74dd7e6aa6f34eba11fbed">reserved</a>: 15&#160;</td><td class="memItemRight"></td></tr>
+<tr class="memitem:aa8ed62081d9d78a8b51b7a4ecc4645c9" id="r_aa8ed62081d9d78a8b51b7a4ecc4645c9"><td class="memItemLeft anonEnd">}&#160;</td><td class="memItemRight"><b>ofcs</b></td></tr>
+<tr class="memdesc:aa8ed62081d9d78a8b51b7a4ecc4645c9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Optional fabric commands supported. <br /></td></tr>
+</table>
+<a name="details" id="details"></a><h2 id="header-details" class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>Identify Controller data NVMe over Fabrics-specific fields. </p>
+
+<p class="definition">Definition at line <a class="el" href="nvme__spec_8h_source.html#l02222">2222</a> of file <a class="el" href="nvme__spec_8h_source.html">nvme_spec.h</a>.</p>
+</div><a name="doc-variable-members" id="doc-variable-members"></a><h2 id="header-doc-variable-members" class="groupheader">Field Documentation</h2>
+<a id="a80557e12aafab3a50037fc7e2feb1326" name="a80557e12aafab3a50037fc7e2feb1326"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a80557e12aafab3a50037fc7e2feb1326">&#9670;&#160;</a></span>ctrlr_model</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">uint8_t spdk_nvme_cdata_nvmf_specific::ctrlr_model</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Controller model: <a class="el" href="nvme__spec_8h.html#a2b71fb615deb505826eaeddd093e06bc" title="spdk_nvmf_ctrlr_model">spdk_nvmf_ctrlr_model</a>. </p>
+
+<p class="definition">Definition at line <a class="el" href="nvme__spec_8h_source.html#l02235">2235</a> of file <a class="el" href="nvme__spec_8h_source.html">nvme_spec.h</a>.</p>
+
+</div>
+</div>
+<a id="a081118199a7c8c9ad3408fb69bb6868f" name="a081118199a7c8c9ad3408fb69bb6868f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a081118199a7c8c9ad3408fb69bb6868f">&#9670;&#160;</a></span>disconnect</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">uint16_t spdk_nvme_cdata_nvmf_specific::disconnect</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Support disconnect command and individual I/O queue deletion. </p>
+
+<p class="definition">Definition at line <a class="el" href="nvme__spec_8h_source.html#l02245">2245</a> of file <a class="el" href="nvme__spec_8h_source.html">nvme_spec.h</a>.</p>
+
+</div>
+</div>
+<a id="ae07d73592397eefff0a54086d11161db" name="ae07d73592397eefff0a54086d11161db"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae07d73592397eefff0a54086d11161db">&#9670;&#160;</a></span>icdoff</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">uint16_t spdk_nvme_cdata_nvmf_specific::icdoff</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>In-capsule data offset (16-byte units). </p>
+
+<p class="definition">Definition at line <a class="el" href="nvme__spec_8h_source.html#l02230">2230</a> of file <a class="el" href="nvme__spec_8h_source.html">nvme_spec.h</a>.</p>
+
+</div>
+</div>
+<a id="a760ac459f1386e94310809765b5577d8" name="a760ac459f1386e94310809765b5577d8"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a760ac459f1386e94310809765b5577d8">&#9670;&#160;</a></span>ioccsz</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">uint32_t spdk_nvme_cdata_nvmf_specific::ioccsz</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>I/O queue command capsule supported size (16-byte units). </p>
+
+<p class="definition">Definition at line <a class="el" href="nvme__spec_8h_source.html#l02224">2224</a> of file <a class="el" href="nvme__spec_8h_source.html">nvme_spec.h</a>.</p>
+
+</div>
+</div>
+<a id="ac2ad3d852b70ca6fd78dad1f6fac8fd6" name="ac2ad3d852b70ca6fd78dad1f6fac8fd6"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac2ad3d852b70ca6fd78dad1f6fac8fd6">&#9670;&#160;</a></span>iorcsz</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">uint32_t spdk_nvme_cdata_nvmf_specific::iorcsz</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>I/O queue response capsule supported size (16-byte units). </p>
+
+<p class="definition">Definition at line <a class="el" href="nvme__spec_8h_source.html#l02227">2227</a> of file <a class="el" href="nvme__spec_8h_source.html">nvme_spec.h</a>.</p>
+
+</div>
+</div>
+<a id="a30dd8499d8d90df19f411be4aba7f10b" name="a30dd8499d8d90df19f411be4aba7f10b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a30dd8499d8d90df19f411be4aba7f10b">&#9670;&#160;</a></span>msdbd</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">uint8_t spdk_nvme_cdata_nvmf_specific::msdbd</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Maximum SGL block descriptors (0 = no limit). </p>
+
+<p class="definition">Definition at line <a class="el" href="nvme__spec_8h_source.html#l02240">2240</a> of file <a class="el" href="nvme__spec_8h_source.html">nvme_spec.h</a>.</p>
+
+</div>
+</div>
+<a id="a9cf4b6ba7d74dd7e6aa6f34eba11fbed" name="a9cf4b6ba7d74dd7e6aa6f34eba11fbed"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9cf4b6ba7d74dd7e6aa6f34eba11fbed">&#9670;&#160;</a></span>reserved <span class="overload">[1/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">uint16_t spdk_nvme_cdata_nvmf_specific::reserved</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="nvme__spec_8h_source.html#l02246">2246</a> of file <a class="el" href="nvme__spec_8h_source.html">nvme_spec.h</a>.</p>
+
+</div>
+</div>
+<a id="a4ceb298053dfd204fc5892b60c772996" name="a4ceb298053dfd204fc5892b60c772996"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4ceb298053dfd204fc5892b60c772996">&#9670;&#160;</a></span>reserved <span class="overload">[2/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">uint8_t spdk_nvme_cdata_nvmf_specific::reserved</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="nvme__spec_8h_source.html#l02236">2236</a> of file <a class="el" href="nvme__spec_8h_source.html">nvme_spec.h</a>.</p>
+
+</div>
+</div>
+<hr/>The documentation for this struct was generated from the following file:<ul>
+<li><a class="el" href="nvme__spec_8h_source.html">nvme_spec.h</a></li>
+</ul>
+</div><!-- contents -->
+</div><!-- doc-content -->
+<div id="page-nav" class="page-nav-panel">
+<div id="page-nav-resize-handle"></div>
+<div id="page-nav-tree">
+<div id="page-nav-contents">
+</div><!-- page-nav-contents -->
+</div><!-- page-nav-tree -->
+</div><!-- page-nav -->
+</div><!-- container -->
+<footer class="footer" id="nav-path">
+  <div class="footer-inner">
+    <div class="footer-copy">
+      <small>Copyright &copy; SPDK a Series of LF Projects, LLC. For web site terms of use, trademark policy, and other
+      project policies please see <a href="https://lfprojects.org">lfprojects.org</a>.</small>
+      <br><small>Built from spdk 91893349edff / site e5878500f</small>
+    </div>
+  </div>
+</footer>
+<script type="text/javascript" src="page_outline.js"></script>
+<script type="text/javascript" src="spdk_nav.js"></script>
+</body>
+</html>

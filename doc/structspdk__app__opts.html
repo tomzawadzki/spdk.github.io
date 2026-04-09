@@ -1,0 +1,1028 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<meta name="generator" content="Doxygen 1.16.1">
+	<title>SPDK: spdk_app_opts Struct Reference</title>
+	<script type="text/javascript" src="jquery.js"></script>
+	<script type="text/javascript" src="dynsections.js"></script>
+	<script type="text/javascript" src="clipboard.js"></script>
+	<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
+<script type="text/javascript" src="cookie.js"></script>
+	<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<script type="text/javascript">
+  $(function() { init_search(); });
+</script>
+	<link rel="icon" type="image/svg+xml" href="../assets/img/spdk.svg">
+	<link rel="icon" href="../assets/favicon.ico" sizes="32x32">
+	<link href="doxygen.css" rel="stylesheet" type="text/css">
+	<script>(function(){var k='doxygen_width',w,bw=6;if(window.chrome){w=localStorage.getItem(k);if(!w){w='350';localStorage.setItem(k,w)}}else{var m=document.cookie.match(new RegExp(k+'=(\\d+)'));w=m?m[1]:null;if(!w){w='350';document.cookie=k+'=350;SameSite=Lax;path=/'}}document.documentElement.style.setProperty('--sn-w',(parseInt(w)+bw)+'px')})()</script>
+	<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:400,700,900" type="text/css">
+	<link href="spdk.css" rel="stylesheet" type="text/css"/>
+	<link href="../assets/css/spdk.css" rel="stylesheet" type="text/css">
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<nav class="navbar">
+  <a class="navbar-brand" href="../" aria-label="SPDK">
+    <img src="../assets/img/spdk.svg" width="36" height="36" alt="Storage Performance Development Kit">
+  </a>
+  <div class="navbar-nav">
+    <a class="nav-link header-link" href="../doc/releases.html">download</a>
+    <a class="nav-link header-link" href="../doc/">documentation</a>
+    <a class="nav-link header-link" href="../doc/contributing.html">development</a>
+    <a class="nav-link header-link" href="../doc/ci_tools.html">CI status</a>
+    <a class="nav-link header-link" href="../community/">community</a>
+    <a class="nav-link header-link" href="../blog/">Blog</a>
+    <a class="nav-link header-link" href="https://github.com/orgs/spdk/projects/5">Roadmap</a>
+    <a class="nav-link header-link" href="../news/">News</a>
+  </div>
+  <div class="navbar-end">
+    <a class="nav-link header-link" href="https://github.com/spdk/spdk" aria-label="GitHub">
+      <svg xmlns="http://www.w3.org/2000/svg" class="navbar-nav-svg" aria-hidden="true"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
+    </a>
+    <a id="cn_lang_btn" href="../cn/doc/" class="nav-link header-link">中文</a>
+  </div>
+</nav>
+<script>
+(function() {
+    var p = location.pathname, best = null, bLen = 0;
+    document.querySelectorAll('.header-link[href]').forEach(function(a) {
+        var raw = a.getAttribute('href');
+        if (!raw) return;
+        try { var u = new URL(raw, location.href); } catch(e) { return; }
+        if (u.origin !== location.origin) return;
+        var h = u.pathname;
+        if (h === '/') return;
+        var ok = h.endsWith('.html') ? p === h : p.indexOf(h) === 0;
+        if (ok && h.length > bLen) { bLen = h.length; best = a; }
+    });
+    if (best) best.classList.add('active');
+})();
+</script>
+<div id="doxygen-searchbox">        <div id="MSearchBox" class="MSearchBoxInactive">
+        <span class="left">
+          <span id="MSearchSelect" class="search-icon" onmouseover="return searchBox.OnSearchSelectShow()" onmouseout="return searchBox.OnSearchSelectHide()"><span class="search-icon-dropdown"></span></span>
+          <input type="text" id="MSearchField" value="" placeholder="Search" accesskey="S"
+               onfocus="searchBox.OnSearchFieldFocus(true)" 
+               onblur="searchBox.OnSearchFieldFocus(false)" 
+               onkeyup="searchBox.OnSearchFieldChange(event)"/>
+          </span><span class="right">
+            <a id="MSearchClose" href="javascript:searchBox.CloseResultsWindow()"><div id="MSearchCloseImg" class="close-icon"></div></a>
+          </span>
+        </div>
+</div>
+<!-- Generated by Doxygen 1.16.1 -->
+<script type="text/javascript">
+var searchBox = new SearchBox("searchBox", "search/",'.html');
+</script>
+<script type="text/javascript">
+$(function() { codefold.init(); });
+</script>
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+$(function(){initNavTree('structspdk__app__opts.html','',''); });
+</script>
+<div id="container">
+<div id="doc-content">
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">Loading...</div>
+<div class="SRStatus" id="Searching">Searching...</div>
+<div class="SRStatus" id="NoMatches">No Matches</div>
+</div>
+</div>
+</div>
+</div>
+
+<div class="header">
+  <div class="headertitle"><div class="title">spdk_app_opts Struct Reference</div></div>
+</div><!--header-->
+<div class="contents">
+
+<p>Event framework initialization options.  
+ <a href="#details">More...</a></p>
+
+<p><code>#include &lt;<a class="el" href="event_8h_source.html">event.h</a>&gt;</code></p>
+<div class="dynheader">
+Collaboration diagram for spdk_app_opts:</div>
+<div class="dyncontent">
+<div class="center"><iframe scrolling="no" loading="lazy" frameborder="0" src="structspdk__app__opts__coll__graph.svg" width="155" height="162"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+<center><span class="legend">[<a target="top" href="graph_legend.html">legend</a>]</span></center></div>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 id="header-pub-attribs" class="groupheader"><a id="pub-attribs" name="pub-attribs"></a>
+Data Fields</h2></td></tr>
+<tr class="memitem:a6d8fad90703f6eb20d0bd2ecb5747f74" id="r_a6d8fad90703f6eb20d0bd2ecb5747f74"><td class="memItemLeft">const char *&#160;</td><td class="memItemRight"><a class="el" href="#a6d8fad90703f6eb20d0bd2ecb5747f74">name</a></td></tr>
+<tr class="memitem:aa167c7261b91f10450ac6f1bc0700c1e" id="r_aa167c7261b91f10450ac6f1bc0700c1e"><td class="memItemLeft">const char *&#160;</td><td class="memItemRight"><a class="el" href="#aa167c7261b91f10450ac6f1bc0700c1e">json_config_file</a></td></tr>
+<tr class="memitem:a22921866228db3a1c2831638650a26f6" id="r_a22921866228db3a1c2831638650a26f6"><td class="memItemLeft">bool&#160;</td><td class="memItemRight"><a class="el" href="#a22921866228db3a1c2831638650a26f6">json_config_ignore_errors</a></td></tr>
+<tr class="memitem:a28e88b7a131a59a9358a132af2590017" id="r_a28e88b7a131a59a9358a132af2590017"><td class="memItemLeft">uint8_t&#160;</td><td class="memItemRight"><a class="el" href="#a28e88b7a131a59a9358a132af2590017">reserved17</a> [7]</td></tr>
+<tr class="memitem:a132140a9733933e19bde81ffb3421b6e" id="r_a132140a9733933e19bde81ffb3421b6e"><td class="memItemLeft">const char *&#160;</td><td class="memItemRight"><a class="el" href="#a132140a9733933e19bde81ffb3421b6e">rpc_addr</a></td></tr>
+<tr class="memitem:a2a264093fd74433b83da1a4edc757b59" id="r_a2a264093fd74433b83da1a4edc757b59"><td class="memItemLeft">const char *&#160;</td><td class="memItemRight"><a class="el" href="#a2a264093fd74433b83da1a4edc757b59">reactor_mask</a></td></tr>
+<tr class="memitem:a41fa1b1b7c5f2872c5fce6074960bfc5" id="r_a41fa1b1b7c5f2872c5fce6074960bfc5"><td class="memItemLeft">const char *&#160;</td><td class="memItemRight"><a class="el" href="#a41fa1b1b7c5f2872c5fce6074960bfc5">tpoint_group_mask</a></td></tr>
+<tr class="memitem:a362c97242a5610d65e51e92183abc8d0" id="r_a362c97242a5610d65e51e92183abc8d0"><td class="memItemLeft">int&#160;</td><td class="memItemRight"><a class="el" href="#a362c97242a5610d65e51e92183abc8d0">shm_id</a></td></tr>
+<tr class="memitem:a75afb9e54db3ac65635060b9841edd08" id="r_a75afb9e54db3ac65635060b9841edd08"><td class="memItemLeft">uint8_t&#160;</td><td class="memItemRight"><a class="el" href="#a75afb9e54db3ac65635060b9841edd08">reserved52</a> [4]</td></tr>
+<tr class="memitem:a93ac293aa665a3628d0286745799c5a5" id="r_a93ac293aa665a3628d0286745799c5a5"><td class="memItemLeft"><a class="el" href="event_8h.html#af7e98d89bfe88c7b9d9ecfc78fac2cd2">spdk_app_shutdown_cb</a>&#160;</td><td class="memItemRight"><a class="el" href="#a93ac293aa665a3628d0286745799c5a5">shutdown_cb</a></td></tr>
+<tr class="memitem:ac21faa67a906aa0e70194b96e7700142" id="r_ac21faa67a906aa0e70194b96e7700142"><td class="memItemLeft">bool&#160;</td><td class="memItemRight"><a class="el" href="#ac21faa67a906aa0e70194b96e7700142">enable_coredump</a></td></tr>
+<tr class="memitem:a342776991c2e68df0daae8c1639d2411" id="r_a342776991c2e68df0daae8c1639d2411"><td class="memItemLeft">uint8_t&#160;</td><td class="memItemRight"><a class="el" href="#a342776991c2e68df0daae8c1639d2411">reserved65</a> [3]</td></tr>
+<tr class="memitem:abd571128caea84190b31231105219b38" id="r_abd571128caea84190b31231105219b38"><td class="memItemLeft">int&#160;</td><td class="memItemRight"><a class="el" href="#abd571128caea84190b31231105219b38">mem_channel</a></td></tr>
+<tr class="memitem:aac6e234b1dec93b58c29239539d6c9f2" id="r_aac6e234b1dec93b58c29239539d6c9f2"><td class="memItemLeft">int&#160;</td><td class="memItemRight"><a class="el" href="#aac6e234b1dec93b58c29239539d6c9f2">main_core</a></td></tr>
+<tr class="memitem:ab3ad6ade4ff0ec041851e763bc29d6e7" id="r_ab3ad6ade4ff0ec041851e763bc29d6e7"><td class="memItemLeft">int&#160;</td><td class="memItemRight"><a class="el" href="#ab3ad6ade4ff0ec041851e763bc29d6e7">mem_size</a></td></tr>
+<tr class="memitem:a524584177bee58d89de5808d5580d0c7" id="r_a524584177bee58d89de5808d5580d0c7"><td class="memItemLeft">bool&#160;</td><td class="memItemRight"><a class="el" href="#a524584177bee58d89de5808d5580d0c7">no_pci</a></td></tr>
+<tr class="memitem:ad584493cb8e3ca1744f29fbf4302d73f" id="r_ad584493cb8e3ca1744f29fbf4302d73f"><td class="memItemLeft">bool&#160;</td><td class="memItemRight"><a class="el" href="#ad584493cb8e3ca1744f29fbf4302d73f">hugepage_single_segments</a></td></tr>
+<tr class="memitem:aa351d504364930c0e14bde70d3be60d7" id="r_aa351d504364930c0e14bde70d3be60d7"><td class="memItemLeft">bool&#160;</td><td class="memItemRight"><a class="el" href="#aa351d504364930c0e14bde70d3be60d7">unlink_hugepage</a></td></tr>
+<tr class="memitem:a5f7fb0735e6587f3560d6b9352a62666" id="r_a5f7fb0735e6587f3560d6b9352a62666"><td class="memItemLeft">bool&#160;</td><td class="memItemRight"><a class="el" href="#a5f7fb0735e6587f3560d6b9352a62666">no_huge</a></td></tr>
+<tr class="memitem:a5265e9abe78b1065c41740d1a0865c55" id="r_a5265e9abe78b1065c41740d1a0865c55"><td class="memItemLeft">uint8_t&#160;</td><td class="memItemRight"><a class="el" href="#a5265e9abe78b1065c41740d1a0865c55">reserved84</a> [4]</td></tr>
+<tr class="memitem:a8fcfa061da5b1b5bfd9900c3074bf95f" id="r_a8fcfa061da5b1b5bfd9900c3074bf95f"><td class="memItemLeft">const char *&#160;</td><td class="memItemRight"><a class="el" href="#a8fcfa061da5b1b5bfd9900c3074bf95f">hugedir</a></td></tr>
+<tr class="memitem:a3621332b57cec3e2968063c6484451ad" id="r_a3621332b57cec3e2968063c6484451ad"><td class="memItemLeft">enum <a class="el" href="log_8h.html#a188d351bd05093cba1d8594ee9988efd">spdk_log_level</a>&#160;</td><td class="memItemRight"><a class="el" href="#a3621332b57cec3e2968063c6484451ad">print_level</a></td></tr>
+<tr class="memitem:a1f0f298f908a566b2262ba14385972c2" id="r_a1f0f298f908a566b2262ba14385972c2"><td class="memItemLeft">uint8_t&#160;</td><td class="memItemRight"><a class="el" href="#a1f0f298f908a566b2262ba14385972c2">reserved100</a> [4]</td></tr>
+<tr class="memitem:a1588a2f9d5a96fa56c9081ad84b7902a" id="r_a1588a2f9d5a96fa56c9081ad84b7902a"><td class="memItemLeft">size_t&#160;</td><td class="memItemRight"><a class="el" href="#a1588a2f9d5a96fa56c9081ad84b7902a">num_pci_addr</a></td></tr>
+<tr class="memitem:ac401e18cb6277ace32a2d24feca14255" id="r_ac401e18cb6277ace32a2d24feca14255"><td class="memItemLeft">struct <a class="el" href="structspdk__pci__addr.html">spdk_pci_addr</a> *&#160;</td><td class="memItemRight"><a class="el" href="#ac401e18cb6277ace32a2d24feca14255">pci_blocked</a></td></tr>
+<tr class="memitem:a7d3b920c3b813bcbf6e95d5551a242ed" id="r_a7d3b920c3b813bcbf6e95d5551a242ed"><td class="memItemLeft">struct <a class="el" href="structspdk__pci__addr.html">spdk_pci_addr</a> *&#160;</td><td class="memItemRight"><a class="el" href="#a7d3b920c3b813bcbf6e95d5551a242ed">pci_allowed</a></td></tr>
+<tr class="memitem:a637cccc4c5bfefe84643fcb14943cd72" id="r_a637cccc4c5bfefe84643fcb14943cd72"><td class="memItemLeft">const char *&#160;</td><td class="memItemRight"><a class="el" href="#a637cccc4c5bfefe84643fcb14943cd72">iova_mode</a></td></tr>
+<tr class="memitem:a703388c6f0075cf0396e05925364ebc5" id="r_a703388c6f0075cf0396e05925364ebc5"><td class="memItemLeft">bool&#160;</td><td class="memItemRight"><a class="el" href="#a703388c6f0075cf0396e05925364ebc5">delay_subsystem_init</a></td></tr>
+<tr class="memitem:add6ef3b3736f423c7d83e5033c174016" id="r_add6ef3b3736f423c7d83e5033c174016"><td class="memItemLeft">uint8_t&#160;</td><td class="memItemRight"><a class="el" href="#add6ef3b3736f423c7d83e5033c174016">reserved137</a> [7]</td></tr>
+<tr class="memitem:a5181e4f5f9b4b87b42f26fb87b071faa" id="r_a5181e4f5f9b4b87b42f26fb87b071faa"><td class="memItemLeft">uint64_t&#160;</td><td class="memItemRight"><a class="el" href="#a5181e4f5f9b4b87b42f26fb87b071faa">num_entries</a></td></tr>
+<tr class="memitem:a7e520897d6a9e39c3e62cc4259bd2ea3" id="r_a7e520897d6a9e39c3e62cc4259bd2ea3"><td class="memItemLeft">void *&#160;</td><td class="memItemRight"><a class="el" href="#a7e520897d6a9e39c3e62cc4259bd2ea3">env_context</a></td></tr>
+<tr class="memdesc:a7e520897d6a9e39c3e62cc4259bd2ea3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Opaque context for use of the env implementation.  <br /></td></tr>
+<tr class="memitem:a6b0f85cf7dda3cc9048965c54bd09102" id="r_a6b0f85cf7dda3cc9048965c54bd09102"><td class="memItemLeft"><a class="el" href="log_8h.html#ae9946dc6bcd854cdb6ea5ae7c77ff704">spdk_log_cb</a> *&#160;</td><td class="memItemRight"><a class="el" href="#a6b0f85cf7dda3cc9048965c54bd09102">log</a></td></tr>
+<tr class="memdesc:a6b0f85cf7dda3cc9048965c54bd09102"><td class="mdescLeft">&#160;</td><td class="mdescRight">for passing user-provided log call  <br /></td></tr>
+<tr class="memitem:a74c03a91caa15961c35374bf2465a279" id="r_a74c03a91caa15961c35374bf2465a279"><td class="memItemLeft">uint64_t&#160;</td><td class="memItemRight"><a class="el" href="#a74c03a91caa15961c35374bf2465a279">base_virtaddr</a></td></tr>
+<tr class="memitem:a2a7cefefd12eac2f22efdc24962da925" id="r_a2a7cefefd12eac2f22efdc24962da925"><td class="memItemLeft">size_t&#160;</td><td class="memItemRight"><a class="el" href="#a2a7cefefd12eac2f22efdc24962da925">opts_size</a></td></tr>
+<tr class="memdesc:a2a7cefefd12eac2f22efdc24962da925"><td class="mdescLeft">&#160;</td><td class="mdescRight">The size of <a class="el" href="structspdk__app__opts.html" title="Event framework initialization options.">spdk_app_opts</a> according to the caller of this library is used for ABI compatibility.  <br /></td></tr>
+<tr class="memitem:a6e31b7a77928202250cb12f7e7d2b76b" id="r_a6e31b7a77928202250cb12f7e7d2b76b"><td class="memItemLeft">bool&#160;</td><td class="memItemRight"><a class="el" href="#a6e31b7a77928202250cb12f7e7d2b76b">disable_signal_handlers</a></td></tr>
+<tr class="memdesc:a6e31b7a77928202250cb12f7e7d2b76b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Disable default signal handlers.  <br /></td></tr>
+<tr class="memitem:a891ac585c9045176496ef28d435ea18d" id="r_a891ac585c9045176496ef28d435ea18d"><td class="memItemLeft">bool&#160;</td><td class="memItemRight"><a class="el" href="#a891ac585c9045176496ef28d435ea18d">interrupt_mode</a></td></tr>
+<tr class="memitem:aac6bc3442878c3909e4b2f2871e9fe4c" id="r_aac6bc3442878c3909e4b2f2871e9fe4c"><td class="memItemLeft">bool&#160;</td><td class="memItemRight"><a class="el" href="#aac6bc3442878c3909e4b2f2871e9fe4c">enforce_numa</a></td></tr>
+<tr class="memitem:a1c8c8b3bc0febfd29e1518168964a8c9" id="r_a1c8c8b3bc0febfd29e1518168964a8c9"><td class="memItemLeft">uint8_t&#160;</td><td class="memItemRight"><a class="el" href="#a1c8c8b3bc0febfd29e1518168964a8c9">reserved187</a> [1]</td></tr>
+<tr class="memitem:ade2dea01cae777b3164789c30e00f512" id="r_ade2dea01cae777b3164789c30e00f512"><td class="memItemLeft">uint32_t&#160;</td><td class="memItemRight"><a class="el" href="#ade2dea01cae777b3164789c30e00f512">num_trace_threads</a></td></tr>
+<tr class="memitem:a35bc2b8bc80d206be6565e7690f5ddbe" id="r_a35bc2b8bc80d206be6565e7690f5ddbe"><td class="memItemLeft">size_t&#160;</td><td class="memItemRight"><a class="el" href="#a35bc2b8bc80d206be6565e7690f5ddbe">msg_mempool_size</a></td></tr>
+<tr class="memdesc:a35bc2b8bc80d206be6565e7690f5ddbe"><td class="mdescLeft">&#160;</td><td class="mdescRight">The allocated size for the message pool used by the threading library.  <br /></td></tr>
+<tr class="memitem:aeccbc0421a219e9c2c29195ad9e6be9c" id="r_aeccbc0421a219e9c2c29195ad9e6be9c"><td class="memItemLeft">const char **&#160;</td><td class="memItemRight"><a class="el" href="#aeccbc0421a219e9c2c29195ad9e6be9c">rpc_allowlist</a></td></tr>
+<tr class="memitem:ab3cd7fa095f1d9970a004dab4d78286a" id="r_ab3cd7fa095f1d9970a004dab4d78286a"><td class="memItemLeft">const char *&#160;</td><td class="memItemRight"><a class="el" href="#ab3cd7fa095f1d9970a004dab4d78286a">vf_token</a></td></tr>
+<tr class="memdesc:ab3cd7fa095f1d9970a004dab4d78286a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Used to pass vf_token to vfio_pci driver through DPDK.  <br /></td></tr>
+<tr class="memitem:a00f6cab501f7ec508a28b73577571f33" id="r_a00f6cab501f7ec508a28b73577571f33"><td class="memItemLeft">const char *&#160;</td><td class="memItemRight"><a class="el" href="#a00f6cab501f7ec508a28b73577571f33">lcore_map</a></td></tr>
+<tr class="memdesc:a00f6cab501f7ec508a28b73577571f33"><td class="mdescLeft">&#160;</td><td class="mdescRight">Used to store lcore to CPU mappig to pass it to DPDK.  <br /></td></tr>
+<tr class="memitem:a96dfb09016fe26b46324537210cb248c" id="r_a96dfb09016fe26b46324537210cb248c"><td class="memItemLeft">enum <a class="el" href="log_8h.html#a188d351bd05093cba1d8594ee9988efd">spdk_log_level</a>&#160;</td><td class="memItemRight"><a class="el" href="#a96dfb09016fe26b46324537210cb248c">rpc_log_level</a></td></tr>
+<tr class="memdesc:a96dfb09016fe26b46324537210cb248c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Log level for JSON RPC.  <br /></td></tr>
+<tr class="memitem:ac6b0027c42b52343335f5a1e6fb600e4" id="r_ac6b0027c42b52343335f5a1e6fb600e4"><td class="memItemLeft">FILE *&#160;</td><td class="memItemRight"><a class="el" href="#ac6b0027c42b52343335f5a1e6fb600e4">rpc_log_file</a></td></tr>
+<tr class="memdesc:ac6b0027c42b52343335f5a1e6fb600e4"><td class="mdescLeft">&#160;</td><td class="mdescRight">If non-NULL, a pointer to JSON RPC log file.  <br /></td></tr>
+<tr class="memitem:a5408f150f21315afdf5e5d5ca09cddf2" id="r_a5408f150f21315afdf5e5d5ca09cddf2"><td class="memItemLeft">void *&#160;</td><td class="memItemRight"><a class="el" href="#a5408f150f21315afdf5e5d5ca09cddf2">json_data</a></td></tr>
+<tr class="memdesc:a5408f150f21315afdf5e5d5ca09cddf2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Raw JSON configuration data and its size.  <br /></td></tr>
+<tr class="memitem:a4ae3d13d7698b56a2735f5088922afea" id="r_a4ae3d13d7698b56a2735f5088922afea"><td class="memItemLeft">size_t&#160;</td><td class="memItemRight"><a class="el" href="#a4ae3d13d7698b56a2735f5088922afea">json_data_size</a></td></tr>
+<tr class="memitem:aff31f49d7e585527cecd785651ae1d0b" id="r_aff31f49d7e585527cecd785651ae1d0b"><td class="memItemLeft">bool&#160;</td><td class="memItemRight"><a class="el" href="#aff31f49d7e585527cecd785651ae1d0b">disable_cpumask_locks</a></td></tr>
+<tr class="memdesc:aff31f49d7e585527cecd785651ae1d0b"><td class="mdescLeft">&#160;</td><td class="mdescRight">If set, disable CPU claiming.  <br /></td></tr>
+</table>
+<a name="details" id="details"></a><h2 id="header-details" class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>Event framework initialization options. </p>
+
+<p class="definition">Definition at line <a class="el" href="event_8h_source.html#l00063">63</a> of file <a class="el" href="event_8h_source.html">event.h</a>.</p>
+</div><a name="doc-variable-members" id="doc-variable-members"></a><h2 id="header-doc-variable-members" class="groupheader">Field Documentation</h2>
+<a id="a74c03a91caa15961c35374bf2465a279" name="a74c03a91caa15961c35374bf2465a279"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a74c03a91caa15961c35374bf2465a279">&#9670;&#160;</a></span>base_virtaddr</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">uint64_t spdk_app_opts::base_virtaddr</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="event_8h_source.html#l00127">127</a> of file <a class="el" href="event_8h_source.html">event.h</a>.</p>
+
+</div>
+</div>
+<a id="a703388c6f0075cf0396e05925364ebc5" name="a703388c6f0075cf0396e05925364ebc5"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a703388c6f0075cf0396e05925364ebc5">&#9670;&#160;</a></span>delay_subsystem_init</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool spdk_app_opts::delay_subsystem_init</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="event_8h_source.html#l00111">111</a> of file <a class="el" href="event_8h_source.html">event.h</a>.</p>
+
+</div>
+</div>
+<a id="aff31f49d7e585527cecd785651ae1d0b" name="aff31f49d7e585527cecd785651ae1d0b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aff31f49d7e585527cecd785651ae1d0b">&#9670;&#160;</a></span>disable_cpumask_locks</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool spdk_app_opts::disable_cpumask_locks</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>If set, disable CPU claiming. </p>
+
+<p class="definition">Definition at line <a class="el" href="event_8h_source.html#l00203">203</a> of file <a class="el" href="event_8h_source.html">event.h</a>.</p>
+
+</div>
+</div>
+<a id="a6e31b7a77928202250cb12f7e7d2b76b" name="a6e31b7a77928202250cb12f7e7d2b76b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6e31b7a77928202250cb12f7e7d2b76b">&#9670;&#160;</a></span>disable_signal_handlers</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool spdk_app_opts::disable_signal_handlers</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Disable default signal handlers. </p>
+<p>If set to <span class="tt">true</span>, the shutdown process is not started implicitly by process signals, hence the application is responsible for calling <a class="el" href="event_8h.html#a0bbbb23263a8ea9c93c3adf8aa3bce8e" title="Start shutting down the framework.">spdk_app_start_shutdown()</a>.</p>
+<p>Default is <span class="tt">false</span>. </p>
+
+<p class="definition">Definition at line <a class="el" href="event_8h_source.html#l00148">148</a> of file <a class="el" href="event_8h_source.html">event.h</a>.</p>
+
+</div>
+</div>
+<a id="ac21faa67a906aa0e70194b96e7700142" name="ac21faa67a906aa0e70194b96e7700142"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac21faa67a906aa0e70194b96e7700142">&#9670;&#160;</a></span>enable_coredump</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool spdk_app_opts::enable_coredump</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="event_8h_source.html#l00081">81</a> of file <a class="el" href="event_8h_source.html">event.h</a>.</p>
+
+</div>
+</div>
+<a id="aac6bc3442878c3909e4b2f2871e9fe4c" name="aac6bc3442878c3909e4b2f2871e9fe4c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aac6bc3442878c3909e4b2f2871e9fe4c">&#9670;&#160;</a></span>enforce_numa</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool spdk_app_opts::enforce_numa</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="event_8h_source.html#l00152">152</a> of file <a class="el" href="event_8h_source.html">event.h</a>.</p>
+
+</div>
+</div>
+<a id="a7e520897d6a9e39c3e62cc4259bd2ea3" name="a7e520897d6a9e39c3e62cc4259bd2ea3"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7e520897d6a9e39c3e62cc4259bd2ea3">&#9670;&#160;</a></span>env_context</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void* spdk_app_opts::env_context</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Opaque context for use of the env implementation. </p>
+
+<p class="definition">Definition at line <a class="el" href="event_8h_source.html#l00120">120</a> of file <a class="el" href="event_8h_source.html">event.h</a>.</p>
+
+</div>
+</div>
+<a id="a8fcfa061da5b1b5bfd9900c3074bf95f" name="a8fcfa061da5b1b5bfd9900c3074bf95f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8fcfa061da5b1b5bfd9900c3074bf95f">&#9670;&#160;</a></span>hugedir</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">const char* spdk_app_opts::hugedir</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="event_8h_source.html#l00097">97</a> of file <a class="el" href="event_8h_source.html">event.h</a>.</p>
+
+</div>
+</div>
+<a id="ad584493cb8e3ca1744f29fbf4302d73f" name="ad584493cb8e3ca1744f29fbf4302d73f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad584493cb8e3ca1744f29fbf4302d73f">&#9670;&#160;</a></span>hugepage_single_segments</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool spdk_app_opts::hugepage_single_segments</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="event_8h_source.html#l00090">90</a> of file <a class="el" href="event_8h_source.html">event.h</a>.</p>
+
+</div>
+</div>
+<a id="a891ac585c9045176496ef28d435ea18d" name="a891ac585c9045176496ef28d435ea18d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a891ac585c9045176496ef28d435ea18d">&#9670;&#160;</a></span>interrupt_mode</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool spdk_app_opts::interrupt_mode</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="event_8h_source.html#l00150">150</a> of file <a class="el" href="event_8h_source.html">event.h</a>.</p>
+
+</div>
+</div>
+<a id="a637cccc4c5bfefe84643fcb14943cd72" name="a637cccc4c5bfefe84643fcb14943cd72"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a637cccc4c5bfefe84643fcb14943cd72">&#9670;&#160;</a></span>iova_mode</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">const char* spdk_app_opts::iova_mode</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="event_8h_source.html#l00106">106</a> of file <a class="el" href="event_8h_source.html">event.h</a>.</p>
+
+</div>
+</div>
+<a id="aa167c7261b91f10450ac6f1bc0700c1e" name="aa167c7261b91f10450ac6f1bc0700c1e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa167c7261b91f10450ac6f1bc0700c1e">&#9670;&#160;</a></span>json_config_file</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">const char* spdk_app_opts::json_config_file</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="event_8h_source.html#l00065">65</a> of file <a class="el" href="event_8h_source.html">event.h</a>.</p>
+
+</div>
+</div>
+<a id="a22921866228db3a1c2831638650a26f6" name="a22921866228db3a1c2831638650a26f6"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a22921866228db3a1c2831638650a26f6">&#9670;&#160;</a></span>json_config_ignore_errors</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool spdk_app_opts::json_config_ignore_errors</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="event_8h_source.html#l00066">66</a> of file <a class="el" href="event_8h_source.html">event.h</a>.</p>
+
+</div>
+</div>
+<a id="a5408f150f21315afdf5e5d5ca09cddf2" name="a5408f150f21315afdf5e5d5ca09cddf2"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5408f150f21315afdf5e5d5ca09cddf2">&#9670;&#160;</a></span>json_data</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void* spdk_app_opts::json_data</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Raw JSON configuration data and its size. </p>
+<p>Cannot be used simultaneously with json_config_file option. </p>
+
+<p class="definition">Definition at line <a class="el" href="event_8h_source.html#l00197">197</a> of file <a class="el" href="event_8h_source.html">event.h</a>.</p>
+
+</div>
+</div>
+<a id="a4ae3d13d7698b56a2735f5088922afea" name="a4ae3d13d7698b56a2735f5088922afea"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4ae3d13d7698b56a2735f5088922afea">&#9670;&#160;</a></span>json_data_size</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">size_t spdk_app_opts::json_data_size</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="event_8h_source.html#l00198">198</a> of file <a class="el" href="event_8h_source.html">event.h</a>.</p>
+
+</div>
+</div>
+<a id="a00f6cab501f7ec508a28b73577571f33" name="a00f6cab501f7ec508a28b73577571f33"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a00f6cab501f7ec508a28b73577571f33">&#9670;&#160;</a></span>lcore_map</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">const char* spdk_app_opts::lcore_map</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Used to store lcore to CPU mappig to pass it to DPDK. </p>
+
+<p class="definition">Definition at line <a class="el" href="event_8h_source.html#l00181">181</a> of file <a class="el" href="event_8h_source.html">event.h</a>.</p>
+
+</div>
+</div>
+<a id="a6b0f85cf7dda3cc9048965c54bd09102" name="a6b0f85cf7dda3cc9048965c54bd09102"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6b0f85cf7dda3cc9048965c54bd09102">&#9670;&#160;</a></span>log</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="log_8h.html#ae9946dc6bcd854cdb6ea5ae7c77ff704">spdk_log_cb</a>* spdk_app_opts::log</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>for passing user-provided log call </p>
+
+<p class="definition">Definition at line <a class="el" href="event_8h_source.html#l00125">125</a> of file <a class="el" href="event_8h_source.html">event.h</a>.</p>
+
+</div>
+</div>
+<a id="aac6e234b1dec93b58c29239539d6c9f2" name="aac6e234b1dec93b58c29239539d6c9f2"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aac6e234b1dec93b58c29239539d6c9f2">&#9670;&#160;</a></span>main_core</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int spdk_app_opts::main_core</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="event_8h_source.html#l00087">87</a> of file <a class="el" href="event_8h_source.html">event.h</a>.</p>
+
+</div>
+</div>
+<a id="abd571128caea84190b31231105219b38" name="abd571128caea84190b31231105219b38"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#abd571128caea84190b31231105219b38">&#9670;&#160;</a></span>mem_channel</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int spdk_app_opts::mem_channel</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="event_8h_source.html#l00086">86</a> of file <a class="el" href="event_8h_source.html">event.h</a>.</p>
+
+</div>
+</div>
+<a id="ab3ad6ade4ff0ec041851e763bc29d6e7" name="ab3ad6ade4ff0ec041851e763bc29d6e7"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab3ad6ade4ff0ec041851e763bc29d6e7">&#9670;&#160;</a></span>mem_size</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int spdk_app_opts::mem_size</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="event_8h_source.html#l00088">88</a> of file <a class="el" href="event_8h_source.html">event.h</a>.</p>
+
+</div>
+</div>
+<a id="a35bc2b8bc80d206be6565e7690f5ddbe" name="a35bc2b8bc80d206be6565e7690f5ddbe"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a35bc2b8bc80d206be6565e7690f5ddbe">&#9670;&#160;</a></span>msg_mempool_size</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">size_t spdk_app_opts::msg_mempool_size</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>The allocated size for the message pool used by the threading library. </p>
+<p>Default is <span class="tt">SPDK_DEFAULT_MSG_MEMPOOL_SIZE</span>. </p>
+
+<p class="definition">Definition at line <a class="el" href="event_8h_source.html#l00165">165</a> of file <a class="el" href="event_8h_source.html">event.h</a>.</p>
+
+</div>
+</div>
+<a id="a6d8fad90703f6eb20d0bd2ecb5747f74" name="a6d8fad90703f6eb20d0bd2ecb5747f74"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6d8fad90703f6eb20d0bd2ecb5747f74">&#9670;&#160;</a></span>name</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">const char* spdk_app_opts::name</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="event_8h_source.html#l00064">64</a> of file <a class="el" href="event_8h_source.html">event.h</a>.</p>
+
+</div>
+</div>
+<a id="a5f7fb0735e6587f3560d6b9352a62666" name="a5f7fb0735e6587f3560d6b9352a62666"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5f7fb0735e6587f3560d6b9352a62666">&#9670;&#160;</a></span>no_huge</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool spdk_app_opts::no_huge</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="event_8h_source.html#l00092">92</a> of file <a class="el" href="event_8h_source.html">event.h</a>.</p>
+
+</div>
+</div>
+<a id="a524584177bee58d89de5808d5580d0c7" name="a524584177bee58d89de5808d5580d0c7"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a524584177bee58d89de5808d5580d0c7">&#9670;&#160;</a></span>no_pci</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool spdk_app_opts::no_pci</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="event_8h_source.html#l00089">89</a> of file <a class="el" href="event_8h_source.html">event.h</a>.</p>
+
+</div>
+</div>
+<a id="a5181e4f5f9b4b87b42f26fb87b071faa" name="a5181e4f5f9b4b87b42f26fb87b071faa"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5181e4f5f9b4b87b42f26fb87b071faa">&#9670;&#160;</a></span>num_entries</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">uint64_t spdk_app_opts::num_entries</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="event_8h_source.html#l00117">117</a> of file <a class="el" href="event_8h_source.html">event.h</a>.</p>
+
+</div>
+</div>
+<a id="a1588a2f9d5a96fa56c9081ad84b7902a" name="a1588a2f9d5a96fa56c9081ad84b7902a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1588a2f9d5a96fa56c9081ad84b7902a">&#9670;&#160;</a></span>num_pci_addr</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">size_t spdk_app_opts::num_pci_addr</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="event_8h_source.html#l00103">103</a> of file <a class="el" href="event_8h_source.html">event.h</a>.</p>
+
+</div>
+</div>
+<a id="ade2dea01cae777b3164789c30e00f512" name="ade2dea01cae777b3164789c30e00f512"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ade2dea01cae777b3164789c30e00f512">&#9670;&#160;</a></span>num_trace_threads</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">uint32_t spdk_app_opts::num_trace_threads</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="event_8h_source.html#l00158">158</a> of file <a class="el" href="event_8h_source.html">event.h</a>.</p>
+
+</div>
+</div>
+<a id="a2a7cefefd12eac2f22efdc24962da925" name="a2a7cefefd12eac2f22efdc24962da925"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2a7cefefd12eac2f22efdc24962da925">&#9670;&#160;</a></span>opts_size</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">size_t spdk_app_opts::opts_size</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>The size of <a class="el" href="structspdk__app__opts.html" title="Event framework initialization options.">spdk_app_opts</a> according to the caller of this library is used for ABI compatibility. </p>
+<p>The library uses this field to know how many fields in this structure are valid. And the library will populate any remaining fields with default values.</p>
+<p>New fields should usually be added at the end of this structure. The only exception is if using bytes from a reserved byte array after opts_size. In that case it is OK to use some of those bytes, as long as the default value is specified as 0. </p>
+
+<p class="definition">Definition at line <a class="el" href="event_8h_source.html#l00138">138</a> of file <a class="el" href="event_8h_source.html">event.h</a>.</p>
+
+</div>
+</div>
+<a id="a7d3b920c3b813bcbf6e95d5551a242ed" name="a7d3b920c3b813bcbf6e95d5551a242ed"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7d3b920c3b813bcbf6e95d5551a242ed">&#9670;&#160;</a></span>pci_allowed</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">struct <a class="el" href="structspdk__pci__addr.html">spdk_pci_addr</a>* spdk_app_opts::pci_allowed</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="event_8h_source.html#l00105">105</a> of file <a class="el" href="event_8h_source.html">event.h</a>.</p>
+
+</div>
+</div>
+<a id="ac401e18cb6277ace32a2d24feca14255" name="ac401e18cb6277ace32a2d24feca14255"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac401e18cb6277ace32a2d24feca14255">&#9670;&#160;</a></span>pci_blocked</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">struct <a class="el" href="structspdk__pci__addr.html">spdk_pci_addr</a>* spdk_app_opts::pci_blocked</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="event_8h_source.html#l00104">104</a> of file <a class="el" href="event_8h_source.html">event.h</a>.</p>
+
+</div>
+</div>
+<a id="a3621332b57cec3e2968063c6484451ad" name="a3621332b57cec3e2968063c6484451ad"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3621332b57cec3e2968063c6484451ad">&#9670;&#160;</a></span>print_level</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">enum <a class="el" href="log_8h.html#a188d351bd05093cba1d8594ee9988efd">spdk_log_level</a> spdk_app_opts::print_level</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="event_8h_source.html#l00098">98</a> of file <a class="el" href="event_8h_source.html">event.h</a>.</p>
+
+</div>
+</div>
+<a id="a2a264093fd74433b83da1a4edc757b59" name="a2a264093fd74433b83da1a4edc757b59"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2a264093fd74433b83da1a4edc757b59">&#9670;&#160;</a></span>reactor_mask</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">const char* spdk_app_opts::reactor_mask</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="event_8h_source.html#l00071">71</a> of file <a class="el" href="event_8h_source.html">event.h</a>.</p>
+
+</div>
+</div>
+<a id="a1f0f298f908a566b2262ba14385972c2" name="a1f0f298f908a566b2262ba14385972c2"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1f0f298f908a566b2262ba14385972c2">&#9670;&#160;</a></span>reserved100</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">uint8_t spdk_app_opts::reserved100[4]</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="event_8h_source.html#l00101">101</a> of file <a class="el" href="event_8h_source.html">event.h</a>.</p>
+
+</div>
+</div>
+<a id="add6ef3b3736f423c7d83e5033c174016" name="add6ef3b3736f423c7d83e5033c174016"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#add6ef3b3736f423c7d83e5033c174016">&#9670;&#160;</a></span>reserved137</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">uint8_t spdk_app_opts::reserved137[7]</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="event_8h_source.html#l00114">114</a> of file <a class="el" href="event_8h_source.html">event.h</a>.</p>
+
+</div>
+</div>
+<a id="a28e88b7a131a59a9358a132af2590017" name="a28e88b7a131a59a9358a132af2590017"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a28e88b7a131a59a9358a132af2590017">&#9670;&#160;</a></span>reserved17</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">uint8_t spdk_app_opts::reserved17[7]</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="event_8h_source.html#l00069">69</a> of file <a class="el" href="event_8h_source.html">event.h</a>.</p>
+
+</div>
+</div>
+<a id="a1c8c8b3bc0febfd29e1518168964a8c9" name="a1c8c8b3bc0febfd29e1518168964a8c9"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1c8c8b3bc0febfd29e1518168964a8c9">&#9670;&#160;</a></span>reserved187</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">uint8_t spdk_app_opts::reserved187[1]</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="event_8h_source.html#l00155">155</a> of file <a class="el" href="event_8h_source.html">event.h</a>.</p>
+
+</div>
+</div>
+<a id="a75afb9e54db3ac65635060b9841edd08" name="a75afb9e54db3ac65635060b9841edd08"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a75afb9e54db3ac65635060b9841edd08">&#9670;&#160;</a></span>reserved52</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">uint8_t spdk_app_opts::reserved52[4]</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="event_8h_source.html#l00077">77</a> of file <a class="el" href="event_8h_source.html">event.h</a>.</p>
+
+</div>
+</div>
+<a id="a342776991c2e68df0daae8c1639d2411" name="a342776991c2e68df0daae8c1639d2411"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a342776991c2e68df0daae8c1639d2411">&#9670;&#160;</a></span>reserved65</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">uint8_t spdk_app_opts::reserved65[3]</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="event_8h_source.html#l00084">84</a> of file <a class="el" href="event_8h_source.html">event.h</a>.</p>
+
+</div>
+</div>
+<a id="a5265e9abe78b1065c41740d1a0865c55" name="a5265e9abe78b1065c41740d1a0865c55"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5265e9abe78b1065c41740d1a0865c55">&#9670;&#160;</a></span>reserved84</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">uint8_t spdk_app_opts::reserved84[4]</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="event_8h_source.html#l00095">95</a> of file <a class="el" href="event_8h_source.html">event.h</a>.</p>
+
+</div>
+</div>
+<a id="a132140a9733933e19bde81ffb3421b6e" name="a132140a9733933e19bde81ffb3421b6e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a132140a9733933e19bde81ffb3421b6e">&#9670;&#160;</a></span>rpc_addr</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">const char* spdk_app_opts::rpc_addr</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="event_8h_source.html#l00070">70</a> of file <a class="el" href="event_8h_source.html">event.h</a>.</p>
+
+</div>
+</div>
+<a id="aeccbc0421a219e9c2c29195ad9e6be9c" name="aeccbc0421a219e9c2c29195ad9e6be9c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aeccbc0421a219e9c2c29195ad9e6be9c">&#9670;&#160;</a></span>rpc_allowlist</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">const char** spdk_app_opts::rpc_allowlist</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="event_8h_source.html#l00170">170</a> of file <a class="el" href="event_8h_source.html">event.h</a>.</p>
+
+</div>
+</div>
+<a id="ac6b0027c42b52343335f5a1e6fb600e4" name="ac6b0027c42b52343335f5a1e6fb600e4"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac6b0027c42b52343335f5a1e6fb600e4">&#9670;&#160;</a></span>rpc_log_file</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">FILE* spdk_app_opts::rpc_log_file</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>If non-NULL, a pointer to JSON RPC log file. </p>
+
+<p class="definition">Definition at line <a class="el" href="event_8h_source.html#l00191">191</a> of file <a class="el" href="event_8h_source.html">event.h</a>.</p>
+
+</div>
+</div>
+<a id="a96dfb09016fe26b46324537210cb248c" name="a96dfb09016fe26b46324537210cb248c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a96dfb09016fe26b46324537210cb248c">&#9670;&#160;</a></span>rpc_log_level</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">enum <a class="el" href="log_8h.html#a188d351bd05093cba1d8594ee9988efd">spdk_log_level</a> spdk_app_opts::rpc_log_level</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Log level for JSON RPC. </p>
+
+<p class="definition">Definition at line <a class="el" href="event_8h_source.html#l00186">186</a> of file <a class="el" href="event_8h_source.html">event.h</a>.</p>
+
+</div>
+</div>
+<a id="a362c97242a5610d65e51e92183abc8d0" name="a362c97242a5610d65e51e92183abc8d0"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a362c97242a5610d65e51e92183abc8d0">&#9670;&#160;</a></span>shm_id</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int spdk_app_opts::shm_id</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="event_8h_source.html#l00074">74</a> of file <a class="el" href="event_8h_source.html">event.h</a>.</p>
+
+</div>
+</div>
+<a id="a93ac293aa665a3628d0286745799c5a5" name="a93ac293aa665a3628d0286745799c5a5"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a93ac293aa665a3628d0286745799c5a5">&#9670;&#160;</a></span>shutdown_cb</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="event_8h.html#af7e98d89bfe88c7b9d9ecfc78fac2cd2">spdk_app_shutdown_cb</a> spdk_app_opts::shutdown_cb</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="event_8h_source.html#l00079">79</a> of file <a class="el" href="event_8h_source.html">event.h</a>.</p>
+
+</div>
+</div>
+<a id="a41fa1b1b7c5f2872c5fce6074960bfc5" name="a41fa1b1b7c5f2872c5fce6074960bfc5"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a41fa1b1b7c5f2872c5fce6074960bfc5">&#9670;&#160;</a></span>tpoint_group_mask</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">const char* spdk_app_opts::tpoint_group_mask</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="event_8h_source.html#l00072">72</a> of file <a class="el" href="event_8h_source.html">event.h</a>.</p>
+
+</div>
+</div>
+<a id="aa351d504364930c0e14bde70d3be60d7" name="aa351d504364930c0e14bde70d3be60d7"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa351d504364930c0e14bde70d3be60d7">&#9670;&#160;</a></span>unlink_hugepage</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool spdk_app_opts::unlink_hugepage</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="event_8h_source.html#l00091">91</a> of file <a class="el" href="event_8h_source.html">event.h</a>.</p>
+
+</div>
+</div>
+<a id="ab3cd7fa095f1d9970a004dab4d78286a" name="ab3cd7fa095f1d9970a004dab4d78286a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab3cd7fa095f1d9970a004dab4d78286a">&#9670;&#160;</a></span>vf_token</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">const char* spdk_app_opts::vf_token</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Used to pass vf_token to vfio_pci driver through DPDK. </p>
+<p>The vf_token is an UUID that shared between SR-IOV PF and VF. </p>
+
+<p class="definition">Definition at line <a class="el" href="event_8h_source.html#l00176">176</a> of file <a class="el" href="event_8h_source.html">event.h</a>.</p>
+
+</div>
+</div>
+<hr/>The documentation for this struct was generated from the following file:<ul>
+<li><a class="el" href="event_8h_source.html">event.h</a></li>
+</ul>
+</div><!-- contents -->
+</div><!-- doc-content -->
+<div id="page-nav" class="page-nav-panel">
+<div id="page-nav-resize-handle"></div>
+<div id="page-nav-tree">
+<div id="page-nav-contents">
+</div><!-- page-nav-contents -->
+</div><!-- page-nav-tree -->
+</div><!-- page-nav -->
+</div><!-- container -->
+<footer class="footer" id="nav-path">
+  <div class="footer-inner">
+    <div class="footer-copy">
+      <small>Copyright &copy; SPDK a Series of LF Projects, LLC. For web site terms of use, trademark policy, and other
+      project policies please see <a href="https://lfprojects.org">lfprojects.org</a>.</small>
+      <br><small>Built from spdk 91893349edff / site e5878500f</small>
+    </div>
+  </div>
+</footer>
+<script type="text/javascript" src="page_outline.js"></script>
+<script type="text/javascript" src="spdk_nav.js"></script>
+</body>
+</html>

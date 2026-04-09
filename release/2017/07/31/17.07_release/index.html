@@ -1,0 +1,167 @@
+<!doctype html>
+<html lang="en">
+  <head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="The Storage Performance Development Kit (SPDK) provides a set of tools and libraries for writing high performance, scalable, user-mode storage applications. It achieves high performance by moving all of the necessary drivers into userspace and operating in a polled mode instead of relying on interrupts, which avoids kernel context switches and eliminates interrupt handling overhead.
+">
+  <meta name="author" content="Benjamin Walker">
+
+  <title>SPDK 17.07 Release: Build system improvements, userspace vhost-blk target, and GPT bdev</title>
+
+  <link rel="icon" type="image/svg+xml" href="/spdk.github.io/assets/img/spdk.svg">
+  <link rel="icon" href="/spdk.github.io/assets/favicon.ico" sizes="32x32">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:400,700,900" type="text/css">
+  <link rel="stylesheet" href="/spdk.github.io/assets/css/spdk.css">
+
+  <link href="/spdk.github.io/feed.xml" type="application/atom+xml" rel="alternate" title="Atom Feed">
+</head>
+
+
+  <body>
+    <nav class="navbar">
+  <a class="navbar-brand" href="/spdk.github.io/" aria-label="SPDK">
+    <img src="/spdk.github.io/assets/img/spdk.svg" width="36" height="36" alt="Storage Performance Development Kit">
+  </a>
+  <div class="navbar-nav">
+    <a class="nav-link header-link" href="/spdk.github.io/doc/releases.html">download</a>
+    <a class="nav-link header-link" href="/spdk.github.io/doc/">documentation</a>
+    <a class="nav-link header-link" href="/spdk.github.io/doc/contributing.html">development</a>
+    <a class="nav-link header-link" href="/spdk.github.io/doc/ci_tools.html">CI status</a>
+    <a class="nav-link header-link" href="/spdk.github.io/community/">community</a>
+    <a class="nav-link header-link" href="/spdk.github.io/blog/">Blog</a>
+    <a class="nav-link header-link" href="https://github.com/orgs/spdk/projects/5">Roadmap</a>
+    <a class="nav-link header-link" href="/spdk.github.io/news/">News</a>
+  </div>
+  <div class="navbar-end">
+    <a class="nav-link header-link" href="https://github.com/spdk/spdk" aria-label="GitHub">
+      <svg xmlns="http://www.w3.org/2000/svg" class="navbar-nav-svg" aria-hidden="true"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
+    </a>
+    <a id="cn_lang_btn" href="/spdk.github.io/cn/doc/" class="nav-link header-link">中文</a>
+  </div>
+</nav>
+<script>
+(function() {
+    var p = location.pathname, best = null, bLen = 0;
+    document.querySelectorAll('.header-link[href]').forEach(function(a) {
+        var raw = a.getAttribute('href');
+        if (!raw) return;
+        try { var u = new URL(raw, location.href); } catch(e) { return; }
+        if (u.origin !== location.origin) return;
+        var h = u.pathname;
+        if (h === '/') return;
+        var ok = h.endsWith('.html') ? p === h : p.indexOf(h) === 0;
+        if (ok && h.length > bLen) { bLen = h.length; best = a; }
+    });
+    if (best) best.classList.add('active');
+})();
+</script>
+
+
+    <div class="page-content">
+  <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+  <header class="post-header">
+
+    <div class="page-header">
+      <h1>SPDK 17.07 Release: Build system improvements, userspace vhost-blk target, and GPT bdev</h1>
+    </div>
+
+    <p class="post-meta">
+      <time datetime="2017-07-31T00:00:00+02:00" itemprop="datePublished">
+        Jul 31, 2017
+      </time>
+      
+      •
+      <span itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <span itemprop="name">Daniel Verkamp</span>
+      </span>
+      
+    </p>
+  </header>
+
+  <div class="content" itemprop="articleBody"><p>The SPDK team is proud to announce the <a href="https://github.com/spdk/spdk/releases/tag/v17.07">v17.07 release</a>.
+This release incorporates a number of ease-of-use improvements and API cleanups.</p>
+
+<h1 id="build-system">Build System</h1>
+
+<p>A <code class="language-plaintext highlighter-rouge">configure</code> script has been added to simplify the build configuration process.
+The existing CONFIG file and <code class="language-plaintext highlighter-rouge">make CONFIG_...</code> options are also still supported.
+Run <code class="language-plaintext highlighter-rouge">./configure --help</code> for information about available configuration options.</p>
+
+<p>A DPDK submodule has been added to make building SPDK easier.  If no <code class="language-plaintext highlighter-rouge">--with-dpdk</code>
+option is specified to configure, the SPDK build system will automatically build a
+known-good configuration of DPDK with the minimal options enabled.  See the Building
+section of README.md for more information.</p>
+
+<p>A <a href="https://www.vagrantup.com/">Vagrant</a> setup has been added to make it easier to
+develop and use SPDK on systems without suitable NVMe hardware.  See the Vagrant
+section of README.md for more information.</p>
+
+<h1 id="userspace-vhost-blk-target">Userspace vhost-blk target</h1>
+
+<p>The vhost library and example app have been updated to support the vhost-blk
+protocol in addition to the existing vhost-scsi protocol.
+See the <a href="https://www.spdk.io/doc/vhost.html">vhost documentation</a> for more details.</p>
+
+<h1 id="block-device-abstraction-layer-bdev">Block device abstraction layer (bdev)</h1>
+
+<p>A GPT virtual block device has been added, which automatically exposes GPT partitions
+with a special SPDK-specific partition type as bdevs.
+See the <a href="https://www.spdk.io/doc/bdev.md#bdev_config_gpt">GPT bdev documentation</a> for
+more information.</p>
+
+<p>In support of the GPT bdev, a new virtual bdev “examine” interface has been added to
+the bdev module API.  This allows bdev modules to check if a newly-added bdev
+contains a specific on-disk format, such as a GPT partition table, and gives them the
+ability to export virtual bdevs as desired.</p>
+
+<h1 id="nvme-driver">NVMe driver</h1>
+
+<p>The NVMe driver has been updated to support recent Intel SSDs, including the Intel®
+Optane™ SSD DC P4800X series.</p>
+
+<p>A workaround has been added for devices that fail to recognize register writes
+during controller reset.</p>
+
+<p>The NVMe driver now allocates request tracking objects on a per-queue basis.  The
+number of requests allowed on an I/O queue may be set during <code class="language-plaintext highlighter-rouge">spdk_nvme_probe()</code> by
+modifying <code class="language-plaintext highlighter-rouge">io_queue_requests</code> in the opts structure.</p>
+
+<p>The SPDK NVMe <code class="language-plaintext highlighter-rouge">fio_plugin</code> has been updated to support multiple threads (<code class="language-plaintext highlighter-rouge">numjobs</code>).</p>
+
+<p><code class="language-plaintext highlighter-rouge">spdk_nvme_ctrlr_alloc_io_qpair()</code> has been modified to allow the user to override
+controller-level options for each individual I/O queue pair.
+Existing callers with qprio == 0 can be updated to:</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>... = spdk_nvme_ctrlr_alloc_io_qpair(ctrlr, NULL, 0);
+</code></pre></div></div>
+<p>Callers that need to specify a non-default qprio should be updated to:</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>struct spdk_nvme_io_qpair_opts opts;
+spdk_nvme_ctrlr_get_default_io_qpair_opts(ctrlr, &amp;opts, sizeof(opts));
+opts.qprio = SPDK_NVME_QPRIO_...;
+... = spdk_nvme_ctrlr_alloc_io_qpair(ctrlr, &amp;opts, sizeof(opts));
+</code></pre></div></div>
+
+<h1 id="environment-abstraction-layer">Environment Abstraction Layer</h1>
+
+<p>The environment abstraction layer has been updated to include several new functions
+in order to wrap additional DPDK functionality. See <code class="language-plaintext highlighter-rouge">include/spdk/env.h</code> for the
+current set of functions.</p>
+</div>
+</article>
+</div>
+
+
+    <footer class="footer" id="nav-path">
+  <div class="footer-inner">
+    <div class="footer-copy">
+      <small>Copyright &copy; SPDK a Series of LF Projects, LLC. For web site terms of use, trademark policy, and other
+      project policies please see <a href="https://lfprojects.org">lfprojects.org</a>.</small>
+      <br><small>Built from spdk 91893349edff / site e5878500f</small>
+    </div>
+  </div>
+</footer>
+
+
+    
+  </body>
+</html>

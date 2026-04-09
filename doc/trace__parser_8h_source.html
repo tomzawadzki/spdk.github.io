@@ -1,0 +1,308 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<meta name="generator" content="Doxygen 1.16.1">
+	<title>SPDK: trace_parser.h Source File</title>
+	<script type="text/javascript" src="jquery.js"></script>
+	<script type="text/javascript" src="dynsections.js"></script>
+	<script type="text/javascript" src="clipboard.js"></script>
+	<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
+<script type="text/javascript" src="cookie.js"></script>
+	<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<script type="text/javascript">
+  $(function() { init_search(); });
+</script>
+	<link rel="icon" type="image/svg+xml" href="../assets/img/spdk.svg">
+	<link rel="icon" href="../assets/favicon.ico" sizes="32x32">
+	<link href="doxygen.css" rel="stylesheet" type="text/css">
+	<script>(function(){var k='doxygen_width',w,bw=6;if(window.chrome){w=localStorage.getItem(k);if(!w){w='350';localStorage.setItem(k,w)}}else{var m=document.cookie.match(new RegExp(k+'=(\\d+)'));w=m?m[1]:null;if(!w){w='350';document.cookie=k+'=350;SameSite=Lax;path=/'}}document.documentElement.style.setProperty('--sn-w',(parseInt(w)+bw)+'px')})()</script>
+	<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:400,700,900" type="text/css">
+	<link href="spdk.css" rel="stylesheet" type="text/css"/>
+	<link href="../assets/css/spdk.css" rel="stylesheet" type="text/css">
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<nav class="navbar">
+  <a class="navbar-brand" href="../" aria-label="SPDK">
+    <img src="../assets/img/spdk.svg" width="36" height="36" alt="Storage Performance Development Kit">
+  </a>
+  <div class="navbar-nav">
+    <a class="nav-link header-link" href="../doc/releases.html">download</a>
+    <a class="nav-link header-link" href="../doc/">documentation</a>
+    <a class="nav-link header-link" href="../doc/contributing.html">development</a>
+    <a class="nav-link header-link" href="../doc/ci_tools.html">CI status</a>
+    <a class="nav-link header-link" href="../community/">community</a>
+    <a class="nav-link header-link" href="../blog/">Blog</a>
+    <a class="nav-link header-link" href="https://github.com/orgs/spdk/projects/5">Roadmap</a>
+    <a class="nav-link header-link" href="../news/">News</a>
+  </div>
+  <div class="navbar-end">
+    <a class="nav-link header-link" href="https://github.com/spdk/spdk" aria-label="GitHub">
+      <svg xmlns="http://www.w3.org/2000/svg" class="navbar-nav-svg" aria-hidden="true"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
+    </a>
+    <a id="cn_lang_btn" href="../cn/doc/" class="nav-link header-link">中文</a>
+  </div>
+</nav>
+<script>
+(function() {
+    var p = location.pathname, best = null, bLen = 0;
+    document.querySelectorAll('.header-link[href]').forEach(function(a) {
+        var raw = a.getAttribute('href');
+        if (!raw) return;
+        try { var u = new URL(raw, location.href); } catch(e) { return; }
+        if (u.origin !== location.origin) return;
+        var h = u.pathname;
+        if (h === '/') return;
+        var ok = h.endsWith('.html') ? p === h : p.indexOf(h) === 0;
+        if (ok && h.length > bLen) { bLen = h.length; best = a; }
+    });
+    if (best) best.classList.add('active');
+})();
+</script>
+<div id="doxygen-searchbox">        <div id="MSearchBox" class="MSearchBoxInactive">
+        <span class="left">
+          <span id="MSearchSelect" class="search-icon" onmouseover="return searchBox.OnSearchSelectShow()" onmouseout="return searchBox.OnSearchSelectHide()"><span class="search-icon-dropdown"></span></span>
+          <input type="text" id="MSearchField" value="" placeholder="Search" accesskey="S"
+               onfocus="searchBox.OnSearchFieldFocus(true)" 
+               onblur="searchBox.OnSearchFieldFocus(false)" 
+               onkeyup="searchBox.OnSearchFieldChange(event)"/>
+          </span><span class="right">
+            <a id="MSearchClose" href="javascript:searchBox.CloseResultsWindow()"><div id="MSearchCloseImg" class="close-icon"></div></a>
+          </span>
+        </div>
+</div>
+<!-- Generated by Doxygen 1.16.1 -->
+<script type="text/javascript">
+var searchBox = new SearchBox("searchBox", "search/",'.html');
+</script>
+<script type="text/javascript">
+$(function() { codefold.init(); });
+</script>
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+$(function(){initNavTree('trace__parser_8h_source.html','',''); });
+</script>
+<div id="container">
+<div id="doc-content">
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">Loading...</div>
+<div class="SRStatus" id="Searching">Searching...</div>
+<div class="SRStatus" id="NoMatches">No Matches</div>
+</div>
+</div>
+</div>
+</div>
+
+<div class="header">
+  <div class="headertitle"><div class="title">trace_parser.h</div></div>
+</div><!--header-->
+<div class="contents">
+<a href="trace__parser_8h.html">Go to the documentation of this file.</a><div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span><span class="comment">/*   SPDX-License-Identifier: BSD-3-Clause</span></div>
+<div class="line"><a id="l00002" name="l00002"></a><span class="lineno">    2</span><span class="comment"> *   Copyright (C) 2021 Intel Corporation. All rights reserved.</span></div>
+<div class="line"><a id="l00003" name="l00003"></a><span class="lineno">    3</span><span class="comment"> */</span></div>
+<div class="line"><a id="l00004" name="l00004"></a><span class="lineno">    4</span><span class="comment"></span> </div>
+<div class="line"><a id="l00005" name="l00005"></a><span class="lineno">    5</span><span class="comment">/**</span></div>
+<div class="line"><a id="l00006" name="l00006"></a><span class="lineno">    6</span><span class="comment"> * \file</span></div>
+<div class="line"><a id="l00007" name="l00007"></a><span class="lineno">    7</span><span class="comment"> * Trace parser library</span></div>
+<div class="line"><a id="l00008" name="l00008"></a><span class="lineno">    8</span><span class="comment"> */</span></div>
+<div class="line"><a id="l00009" name="l00009"></a><span class="lineno">    9</span> </div>
+<div class="line"><a id="l00010" name="l00010"></a><span class="lineno">   10</span><span class="preprocessor">#ifndef SPDK_TRACE_PARSER_H</span></div>
+<div class="line"><a id="l00011" name="l00011"></a><span class="lineno">   11</span><span class="preprocessor">#define SPDK_TRACE_PARSER_H</span></div>
+<div class="line"><a id="l00012" name="l00012"></a><span class="lineno">   12</span> </div>
+<div class="line"><a id="l00013" name="l00013"></a><span class="lineno">   13</span><span class="preprocessor">#include &quot;<a class="code" href="stdinc_8h.html">spdk/stdinc.h</a>&quot;</span></div>
+<div class="line"><a id="l00014" name="l00014"></a><span class="lineno">   14</span><span class="preprocessor">#include &quot;<a class="code" href="trace_8h.html">spdk/trace.h</a>&quot;</span></div>
+<div class="line"><a id="l00015" name="l00015"></a><span class="lineno">   15</span> </div>
+<div class="line"><a id="l00016" name="l00016"></a><span class="lineno">   16</span><span class="preprocessor">#ifdef __cplusplus</span></div>
+<div class="line"><a id="l00017" name="l00017"></a><span class="lineno">   17</span><span class="keyword">extern</span> <span class="stringliteral">&quot;C&quot;</span> {</div>
+<div class="line"><a id="l00018" name="l00018"></a><span class="lineno">   18</span><span class="preprocessor">#endif</span></div>
+<div class="line"><a id="l00019" name="l00019"></a><span class="lineno">   19</span><span class="comment"></span> </div>
+<div class="line"><a id="l00020" name="l00020"></a><span class="lineno">   20</span><span class="comment">/** Trace parser object used as a context for the parsing functions */</span></div>
+<div class="line"><a id="l00021" name="l00021"></a><span class="lineno">   21</span><span class="keyword">struct </span>spdk_trace_parser;</div>
+<div class="line"><a id="l00022" name="l00022"></a><span class="lineno">   22</span> </div>
+<div class="foldopen" id="foldopen00023" data-start="{" data-end="};">
+<div class="line"><a id="l00023" name="l00023"></a><span class="lineno"><a class="line" href="trace__parser_8h.html#a4253a898fb3f2ff1a047a1f6e4a1e3ab">   23</a></span><span class="keyword">enum</span> <a class="code hl_enumeration" href="trace__parser_8h.html#a4253a898fb3f2ff1a047a1f6e4a1e3ab">spdk_trace_parser_mode</a> {<span class="comment"></span></div>
+<div class="line"><a id="l00024" name="l00024"></a><span class="lineno">   24</span><span class="comment">        /** Regular file */</span></div>
+<div class="line"><a id="l00025" name="l00025"></a><span class="lineno"><a class="line" href="trace__parser_8h.html#a4253a898fb3f2ff1a047a1f6e4a1e3abad09ef51b1f3f5fcbcb004a95dd01a4be">   25</a></span>        <a class="code hl_enumvalue" href="trace__parser_8h.html#a4253a898fb3f2ff1a047a1f6e4a1e3abad09ef51b1f3f5fcbcb004a95dd01a4be">SPDK_TRACE_PARSER_MODE_FILE</a>,<span class="comment"></span></div>
+<div class="line"><a id="l00026" name="l00026"></a><span class="lineno">   26</span><span class="comment">        /** Shared memory */</span></div>
+<div class="line"><a id="l00027" name="l00027"></a><span class="lineno"><a class="line" href="trace__parser_8h.html#a4253a898fb3f2ff1a047a1f6e4a1e3aba2bbc1491612eafb6472caba04b3c0e2d">   27</a></span>        <a class="code hl_enumvalue" href="trace__parser_8h.html#a4253a898fb3f2ff1a047a1f6e4a1e3aba2bbc1491612eafb6472caba04b3c0e2d">SPDK_TRACE_PARSER_MODE_SHM</a>,</div>
+<div class="line"><a id="l00028" name="l00028"></a><span class="lineno">   28</span>};</div>
+</div>
+<div class="line"><a id="l00029" name="l00029"></a><span class="lineno">   29</span><span class="comment"></span> </div>
+<div class="line"><a id="l00030" name="l00030"></a><span class="lineno">   30</span><span class="comment">/** Describes trace file and options to use when parsing it */</span></div>
+<div class="foldopen" id="foldopen00031" data-start="{" data-end="};">
+<div class="line"><a id="l00031" name="l00031"></a><span class="lineno"><a class="line" href="structspdk__trace__parser__opts.html">   31</a></span><span class="keyword">struct </span><a class="code hl_struct" href="structspdk__trace__parser__opts.html">spdk_trace_parser_opts</a> {<span class="comment"></span></div>
+<div class="line"><a id="l00032" name="l00032"></a><span class="lineno">   32</span><span class="comment">        /** Either file name or shared memory name depending on mode */</span></div>
+<div class="line"><a id="l00033" name="l00033"></a><span class="lineno"><a class="line" href="structspdk__trace__parser__opts.html#a5da4eafe3f0b20fc1ff113ad5da35cb4">   33</a></span>        <span class="keyword">const</span> <span class="keywordtype">char</span>      *<a class="code hl_variable" href="structspdk__trace__parser__opts.html#a5da4eafe3f0b20fc1ff113ad5da35cb4">filename</a>;<span class="comment"></span></div>
+<div class="line"><a id="l00034" name="l00034"></a><span class="lineno">   34</span><span class="comment">        /** Trace file type, either regular file or shared memory */</span></div>
+<div class="line"><a id="l00035" name="l00035"></a><span class="lineno"><a class="line" href="structspdk__trace__parser__opts.html#a8f6336ccbdc83d05b62fda98e88b5f9b">   35</a></span>        <span class="keywordtype">int</span>             <a class="code hl_variable" href="structspdk__trace__parser__opts.html#a8f6336ccbdc83d05b62fda98e88b5f9b">mode</a>;<span class="comment"></span></div>
+<div class="line"><a id="l00036" name="l00036"></a><span class="lineno">   36</span><span class="comment">        /** Logical core number to parse the traces from (or SPDK_TRACE_MAX_LCORE) for all cores */</span></div>
+<div class="line"><a id="l00037" name="l00037"></a><span class="lineno"><a class="line" href="structspdk__trace__parser__opts.html#a48ab7e723632da9d892cf486b0402692">   37</a></span>        uint16_t        <a class="code hl_variable" href="structspdk__trace__parser__opts.html#a48ab7e723632da9d892cf486b0402692">lcore</a>;</div>
+<div class="line"><a id="l00038" name="l00038"></a><span class="lineno">   38</span>};</div>
+</div>
+<div class="line"><a id="l00039" name="l00039"></a><span class="lineno">   39</span><span class="comment"></span> </div>
+<div class="line"><a id="l00040" name="l00040"></a><span class="lineno">   40</span><span class="comment">/**</span></div>
+<div class="line"><a id="l00041" name="l00041"></a><span class="lineno">   41</span><span class="comment"> * Initialize the parser using a specified trace file.  This results in parsing the traces, merging</span></div>
+<div class="line"><a id="l00042" name="l00042"></a><span class="lineno">   42</span><span class="comment"> * entries from multiple cores together and sorting them by their tsc, so it can take a significant</span></div>
+<div class="line"><a id="l00043" name="l00043"></a><span class="lineno">   43</span><span class="comment"> * amount of time to complete.</span></div>
+<div class="line"><a id="l00044" name="l00044"></a><span class="lineno">   44</span><span class="comment"> *</span></div>
+<div class="line"><a id="l00045" name="l00045"></a><span class="lineno">   45</span><span class="comment"> * \param opts Describes the trace file to parse.</span></div>
+<div class="line"><a id="l00046" name="l00046"></a><span class="lineno">   46</span><span class="comment"> *</span></div>
+<div class="line"><a id="l00047" name="l00047"></a><span class="lineno">   47</span><span class="comment"> * \return Parser object or NULL in case of any failures.</span></div>
+<div class="line"><a id="l00048" name="l00048"></a><span class="lineno">   48</span><span class="comment"> */</span></div>
+<div class="line"><a id="l00049" name="l00049"></a><span class="lineno"><a class="line" href="trace__parser_8h.html#a9522b4cadbd78010a5894a580c6fe602">   49</a></span><span class="keyword">struct </span>spdk_trace_parser *<a class="code hl_function" href="trace__parser_8h.html#a9522b4cadbd78010a5894a580c6fe602">spdk_trace_parser_init</a>(<span class="keyword">const</span> <span class="keyword">struct</span> <a class="code hl_struct" href="structspdk__trace__parser__opts.html">spdk_trace_parser_opts</a> *opts);</div>
+<div class="line"><a id="l00050" name="l00050"></a><span class="lineno">   50</span><span class="comment"></span> </div>
+<div class="line"><a id="l00051" name="l00051"></a><span class="lineno">   51</span><span class="comment">/**</span></div>
+<div class="line"><a id="l00052" name="l00052"></a><span class="lineno">   52</span><span class="comment"> * Free any resources tied to a parser object.</span></div>
+<div class="line"><a id="l00053" name="l00053"></a><span class="lineno">   53</span><span class="comment"> *</span></div>
+<div class="line"><a id="l00054" name="l00054"></a><span class="lineno">   54</span><span class="comment"> * \param parser Parser to clean up.</span></div>
+<div class="line"><a id="l00055" name="l00055"></a><span class="lineno">   55</span><span class="comment"> */</span></div>
+<div class="line"><a id="l00056" name="l00056"></a><span class="lineno"><a class="line" href="trace__parser_8h.html#a4fa645b01c18c3c7b2545fb0bb834c10">   56</a></span><span class="keywordtype">void</span> <a class="code hl_function" href="trace__parser_8h.html#a4fa645b01c18c3c7b2545fb0bb834c10">spdk_trace_parser_cleanup</a>(<span class="keyword">struct</span> spdk_trace_parser *parser);</div>
+<div class="line"><a id="l00057" name="l00057"></a><span class="lineno">   57</span><span class="comment"></span> </div>
+<div class="line"><a id="l00058" name="l00058"></a><span class="lineno">   58</span><span class="comment">/**</span></div>
+<div class="line"><a id="l00059" name="l00059"></a><span class="lineno">   59</span><span class="comment"> * Return trace file describing the traces.</span></div>
+<div class="line"><a id="l00060" name="l00060"></a><span class="lineno">   60</span><span class="comment"> *</span></div>
+<div class="line"><a id="l00061" name="l00061"></a><span class="lineno">   61</span><span class="comment"> * \param parser Parser object to be used.</span></div>
+<div class="line"><a id="l00062" name="l00062"></a><span class="lineno">   62</span><span class="comment"> *</span></div>
+<div class="line"><a id="l00063" name="l00063"></a><span class="lineno">   63</span><span class="comment"> * \return Pointer to the trace file.</span></div>
+<div class="line"><a id="l00064" name="l00064"></a><span class="lineno">   64</span><span class="comment"> */</span></div>
+<div class="line"><a id="l00065" name="l00065"></a><span class="lineno"><a class="line" href="trace__parser_8h.html#a209cf80f5d881929121c136f1f9f2283">   65</a></span><span class="keyword">const</span> <span class="keyword">struct </span><a class="code hl_struct" href="structspdk__trace__file.html">spdk_trace_file</a> *<a class="code hl_function" href="trace__parser_8h.html#a209cf80f5d881929121c136f1f9f2283">spdk_trace_parser_get_file</a>(<span class="keyword">const</span> <span class="keyword">struct</span> spdk_trace_parser *parser);</div>
+<div class="line"><a id="l00066" name="l00066"></a><span class="lineno">   66</span><span class="comment"></span> </div>
+<div class="line"><a id="l00067" name="l00067"></a><span class="lineno">   67</span><span class="comment">/**</span></div>
+<div class="line"><a id="l00068" name="l00068"></a><span class="lineno">   68</span><span class="comment"> * Return the highest tsc out of first entries across all specified cores.  This value can be used</span></div>
+<div class="line"><a id="l00069" name="l00069"></a><span class="lineno">   69</span><span class="comment"> * to select entries from the subset of time we have the data from all reactors.</span></div>
+<div class="line"><a id="l00070" name="l00070"></a><span class="lineno">   70</span><span class="comment"> *</span></div>
+<div class="line"><a id="l00071" name="l00071"></a><span class="lineno">   71</span><span class="comment"> * \param parser Parser object to be used.</span></div>
+<div class="line"><a id="l00072" name="l00072"></a><span class="lineno">   72</span><span class="comment"> *</span></div>
+<div class="line"><a id="l00073" name="l00073"></a><span class="lineno">   73</span><span class="comment"> * \return Offset in tsc.</span></div>
+<div class="line"><a id="l00074" name="l00074"></a><span class="lineno">   74</span><span class="comment"> */</span></div>
+<div class="line"><a id="l00075" name="l00075"></a><span class="lineno"><a class="line" href="trace__parser_8h.html#aae729da36784f7e2da4107c77c11926b">   75</a></span>uint64_t <a class="code hl_function" href="trace__parser_8h.html#aae729da36784f7e2da4107c77c11926b">spdk_trace_parser_get_tsc_offset</a>(<span class="keyword">const</span> <span class="keyword">struct</span> spdk_trace_parser *parser);</div>
+<div class="line"><a id="l00076" name="l00076"></a><span class="lineno">   76</span><span class="comment"></span> </div>
+<div class="line"><a id="l00077" name="l00077"></a><span class="lineno">   77</span><span class="comment">/** Describes a parsed trace entry */</span></div>
+<div class="foldopen" id="foldopen00078" data-start="{" data-end="};">
+<div class="line"><a id="l00078" name="l00078"></a><span class="lineno"><a class="line" href="structspdk__trace__parser__entry.html">   78</a></span><span class="keyword">struct </span><a class="code hl_struct" href="structspdk__trace__parser__entry.html">spdk_trace_parser_entry</a> {<span class="comment"></span></div>
+<div class="line"><a id="l00079" name="l00079"></a><span class="lineno">   79</span><span class="comment">        /** Pointer to trace entry */</span></div>
+<div class="line"><a id="l00080" name="l00080"></a><span class="lineno"><a class="line" href="structspdk__trace__parser__entry.html#a53973ef677f05f6d067c046dc790da78">   80</a></span>        <span class="keyword">struct </span><a class="code hl_struct" href="structspdk__trace__entry.html">spdk_trace_entry</a> *<a class="code hl_variable" href="structspdk__trace__parser__entry.html#a53973ef677f05f6d067c046dc790da78">entry</a>;<span class="comment"></span></div>
+<div class="line"><a id="l00081" name="l00081"></a><span class="lineno">   81</span><span class="comment">        /**</span></div>
+<div class="line"><a id="l00082" name="l00082"></a><span class="lineno">   82</span><span class="comment">         * Index of an object this entry is a part of.  It&#39;s only available for tracepoints with</span></div>
+<div class="line"><a id="l00083" name="l00083"></a><span class="lineno">   83</span><span class="comment">         * object_type != OBJECT_NONE.  If unavailable, it&#39;ll be assigned to UINT64_MAX.</span></div>
+<div class="line"><a id="l00084" name="l00084"></a><span class="lineno">   84</span><span class="comment">         */</span></div>
+<div class="line"><a id="l00085" name="l00085"></a><span class="lineno"><a class="line" href="structspdk__trace__parser__entry.html#aebdc6a2a084c4771e6fb246c2d729c1f">   85</a></span>        uint64_t                <a class="code hl_variable" href="structspdk__trace__parser__entry.html#aebdc6a2a084c4771e6fb246c2d729c1f">object_index</a>;<span class="comment"></span></div>
+<div class="line"><a id="l00086" name="l00086"></a><span class="lineno">   86</span><span class="comment">        /** The tsc of when the object tied to this entry was created */</span></div>
+<div class="line"><a id="l00087" name="l00087"></a><span class="lineno"><a class="line" href="structspdk__trace__parser__entry.html#a035f3f7a80d290f7303667880d125f98">   87</a></span>        uint64_t                <a class="code hl_variable" href="structspdk__trace__parser__entry.html#a035f3f7a80d290f7303667880d125f98">object_start</a>;<span class="comment"></span></div>
+<div class="line"><a id="l00088" name="l00088"></a><span class="lineno">   88</span><span class="comment">        /** Logical core number */</span></div>
+<div class="line"><a id="l00089" name="l00089"></a><span class="lineno"><a class="line" href="structspdk__trace__parser__entry.html#abb11f8535fab9ee4f9fc4c2adcee5145">   89</a></span>        uint16_t                <a class="code hl_variable" href="structspdk__trace__parser__entry.html#abb11f8535fab9ee4f9fc4c2adcee5145">lcore</a>;<span class="comment"></span></div>
+<div class="line"><a id="l00090" name="l00090"></a><span class="lineno">   90</span><span class="comment">        /** Thread name associated with this lcore */</span></div>
+<div class="line"><a id="l00091" name="l00091"></a><span class="lineno"><a class="line" href="structspdk__trace__parser__entry.html#a5a27165e037a2015b9e930453f35d1d6">   91</a></span>        <span class="keyword">const</span> <span class="keywordtype">char</span>              *<a class="code hl_variable" href="structspdk__trace__parser__entry.html#a5a27165e037a2015b9e930453f35d1d6">tname</a>;<span class="comment"></span></div>
+<div class="line"><a id="l00092" name="l00092"></a><span class="lineno">   92</span><span class="comment">        /** Related object index */</span></div>
+<div class="line"><a id="l00093" name="l00093"></a><span class="lineno"><a class="line" href="structspdk__trace__parser__entry.html#a55b2e0aea7cca402a502ad4d043e7293">   93</a></span>        uint64_t                <a class="code hl_variable" href="structspdk__trace__parser__entry.html#a55b2e0aea7cca402a502ad4d043e7293">related_index</a>;<span class="comment"></span></div>
+<div class="line"><a id="l00094" name="l00094"></a><span class="lineno">   94</span><span class="comment">        /** Related object type */</span></div>
+<div class="line"><a id="l00095" name="l00095"></a><span class="lineno"><a class="line" href="structspdk__trace__parser__entry.html#a7e7ee46ec4c44c52caebb5ede88395c8">   95</a></span>        uint8_t                 <a class="code hl_variable" href="structspdk__trace__parser__entry.html#a7e7ee46ec4c44c52caebb5ede88395c8">related_type</a>;<span class="comment"></span></div>
+<div class="line"><a id="l00096" name="l00096"></a><span class="lineno">   96</span><span class="comment">        /** Tracepoint arguments */</span></div>
+<div class="line"><a id="l00097" name="l00097"></a><span class="lineno">   97</span>        <span class="keyword">struct </span>{</div>
+<div class="line"><a id="l00098" name="l00098"></a><span class="lineno">   98</span>                <span class="keywordtype">bool</span>            is_related;</div>
+<div class="line"><a id="l00099" name="l00099"></a><span class="lineno">   99</span>                <span class="keyword">union </span>{</div>
+<div class="line"><a id="l00100" name="l00100"></a><span class="lineno">  100</span>                        uint64_t        integer;</div>
+<div class="line"><a id="l00101" name="l00101"></a><span class="lineno">  101</span>                        <span class="keywordtype">void</span>            *pointer;</div>
+<div class="line"><a id="l00102" name="l00102"></a><span class="lineno">  102</span>                        <span class="keywordtype">char</span>            <span class="keywordtype">string</span>[UINT8_MAX + 1];</div>
+<div class="line"><a id="l00103" name="l00103"></a><span class="lineno">  103</span>                } u;</div>
+<div class="line"><a id="l00104" name="l00104"></a><span class="lineno"><a class="line" href="structspdk__trace__parser__entry.html#a829a75291b70555ed46caf5259c2829f">  104</a></span>        } <a class="code hl_variable" href="structspdk__trace__parser__entry.html#a829a75291b70555ed46caf5259c2829f">args</a>[SPDK_TRACE_MAX_ARGS_COUNT];</div>
+<div class="line"><a id="l00105" name="l00105"></a><span class="lineno">  105</span>};</div>
+</div>
+<div class="line"><a id="l00106" name="l00106"></a><span class="lineno">  106</span><span class="comment"></span> </div>
+<div class="line"><a id="l00107" name="l00107"></a><span class="lineno">  107</span><span class="comment">/**</span></div>
+<div class="line"><a id="l00108" name="l00108"></a><span class="lineno">  108</span><span class="comment"> * Return next parsed trace entry.  Once no more traces are available, this will return false and</span></div>
+<div class="line"><a id="l00109" name="l00109"></a><span class="lineno">  109</span><span class="comment"> * entry won&#39;t be touched.</span></div>
+<div class="line"><a id="l00110" name="l00110"></a><span class="lineno">  110</span><span class="comment"> *</span></div>
+<div class="line"><a id="l00111" name="l00111"></a><span class="lineno">  111</span><span class="comment"> * \param parser Parser object to be used.</span></div>
+<div class="line"><a id="l00112" name="l00112"></a><span class="lineno">  112</span><span class="comment"> * \param entry Tracepoint entry.</span></div>
+<div class="line"><a id="l00113" name="l00113"></a><span class="lineno">  113</span><span class="comment"> *</span></div>
+<div class="line"><a id="l00114" name="l00114"></a><span class="lineno">  114</span><span class="comment"> * \return True if a trace entry was available, false otherwise.</span></div>
+<div class="line"><a id="l00115" name="l00115"></a><span class="lineno">  115</span><span class="comment"> */</span></div>
+<div class="line"><a id="l00116" name="l00116"></a><span class="lineno"><a class="line" href="trace__parser_8h.html#a102d5c564cad8f4932f96fe073d94622">  116</a></span><span class="keywordtype">bool</span> <a class="code hl_function" href="trace__parser_8h.html#a102d5c564cad8f4932f96fe073d94622">spdk_trace_parser_next_entry</a>(<span class="keyword">struct</span> spdk_trace_parser *parser,</div>
+<div class="line"><a id="l00117" name="l00117"></a><span class="lineno">  117</span>                                  <span class="keyword">struct</span> <a class="code hl_struct" href="structspdk__trace__parser__entry.html">spdk_trace_parser_entry</a> *entry);</div>
+<div class="line"><a id="l00118" name="l00118"></a><span class="lineno">  118</span><span class="comment"></span> </div>
+<div class="line"><a id="l00119" name="l00119"></a><span class="lineno">  119</span><span class="comment">/**</span></div>
+<div class="line"><a id="l00120" name="l00120"></a><span class="lineno">  120</span><span class="comment"> * Return the number of entries recorded on a given core.</span></div>
+<div class="line"><a id="l00121" name="l00121"></a><span class="lineno">  121</span><span class="comment"> *</span></div>
+<div class="line"><a id="l00122" name="l00122"></a><span class="lineno">  122</span><span class="comment"> * \param parser Parser object to be used.</span></div>
+<div class="line"><a id="l00123" name="l00123"></a><span class="lineno">  123</span><span class="comment"> * \param lcore Logical core number.</span></div>
+<div class="line"><a id="l00124" name="l00124"></a><span class="lineno">  124</span><span class="comment"> *</span></div>
+<div class="line"><a id="l00125" name="l00125"></a><span class="lineno">  125</span><span class="comment"> * \return Number of entries.</span></div>
+<div class="line"><a id="l00126" name="l00126"></a><span class="lineno">  126</span><span class="comment"> */</span></div>
+<div class="line"><a id="l00127" name="l00127"></a><span class="lineno"><a class="line" href="trace__parser_8h.html#a74ebe6fa3d5870d54b4fa91f9b56ad45">  127</a></span>uint64_t <a class="code hl_function" href="trace__parser_8h.html#a74ebe6fa3d5870d54b4fa91f9b56ad45">spdk_trace_parser_get_entry_count</a>(<span class="keyword">const</span> <span class="keyword">struct</span> spdk_trace_parser *parser, uint16_t lcore);</div>
+<div class="line"><a id="l00128" name="l00128"></a><span class="lineno">  128</span> </div>
+<div class="line"><a id="l00129" name="l00129"></a><span class="lineno">  129</span><span class="preprocessor">#ifdef __cplusplus</span></div>
+<div class="line"><a id="l00130" name="l00130"></a><span class="lineno">  130</span>}</div>
+<div class="line"><a id="l00131" name="l00131"></a><span class="lineno">  131</span><span class="preprocessor">#endif</span></div>
+<div class="line"><a id="l00132" name="l00132"></a><span class="lineno">  132</span> </div>
+<div class="line"><a id="l00133" name="l00133"></a><span class="lineno">  133</span><span class="preprocessor">#endif </span><span class="comment">/* SPDK_TRACE_PARSER_H */</span><span class="preprocessor"></span></div>
+<div class="ttc" id="astdinc_8h_html"><div class="ttname"><a href="stdinc_8h.html">stdinc.h</a></div><div class="ttdoc">Standard C headers.</div></div>
+<div class="ttc" id="astructspdk__trace__entry_html"><div class="ttname"><a href="structspdk__trace__entry.html">spdk_trace_entry</a></div><div class="ttdef"><b>Definition</b> <a href="trace_8h_source.html#l00024">trace.h:24</a></div></div>
+<div class="ttc" id="astructspdk__trace__file_html"><div class="ttname"><a href="structspdk__trace__file.html">spdk_trace_file</a></div><div class="ttdef"><b>Definition</b> <a href="trace_8h_source.html#l00185">trace.h:185</a></div></div>
+<div class="ttc" id="astructspdk__trace__parser__entry_html"><div class="ttname"><a href="structspdk__trace__parser__entry.html">spdk_trace_parser_entry</a></div><div class="ttdoc">Describes a parsed trace entry.</div><div class="ttdef"><b>Definition</b> <a href="#l00078">trace_parser.h:78</a></div></div>
+<div class="ttc" id="astructspdk__trace__parser__entry_html_a035f3f7a80d290f7303667880d125f98"><div class="ttname"><a href="structspdk__trace__parser__entry.html#a035f3f7a80d290f7303667880d125f98">spdk_trace_parser_entry::object_start</a></div><div class="ttdeci">uint64_t object_start</div><div class="ttdoc">The tsc of when the object tied to this entry was created.</div><div class="ttdef"><b>Definition</b> <a href="#l00087">trace_parser.h:87</a></div></div>
+<div class="ttc" id="astructspdk__trace__parser__entry_html_a53973ef677f05f6d067c046dc790da78"><div class="ttname"><a href="structspdk__trace__parser__entry.html#a53973ef677f05f6d067c046dc790da78">spdk_trace_parser_entry::entry</a></div><div class="ttdeci">struct spdk_trace_entry * entry</div><div class="ttdoc">Pointer to trace entry.</div><div class="ttdef"><b>Definition</b> <a href="#l00080">trace_parser.h:80</a></div></div>
+<div class="ttc" id="astructspdk__trace__parser__entry_html_a55b2e0aea7cca402a502ad4d043e7293"><div class="ttname"><a href="structspdk__trace__parser__entry.html#a55b2e0aea7cca402a502ad4d043e7293">spdk_trace_parser_entry::related_index</a></div><div class="ttdeci">uint64_t related_index</div><div class="ttdoc">Related object index.</div><div class="ttdef"><b>Definition</b> <a href="#l00093">trace_parser.h:93</a></div></div>
+<div class="ttc" id="astructspdk__trace__parser__entry_html_a5a27165e037a2015b9e930453f35d1d6"><div class="ttname"><a href="structspdk__trace__parser__entry.html#a5a27165e037a2015b9e930453f35d1d6">spdk_trace_parser_entry::tname</a></div><div class="ttdeci">const char * tname</div><div class="ttdoc">Thread name associated with this lcore.</div><div class="ttdef"><b>Definition</b> <a href="#l00091">trace_parser.h:91</a></div></div>
+<div class="ttc" id="astructspdk__trace__parser__entry_html_a7e7ee46ec4c44c52caebb5ede88395c8"><div class="ttname"><a href="structspdk__trace__parser__entry.html#a7e7ee46ec4c44c52caebb5ede88395c8">spdk_trace_parser_entry::related_type</a></div><div class="ttdeci">uint8_t related_type</div><div class="ttdoc">Related object type.</div><div class="ttdef"><b>Definition</b> <a href="#l00095">trace_parser.h:95</a></div></div>
+<div class="ttc" id="astructspdk__trace__parser__entry_html_a829a75291b70555ed46caf5259c2829f"><div class="ttname"><a href="structspdk__trace__parser__entry.html#a829a75291b70555ed46caf5259c2829f">spdk_trace_parser_entry::args</a></div><div class="ttdeci">struct spdk_trace_parser_entry::@327204222041333256105277214066052020105020171122 args[SPDK_TRACE_MAX_ARGS_COUNT]</div><div class="ttdoc">Tracepoint arguments.</div></div>
+<div class="ttc" id="astructspdk__trace__parser__entry_html_abb11f8535fab9ee4f9fc4c2adcee5145"><div class="ttname"><a href="structspdk__trace__parser__entry.html#abb11f8535fab9ee4f9fc4c2adcee5145">spdk_trace_parser_entry::lcore</a></div><div class="ttdeci">uint16_t lcore</div><div class="ttdoc">Logical core number.</div><div class="ttdef"><b>Definition</b> <a href="#l00089">trace_parser.h:89</a></div></div>
+<div class="ttc" id="astructspdk__trace__parser__entry_html_aebdc6a2a084c4771e6fb246c2d729c1f"><div class="ttname"><a href="structspdk__trace__parser__entry.html#aebdc6a2a084c4771e6fb246c2d729c1f">spdk_trace_parser_entry::object_index</a></div><div class="ttdeci">uint64_t object_index</div><div class="ttdoc">Index of an object this entry is a part of.</div><div class="ttdef"><b>Definition</b> <a href="#l00085">trace_parser.h:85</a></div></div>
+<div class="ttc" id="astructspdk__trace__parser__opts_html"><div class="ttname"><a href="structspdk__trace__parser__opts.html">spdk_trace_parser_opts</a></div><div class="ttdoc">Describes trace file and options to use when parsing it.</div><div class="ttdef"><b>Definition</b> <a href="#l00031">trace_parser.h:31</a></div></div>
+<div class="ttc" id="astructspdk__trace__parser__opts_html_a48ab7e723632da9d892cf486b0402692"><div class="ttname"><a href="structspdk__trace__parser__opts.html#a48ab7e723632da9d892cf486b0402692">spdk_trace_parser_opts::lcore</a></div><div class="ttdeci">uint16_t lcore</div><div class="ttdoc">Logical core number to parse the traces from (or SPDK_TRACE_MAX_LCORE) for all cores.</div><div class="ttdef"><b>Definition</b> <a href="#l00037">trace_parser.h:37</a></div></div>
+<div class="ttc" id="astructspdk__trace__parser__opts_html_a5da4eafe3f0b20fc1ff113ad5da35cb4"><div class="ttname"><a href="structspdk__trace__parser__opts.html#a5da4eafe3f0b20fc1ff113ad5da35cb4">spdk_trace_parser_opts::filename</a></div><div class="ttdeci">const char * filename</div><div class="ttdoc">Either file name or shared memory name depending on mode.</div><div class="ttdef"><b>Definition</b> <a href="#l00033">trace_parser.h:33</a></div></div>
+<div class="ttc" id="astructspdk__trace__parser__opts_html_a8f6336ccbdc83d05b62fda98e88b5f9b"><div class="ttname"><a href="structspdk__trace__parser__opts.html#a8f6336ccbdc83d05b62fda98e88b5f9b">spdk_trace_parser_opts::mode</a></div><div class="ttdeci">int mode</div><div class="ttdoc">Trace file type, either regular file or shared memory.</div><div class="ttdef"><b>Definition</b> <a href="#l00035">trace_parser.h:35</a></div></div>
+<div class="ttc" id="atrace_8h_html"><div class="ttname"><a href="trace_8h.html">trace.h</a></div><div class="ttdoc">Tracepoint library.</div></div>
+<div class="ttc" id="atrace__parser_8h_html_a102d5c564cad8f4932f96fe073d94622"><div class="ttname"><a href="trace__parser_8h.html#a102d5c564cad8f4932f96fe073d94622">spdk_trace_parser_next_entry</a></div><div class="ttdeci">bool spdk_trace_parser_next_entry(struct spdk_trace_parser *parser, struct spdk_trace_parser_entry *entry)</div><div class="ttdoc">Return next parsed trace entry.</div></div>
+<div class="ttc" id="atrace__parser_8h_html_a209cf80f5d881929121c136f1f9f2283"><div class="ttname"><a href="trace__parser_8h.html#a209cf80f5d881929121c136f1f9f2283">spdk_trace_parser_get_file</a></div><div class="ttdeci">const struct spdk_trace_file * spdk_trace_parser_get_file(const struct spdk_trace_parser *parser)</div><div class="ttdoc">Return trace file describing the traces.</div></div>
+<div class="ttc" id="atrace__parser_8h_html_a4253a898fb3f2ff1a047a1f6e4a1e3ab"><div class="ttname"><a href="trace__parser_8h.html#a4253a898fb3f2ff1a047a1f6e4a1e3ab">spdk_trace_parser_mode</a></div><div class="ttdeci">spdk_trace_parser_mode</div><div class="ttdef"><b>Definition</b> <a href="#l00023">trace_parser.h:23</a></div></div>
+<div class="ttc" id="atrace__parser_8h_html_a4253a898fb3f2ff1a047a1f6e4a1e3aba2bbc1491612eafb6472caba04b3c0e2d"><div class="ttname"><a href="trace__parser_8h.html#a4253a898fb3f2ff1a047a1f6e4a1e3aba2bbc1491612eafb6472caba04b3c0e2d">SPDK_TRACE_PARSER_MODE_SHM</a></div><div class="ttdeci">@ SPDK_TRACE_PARSER_MODE_SHM</div><div class="ttdoc">Shared memory.</div><div class="ttdef"><b>Definition</b> <a href="#l00027">trace_parser.h:27</a></div></div>
+<div class="ttc" id="atrace__parser_8h_html_a4253a898fb3f2ff1a047a1f6e4a1e3abad09ef51b1f3f5fcbcb004a95dd01a4be"><div class="ttname"><a href="trace__parser_8h.html#a4253a898fb3f2ff1a047a1f6e4a1e3abad09ef51b1f3f5fcbcb004a95dd01a4be">SPDK_TRACE_PARSER_MODE_FILE</a></div><div class="ttdeci">@ SPDK_TRACE_PARSER_MODE_FILE</div><div class="ttdoc">Regular file.</div><div class="ttdef"><b>Definition</b> <a href="#l00025">trace_parser.h:25</a></div></div>
+<div class="ttc" id="atrace__parser_8h_html_a4fa645b01c18c3c7b2545fb0bb834c10"><div class="ttname"><a href="trace__parser_8h.html#a4fa645b01c18c3c7b2545fb0bb834c10">spdk_trace_parser_cleanup</a></div><div class="ttdeci">void spdk_trace_parser_cleanup(struct spdk_trace_parser *parser)</div><div class="ttdoc">Free any resources tied to a parser object.</div></div>
+<div class="ttc" id="atrace__parser_8h_html_a74ebe6fa3d5870d54b4fa91f9b56ad45"><div class="ttname"><a href="trace__parser_8h.html#a74ebe6fa3d5870d54b4fa91f9b56ad45">spdk_trace_parser_get_entry_count</a></div><div class="ttdeci">uint64_t spdk_trace_parser_get_entry_count(const struct spdk_trace_parser *parser, uint16_t lcore)</div><div class="ttdoc">Return the number of entries recorded on a given core.</div></div>
+<div class="ttc" id="atrace__parser_8h_html_a9522b4cadbd78010a5894a580c6fe602"><div class="ttname"><a href="trace__parser_8h.html#a9522b4cadbd78010a5894a580c6fe602">spdk_trace_parser_init</a></div><div class="ttdeci">struct spdk_trace_parser * spdk_trace_parser_init(const struct spdk_trace_parser_opts *opts)</div><div class="ttdoc">Initialize the parser using a specified trace file.</div></div>
+<div class="ttc" id="atrace__parser_8h_html_aae729da36784f7e2da4107c77c11926b"><div class="ttname"><a href="trace__parser_8h.html#aae729da36784f7e2da4107c77c11926b">spdk_trace_parser_get_tsc_offset</a></div><div class="ttdeci">uint64_t spdk_trace_parser_get_tsc_offset(const struct spdk_trace_parser *parser)</div><div class="ttdoc">Return the highest tsc out of first entries across all specified cores.</div></div>
+</div><!-- fragment --></div><!-- contents -->
+</div><!-- doc-content -->
+</div><!-- container -->
+<footer class="footer" id="nav-path">
+  <div class="footer-inner">
+    <div class="footer-copy">
+      <small>Copyright &copy; SPDK a Series of LF Projects, LLC. For web site terms of use, trademark policy, and other
+      project policies please see <a href="https://lfprojects.org">lfprojects.org</a>.</small>
+      <br><small>Built from spdk 91893349edff / site e5878500f</small>
+    </div>
+  </div>
+</footer>
+<script type="text/javascript" src="page_outline.js"></script>
+<script type="text/javascript" src="spdk_nav.js"></script>
+</body>
+</html>

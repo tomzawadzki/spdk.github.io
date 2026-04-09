@@ -1,0 +1,9 @@
+<map id="spdk_nvmf_fc_ls_disconnect_rqst" name="spdk_nvmf_fc_ls_disconnect_rqst">
+<area shape="rect" id="Node000001" title=" " alt="" coords="335,65,574,93"/>
+<area shape="rect" id="Node000002" href="$structspdk__nvmf__fc__ls__rqst__w0.html" title=" " alt="" coords="5,5,194,33"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="209,30,311,46,391,62,390,67,310,51,208,35"/>
+<area shape="rect" id="Node000003" href="$structspdk__nvmf__fc__lsdesc__assoc__id.html" title=" " alt="" coords="19,57,180,102"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="196,76,334,76,334,82,196,82"/>
+<area shape="rect" id="Node000004" href="$structspdk__nvmf__fc__lsdesc__disconn__cmd.html" title=" " alt="" coords="19,126,180,171"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="194,129,310,107,386,91,387,96,311,112,195,134"/>
+</map>

@@ -1,0 +1,590 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<meta name="generator" content="Doxygen 1.16.1">
+	<title>SPDK: spdk_nvme_ns_iocs_independent_data Struct Reference</title>
+	<script type="text/javascript" src="jquery.js"></script>
+	<script type="text/javascript" src="dynsections.js"></script>
+	<script type="text/javascript" src="clipboard.js"></script>
+	<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
+<script type="text/javascript" src="cookie.js"></script>
+	<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<script type="text/javascript">
+  $(function() { init_search(); });
+</script>
+	<link rel="icon" type="image/svg+xml" href="../assets/img/spdk.svg">
+	<link rel="icon" href="../assets/favicon.ico" sizes="32x32">
+	<link href="doxygen.css" rel="stylesheet" type="text/css">
+	<script>(function(){var k='doxygen_width',w,bw=6;if(window.chrome){w=localStorage.getItem(k);if(!w){w='350';localStorage.setItem(k,w)}}else{var m=document.cookie.match(new RegExp(k+'=(\\d+)'));w=m?m[1]:null;if(!w){w='350';document.cookie=k+'=350;SameSite=Lax;path=/'}}document.documentElement.style.setProperty('--sn-w',(parseInt(w)+bw)+'px')})()</script>
+	<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:400,700,900" type="text/css">
+	<link href="spdk.css" rel="stylesheet" type="text/css"/>
+	<link href="../assets/css/spdk.css" rel="stylesheet" type="text/css">
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<nav class="navbar">
+  <a class="navbar-brand" href="../" aria-label="SPDK">
+    <img src="../assets/img/spdk.svg" width="36" height="36" alt="Storage Performance Development Kit">
+  </a>
+  <div class="navbar-nav">
+    <a class="nav-link header-link" href="../doc/releases.html">download</a>
+    <a class="nav-link header-link" href="../doc/">documentation</a>
+    <a class="nav-link header-link" href="../doc/contributing.html">development</a>
+    <a class="nav-link header-link" href="../doc/ci_tools.html">CI status</a>
+    <a class="nav-link header-link" href="../community/">community</a>
+    <a class="nav-link header-link" href="../blog/">Blog</a>
+    <a class="nav-link header-link" href="https://github.com/orgs/spdk/projects/5">Roadmap</a>
+    <a class="nav-link header-link" href="../news/">News</a>
+  </div>
+  <div class="navbar-end">
+    <a class="nav-link header-link" href="https://github.com/spdk/spdk" aria-label="GitHub">
+      <svg xmlns="http://www.w3.org/2000/svg" class="navbar-nav-svg" aria-hidden="true"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
+    </a>
+    <a id="cn_lang_btn" href="../cn/doc/" class="nav-link header-link">中文</a>
+  </div>
+</nav>
+<script>
+(function() {
+    var p = location.pathname, best = null, bLen = 0;
+    document.querySelectorAll('.header-link[href]').forEach(function(a) {
+        var raw = a.getAttribute('href');
+        if (!raw) return;
+        try { var u = new URL(raw, location.href); } catch(e) { return; }
+        if (u.origin !== location.origin) return;
+        var h = u.pathname;
+        if (h === '/') return;
+        var ok = h.endsWith('.html') ? p === h : p.indexOf(h) === 0;
+        if (ok && h.length > bLen) { bLen = h.length; best = a; }
+    });
+    if (best) best.classList.add('active');
+})();
+</script>
+<div id="doxygen-searchbox">        <div id="MSearchBox" class="MSearchBoxInactive">
+        <span class="left">
+          <span id="MSearchSelect" class="search-icon" onmouseover="return searchBox.OnSearchSelectShow()" onmouseout="return searchBox.OnSearchSelectHide()"><span class="search-icon-dropdown"></span></span>
+          <input type="text" id="MSearchField" value="" placeholder="Search" accesskey="S"
+               onfocus="searchBox.OnSearchFieldFocus(true)" 
+               onblur="searchBox.OnSearchFieldFocus(false)" 
+               onkeyup="searchBox.OnSearchFieldChange(event)"/>
+          </span><span class="right">
+            <a id="MSearchClose" href="javascript:searchBox.CloseResultsWindow()"><div id="MSearchCloseImg" class="close-icon"></div></a>
+          </span>
+        </div>
+</div>
+<!-- Generated by Doxygen 1.16.1 -->
+<script type="text/javascript">
+var searchBox = new SearchBox("searchBox", "search/",'.html');
+</script>
+<script type="text/javascript">
+$(function() { codefold.init(); });
+</script>
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+$(function(){initNavTree('structspdk__nvme__ns__iocs__independent__data.html','',''); });
+</script>
+<div id="container">
+<div id="doc-content">
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">Loading...</div>
+<div class="SRStatus" id="Searching">Searching...</div>
+<div class="SRStatus" id="NoMatches">No Matches</div>
+</div>
+</div>
+</div>
+</div>
+
+<div class="header">
+  <div class="headertitle"><div class="title">spdk_nvme_ns_iocs_independent_data Struct Reference</div></div>
+</div><!--header-->
+<div class="contents">
+
+<p>Identify – I/O Command Set Independent Identify Namespace Data Structure (CNS 08h).  
+ <a href="#details">More...</a></p>
+
+<p><code>#include &lt;<a class="el" href="nvme__spec_8h_source.html">nvme_spec.h</a>&gt;</code></p>
+<div class="dynheader">
+Collaboration diagram for spdk_nvme_ns_iocs_independent_data:</div>
+<div class="dyncontent">
+<div class="center"><iframe scrolling="no" loading="lazy" frameborder="0" src="structspdk__nvme__ns__iocs__independent__data__coll__graph.svg" width="627" height="139"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+<center><span class="legend">[<a target="top" href="graph_legend.html">legend</a>]</span></center></div>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 id="header-pub-attribs" class="groupheader"><a id="pub-attribs" name="pub-attribs"></a>
+Data Fields</h2></td></tr>
+<tr class="memitem:"><td class="memItemLeft anon"><a id="a9c8ade96fa0ae30cbba3c8ac39398479" name="a9c8ade96fa0ae30cbba3c8ac39398479"></a>
+struct {&#160;</td><td class="memItemRight"></td></tr>
+<tr class="memitem:aa3a39dfb62b406409634466c2b7e11b4" id="r_aa3a39dfb62b406409634466c2b7e11b4"><td class="memItemLeft anon">&#160;&#160;&#160;uint8_t&#160;&#160;&#160;<a class="el" href="#a4fca59b1fcc9c8143a1fc660dff42905">reserved1</a>: 3&#160;</td><td class="memItemRight"></td></tr>
+<tr class="memitem:a92c95cc272cf927056ee2e8c01a5e4c5" id="r_a92c95cc272cf927056ee2e8c01a5e4c5"><td class="memItemLeft anon">&#160;&#160;&#160;uint8_t&#160;&#160;&#160;<a class="el" href="#a4c81adf592a6b78b61b16e2044b489e4">uidreuse</a>: 1&#160;</td><td class="memItemRight"></td></tr>
+<tr class="memdesc:a92c95cc272cf927056ee2e8c01a5e4c5"><td class="mdescLeft">&#160;</td><td class="mdescRight">UID Reuse.  <a href="#a4c81adf592a6b78b61b16e2044b489e4">More...</a><br /></td></tr>
+<tr class="memitem:a659832ef09a723b8dee951bac120fe3c" id="r_a659832ef09a723b8dee951bac120fe3c"><td class="memItemLeft anon">&#160;&#160;&#160;uint8_t&#160;&#160;&#160;<a class="el" href="#a76e89ff415bee9177a3900318a69a264">rmedia</a>: 1&#160;</td><td class="memItemRight"></td></tr>
+<tr class="memdesc:a659832ef09a723b8dee951bac120fe3c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Rotational Media.  <a href="#a76e89ff415bee9177a3900318a69a264">More...</a><br /></td></tr>
+<tr class="memitem:a23a744cbf9a8466acdd2a5035599297c" id="r_a23a744cbf9a8466acdd2a5035599297c"><td class="memItemLeft anon">&#160;&#160;&#160;uint8_t&#160;&#160;&#160;<a class="el" href="#a35075c797a126987d7fce8e83b1692f7">vwcnp</a>: 1&#160;</td><td class="memItemRight"></td></tr>
+<tr class="memdesc:a23a744cbf9a8466acdd2a5035599297c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Volatile Write Cache Not Present.  <a href="#a35075c797a126987d7fce8e83b1692f7">More...</a><br /></td></tr>
+<tr class="memitem:add37460e40d50e60ec8b20300a6c7e7e" id="r_add37460e40d50e60ec8b20300a6c7e7e"><td class="memItemLeft anon">&#160;&#160;&#160;uint8_t&#160;&#160;&#160;<a class="el" href="#a638ac72b1810bb0190001815d6f88466">reserved2</a>: 2&#160;</td><td class="memItemRight"></td></tr>
+<tr class="memitem:a9c8ade96fa0ae30cbba3c8ac39398479" id="r_a9c8ade96fa0ae30cbba3c8ac39398479"><td class="memItemLeft anonEnd">}&#160;</td><td class="memItemRight"><b>nsfeat</b></td></tr>
+<tr class="memdesc:a9c8ade96fa0ae30cbba3c8ac39398479"><td class="mdescLeft">&#160;</td><td class="mdescRight">Common Namespace Features. <br /></td></tr>
+<tr class="memitem:a74bd01728fc5ba8ebf17347271ca2945" id="r_a74bd01728fc5ba8ebf17347271ca2945"><td class="memItemLeft">struct <a class="el" href="structspdk__nvme__nmic.html">spdk_nvme_nmic</a>&#160;</td><td class="memItemRight"><a class="el" href="#a74bd01728fc5ba8ebf17347271ca2945">nmic</a></td></tr>
+<tr class="memdesc:a74bd01728fc5ba8ebf17347271ca2945"><td class="mdescLeft">&#160;</td><td class="mdescRight">Namespace Multi-path I/O and Namespace Sharing Capabilities.  <br /></td></tr>
+<tr class="memitem:ace8a0c6c35a887689bf5e4aefb953e41" id="r_ace8a0c6c35a887689bf5e4aefb953e41"><td class="memItemLeft">struct <a class="el" href="structspdk__nvme__rescap.html">spdk_nvme_rescap</a>&#160;</td><td class="memItemRight"><a class="el" href="#ace8a0c6c35a887689bf5e4aefb953e41">rescap</a></td></tr>
+<tr class="memdesc:ace8a0c6c35a887689bf5e4aefb953e41"><td class="mdescLeft">&#160;</td><td class="mdescRight">Reservation Capabilities.  <br /></td></tr>
+<tr class="memitem:a2db28d189d809913ff5ff073e983f58c" id="r_a2db28d189d809913ff5ff073e983f58c"><td class="memItemLeft">struct <a class="el" href="structspdk__nvme__fpi.html">spdk_nvme_fpi</a>&#160;</td><td class="memItemRight"><a class="el" href="#a2db28d189d809913ff5ff073e983f58c">fpi</a></td></tr>
+<tr class="memdesc:a2db28d189d809913ff5ff073e983f58c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Format Progress Indicator.  <br /></td></tr>
+<tr class="memitem:a935f9b423f890eb52fbcbde1710c54e2" id="r_a935f9b423f890eb52fbcbde1710c54e2"><td class="memItemLeft">uint32_t&#160;</td><td class="memItemRight"><a class="el" href="#a935f9b423f890eb52fbcbde1710c54e2">anagrpid</a></td></tr>
+<tr class="memdesc:a935f9b423f890eb52fbcbde1710c54e2"><td class="mdescLeft">&#160;</td><td class="mdescRight">ANA Group Identifier.  <br /></td></tr>
+<tr class="memitem:a8b2023cba5484b06387655620e5dce78" id="r_a8b2023cba5484b06387655620e5dce78"><td class="memItemLeft">struct <a class="el" href="structspdk__nvme__nsattr.html">spdk_nvme_nsattr</a>&#160;</td><td class="memItemRight"><a class="el" href="#a8b2023cba5484b06387655620e5dce78">nsattr</a></td></tr>
+<tr class="memdesc:a8b2023cba5484b06387655620e5dce78"><td class="mdescLeft">&#160;</td><td class="mdescRight">Namespace Attributes.  <br /></td></tr>
+<tr class="memitem:a2a83af655c069d99d339b0237b0b0bd9" id="r_a2a83af655c069d99d339b0237b0b0bd9"><td class="memItemLeft">uint16_t&#160;</td><td class="memItemRight"><a class="el" href="#a2a83af655c069d99d339b0237b0b0bd9">nvmsetid</a></td></tr>
+<tr class="memdesc:a2a83af655c069d99d339b0237b0b0bd9"><td class="mdescLeft">&#160;</td><td class="mdescRight">NVM Set Identifier.  <br /></td></tr>
+<tr class="memitem:a080b9133143e1b381b97ad6098f50b78" id="r_a080b9133143e1b381b97ad6098f50b78"><td class="memItemLeft">uint16_t&#160;</td><td class="memItemRight"><a class="el" href="#a080b9133143e1b381b97ad6098f50b78">endgid</a></td></tr>
+<tr class="memdesc:a080b9133143e1b381b97ad6098f50b78"><td class="mdescLeft">&#160;</td><td class="mdescRight">Endurance Group Identifier.  <br /></td></tr>
+<tr class="memitem:"><td class="memItemLeft anon"><a id="a1f44a24e512736d4a537c31d39e040e8" name="a1f44a24e512736d4a537c31d39e040e8"></a>
+struct {&#160;</td><td class="memItemRight"></td></tr>
+<tr class="memitem:aa3f2965a1f371e250bba9b462c6d2dcb" id="r_aa3f2965a1f371e250bba9b462c6d2dcb"><td class="memItemLeft anon">&#160;&#160;&#160;uint8_t&#160;&#160;&#160;<a class="el" href="#a492dbc3da76817e133c7e171e87e8c86">nrdy</a>: 1&#160;</td><td class="memItemRight"></td></tr>
+<tr class="memdesc:aa3f2965a1f371e250bba9b462c6d2dcb"><td class="mdescLeft">&#160;</td><td class="mdescRight">Namespace Ready.  <a href="#a492dbc3da76817e133c7e171e87e8c86">More...</a><br /></td></tr>
+<tr class="memitem:a431062326c5c1bd766eb2f04ed12c464" id="r_a431062326c5c1bd766eb2f04ed12c464"><td class="memItemLeft anon">&#160;&#160;&#160;uint8_t&#160;&#160;&#160;<a class="el" href="#a1891a89a536b61249bc89eb96f64250c">ioi</a>: 2&#160;</td><td class="memItemRight"></td></tr>
+<tr class="memdesc:a431062326c5c1bd766eb2f04ed12c464"><td class="mdescLeft">&#160;</td><td class="mdescRight">I/O Impacted.  <a href="#a1891a89a536b61249bc89eb96f64250c">More...</a><br /></td></tr>
+<tr class="memitem:a6043a736479022df4c987f28a7dbb971" id="r_a6043a736479022df4c987f28a7dbb971"><td class="memItemLeft anon">&#160;&#160;&#160;uint8_t&#160;&#160;&#160;<a class="el" href="#af976f579a9716d87d2e10b999bf6d140">reserved</a>: 5&#160;</td><td class="memItemRight"></td></tr>
+<tr class="memitem:a1f44a24e512736d4a537c31d39e040e8" id="r_a1f44a24e512736d4a537c31d39e040e8"><td class="memItemLeft anonEnd">}&#160;</td><td class="memItemRight"><b>nstat</b></td></tr>
+<tr class="memdesc:a1f44a24e512736d4a537c31d39e040e8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Namespace Status. <br /></td></tr>
+<tr class="memitem:"><td class="memItemLeft anon"><a id="a0e9f53fd836c0681af798f9f6d3b6ce2" name="a0e9f53fd836c0681af798f9f6d3b6ce2"></a>
+struct {&#160;</td><td class="memItemRight"></td></tr>
+<tr class="memitem:a0607ed5420b400f3b4e2d6e83dba9531" id="r_a0607ed5420b400f3b4e2d6e83dba9531"><td class="memItemLeft anon">&#160;&#160;&#160;uint8_t&#160;&#160;&#160;<a class="el" href="#a9f95563c036b419223f3c222096f69db">kpioens</a>: 1&#160;</td><td class="memItemRight"></td></tr>
+<tr class="memdesc:a0607ed5420b400f3b4e2d6e83dba9531"><td class="mdescLeft">&#160;</td><td class="mdescRight">Key Per I/O Enabled in Namespace.  <a href="#a9f95563c036b419223f3c222096f69db">More...</a><br /></td></tr>
+<tr class="memitem:a6f50e97450ca3c7ff65f14f9e09ea841" id="r_a6f50e97450ca3c7ff65f14f9e09ea841"><td class="memItemLeft anon">&#160;&#160;&#160;uint8_t&#160;&#160;&#160;<a class="el" href="#a670a944a4aad489ce977bb5924887100">kpiosns</a>: 1&#160;</td><td class="memItemRight"></td></tr>
+<tr class="memdesc:a6f50e97450ca3c7ff65f14f9e09ea841"><td class="mdescLeft">&#160;</td><td class="mdescRight">Key Per I/O Supported in Namespace.  <a href="#a670a944a4aad489ce977bb5924887100">More...</a><br /></td></tr>
+<tr class="memitem:a1d659c0971af3446d8f10835b40b714e" id="r_a1d659c0971af3446d8f10835b40b714e"><td class="memItemLeft anon">&#160;&#160;&#160;uint8_t&#160;&#160;&#160;<a class="el" href="#af976f579a9716d87d2e10b999bf6d140">reserved</a>: 6&#160;</td><td class="memItemRight"></td></tr>
+<tr class="memitem:a0e9f53fd836c0681af798f9f6d3b6ce2" id="r_a0e9f53fd836c0681af798f9f6d3b6ce2"><td class="memItemLeft anonEnd">}&#160;</td><td class="memItemRight"><b>kpios</b></td></tr>
+<tr class="memdesc:a0e9f53fd836c0681af798f9f6d3b6ce2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Key Per I/O Status. <br /></td></tr>
+<tr class="memitem:a1dce6fa72ed1b26b7dc7ec8cfe05d6c0" id="r_a1dce6fa72ed1b26b7dc7ec8cfe05d6c0"><td class="memItemLeft">uint16_t&#160;</td><td class="memItemRight"><a class="el" href="#a1dce6fa72ed1b26b7dc7ec8cfe05d6c0">maxkt</a></td></tr>
+<tr class="memdesc:a1dce6fa72ed1b26b7dc7ec8cfe05d6c0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Maximum Key Tag.  <br /></td></tr>
+<tr class="memitem:a11b33c7a7c3288ed681087827fc700c6" id="r_a11b33c7a7c3288ed681087827fc700c6"><td class="memItemLeft">uint16_t&#160;</td><td class="memItemRight"><a class="el" href="#a11b33c7a7c3288ed681087827fc700c6">reserved2</a></td></tr>
+<tr class="memitem:a925f03d3f87148866ae2ab4b4450fbdf" id="r_a925f03d3f87148866ae2ab4b4450fbdf"><td class="memItemLeft">uint32_t&#160;</td><td class="memItemRight"><a class="el" href="#a925f03d3f87148866ae2ab4b4450fbdf">rgrpid</a></td></tr>
+<tr class="memdesc:a925f03d3f87148866ae2ab4b4450fbdf"><td class="mdescLeft">&#160;</td><td class="mdescRight">Reachability Group Identifier.  <br /></td></tr>
+<tr class="memitem:a668aef25321b8c0301953eda6b35112b" id="r_a668aef25321b8c0301953eda6b35112b"><td class="memItemLeft">uint8_t&#160;</td><td class="memItemRight"><a class="el" href="#a668aef25321b8c0301953eda6b35112b">reserved3</a> [4072]</td></tr>
+</table>
+<a name="details" id="details"></a><h2 id="header-details" class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>Identify – I/O Command Set Independent Identify Namespace Data Structure (CNS 08h). </p>
+
+<p class="definition">Definition at line <a class="el" href="nvme__spec_8h_source.html#l03377">3377</a> of file <a class="el" href="nvme__spec_8h_source.html">nvme_spec.h</a>.</p>
+</div><a name="doc-variable-members" id="doc-variable-members"></a><h2 id="header-doc-variable-members" class="groupheader">Field Documentation</h2>
+<a id="a935f9b423f890eb52fbcbde1710c54e2" name="a935f9b423f890eb52fbcbde1710c54e2"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a935f9b423f890eb52fbcbde1710c54e2">&#9670;&#160;</a></span>anagrpid</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">uint32_t spdk_nvme_ns_iocs_independent_data::anagrpid</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>ANA Group Identifier. </p>
+
+<p class="definition">Definition at line <a class="el" href="nvme__spec_8h_source.html#l03400">3400</a> of file <a class="el" href="nvme__spec_8h_source.html">nvme_spec.h</a>.</p>
+
+</div>
+</div>
+<a id="a080b9133143e1b381b97ad6098f50b78" name="a080b9133143e1b381b97ad6098f50b78"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a080b9133143e1b381b97ad6098f50b78">&#9670;&#160;</a></span>endgid</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">uint16_t spdk_nvme_ns_iocs_independent_data::endgid</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Endurance Group Identifier. </p>
+
+<p class="definition">Definition at line <a class="el" href="nvme__spec_8h_source.html#l03411">3411</a> of file <a class="el" href="nvme__spec_8h_source.html">nvme_spec.h</a>.</p>
+
+</div>
+</div>
+<a id="a2db28d189d809913ff5ff073e983f58c" name="a2db28d189d809913ff5ff073e983f58c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2db28d189d809913ff5ff073e983f58c">&#9670;&#160;</a></span>fpi</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">struct <a class="el" href="structspdk__nvme__fpi.html">spdk_nvme_fpi</a> spdk_nvme_ns_iocs_independent_data::fpi</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Format Progress Indicator. </p>
+
+<p class="definition">Definition at line <a class="el" href="nvme__spec_8h_source.html#l03397">3397</a> of file <a class="el" href="nvme__spec_8h_source.html">nvme_spec.h</a>.</p>
+
+</div>
+</div>
+<a id="a1891a89a536b61249bc89eb96f64250c" name="a1891a89a536b61249bc89eb96f64250c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1891a89a536b61249bc89eb96f64250c">&#9670;&#160;</a></span>ioi</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">uint8_t spdk_nvme_ns_iocs_independent_data::ioi</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>I/O Impacted. </p>
+
+<p class="definition">Definition at line <a class="el" href="nvme__spec_8h_source.html#l03418">3418</a> of file <a class="el" href="nvme__spec_8h_source.html">nvme_spec.h</a>.</p>
+
+</div>
+</div>
+<a id="a9f95563c036b419223f3c222096f69db" name="a9f95563c036b419223f3c222096f69db"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9f95563c036b419223f3c222096f69db">&#9670;&#160;</a></span>kpioens</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">uint8_t spdk_nvme_ns_iocs_independent_data::kpioens</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Key Per I/O Enabled in Namespace. </p>
+
+<p class="definition">Definition at line <a class="el" href="nvme__spec_8h_source.html#l03425">3425</a> of file <a class="el" href="nvme__spec_8h_source.html">nvme_spec.h</a>.</p>
+
+</div>
+</div>
+<a id="a670a944a4aad489ce977bb5924887100" name="a670a944a4aad489ce977bb5924887100"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a670a944a4aad489ce977bb5924887100">&#9670;&#160;</a></span>kpiosns</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">uint8_t spdk_nvme_ns_iocs_independent_data::kpiosns</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Key Per I/O Supported in Namespace. </p>
+
+<p class="definition">Definition at line <a class="el" href="nvme__spec_8h_source.html#l03427">3427</a> of file <a class="el" href="nvme__spec_8h_source.html">nvme_spec.h</a>.</p>
+
+</div>
+</div>
+<a id="a1dce6fa72ed1b26b7dc7ec8cfe05d6c0" name="a1dce6fa72ed1b26b7dc7ec8cfe05d6c0"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1dce6fa72ed1b26b7dc7ec8cfe05d6c0">&#9670;&#160;</a></span>maxkt</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">uint16_t spdk_nvme_ns_iocs_independent_data::maxkt</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Maximum Key Tag. </p>
+
+<p class="definition">Definition at line <a class="el" href="nvme__spec_8h_source.html#l03432">3432</a> of file <a class="el" href="nvme__spec_8h_source.html">nvme_spec.h</a>.</p>
+
+</div>
+</div>
+<a id="a74bd01728fc5ba8ebf17347271ca2945" name="a74bd01728fc5ba8ebf17347271ca2945"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a74bd01728fc5ba8ebf17347271ca2945">&#9670;&#160;</a></span>nmic</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">struct <a class="el" href="structspdk__nvme__nmic.html">spdk_nvme_nmic</a> spdk_nvme_ns_iocs_independent_data::nmic</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Namespace Multi-path I/O and Namespace Sharing Capabilities. </p>
+
+<p class="definition">Definition at line <a class="el" href="nvme__spec_8h_source.html#l03391">3391</a> of file <a class="el" href="nvme__spec_8h_source.html">nvme_spec.h</a>.</p>
+
+</div>
+</div>
+<a id="a492dbc3da76817e133c7e171e87e8c86" name="a492dbc3da76817e133c7e171e87e8c86"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a492dbc3da76817e133c7e171e87e8c86">&#9670;&#160;</a></span>nrdy</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">uint8_t spdk_nvme_ns_iocs_independent_data::nrdy</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Namespace Ready. </p>
+
+<p class="definition">Definition at line <a class="el" href="nvme__spec_8h_source.html#l03416">3416</a> of file <a class="el" href="nvme__spec_8h_source.html">nvme_spec.h</a>.</p>
+
+</div>
+</div>
+<a id="a8b2023cba5484b06387655620e5dce78" name="a8b2023cba5484b06387655620e5dce78"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8b2023cba5484b06387655620e5dce78">&#9670;&#160;</a></span>nsattr</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">struct <a class="el" href="structspdk__nvme__nsattr.html">spdk_nvme_nsattr</a> spdk_nvme_ns_iocs_independent_data::nsattr</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Namespace Attributes. </p>
+
+<p class="definition">Definition at line <a class="el" href="nvme__spec_8h_source.html#l03403">3403</a> of file <a class="el" href="nvme__spec_8h_source.html">nvme_spec.h</a>.</p>
+
+</div>
+</div>
+<a id="a2a83af655c069d99d339b0237b0b0bd9" name="a2a83af655c069d99d339b0237b0b0bd9"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2a83af655c069d99d339b0237b0b0bd9">&#9670;&#160;</a></span>nvmsetid</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">uint16_t spdk_nvme_ns_iocs_independent_data::nvmsetid</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>NVM Set Identifier. </p>
+
+<p class="definition">Definition at line <a class="el" href="nvme__spec_8h_source.html#l03408">3408</a> of file <a class="el" href="nvme__spec_8h_source.html">nvme_spec.h</a>.</p>
+
+</div>
+</div>
+<a id="ace8a0c6c35a887689bf5e4aefb953e41" name="ace8a0c6c35a887689bf5e4aefb953e41"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ace8a0c6c35a887689bf5e4aefb953e41">&#9670;&#160;</a></span>rescap</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">struct <a class="el" href="structspdk__nvme__rescap.html">spdk_nvme_rescap</a> spdk_nvme_ns_iocs_independent_data::rescap</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Reservation Capabilities. </p>
+
+<p class="definition">Definition at line <a class="el" href="nvme__spec_8h_source.html#l03394">3394</a> of file <a class="el" href="nvme__spec_8h_source.html">nvme_spec.h</a>.</p>
+
+</div>
+</div>
+<a id="af976f579a9716d87d2e10b999bf6d140" name="af976f579a9716d87d2e10b999bf6d140"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af976f579a9716d87d2e10b999bf6d140">&#9670;&#160;</a></span>reserved</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">uint8_t spdk_nvme_ns_iocs_independent_data::reserved</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="nvme__spec_8h_source.html#l03419">3419</a> of file <a class="el" href="nvme__spec_8h_source.html">nvme_spec.h</a>.</p>
+
+</div>
+</div>
+<a id="a4fca59b1fcc9c8143a1fc660dff42905" name="a4fca59b1fcc9c8143a1fc660dff42905"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4fca59b1fcc9c8143a1fc660dff42905">&#9670;&#160;</a></span>reserved1</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">uint8_t spdk_nvme_ns_iocs_independent_data::reserved1</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="nvme__spec_8h_source.html#l03380">3380</a> of file <a class="el" href="nvme__spec_8h_source.html">nvme_spec.h</a>.</p>
+
+</div>
+</div>
+<a id="a11b33c7a7c3288ed681087827fc700c6" name="a11b33c7a7c3288ed681087827fc700c6"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a11b33c7a7c3288ed681087827fc700c6">&#9670;&#160;</a></span>reserved2 <span class="overload">[1/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">uint16_t spdk_nvme_ns_iocs_independent_data::reserved2</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="nvme__spec_8h_source.html#l03434">3434</a> of file <a class="el" href="nvme__spec_8h_source.html">nvme_spec.h</a>.</p>
+
+</div>
+</div>
+<a id="a638ac72b1810bb0190001815d6f88466" name="a638ac72b1810bb0190001815d6f88466"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a638ac72b1810bb0190001815d6f88466">&#9670;&#160;</a></span>reserved2 <span class="overload">[2/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">uint8_t spdk_nvme_ns_iocs_independent_data::reserved2</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="nvme__spec_8h_source.html#l03387">3387</a> of file <a class="el" href="nvme__spec_8h_source.html">nvme_spec.h</a>.</p>
+
+</div>
+</div>
+<a id="a668aef25321b8c0301953eda6b35112b" name="a668aef25321b8c0301953eda6b35112b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a668aef25321b8c0301953eda6b35112b">&#9670;&#160;</a></span>reserved3</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">uint8_t spdk_nvme_ns_iocs_independent_data::reserved3[4072]</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="nvme__spec_8h_source.html#l03439">3439</a> of file <a class="el" href="nvme__spec_8h_source.html">nvme_spec.h</a>.</p>
+
+</div>
+</div>
+<a id="a925f03d3f87148866ae2ab4b4450fbdf" name="a925f03d3f87148866ae2ab4b4450fbdf"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a925f03d3f87148866ae2ab4b4450fbdf">&#9670;&#160;</a></span>rgrpid</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">uint32_t spdk_nvme_ns_iocs_independent_data::rgrpid</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Reachability Group Identifier. </p>
+
+<p class="definition">Definition at line <a class="el" href="nvme__spec_8h_source.html#l03437">3437</a> of file <a class="el" href="nvme__spec_8h_source.html">nvme_spec.h</a>.</p>
+
+</div>
+</div>
+<a id="a76e89ff415bee9177a3900318a69a264" name="a76e89ff415bee9177a3900318a69a264"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a76e89ff415bee9177a3900318a69a264">&#9670;&#160;</a></span>rmedia</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">uint8_t spdk_nvme_ns_iocs_independent_data::rmedia</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Rotational Media. </p>
+
+<p class="definition">Definition at line <a class="el" href="nvme__spec_8h_source.html#l03384">3384</a> of file <a class="el" href="nvme__spec_8h_source.html">nvme_spec.h</a>.</p>
+
+</div>
+</div>
+<a id="a4c81adf592a6b78b61b16e2044b489e4" name="a4c81adf592a6b78b61b16e2044b489e4"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4c81adf592a6b78b61b16e2044b489e4">&#9670;&#160;</a></span>uidreuse</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">uint8_t spdk_nvme_ns_iocs_independent_data::uidreuse</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>UID Reuse. </p>
+
+<p class="definition">Definition at line <a class="el" href="nvme__spec_8h_source.html#l03382">3382</a> of file <a class="el" href="nvme__spec_8h_source.html">nvme_spec.h</a>.</p>
+
+</div>
+</div>
+<a id="a35075c797a126987d7fce8e83b1692f7" name="a35075c797a126987d7fce8e83b1692f7"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a35075c797a126987d7fce8e83b1692f7">&#9670;&#160;</a></span>vwcnp</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">uint8_t spdk_nvme_ns_iocs_independent_data::vwcnp</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Volatile Write Cache Not Present. </p>
+
+<p class="definition">Definition at line <a class="el" href="nvme__spec_8h_source.html#l03386">3386</a> of file <a class="el" href="nvme__spec_8h_source.html">nvme_spec.h</a>.</p>
+
+</div>
+</div>
+<hr/>The documentation for this struct was generated from the following file:<ul>
+<li><a class="el" href="nvme__spec_8h_source.html">nvme_spec.h</a></li>
+</ul>
+</div><!-- contents -->
+</div><!-- doc-content -->
+<div id="page-nav" class="page-nav-panel">
+<div id="page-nav-resize-handle"></div>
+<div id="page-nav-tree">
+<div id="page-nav-contents">
+</div><!-- page-nav-contents -->
+</div><!-- page-nav-tree -->
+</div><!-- page-nav -->
+</div><!-- container -->
+<footer class="footer" id="nav-path">
+  <div class="footer-inner">
+    <div class="footer-copy">
+      <small>Copyright &copy; SPDK a Series of LF Projects, LLC. For web site terms of use, trademark policy, and other
+      project policies please see <a href="https://lfprojects.org">lfprojects.org</a>.</small>
+      <br><small>Built from spdk 91893349edff / site e5878500f</small>
+    </div>
+  </div>
+</footer>
+<script type="text/javascript" src="page_outline.js"></script>
+<script type="text/javascript" src="spdk_nav.js"></script>
+</body>
+</html>

@@ -1,0 +1,871 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<meta name="generator" content="Doxygen 1.16.1">
+	<title>SPDK: nvmf_transport.h File Reference</title>
+	<script type="text/javascript" src="jquery.js"></script>
+	<script type="text/javascript" src="dynsections.js"></script>
+	<script type="text/javascript" src="clipboard.js"></script>
+	<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
+<script type="text/javascript" src="cookie.js"></script>
+	<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<script type="text/javascript">
+  $(function() { init_search(); });
+</script>
+	<link rel="icon" type="image/svg+xml" href="../assets/img/spdk.svg">
+	<link rel="icon" href="../assets/favicon.ico" sizes="32x32">
+	<link href="doxygen.css" rel="stylesheet" type="text/css">
+	<script>(function(){var k='doxygen_width',w,bw=6;if(window.chrome){w=localStorage.getItem(k);if(!w){w='350';localStorage.setItem(k,w)}}else{var m=document.cookie.match(new RegExp(k+'=(\\d+)'));w=m?m[1]:null;if(!w){w='350';document.cookie=k+'=350;SameSite=Lax;path=/'}}document.documentElement.style.setProperty('--sn-w',(parseInt(w)+bw)+'px')})()</script>
+	<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:400,700,900" type="text/css">
+	<link href="spdk.css" rel="stylesheet" type="text/css"/>
+	<link href="../assets/css/spdk.css" rel="stylesheet" type="text/css">
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<nav class="navbar">
+  <a class="navbar-brand" href="../" aria-label="SPDK">
+    <img src="../assets/img/spdk.svg" width="36" height="36" alt="Storage Performance Development Kit">
+  </a>
+  <div class="navbar-nav">
+    <a class="nav-link header-link" href="../doc/releases.html">download</a>
+    <a class="nav-link header-link" href="../doc/">documentation</a>
+    <a class="nav-link header-link" href="../doc/contributing.html">development</a>
+    <a class="nav-link header-link" href="../doc/ci_tools.html">CI status</a>
+    <a class="nav-link header-link" href="../community/">community</a>
+    <a class="nav-link header-link" href="../blog/">Blog</a>
+    <a class="nav-link header-link" href="https://github.com/orgs/spdk/projects/5">Roadmap</a>
+    <a class="nav-link header-link" href="../news/">News</a>
+  </div>
+  <div class="navbar-end">
+    <a class="nav-link header-link" href="https://github.com/spdk/spdk" aria-label="GitHub">
+      <svg xmlns="http://www.w3.org/2000/svg" class="navbar-nav-svg" aria-hidden="true"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
+    </a>
+    <a id="cn_lang_btn" href="../cn/doc/" class="nav-link header-link">中文</a>
+  </div>
+</nav>
+<script>
+(function() {
+    var p = location.pathname, best = null, bLen = 0;
+    document.querySelectorAll('.header-link[href]').forEach(function(a) {
+        var raw = a.getAttribute('href');
+        if (!raw) return;
+        try { var u = new URL(raw, location.href); } catch(e) { return; }
+        if (u.origin !== location.origin) return;
+        var h = u.pathname;
+        if (h === '/') return;
+        var ok = h.endsWith('.html') ? p === h : p.indexOf(h) === 0;
+        if (ok && h.length > bLen) { bLen = h.length; best = a; }
+    });
+    if (best) best.classList.add('active');
+})();
+</script>
+<div id="doxygen-searchbox">        <div id="MSearchBox" class="MSearchBoxInactive">
+        <span class="left">
+          <span id="MSearchSelect" class="search-icon" onmouseover="return searchBox.OnSearchSelectShow()" onmouseout="return searchBox.OnSearchSelectHide()"><span class="search-icon-dropdown"></span></span>
+          <input type="text" id="MSearchField" value="" placeholder="Search" accesskey="S"
+               onfocus="searchBox.OnSearchFieldFocus(true)" 
+               onblur="searchBox.OnSearchFieldFocus(false)" 
+               onkeyup="searchBox.OnSearchFieldChange(event)"/>
+          </span><span class="right">
+            <a id="MSearchClose" href="javascript:searchBox.CloseResultsWindow()"><div id="MSearchCloseImg" class="close-icon"></div></a>
+          </span>
+        </div>
+</div>
+<!-- Generated by Doxygen 1.16.1 -->
+<script type="text/javascript">
+var searchBox = new SearchBox("searchBox", "search/",'.html');
+</script>
+<script type="text/javascript">
+$(function() { codefold.init(); });
+</script>
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+$(function(){initNavTree('nvmf__transport_8h.html','',''); });
+</script>
+<div id="container">
+<div id="doc-content">
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">Loading...</div>
+<div class="SRStatus" id="Searching">Searching...</div>
+<div class="SRStatus" id="NoMatches">No Matches</div>
+</div>
+</div>
+</div>
+</div>
+
+<div class="header">
+  <div class="headertitle"><div class="title">nvmf_transport.h File Reference</div></div>
+</div><!--header-->
+<div class="contents">
+
+<p>NVMe-oF Target transport plugin API.  
+<a href="#details">More...</a></p>
+
+<p><a href="nvmf__transport_8h_source.html">Go to the source code of this file.</a></p>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 id="header-nested-classes" class="groupheader"><a id="nested-classes" name="nested-classes"></a>
+Data Structures</h2></td></tr>
+<tr class="memitem:nvmf_5Fh2c_5Fmsg" id="r_nvmf_5Fh2c_5Fmsg"><td class="memItemLeft">union &#160;</td><td class="memItemRight"><a class="el" href="unionnvmf__h2c__msg.html">nvmf_h2c_msg</a></td></tr>
+<tr class="memitem:nvmf_5Fc2h_5Fmsg" id="r_nvmf_5Fc2h_5Fmsg"><td class="memItemLeft">union &#160;</td><td class="memItemRight"><a class="el" href="unionnvmf__c2h__msg.html">nvmf_c2h_msg</a></td></tr>
+<tr class="memitem:spdk_5Fnvmf_5Fdif_5Finfo" id="r_spdk_5Fnvmf_5Fdif_5Finfo"><td class="memItemLeft">struct &#160;</td><td class="memItemRight"><a class="el" href="structspdk__nvmf__dif__info.html">spdk_nvmf_dif_info</a></td></tr>
+<tr class="memitem:spdk_5Fnvmf_5Fstripped_5Fdata" id="r_spdk_5Fnvmf_5Fstripped_5Fdata"><td class="memItemLeft">struct &#160;</td><td class="memItemRight"><a class="el" href="structspdk__nvmf__stripped__data.html">spdk_nvmf_stripped_data</a></td></tr>
+<tr class="memitem:spdk_5Fnvmf_5Frequest" id="r_spdk_5Fnvmf_5Frequest"><td class="memItemLeft">struct &#160;</td><td class="memItemRight"><a class="el" href="structspdk__nvmf__request.html">spdk_nvmf_request</a></td></tr>
+<tr class="memitem:spdk_5Fnvmf_5Fqpair" id="r_spdk_5Fnvmf_5Fqpair"><td class="memItemLeft">struct &#160;</td><td class="memItemRight"><a class="el" href="structspdk__nvmf__qpair.html">spdk_nvmf_qpair</a></td></tr>
+<tr class="memitem:spdk_5Fnvmf_5Ftransport_5Fpoll_5Fgroup" id="r_spdk_5Fnvmf_5Ftransport_5Fpoll_5Fgroup"><td class="memItemLeft">struct &#160;</td><td class="memItemRight"><a class="el" href="structspdk__nvmf__transport__poll__group.html">spdk_nvmf_transport_poll_group</a></td></tr>
+<tr class="memitem:spdk_5Fnvmf_5Fpoll_5Fgroup" id="r_spdk_5Fnvmf_5Fpoll_5Fgroup"><td class="memItemLeft">struct &#160;</td><td class="memItemRight"><a class="el" href="structspdk__nvmf__poll__group.html">spdk_nvmf_poll_group</a></td></tr>
+<tr class="memitem:spdk_5Fnvmf_5Flistener" id="r_spdk_5Fnvmf_5Flistener"><td class="memItemLeft">struct &#160;</td><td class="memItemRight"><a class="el" href="structspdk__nvmf__listener.html">spdk_nvmf_listener</a></td></tr>
+<tr class="memitem:spdk_5Fnvmf_5Fctrlr_5Fdata" id="r_spdk_5Fnvmf_5Fctrlr_5Fdata"><td class="memItemLeft">struct &#160;</td><td class="memItemRight"><a class="el" href="structspdk__nvmf__ctrlr__data.html">spdk_nvmf_ctrlr_data</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">A subset of struct <a class="el" href="structspdk__nvme__ctrlr__data.html">spdk_nvme_ctrlr_data</a> that are emulated by a fabrics device.  <a href="structspdk__nvmf__ctrlr__data.html#details">More...</a><br /></td></tr>
+<tr class="memitem:spdk_5Fnvmf_5Ftransport" id="r_spdk_5Fnvmf_5Ftransport"><td class="memItemLeft">struct &#160;</td><td class="memItemRight"><a class="el" href="structspdk__nvmf__transport.html">spdk_nvmf_transport</a></td></tr>
+<tr class="memitem:spdk_5Fnvmf_5Ftransport_5Fops" id="r_spdk_5Fnvmf_5Ftransport_5Fops"><td class="memItemLeft">struct &#160;</td><td class="memItemRight"><a class="el" href="structspdk__nvmf__transport__ops.html">spdk_nvmf_transport_ops</a></td></tr>
+<tr class="memitem:spdk_5Fnvmf_5Fregisters" id="r_spdk_5Fnvmf_5Fregisters"><td class="memItemLeft">struct &#160;</td><td class="memItemRight"><a class="el" href="structspdk__nvmf__registers.html">spdk_nvmf_registers</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">A subset of struct <a class="el" href="structspdk__nvme__registers.html">spdk_nvme_registers</a> that are emulated by a fabrics device.  <a href="structspdk__nvmf__registers.html#details">More...</a><br /></td></tr>
+<tr class="memitem:spdk_5Fnvmf_5Fctrlr_5Ffeat" id="r_spdk_5Fnvmf_5Fctrlr_5Ffeat"><td class="memItemLeft">struct &#160;</td><td class="memItemRight"><a class="el" href="structspdk__nvmf__ctrlr__feat.html">spdk_nvmf_ctrlr_feat</a></td></tr>
+<tr class="memitem:spdk_5Fnvmf_5Fctrlr_5Fmigr_5Fdata" id="r_spdk_5Fnvmf_5Fctrlr_5Fmigr_5Fdata"><td class="memItemLeft">struct &#160;</td><td class="memItemRight"><a class="el" href="structspdk__nvmf__ctrlr__migr__data.html">spdk_nvmf_ctrlr_migr_data</a></td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 id="header-define-members" class="groupheader"><a id="define-members" name="define-members"></a>
+Macros</h2></td></tr>
+<tr class="memitem:aa49d6244da02774d39e7482f56463619" id="r_aa49d6244da02774d39e7482f56463619"><td class="memItemLeft">#define&#160;</td><td class="memItemRight"><a class="el" href="#aa49d6244da02774d39e7482f56463619">SPDK_NVMF_MAX_SGL_ENTRIES</a>&#160;&#160;&#160;16</td></tr>
+<tr class="memitem:ae453aa517acad83342a4798360ad95bb" id="r_ae453aa517acad83342a4798360ad95bb"><td class="memItemLeft">#define&#160;</td><td class="memItemRight"><a class="el" href="#ae453aa517acad83342a4798360ad95bb">NVMF_REQ_MAX_BUFFERS</a>&#160;&#160;&#160;(SPDK_NVMF_MAX_SGL_ENTRIES * 2 + 1)</td></tr>
+<tr class="memitem:a2ed25fdb8f76d7adc73c59d3a40257cb" id="r_a2ed25fdb8f76d7adc73c59d3a40257cb"><td class="memItemLeft">#define&#160;</td><td class="memItemRight"><a class="el" href="#a2ed25fdb8f76d7adc73c59d3a40257cb">SPDK_NVMF_MIGR_MAX_PENDING_AERS</a>&#160;&#160;&#160;256</td></tr>
+<tr class="memitem:adcef0c01ac42a11e8fa0042a45f0dc4f" id="r_adcef0c01ac42a11e8fa0042a45f0dc4f"><td class="memItemLeft">#define&#160;</td><td class="memItemRight"><a class="el" href="#adcef0c01ac42a11e8fa0042a45f0dc4f">SPDK_NVMF_MAX_ASYNC_EVENTS</a>&#160;&#160;&#160;4</td></tr>
+<tr class="memitem:a1611ae11b4ca2690f1a2fdc7e85057d2" id="r_a1611ae11b4ca2690f1a2fdc7e85057d2"><td class="memItemLeft">#define&#160;</td><td class="memItemRight"><a class="el" href="#a1611ae11b4ca2690f1a2fdc7e85057d2">NVMF_DATA_BUFFER_ALIGNMENT</a>&#160;&#160;&#160;VALUE_4KB</td></tr>
+<tr class="memitem:ab29b985af2f42b89aa85e34c11c5f7ac" id="r_ab29b985af2f42b89aa85e34c11c5f7ac"><td class="memItemLeft">#define&#160;</td><td class="memItemRight"><a class="el" href="#ab29b985af2f42b89aa85e34c11c5f7ac">NVMF_DATA_BUFFER_MASK</a>&#160;&#160;&#160;(NVMF_DATA_BUFFER_ALIGNMENT - 1LL)</td></tr>
+<tr class="memitem:a5964177087729c4f1f4af695ea9087a0" id="r_a5964177087729c4f1f4af695ea9087a0"><td class="memItemLeft">#define&#160;</td><td class="memItemRight"><a class="el" href="#a5964177087729c4f1f4af695ea9087a0">SPDK_NVMF_DEFAULT_ACCEPT_POLL_RATE_US</a>&#160;&#160;&#160;10000</td></tr>
+<tr class="memitem:afc933c3aebb9e4931515605110a1c59c" id="r_afc933c3aebb9e4931515605110a1c59c"><td class="memItemLeft">#define&#160;</td><td class="memItemRight"><a class="el" href="#afc933c3aebb9e4931515605110a1c59c">MAX_MEMPOOL_NAME_LENGTH</a>&#160;&#160;&#160;40</td></tr>
+<tr class="memitem:abeebe98da8b8183865537af9d2fd42f6" id="r_abeebe98da8b8183865537af9d2fd42f6"><td class="memItemLeft">#define&#160;</td><td class="memItemRight"><a class="el" href="#abeebe98da8b8183865537af9d2fd42f6">SPDK_NVMF_TRANSPORT_REGISTER</a>(name,  transport_ops)</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 id="header-typedef-members" class="groupheader"><a id="typedef-members" name="typedef-members"></a>
+Typedefs</h2></td></tr>
+<tr class="memitem:aada9c18bb825f6aa67e13444d93abd38" id="r_aada9c18bb825f6aa67e13444d93abd38"><td class="memItemLeft">typedef void(*&#160;</td><td class="memItemRight"><a class="el" href="#aada9c18bb825f6aa67e13444d93abd38">spdk_nvmf_state_change_done</a>) (void *cb_arg, int status)</td></tr>
+<tr class="memitem:aea553b691dedd65144a8b81b10b11cda" id="r_aea553b691dedd65144a8b81b10b11cda"><td class="memItemLeft">typedef void(*&#160;</td><td class="memItemRight"><a class="el" href="#aea553b691dedd65144a8b81b10b11cda">spdk_nvmf_transport_qpair_fini_cb</a>) (void *cb_arg)</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 id="header-enum-members" class="groupheader"><a id="enum-members" name="enum-members"></a>
+Enumerations</h2></td></tr>
+<tr class="memitem:ae58d26ffb4eacadd941c08e8e2615b13" id="r_ae58d26ffb4eacadd941c08e8e2615b13"><td class="memItemLeft">enum &#160;</td><td class="memItemRight"><b>spdk_nvmf_zcopy_phase</b> { <br />
+&#160;&#160;<b>NVMF_ZCOPY_PHASE_NONE</b>
+, <b>NVMF_ZCOPY_PHASE_INIT</b>
+, <b>NVMF_ZCOPY_PHASE_EXECUTE</b>
+, <b>NVMF_ZCOPY_PHASE_END_PENDING</b>
+, <br />
+&#160;&#160;<b>NVMF_ZCOPY_PHASE_COMPLETE</b>
+, <b>NVMF_ZCOPY_PHASE_INIT_FAILED</b>
+<br />
+ }</td></tr>
+<tr class="memitem:aae2f46da7cfac38ce46c51446985a286" id="r_aae2f46da7cfac38ce46c51446985a286"><td class="memItemLeft">enum &#160;</td><td class="memItemRight"><b>spdk_nvmf_qpair_state</b> { <br />
+&#160;&#160;<b>SPDK_NVMF_QPAIR_UNINITIALIZED</b> = 0
+, <b>SPDK_NVMF_QPAIR_CONNECTING</b>
+, <b>SPDK_NVMF_QPAIR_AUTHENTICATING</b>
+, <b>SPDK_NVMF_QPAIR_ENABLED</b>
+, <br />
+&#160;&#160;<b>SPDK_NVMF_QPAIR_DEACTIVATING</b>
+, <b>SPDK_NVMF_QPAIR_ERROR</b>
+<br />
+ }</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 id="header-func-members" class="groupheader"><a id="func-members" name="func-members"></a>
+Functions</h2></td></tr>
+<tr class="memitem:ab3968fc29615a6601f71cd98b55505b9" id="r_ab3968fc29615a6601f71cd98b55505b9"><td class="memItemLeft"><a id="ab3968fc29615a6601f71cd98b55505b9" name="ab3968fc29615a6601f71cd98b55505b9"></a>
+&#160;</td><td class="memItemRight"><b>SPDK_STATIC_ASSERT</b> (sizeof(union <a class="el" href="unionnvmf__h2c__msg.html">nvmf_h2c_msg</a>)==64, &quot;Incorrect size&quot;)</td></tr>
+<tr class="memitem:a7018b7c460c9e8d4bc99b14075291390" id="r_a7018b7c460c9e8d4bc99b14075291390"><td class="memItemLeft"><a id="a7018b7c460c9e8d4bc99b14075291390" name="a7018b7c460c9e8d4bc99b14075291390"></a>
+&#160;</td><td class="memItemRight"><b>SPDK_STATIC_ASSERT</b> (sizeof(union <a class="el" href="unionnvmf__c2h__msg.html">nvmf_c2h_msg</a>)==16, &quot;Incorrect size&quot;)</td></tr>
+<tr class="memitem:af741320d38a22084f690fd5457813eab" id="r_af741320d38a22084f690fd5457813eab"><td class="memItemLeft"><a id="af741320d38a22084f690fd5457813eab" name="af741320d38a22084f690fd5457813eab"></a>
+&#160;</td><td class="memItemRight"><b>SPDK_STATIC_ASSERT</b> (sizeof(struct <a class="el" href="structspdk__nvmf__request.html">spdk_nvmf_request</a>)==832, &quot;Incorrect size&quot;)</td></tr>
+<tr class="memitem:a8dc52b013bb9c00bb1cf0670e909604b" id="r_a8dc52b013bb9c00bb1cf0670e909604b"><td class="memItemLeft">static int32_t&#160;</td><td class="memItemRight"><a class="el" href="#a8dc52b013bb9c00bb1cf0670e909604b">spdk_nvmf_qpair_get_numa_id</a> (struct <a class="el" href="structspdk__nvmf__qpair.html">spdk_nvmf_qpair</a> *qpair)</td></tr>
+<tr class="memitem:ab53a8667860940846986a85db26a7236" id="r_ab53a8667860940846986a85db26a7236"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="#ab53a8667860940846986a85db26a7236">spdk_nvmf_transport_register</a> (const struct <a class="el" href="structspdk__nvmf__transport__ops.html">spdk_nvmf_transport_ops</a> *ops)</td></tr>
+<tr class="memdesc:ab53a8667860940846986a85db26a7236"><td class="mdescLeft">&#160;</td><td class="mdescRight">Register the operations for a given transport type.  <br /></td></tr>
+<tr class="memitem:ae540481943a9be15eacf93e111714db9" id="r_ae540481943a9be15eacf93e111714db9"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="#ae540481943a9be15eacf93e111714db9">spdk_nvmf_tgt_new_qpair</a> (struct spdk_nvmf_tgt *tgt, struct <a class="el" href="structspdk__nvmf__qpair.html">spdk_nvmf_qpair</a> *qpair)</td></tr>
+<tr class="memdesc:ae540481943a9be15eacf93e111714db9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Function to be called for each newly discovered qpair.  <br /></td></tr>
+<tr class="memitem:ad140ffadb7947f310df1eae696b5e553" id="r_ad140ffadb7947f310df1eae696b5e553"><td class="memItemLeft">static bool&#160;</td><td class="memItemRight"><a class="el" href="#ad140ffadb7947f310df1eae696b5e553">spdk_nvmf_qpair_is_active</a> (struct <a class="el" href="structspdk__nvmf__qpair.html">spdk_nvmf_qpair</a> *qpair)</td></tr>
+<tr class="memitem:a87d85f945a59e4039be5e8443d2084aa" id="r_a87d85f945a59e4039be5e8443d2084aa"><td class="memItemLeft"><a id="a87d85f945a59e4039be5e8443d2084aa" name="a87d85f945a59e4039be5e8443d2084aa"></a>
+&#160;</td><td class="memItemRight"><b>SPDK_STATIC_ASSERT</b> (sizeof(struct <a class="el" href="structspdk__nvmf__registers.html">spdk_nvmf_registers</a>)==48, &quot;Incorrect size&quot;)</td></tr>
+<tr class="memitem:a0f666c203f24ef638575bb8b60c14a7b" id="r_a0f666c203f24ef638575bb8b60c14a7b"><td class="memItemLeft"><a id="a0f666c203f24ef638575bb8b60c14a7b" name="a0f666c203f24ef638575bb8b60c14a7b"></a>
+const struct <a class="el" href="structspdk__nvmf__registers.html">spdk_nvmf_registers</a> *&#160;</td><td class="memItemRight"><b>spdk_nvmf_ctrlr_get_regs</b> (struct spdk_nvmf_ctrlr *ctrlr)</td></tr>
+<tr class="memitem:a40c75ab705e466b8fc6263aea23db255" id="r_a40c75ab705e466b8fc6263aea23db255"><td class="memItemLeft"><a id="a40c75ab705e466b8fc6263aea23db255" name="a40c75ab705e466b8fc6263aea23db255"></a>
+void&#160;</td><td class="memItemRight"><b>spdk_nvmf_request_free_buffers</b> (struct <a class="el" href="structspdk__nvmf__request.html">spdk_nvmf_request</a> *req, struct <a class="el" href="structspdk__nvmf__transport__poll__group.html">spdk_nvmf_transport_poll_group</a> *group, struct <a class="el" href="structspdk__nvmf__transport.html">spdk_nvmf_transport</a> *transport)</td></tr>
+<tr class="memitem:aedfcbfc3021b5f74c94cbbd6619bcd59" id="r_aedfcbfc3021b5f74c94cbbd6619bcd59"><td class="memItemLeft"><a id="aedfcbfc3021b5f74c94cbbd6619bcd59" name="aedfcbfc3021b5f74c94cbbd6619bcd59"></a>
+int&#160;</td><td class="memItemRight"><b>spdk_nvmf_request_get_buffers</b> (struct <a class="el" href="structspdk__nvmf__request.html">spdk_nvmf_request</a> *req, struct <a class="el" href="structspdk__nvmf__transport__poll__group.html">spdk_nvmf_transport_poll_group</a> *group, struct <a class="el" href="structspdk__nvmf__transport.html">spdk_nvmf_transport</a> *transport, uint32_t length)</td></tr>
+<tr class="memitem:afad38775c3acad5fd71d1487bc3e56df" id="r_afad38775c3acad5fd71d1487bc3e56df"><td class="memItemLeft"><a id="afad38775c3acad5fd71d1487bc3e56df" name="afad38775c3acad5fd71d1487bc3e56df"></a>
+bool&#160;</td><td class="memItemRight"><b>spdk_nvmf_request_get_dif_ctx</b> (struct <a class="el" href="structspdk__nvmf__request.html">spdk_nvmf_request</a> *req, struct <a class="el" href="structspdk__dif__ctx.html">spdk_dif_ctx</a> *dif_ctx)</td></tr>
+<tr class="memitem:a65dd062126788a0f2ad96548c63667df" id="r_a65dd062126788a0f2ad96548c63667df"><td class="memItemLeft"><a id="a65dd062126788a0f2ad96548c63667df" name="a65dd062126788a0f2ad96548c63667df"></a>
+void&#160;</td><td class="memItemRight"><b>spdk_nvmf_request_exec</b> (struct <a class="el" href="structspdk__nvmf__request.html">spdk_nvmf_request</a> *req)</td></tr>
+<tr class="memitem:ae87563e71de6ae3306209ed76c60a06b" id="r_ae87563e71de6ae3306209ed76c60a06b"><td class="memItemLeft"><a id="ae87563e71de6ae3306209ed76c60a06b" name="ae87563e71de6ae3306209ed76c60a06b"></a>
+int&#160;</td><td class="memItemRight"><b>spdk_nvmf_request_free</b> (struct <a class="el" href="structspdk__nvmf__request.html">spdk_nvmf_request</a> *req)</td></tr>
+<tr class="memitem:a4256612baa1f8b906592d85e59f27e70" id="r_a4256612baa1f8b906592d85e59f27e70"><td class="memItemLeft"><a id="a4256612baa1f8b906592d85e59f27e70" name="a4256612baa1f8b906592d85e59f27e70"></a>
+int&#160;</td><td class="memItemRight"><b>spdk_nvmf_request_complete</b> (struct <a class="el" href="structspdk__nvmf__request.html">spdk_nvmf_request</a> *req)</td></tr>
+<tr class="memitem:a0fec7ecc384b607d6cbdeb1426e602a2" id="r_a0fec7ecc384b607d6cbdeb1426e602a2"><td class="memItemLeft"><a id="a0fec7ecc384b607d6cbdeb1426e602a2" name="a0fec7ecc384b607d6cbdeb1426e602a2"></a>
+void&#160;</td><td class="memItemRight"><b>spdk_nvmf_request_zcopy_start</b> (struct <a class="el" href="structspdk__nvmf__request.html">spdk_nvmf_request</a> *req)</td></tr>
+<tr class="memitem:afbf5a8355e84ee654a38b07f7c4e4d83" id="r_afbf5a8355e84ee654a38b07f7c4e4d83"><td class="memItemLeft"><a id="afbf5a8355e84ee654a38b07f7c4e4d83" name="afbf5a8355e84ee654a38b07f7c4e4d83"></a>
+void&#160;</td><td class="memItemRight"><b>spdk_nvmf_request_zcopy_end</b> (struct <a class="el" href="structspdk__nvmf__request.html">spdk_nvmf_request</a> *req, bool commit)</td></tr>
+<tr class="memitem:a6a71032e642d882bac0dfbac4e19fc6b" id="r_a6a71032e642d882bac0dfbac4e19fc6b"><td class="memItemLeft">static bool&#160;</td><td class="memItemRight"><a class="el" href="#a6a71032e642d882bac0dfbac4e19fc6b">spdk_nvmf_request_using_zcopy</a> (const struct <a class="el" href="structspdk__nvmf__request.html">spdk_nvmf_request</a> *req)</td></tr>
+<tr class="memitem:a9ea012aeb9897f188acdf41481c0217f" id="r_a9ea012aeb9897f188acdf41481c0217f"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="#a9ea012aeb9897f188acdf41481c0217f">spdk_nvmf_poll_group_remove</a> (struct <a class="el" href="structspdk__nvmf__qpair.html">spdk_nvmf_qpair</a> *qpair)</td></tr>
+<tr class="memdesc:a9ea012aeb9897f188acdf41481c0217f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Remove the given qpair from the poll group.  <br /></td></tr>
+<tr class="memitem:a4ca11444c70ae376d84976e60510a74a" id="r_a4ca11444c70ae376d84976e60510a74a"><td class="memItemLeft">struct spdk_nvmf_subsystem *&#160;</td><td class="memItemRight"><a class="el" href="#a4ca11444c70ae376d84976e60510a74a">spdk_nvmf_ctrlr_get_subsystem</a> (struct spdk_nvmf_ctrlr *ctrlr)</td></tr>
+<tr class="memdesc:a4ca11444c70ae376d84976e60510a74a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the NVMe-oF subsystem associated with this controller.  <br /></td></tr>
+<tr class="memitem:a4be21e1e7c78a65458f3cb7d8ed08997" id="r_a4be21e1e7c78a65458f3cb7d8ed08997"><td class="memItemLeft">uint16_t&#160;</td><td class="memItemRight"><a class="el" href="#a4be21e1e7c78a65458f3cb7d8ed08997">spdk_nvmf_ctrlr_get_id</a> (struct spdk_nvmf_ctrlr *ctrlr)</td></tr>
+<tr class="memdesc:a4be21e1e7c78a65458f3cb7d8ed08997"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the NVMe-oF controller ID.  <br /></td></tr>
+<tr class="memitem:ad01c6ec7f3d51648cc083cea7a9f5a71" id="r_ad01c6ec7f3d51648cc083cea7a9f5a71"><td class="memItemLeft"><a id="ad01c6ec7f3d51648cc083cea7a9f5a71" name="ad01c6ec7f3d51648cc083cea7a9f5a71"></a>
+&#160;</td><td class="memItemRight"><b>SPDK_STATIC_ASSERT</b> (sizeof(struct <a class="el" href="structspdk__nvmf__ctrlr__feat.html">spdk_nvmf_ctrlr_feat</a>)==40, &quot;Incorrect size&quot;)</td></tr>
+<tr class="memitem:ae84d55ebcf2bdb3262bd36f523c2f866" id="r_ae84d55ebcf2bdb3262bd36f523c2f866"><td class="memItemLeft"><a id="ae84d55ebcf2bdb3262bd36f523c2f866" name="ae84d55ebcf2bdb3262bd36f523c2f866"></a>
+&#160;</td><td class="memItemRight"><b>SPDK_STATIC_ASSERT</b> (offsetof(struct <a class="el" href="structspdk__nvmf__ctrlr__migr__data.html">spdk_nvmf_ctrlr_migr_data</a>, regs) - offsetof(struct <a class="el" href="structspdk__nvmf__ctrlr__migr__data.html">spdk_nvmf_ctrlr_migr_data</a>, data_size)==16, &quot;Incorrect header size&quot;)</td></tr>
+<tr class="memitem:ae32c33d71b2a19550c76d9b283531b03" id="r_ae32c33d71b2a19550c76d9b283531b03"><td class="memItemLeft"><a id="ae32c33d71b2a19550c76d9b283531b03" name="ae32c33d71b2a19550c76d9b283531b03"></a>
+&#160;</td><td class="memItemRight"><b>SPDK_STATIC_ASSERT</b> (offsetof(struct <a class="el" href="structspdk__nvmf__ctrlr__migr__data.html">spdk_nvmf_ctrlr_migr_data</a>, feat) - offsetof(struct <a class="el" href="structspdk__nvmf__ctrlr__migr__data.html">spdk_nvmf_ctrlr_migr_data</a>, regs)==256, &quot;Incorrect regs size&quot;)</td></tr>
+<tr class="memitem:a98223a853763eec0f0a2322b595a5b8c" id="r_a98223a853763eec0f0a2322b595a5b8c"><td class="memItemLeft"><a id="a98223a853763eec0f0a2322b595a5b8c" name="a98223a853763eec0f0a2322b595a5b8c"></a>
+&#160;</td><td class="memItemRight"><b>SPDK_STATIC_ASSERT</b> (offsetof(struct <a class="el" href="structspdk__nvmf__ctrlr__migr__data.html">spdk_nvmf_ctrlr_migr_data</a>, cntlid) - offsetof(struct <a class="el" href="structspdk__nvmf__ctrlr__migr__data.html">spdk_nvmf_ctrlr_migr_data</a>, feat)==256, &quot;Incorrect feat size&quot;)</td></tr>
+<tr class="memitem:a4883ef047f9c0bf21dc194da3550c940" id="r_a4883ef047f9c0bf21dc194da3550c940"><td class="memItemLeft"><a id="a4883ef047f9c0bf21dc194da3550c940" name="a4883ef047f9c0bf21dc194da3550c940"></a>
+&#160;</td><td class="memItemRight"><b>SPDK_STATIC_ASSERT</b> (sizeof(struct <a class="el" href="structspdk__nvmf__ctrlr__migr__data.html">spdk_nvmf_ctrlr_migr_data</a>)==4096, &quot;Incorrect size&quot;)</td></tr>
+<tr class="memitem:a1010bdb10323d264654356742abeeaee" id="r_a1010bdb10323d264654356742abeeaee"><td class="memItemLeft">int&#160;</td><td class="memItemRight"><a class="el" href="#a1010bdb10323d264654356742abeeaee">spdk_nvmf_ctrlr_save_migr_data</a> (struct spdk_nvmf_ctrlr *ctrlr, struct <a class="el" href="structspdk__nvmf__ctrlr__migr__data.html">spdk_nvmf_ctrlr_migr_data</a> *data)</td></tr>
+<tr class="memdesc:a1010bdb10323d264654356742abeeaee"><td class="mdescLeft">&#160;</td><td class="mdescRight">Save the NVMe-oF controller state and configuration.  <br /></td></tr>
+<tr class="memitem:a3fbe83688b786970a84adb1ef45b5f5b" id="r_a3fbe83688b786970a84adb1ef45b5f5b"><td class="memItemLeft">int&#160;</td><td class="memItemRight"><a class="el" href="#a3fbe83688b786970a84adb1ef45b5f5b">spdk_nvmf_ctrlr_restore_migr_data</a> (struct spdk_nvmf_ctrlr *ctrlr, const struct <a class="el" href="structspdk__nvmf__ctrlr__migr__data.html">spdk_nvmf_ctrlr_migr_data</a> *data)</td></tr>
+<tr class="memdesc:a3fbe83688b786970a84adb1ef45b5f5b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Restore the NVMe-oF controller state and configuration.  <br /></td></tr>
+<tr class="memitem:a78965f1c8f05b2fb9b6d7f6ce016448a" id="r_a78965f1c8f05b2fb9b6d7f6ce016448a"><td class="memItemLeft">static enum <a class="el" href="nvme__spec_8h.html#adbe38e042bb939183ed8fd5c1685b2fc">spdk_nvme_data_transfer</a>&#160;</td><td class="memItemRight"><a class="el" href="#a78965f1c8f05b2fb9b6d7f6ce016448a">spdk_nvmf_req_get_xfer</a> (struct <a class="el" href="structspdk__nvmf__request.html">spdk_nvmf_request</a> *req)</td></tr>
+<tr class="memitem:a7d79bc92dddeeef50e0b26cbdbbf9b07" id="r_a7d79bc92dddeeef50e0b26cbdbbf9b07"><td class="memItemLeft">int&#160;</td><td class="memItemRight"><a class="el" href="#a7d79bc92dddeeef50e0b26cbdbbf9b07">spdk_nvmf_ctrlr_async_event_error_event</a> (struct spdk_nvmf_ctrlr *ctrlr, enum <a class="el" href="nvme__spec_8h.html#a87a370c671a1dcad0106afc888af8d04">spdk_nvme_async_event_info_error</a> info)</td></tr>
+<tr class="memdesc:a7d79bc92dddeeef50e0b26cbdbbf9b07"><td class="mdescLeft">&#160;</td><td class="mdescRight">Complete Asynchronous Event as Error.  <br /></td></tr>
+<tr class="memitem:aa94fd5f0f0b96442400d1b00dfe84bf6" id="r_aa94fd5f0f0b96442400d1b00dfe84bf6"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="#aa94fd5f0f0b96442400d1b00dfe84bf6">spdk_nvmf_ctrlr_abort_aer</a> (struct spdk_nvmf_ctrlr *ctrlr)</td></tr>
+<tr class="memdesc:aa94fd5f0f0b96442400d1b00dfe84bf6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Abort outstanding Asynchronous Event Requests (AERs).  <br /></td></tr>
+</table>
+<a name="details" id="details"></a><h2 id="header-details" class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>NVMe-oF Target transport plugin API. </p>
+
+<p class="definition">Definition in file <a class="el" href="nvmf__transport_8h_source.html">nvmf_transport.h</a>.</p>
+</div><a name="doc-define-members" id="doc-define-members"></a><h2 id="header-doc-define-members" class="groupheader">Macro Definition Documentation</h2>
+<a id="afc933c3aebb9e4931515605110a1c59c" name="afc933c3aebb9e4931515605110a1c59c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#afc933c3aebb9e4931515605110a1c59c">&#9670;&#160;</a></span>MAX_MEMPOOL_NAME_LENGTH</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define MAX_MEMPOOL_NAME_LENGTH&#160;&#160;&#160;40</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="nvmf__transport_8h_source.html#l00264">264</a> of file <a class="el" href="nvmf__transport_8h_source.html">nvmf_transport.h</a>.</p>
+
+</div>
+</div>
+<a id="a1611ae11b4ca2690f1a2fdc7e85057d2" name="a1611ae11b4ca2690f1a2fdc7e85057d2"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1611ae11b4ca2690f1a2fdc7e85057d2">&#9670;&#160;</a></span>NVMF_DATA_BUFFER_ALIGNMENT</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define NVMF_DATA_BUFFER_ALIGNMENT&#160;&#160;&#160;VALUE_4KB</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="nvmf__transport_8h_source.html#l00040">40</a> of file <a class="el" href="nvmf__transport_8h_source.html">nvmf_transport.h</a>.</p>
+
+</div>
+</div>
+<a id="ab29b985af2f42b89aa85e34c11c5f7ac" name="ab29b985af2f42b89aa85e34c11c5f7ac"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab29b985af2f42b89aa85e34c11c5f7ac">&#9670;&#160;</a></span>NVMF_DATA_BUFFER_MASK</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define NVMF_DATA_BUFFER_MASK&#160;&#160;&#160;(NVMF_DATA_BUFFER_ALIGNMENT - 1LL)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="nvmf__transport_8h_source.html#l00041">41</a> of file <a class="el" href="nvmf__transport_8h_source.html">nvmf_transport.h</a>.</p>
+
+</div>
+</div>
+<a id="ae453aa517acad83342a4798360ad95bb" name="ae453aa517acad83342a4798360ad95bb"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae453aa517acad83342a4798360ad95bb">&#9670;&#160;</a></span>NVMF_REQ_MAX_BUFFERS</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define NVMF_REQ_MAX_BUFFERS&#160;&#160;&#160;(SPDK_NVMF_MAX_SGL_ENTRIES * 2 + 1)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="nvmf__transport_8h_source.html#l00030">30</a> of file <a class="el" href="nvmf__transport_8h_source.html">nvmf_transport.h</a>.</p>
+
+</div>
+</div>
+<a id="a5964177087729c4f1f4af695ea9087a0" name="a5964177087729c4f1f4af695ea9087a0"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5964177087729c4f1f4af695ea9087a0">&#9670;&#160;</a></span>SPDK_NVMF_DEFAULT_ACCEPT_POLL_RATE_US</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define SPDK_NVMF_DEFAULT_ACCEPT_POLL_RATE_US&#160;&#160;&#160;10000</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="nvmf__transport_8h_source.html#l00043">43</a> of file <a class="el" href="nvmf__transport_8h_source.html">nvmf_transport.h</a>.</p>
+
+</div>
+</div>
+<a id="adcef0c01ac42a11e8fa0042a45f0dc4f" name="adcef0c01ac42a11e8fa0042a45f0dc4f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#adcef0c01ac42a11e8fa0042a45f0dc4f">&#9670;&#160;</a></span>SPDK_NVMF_MAX_ASYNC_EVENTS</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define SPDK_NVMF_MAX_ASYNC_EVENTS&#160;&#160;&#160;4</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="nvmf__transport_8h_source.html#l00035">35</a> of file <a class="el" href="nvmf__transport_8h_source.html">nvmf_transport.h</a>.</p>
+
+</div>
+</div>
+<a id="aa49d6244da02774d39e7482f56463619" name="aa49d6244da02774d39e7482f56463619"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa49d6244da02774d39e7482f56463619">&#9670;&#160;</a></span>SPDK_NVMF_MAX_SGL_ENTRIES</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define SPDK_NVMF_MAX_SGL_ENTRIES&#160;&#160;&#160;16</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="nvmf__transport_8h_source.html#l00027">27</a> of file <a class="el" href="nvmf__transport_8h_source.html">nvmf_transport.h</a>.</p>
+
+</div>
+</div>
+<a id="a2ed25fdb8f76d7adc73c59d3a40257cb" name="a2ed25fdb8f76d7adc73c59d3a40257cb"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2ed25fdb8f76d7adc73c59d3a40257cb">&#9670;&#160;</a></span>SPDK_NVMF_MIGR_MAX_PENDING_AERS</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define SPDK_NVMF_MIGR_MAX_PENDING_AERS&#160;&#160;&#160;256</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="nvmf__transport_8h_source.html#l00033">33</a> of file <a class="el" href="nvmf__transport_8h_source.html">nvmf_transport.h</a>.</p>
+
+</div>
+</div>
+<a id="abeebe98da8b8183865537af9d2fd42f6" name="abeebe98da8b8183865537af9d2fd42f6"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#abeebe98da8b8183865537af9d2fd42f6">&#9670;&#160;</a></span>SPDK_NVMF_TRANSPORT_REGISTER</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define SPDK_NVMF_TRANSPORT_REGISTER</td>
+          <td>(</td>
+          <td class="paramtype"></td>          <td class="paramname"><span class="paramname"><em>name</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"></td>          <td class="paramname"><span class="paramname"><em>transport_ops</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<b>Value:</b><div class="fragment"><div class="line"><span class="keyword">static</span> <span class="keywordtype">void</span> __attribute__((constructor)) _spdk_nvmf_transport_register_##name(<span class="keywordtype">void</span>) \</div>
+<div class="line">{ \</div>
+<div class="line">        spdk_nvmf_transport_register(transport_ops); \</div>
+<div class="line">}</div>
+</div><!-- fragment -->
+<p class="definition">Definition at line <a class="el" href="nvmf__transport_8h_source.html#l00760">760</a> of file <a class="el" href="nvmf__transport_8h_source.html">nvmf_transport.h</a>.</p>
+
+</div>
+</div>
+<a name="doc-typedef-members" id="doc-typedef-members"></a><h2 id="header-doc-typedef-members" class="groupheader">Typedef Documentation</h2>
+<a id="aada9c18bb825f6aa67e13444d93abd38" name="aada9c18bb825f6aa67e13444d93abd38"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aada9c18bb825f6aa67e13444d93abd38">&#9670;&#160;</a></span>spdk_nvmf_state_change_done</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">typedef void(* spdk_nvmf_state_change_done) (void *cb_arg, int status)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="nvmf__transport_8h_source.html#l00147">147</a> of file <a class="el" href="nvmf__transport_8h_source.html">nvmf_transport.h</a>.</p>
+
+</div>
+</div>
+<a id="aea553b691dedd65144a8b81b10b11cda" name="aea553b691dedd65144a8b81b10b11cda"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aea553b691dedd65144a8b81b10b11cda">&#9670;&#160;</a></span>spdk_nvmf_transport_qpair_fini_cb</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">typedef void(* spdk_nvmf_transport_qpair_fini_cb) (void *cb_arg)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="nvmf__transport_8h_source.html#l00283">283</a> of file <a class="el" href="nvmf__transport_8h_source.html">nvmf_transport.h</a>.</p>
+
+</div>
+</div>
+<a name="doc-enum-members" id="doc-enum-members"></a><h2 id="header-doc-enum-members" class="groupheader">Enumeration Type Documentation</h2>
+<a id="aae2f46da7cfac38ce46c51446985a286" name="aae2f46da7cfac38ce46c51446985a286"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aae2f46da7cfac38ce46c51446985a286">&#9670;&#160;</a></span>spdk_nvmf_qpair_state</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">enum spdk_nvmf_qpair_state</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="nvmf__transport_8h_source.html#l00138">138</a> of file <a class="el" href="nvmf__transport_8h_source.html">nvmf_transport.h</a>.</p>
+
+</div>
+</div>
+<a id="ae58d26ffb4eacadd941c08e8e2615b13" name="ae58d26ffb4eacadd941c08e8e2615b13"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae58d26ffb4eacadd941c08e8e2615b13">&#9670;&#160;</a></span>spdk_nvmf_zcopy_phase</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">enum spdk_nvmf_zcopy_phase</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="nvmf__transport_8h_source.html#l00074">74</a> of file <a class="el" href="nvmf__transport_8h_source.html">nvmf_transport.h</a>.</p>
+
+</div>
+</div>
+<a name="doc-func-members" id="doc-func-members"></a><h2 id="header-doc-func-members" class="groupheader">Function Documentation</h2>
+<a id="aa94fd5f0f0b96442400d1b00dfe84bf6" name="aa94fd5f0f0b96442400d1b00dfe84bf6"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa94fd5f0f0b96442400d1b00dfe84bf6">&#9670;&#160;</a></span>spdk_nvmf_ctrlr_abort_aer()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void spdk_nvmf_ctrlr_abort_aer </td>
+          <td>(</td>
+          <td class="paramtype">struct spdk_nvmf_ctrlr *</td>          <td class="paramname"><span class="paramname"><em>ctrlr</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Abort outstanding Asynchronous Event Requests (AERs). </p>
+<p>Completes AERs with ABORTED_BY_REQUEST status code.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">ctrlr</td><td>Controller whose AERs are going to be aborted. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a7d79bc92dddeeef50e0b26cbdbbf9b07" name="a7d79bc92dddeeef50e0b26cbdbbf9b07"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7d79bc92dddeeef50e0b26cbdbbf9b07">&#9670;&#160;</a></span>spdk_nvmf_ctrlr_async_event_error_event()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int spdk_nvmf_ctrlr_async_event_error_event </td>
+          <td>(</td>
+          <td class="paramtype">struct spdk_nvmf_ctrlr *</td>          <td class="paramname"><span class="paramname"><em>ctrlr</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">enum <a class="el" href="nvme__spec_8h.html#a87a370c671a1dcad0106afc888af8d04">spdk_nvme_async_event_info_error</a></td>          <td class="paramname"><span class="paramname"><em>info</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Complete Asynchronous Event as Error. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">ctrlr</td><td>Controller whose AER is going to be completed. </td></tr>
+    <tr><td class="paramname">info</td><td>Asynchronous Event Error Information to be reported.</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>int. 0 if it completed successfully, or negative errno if it failed. </dd></dl>
+
+</div>
+</div>
+<a id="a4be21e1e7c78a65458f3cb7d8ed08997" name="a4be21e1e7c78a65458f3cb7d8ed08997"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4be21e1e7c78a65458f3cb7d8ed08997">&#9670;&#160;</a></span>spdk_nvmf_ctrlr_get_id()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">uint16_t spdk_nvmf_ctrlr_get_id </td>
+          <td>(</td>
+          <td class="paramtype">struct spdk_nvmf_ctrlr *</td>          <td class="paramname"><span class="paramname"><em>ctrlr</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Get the NVMe-oF controller ID. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">ctrlr</td><td>The NVMe-oF controller</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>The NVMe-oF controller ID </dd></dl>
+
+</div>
+</div>
+<a id="a4ca11444c70ae376d84976e60510a74a" name="a4ca11444c70ae376d84976e60510a74a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4ca11444c70ae376d84976e60510a74a">&#9670;&#160;</a></span>spdk_nvmf_ctrlr_get_subsystem()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">struct spdk_nvmf_subsystem * spdk_nvmf_ctrlr_get_subsystem </td>
+          <td>(</td>
+          <td class="paramtype">struct spdk_nvmf_ctrlr *</td>          <td class="paramname"><span class="paramname"><em>ctrlr</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Get the NVMe-oF subsystem associated with this controller. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">ctrlr</td><td>The NVMe-oF controller</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>The NVMe-oF subsystem </dd></dl>
+
+</div>
+</div>
+<a id="a3fbe83688b786970a84adb1ef45b5f5b" name="a3fbe83688b786970a84adb1ef45b5f5b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3fbe83688b786970a84adb1ef45b5f5b">&#9670;&#160;</a></span>spdk_nvmf_ctrlr_restore_migr_data()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int spdk_nvmf_ctrlr_restore_migr_data </td>
+          <td>(</td>
+          <td class="paramtype">struct spdk_nvmf_ctrlr *</td>          <td class="paramname"><span class="paramname"><em>ctrlr</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const struct <a class="el" href="structspdk__nvmf__ctrlr__migr__data.html">spdk_nvmf_ctrlr_migr_data</a> *</td>          <td class="paramname"><span class="paramname"><em>data</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Restore the NVMe-oF controller state and configuration. </p>
+<p>The API is experimental.</p>
+<p>It is allowed to restore the data only when the nvmf subsystem is in paused state.</p>
+<p>To preserve thread safety this function must be executed on the same thread the NVMe-OF controller was created.</p>
+<p>AERs shall be restored using spdk_nvmf_request_exec after this function is executed.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">ctrlr</td><td>The NVMe-oF controller </td></tr>
+    <tr><td class="paramname">data</td><td>The NVMe-oF controller state and configuration to be restored</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>0 on success or a negated errno on failure. </dd></dl>
+
+</div>
+</div>
+<a id="a1010bdb10323d264654356742abeeaee" name="a1010bdb10323d264654356742abeeaee"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1010bdb10323d264654356742abeeaee">&#9670;&#160;</a></span>spdk_nvmf_ctrlr_save_migr_data()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int spdk_nvmf_ctrlr_save_migr_data </td>
+          <td>(</td>
+          <td class="paramtype">struct spdk_nvmf_ctrlr *</td>          <td class="paramname"><span class="paramname"><em>ctrlr</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">struct <a class="el" href="structspdk__nvmf__ctrlr__migr__data.html">spdk_nvmf_ctrlr_migr_data</a> *</td>          <td class="paramname"><span class="paramname"><em>data</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Save the NVMe-oF controller state and configuration. </p>
+<p>The API is experimental.</p>
+<p>It is allowed to save the data only when the nvmf subsystem is in paused state i.e. there are no outstanding cmds in nvmf layer (other than aer), pending async event completions are getting blocked.</p>
+<p>To preserve thread safety this function must be executed on the same thread the NVMe-OF controller was created.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">ctrlr</td><td>The NVMe-oF controller </td></tr>
+    <tr><td class="paramname">data</td><td>The NVMe-oF controller state and configuration to be saved</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>0 on success or a negated errno on failure. </dd></dl>
+
+</div>
+</div>
+<a id="a9ea012aeb9897f188acdf41481c0217f" name="a9ea012aeb9897f188acdf41481c0217f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9ea012aeb9897f188acdf41481c0217f">&#9670;&#160;</a></span>spdk_nvmf_poll_group_remove()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void spdk_nvmf_poll_group_remove </td>
+          <td>(</td>
+          <td class="paramtype">struct <a class="el" href="structspdk__nvmf__qpair.html">spdk_nvmf_qpair</a> *</td>          <td class="paramname"><span class="paramname"><em>qpair</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Remove the given qpair from the poll group. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">qpair</td><td>The qpair to remove. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a8dc52b013bb9c00bb1cf0670e909604b" name="a8dc52b013bb9c00bb1cf0670e909604b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8dc52b013bb9c00bb1cf0670e909604b">&#9670;&#160;</a></span>spdk_nvmf_qpair_get_numa_id()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">int32_t spdk_nvmf_qpair_get_numa_id </td>
+          <td>(</td>
+          <td class="paramtype">struct <a class="el" href="structspdk__nvmf__qpair.html">spdk_nvmf_qpair</a> *</td>          <td class="paramname"><span class="paramname"><em>qpair</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span><span class="mlabel static">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="nvmf__transport_8h_source.html#l00191">191</a> of file <a class="el" href="nvmf__transport_8h_source.html">nvmf_transport.h</a>.</p>
+
+</div>
+</div>
+<a id="ad140ffadb7947f310df1eae696b5e553" name="ad140ffadb7947f310df1eae696b5e553"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad140ffadb7947f310df1eae696b5e553">&#9670;&#160;</a></span>spdk_nvmf_qpair_is_active()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool spdk_nvmf_qpair_is_active </td>
+          <td>(</td>
+          <td class="paramtype">struct <a class="el" href="structspdk__nvmf__qpair.html">spdk_nvmf_qpair</a> *</td>          <td class="paramname"><span class="paramname"><em>qpair</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span><span class="mlabel static">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="nvmf__transport_8h_source.html#l00522">522</a> of file <a class="el" href="nvmf__transport_8h_source.html">nvmf_transport.h</a>.</p>
+
+</div>
+</div>
+<a id="a78965f1c8f05b2fb9b6d7f6ce016448a" name="a78965f1c8f05b2fb9b6d7f6ce016448a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a78965f1c8f05b2fb9b6d7f6ce016448a">&#9670;&#160;</a></span>spdk_nvmf_req_get_xfer()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">enum <a class="el" href="nvme__spec_8h.html#adbe38e042bb939183ed8fd5c1685b2fc">spdk_nvme_data_transfer</a> spdk_nvmf_req_get_xfer </td>
+          <td>(</td>
+          <td class="paramtype">struct <a class="el" href="structspdk__nvmf__request.html">spdk_nvmf_request</a> *</td>          <td class="paramname"><span class="paramname"><em>req</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span><span class="mlabel static">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="nvmf__transport_8h_source.html#l00694">694</a> of file <a class="el" href="nvmf__transport_8h_source.html">nvmf_transport.h</a>.</p>
+
+</div>
+</div>
+<a id="a6a71032e642d882bac0dfbac4e19fc6b" name="a6a71032e642d882bac0dfbac4e19fc6b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6a71032e642d882bac0dfbac4e19fc6b">&#9670;&#160;</a></span>spdk_nvmf_request_using_zcopy()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool spdk_nvmf_request_using_zcopy </td>
+          <td>(</td>
+          <td class="paramtype">const struct <a class="el" href="structspdk__nvmf__request.html">spdk_nvmf_request</a> *</td>          <td class="paramname"><span class="paramname"><em>req</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span><span class="mlabel static">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="nvmf__transport_8h_source.html#l00564">564</a> of file <a class="el" href="nvmf__transport_8h_source.html">nvmf_transport.h</a>.</p>
+
+</div>
+</div>
+<a id="ae540481943a9be15eacf93e111714db9" name="ae540481943a9be15eacf93e111714db9"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae540481943a9be15eacf93e111714db9">&#9670;&#160;</a></span>spdk_nvmf_tgt_new_qpair()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void spdk_nvmf_tgt_new_qpair </td>
+          <td>(</td>
+          <td class="paramtype">struct spdk_nvmf_tgt *</td>          <td class="paramname"><span class="paramname"><em>tgt</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">struct <a class="el" href="structspdk__nvmf__qpair.html">spdk_nvmf_qpair</a> *</td>          <td class="paramname"><span class="paramname"><em>qpair</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Function to be called for each newly discovered qpair. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">tgt</td><td>The nvmf target </td></tr>
+    <tr><td class="paramname">qpair</td><td>The newly discovered qpair. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="ab53a8667860940846986a85db26a7236" name="ab53a8667860940846986a85db26a7236"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab53a8667860940846986a85db26a7236">&#9670;&#160;</a></span>spdk_nvmf_transport_register()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void spdk_nvmf_transport_register </td>
+          <td>(</td>
+          <td class="paramtype">const struct <a class="el" href="structspdk__nvmf__transport__ops.html">spdk_nvmf_transport_ops</a> *</td>          <td class="paramname"><span class="paramname"><em>ops</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Register the operations for a given transport type. </p>
+<p>This function should be invoked by referencing the macro SPDK_NVMF_TRANSPORT_REGISTER macro in the transport's .c file.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">ops</td><td>The operations associated with an NVMe-oF transport. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+</div><!-- contents -->
+</div><!-- doc-content -->
+<div id="page-nav" class="page-nav-panel">
+<div id="page-nav-resize-handle"></div>
+<div id="page-nav-tree">
+<div id="page-nav-contents">
+</div><!-- page-nav-contents -->
+</div><!-- page-nav-tree -->
+</div><!-- page-nav -->
+</div><!-- container -->
+<footer class="footer" id="nav-path">
+  <div class="footer-inner">
+    <div class="footer-copy">
+      <small>Copyright &copy; SPDK a Series of LF Projects, LLC. For web site terms of use, trademark policy, and other
+      project policies please see <a href="https://lfprojects.org">lfprojects.org</a>.</small>
+      <br><small>Built from spdk 91893349edff / site e5878500f</small>
+    </div>
+  </div>
+</footer>
+<script type="text/javascript" src="page_outline.js"></script>
+<script type="text/javascript" src="spdk_nav.js"></script>
+</body>
+</html>

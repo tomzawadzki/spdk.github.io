@@ -1,0 +1,390 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<meta name="generator" content="Doxygen 1.16.1">
+	<title>SPDK: NVMe Driver</title>
+	<script type="text/javascript" src="jquery.js"></script>
+	<script type="text/javascript" src="dynsections.js"></script>
+	<script type="text/javascript" src="clipboard.js"></script>
+	<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
+<script type="text/javascript" src="cookie.js"></script>
+	<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<script type="text/javascript">
+  $(function() { init_search(); });
+</script>
+	<link rel="icon" type="image/svg+xml" href="../assets/img/spdk.svg">
+	<link rel="icon" href="../assets/favicon.ico" sizes="32x32">
+	<link href="doxygen.css" rel="stylesheet" type="text/css">
+	<script>(function(){var k='doxygen_width',w,bw=6;if(window.chrome){w=localStorage.getItem(k);if(!w){w='350';localStorage.setItem(k,w)}}else{var m=document.cookie.match(new RegExp(k+'=(\\d+)'));w=m?m[1]:null;if(!w){w='350';document.cookie=k+'=350;SameSite=Lax;path=/'}}document.documentElement.style.setProperty('--sn-w',(parseInt(w)+bw)+'px')})()</script>
+	<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:400,700,900" type="text/css">
+	<link href="spdk.css" rel="stylesheet" type="text/css"/>
+	<link href="../assets/css/spdk.css" rel="stylesheet" type="text/css">
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<nav class="navbar">
+  <a class="navbar-brand" href="../" aria-label="SPDK">
+    <img src="../assets/img/spdk.svg" width="36" height="36" alt="Storage Performance Development Kit">
+  </a>
+  <div class="navbar-nav">
+    <a class="nav-link header-link" href="../doc/releases.html">download</a>
+    <a class="nav-link header-link" href="../doc/">documentation</a>
+    <a class="nav-link header-link" href="../doc/contributing.html">development</a>
+    <a class="nav-link header-link" href="../doc/ci_tools.html">CI status</a>
+    <a class="nav-link header-link" href="../community/">community</a>
+    <a class="nav-link header-link" href="../blog/">Blog</a>
+    <a class="nav-link header-link" href="https://github.com/orgs/spdk/projects/5">Roadmap</a>
+    <a class="nav-link header-link" href="../news/">News</a>
+  </div>
+  <div class="navbar-end">
+    <a class="nav-link header-link" href="https://github.com/spdk/spdk" aria-label="GitHub">
+      <svg xmlns="http://www.w3.org/2000/svg" class="navbar-nav-svg" aria-hidden="true"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
+    </a>
+    <a id="cn_lang_btn" href="../cn/doc/" class="nav-link header-link">中文</a>
+  </div>
+</nav>
+<script>
+(function() {
+    var p = location.pathname, best = null, bLen = 0;
+    document.querySelectorAll('.header-link[href]').forEach(function(a) {
+        var raw = a.getAttribute('href');
+        if (!raw) return;
+        try { var u = new URL(raw, location.href); } catch(e) { return; }
+        if (u.origin !== location.origin) return;
+        var h = u.pathname;
+        if (h === '/') return;
+        var ok = h.endsWith('.html') ? p === h : p.indexOf(h) === 0;
+        if (ok && h.length > bLen) { bLen = h.length; best = a; }
+    });
+    if (best) best.classList.add('active');
+})();
+</script>
+<div id="doxygen-searchbox">        <div id="MSearchBox" class="MSearchBoxInactive">
+        <span class="left">
+          <span id="MSearchSelect" class="search-icon" onmouseover="return searchBox.OnSearchSelectShow()" onmouseout="return searchBox.OnSearchSelectHide()"><span class="search-icon-dropdown"></span></span>
+          <input type="text" id="MSearchField" value="" placeholder="Search" accesskey="S"
+               onfocus="searchBox.OnSearchFieldFocus(true)" 
+               onblur="searchBox.OnSearchFieldFocus(false)" 
+               onkeyup="searchBox.OnSearchFieldChange(event)"/>
+          </span><span class="right">
+            <a id="MSearchClose" href="javascript:searchBox.CloseResultsWindow()"><div id="MSearchCloseImg" class="close-icon"></div></a>
+          </span>
+        </div>
+</div>
+<!-- Generated by Doxygen 1.16.1 -->
+<script type="text/javascript">
+var searchBox = new SearchBox("searchBox", "search/",'.html');
+</script>
+<script type="text/javascript">
+$(function() { codefold.init(); });
+</script>
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+$(function(){initNavTree('nvme.html','',''); });
+</script>
+<div id="container">
+<div id="doc-content">
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">Loading...</div>
+<div class="SRStatus" id="Searching">Searching...</div>
+<div class="SRStatus" id="NoMatches">No Matches</div>
+</div>
+</div>
+</div>
+</div>
+
+<div><div class="header">
+  <div class="headertitle"><div class="title">NVMe Driver </div></div>
+</div><!--header-->
+<div class="contents">
+<div class="textblock"><p><a class="anchor" id="md_drivers_2nvme"></a></p>
+<h1 class="doxsection"><a class="anchor" id="nvme_toc"></a>
+In this document</h1>
+<ul>
+<li><a class="el" href="#nvme_intro" title="Introduction">Introduction</a></li>
+<li><a class="el" href="#nvme_examples" title="Examples">Examples</a></li>
+<li><a class="el" href="#nvme_interface" title="Public Interface">Public Interface</a></li>
+<li><a class="el" href="#nvme_design" title="NVMe Driver Design">NVMe Driver Design</a></li>
+<li><a class="el" href="#nvme_fabrics_host" title="NVMe over Fabrics Host Support">NVMe over Fabrics Host Support</a></li>
+<li><a class="el" href="#nvme_multi_process" title="NVMe Multi Process">NVMe Multi Process</a></li>
+<li><a class="el" href="#nvme_hotplug" title="NVMe Hotplug">NVMe Hotplug</a></li>
+<li><a class="el" href="#nvme_cuse" title="NVMe Character Devices">NVMe Character Devices</a></li>
+<li><a class="el" href="#nvme_led" title="NVMe LED management">NVMe LED management</a></li>
+</ul>
+<h1 class="doxsection"><a class="anchor" id="nvme_intro"></a>
+Introduction</h1>
+<p>The NVMe driver is a C library that may be linked directly into an application that provides direct, zero-copy data transfer to and from <a href="http://nvmexpress.org/">NVMe SSDs</a>. It is entirely passive, meaning that it spawns no threads and only performs actions in response to function calls from the application itself. The library controls NVMe devices by directly mapping the <a href="https://en.wikipedia.org/wiki/PCI_configuration_space">PCI BAR</a> into the local process and performing <a href="https://en.wikipedia.org/wiki/Memory-mapped_I/O">MMIO</a>. I/O is submitted asynchronously via queue pairs and the general flow isn't entirely dissimilar from Linux's <a href="http://man7.org/linux/man-pages/man2/io_submit.2.html">libaio</a>.</p>
+<p>More recently, the library has been improved to also connect to remote NVMe devices via NVMe over Fabrics. Users may now call <a class="el" href="nvme_8h.html#a225bbc386ec518ae21bd5536f21db45d" title="Enumerate the bus indicated by the transport ID and attach the userspace NVMe driver to each device f...">spdk_nvme_probe()</a> on both local PCI buses and on remote NVMe over Fabrics discovery services. The API is otherwise unchanged.</p>
+<h1 class="doxsection"><a class="anchor" id="nvme_examples"></a>
+Examples</h1>
+<h2 class="doxsection"><a class="anchor" id="nvme_helloworld"></a>
+Getting Start with Hello World</h2>
+<p>There are a number of examples provided that demonstrate how to use the NVMe library. They are all in the <a href="https://github.com/spdk/spdk/tree/master/examples/nvme">examples/nvme</a> directory in the repository. The best place to start is <a href="https://github.com/spdk/spdk/blob/master/examples/nvme/hello_world/hello_world.c">hello_world</a>.</p>
+<h2 class="doxsection"><a class="anchor" id="nvme_fioplugin"></a>
+Running Benchmarks with Fio Plugin</h2>
+<p>SPDK provides a plugin to the very popular <a href="https://github.com/axboe/fio">fio</a> tool for running some basic benchmarks. See the fio start up <a href="https://github.com/spdk/spdk/blob/master/app/fio/nvme/">guide</a> for more details.</p>
+<h2 class="doxsection"><a class="anchor" id="nvme_perf"></a>
+Running Benchmarks with Perf Tool</h2>
+<p>NVMe perf utility in the <a href="https://github.com/spdk/spdk/tree/master/app/spdk_nvme_perf">app/spdk_nvme_perf</a> is one of the examples which also can be used for performance tests. The fio tool is widely used because it is very flexible. However, that flexibility adds overhead and reduces the efficiency of SPDK. Therefore, SPDK provides a perf benchmarking tool which has minimal overhead during benchmarking. We have measured up to 2.6 times more IOPS/core when using perf vs. fio with the 4K 100% Random Read workload. The perf benchmarking tool provides several run time options to support the most common workload. The following examples demonstrate how to use perf.</p>
+<p>Example: Using perf for 4K 100% Random Read workload to a local NVMe SSD for 300 seconds </p><div class="fragment"><div class="line">perf -q 128 -o 4096 -w randread -r &#39;trtype:PCIe traddr:0000:04:00.0&#39; -t 300</div>
+</div><!-- fragment --><p>Example: Using perf for 4K 100% Random Read workload to a remote NVMe SSD exported over the network via NVMe-oF </p><div class="fragment"><div class="line">perf -q 128 -o 4096 -w randread -r &#39;trtype:RDMA adrfam:IPv4 traddr:192.168.100.8 trsvcid:4420&#39; -t 300</div>
+</div><!-- fragment --><p>Example: Using perf for 4K 70/30 Random Read/Write mix workload to all local NVMe SSDs for 300 seconds </p><div class="fragment"><div class="line">perf -q 128 -o 4096 -w randrw -M 70 -t 300</div>
+</div><!-- fragment --><p>Example: Using perf for extended LBA format CRC guard test to a local NVMe SSD, users must write to the SSD before reading the LBA from SSD </p><div class="fragment"><div class="line">perf -q 1 -o 4096 -w write -r &#39;trtype:PCIe traddr:0000:04:00.0&#39; -t 300 -e &#39;PRACT=0,PRCKH=GUARD&#39;</div>
+<div class="line">perf -q 1 -o 4096 -w read -r &#39;trtype:PCIe traddr:0000:04:00.0&#39; -t 200 -e &#39;PRACT=0,PRCKH=GUARD&#39;</div>
+</div><!-- fragment --><h1 class="doxsection"><a class="anchor" id="nvme_interface"></a>
+Public Interface</h1>
+<ul>
+<li><a class="el" href="nvme_8h.html" title="NVMe driver public API.">spdk/nvme.h</a></li>
+</ul>
+<table class="markdownTable">
+<tr class="markdownTableHead">
+<th class="markdownTableHeadNone">Key Functions  </th><th class="markdownTableHeadNone">Description  </th></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyNone"><a class="el" href="nvme_8h.html#a225bbc386ec518ae21bd5536f21db45d" title="Enumerate the bus indicated by the transport ID and attach the userspace NVMe driver to each device f...">spdk_nvme_probe()</a>  </td><td class="markdownTableBodyNone">Enumerate the bus indicated by the transport ID and attach the userspace NVMe driver to each device found if desired.     </td></tr>
+<tr class="markdownTableRowEven">
+<td class="markdownTableBodyNone"><a class="el" href="nvme_8h.html#a69f3af06e6227881ce3d9182da9bc0d0" title="Allocate an I/O queue pair (submission and completion queue).">spdk_nvme_ctrlr_alloc_io_qpair()</a>  </td><td class="markdownTableBodyNone">Allocate an I/O queue pair (submission and completion queue).     </td></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyNone"><a class="el" href="nvme_8h.html#aa50ff17b33e8029bd7e3f560f6e7ba00" title="Get a handle to a namespace for the given controller.">spdk_nvme_ctrlr_get_ns()</a>  </td><td class="markdownTableBodyNone">Get a handle to a namespace for the given controller.     </td></tr>
+<tr class="markdownTableRowEven">
+<td class="markdownTableBodyNone"><a class="el" href="nvme_8h.html#a084c6ecb53bd810fbb5051100b79bec5" title="Submits a read I/O to the specified NVMe namespace.">spdk_nvme_ns_cmd_read()</a>  </td><td class="markdownTableBodyNone">Submits a read I/O to the specified NVMe namespace.     </td></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyNone"><a class="el" href="nvme_8h.html#acb47ce7de6b6e963ec9fb8de261466ae" title="Submit a read I/O to the specified NVMe namespace.">spdk_nvme_ns_cmd_readv()</a>  </td><td class="markdownTableBodyNone">Submit a read I/O to the specified NVMe namespace.     </td></tr>
+<tr class="markdownTableRowEven">
+<td class="markdownTableBodyNone"><a class="el" href="nvme_8h.html#aa2913b93326e636eca6dfe7b42e349fe" title="Submits a read I/O to the specified NVMe namespace.">spdk_nvme_ns_cmd_read_with_md()</a>  </td><td class="markdownTableBodyNone">Submits a read I/O to the specified NVMe namespace.     </td></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyNone"><a class="el" href="nvme_8h.html#a3065f669d8b605efdcadffbf94a50538" title="Submit a write I/O to the specified NVMe namespace.">spdk_nvme_ns_cmd_write()</a>  </td><td class="markdownTableBodyNone">Submit a write I/O to the specified NVMe namespace.     </td></tr>
+<tr class="markdownTableRowEven">
+<td class="markdownTableBodyNone"><a class="el" href="nvme_8h.html#adfcbb5d31f0b572847cc8ae8b07dfcfb" title="Submit a write I/O to the specified NVMe namespace.">spdk_nvme_ns_cmd_writev()</a>  </td><td class="markdownTableBodyNone">Submit a write I/O to the specified NVMe namespace.     </td></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyNone"><a class="el" href="nvme_8h.html#adc2aa2be0d657be0c63d5abc02b274ec" title="Submit a write I/O to the specified NVMe namespace.">spdk_nvme_ns_cmd_write_with_md()</a>  </td><td class="markdownTableBodyNone">Submit a write I/O to the specified NVMe namespace.     </td></tr>
+<tr class="markdownTableRowEven">
+<td class="markdownTableBodyNone"><a class="el" href="nvme_8h.html#af02e8c701c5496f163a69917ad5397dd" title="Submit a write zeroes I/O to the specified NVMe namespace.">spdk_nvme_ns_cmd_write_zeroes()</a>  </td><td class="markdownTableBodyNone">Submit a write zeroes I/O to the specified NVMe namespace.     </td></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyNone"><a class="el" href="nvme_8h.html#ac0c646dd18675c54ffcf834ce699658d" title="Submit a data set management request to the specified NVMe namespace.">spdk_nvme_ns_cmd_dataset_management()</a>  </td><td class="markdownTableBodyNone">Submit a data set management request to the specified NVMe namespace.     </td></tr>
+<tr class="markdownTableRowEven">
+<td class="markdownTableBodyNone"><a class="el" href="nvme_8h.html#aed0b134e140121bb9bd8664d4a43a5c6" title="Submit a flush request to the specified NVMe namespace.">spdk_nvme_ns_cmd_flush()</a>  </td><td class="markdownTableBodyNone">Submit a flush request to the specified NVMe namespace.     </td></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyNone"><a class="el" href="nvme_8h.html#aa331d140870e977722bfbb6826524782" title="Process any outstanding completions for I/O submitted on a queue pair.">spdk_nvme_qpair_process_completions()</a>  </td><td class="markdownTableBodyNone">Process any outstanding completions for I/O submitted on a queue pair.     </td></tr>
+<tr class="markdownTableRowEven">
+<td class="markdownTableBodyNone"><a class="el" href="nvme_8h.html#afe2a9d3b715649b4d0a0e89196a13e6d" title="Send the given admin command to the NVMe controller.">spdk_nvme_ctrlr_cmd_admin_raw()</a>  </td><td class="markdownTableBodyNone">Send the given admin command to the NVMe controller.     </td></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyNone"><a class="el" href="nvme_8h.html#a10282695461985f58f54de022911745e" title="Process any outstanding completions for admin commands.">spdk_nvme_ctrlr_process_admin_completions()</a>  </td><td class="markdownTableBodyNone">Process any outstanding completions for admin commands.     </td></tr>
+<tr class="markdownTableRowEven">
+<td class="markdownTableBodyNone"><a class="el" href="nvme_8h.html#a1e3def668122e76abbfb74305f118291" title="Send the given NVM I/O command to the NVMe controller.">spdk_nvme_ctrlr_cmd_io_raw()</a>  </td><td class="markdownTableBodyNone">Send the given NVM I/O command to the NVMe controller.     </td></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyNone"><a class="el" href="nvme_8h.html#afd2d8453bb2478c7b1a70c0a09c7ef4b" title="Send the given NVM I/O command with metadata to the NVMe controller.">spdk_nvme_ctrlr_cmd_io_raw_with_md()</a>  </td><td class="markdownTableBodyNone">Send the given NVM I/O command with metadata to the NVMe controller.     </td></tr>
+</table>
+<h1 class="doxsection"><a class="anchor" id="nvme_design"></a>
+NVMe Driver Design</h1>
+<h2 class="doxsection"><a class="anchor" id="nvme_io_submission"></a>
+NVMe I/O Submission</h2>
+<p>I/O is submitted to an NVMe namespace using nvme_ns_cmd_xxx functions. The NVMe driver submits the I/O request as an NVMe submission queue entry on the queue pair specified in the command. The function returns immediately, prior to the completion of the command. The application must poll for I/O completion on each queue pair with outstanding I/O to receive completion callbacks by calling <a class="el" href="nvme_8h.html#aa331d140870e977722bfbb6826524782" title="Process any outstanding completions for I/O submitted on a queue pair.">spdk_nvme_qpair_process_completions()</a>.</p>
+<dl class="section see"><dt>See also</dt><dd><a class="el" href="nvme_8h.html#a084c6ecb53bd810fbb5051100b79bec5" title="Submits a read I/O to the specified NVMe namespace.">spdk_nvme_ns_cmd_read</a>, <a class="el" href="nvme_8h.html#a3065f669d8b605efdcadffbf94a50538" title="Submit a write I/O to the specified NVMe namespace.">spdk_nvme_ns_cmd_write</a>, <a class="el" href="nvme_8h.html#ac0c646dd18675c54ffcf834ce699658d" title="Submit a data set management request to the specified NVMe namespace.">spdk_nvme_ns_cmd_dataset_management</a>, <a class="el" href="nvme_8h.html#aed0b134e140121bb9bd8664d4a43a5c6" title="Submit a flush request to the specified NVMe namespace.">spdk_nvme_ns_cmd_flush</a>, <a class="el" href="nvme_8h.html#aa331d140870e977722bfbb6826524782" title="Process any outstanding completions for I/O submitted on a queue pair.">spdk_nvme_qpair_process_completions</a></dd></dl>
+<h3 class="doxsection"><a class="anchor" id="nvme_fuses"></a>
+Fused operations</h3>
+<p>To "fuse" two commands, the first command should have the SPDK_NVME_IO_FLAGS_FUSE_FIRST io flag set, and the next one should have the SPDK_NVME_IO_FLAGS_FUSE_SECOND.</p>
+<p>In addition, the following rules must be met to execute two commands as an atomic unit:</p>
+<ul>
+<li>The commands shall be inserted next to each other in the same submission queue.</li>
+<li>The LBA range, should be the same for the two commands.</li>
+</ul>
+<p>E.g. To send fused compare and write operation user must call spdk_nvme_ns_cmd_compare followed with spdk_nvme_ns_cmd_write and make sure no other operations are submitted in between on the same queue, like in example below:</p>
+<div class="fragment"><div class="line">rc = <a class="code hl_function" href="nvme_8h.html#ad8aa3c9ff510fe73945549077df18436">spdk_nvme_ns_cmd_compare</a>(ns, qpair, cmp_buf, 0, 1, nvme_fused_first_cpl_cb,</div>
+<div class="line">                NULL, <a class="code hl_enumvalue" href="nvme__spec_8h.html#a221a4156b2e7883c4cb88847cbeaa069a5bc4ba22076a7b42f51c1ed6d76ceaf7">SPDK_NVME_CMD_FUSE_FIRST</a>);</div>
+<div class="line"><span class="keywordflow">if</span> (rc != 0) {</div>
+<div class="line">        ...</div>
+<div class="line">}</div>
+<div class="line"> </div>
+<div class="line">rc = <a class="code hl_function" href="nvme_8h.html#a3065f669d8b605efdcadffbf94a50538">spdk_nvme_ns_cmd_write</a>(ns, qpair, write_buf, 0, 1, nvme_fused_second_cpl_cb,</div>
+<div class="line">                NULL, <a class="code hl_enumvalue" href="nvme__spec_8h.html#a221a4156b2e7883c4cb88847cbeaa069ace5400bb9e50677e62cd5af8fad9e595">SPDK_NVME_CMD_FUSE_SECOND</a>);</div>
+<div class="line"><span class="keywordflow">if</span> (rc != 0) {</div>
+<div class="line">        ...</div>
+<div class="line">}</div>
+<div class="ttc" id="anvme_8h_html_a3065f669d8b605efdcadffbf94a50538"><div class="ttname"><a href="nvme_8h.html#a3065f669d8b605efdcadffbf94a50538">spdk_nvme_ns_cmd_write</a></div><div class="ttdeci">int spdk_nvme_ns_cmd_write(struct spdk_nvme_ns *ns, struct spdk_nvme_qpair *qpair, void *payload, uint64_t lba, uint32_t lba_count, spdk_nvme_cmd_cb cb_fn, void *cb_arg, uint32_t io_flags)</div><div class="ttdoc">Submit a write I/O to the specified NVMe namespace.</div></div>
+<div class="ttc" id="anvme_8h_html_ad8aa3c9ff510fe73945549077df18436"><div class="ttname"><a href="nvme_8h.html#ad8aa3c9ff510fe73945549077df18436">spdk_nvme_ns_cmd_compare</a></div><div class="ttdeci">int spdk_nvme_ns_cmd_compare(struct spdk_nvme_ns *ns, struct spdk_nvme_qpair *qpair, void *payload, uint64_t lba, uint32_t lba_count, spdk_nvme_cmd_cb cb_fn, void *cb_arg, uint32_t io_flags)</div><div class="ttdoc">Submit a compare I/O to the specified NVMe namespace.</div></div>
+<div class="ttc" id="anvme__spec_8h_html_a221a4156b2e7883c4cb88847cbeaa069a5bc4ba22076a7b42f51c1ed6d76ceaf7"><div class="ttname"><a href="nvme__spec_8h.html#a221a4156b2e7883c4cb88847cbeaa069a5bc4ba22076a7b42f51c1ed6d76ceaf7">SPDK_NVME_CMD_FUSE_FIRST</a></div><div class="ttdeci">@ SPDK_NVME_CMD_FUSE_FIRST</div><div class="ttdoc">fused operation, first command</div><div class="ttdef"><b>Definition</b> <a href="nvme__spec_8h_source.html#l00761">nvme_spec.h:761</a></div></div>
+<div class="ttc" id="anvme__spec_8h_html_a221a4156b2e7883c4cb88847cbeaa069ace5400bb9e50677e62cd5af8fad9e595"><div class="ttname"><a href="nvme__spec_8h.html#a221a4156b2e7883c4cb88847cbeaa069ace5400bb9e50677e62cd5af8fad9e595">SPDK_NVME_CMD_FUSE_SECOND</a></div><div class="ttdeci">@ SPDK_NVME_CMD_FUSE_SECOND</div><div class="ttdoc">fused operation, second command</div><div class="ttdef"><b>Definition</b> <a href="nvme__spec_8h_source.html#l00762">nvme_spec.h:762</a></div></div>
+</div><!-- fragment --><p>The NVMe specification currently defines compare-and-write as a fused operation. Support for compare-and-write is reported by the controller flag SPDK_NVME_CTRLR_COMPARE_AND_WRITE_SUPPORTED.</p>
+<h3 class="doxsection"><a class="anchor" id="nvme_scaling"></a>
+Scaling Performance</h3>
+<p>NVMe queue pairs (struct spdk_nvme_qpair) provide parallel submission paths for I/O. I/O may be submitted on multiple queue pairs simultaneously from different threads. Queue pairs contain no locks or atomics, however, so a given queue pair may only be used by a single thread at a time. This requirement is not enforced by the NVMe driver (doing so would require a lock), and violating this requirement results in undefined behavior.</p>
+<p>The number of queue pairs allowed is dictated by the NVMe SSD itself. The specification allows for thousands, but most devices support between 32 and 128. The specification makes no guarantees about the performance available from each queue pair, but in practice the full performance of a device is almost always achievable using just one queue pair. For example, if a device claims to be capable of 450,000 I/O per second at queue depth 128, in practice it does not matter if the driver is using 4 queue pairs each with queue depth 32, or a single queue pair with queue depth 128.</p>
+<p>Given the above, the easiest threading model for an application using SPDK is to spawn a fixed number of threads in a pool and dedicate a single NVMe queue pair to each thread. A further improvement would be to pin each thread to a separate CPU core, and often the SPDK documentation will use "CPU core" and "thread" interchangeably because we have this threading model in mind.</p>
+<p>The NVMe driver takes no locks in the I/O path, so it scales linearly in terms of performance per thread as long as a queue pair and a CPU core are dedicated to each new thread. In order to take full advantage of this scaling, applications should consider organizing their internal data structures such that data is assigned exclusively to a single thread. All operations that require that data should be done by sending a request to the owning thread. This results in a message passing architecture, as opposed to a locking architecture, and will result in superior scaling across CPU cores.</p>
+<h2 class="doxsection"><a class="anchor" id="nvme_memory_usage"></a>
+NVMe Driver Internal Memory Usage</h2>
+<p>The SPDK NVMe driver provides a zero-copy data transfer path, which means that there are no data buffers for I/O commands. However, some Admin commands have data copies depending on the API used by the user.</p>
+<p>Each queue pair has a number of trackers used to track commands submitted by the caller. The number trackers for I/O queues depend on the users' input for queue size and the value read from controller capabilities register field Maximum Queue Entries Supported(MQES, 0 based value). Each tracker has a fixed size 4096 Bytes, so the maximum memory used for each I/O queue is: (MQES + 1) * 4 KiB.</p>
+<p>I/O queue pairs can be allocated in host memory, this is used for most NVMe controllers, some NVMe controllers which can support Controller Memory Buffer may put I/O queue pairs at controllers' PCI BAR space, SPDK NVMe driver can put I/O submission queue into controller memory buffer, it depends on users' input and controller capabilities. Each submission queue entry (SQE) and completion queue entry (CQE) consumes 64 bytes and 16 bytes respectively. Therefore, the maximum memory used for each I/O queue pair is (MQES + 1) * (64 + 16) Bytes.</p>
+<h1 class="doxsection"><a class="anchor" id="nvme_fabrics_host"></a>
+NVMe over Fabrics Host Support</h1>
+<p>The NVMe driver supports connecting to remote NVMe-oF targets and interacting with them in the same manner as local NVMe SSDs.</p>
+<h2 class="doxsection"><a class="anchor" id="nvme_fabrics_trid"></a>
+Specifying Remote NVMe over Fabrics Targets</h2>
+<p>The method for connecting to a remote NVMe-oF target is very similar to the normal enumeration process for local PCIe-attached NVMe devices. To connect to a remote NVMe over Fabrics subsystem, the user may call <a class="el" href="nvme_8h.html#a225bbc386ec518ae21bd5536f21db45d" title="Enumerate the bus indicated by the transport ID and attach the userspace NVMe driver to each device f...">spdk_nvme_probe()</a> with the <span class="tt">trid</span> parameter specifying the address of the NVMe-oF target.</p>
+<p>The caller may fill out the <a class="el" href="structspdk__nvme__transport__id.html" title="NVMe transport identifier.">spdk_nvme_transport_id</a> structure manually or use the <a class="el" href="nvme_8h.html#ac37484cc5d14777e4ae1fde031d0edf2" title="Parse the string representation of a transport ID.">spdk_nvme_transport_id_parse()</a> function to convert a human-readable string representation into the required structure.</p>
+<p>The <a class="el" href="structspdk__nvme__transport__id.html" title="NVMe transport identifier.">spdk_nvme_transport_id</a> may contain the address of a discovery service or a single NVM subsystem. If a discovery service address is specified, the NVMe library will call the <a class="el" href="nvme_8h.html#a225bbc386ec518ae21bd5536f21db45d" title="Enumerate the bus indicated by the transport ID and attach the userspace NVMe driver to each device f...">spdk_nvme_probe()</a> <span class="tt">probe_cb</span> for each discovered NVM subsystem, which allows the user to select the desired subsystems to be attached. Alternatively, if the address specifies a single NVM subsystem directly, the NVMe library will call <span class="tt">probe_cb</span> for just that subsystem; this allows the user to skip the discovery step and connect directly to a subsystem with a known address.</p>
+<h2 class="doxsection"><a class="anchor" id="autotoc_md90"></a>
+RDMA Limitations</h2>
+<p>Please refer to NVMe-oF target's <a class="el" href="nvmf.html#nvmf_rdma_limitations" title="RDMA Limitations">RDMA Limitations</a></p>
+<h1 class="doxsection"><a class="anchor" id="nvme_multi_process"></a>
+NVMe Multi Process</h1>
+<p>This capability enables the SPDK NVMe driver to support multiple processes accessing the same NVMe device. The NVMe driver allocates critical structures from shared memory, so that each process can map that memory and create its own queue pairs or share the admin queue. There is a limited number of I/O queue pairs per NVMe controller.</p>
+<p>The primary motivation for this feature is to support management tools that can attach to long running applications, perform some maintenance work or gather information, and then detach.</p>
+<h2 class="doxsection"><a class="anchor" id="nvme_multi_process_configuration"></a>
+Configuration</h2>
+<p>DPDK EAL allows different types of processes to be spawned, each with different permissions on the hugepage memory used by the applications.</p>
+<p>There are two types of processes:</p>
+<ol type="1">
+<li>a primary process which initializes the shared memory and has full privileges and</li>
+<li>a secondary process which can attach to the primary process by mapping its shared memory regions and perform NVMe operations including creating queue pairs.</li>
+</ol>
+<p>This feature is enabled by default and is controlled by selecting a value for the shared memory group ID. This ID is a positive integer and two applications with the same shared memory group ID will share memory. The first application with a given shared memory group ID will be considered the primary and all others secondary.</p>
+<p>Example: identical shm_id and non-overlapping core masks </p><div class="fragment"><div class="line">spdk_nvme_perf options [AIO device(s)]...</div>
+<div class="line">        [-c core mask for I/O submission/completion]</div>
+<div class="line">        [-i shared memory group ID]</div>
+<div class="line"> </div>
+<div class="line">spdk_nvme_perf -q 1 -o 4096 -w randread -c 0x1 -t 60 -i 1</div>
+<div class="line">spdk_nvme_perf -q 8 -o 131072 -w write -c 0x10 -t 60 -i 1</div>
+</div><!-- fragment --><h2 class="doxsection"><a class="anchor" id="nvme_multi_process_limitations"></a>
+Limitations</h2>
+<ol type="1">
+<li>Two processes sharing memory may not share any cores in their core mask.</li>
+<li>If a primary process exits while secondary processes are still running, those processes will continue to run. However, a new primary process cannot be created.</li>
+<li>Applications are responsible for coordinating access to logical blocks.</li>
+<li>If a process exits unexpectedly, the allocated memory will be released when the last process exits.</li>
+</ol>
+<dl class="section see"><dt>See also</dt><dd><a class="el" href="nvme_8h.html#a225bbc386ec518ae21bd5536f21db45d" title="Enumerate the bus indicated by the transport ID and attach the userspace NVMe driver to each device f...">spdk_nvme_probe</a>, <a class="el" href="nvme_8h.html#a10282695461985f58f54de022911745e" title="Process any outstanding completions for admin commands.">spdk_nvme_ctrlr_process_admin_completions</a></dd></dl>
+<h1 class="doxsection"><a class="anchor" id="nvme_hotplug"></a>
+NVMe Hotplug</h1>
+<p>At the NVMe driver level, we provide the following support for Hotplug:</p>
+<ol type="1">
+<li>Hotplug events detection: The user of the NVMe library can call <a class="el" href="nvme_8h.html#a225bbc386ec518ae21bd5536f21db45d" title="Enumerate the bus indicated by the transport ID and attach the userspace NVMe driver to each device f...">spdk_nvme_probe()</a> periodically to detect hotplug events. The probe_cb, followed by the attach_cb, will be called for each new device detected. The user may optionally also provide a remove_cb that will be called if a previously attached NVMe device is no longer present on the system. All subsequent I/O to the removed device will return an error.</li>
+<li>Hot remove NVMe with IO loads: When a device is hot removed while I/O is occurring, all access to the PCI BAR will result in a SIGBUS error. The NVMe driver automatically handles this case by installing a SIGBUS handler and remapping the PCI BAR to a new, placeholder memory location. This means I/O in flight during a hot remove will complete with an appropriate error code and will not crash the application.</li>
+</ol>
+<dl class="section see"><dt>See also</dt><dd><a class="el" href="nvme_8h.html#a225bbc386ec518ae21bd5536f21db45d" title="Enumerate the bus indicated by the transport ID and attach the userspace NVMe driver to each device f...">spdk_nvme_probe</a></dd></dl>
+<h1 class="doxsection"><a class="anchor" id="nvme_cuse"></a>
+NVMe Character Devices</h1>
+<h2 class="doxsection"><a class="anchor" id="autotoc_md91"></a>
+Design</h2>
+<div class="image">
+<object type="image/svg+xml" data="nvme_cuse.svg" style="pointer-events: none;"></object>
+<div class="caption">
+NVMe character devices processing diagram</div></div>
+    <p>For each controller as well as namespace, character devices are created in the locations: </p><div class="fragment"><div class="line">/dev/spdk/nvmeX</div>
+<div class="line">/dev/spdk/nvmeXnY</div>
+<div class="line">...</div>
+</div><!-- fragment --><p> Where X is unique SPDK NVMe controller index and Y is namespace id.</p>
+<p>Requests from CUSE are handled by pthreads when controller and namespaces are created. Those pass the I/O or admin commands via a ring to a thread that processes them using nvme_io_msg_process().</p>
+<p>Ioctls that request information attained when attaching NVMe controller receive an immediate response, without passing them through the ring.</p>
+<p>This interface reserves one additional qpair for sending down the I/O for each controller.</p>
+<h2 class="doxsection"><a class="anchor" id="autotoc_md93"></a>
+Usage</h2>
+<h3 class="doxsection"><a class="anchor" id="autotoc_md98"></a>
+Enabling cuse support for NVMe</h3>
+<p>Cuse support is enabled by default on Linux. Make sure to install required dependencies: </p><div class="fragment"><div class="line">sudo scripts/pkgdep.sh</div>
+</div><!-- fragment --><h3 class="doxsection"><a class="anchor" id="autotoc_md99"></a>
+Creating NVMe-CUSE device</h3>
+<p>First make sure to prepare the environment (see <a class="el" href="getting_started.html" title="Getting Started">Getting Started</a>). This includes loading CUSE kernel module. Any NVMe controller attached to a running SPDK application can be exposed via NVMe-CUSE interface. When closing SPDK application, the NVMe-CUSE devices are unregistered.</p>
+<div class="fragment"><div class="line">$ sudo scripts/setup.sh</div>
+<div class="line">$ sudo modprobe cuse</div>
+<div class="line">$ sudo build/bin/spdk_tgt</div>
+<div class="line"># Continue in another session</div>
+<div class="line">$ sudo scripts/rpc.py bdev_nvme_attach_controller -b Nvme0 -t PCIe -a 0000:82:00.0</div>
+<div class="line">Nvme0n1</div>
+<div class="line">$ sudo scripts/rpc.py bdev_nvme_get_controllers</div>
+<div class="line">[</div>
+<div class="line">  {</div>
+<div class="line">    &quot;name&quot;: &quot;Nvme0&quot;,</div>
+<div class="line">    &quot;trid&quot;: {</div>
+<div class="line">      &quot;trtype&quot;: &quot;PCIe&quot;,</div>
+<div class="line">      &quot;traddr&quot;: &quot;0000:82:00.0&quot;</div>
+<div class="line">    }</div>
+<div class="line">  }</div>
+<div class="line">]</div>
+<div class="line">$ sudo scripts/rpc.py bdev_nvme_cuse_register -n Nvme0</div>
+<div class="line">$ ls /dev/spdk/</div>
+<div class="line">nvme0  nvme0n1</div>
+</div><!-- fragment --><h3 class="doxsection"><a class="anchor" id="autotoc_md100"></a>
+Example of using nvme-cli</h3>
+<p>Most nvme-cli commands can point to specific controller or namespace by providing a path to it. This can be leveraged to issue commands to the SPDK NVMe-CUSE devices.</p>
+<div class="fragment"><div class="line">sudo nvme id-ctrl /dev/spdk/nvme0</div>
+<div class="line">sudo nvme smart-log /dev/spdk/nvme0</div>
+<div class="line">sudo nvme id-ns /dev/spdk/nvme0n1</div>
+</div><!-- fragment --><p>Note: <span class="tt">nvme list</span> command does not display SPDK NVMe-CUSE devices, see nvme-cli <a href="https://github.com/linux-nvme/nvme-cli/pull/773">PR #773</a>.</p>
+<h3 class="doxsection"><a class="anchor" id="autotoc_md101"></a>
+Examples of using smartctl</h3>
+<p>smartctl tool recognizes device type based on the device path. If none of expected patterns match, SCSI translation layer is used to identify device.</p>
+<p>To use smartctl '-d nvme' parameter must be used in addition to full path to the NVMe device.</p>
+<div class="fragment"><div class="line">smartctl -d nvme -i /dev/spdk/nvme0</div>
+<div class="line">smartctl -d nvme -H /dev/spdk/nvme1</div>
+<div class="line">...</div>
+</div><!-- fragment --><h2 class="doxsection"><a class="anchor" id="autotoc_md102"></a>
+Limitations</h2>
+<p>NVMe namespaces are created as character devices and their use may be limited for tools expecting block devices.</p>
+<p>Sysfs is not updated by SPDK.</p>
+<p>SPDK NVMe CUSE creates nodes in "/dev/spdk/" directory to explicitly differentiate from other devices. Tools that only search in the "/dev" directory might not work with SPDK NVMe CUSE.</p>
+<p>SCSI to NVMe Translation Layer is not implemented. Tools that are using this layer to identify, manage or operate device might not work properly or their use may be limited.</p>
+<h2 class="doxsection"><a class="anchor" id="autotoc_md103"></a>
+SPDK_CUSE_GET_TRANSPORT ioctl command</h2>
+<p>nvme-cli mostly uses IOCTLs to obtain information, but transport information is obtained through sysfs. Since SPDK does not populate sysfs, the SPDK plugin leverages an SPDK/CUSE specific ioctl to get the information.</p>
+<div class="fragment"><div class="line"><span class="preprocessor">#define SPDK_CUSE_GET_TRANSPORT _IOWR(&#39;n&#39;, 0x1, struct cuse_transport)</span></div>
+</div><!-- fragment --><div class="fragment"><div class="line"><span class="keyword">struct </span>cuse_transport {</div>
+<div class="line">        <span class="keywordtype">char</span> trstring[SPDK_NVMF_TRSTRING_MAX_LEN + 1];</div>
+<div class="line">        <span class="keywordtype">char</span> traddr[SPDK_NVMF_TRADDR_MAX_LEN + 1];</div>
+<div class="line">} tr;</div>
+</div><!-- fragment --><h1 class="doxsection"><a class="anchor" id="nvme_led"></a>
+NVMe LED management</h1>
+<p>It is possible to use the ledctl(8) utility to control the state of LEDs in systems supporting NPEM (Native PCIe Enclosure Management), even when the NVMe devices are controlled by SPDK. However, in this case it is necessary to determine the slot device number because the block device is unavailable. The <a href="https://github.com/spdk/spdk/tree/master/scripts/ledctl.sh">ledctl.sh</a> script can be used to help with this. It takes the name of the nvme bdev and invokes ledctl with appropriate options. </p>
+</div></div><!-- contents -->
+</div><!-- PageDoc -->
+</div><!-- doc-content -->
+<div id="page-nav" class="page-nav-panel">
+<div id="page-nav-resize-handle"></div>
+<div id="page-nav-tree">
+<div id="page-nav-contents">
+</div><!-- page-nav-contents -->
+</div><!-- page-nav-tree -->
+</div><!-- page-nav -->
+</div><!-- container -->
+<footer class="footer" id="nav-path">
+  <div class="footer-inner">
+    <div class="footer-copy">
+      <small>Copyright &copy; SPDK a Series of LF Projects, LLC. For web site terms of use, trademark policy, and other
+      project policies please see <a href="https://lfprojects.org">lfprojects.org</a>.</small>
+      <br><small>Built from spdk 91893349edff / site e5878500f</small>
+    </div>
+  </div>
+</footer>
+<script type="text/javascript" src="page_outline.js"></script>
+<script type="text/javascript" src="spdk_nav.js"></script>
+</body>
+</html>

@@ -1,0 +1,303 @@
+<!doctype html>
+<html lang="en">
+  <head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="The Storage Performance Development Kit (SPDK) provides a set of tools and libraries for writing high performance, scalable, user-mode storage applications. It achieves high performance by moving all of the necessary drivers into userspace and operating in a polled mode instead of relying on interrupts, which avoids kernel context switches and eliminates interrupt handling overhead.
+">
+  <meta name="author" content="Benjamin Walker">
+
+  <title>SPDK In The News</title>
+
+  <link rel="icon" type="image/svg+xml" href="/spdk.github.io/assets/img/spdk.svg">
+  <link rel="icon" href="/spdk.github.io/assets/favicon.ico" sizes="32x32">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:400,700,900" type="text/css">
+  <link rel="stylesheet" href="/spdk.github.io/assets/css/spdk.css">
+
+  <link href="/spdk.github.io/feed.xml" type="application/atom+xml" rel="alternate" title="Atom Feed">
+</head>
+
+
+  <body>
+    <nav class="navbar">
+  <a class="navbar-brand" href="/spdk.github.io/" aria-label="SPDK">
+    <img src="/spdk.github.io/assets/img/spdk.svg" width="36" height="36" alt="Storage Performance Development Kit">
+  </a>
+  <div class="navbar-nav">
+    <a class="nav-link header-link" href="/spdk.github.io/doc/releases.html">download</a>
+    <a class="nav-link header-link" href="/spdk.github.io/doc/">documentation</a>
+    <a class="nav-link header-link" href="/spdk.github.io/doc/contributing.html">development</a>
+    <a class="nav-link header-link" href="/spdk.github.io/doc/ci_tools.html">CI status</a>
+    <a class="nav-link header-link" href="/spdk.github.io/community/">community</a>
+    <a class="nav-link header-link" href="/spdk.github.io/blog/">Blog</a>
+    <a class="nav-link header-link" href="https://github.com/orgs/spdk/projects/5">Roadmap</a>
+    <a class="nav-link header-link" href="/spdk.github.io/news/">News</a>
+  </div>
+  <div class="navbar-end">
+    <a class="nav-link header-link" href="https://github.com/spdk/spdk" aria-label="GitHub">
+      <svg xmlns="http://www.w3.org/2000/svg" class="navbar-nav-svg" aria-hidden="true"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
+    </a>
+    <a id="cn_lang_btn" href="/spdk.github.io/cn/doc/" class="nav-link header-link">中文</a>
+  </div>
+</nav>
+<script>
+(function() {
+    var p = location.pathname, best = null, bLen = 0;
+    document.querySelectorAll('.header-link[href]').forEach(function(a) {
+        var raw = a.getAttribute('href');
+        if (!raw) return;
+        try { var u = new URL(raw, location.href); } catch(e) { return; }
+        if (u.origin !== location.origin) return;
+        var h = u.pathname;
+        if (h === '/') return;
+        var ok = h.endsWith('.html') ? p === h : p.indexOf(h) === 0;
+        if (ok && h.length > bLen) { bLen = h.length; best = a; }
+    });
+    if (best) best.classList.add('active');
+})();
+</script>
+
+
+    
+<div class="page-with-toc">
+  <aside class="site-toc">
+    <ul>
+      
+        <li>
+          <a href="../news/">News</a>
+          
+        </li>
+      
+        <li>
+          <a href="../articles/">Technical Articles</a>
+          
+        </li>
+      
+        <li>
+          <a href="../whitepaper/">Whitepapers</a>
+          
+        </li>
+      
+        <li>
+          <a href="../webinar/">Webinars</a>
+          
+        </li>
+      
+    </ul>
+  </aside>
+
+  <div class="page-content">
+    <div class="page-header">
+      <h1>SPDK In The News</h1>
+    </div>
+    <div class="content"><h2 id="2021-19th-usenix-conference-on-file-and-storage-technologies-february-2325-2021">2021 19th USENIX Conference on File and Storage Technologies, February 23–25, 2021</h2>
+
+<h3 id="spandb-a-fast-cost-effective-lsm-tree-based-kv-store-on-hybrid-storage"><a href="https://www.usenix.org/system/files/fast21-chen-hao.pdf">SpanDB: A Fast, Cost-Effective LSM-tree Based KV Store on Hybrid Storage</a></h3>
+<blockquote>
+  <p>We propose SpanDB, an LSM-tree-based KV store that adapts the popular RocksDB system to utilize selective deployment of high-speed SSDs. SpanDB allows users to host the bulk of their data on cheaper and larger SSDs, while relocating write-ahead logs (WAL) and the top levels of the LSM-tree to a much smaller and faster NVMe SSD. To better utilize this fast disk, SpanDB provides high-speed, parallel WAL writes via SPDK, and enables asynchronous request processing to mitigate inter-thread synchronization overhead and work efficiently with polling-based I/O.</p>
+</blockquote>
+
+<h2 id="spdk-on-microsoft-windows">SPDK on Microsoft Windows</h2>
+
+<h3 id="windows-platform-development-kit-wpdk"><a href="https://openebs.io/blog/storage-is-evolving/">Windows Platform Development Kit (WPDK)</a></h3>
+<blockquote>
+  <p>MayaData has created the Windows Platform Development Kit (WPDK) to act as a foundational layer to make it easier to port the SPDK to Windows. Additionally, they are working with the SPDK community to make a few changes to the code base to support WPDK. Are you interested in porting SPDK to Windows? Please head to https://wpdk.github.io to get started. Community contributions are welcomed and needed!</p>
+</blockquote>
+
+<h2 id="openebs-mayastor-accelerating-container-attached-storage-with-intel-optane-technology-and-spdk">OpenEBS Mayastor: Accelerating Container Attached Storage with Intel® Optane™ Technology and SPDK</h2>
+
+<h3 id="mayastor-nvme-tcp-performance"><a href="https://openebs.io/blog/mayastor-nvme-of-tcp-performance/">Mayastor NVMe-TCP performance</a></h3>
+<blockquote>
+  <p>The OpenEBS Mayastor storage engine uses Intel® Optane™ SSD DC P4800X Series and the SPDK NVMe-oF target to deliver high-performance, disaggregated storage to Kubernetes for high-performance workloads. MayaData benchmarked several workloads and demonstrated that the performance overhead of Mayastor was less than 10% when it used SPDK NVMe-oF target to export the Intel® Optane™ SSD over the network vs. locally accessing the SSD. Furthermore, <a href="https://mayadata.io/assets/pdf/benchmarking-3-million-writes-with-cassandra-on-k8s-and-kubera-propel.pdf">MayaData provides a solution</a> that can deliver over 1 million IOPS to a single container.</p>
+</blockquote>
+
+<h2 id="intel--nutanix-joint-innovation-lab">Intel &amp; Nutanix Joint Innovation Lab</h2>
+
+<h3 id="nutanix-architecture-and-performance-optimization"><a href="https://www.nutanix.com/viewer?type=pdf&amp;path=/content/dam/nutanix/resources/white-papers/wp-esg-technical-review-nutanix-performance-optimization.pdf">Nutanix Architecture and Performance Optimization</a></h3>
+<blockquote>
+  <p>Blockstore and SPDK improved application performance and reduced latency in synthetic and real-world testing in the next-generation NX-8170 cluster with Intel® Optane™ SSDs and Intel® SSD DC P4510 NVMe SSDs. Intel and Nutanix benchmarked several workloads on a four-node Nutanix NX-8170-G7 cluster. The PostgreSQL DB benchmarks showed a 66% improvement in DB transactions and latency was reduced by 45% on the next-generation NX-8170 cluster vs the previous generation NX-3060 cluster with SATA SSDs.</p>
+</blockquote>
+
+<h2 id="daos-revolutionizing-high-performance-storage-with-intel-optane-technology-spdk-and-pmdk">DAOS: Revolutionizing High-Performance Storage with Intel® Optane™ Technology, SPDK and PMDK</h2>
+
+<h3 id="daos-sets-new-records-with-intel-optane-persistent-memory"><a href="https://software.intel.com/content/www/us/en/develop/articles/daos-sets-new-records-with-intel-optane-persistent-memory.html">DAOS Sets New Records with Intel Optane Persistent Memory</a></h3>
+<blockquote>
+  <p>DAOS is entirely in userspace, utilizing the PMDK and SPDK open source libraries, not only bypassing the performance limitations of I/O through the kernel, but also alleviating other issues such as jitter, ease of administration, etc. DAOS also breaks free from the performance limitations of the POSIX interface, relying on the more performant optimistic concurrency control rather than the pessimistic concurrency control of POSIX.</p>
+</blockquote>
+
+<h2 id="2020-usenix-annual-technical-conference-july-1517-2020">2020 USENIX Annual Technical Conference, July 15–17, 2020</h2>
+
+<h3 id="spool-reliable-virtualized-nvme-storage-pool-in-public-cloud-infrastructure"><a href="https://www.usenix.org/system/files/atc20-xue_0.pdf">Spool: Reliable Virtualized NVMe Storage Pool in Public Cloud Infrastructure</a></h3>
+<blockquote>
+  <p>In this paper, members of AliCloud and Shanghai Jiao Tong University together propose Spool, a reliable NVMe virtualization system. Spool is proposed based on the SPDK NVMe driver but focuses on the reliability of the virtualized storage system. The bedrock of SPDK is a userspace, polled-mode, asynchronous, lockless NVMe driver. Usermode drivers help improve the stability of the host operating system because they can only access the address space of the processes running them, and a buggy implementation does not cause system-wide problems. Spool has three key advantages including diagnosability of different failure types, consistency and correctness of the data and reduced restart time.</p>
+</blockquote>
+
+<h2 id="radian-memory-systems-announces-zoned-flash-ssd-with-spdk">Radian Memory Systems® Announces Zoned Flash SSD with SPDK</h2>
+
+<h3 id="radian-completes-integration-and-testing-of-zoned-flash-ssd-with-spdk"><a href="https://www.prnewswire.com/news-releases/radian-completes-integration-and-testing-of-zoned-flash-ssd-with-spdk-301096896.html">Radian Completes Integration and Testing of Zoned Flash SSD with SPDK</a></h3>
+<blockquote>
+  <p>Radian ported their host Block Translation Layer (BTL) for zoned Flash from the Linux® Kernel to SPDK. The company has posted a <a href="https://www.youtube.com/watch?v=ESgrIu0eT3I">technical deep dive video</a> that discusses this effort, which includes a comparative, system level analysis between the Linux® Kernel and SPDK implementations.</p>
+</blockquote>
+
+<h2 id="vast-data-universal-storage-30-webinar">VAST Data Universal Storage 3.0 Webinar</h2>
+
+<h3 id="adding-spdk-support-in-universal-storage-32-release"><a href="https://youtu.be/x8-6aFRqbOw?t=1758">Adding SPDK Support in Universal Storage 3.2 Release</a></h3>
+<blockquote>
+  <p>VAST Data announced they will be using the SPDK the upcoming 3.2 release, because they observed “30-40% better latency resulting in 50-100% overall improvement in system IOPs when they bypass the kernel with SPDK for metadata read and write operations which allowed them to improve the system responsiveness”.</p>
+</blockquote>
+
+<h2 id="nutanix-next-2019-conference-in-copenhagen-denmark">Nutanix .Next 2019 Conference in Copenhagen, Denmark</h2>
+
+<h3 id="blockstore-and-spdk"><a href="https://www.youtube.com/watch?v=ahPKYaRRfHc&amp;feature=youtu.be&amp;t=4443">BlockStore and SPDK</a></h3>
+<blockquote>
+  <p>Nutanix launched a new generation of the Acropolis Operating System (AOS) which has a BlockStore that uses SPDK. Stephen Poitras, Principal Solutions Architect at Nutanix, talked about the work his team did to rearchitect the datapath to take advantage of emerging technologies such as NVMe, RDMA and Memory Class Storage devices like Intel® Optane™ SSDs. They purpose-built a BlockStore for the next generation of storage media that completely eliminated the filesystem overhead by using SPDK to access storage devices in user space. Using SPDK improves performance by driving down latency and increasing efficiency.</p>
+</blockquote>
+
+<h2 id="asplos20-march-1620-2020-lausanne-switzerland">ASPLOS’20, March 16–20, 2020, Lausanne, Switzerland</h2>
+
+<h3 id="alicloud-high-density-multi-tenant-bare-metal-cloud"><a href="https://dl.acm.org/doi/pdf/10.1145/3373376.3378507">AliCloud: High-density Multi-tenant Bare-metal Cloud</a></h3>
+<blockquote>
+  <p>In this paper, AliCloud proposes the design of a new high-density, multi-tenant, bare-metal Cloud called BM-Hive. BM-Hive features a hardware-software hybrid virtio I/O system that enables the guest to directly access the cloud network and storage services. In BM-Hive, all the I/O requests are handled in the user space with vhost-user protocol interfacing to Cloud infrastructure: the customized DPDK vSwitch and the SPDK Cloud storage.</p>
+</blockquote>
+
+<h2 id="circuit-blvd---kubernetes-and-docker-setup-for-spdk">Circuit Blvd - Kubernetes and Docker setup for SPDK</h2>
+
+<h3 id="using-docker-and-kubernetes-to-containerize-and-orchestrate-spdk-applications"><a href="https://www.circuitblvd.com/post/kubernetes-and-docker-setup-for-spdk">Using Docker and Kubernetes to containerize and orchestrate SPDK applications</a></h3>
+<blockquote>
+  <p>In this technote, Circuit Blvd presents an example of how to use Docker and Kubernetes to containerize and orchestrate an SPDK Vhost application that serves virtio block devices to application containers.</p>
+</blockquote>
+
+<h2 id="ucloud---end-to-end-io-path-optimization-with-spdk">UCloud - End to End IO Path Optimization with SPDK</h2>
+
+<h3 id="practice-sharing-of-spdk-integration-to-achieve-12m-iops-from-cloud-disk"><a href="https://mp.weixin.qq.com/s?__biz=MzUwOTA1NDg4NQ==&amp;mid=2247485707&amp;idx=1&amp;sn=c6f8e7ebe48a13e7783abc187c588002&amp;chksm=f91953c1ce6edad7c61b267acb0abc1292486ae70cf4883e9f811320f08a596874e12e0f7d72&amp;mpshare=1&amp;scene=1&amp;srcid=0523NZ3tMRR6jvAOYngdBkXB&amp;pass_ticket=wtEIGZYEis9CDCq2bHqr9cZpaldcKOrajkGA0dojARAuGlY%2FloOQcZQ%2FsK0w0KRa#rd">Practice sharing of SPDK integration to achieve 1.2M IOPS from cloud disk</a></h3>
+<blockquote>
+  <p>Cloud service provider UCloud described the good practice of integrating SPDK vhost and other modules in their end to end solution from VM to the cloud disk. UCloud used SPDK to optimize the virtualized IO path, proposed the features like hot upgrade and online migration solution based on SPDK vhost, and successfully coupled with the high-performance cloud disk (UCloud RSSD) to achieve good results which reach up to 1.2 million IOPS. UCloud also actively joins the SPDK community and summarizes that each version of SPDK brings many interesting features and they would like to explore and further apply to the performance improvement of cloud disk and other products.</p>
+</blockquote>
+
+<h2 id="may-6-2019-intel-chip-chat-episode-654">May 6 2019 Intel® Chip Chat Episode 654</h2>
+
+<h3 id="redesigning-storage-in-the-data-center-with-spdk"><a href="https://soundcloud.com/intelchipchat/redesigning-storage-in-the-data-center-spdk">Redesigning Storage in the Data Center with SPDK</a></h3>
+<blockquote>
+  <p>Dr. Felipe Franciosi from Nutanix, and Nate Marushak from Intel, describe how SPDK brings higher performance to today’s hyperconverged data center and holds promise for the future.</p>
+</blockquote>
+
+<h2 id="february-2019-17th-usenix-conference-on-file-and-storage-technologies-fast-19">February 2019 17th USENIX Conference on File and Storage Technologies (FAST ‘19)</h2>
+
+<h3 id="reaping-the-performance-of-fast-nvm-storage-with-udepot"><a href="https://www.usenix.org/system/files/fast19-kourtis.pdf">Reaping the performance of fast NVM storage with uDepot</a></h3>
+<blockquote>
+  <p>This page describes how uDepot, a key-value store, utilizes SPDK and Intel Optane SSD to achieve equivalent performance to its DRAM-based counterparts at a much lower cost.</p>
+</blockquote>
+
+<h2 id="november-2-2018-linux-piter-4">November 2 2018 Linux Piter #4</h2>
+
+<h3 id="spdk-and-nutanix-ahv-minimising-the-virtualization-overhead"><a href="https://linuxpiter.com/en/materials/2422">SPDK and Nutanix AHV: minimising the virtualization overhead</a></h3>
+<blockquote>
+  <p>At Linux Piter, Dr. Felipe Franciosi discussed the performance challenges of storage virtualization. He talked about how SPDK is being leveraged to minimize the software overhead to record lows and shared performance data that show that it is possible for virtual machines to access Intel® Optane™ SSDs in under 10 microseconds for 4K I/O requests through virtio-scsi.</p>
+</blockquote>
+
+<h2 id="the-nutanix-bible">The Nutanix Bible</h2>
+
+<h3 id="user-vs-kernel-space"><a href="http://nutanixbible.com/#anchor-user-vs.-kernel-space-15">User vs. Kernel Space</a></h3>
+<blockquote>
+  <p>Explains the pros/cons of User vs. Kernel Space.</p>
+</blockquote>
+
+<h3 id="the-move-to-user-space--polling"><a href="http://nutanixbible.com/#anchor-the-move-to-user-space-/-polling-17">The Move to User Space / Polling</a></h3>
+<blockquote>
+  <p>As devices have become faster (e.g. NVMe, Intel® Optane™, pMEM), the kernel and device interaction has become a bottleneck. To eliminate these bottlenecks, a lot of vendors are moving things out of the kernel to user space with polling and seeing much better results. Great examples of this are the Storage Performance Development Kit (SPDK) and Data Plane Development Kit (DPDK). These projects are geared at maximizing the performance and reducing latency as much as possible, and have shown great success.</p>
+</blockquote>
+
+<h2 id="alicloud---high-performance-local-ssd">AliCloud - High Performance Local SSD</h2>
+
+<h3 id="spdk-accelerates-alicloud-local-ssd-model"><a href="https://promotion.aliyun.com/ntms/act/ecshighperformance.html?open_id=1d8213d3-b437-4596-a88a-d27798942d3a-&amp;open_cid=4703">SPDK accelerates AliCloud Local SSD model</a></h3>
+<blockquote>
+  <p>Through close collaborations between AliCloud and SPDK, AliCloud offers one model (local SSD) among different kinds of cloud services. The AliCloud local SSD model is for critical applications like OLTP and NoSQL databases and designed with NVMe SSD and advanced SPDK storage techniques to achieve the extra high performance on single node like 480K max random read/write IOPS, 200us lower latency, 4GB/s max sequential read bandwidth, 2.4GB/s max sequential write bandwidth…</p>
+</blockquote>
+
+<h2 id="september-18-2018-cloudtech">September 18 2018 CloudTech</h2>
+
+<h3 id="openstack-and-nvme-over-fabrics-getting-higher-performance-for-network-connected-ssds"><a href="https://www.cloudcomputing-news.net/news/2018/sep/18/openstack-and-nvme-over-fabrics-getting-high-performance-for-network-connected-ssds/">OpenStack and NVMe-over-Fabrics: Getting higher performance for network-connected SSDs</a></h3>
+<blockquote>
+  <p>Intel, Mirantis and Mellanox are working together to enable NVMe-oF in Openstack. There 2 solutions to implement NVMe-oF with OpenStack: Kernel NVMe-oF target and SPDK NVMe-oF target. If compared with Kernel-based implementations, SPDK reduces NVMe-oF software overheads and yields high throughput and performance …</p>
+</blockquote>
+
+<h2 id="august-20-2018-forbes">August 20 2018 Forbes</h2>
+
+<h3 id="more-flash-memory-news"><a href="https://www.forbes.com/sites/tomcoughlin/2018/08/20/more-flash-memory-news/#4fd9f6825830">More Flash Memory News</a></h3>
+<blockquote>
+  <p>At FMS, SolarFlare showcased Intel® Optane™ SSDs with Solarflare XTremeScale™ 100GBE Ethernet adapters implementing the upcoming NVMe-oF TCP spec using SPDK. The NVMe-based Optane storage over TCP provides a low-cost high performance solid-state network that has latency as low as 15 microseconds.</p>
+</blockquote>
+
+<h2 id="august-2018-44th-international-conference-on-very-large-data-bases">August 2018 44th International Conference on Very Large Data Bases</h2>
+
+<h3 id="polarfs-an-ultra-low-latency-and-failure-resilient-distributed-file-system-for-shared-storage-cloud-database"><a href="http://www.vldb.org/pvldb/vol11/p1849-cao.pdf">PolarFS: An Ultra-low Latency and Failure Resilient Distributed File System for Shared Storage Cloud Database</a></h3>
+<blockquote>
+  <p>This paper describes how PolarFS uses emerging techniques like RDMA, NVMe SSDs and SPDK to reduce the end-to-end latency. The write latency of PolarFS is close to a local file system on SSD.</p>
+</blockquote>
+
+<h2 id="june-11-2018-14th-international-workshop-on-data-management">June 11 2018 14th International Workshop on Data Management</h2>
+
+<h3 id="costperformance-in-modern-data-stores"><a href="https://dl.acm.org/citation.cfm?doid=3211922.3211927">Cost/Performance in Modern Data Stores</a></h3>
+<blockquote>
+  <p>In this paper, SPDK was used to optimize the I/O path in Deuterony (a Log-Structured data caching DB) and reduce the cost of I/O operations by a third.</p>
+</blockquote>
+
+<h2 id="may-15-2018-spdk-summit">May 15 2018 SPDK Summit</h2>
+
+<h3 id="spdk-us-summit"><a href="http://spdk.io/news/2018/06/13/summit-recap/">SPDK US Summit</a></h3>
+<blockquote>
+  <p>Over 170 attendees from 51 different companies attended the 2018 SPDK US Summit at Dolce Hayes Mansion, San Jose on May 15th and 16th.</p>
+</blockquote>
+
+<h2 id="march-20-2018-ocp-summit-2018">March 20 2018 OCP Summit 2018</h2>
+
+<h3 id="cavium-technologies-power-end-to-end-nvme-over-fabrics-solutions"><a href="https://www.hpcwire.com/off-the-wire/cavium-technologies-power-end-to-end-nvme-over-fabrics-solutions/">Cavium Technologies Power End-to-End NVMe Over Fabrics Solutions</a></h3>
+<blockquote>
+  <p>At the OCP Summit 2018, Cavium, Microsemi and Marvell demonstrated concurrent 100Gbps NVMe-oF RoCE and iWARP connectivity … showcases how storage IHVs can leverage PCIe P2P and SPDK technology …</p>
+</blockquote>
+
+<h2 id="february-6-2018-ibm-research-report">February 6 2018 IBM Research Report</h2>
+
+<h3 id="unveiling-the-performance-of-fast-nvm-storage-with-the-udepot-kv-store"><a href="http://domino.research.ibm.com/library/cyberdig.nsf/papers/924CAFEAE5A8483585258279002F8E26/$File/RZ3923.pdf">Unveiling the performance of fast NVM storage with the uDepot KV-store</a></h3>
+<blockquote>
+  <p>A research team at IBM used SPDK to optimize the performance of gets and puts operations in the uDepot KV-store. They showcased latency of 7.2 usecs and throughput of 6.17 million get operations/sec with Intel Optane SSDs and SPDK.</p>
+</blockquote>
+
+<h2 id="july-12-2017-digitimes">July 12 2017 DigiTimes</h2>
+
+<h3 id="intel-unveils-new-intel-xeon-scalable-processors"><a href="http://www.digitimes.com/newregister/join.asp?view=Article&amp;DATEPUBLISH=2017/07/12&amp;PAGES=PR&amp;SEQ=200">Intel unveils new Intel Xeon scalable processors</a></h3>
+<blockquote>
+  <p>Intel has launched its new Intel Xeon scalable processors, providing … with Intel Optane SSDs and Storage Performance Development Kit (SPDK), …</p>
+</blockquote>
+
+<h2 id="july-12-2017-etciocom">July 12 2017 ETCIO.com</h2>
+
+<h3 id="with-new-xeon-scalable-processors-intel-eyes-data-center-market-in-india"><a href="http://cio.economictimes.indiatimes.com/news/data-center/with-new-xeon-scalable-processors-intel-eyes-data-center-market-in-india/59561320">With new Xeon scalable processors, Intel eyes data center market in India</a></h3>
+<blockquote>
+  <p>Bangalore: Intel India today launched its new Intel Xeon Scalable … with Intel Optane SSDs and Storage Performance Development Kit (SPDK), …</p>
+</blockquote>
+
+<h2 id="july-11-2017-forbes">July 11 2017 Forbes</h2>
+
+<h3 id="intels-new-xeon-scalable-processors-are-its-broadest-datacenter-and-carrier-play-yet"><a href="https://www.forbes.com/sites/patrickmoorhead/2017/07/11/intels-new-xeon-scalable-processors-are-its-broadest-datacenter-and-carrier-play-yet/#6fb1006728d1">Intel’s New Xeon Scalable Processors Are Its Broadest Datacenter And Carrier Play Yet</a></h3>
+</div>
+  </div>
+</div>
+
+
+
+
+    <footer class="footer" id="nav-path">
+  <div class="footer-inner">
+    <div class="footer-copy">
+      <small>Copyright &copy; SPDK a Series of LF Projects, LLC. For web site terms of use, trademark policy, and other
+      project policies please see <a href="https://lfprojects.org">lfprojects.org</a>.</small>
+      <br><small>Built from spdk 91893349edff / site e5878500f</small>
+    </div>
+  </div>
+</footer>
+
+
+    
+  </body>
+</html>

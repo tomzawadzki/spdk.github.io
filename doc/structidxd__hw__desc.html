@@ -1,0 +1,1058 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<meta name="generator" content="Doxygen 1.16.1">
+	<title>SPDK: idxd_hw_desc Struct Reference</title>
+	<script type="text/javascript" src="jquery.js"></script>
+	<script type="text/javascript" src="dynsections.js"></script>
+	<script type="text/javascript" src="clipboard.js"></script>
+	<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
+<script type="text/javascript" src="cookie.js"></script>
+	<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<script type="text/javascript">
+  $(function() { init_search(); });
+</script>
+	<link rel="icon" type="image/svg+xml" href="../assets/img/spdk.svg">
+	<link rel="icon" href="../assets/favicon.ico" sizes="32x32">
+	<link href="doxygen.css" rel="stylesheet" type="text/css">
+	<script>(function(){var k='doxygen_width',w,bw=6;if(window.chrome){w=localStorage.getItem(k);if(!w){w='350';localStorage.setItem(k,w)}}else{var m=document.cookie.match(new RegExp(k+'=(\\d+)'));w=m?m[1]:null;if(!w){w='350';document.cookie=k+'=350;SameSite=Lax;path=/'}}document.documentElement.style.setProperty('--sn-w',(parseInt(w)+bw)+'px')})()</script>
+	<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:400,700,900" type="text/css">
+	<link href="spdk.css" rel="stylesheet" type="text/css"/>
+	<link href="../assets/css/spdk.css" rel="stylesheet" type="text/css">
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<nav class="navbar">
+  <a class="navbar-brand" href="../" aria-label="SPDK">
+    <img src="../assets/img/spdk.svg" width="36" height="36" alt="Storage Performance Development Kit">
+  </a>
+  <div class="navbar-nav">
+    <a class="nav-link header-link" href="../doc/releases.html">download</a>
+    <a class="nav-link header-link" href="../doc/">documentation</a>
+    <a class="nav-link header-link" href="../doc/contributing.html">development</a>
+    <a class="nav-link header-link" href="../doc/ci_tools.html">CI status</a>
+    <a class="nav-link header-link" href="../community/">community</a>
+    <a class="nav-link header-link" href="../blog/">Blog</a>
+    <a class="nav-link header-link" href="https://github.com/orgs/spdk/projects/5">Roadmap</a>
+    <a class="nav-link header-link" href="../news/">News</a>
+  </div>
+  <div class="navbar-end">
+    <a class="nav-link header-link" href="https://github.com/spdk/spdk" aria-label="GitHub">
+      <svg xmlns="http://www.w3.org/2000/svg" class="navbar-nav-svg" aria-hidden="true"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
+    </a>
+    <a id="cn_lang_btn" href="../cn/doc/" class="nav-link header-link">中文</a>
+  </div>
+</nav>
+<script>
+(function() {
+    var p = location.pathname, best = null, bLen = 0;
+    document.querySelectorAll('.header-link[href]').forEach(function(a) {
+        var raw = a.getAttribute('href');
+        if (!raw) return;
+        try { var u = new URL(raw, location.href); } catch(e) { return; }
+        if (u.origin !== location.origin) return;
+        var h = u.pathname;
+        if (h === '/') return;
+        var ok = h.endsWith('.html') ? p === h : p.indexOf(h) === 0;
+        if (ok && h.length > bLen) { bLen = h.length; best = a; }
+    });
+    if (best) best.classList.add('active');
+})();
+</script>
+<div id="doxygen-searchbox">        <div id="MSearchBox" class="MSearchBoxInactive">
+        <span class="left">
+          <span id="MSearchSelect" class="search-icon" onmouseover="return searchBox.OnSearchSelectShow()" onmouseout="return searchBox.OnSearchSelectHide()"><span class="search-icon-dropdown"></span></span>
+          <input type="text" id="MSearchField" value="" placeholder="Search" accesskey="S"
+               onfocus="searchBox.OnSearchFieldFocus(true)" 
+               onblur="searchBox.OnSearchFieldFocus(false)" 
+               onkeyup="searchBox.OnSearchFieldChange(event)"/>
+          </span><span class="right">
+            <a id="MSearchClose" href="javascript:searchBox.CloseResultsWindow()"><div id="MSearchCloseImg" class="close-icon"></div></a>
+          </span>
+        </div>
+</div>
+<!-- Generated by Doxygen 1.16.1 -->
+<script type="text/javascript">
+var searchBox = new SearchBox("searchBox", "search/",'.html');
+</script>
+<script type="text/javascript">
+$(function() { codefold.init(); });
+</script>
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+$(function(){initNavTree('structidxd__hw__desc.html','',''); });
+</script>
+<div id="container">
+<div id="doc-content">
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">Loading...</div>
+<div class="SRStatus" id="Searching">Searching...</div>
+<div class="SRStatus" id="NoMatches">No Matches</div>
+</div>
+</div>
+</div>
+</div>
+
+<div class="header">
+  <div class="headertitle"><div class="title">idxd_hw_desc Struct Reference</div></div>
+</div><!--header-->
+<div class="contents">
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 id="header-pub-attribs" class="groupheader"><a id="pub-attribs" name="pub-attribs"></a>
+Data Fields</h2></td></tr>
+<tr class="memitem:a72df53eae6e8d12d88889f69d06acad2" id="r_a72df53eae6e8d12d88889f69d06acad2"><td class="memItemLeft">uint32_t&#160;</td><td class="memItemRight"><a class="el" href="#a72df53eae6e8d12d88889f69d06acad2">pasid</a>: 20</td></tr>
+<tr class="memitem:ac39d23dc8492b019f8751f68ad673f6e" id="r_ac39d23dc8492b019f8751f68ad673f6e"><td class="memItemLeft">uint32_t&#160;</td><td class="memItemRight"><a class="el" href="#ac39d23dc8492b019f8751f68ad673f6e">rsvd</a>: 11</td></tr>
+<tr class="memitem:ad2e85509b2a6aa10868feeb067db1dd8" id="r_ad2e85509b2a6aa10868feeb067db1dd8"><td class="memItemLeft">uint32_t&#160;</td><td class="memItemRight"><a class="el" href="#ad2e85509b2a6aa10868feeb067db1dd8">priv</a>: 1</td></tr>
+<tr class="memitem:ae4ab197cca70dd3b430ed8f3ca029bb4" id="r_ae4ab197cca70dd3b430ed8f3ca029bb4"><td class="memItemLeft">uint32_t&#160;</td><td class="memItemRight"><a class="el" href="#ae4ab197cca70dd3b430ed8f3ca029bb4">flags</a>: 24</td></tr>
+<tr class="memitem:a02ead2caf0925e4afc48de1a40daa6d9" id="r_a02ead2caf0925e4afc48de1a40daa6d9"><td class="memItemLeft">uint32_t&#160;</td><td class="memItemRight"><a class="el" href="#a02ead2caf0925e4afc48de1a40daa6d9">opcode</a>: 8</td></tr>
+<tr class="memitem:a6e2d1fc22b0c9ad69a42e64fa8855582" id="r_a6e2d1fc22b0c9ad69a42e64fa8855582"><td class="memItemLeft">uint64_t&#160;</td><td class="memItemRight"><a class="el" href="#a6e2d1fc22b0c9ad69a42e64fa8855582">completion_addr</a></td></tr>
+<tr class="memitem:"><td class="memItemLeft anon"><a id="a489fc4a9618cb94755da8bd5b8878f05" name="a489fc4a9618cb94755da8bd5b8878f05"></a>
+union {&#160;</td><td class="memItemRight"></td></tr>
+<tr class="memitem:accf38dee3cbdcdc3f7935f576e31b1c5" id="r_accf38dee3cbdcdc3f7935f576e31b1c5"><td class="memItemLeft anon">&#160;&#160;&#160;uint64_t&#160;&#160;&#160;<a class="el" href="#a2a6c72036c8e840050d2d85af1f4b581">src_addr</a>&#160;</td><td class="memItemRight"></td></tr>
+<tr class="memitem:adf414ac168ad8f00a9d8800889183e97" id="r_adf414ac168ad8f00a9d8800889183e97"><td class="memItemLeft anon">&#160;&#160;&#160;uint64_t&#160;&#160;&#160;<a class="el" href="#a6652517239a0ecbb4ffc4e9aac3044c0">src1_addr</a>&#160;</td><td class="memItemRight"></td></tr>
+<tr class="memitem:a9806182e210624f6a626d8e12a7fab3c" id="r_a9806182e210624f6a626d8e12a7fab3c"><td class="memItemLeft anon">&#160;&#160;&#160;uint64_t&#160;&#160;&#160;<a class="el" href="#a3aa76ab75c58c6c5c2e0507f4484719a">readback_addr</a>&#160;</td><td class="memItemRight"></td></tr>
+<tr class="memitem:a0eb85de00a8529c04240376e19703b48" id="r_a0eb85de00a8529c04240376e19703b48"><td class="memItemLeft anon">&#160;&#160;&#160;uint64_t&#160;&#160;&#160;<a class="el" href="#a0380141fda00acee7ebe4a62e0a94a72">pattern</a>&#160;</td><td class="memItemRight"></td></tr>
+<tr class="memitem:a439ec5607b21cb55f926a1e924dd47fa" id="r_a439ec5607b21cb55f926a1e924dd47fa"><td class="memItemLeft anon">&#160;&#160;&#160;uint64_t&#160;&#160;&#160;<a class="el" href="#abd5047f7765cbae52da3d6c848b422e2">desc_list_addr</a>&#160;</td><td class="memItemRight"></td></tr>
+<tr class="memitem:a489fc4a9618cb94755da8bd5b8878f05" id="r_a489fc4a9618cb94755da8bd5b8878f05"><td class="memItemLeft anonEnd">};&#160;</td><td class="memItemRight"></td></tr>
+<tr class="memitem:"><td class="memItemLeft anon"><a id="ac647de3cfea66f6ebfb154fe08880fcc" name="ac647de3cfea66f6ebfb154fe08880fcc"></a>
+union {&#160;</td><td class="memItemRight"></td></tr>
+<tr class="memitem:adbaaba3268ded41ce6feb3f394deff5b" id="r_adbaaba3268ded41ce6feb3f394deff5b"><td class="memItemLeft anon">&#160;&#160;&#160;uint64_t&#160;&#160;&#160;<a class="el" href="#a86ccc2340c568ab7b8a37eba328500d1">dst_addr</a>&#160;</td><td class="memItemRight"></td></tr>
+<tr class="memitem:ade5380fc71469a7db6f15638a15c0394" id="r_ade5380fc71469a7db6f15638a15c0394"><td class="memItemLeft anon">&#160;&#160;&#160;uint64_t&#160;&#160;&#160;<a class="el" href="#a763efd186831d33548d6c9d74a521576">readback_addr2</a>&#160;</td><td class="memItemRight"></td></tr>
+<tr class="memitem:abc5f26e75d0d5a040eb64e12b777b132" id="r_abc5f26e75d0d5a040eb64e12b777b132"><td class="memItemLeft anon">&#160;&#160;&#160;uint64_t&#160;&#160;&#160;<a class="el" href="#a6db3eeda48aa65dc2de60c57d35a697d">src2_addr</a>&#160;</td><td class="memItemRight"></td></tr>
+<tr class="memitem:a66c587adfe3a209ca6626dceb85fe2a4" id="r_a66c587adfe3a209ca6626dceb85fe2a4"><td class="memItemLeft anon">&#160;&#160;&#160;uint64_t&#160;&#160;&#160;<a class="el" href="#aef3b5d4878718393e29a5459f40ebf45">comp_pattern</a>&#160;</td><td class="memItemRight"></td></tr>
+<tr class="memitem:ac647de3cfea66f6ebfb154fe08880fcc" id="r_ac647de3cfea66f6ebfb154fe08880fcc"><td class="memItemLeft anonEnd">};&#160;</td><td class="memItemRight"></td></tr>
+<tr class="memitem:"><td class="memItemLeft anon"><a id="ae89d25c23e7f91e0c5569a589ad52369" name="ae89d25c23e7f91e0c5569a589ad52369"></a>
+union {&#160;</td><td class="memItemRight"></td></tr>
+<tr class="memitem:a2970b0479b904b8bbd54b818ab83fbc2" id="r_a2970b0479b904b8bbd54b818ab83fbc2"><td class="memItemLeft anon">&#160;&#160;&#160;uint32_t&#160;&#160;&#160;<a class="el" href="#a68141647a3ba32ce4f378d0c05f114cc">src1_size</a>&#160;</td><td class="memItemRight"></td></tr>
+<tr class="memitem:a6c3d74ccfa6ae18c97a38eedab3bc494" id="r_a6c3d74ccfa6ae18c97a38eedab3bc494"><td class="memItemLeft anon">&#160;&#160;&#160;uint32_t&#160;&#160;&#160;<a class="el" href="#ae75df298d6993474fbc2c63713383a7f">xfer_size</a>&#160;</td><td class="memItemRight"></td></tr>
+<tr class="memitem:a7a80e862cee68cc9e7df52be3d8b2166" id="r_a7a80e862cee68cc9e7df52be3d8b2166"><td class="memItemLeft anon">&#160;&#160;&#160;uint32_t&#160;&#160;&#160;<a class="el" href="#a87475bec9769a2811bc2c07d7b5f805b">desc_count</a>&#160;</td><td class="memItemRight"></td></tr>
+<tr class="memitem:ae89d25c23e7f91e0c5569a589ad52369" id="r_ae89d25c23e7f91e0c5569a589ad52369"><td class="memItemLeft anonEnd">};&#160;</td><td class="memItemRight"></td></tr>
+<tr class="memitem:a2a408c5e47c78b44f8bfde47b23f7c54" id="r_a2a408c5e47c78b44f8bfde47b23f7c54"><td class="memItemLeft">uint16_t&#160;</td><td class="memItemRight"><a class="el" href="#a2a408c5e47c78b44f8bfde47b23f7c54">int_handle</a></td></tr>
+<tr class="memitem:"><td class="memItemLeft anon"><a id="aeaf02dfc850ead846cccfdf5af607c3f" name="aeaf02dfc850ead846cccfdf5af607c3f"></a>
+union {&#160;</td><td class="memItemRight"></td></tr>
+<tr class="memitem:adf3be6d5ef1b0c90582a76fda6cc742f" id="r_adf3be6d5ef1b0c90582a76fda6cc742f"><td class="memItemLeft anon">&#160;&#160;&#160;uint16_t&#160;&#160;&#160;<a class="el" href="#a7ef6f0e9be1eca3b1175249b172dd59b">rsvd1</a>&#160;</td><td class="memItemRight"></td></tr>
+<tr class="memitem:a656b6eb7ba9284c04210b677fe9683cd" id="r_a656b6eb7ba9284c04210b677fe9683cd"><td class="memItemLeft anon">&#160;&#160;&#160;uint16_t&#160;&#160;&#160;<a class="el" href="#a46a23de38564ae91b736fa4572605bf5">compr_flags</a>&#160;</td><td class="memItemRight"></td></tr>
+<tr class="memitem:a201e170d02dbfdeb1ef6df9dc82fd930" id="r_a201e170d02dbfdeb1ef6df9dc82fd930"><td class="memItemLeft anon">&#160;&#160;&#160;uint16_t&#160;&#160;&#160;<a class="el" href="#a377d36d7daa89546d93b0ac56b5f2a9c">decompr_flags</a>&#160;</td><td class="memItemRight"></td></tr>
+<tr class="memitem:aeaf02dfc850ead846cccfdf5af607c3f" id="r_aeaf02dfc850ead846cccfdf5af607c3f"><td class="memItemLeft anonEnd">};&#160;</td><td class="memItemRight"></td></tr>
+<tr class="memitem:"><td class="memItemLeft anon"><a id="a49f62f970f8638b69924bf8a2e0a9dde" name="a49f62f970f8638b69924bf8a2e0a9dde"></a>
+union {&#160;</td><td class="memItemRight"></td></tr>
+<tr class="memitem:"><td class="memItemLeft anon">
+&#160;&#160;&#160;struct {&#160;</td><td class="memItemRight"></td></tr>
+<tr class="memitem:a6281e5de6b74b2d25c5c0b505922ab37" id="r_a6281e5de6b74b2d25c5c0b505922ab37"><td class="memItemLeft anon">&#160;&#160;&#160;&#160;&#160;&#160;uint64_t&#160;&#160;&#160;<a class="el" href="#a6db3eeda48aa65dc2de60c57d35a697d">src2_addr</a>&#160;</td><td class="memItemRight"></td></tr>
+<tr class="memitem:adbfd131fab17519a459247fa10454569" id="r_adbfd131fab17519a459247fa10454569"><td class="memItemLeft anon">&#160;&#160;&#160;&#160;&#160;&#160;uint32_t&#160;&#160;&#160;<a class="el" href="#a7e2aa15a7ae2e5749013a4601a67e510">max_dst_size</a>&#160;</td><td class="memItemRight"></td></tr>
+<tr class="memitem:a86a576e3c9bacadf728bcf5232aa6d3e" id="r_a86a576e3c9bacadf728bcf5232aa6d3e"><td class="memItemLeft anon">&#160;&#160;&#160;&#160;&#160;&#160;uint32_t&#160;&#160;&#160;<a class="el" href="#a060ad6009a8a0b4a9e8f8bbf89390406">src2_size</a>&#160;</td><td class="memItemRight"></td></tr>
+<tr class="memitem:a9dc81c05a7ace4a0b268eef60a3027e5" id="r_a9dc81c05a7ace4a0b268eef60a3027e5"><td class="memItemLeft anon">&#160;&#160;&#160;&#160;&#160;&#160;uint32_t&#160;&#160;&#160;<a class="el" href="#ad3878bcd1ead1e83d4154670e9b4e32c">filter_flags</a>&#160;</td><td class="memItemRight"></td></tr>
+<tr class="memitem:a52b96bda2f981ea5e5e549859b535362" id="r_a52b96bda2f981ea5e5e549859b535362"><td class="memItemLeft anon">&#160;&#160;&#160;&#160;&#160;&#160;uint32_t&#160;&#160;&#160;<a class="el" href="#a9c6edaf4be613ff130981324b68a0fa2">num_inputs</a>&#160;</td><td class="memItemRight"></td></tr>
+<tr class="memitem:a69adf3f5bfc42c6356863dbd50dd8213" id="r_a69adf3f5bfc42c6356863dbd50dd8213"><td class="memItemLeft anonEnd">&#160;&#160;&#160;}&#160;&#160;&#160;<b>iaa</b></td></tr>
+<tr class="memitem:aa7721903af36493ae7b46508c98bf2bf" id="r_aa7721903af36493ae7b46508c98bf2bf"><td class="memItemLeft anon">&#160;&#160;&#160;uint8_t&#160;&#160;&#160;<a class="el" href="#a13a906b3c3ea03a92bd2fb87fa1886eb">expected_res</a>&#160;</td><td class="memItemRight"></td></tr>
+<tr class="memitem:"><td class="memItemLeft anon">
+&#160;&#160;&#160;struct {&#160;</td><td class="memItemRight"></td></tr>
+<tr class="memitem:a23625e97ad9080c220378f991e55df85" id="r_a23625e97ad9080c220378f991e55df85"><td class="memItemLeft anon">&#160;&#160;&#160;&#160;&#160;&#160;uint64_t&#160;&#160;&#160;<a class="el" href="#a8e23031cad8a23c43b583c97d6bb53a7">addr</a>&#160;</td><td class="memItemRight"></td></tr>
+<tr class="memitem:a354dccab966096d28b847eb05e803a39" id="r_a354dccab966096d28b847eb05e803a39"><td class="memItemLeft anon">&#160;&#160;&#160;&#160;&#160;&#160;uint32_t&#160;&#160;&#160;<a class="el" href="#af5371b40d046e970c44ad520c71bb834">max_size</a>&#160;</td><td class="memItemRight"></td></tr>
+<tr class="memitem:ac2e5ebbb891ac4fd1969a27a1cdede5f" id="r_ac2e5ebbb891ac4fd1969a27a1cdede5f"><td class="memItemLeft anonEnd">&#160;&#160;&#160;}&#160;&#160;&#160;<b>delta</b></td></tr>
+<tr class="memitem:a8832255083afe936001c41090565fdf7" id="r_a8832255083afe936001c41090565fdf7"><td class="memItemLeft anon">&#160;&#160;&#160;uint32_t&#160;&#160;&#160;<a class="el" href="#a944c824e8596e698d1b85b9dcd5bdcfd">delta_rec_size</a>&#160;</td><td class="memItemRight"></td></tr>
+<tr class="memitem:a06d3be3a86930bb7982cfe0a9f3e4509" id="r_a06d3be3a86930bb7982cfe0a9f3e4509"><td class="memItemLeft anon">&#160;&#160;&#160;uint64_t&#160;&#160;&#160;<a class="el" href="#ab5aa368d5a6b65a18d3e353dd9c9ce47">dest2</a>&#160;</td><td class="memItemRight"></td></tr>
+<tr class="memitem:"><td class="memItemLeft anon">
+&#160;&#160;&#160;struct {&#160;</td><td class="memItemRight"></td></tr>
+<tr class="memitem:aa73132e89a4f1cff79f7f3245886837c" id="r_aa73132e89a4f1cff79f7f3245886837c"><td class="memItemLeft anon">&#160;&#160;&#160;&#160;&#160;&#160;uint32_t&#160;&#160;&#160;<a class="el" href="#a0a8d468fdd6b252a7cf288b7e05d6f04">seed</a>&#160;</td><td class="memItemRight"></td></tr>
+<tr class="memitem:a26e86fdb09f5d401fe254520a4e66554" id="r_a26e86fdb09f5d401fe254520a4e66554"><td class="memItemLeft anon">&#160;&#160;&#160;&#160;&#160;&#160;uint32_t&#160;&#160;&#160;<a class="el" href="#ac39d23dc8492b019f8751f68ad673f6e">rsvd</a>&#160;</td><td class="memItemRight"></td></tr>
+<tr class="memitem:a171e68fcd6add72d9953c09cff69c086" id="r_a171e68fcd6add72d9953c09cff69c086"><td class="memItemLeft anon">&#160;&#160;&#160;&#160;&#160;&#160;uint64_t&#160;&#160;&#160;<a class="el" href="#a8e23031cad8a23c43b583c97d6bb53a7">addr</a>&#160;</td><td class="memItemRight"></td></tr>
+<tr class="memitem:a1d9fd8b291b764decdca5bc322bed746" id="r_a1d9fd8b291b764decdca5bc322bed746"><td class="memItemLeft anonEnd">&#160;&#160;&#160;}&#160;&#160;&#160;<b>crc32c</b></td></tr>
+<tr class="memitem:"><td class="memItemLeft anon">
+&#160;&#160;&#160;struct {&#160;</td><td class="memItemRight"></td></tr>
+<tr class="memitem:a03f9819ed1f917c53699cef6cfaf1541" id="r_a03f9819ed1f917c53699cef6cfaf1541"><td class="memItemLeft anon">&#160;&#160;&#160;&#160;&#160;&#160;uint8_t&#160;&#160;&#160;<a class="el" href="#a445603edfcfebaf55a503e43259878af">src_flags</a>&#160;</td><td class="memItemRight"></td></tr>
+<tr class="memitem:afd1c6d25f27ff66a03165036e78b957a" id="r_afd1c6d25f27ff66a03165036e78b957a"><td class="memItemLeft anon">&#160;&#160;&#160;&#160;&#160;&#160;uint8_t&#160;&#160;&#160;<a class="el" href="#a1cbab68aedf29c2bd33c921aed1653b4">rsvd1</a>&#160;</td><td class="memItemRight"></td></tr>
+<tr class="memitem:ac63784e2ea59f0055ee444d3d3be4ef0" id="r_ac63784e2ea59f0055ee444d3d3be4ef0"><td class="memItemLeft anon">&#160;&#160;&#160;&#160;&#160;&#160;uint8_t&#160;&#160;&#160;<a class="el" href="#ad3970a8af5ae890a47ee9c768f8ac23a">flags</a>&#160;</td><td class="memItemRight"></td></tr>
+<tr class="memitem:a254523367348b501fa8d7182f952a734" id="r_a254523367348b501fa8d7182f952a734"><td class="memItemLeft anon">&#160;&#160;&#160;&#160;&#160;&#160;uint8_t&#160;&#160;&#160;<a class="el" href="#acaf3042ef60edad271b95a6862483fd8">rsvd2</a> [5]&#160;</td><td class="memItemRight"></td></tr>
+<tr class="memitem:accce919df525dfd8a840ebe023374392" id="r_accce919df525dfd8a840ebe023374392"><td class="memItemLeft anon">&#160;&#160;&#160;&#160;&#160;&#160;uint32_t&#160;&#160;&#160;<a class="el" href="#ae336c8ee6835b1890d2645b453c8c4ce">ref_tag_seed</a>&#160;</td><td class="memItemRight"></td></tr>
+<tr class="memitem:a384c3bfcf289b679eaa285108f3e0459" id="r_a384c3bfcf289b679eaa285108f3e0459"><td class="memItemLeft anon">&#160;&#160;&#160;&#160;&#160;&#160;uint16_t&#160;&#160;&#160;<a class="el" href="#a5b9be79256e83205a7c3d7f0028ff5b2">app_tag_mask</a>&#160;</td><td class="memItemRight"></td></tr>
+<tr class="memitem:a6259b93e286e7ffa55a3dde6a8f9a5e4" id="r_a6259b93e286e7ffa55a3dde6a8f9a5e4"><td class="memItemLeft anon">&#160;&#160;&#160;&#160;&#160;&#160;uint16_t&#160;&#160;&#160;<a class="el" href="#a300135a020fda28b22890ac2effc8290">app_tag_seed</a>&#160;</td><td class="memItemRight"></td></tr>
+<tr class="memitem:a15cb4809c731092c23f253dc99b43067" id="r_a15cb4809c731092c23f253dc99b43067"><td class="memItemLeft anonEnd">&#160;&#160;&#160;}&#160;&#160;&#160;<b>dif_chk</b></td></tr>
+<tr class="memitem:"><td class="memItemLeft anon">
+&#160;&#160;&#160;struct {&#160;</td><td class="memItemRight"></td></tr>
+<tr class="memitem:aceff0eb4be76fcd64a5b54496358d004" id="r_aceff0eb4be76fcd64a5b54496358d004"><td class="memItemLeft anon">&#160;&#160;&#160;&#160;&#160;&#160;uint8_t&#160;&#160;&#160;<a class="el" href="#a1cbab68aedf29c2bd33c921aed1653b4">rsvd1</a>&#160;</td><td class="memItemRight"></td></tr>
+<tr class="memitem:a26353652ee9ed823a62fc88ca0160616" id="r_a26353652ee9ed823a62fc88ca0160616"><td class="memItemLeft anon">&#160;&#160;&#160;&#160;&#160;&#160;uint8_t&#160;&#160;&#160;<a class="el" href="#a304be3379704b42f00c1f185731f6b67">dest_flag</a>&#160;</td><td class="memItemRight"></td></tr>
+<tr class="memitem:a52d5159195d5ff134c82467379544199" id="r_a52d5159195d5ff134c82467379544199"><td class="memItemLeft anon">&#160;&#160;&#160;&#160;&#160;&#160;uint8_t&#160;&#160;&#160;<a class="el" href="#ad3970a8af5ae890a47ee9c768f8ac23a">flags</a>&#160;</td><td class="memItemRight"></td></tr>
+<tr class="memitem:aaa90a652e81e3539a203cbb635df89ba" id="r_aaa90a652e81e3539a203cbb635df89ba"><td class="memItemLeft anon">&#160;&#160;&#160;&#160;&#160;&#160;uint8_t&#160;&#160;&#160;<a class="el" href="#acaf3042ef60edad271b95a6862483fd8">rsvd2</a> [13]&#160;</td><td class="memItemRight"></td></tr>
+<tr class="memitem:aec62e1e34e2bb7a9a5667d2e79ad942b" id="r_aec62e1e34e2bb7a9a5667d2e79ad942b"><td class="memItemLeft anon">&#160;&#160;&#160;&#160;&#160;&#160;uint32_t&#160;&#160;&#160;<a class="el" href="#ae336c8ee6835b1890d2645b453c8c4ce">ref_tag_seed</a>&#160;</td><td class="memItemRight"></td></tr>
+<tr class="memitem:a866810119b7f205464b3fc76a02da265" id="r_a866810119b7f205464b3fc76a02da265"><td class="memItemLeft anon">&#160;&#160;&#160;&#160;&#160;&#160;uint16_t&#160;&#160;&#160;<a class="el" href="#a5b9be79256e83205a7c3d7f0028ff5b2">app_tag_mask</a>&#160;</td><td class="memItemRight"></td></tr>
+<tr class="memitem:a462630feff77bdf43da7a2fda11114af" id="r_a462630feff77bdf43da7a2fda11114af"><td class="memItemLeft anon">&#160;&#160;&#160;&#160;&#160;&#160;uint16_t&#160;&#160;&#160;<a class="el" href="#a300135a020fda28b22890ac2effc8290">app_tag_seed</a>&#160;</td><td class="memItemRight"></td></tr>
+<tr class="memitem:a8f56cc8c8ddbfb7351152ba26a2b765e" id="r_a8f56cc8c8ddbfb7351152ba26a2b765e"><td class="memItemLeft anonEnd">&#160;&#160;&#160;}&#160;&#160;&#160;<b>dif_ins</b></td></tr>
+<tr class="memitem:"><td class="memItemLeft anon">
+&#160;&#160;&#160;struct {&#160;</td><td class="memItemRight"></td></tr>
+<tr class="memitem:a86d8768a02fa84f5e46253dce8d1272a" id="r_a86d8768a02fa84f5e46253dce8d1272a"><td class="memItemLeft anon">&#160;&#160;&#160;&#160;&#160;&#160;uint8_t&#160;&#160;&#160;<a class="el" href="#a445603edfcfebaf55a503e43259878af">src_flags</a>&#160;</td><td class="memItemRight"></td></tr>
+<tr class="memitem:a20fee38b54dddb895c723f3b151fe905" id="r_a20fee38b54dddb895c723f3b151fe905"><td class="memItemLeft anon">&#160;&#160;&#160;&#160;&#160;&#160;uint8_t&#160;&#160;&#160;<a class="el" href="#a574abebf07d81b575bb291423aa5f156">dest_flags</a>&#160;</td><td class="memItemRight"></td></tr>
+<tr class="memitem:ae6b3641c30aae139dcbbbcdf0b44907c" id="r_ae6b3641c30aae139dcbbbcdf0b44907c"><td class="memItemLeft anon">&#160;&#160;&#160;&#160;&#160;&#160;uint8_t&#160;&#160;&#160;<a class="el" href="#ad3970a8af5ae890a47ee9c768f8ac23a">flags</a>&#160;</td><td class="memItemRight"></td></tr>
+<tr class="memitem:ab98a7e307b247f67a1028476b7278291" id="r_ab98a7e307b247f67a1028476b7278291"><td class="memItemLeft anon">&#160;&#160;&#160;&#160;&#160;&#160;uint8_t&#160;&#160;&#160;<a class="el" href="#a1d618e2203aaad22d845c76e28bd1b21">rsvd</a> [5]&#160;</td><td class="memItemRight"></td></tr>
+<tr class="memitem:ab3cdf7ccfeffe9008c8f44314d5acfe5" id="r_ab3cdf7ccfeffe9008c8f44314d5acfe5"><td class="memItemLeft anon">&#160;&#160;&#160;&#160;&#160;&#160;uint32_t&#160;&#160;&#160;<a class="el" href="#a2728b9562ca4d9dcd76fe1e66d650cf8">src_ref_tag_seed</a>&#160;</td><td class="memItemRight"></td></tr>
+<tr class="memitem:a032097712f7740a3098f777df11cbf79" id="r_a032097712f7740a3098f777df11cbf79"><td class="memItemLeft anon">&#160;&#160;&#160;&#160;&#160;&#160;uint16_t&#160;&#160;&#160;<a class="el" href="#aef1807189e2b6e01f76c871666a1538c">src_app_tag_mask</a>&#160;</td><td class="memItemRight"></td></tr>
+<tr class="memitem:a7ba998e8e2699e3d502607add43a90bd" id="r_a7ba998e8e2699e3d502607add43a90bd"><td class="memItemLeft anon">&#160;&#160;&#160;&#160;&#160;&#160;uint16_t&#160;&#160;&#160;<a class="el" href="#a2061e0e4ae8266844121dd7c0c5a5687">src_app_tag_seed</a>&#160;</td><td class="memItemRight"></td></tr>
+<tr class="memitem:a556b2f18cc9cc377f8950a49e0401a5b" id="r_a556b2f18cc9cc377f8950a49e0401a5b"><td class="memItemLeft anon">&#160;&#160;&#160;&#160;&#160;&#160;uint32_t&#160;&#160;&#160;<a class="el" href="#aeefc5090204157871990a0b0f8815f84">dest_ref_tag_seed</a>&#160;</td><td class="memItemRight"></td></tr>
+<tr class="memitem:a9926fbe06dc0e9ad43d2e93f83432dee" id="r_a9926fbe06dc0e9ad43d2e93f83432dee"><td class="memItemLeft anon">&#160;&#160;&#160;&#160;&#160;&#160;uint16_t&#160;&#160;&#160;<a class="el" href="#a07dff4bb0994bcd611443e9818a176ab">dest_app_tag_mask</a>&#160;</td><td class="memItemRight"></td></tr>
+<tr class="memitem:a5ee857737033d3bbff49c3c66c9dbade" id="r_a5ee857737033d3bbff49c3c66c9dbade"><td class="memItemLeft anon">&#160;&#160;&#160;&#160;&#160;&#160;uint16_t&#160;&#160;&#160;<a class="el" href="#a44e8ce6db6424ba155df309926caea49">dest_app_tag_seed</a>&#160;</td><td class="memItemRight"></td></tr>
+<tr class="memitem:a0f1e74f73c799a00e604d0eff68de451" id="r_a0f1e74f73c799a00e604d0eff68de451"><td class="memItemLeft anonEnd">&#160;&#160;&#160;}&#160;&#160;&#160;<b>dif_upd</b></td></tr>
+<tr class="memitem:"><td class="memItemLeft anon">
+&#160;&#160;&#160;struct {&#160;</td><td class="memItemRight"></td></tr>
+<tr class="memitem:aad2cc69c2306b7f1b5b7ea918932b7f5" id="r_aad2cc69c2306b7f1b5b7ea918932b7f5"><td class="memItemLeft anon">&#160;&#160;&#160;&#160;&#160;&#160;uint8_t&#160;&#160;&#160;<a class="el" href="#a445603edfcfebaf55a503e43259878af">src_flags</a>&#160;</td><td class="memItemRight"></td></tr>
+<tr class="memitem:ab74fbf4355c31489abbd99b26975a16f" id="r_ab74fbf4355c31489abbd99b26975a16f"><td class="memItemLeft anon">&#160;&#160;&#160;&#160;&#160;&#160;uint8_t&#160;&#160;&#160;<a class="el" href="#a1cbab68aedf29c2bd33c921aed1653b4">rsvd1</a>&#160;</td><td class="memItemRight"></td></tr>
+<tr class="memitem:ae8fe678e148717dd8b3c2a81e479f640" id="r_ae8fe678e148717dd8b3c2a81e479f640"><td class="memItemLeft anon">&#160;&#160;&#160;&#160;&#160;&#160;uint8_t&#160;&#160;&#160;<a class="el" href="#ad3970a8af5ae890a47ee9c768f8ac23a">flags</a>&#160;</td><td class="memItemRight"></td></tr>
+<tr class="memitem:a2c464576445bea2db27b0b29cbe5def1" id="r_a2c464576445bea2db27b0b29cbe5def1"><td class="memItemLeft anon">&#160;&#160;&#160;&#160;&#160;&#160;uint8_t&#160;&#160;&#160;<a class="el" href="#acaf3042ef60edad271b95a6862483fd8">rsvd2</a> [5]&#160;</td><td class="memItemRight"></td></tr>
+<tr class="memitem:ae65707ef51b6ce5f27378be57a590540" id="r_ae65707ef51b6ce5f27378be57a590540"><td class="memItemLeft anon">&#160;&#160;&#160;&#160;&#160;&#160;uint32_t&#160;&#160;&#160;<a class="el" href="#ae336c8ee6835b1890d2645b453c8c4ce">ref_tag_seed</a>&#160;</td><td class="memItemRight"></td></tr>
+<tr class="memitem:a047d55d59025906344c4f9a0949e8d50" id="r_a047d55d59025906344c4f9a0949e8d50"><td class="memItemLeft anon">&#160;&#160;&#160;&#160;&#160;&#160;uint16_t&#160;&#160;&#160;<a class="el" href="#a5b9be79256e83205a7c3d7f0028ff5b2">app_tag_mask</a>&#160;</td><td class="memItemRight"></td></tr>
+<tr class="memitem:a85b0d391dac3c105875047bfd80a3602" id="r_a85b0d391dac3c105875047bfd80a3602"><td class="memItemLeft anon">&#160;&#160;&#160;&#160;&#160;&#160;uint16_t&#160;&#160;&#160;<a class="el" href="#a300135a020fda28b22890ac2effc8290">app_tag_seed</a>&#160;</td><td class="memItemRight"></td></tr>
+<tr class="memitem:a61c73b6d5871e8f67da6883c011c9557" id="r_a61c73b6d5871e8f67da6883c011c9557"><td class="memItemLeft anonEnd">&#160;&#160;&#160;}&#160;&#160;&#160;<b>dif_strip</b></td></tr>
+<tr class="memitem:"><td class="memItemLeft anon">
+&#160;&#160;&#160;struct {&#160;</td><td class="memItemRight"></td></tr>
+<tr class="memitem:a00a2388f08cfd62f27da621a5cfd6cfd" id="r_a00a2388f08cfd62f27da621a5cfd6cfd"><td class="memItemLeft anon">&#160;&#160;&#160;&#160;&#160;&#160;uint8_t&#160;&#160;&#160;<a class="el" href="#a1cbab68aedf29c2bd33c921aed1653b4">rsvd1</a>&#160;</td><td class="memItemRight"></td></tr>
+<tr class="memitem:af2e5056dbb39caaf59d7bf565d5e7796" id="r_af2e5056dbb39caaf59d7bf565d5e7796"><td class="memItemLeft anon">&#160;&#160;&#160;&#160;&#160;&#160;uint8_t&#160;&#160;&#160;<a class="el" href="#a574abebf07d81b575bb291423aa5f156">dest_flags</a>&#160;</td><td class="memItemRight"></td></tr>
+<tr class="memitem:ade8409bb23fdc94770db406db143a723" id="r_ade8409bb23fdc94770db406db143a723"><td class="memItemLeft anon">&#160;&#160;&#160;&#160;&#160;&#160;uint8_t&#160;&#160;&#160;<a class="el" href="#ad3970a8af5ae890a47ee9c768f8ac23a">flags</a>&#160;</td><td class="memItemRight"></td></tr>
+<tr class="memitem:a03bc06fa299c93d4d4ca818176719428" id="r_a03bc06fa299c93d4d4ca818176719428"><td class="memItemLeft anon">&#160;&#160;&#160;&#160;&#160;&#160;uint8_t&#160;&#160;&#160;<a class="el" href="#acaf3042ef60edad271b95a6862483fd8">rsvd2</a> [13]&#160;</td><td class="memItemRight"></td></tr>
+<tr class="memitem:a303c7c98615bad5ce61d1e3fb5dce978" id="r_a303c7c98615bad5ce61d1e3fb5dce978"><td class="memItemLeft anon">&#160;&#160;&#160;&#160;&#160;&#160;uint32_t&#160;&#160;&#160;<a class="el" href="#ae336c8ee6835b1890d2645b453c8c4ce">ref_tag_seed</a>&#160;</td><td class="memItemRight"></td></tr>
+<tr class="memitem:a0395a55eee2e2de80a096a38ca2cb76b" id="r_a0395a55eee2e2de80a096a38ca2cb76b"><td class="memItemLeft anon">&#160;&#160;&#160;&#160;&#160;&#160;uint16_t&#160;&#160;&#160;<a class="el" href="#a5b9be79256e83205a7c3d7f0028ff5b2">app_tag_mask</a>&#160;</td><td class="memItemRight"></td></tr>
+<tr class="memitem:ab66e77f71fd37c41b87ad328d62c9612" id="r_ab66e77f71fd37c41b87ad328d62c9612"><td class="memItemLeft anon">&#160;&#160;&#160;&#160;&#160;&#160;uint16_t&#160;&#160;&#160;<a class="el" href="#a300135a020fda28b22890ac2effc8290">app_tag_seed</a>&#160;</td><td class="memItemRight"></td></tr>
+<tr class="memitem:a44e4f4ff7326bb3a69d6628ac8922d62" id="r_a44e4f4ff7326bb3a69d6628ac8922d62"><td class="memItemLeft anonEnd">&#160;&#160;&#160;}&#160;&#160;&#160;<b>dix_gen</b></td></tr>
+<tr class="memitem:a4d00cb862c91b6cfab16029e3db8e564" id="r_a4d00cb862c91b6cfab16029e3db8e564"><td class="memItemLeft anon">&#160;&#160;&#160;uint8_t&#160;&#160;&#160;<a class="el" href="#a763923ce99f6f93327a56837330976fe">op_specific</a> [24]&#160;</td><td class="memItemRight"></td></tr>
+<tr class="memitem:a49f62f970f8638b69924bf8a2e0a9dde" id="r_a49f62f970f8638b69924bf8a2e0a9dde"><td class="memItemLeft anonEnd">};&#160;</td><td class="memItemRight"></td></tr>
+</table>
+<a name="details" id="details"></a><h2 id="header-details" class="groupheader">Detailed Description</h2>
+<div class="textblock">
+<p class="definition">Definition at line <a class="el" href="idxd__spec_8h_source.html#l00212">212</a> of file <a class="el" href="idxd__spec_8h_source.html">idxd_spec.h</a>.</p>
+</div><a name="doc-variable-members" id="doc-variable-members"></a><h2 id="header-doc-variable-members" class="groupheader">Field Documentation</h2>
+<a id="a8e23031cad8a23c43b583c97d6bb53a7" name="a8e23031cad8a23c43b583c97d6bb53a7"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8e23031cad8a23c43b583c97d6bb53a7">&#9670;&#160;</a></span>addr</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">uint64_t idxd_hw_desc::addr</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="idxd__spec_8h_source.html#l00253">253</a> of file <a class="el" href="idxd__spec_8h_source.html">idxd_spec.h</a>.</p>
+
+</div>
+</div>
+<a id="a5b9be79256e83205a7c3d7f0028ff5b2" name="a5b9be79256e83205a7c3d7f0028ff5b2"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5b9be79256e83205a7c3d7f0028ff5b2">&#9670;&#160;</a></span>app_tag_mask</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">uint16_t idxd_hw_desc::app_tag_mask</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="idxd__spec_8h_source.html#l00269">269</a> of file <a class="el" href="idxd__spec_8h_source.html">idxd_spec.h</a>.</p>
+
+</div>
+</div>
+<a id="a300135a020fda28b22890ac2effc8290" name="a300135a020fda28b22890ac2effc8290"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a300135a020fda28b22890ac2effc8290">&#9670;&#160;</a></span>app_tag_seed</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">uint16_t idxd_hw_desc::app_tag_seed</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="idxd__spec_8h_source.html#l00270">270</a> of file <a class="el" href="idxd__spec_8h_source.html">idxd_spec.h</a>.</p>
+
+</div>
+</div>
+<a id="aef3b5d4878718393e29a5459f40ebf45" name="aef3b5d4878718393e29a5459f40ebf45"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aef3b5d4878718393e29a5459f40ebf45">&#9670;&#160;</a></span>comp_pattern</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">uint64_t idxd_hw_desc::comp_pattern</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="idxd__spec_8h_source.html#l00230">230</a> of file <a class="el" href="idxd__spec_8h_source.html">idxd_spec.h</a>.</p>
+
+</div>
+</div>
+<a id="a6e2d1fc22b0c9ad69a42e64fa8855582" name="a6e2d1fc22b0c9ad69a42e64fa8855582"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6e2d1fc22b0c9ad69a42e64fa8855582">&#9670;&#160;</a></span>completion_addr</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">uint64_t idxd_hw_desc::completion_addr</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="idxd__spec_8h_source.html#l00218">218</a> of file <a class="el" href="idxd__spec_8h_source.html">idxd_spec.h</a>.</p>
+
+</div>
+</div>
+<a id="a46a23de38564ae91b736fa4572605bf5" name="a46a23de38564ae91b736fa4572605bf5"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a46a23de38564ae91b736fa4572605bf5">&#9670;&#160;</a></span>compr_flags</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">uint16_t idxd_hw_desc::compr_flags</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="idxd__spec_8h_source.html#l00240">240</a> of file <a class="el" href="idxd__spec_8h_source.html">idxd_spec.h</a>.</p>
+
+</div>
+</div>
+<a id="a377d36d7daa89546d93b0ac56b5f2a9c" name="a377d36d7daa89546d93b0ac56b5f2a9c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a377d36d7daa89546d93b0ac56b5f2a9c">&#9670;&#160;</a></span>decompr_flags</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">uint16_t idxd_hw_desc::decompr_flags</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="idxd__spec_8h_source.html#l00241">241</a> of file <a class="el" href="idxd__spec_8h_source.html">idxd_spec.h</a>.</p>
+
+</div>
+</div>
+<a id="a944c824e8596e698d1b85b9dcd5bdcfd" name="a944c824e8596e698d1b85b9dcd5bdcfd"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a944c824e8596e698d1b85b9dcd5bdcfd">&#9670;&#160;</a></span>delta_rec_size</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">uint32_t idxd_hw_desc::delta_rec_size</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="idxd__spec_8h_source.html#l00256">256</a> of file <a class="el" href="idxd__spec_8h_source.html">idxd_spec.h</a>.</p>
+
+</div>
+</div>
+<a id="a87475bec9769a2811bc2c07d7b5f805b" name="a87475bec9769a2811bc2c07d7b5f805b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a87475bec9769a2811bc2c07d7b5f805b">&#9670;&#160;</a></span>desc_count</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">uint32_t idxd_hw_desc::desc_count</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="idxd__spec_8h_source.html#l00235">235</a> of file <a class="el" href="idxd__spec_8h_source.html">idxd_spec.h</a>.</p>
+
+</div>
+</div>
+<a id="abd5047f7765cbae52da3d6c848b422e2" name="abd5047f7765cbae52da3d6c848b422e2"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#abd5047f7765cbae52da3d6c848b422e2">&#9670;&#160;</a></span>desc_list_addr</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">uint64_t idxd_hw_desc::desc_list_addr</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="idxd__spec_8h_source.html#l00224">224</a> of file <a class="el" href="idxd__spec_8h_source.html">idxd_spec.h</a>.</p>
+
+</div>
+</div>
+<a id="ab5aa368d5a6b65a18d3e353dd9c9ce47" name="ab5aa368d5a6b65a18d3e353dd9c9ce47"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab5aa368d5a6b65a18d3e353dd9c9ce47">&#9670;&#160;</a></span>dest2</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">uint64_t idxd_hw_desc::dest2</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="idxd__spec_8h_source.html#l00257">257</a> of file <a class="el" href="idxd__spec_8h_source.html">idxd_spec.h</a>.</p>
+
+</div>
+</div>
+<a id="a07dff4bb0994bcd611443e9818a176ab" name="a07dff4bb0994bcd611443e9818a176ab"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a07dff4bb0994bcd611443e9818a176ab">&#9670;&#160;</a></span>dest_app_tag_mask</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">uint16_t idxd_hw_desc::dest_app_tag_mask</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="idxd__spec_8h_source.html#l00290">290</a> of file <a class="el" href="idxd__spec_8h_source.html">idxd_spec.h</a>.</p>
+
+</div>
+</div>
+<a id="a44e8ce6db6424ba155df309926caea49" name="a44e8ce6db6424ba155df309926caea49"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a44e8ce6db6424ba155df309926caea49">&#9670;&#160;</a></span>dest_app_tag_seed</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">uint16_t idxd_hw_desc::dest_app_tag_seed</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="idxd__spec_8h_source.html#l00291">291</a> of file <a class="el" href="idxd__spec_8h_source.html">idxd_spec.h</a>.</p>
+
+</div>
+</div>
+<a id="a304be3379704b42f00c1f185731f6b67" name="a304be3379704b42f00c1f185731f6b67"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a304be3379704b42f00c1f185731f6b67">&#9670;&#160;</a></span>dest_flag</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">uint8_t idxd_hw_desc::dest_flag</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="idxd__spec_8h_source.html#l00274">274</a> of file <a class="el" href="idxd__spec_8h_source.html">idxd_spec.h</a>.</p>
+
+</div>
+</div>
+<a id="a574abebf07d81b575bb291423aa5f156" name="a574abebf07d81b575bb291423aa5f156"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a574abebf07d81b575bb291423aa5f156">&#9670;&#160;</a></span>dest_flags</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">uint8_t idxd_hw_desc::dest_flags</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="idxd__spec_8h_source.html#l00283">283</a> of file <a class="el" href="idxd__spec_8h_source.html">idxd_spec.h</a>.</p>
+
+</div>
+</div>
+<a id="aeefc5090204157871990a0b0f8815f84" name="aeefc5090204157871990a0b0f8815f84"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aeefc5090204157871990a0b0f8815f84">&#9670;&#160;</a></span>dest_ref_tag_seed</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">uint32_t idxd_hw_desc::dest_ref_tag_seed</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="idxd__spec_8h_source.html#l00289">289</a> of file <a class="el" href="idxd__spec_8h_source.html">idxd_spec.h</a>.</p>
+
+</div>
+</div>
+<a id="a86ccc2340c568ab7b8a37eba328500d1" name="a86ccc2340c568ab7b8a37eba328500d1"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a86ccc2340c568ab7b8a37eba328500d1">&#9670;&#160;</a></span>dst_addr</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">uint64_t idxd_hw_desc::dst_addr</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="idxd__spec_8h_source.html#l00227">227</a> of file <a class="el" href="idxd__spec_8h_source.html">idxd_spec.h</a>.</p>
+
+</div>
+</div>
+<a id="a13a906b3c3ea03a92bd2fb87fa1886eb" name="a13a906b3c3ea03a92bd2fb87fa1886eb"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a13a906b3c3ea03a92bd2fb87fa1886eb">&#9670;&#160;</a></span>expected_res</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">uint8_t idxd_hw_desc::expected_res</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="idxd__spec_8h_source.html#l00251">251</a> of file <a class="el" href="idxd__spec_8h_source.html">idxd_spec.h</a>.</p>
+
+</div>
+</div>
+<a id="ad3878bcd1ead1e83d4154670e9b4e32c" name="ad3878bcd1ead1e83d4154670e9b4e32c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad3878bcd1ead1e83d4154670e9b4e32c">&#9670;&#160;</a></span>filter_flags</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">uint32_t idxd_hw_desc::filter_flags</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="idxd__spec_8h_source.html#l00248">248</a> of file <a class="el" href="idxd__spec_8h_source.html">idxd_spec.h</a>.</p>
+
+</div>
+</div>
+<a id="ad3970a8af5ae890a47ee9c768f8ac23a" name="ad3970a8af5ae890a47ee9c768f8ac23a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad3970a8af5ae890a47ee9c768f8ac23a">&#9670;&#160;</a></span>flags <span class="overload">[1/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">uint8_t idxd_hw_desc::flags</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="idxd__spec_8h_source.html#l00266">266</a> of file <a class="el" href="idxd__spec_8h_source.html">idxd_spec.h</a>.</p>
+
+</div>
+</div>
+<a id="ae4ab197cca70dd3b430ed8f3ca029bb4" name="ae4ab197cca70dd3b430ed8f3ca029bb4"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae4ab197cca70dd3b430ed8f3ca029bb4">&#9670;&#160;</a></span>flags <span class="overload">[2/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">uint32_t idxd_hw_desc::flags</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="idxd__spec_8h_source.html#l00216">216</a> of file <a class="el" href="idxd__spec_8h_source.html">idxd_spec.h</a>.</p>
+
+</div>
+</div>
+<a id="a2a408c5e47c78b44f8bfde47b23f7c54" name="a2a408c5e47c78b44f8bfde47b23f7c54"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2a408c5e47c78b44f8bfde47b23f7c54">&#9670;&#160;</a></span>int_handle</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">uint16_t idxd_hw_desc::int_handle</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="idxd__spec_8h_source.html#l00237">237</a> of file <a class="el" href="idxd__spec_8h_source.html">idxd_spec.h</a>.</p>
+
+</div>
+</div>
+<a id="a7e2aa15a7ae2e5749013a4601a67e510" name="a7e2aa15a7ae2e5749013a4601a67e510"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7e2aa15a7ae2e5749013a4601a67e510">&#9670;&#160;</a></span>max_dst_size</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">uint32_t idxd_hw_desc::max_dst_size</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="idxd__spec_8h_source.html#l00246">246</a> of file <a class="el" href="idxd__spec_8h_source.html">idxd_spec.h</a>.</p>
+
+</div>
+</div>
+<a id="af5371b40d046e970c44ad520c71bb834" name="af5371b40d046e970c44ad520c71bb834"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af5371b40d046e970c44ad520c71bb834">&#9670;&#160;</a></span>max_size</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">uint32_t idxd_hw_desc::max_size</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="idxd__spec_8h_source.html#l00254">254</a> of file <a class="el" href="idxd__spec_8h_source.html">idxd_spec.h</a>.</p>
+
+</div>
+</div>
+<a id="a9c6edaf4be613ff130981324b68a0fa2" name="a9c6edaf4be613ff130981324b68a0fa2"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9c6edaf4be613ff130981324b68a0fa2">&#9670;&#160;</a></span>num_inputs</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">uint32_t idxd_hw_desc::num_inputs</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="idxd__spec_8h_source.html#l00249">249</a> of file <a class="el" href="idxd__spec_8h_source.html">idxd_spec.h</a>.</p>
+
+</div>
+</div>
+<a id="a763923ce99f6f93327a56837330976fe" name="a763923ce99f6f93327a56837330976fe"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a763923ce99f6f93327a56837330976fe">&#9670;&#160;</a></span>op_specific</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">uint8_t idxd_hw_desc::op_specific[24]</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="idxd__spec_8h_source.html#l00311">311</a> of file <a class="el" href="idxd__spec_8h_source.html">idxd_spec.h</a>.</p>
+
+</div>
+</div>
+<a id="a02ead2caf0925e4afc48de1a40daa6d9" name="a02ead2caf0925e4afc48de1a40daa6d9"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a02ead2caf0925e4afc48de1a40daa6d9">&#9670;&#160;</a></span>opcode</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">uint32_t idxd_hw_desc::opcode</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="idxd__spec_8h_source.html#l00217">217</a> of file <a class="el" href="idxd__spec_8h_source.html">idxd_spec.h</a>.</p>
+
+</div>
+</div>
+<a id="a72df53eae6e8d12d88889f69d06acad2" name="a72df53eae6e8d12d88889f69d06acad2"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a72df53eae6e8d12d88889f69d06acad2">&#9670;&#160;</a></span>pasid</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">uint32_t idxd_hw_desc::pasid</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="idxd__spec_8h_source.html#l00213">213</a> of file <a class="el" href="idxd__spec_8h_source.html">idxd_spec.h</a>.</p>
+
+</div>
+</div>
+<a id="a0380141fda00acee7ebe4a62e0a94a72" name="a0380141fda00acee7ebe4a62e0a94a72"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0380141fda00acee7ebe4a62e0a94a72">&#9670;&#160;</a></span>pattern</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">uint64_t idxd_hw_desc::pattern</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="idxd__spec_8h_source.html#l00223">223</a> of file <a class="el" href="idxd__spec_8h_source.html">idxd_spec.h</a>.</p>
+
+</div>
+</div>
+<a id="ad2e85509b2a6aa10868feeb067db1dd8" name="ad2e85509b2a6aa10868feeb067db1dd8"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad2e85509b2a6aa10868feeb067db1dd8">&#9670;&#160;</a></span>priv</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">uint32_t idxd_hw_desc::priv</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="idxd__spec_8h_source.html#l00215">215</a> of file <a class="el" href="idxd__spec_8h_source.html">idxd_spec.h</a>.</p>
+
+</div>
+</div>
+<a id="a3aa76ab75c58c6c5c2e0507f4484719a" name="a3aa76ab75c58c6c5c2e0507f4484719a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3aa76ab75c58c6c5c2e0507f4484719a">&#9670;&#160;</a></span>readback_addr</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">uint64_t idxd_hw_desc::readback_addr</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="idxd__spec_8h_source.html#l00222">222</a> of file <a class="el" href="idxd__spec_8h_source.html">idxd_spec.h</a>.</p>
+
+</div>
+</div>
+<a id="a763efd186831d33548d6c9d74a521576" name="a763efd186831d33548d6c9d74a521576"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a763efd186831d33548d6c9d74a521576">&#9670;&#160;</a></span>readback_addr2</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">uint64_t idxd_hw_desc::readback_addr2</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="idxd__spec_8h_source.html#l00228">228</a> of file <a class="el" href="idxd__spec_8h_source.html">idxd_spec.h</a>.</p>
+
+</div>
+</div>
+<a id="ae336c8ee6835b1890d2645b453c8c4ce" name="ae336c8ee6835b1890d2645b453c8c4ce"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae336c8ee6835b1890d2645b453c8c4ce">&#9670;&#160;</a></span>ref_tag_seed</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">uint32_t idxd_hw_desc::ref_tag_seed</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="idxd__spec_8h_source.html#l00268">268</a> of file <a class="el" href="idxd__spec_8h_source.html">idxd_spec.h</a>.</p>
+
+</div>
+</div>
+<a id="a1d618e2203aaad22d845c76e28bd1b21" name="a1d618e2203aaad22d845c76e28bd1b21"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1d618e2203aaad22d845c76e28bd1b21">&#9670;&#160;</a></span>rsvd <span class="overload">[1/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">uint8_t idxd_hw_desc::rsvd[5]</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="idxd__spec_8h_source.html#l00285">285</a> of file <a class="el" href="idxd__spec_8h_source.html">idxd_spec.h</a>.</p>
+
+</div>
+</div>
+<a id="ac39d23dc8492b019f8751f68ad673f6e" name="ac39d23dc8492b019f8751f68ad673f6e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac39d23dc8492b019f8751f68ad673f6e">&#9670;&#160;</a></span>rsvd <span class="overload">[2/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">uint32_t idxd_hw_desc::rsvd</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="idxd__spec_8h_source.html#l00214">214</a> of file <a class="el" href="idxd__spec_8h_source.html">idxd_spec.h</a>.</p>
+
+</div>
+</div>
+<a id="a1cbab68aedf29c2bd33c921aed1653b4" name="a1cbab68aedf29c2bd33c921aed1653b4"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1cbab68aedf29c2bd33c921aed1653b4">&#9670;&#160;</a></span>rsvd1 <span class="overload">[1/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">uint8_t idxd_hw_desc::rsvd1</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="idxd__spec_8h_source.html#l00265">265</a> of file <a class="el" href="idxd__spec_8h_source.html">idxd_spec.h</a>.</p>
+
+</div>
+</div>
+<a id="a7ef6f0e9be1eca3b1175249b172dd59b" name="a7ef6f0e9be1eca3b1175249b172dd59b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7ef6f0e9be1eca3b1175249b172dd59b">&#9670;&#160;</a></span>rsvd1 <span class="overload">[2/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">uint16_t idxd_hw_desc::rsvd1</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="idxd__spec_8h_source.html#l00239">239</a> of file <a class="el" href="idxd__spec_8h_source.html">idxd_spec.h</a>.</p>
+
+</div>
+</div>
+<a id="acaf3042ef60edad271b95a6862483fd8" name="acaf3042ef60edad271b95a6862483fd8"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#acaf3042ef60edad271b95a6862483fd8">&#9670;&#160;</a></span>rsvd2</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">uint8_t idxd_hw_desc::rsvd2[13]</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="idxd__spec_8h_source.html#l00267">267</a> of file <a class="el" href="idxd__spec_8h_source.html">idxd_spec.h</a>.</p>
+
+</div>
+</div>
+<a id="a0a8d468fdd6b252a7cf288b7e05d6f04" name="a0a8d468fdd6b252a7cf288b7e05d6f04"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0a8d468fdd6b252a7cf288b7e05d6f04">&#9670;&#160;</a></span>seed</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">uint32_t idxd_hw_desc::seed</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="idxd__spec_8h_source.html#l00259">259</a> of file <a class="el" href="idxd__spec_8h_source.html">idxd_spec.h</a>.</p>
+
+</div>
+</div>
+<a id="a6652517239a0ecbb4ffc4e9aac3044c0" name="a6652517239a0ecbb4ffc4e9aac3044c0"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6652517239a0ecbb4ffc4e9aac3044c0">&#9670;&#160;</a></span>src1_addr</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">uint64_t idxd_hw_desc::src1_addr</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="idxd__spec_8h_source.html#l00221">221</a> of file <a class="el" href="idxd__spec_8h_source.html">idxd_spec.h</a>.</p>
+
+</div>
+</div>
+<a id="a68141647a3ba32ce4f378d0c05f114cc" name="a68141647a3ba32ce4f378d0c05f114cc"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a68141647a3ba32ce4f378d0c05f114cc">&#9670;&#160;</a></span>src1_size</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">uint32_t idxd_hw_desc::src1_size</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="idxd__spec_8h_source.html#l00233">233</a> of file <a class="el" href="idxd__spec_8h_source.html">idxd_spec.h</a>.</p>
+
+</div>
+</div>
+<a id="a6db3eeda48aa65dc2de60c57d35a697d" name="a6db3eeda48aa65dc2de60c57d35a697d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6db3eeda48aa65dc2de60c57d35a697d">&#9670;&#160;</a></span>src2_addr</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">uint64_t idxd_hw_desc::src2_addr</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="idxd__spec_8h_source.html#l00229">229</a> of file <a class="el" href="idxd__spec_8h_source.html">idxd_spec.h</a>.</p>
+
+</div>
+</div>
+<a id="a060ad6009a8a0b4a9e8f8bbf89390406" name="a060ad6009a8a0b4a9e8f8bbf89390406"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a060ad6009a8a0b4a9e8f8bbf89390406">&#9670;&#160;</a></span>src2_size</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">uint32_t idxd_hw_desc::src2_size</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="idxd__spec_8h_source.html#l00247">247</a> of file <a class="el" href="idxd__spec_8h_source.html">idxd_spec.h</a>.</p>
+
+</div>
+</div>
+<a id="a2a6c72036c8e840050d2d85af1f4b581" name="a2a6c72036c8e840050d2d85af1f4b581"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2a6c72036c8e840050d2d85af1f4b581">&#9670;&#160;</a></span>src_addr</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">uint64_t idxd_hw_desc::src_addr</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="idxd__spec_8h_source.html#l00220">220</a> of file <a class="el" href="idxd__spec_8h_source.html">idxd_spec.h</a>.</p>
+
+</div>
+</div>
+<a id="aef1807189e2b6e01f76c871666a1538c" name="aef1807189e2b6e01f76c871666a1538c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aef1807189e2b6e01f76c871666a1538c">&#9670;&#160;</a></span>src_app_tag_mask</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">uint16_t idxd_hw_desc::src_app_tag_mask</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="idxd__spec_8h_source.html#l00287">287</a> of file <a class="el" href="idxd__spec_8h_source.html">idxd_spec.h</a>.</p>
+
+</div>
+</div>
+<a id="a2061e0e4ae8266844121dd7c0c5a5687" name="a2061e0e4ae8266844121dd7c0c5a5687"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2061e0e4ae8266844121dd7c0c5a5687">&#9670;&#160;</a></span>src_app_tag_seed</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">uint16_t idxd_hw_desc::src_app_tag_seed</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="idxd__spec_8h_source.html#l00288">288</a> of file <a class="el" href="idxd__spec_8h_source.html">idxd_spec.h</a>.</p>
+
+</div>
+</div>
+<a id="a445603edfcfebaf55a503e43259878af" name="a445603edfcfebaf55a503e43259878af"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a445603edfcfebaf55a503e43259878af">&#9670;&#160;</a></span>src_flags</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">uint8_t idxd_hw_desc::src_flags</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="idxd__spec_8h_source.html#l00264">264</a> of file <a class="el" href="idxd__spec_8h_source.html">idxd_spec.h</a>.</p>
+
+</div>
+</div>
+<a id="a2728b9562ca4d9dcd76fe1e66d650cf8" name="a2728b9562ca4d9dcd76fe1e66d650cf8"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2728b9562ca4d9dcd76fe1e66d650cf8">&#9670;&#160;</a></span>src_ref_tag_seed</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">uint32_t idxd_hw_desc::src_ref_tag_seed</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="idxd__spec_8h_source.html#l00286">286</a> of file <a class="el" href="idxd__spec_8h_source.html">idxd_spec.h</a>.</p>
+
+</div>
+</div>
+<a id="ae75df298d6993474fbc2c63713383a7f" name="ae75df298d6993474fbc2c63713383a7f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae75df298d6993474fbc2c63713383a7f">&#9670;&#160;</a></span>xfer_size</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">uint32_t idxd_hw_desc::xfer_size</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="idxd__spec_8h_source.html#l00234">234</a> of file <a class="el" href="idxd__spec_8h_source.html">idxd_spec.h</a>.</p>
+
+</div>
+</div>
+<hr/>The documentation for this struct was generated from the following file:<ul>
+<li><a class="el" href="idxd__spec_8h_source.html">idxd_spec.h</a></li>
+</ul>
+</div><!-- contents -->
+</div><!-- doc-content -->
+<div id="page-nav" class="page-nav-panel">
+<div id="page-nav-resize-handle"></div>
+<div id="page-nav-tree">
+<div id="page-nav-contents">
+</div><!-- page-nav-contents -->
+</div><!-- page-nav-tree -->
+</div><!-- page-nav -->
+</div><!-- container -->
+<footer class="footer" id="nav-path">
+  <div class="footer-inner">
+    <div class="footer-copy">
+      <small>Copyright &copy; SPDK a Series of LF Projects, LLC. For web site terms of use, trademark policy, and other
+      project policies please see <a href="https://lfprojects.org">lfprojects.org</a>.</small>
+      <br><small>Built from spdk 91893349edff / site e5878500f</small>
+    </div>
+  </div>
+</footer>
+<script type="text/javascript" src="page_outline.js"></script>
+<script type="text/javascript" src="spdk_nav.js"></script>
+</body>
+</html>

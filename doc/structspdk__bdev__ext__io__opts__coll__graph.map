@@ -1,0 +1,7 @@
+<map id="spdk_bdev_ext_io_opts" name="spdk_bdev_ext_io_opts">
+<area shape="rect" id="Node000001" title="Structure with optional IO request parameters." alt="" coords="115,106,288,134"/>
+<area shape="rect" id="Node000002" href="$unionspdk__bdev__nvme__cdw12.html" title="Union for command dword 12, which by convention matches the NVMe command dword 12 definition." alt="" coords="5,5,190,33"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="124,42,189,103,186,107,120,46"/>
+<area shape="rect" id="Node000003" href="$unionspdk__bdev__nvme__cdw13.html" title="Union for command dword 13, which by convention matches the NVMe command dword 13 definition." alt="" coords="213,5,398,33"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="293,48,263,84,229,108,226,103,260,80,288,44"/>
+</map>

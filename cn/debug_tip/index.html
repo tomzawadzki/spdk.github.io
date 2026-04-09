@@ -1,0 +1,172 @@
+<!doctype html>
+<html lang="en">
+  <head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="The Storage Performance Development Kit (SPDK) provides a set of tools and libraries for writing high performance, scalable, user-mode storage applications. It achieves high performance by moving all of the necessary drivers into userspace and operating in a polled mode instead of relying on interrupts, which avoids kernel context switches and eliminates interrupt handling overhead.
+">
+  <meta name="author" content="Benjamin Walker">
+
+  <title>SPDK程序调试建议</title>
+
+  <link rel="icon" type="image/svg+xml" href="/spdk.github.io/assets/img/spdk.svg">
+  <link rel="icon" href="/spdk.github.io/assets/favicon.ico" sizes="32x32">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:400,700,900" type="text/css">
+  <link rel="stylesheet" href="/spdk.github.io/assets/css/spdk.css">
+
+  <link href="/spdk.github.io/feed.xml" type="application/atom+xml" rel="alternate" title="Atom Feed">
+</head>
+
+
+  <body>
+    <nav class="navbar">
+  <a class="navbar-brand" href="/spdk.github.io/" aria-label="SPDK">
+    <img src="/spdk.github.io/assets/img/spdk.svg" width="36" height="36" alt="Storage Performance Development Kit">
+  </a>
+  <div class="navbar-nav">
+    <a class="nav-link header-link" href="/spdk.github.io/doc/releases.html">download</a>
+    <a class="nav-link header-link" href="/spdk.github.io/doc/">documentation</a>
+    <a class="nav-link header-link" href="/spdk.github.io/doc/contributing.html">development</a>
+    <a class="nav-link header-link" href="/spdk.github.io/doc/ci_tools.html">CI status</a>
+    <a class="nav-link header-link" href="/spdk.github.io/community/">community</a>
+    <a class="nav-link header-link" href="/spdk.github.io/blog/">Blog</a>
+    <a class="nav-link header-link" href="https://github.com/orgs/spdk/projects/5">Roadmap</a>
+    <a class="nav-link header-link" href="/spdk.github.io/news/">News</a>
+  </div>
+  <div class="navbar-end">
+    <a class="nav-link header-link" href="https://github.com/spdk/spdk" aria-label="GitHub">
+      <svg xmlns="http://www.w3.org/2000/svg" class="navbar-nav-svg" aria-hidden="true"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
+    </a>
+    <a id="cn_lang_btn" href="/spdk.github.io/cn/doc/" class="nav-link header-link">中文</a>
+  </div>
+</nav>
+<script>
+(function() {
+    var p = location.pathname, best = null, bLen = 0;
+    document.querySelectorAll('.header-link[href]').forEach(function(a) {
+        var raw = a.getAttribute('href');
+        if (!raw) return;
+        try { var u = new URL(raw, location.href); } catch(e) { return; }
+        if (u.origin !== location.origin) return;
+        var h = u.pathname;
+        if (h === '/') return;
+        var ok = h.endsWith('.html') ? p === h : p.indexOf(h) === 0;
+        if (ok && h.length > bLen) { bLen = h.length; best = a; }
+    });
+    if (best) best.classList.add('active');
+})();
+</script>
+
+
+    
+<div class="page-content">
+  <div class="page-header">
+    <h1>SPDK程序调试建议</h1>
+  </div>
+  <div class="content"><h1 id="本文涉及到">本文涉及到:</h1>
+
+<ul>
+  <li><a href="#ci_jenkins">查看自动化SPDK CI Jenkins的测试结果</a></li>
+  <li><a href="#local_run">在本地跑自动化测试</a></li>
+  <li><a href="#gdb">使用GDB来在线调试</a></li>
+</ul>
+
+<p><a id="ci_jenkins"></a></p>
+<h2 id="查看自动化spdk-ci-jenkins的测试结果">查看自动化SPDK CI Jenkins的测试结果</h2>
+
+<p>在<a href="https://github.com/spdk/spdk-ci/actions">SPDK CI</a>持续化测试网页上，主要有两类自动化测试。其中一类是针对每个改动的测试；还有一类是每晚跑一次的测试。每晚跑一次的测试会跑的更久，涉及更多的测试覆盖。这里我们以每晚跑一次的测试作为例子，来分享一些调试小建议。这些建议同样适用到针对每次改动的测试。</p>
+
+<p>当测试完成后，在<a href="https://github.com/spdk/spdk-ci/actions">SPDK CI webpage</a>页面上有个<code class="language-plaintext highlighter-rouge">Job results</code>部分，有多个相关测试结果的链接。点击具体的工作流运行可以查看所有子测试任务和对应的测试结果。我们可以点击失败状态的子任务来具体查看该任务执行的情况，找到相关的<code class="language-plaintext highlighter-rouge">build.log</code>文件可以查看具体测试失败的原因。拉到网页最下面可以大致获得更多失败信息。</p>
+
+<p><a id="local_run"></a></p>
+<h2 id="在本地机器上跑自动化测试">在本地机器上跑自动化测试</h2>
+
+<p>相关的自动化测试是从<a href="https://github.com/spdk/spdk/blob/master/autotest.sh">autotest.sh</a>单个文件调用开始的。在不同的机器上跑不同的测试任务通过指定特定的测试配置来完成。具体配置在下面会描述，包括了每晚一次的长时间测试的选项。</p>
+
+<p>下面的配置是具体的内容，可以通过指定<code class="language-plaintext highlighter-rouge">1</code>来启用或者<code class="language-plaintext highlighter-rouge">0</code>来关闭相应的测试模块，当调用<code class="language-plaintext highlighter-rouge">autotest.sh</code>脚本文件时，需要跟一个对应的配置文件，如下面的例子。这样在本地的机器上也可以跑和SPDK CI测试框架一样的测试内容，这里可能需要额外的一些配置来使能和适配本地的机器。基本上跑起来后，相关的测试结果会输出来终端屏幕上。一旦相同的测试失败问题被触发，我们可以在本地机器上调试和分析导致出错的原因。更重要的是，我们建议在上传改动前，有本地测试环境的话，可以尽量多的现在本地完成测试。</p>
+
+<pre><code class="language-{.sh}">./autotest.sh your_conf_file
+</code></pre>
+
+<pre><code class="language-{.sh}">SPDK_BUILD_DOC=0
+SPDK_BUILD_IOAT_KMOD=0
+SPDK_BUILD_SHARED_OBJECT=1
+SPDK_FEDORA_PACKAGING=0
+SPDK_RUN_CHECK_FORMAT=0
+SPDK_RUN_SCANBUILD=0
+SPDK_RUN_VALGRIND=0
+SPDK_RUN_FUNCTIONAL_TEST=1
+SPDK_TEST_ISCSI_INITIATOR=1
+SPDK_TEST_UNITTEST=0
+SPDK_TEST_ISCSI=1
+SPDK_TEST_NVME=0
+SPDK_TEST_BDEV_OCSSD=0
+SPDK_TEST_FTL=0
+SPDK_TEST_NVMF=0
+SPDK_TEST_RBD=1
+SPDK_TEST_VHOST=0
+SPDK_TEST_BLOCKDEV=0
+SPDK_TEST_IOAT=0
+SPDK_TEST_EVENT=0
+SPDK_TEST_BLOBFS=0
+SPDK_TEST_PMDK=0
+SPDK_TEST_LVOL=0
+SPDK_RUN_VPP=0
+SPDK_TEST_CRYPTO=0
+SPDK_TEST_REDUCE=0
+SPDK_TEST_OCF=0
+SPDK_RUN_ASAN=0
+SPDK_RUN_UBSAN=1
+SPDK_TEST_VHOST_INIT=0
+RUN_NIGHTLY=0
+</code></pre>
+
+<p><a id="gdb"></a></p>
+<h2 id="使用gdb来在线调试">使用GDB来在线调试</h2>
+<p>如果在测试失败中，有发生core dump之类的问题，一个比较快速的方法去定位问题是使用GDB在线调试。为了更好地定位问题，在在线调试前，我们建议先把SPDK代码的debug开关按下面方法打开。同时，建议按下面设置来配置core dump文件，通过不同的PID来标识潜在的不同core dump，后期来通过GDB进行多次有针对的调试。</p>
+
+<pre><code class="language-{.sh}">./configure --enable-debug
+make clean
+make
+echo 'core.%p' &gt; /proc/sys/kernel/core_pattern
+</code></pre>
+
+<p>我们拿nvme_ut unittest可执行程序来作为例子。</p>
+
+<pre><code class="language-{.sh}">gdb ./test/lib/nvme/unit/nvme_c/nvme_ut
+(gdb) b test_spdk_nvme_transport_id_parse_trtype
+(gdb) r
+Suite: nvme
+  Test: test_opc_data_transfer ...passed
+  Test: test_spdk_nvme_transport_id_parse_trtype ...
+Breakpoint 3, test_spdk_nvme_transport_id_parse_trtype () at nvme_ut.c:247
+247     in nvme_ut.c
+(gdb) bt
+#0  test_spdk_nvme_transport_id_parse_trtype () at nvme_ut.c:247
+#1  0x00007ffff7bd0212 in run_single_test.constprop.4 () from /lib64/libcunit.so.1
+#2  0x00007ffff7bd04a8 in run_single_suite.constprop.3 () from /lib64/libcunit.so.1
+#3  0x00007ffff7bd0826 in CU_run_all_tests () from /lib64/libcunit.so.1
+#4  0x000000000040147d in main (argc=&lt;optimized out&gt;, argv=&lt;optimized out&gt;) at nvme_ut.c:379
+(gdb)
+</code></pre>
+
+<p>按上面这个例子，到了这个阶段，下面可以使用GDB的常规调试方法来定位、调试和解决问题。</p>
+</div>
+</div>
+
+
+
+    <footer class="footer" id="nav-path">
+  <div class="footer-inner">
+    <div class="footer-copy">
+      <small>Copyright &copy; SPDK a Series of LF Projects, LLC. For web site terms of use, trademark policy, and other
+      project policies please see <a href="https://lfprojects.org">lfprojects.org</a>.</small>
+      <br><small>Built from spdk 91893349edff / site e5878500f</small>
+    </div>
+  </div>
+</footer>
+
+
+    
+  </body>
+</html>

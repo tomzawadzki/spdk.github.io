@@ -1,0 +1,201 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<meta name="generator" content="Doxygen 1.16.1">
+	<title>SPDK: System Configuration User Guide</title>
+	<script type="text/javascript" src="jquery.js"></script>
+	<script type="text/javascript" src="dynsections.js"></script>
+	<script type="text/javascript" src="clipboard.js"></script>
+	<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
+<script type="text/javascript" src="cookie.js"></script>
+	<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<script type="text/javascript">
+  $(function() { init_search(); });
+</script>
+	<link rel="icon" type="image/svg+xml" href="../assets/img/spdk.svg">
+	<link rel="icon" href="../assets/favicon.ico" sizes="32x32">
+	<link href="doxygen.css" rel="stylesheet" type="text/css">
+	<script>(function(){var k='doxygen_width',w,bw=6;if(window.chrome){w=localStorage.getItem(k);if(!w){w='350';localStorage.setItem(k,w)}}else{var m=document.cookie.match(new RegExp(k+'=(\\d+)'));w=m?m[1]:null;if(!w){w='350';document.cookie=k+'=350;SameSite=Lax;path=/'}}document.documentElement.style.setProperty('--sn-w',(parseInt(w)+bw)+'px')})()</script>
+	<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:400,700,900" type="text/css">
+	<link href="spdk.css" rel="stylesheet" type="text/css"/>
+	<link href="../assets/css/spdk.css" rel="stylesheet" type="text/css">
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<nav class="navbar">
+  <a class="navbar-brand" href="../" aria-label="SPDK">
+    <img src="../assets/img/spdk.svg" width="36" height="36" alt="Storage Performance Development Kit">
+  </a>
+  <div class="navbar-nav">
+    <a class="nav-link header-link" href="../doc/releases.html">download</a>
+    <a class="nav-link header-link" href="../doc/">documentation</a>
+    <a class="nav-link header-link" href="../doc/contributing.html">development</a>
+    <a class="nav-link header-link" href="../doc/ci_tools.html">CI status</a>
+    <a class="nav-link header-link" href="../community/">community</a>
+    <a class="nav-link header-link" href="../blog/">Blog</a>
+    <a class="nav-link header-link" href="https://github.com/orgs/spdk/projects/5">Roadmap</a>
+    <a class="nav-link header-link" href="../news/">News</a>
+  </div>
+  <div class="navbar-end">
+    <a class="nav-link header-link" href="https://github.com/spdk/spdk" aria-label="GitHub">
+      <svg xmlns="http://www.w3.org/2000/svg" class="navbar-nav-svg" aria-hidden="true"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
+    </a>
+    <a id="cn_lang_btn" href="../cn/doc/" class="nav-link header-link">中文</a>
+  </div>
+</nav>
+<script>
+(function() {
+    var p = location.pathname, best = null, bLen = 0;
+    document.querySelectorAll('.header-link[href]').forEach(function(a) {
+        var raw = a.getAttribute('href');
+        if (!raw) return;
+        try { var u = new URL(raw, location.href); } catch(e) { return; }
+        if (u.origin !== location.origin) return;
+        var h = u.pathname;
+        if (h === '/') return;
+        var ok = h.endsWith('.html') ? p === h : p.indexOf(h) === 0;
+        if (ok && h.length > bLen) { bLen = h.length; best = a; }
+    });
+    if (best) best.classList.add('active');
+})();
+</script>
+<div id="doxygen-searchbox">        <div id="MSearchBox" class="MSearchBoxInactive">
+        <span class="left">
+          <span id="MSearchSelect" class="search-icon" onmouseover="return searchBox.OnSearchSelectShow()" onmouseout="return searchBox.OnSearchSelectHide()"><span class="search-icon-dropdown"></span></span>
+          <input type="text" id="MSearchField" value="" placeholder="Search" accesskey="S"
+               onfocus="searchBox.OnSearchFieldFocus(true)" 
+               onblur="searchBox.OnSearchFieldFocus(false)" 
+               onkeyup="searchBox.OnSearchFieldChange(event)"/>
+          </span><span class="right">
+            <a id="MSearchClose" href="javascript:searchBox.CloseResultsWindow()"><div id="MSearchCloseImg" class="close-icon"></div></a>
+          </span>
+        </div>
+</div>
+<!-- Generated by Doxygen 1.16.1 -->
+<script type="text/javascript">
+var searchBox = new SearchBox("searchBox", "search/",'.html');
+</script>
+<script type="text/javascript">
+$(function() { codefold.init(); });
+</script>
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+$(function(){initNavTree('system_configuration.html','',''); });
+</script>
+<div id="container">
+<div id="doc-content">
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">Loading...</div>
+<div class="SRStatus" id="Searching">Searching...</div>
+<div class="SRStatus" id="NoMatches">No Matches</div>
+</div>
+</div>
+</div>
+</div>
+
+<div><div class="header">
+  <div class="headertitle"><div class="title">System Configuration User Guide </div></div>
+</div><!--header-->
+<div class="contents">
+<div class="textblock"><p><a class="anchor" id="md_guides_2user_2system__configuration"></a></p>
+<p>This system configuration guide describes how to configure a system for use with SPDK.</p>
+<h1 class="doxsection"><a class="anchor" id="iommu_config"></a>
+IOMMU configuration</h1>
+<p>An IOMMU may be present and enabled on many platforms. When an IOMMU is present and enabled, it is recommended that SPDK applications are deployed with the <span class="tt">vfio-pci</span> kernel driver. SPDK's <span class="tt">scripts/setup.sh</span> script will automatically select <span class="tt">vfio-pci</span> in this case.</p>
+<p>However, some devices do not function correctly when bound to <span class="tt">vfio-pci</span> and instead must be attached to the <span class="tt">uio_pci_generic</span> kernel driver. In that case, users should take care to disable the IOMMU or to set it into passthrough mode prior to running <span class="tt">scripts/setup.sh</span>.</p>
+<p>To disable the IOMMU or place it into passthrough mode, add <span class="tt">intel_iommu=off</span> or <span class="tt">amd_iommu=off</span> or <span class="tt">intel_iommu=on iommu=pt</span> to the GRUB command line on x86_64 system, or add <span class="tt">iommu.passthrough=1</span> on arm64 systems.</p>
+<p>There are also some instances where a user may not want to use <span class="tt">uio_pci_generic</span> or the kernel version they are using has a bug where <span class="tt">uio_pci_generic</span> <a href="https://github.com/spdk/spdk/issues/399">fails to bind to NVMe drives</a>. In these cases, users can build the <span class="tt">igb_uio</span> kernel module which can be found in dpdk-kmods repository. To ensure that the driver is properly bound, users should specify <span class="tt">DRIVER_OVERRIDE=/path/to/igb_uio.ko</span>.</p>
+<h1 class="doxsection"><a class="anchor" id="system_configuration_nonroot"></a>
+Running SPDK as non-privileged user</h1>
+<p>One of the benefits of using the <span class="tt">VFIO</span> Linux kernel driver is the ability to perform DMA operations with peripheral devices as unprivileged user. The permissions to access particular devices still need to be granted by the system administrator, but only on a one-time basis. Note that this functionality is supported with DPDK starting from version 18.11.</p>
+<h2 class="doxsection"><a class="anchor" id="autotoc_md750"></a>
+Hugetlbfs access</h2>
+<p>Make sure the target user has RW access to at least one hugepage mount. A good idea is to create a new mount specifically for SPDK:</p>
+<div class="fragment"><div class="line"># mkdir /mnt/spdk_hugetlbfs</div>
+<div class="line"># mount -t hugetlbfs -o uid=spdk,size=&lt;value&gt; none /mnt/spdk_hugetlbfs</div>
+</div><!-- fragment --><p>Then start SPDK applications with an additional parameter <span class="tt">--huge-dir /mnt/spdk_hugetlbfs</span></p>
+<p>Full guide on configuring hugepage mounts is available in the <a href="https://www.kernel.org/doc/Documentation/vm/hugetlbpage.txt">Linux Hugetlbpage Documentation</a></p>
+<h2 class="doxsection"><a class="anchor" id="system_configuration_nonroot_device_access"></a>
+Device access</h2>
+<p><span class="tt">VFIO</span> device access is protected with sysfs file permissions and can be configured with chown/chmod.</p>
+<p>Please note that the VFIO device isolation is based around IOMMU groups and it's only possible to change permissions of the entire group, which might possibly consist of more than one device. (You could also apply a custom kernel patch to further isolate those devices in the kernel, but it comes with potential risks as described on <a href="https://vfio.blogspot.com/2014/08/iommu-groups-inside-and-out.html">Alex Williamson's VFIO blog</a>, with the patch in question available here: <a href="https://lkml.org/lkml/2013/5/30/513">[PATCH] pci: Enable overrides for missing ACS capabilities</a>)</p>
+<p>Let's assume we want to use PCI device <span class="tt">0000:04:00.0</span>. First of all, verify that it has an IOMMU group assigned:</p>
+<div class="fragment"><div class="line">readlink &quot;/sys/bus/pci/devices/0000:00:04.0/iommu_group&quot;</div>
+</div><!-- fragment --><p>The output should be e.g. <span class="tt">../../../kernel/iommu_groups/5</span></p>
+<p>Which means that the device is a part of the IOMMU group 5. We can check if there are any other devices in that group.</p>
+<div class="fragment"><div class="line">$ ls /sys/kernel/iommu_groups/5/devices/</div>
+<div class="line">0000:00:04.0  0000:00:04.1  0000:00:04.2  0000:00:04.3  0000:00:04.4  0000:00:04.5  0000:00:04.6  0000:00:04.7</div>
+</div><!-- fragment --><p>In this case <span class="tt">0000:04:00.0</span> is an I/OAT channel which comes with 7 different channels associated with the same IOMMU group.</p>
+<p>To give the user <span class="tt">spdk</span> full access to the VFIO IOMMU group 5 and all its devices, use the following:</p>
+<div class="fragment"><div class="line"># chown spdk /dev/vfio/5</div>
+</div><!-- fragment --><h2 class="doxsection"><a class="anchor" id="system_configuration_nonroot_memory_constraints"></a>
+Memory constraints</h2>
+<p>As soon as the first device is attached to SPDK, all of SPDK memory will be mapped to the IOMMU through the VFIO APIs. VFIO will try to mlock that memory and will likely exceed user ulimit on locked memory. Besides having various SPDK errors and failures, this would also pollute the syslog with the following entries:</p>
+<p><span class="tt">vfio_pin_pages: RLIMIT_MEMLOCK</span></p>
+<p>The limit can be checked by running the following command as target user: (output in kilobytes)</p>
+<div class="fragment"><div class="line">ulimit -l</div>
+</div><!-- fragment --><p>On Ubuntu 18.04 this returns 16384 (16MB) by default, which is way below what SPDK needs.</p>
+<p>The limit can be increased with one of the methods below. Keep in mind SPDK will try to map not only its reserved hugepages, but also all the memory that's shared by its vhost clients as described in the <a href="https://spdk.io/doc/vhost_processing.html#vhost_processing_init">Vhost processing guide</a>.</p>
+<h3 class="doxsection"><a class="anchor" id="autotoc_md751"></a>
+Increasing the memlock limit permanently</h3>
+<p>Open the <span class="tt">/etc/security/limits.conf</span> file as root and append the following:</p>
+<div class="fragment"><div class="line">spdk     hard   memlock           unlimited</div>
+<div class="line">spdk     soft   memlock           unlimited</div>
+</div><!-- fragment --><p>Then logout from the target user account. The changes will take effect after the next login.</p>
+<h3 class="doxsection"><a class="anchor" id="autotoc_md753"></a>
+Increasing the memlock for a specific process</h3>
+<p>Linux offers a <span class="tt">prlimit</span> utility that can override limits of any given process. On Ubuntu, it is a part of the <span class="tt">util-linux</span> package.</p>
+<div class="fragment"><div class="line"># prlimit --pid &lt;pid&gt; --memlock=&lt;soft&gt;:&lt;hard&gt;</div>
+</div><!-- fragment --><p>Note that the above needs to be executed before the first device is attached to the SPDK application. </p>
+</div></div><!-- contents -->
+</div><!-- PageDoc -->
+</div><!-- doc-content -->
+<div id="page-nav" class="page-nav-panel">
+<div id="page-nav-resize-handle"></div>
+<div id="page-nav-tree">
+<div id="page-nav-contents">
+</div><!-- page-nav-contents -->
+</div><!-- page-nav-tree -->
+</div><!-- page-nav -->
+</div><!-- container -->
+<footer class="footer" id="nav-path">
+  <div class="footer-inner">
+    <div class="footer-copy">
+      <small>Copyright &copy; SPDK a Series of LF Projects, LLC. For web site terms of use, trademark policy, and other
+      project policies please see <a href="https://lfprojects.org">lfprojects.org</a>.</small>
+      <br><small>Built from spdk 91893349edff / site e5878500f</small>
+    </div>
+  </div>
+</footer>
+<script type="text/javascript" src="page_outline.js"></script>
+<script type="text/javascript" src="spdk_nav.js"></script>
+</body>
+</html>

@@ -1,0 +1,496 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<meta name="generator" content="Doxygen 1.16.1">
+	<title>SPDK: barrier.h File Reference</title>
+	<script type="text/javascript" src="jquery.js"></script>
+	<script type="text/javascript" src="dynsections.js"></script>
+	<script type="text/javascript" src="clipboard.js"></script>
+	<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
+<script type="text/javascript" src="cookie.js"></script>
+	<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<script type="text/javascript">
+  $(function() { init_search(); });
+</script>
+	<link rel="icon" type="image/svg+xml" href="../assets/img/spdk.svg">
+	<link rel="icon" href="../assets/favicon.ico" sizes="32x32">
+	<link href="doxygen.css" rel="stylesheet" type="text/css">
+	<script>(function(){var k='doxygen_width',w,bw=6;if(window.chrome){w=localStorage.getItem(k);if(!w){w='350';localStorage.setItem(k,w)}}else{var m=document.cookie.match(new RegExp(k+'=(\\d+)'));w=m?m[1]:null;if(!w){w='350';document.cookie=k+'=350;SameSite=Lax;path=/'}}document.documentElement.style.setProperty('--sn-w',(parseInt(w)+bw)+'px')})()</script>
+	<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:400,700,900" type="text/css">
+	<link href="spdk.css" rel="stylesheet" type="text/css"/>
+	<link href="../assets/css/spdk.css" rel="stylesheet" type="text/css">
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<nav class="navbar">
+  <a class="navbar-brand" href="../" aria-label="SPDK">
+    <img src="../assets/img/spdk.svg" width="36" height="36" alt="Storage Performance Development Kit">
+  </a>
+  <div class="navbar-nav">
+    <a class="nav-link header-link" href="../doc/releases.html">download</a>
+    <a class="nav-link header-link" href="../doc/">documentation</a>
+    <a class="nav-link header-link" href="../doc/contributing.html">development</a>
+    <a class="nav-link header-link" href="../doc/ci_tools.html">CI status</a>
+    <a class="nav-link header-link" href="../community/">community</a>
+    <a class="nav-link header-link" href="../blog/">Blog</a>
+    <a class="nav-link header-link" href="https://github.com/orgs/spdk/projects/5">Roadmap</a>
+    <a class="nav-link header-link" href="../news/">News</a>
+  </div>
+  <div class="navbar-end">
+    <a class="nav-link header-link" href="https://github.com/spdk/spdk" aria-label="GitHub">
+      <svg xmlns="http://www.w3.org/2000/svg" class="navbar-nav-svg" aria-hidden="true"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
+    </a>
+    <a id="cn_lang_btn" href="../cn/doc/" class="nav-link header-link">中文</a>
+  </div>
+</nav>
+<script>
+(function() {
+    var p = location.pathname, best = null, bLen = 0;
+    document.querySelectorAll('.header-link[href]').forEach(function(a) {
+        var raw = a.getAttribute('href');
+        if (!raw) return;
+        try { var u = new URL(raw, location.href); } catch(e) { return; }
+        if (u.origin !== location.origin) return;
+        var h = u.pathname;
+        if (h === '/') return;
+        var ok = h.endsWith('.html') ? p === h : p.indexOf(h) === 0;
+        if (ok && h.length > bLen) { bLen = h.length; best = a; }
+    });
+    if (best) best.classList.add('active');
+})();
+</script>
+<div id="doxygen-searchbox">        <div id="MSearchBox" class="MSearchBoxInactive">
+        <span class="left">
+          <span id="MSearchSelect" class="search-icon" onmouseover="return searchBox.OnSearchSelectShow()" onmouseout="return searchBox.OnSearchSelectHide()"><span class="search-icon-dropdown"></span></span>
+          <input type="text" id="MSearchField" value="" placeholder="Search" accesskey="S"
+               onfocus="searchBox.OnSearchFieldFocus(true)" 
+               onblur="searchBox.OnSearchFieldFocus(false)" 
+               onkeyup="searchBox.OnSearchFieldChange(event)"/>
+          </span><span class="right">
+            <a id="MSearchClose" href="javascript:searchBox.CloseResultsWindow()"><div id="MSearchCloseImg" class="close-icon"></div></a>
+          </span>
+        </div>
+</div>
+<!-- Generated by Doxygen 1.16.1 -->
+<script type="text/javascript">
+var searchBox = new SearchBox("searchBox", "search/",'.html');
+</script>
+<script type="text/javascript">
+$(function() { codefold.init(); });
+</script>
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+$(function(){initNavTree('barrier_8h.html','',''); });
+</script>
+<div id="container">
+<div id="doc-content">
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">Loading...</div>
+<div class="SRStatus" id="Searching">Searching...</div>
+<div class="SRStatus" id="NoMatches">No Matches</div>
+</div>
+</div>
+</div>
+</div>
+
+<div class="header">
+  <div class="headertitle"><div class="title">barrier.h File Reference</div></div>
+</div><!--header-->
+<div class="contents">
+
+<p>Memory barriers.  
+<a href="#details">More...</a></p>
+
+<p><a href="barrier_8h_source.html">Go to the source code of this file.</a></p>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 id="header-define-members" class="groupheader"><a id="define-members" name="define-members"></a>
+Macros</h2></td></tr>
+<tr class="memitem:a67d1423a31a84ead0d1550fe54743c03" id="r_a67d1423a31a84ead0d1550fe54743c03"><td class="memItemLeft">#define&#160;</td><td class="memItemRight"><a class="el" href="#a67d1423a31a84ead0d1550fe54743c03">spdk_compiler_barrier</a>()</td></tr>
+<tr class="memdesc:a67d1423a31a84ead0d1550fe54743c03"><td class="mdescLeft">&#160;</td><td class="mdescRight">Compiler memory barrier.  <br /></td></tr>
+<tr class="memitem:a876d9f9e955882ee02432d8796c63213" id="r_a876d9f9e955882ee02432d8796c63213"><td class="memItemLeft">#define&#160;</td><td class="memItemRight"><a class="el" href="#a876d9f9e955882ee02432d8796c63213">spdk_rmb</a>()</td></tr>
+<tr class="memdesc:a876d9f9e955882ee02432d8796c63213"><td class="mdescLeft">&#160;</td><td class="mdescRight">Read memory barrier.  <br /></td></tr>
+<tr class="memitem:a8966b18613dfe857da8310ec43356684" id="r_a8966b18613dfe857da8310ec43356684"><td class="memItemLeft">#define&#160;</td><td class="memItemRight"><a class="el" href="#a8966b18613dfe857da8310ec43356684">spdk_wmb</a>()</td></tr>
+<tr class="memdesc:a8966b18613dfe857da8310ec43356684"><td class="mdescLeft">&#160;</td><td class="mdescRight">Write memory barrier.  <br /></td></tr>
+<tr class="memitem:a745a3ecabbce4b44d1728d08f9bf8623" id="r_a745a3ecabbce4b44d1728d08f9bf8623"><td class="memItemLeft">#define&#160;</td><td class="memItemRight"><a class="el" href="#a745a3ecabbce4b44d1728d08f9bf8623">spdk_mb</a>()</td></tr>
+<tr class="memdesc:a745a3ecabbce4b44d1728d08f9bf8623"><td class="mdescLeft">&#160;</td><td class="mdescRight">Full read/write memory barrier.  <br /></td></tr>
+<tr class="memitem:a9b87848d3379310e4ade28a63fc038d5" id="r_a9b87848d3379310e4ade28a63fc038d5"><td class="memItemLeft">#define&#160;</td><td class="memItemRight"><a class="el" href="#a9b87848d3379310e4ade28a63fc038d5">spdk_smp_rmb</a>()</td></tr>
+<tr class="memdesc:a9b87848d3379310e4ade28a63fc038d5"><td class="mdescLeft">&#160;</td><td class="mdescRight">SMP read memory barrier.  <br /></td></tr>
+<tr class="memitem:aee6be79189ae975da9922c3ff229ded5" id="r_aee6be79189ae975da9922c3ff229ded5"><td class="memItemLeft">#define&#160;</td><td class="memItemRight"><a class="el" href="#aee6be79189ae975da9922c3ff229ded5">spdk_smp_wmb</a>()</td></tr>
+<tr class="memdesc:aee6be79189ae975da9922c3ff229ded5"><td class="mdescLeft">&#160;</td><td class="mdescRight">SMP write memory barrier.  <br /></td></tr>
+<tr class="memitem:a07ef3ca027c4f24491ec4114c0e0a727" id="r_a07ef3ca027c4f24491ec4114c0e0a727"><td class="memItemLeft">#define&#160;</td><td class="memItemRight"><a class="el" href="#a07ef3ca027c4f24491ec4114c0e0a727">spdk_smp_mb</a>()</td></tr>
+<tr class="memdesc:a07ef3ca027c4f24491ec4114c0e0a727"><td class="mdescLeft">&#160;</td><td class="mdescRight">SMP read/write memory barrier.  <br /></td></tr>
+<tr class="memitem:ad08229e302bb629c373321c8277c7f36" id="r_ad08229e302bb629c373321c8277c7f36"><td class="memItemLeft">#define&#160;</td><td class="memItemRight"><a class="el" href="#ad08229e302bb629c373321c8277c7f36">spdk_ivdt_dcache</a>(pdata)</td></tr>
+<tr class="memdesc:ad08229e302bb629c373321c8277c7f36"><td class="mdescLeft">&#160;</td><td class="mdescRight">Invalidate data cache, input is data pointer.  <br /></td></tr>
+<tr class="memitem:a69ccad1db5d54559b903ea5eec724897" id="r_a69ccad1db5d54559b903ea5eec724897"><td class="memItemLeft">#define&#160;</td><td class="memItemRight"><a class="el" href="#a69ccad1db5d54559b903ea5eec724897">_spdk_rmb</a>()</td></tr>
+<tr class="memitem:aee4f3e582e079ca59ba5217b60cedb0f" id="r_aee4f3e582e079ca59ba5217b60cedb0f"><td class="memItemLeft">#define&#160;</td><td class="memItemRight"><a class="el" href="#aee4f3e582e079ca59ba5217b60cedb0f">_spdk_wmb</a>()</td></tr>
+<tr class="memitem:a0060b114c31cc7c25d324a6a53bdb6f7" id="r_a0060b114c31cc7c25d324a6a53bdb6f7"><td class="memItemLeft">#define&#160;</td><td class="memItemRight"><a class="el" href="#a0060b114c31cc7c25d324a6a53bdb6f7">_spdk_mb</a>()</td></tr>
+<tr class="memitem:a111ad9d2fd5ba289a58ee842c528cc6b" id="r_a111ad9d2fd5ba289a58ee842c528cc6b"><td class="memItemLeft">#define&#160;</td><td class="memItemRight"><a class="el" href="#a111ad9d2fd5ba289a58ee842c528cc6b">_spdk_smp_rmb</a>()</td></tr>
+<tr class="memitem:aa899bef45fc76f8118690da968773d0b" id="r_aa899bef45fc76f8118690da968773d0b"><td class="memItemLeft">#define&#160;</td><td class="memItemRight"><a class="el" href="#aa899bef45fc76f8118690da968773d0b">_spdk_smp_wmb</a>()</td></tr>
+<tr class="memitem:a4f528d9af892bd7bb374c794ce318597" id="r_a4f528d9af892bd7bb374c794ce318597"><td class="memItemLeft">#define&#160;</td><td class="memItemRight"><a class="el" href="#a4f528d9af892bd7bb374c794ce318597">_spdk_smp_mb</a>()</td></tr>
+<tr class="memitem:a156907a1a7cb926f432375af36a72818" id="r_a156907a1a7cb926f432375af36a72818"><td class="memItemLeft">#define&#160;</td><td class="memItemRight"><a class="el" href="#a156907a1a7cb926f432375af36a72818">_spdk_ivdt_dcache</a>(pdata)</td></tr>
+</table>
+<a name="details" id="details"></a><h2 id="header-details" class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>Memory barriers. </p>
+
+<p class="definition">Definition in file <a class="el" href="barrier_8h_source.html">barrier.h</a>.</p>
+</div><a name="doc-define-members" id="doc-define-members"></a><h2 id="header-doc-define-members" class="groupheader">Macro Definition Documentation</h2>
+<a id="a156907a1a7cb926f432375af36a72818" name="a156907a1a7cb926f432375af36a72818"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a156907a1a7cb926f432375af36a72818">&#9670;&#160;</a></span>_spdk_ivdt_dcache</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define _spdk_ivdt_dcache</td>
+          <td>(</td>
+          <td class="paramtype"></td>          <td class="paramname"><span class="paramname"><em>pdata</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="barrier_8h_source.html#l00106">106</a> of file <a class="el" href="barrier_8h_source.html">barrier.h</a>.</p>
+
+</div>
+</div>
+<a id="a0060b114c31cc7c25d324a6a53bdb6f7" name="a0060b114c31cc7c25d324a6a53bdb6f7"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0060b114c31cc7c25d324a6a53bdb6f7">&#9670;&#160;</a></span>_spdk_mb</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define _spdk_mb</td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="barrier_8h_source.html#l00102">102</a> of file <a class="el" href="barrier_8h_source.html">barrier.h</a>.</p>
+
+</div>
+</div>
+<a id="a69ccad1db5d54559b903ea5eec724897" name="a69ccad1db5d54559b903ea5eec724897"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a69ccad1db5d54559b903ea5eec724897">&#9670;&#160;</a></span>_spdk_rmb</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define _spdk_rmb</td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="barrier_8h_source.html#l00100">100</a> of file <a class="el" href="barrier_8h_source.html">barrier.h</a>.</p>
+
+</div>
+</div>
+<a id="a4f528d9af892bd7bb374c794ce318597" name="a4f528d9af892bd7bb374c794ce318597"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4f528d9af892bd7bb374c794ce318597">&#9670;&#160;</a></span>_spdk_smp_mb</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define _spdk_smp_mb</td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="barrier_8h_source.html#l00105">105</a> of file <a class="el" href="barrier_8h_source.html">barrier.h</a>.</p>
+
+</div>
+</div>
+<a id="a111ad9d2fd5ba289a58ee842c528cc6b" name="a111ad9d2fd5ba289a58ee842c528cc6b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a111ad9d2fd5ba289a58ee842c528cc6b">&#9670;&#160;</a></span>_spdk_smp_rmb</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define _spdk_smp_rmb</td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="barrier_8h_source.html#l00103">103</a> of file <a class="el" href="barrier_8h_source.html">barrier.h</a>.</p>
+
+</div>
+</div>
+<a id="aa899bef45fc76f8118690da968773d0b" name="aa899bef45fc76f8118690da968773d0b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa899bef45fc76f8118690da968773d0b">&#9670;&#160;</a></span>_spdk_smp_wmb</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define _spdk_smp_wmb</td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="barrier_8h_source.html#l00104">104</a> of file <a class="el" href="barrier_8h_source.html">barrier.h</a>.</p>
+
+</div>
+</div>
+<a id="aee4f3e582e079ca59ba5217b60cedb0f" name="aee4f3e582e079ca59ba5217b60cedb0f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aee4f3e582e079ca59ba5217b60cedb0f">&#9670;&#160;</a></span>_spdk_wmb</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define _spdk_wmb</td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="barrier_8h_source.html#l00101">101</a> of file <a class="el" href="barrier_8h_source.html">barrier.h</a>.</p>
+
+</div>
+</div>
+<a id="a67d1423a31a84ead0d1550fe54743c03" name="a67d1423a31a84ead0d1550fe54743c03"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a67d1423a31a84ead0d1550fe54743c03">&#9670;&#160;</a></span>spdk_compiler_barrier</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define spdk_compiler_barrier</td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<b>Value:</b><div class="fragment"><div class="line">__asm <span class="keyword">volatile</span>(<span class="stringliteral">&quot;&quot;</span> ::: <span class="stringliteral">&quot;memory&quot;</span>)</div>
+</div><!-- fragment -->
+<p>Compiler memory barrier. </p>
+
+<p class="definition">Definition at line <a class="el" href="barrier_8h_source.html#l00021">21</a> of file <a class="el" href="barrier_8h_source.html">barrier.h</a>.</p>
+
+</div>
+</div>
+<a id="ad08229e302bb629c373321c8277c7f36" name="ad08229e302bb629c373321c8277c7f36"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad08229e302bb629c373321c8277c7f36">&#9670;&#160;</a></span>spdk_ivdt_dcache</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define spdk_ivdt_dcache</td>
+          <td>(</td>
+          <td class="paramtype"></td>          <td class="paramname"><span class="paramname"><em>pdata</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<b>Value:</b><div class="fragment"><div class="line">_spdk_ivdt_dcache(pdata)</div>
+</div><!-- fragment -->
+<p>Invalidate data cache, input is data pointer. </p>
+
+<p class="definition">Definition at line <a class="el" href="barrier_8h_source.html#l00042">42</a> of file <a class="el" href="barrier_8h_source.html">barrier.h</a>.</p>
+
+</div>
+</div>
+<a id="a745a3ecabbce4b44d1728d08f9bf8623" name="a745a3ecabbce4b44d1728d08f9bf8623"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a745a3ecabbce4b44d1728d08f9bf8623">&#9670;&#160;</a></span>spdk_mb</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define spdk_mb</td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<b>Value:</b><div class="fragment"><div class="line">_spdk_mb()</div>
+</div><!-- fragment -->
+<p>Full read/write memory barrier. </p>
+
+<p class="definition">Definition at line <a class="el" href="barrier_8h_source.html#l00030">30</a> of file <a class="el" href="barrier_8h_source.html">barrier.h</a>.</p>
+
+</div>
+</div>
+<a id="a876d9f9e955882ee02432d8796c63213" name="a876d9f9e955882ee02432d8796c63213"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a876d9f9e955882ee02432d8796c63213">&#9670;&#160;</a></span>spdk_rmb</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define spdk_rmb</td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<b>Value:</b><div class="fragment"><div class="line">_spdk_rmb()</div>
+</div><!-- fragment -->
+<p>Read memory barrier. </p>
+
+<p class="definition">Definition at line <a class="el" href="barrier_8h_source.html#l00024">24</a> of file <a class="el" href="barrier_8h_source.html">barrier.h</a>.</p>
+
+</div>
+</div>
+<a id="a07ef3ca027c4f24491ec4114c0e0a727" name="a07ef3ca027c4f24491ec4114c0e0a727"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a07ef3ca027c4f24491ec4114c0e0a727">&#9670;&#160;</a></span>spdk_smp_mb</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define spdk_smp_mb</td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<b>Value:</b><div class="fragment"><div class="line">_spdk_smp_mb()</div>
+</div><!-- fragment -->
+<p>SMP read/write memory barrier. </p>
+
+<p class="definition">Definition at line <a class="el" href="barrier_8h_source.html#l00039">39</a> of file <a class="el" href="barrier_8h_source.html">barrier.h</a>.</p>
+
+</div>
+</div>
+<a id="a9b87848d3379310e4ade28a63fc038d5" name="a9b87848d3379310e4ade28a63fc038d5"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9b87848d3379310e4ade28a63fc038d5">&#9670;&#160;</a></span>spdk_smp_rmb</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define spdk_smp_rmb</td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<b>Value:</b><div class="fragment"><div class="line">_spdk_smp_rmb()</div>
+</div><!-- fragment -->
+<p>SMP read memory barrier. </p>
+
+<p class="definition">Definition at line <a class="el" href="barrier_8h_source.html#l00033">33</a> of file <a class="el" href="barrier_8h_source.html">barrier.h</a>.</p>
+
+</div>
+</div>
+<a id="aee6be79189ae975da9922c3ff229ded5" name="aee6be79189ae975da9922c3ff229ded5"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aee6be79189ae975da9922c3ff229ded5">&#9670;&#160;</a></span>spdk_smp_wmb</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define spdk_smp_wmb</td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<b>Value:</b><div class="fragment"><div class="line">_spdk_smp_wmb()</div>
+</div><!-- fragment -->
+<p>SMP write memory barrier. </p>
+
+<p class="definition">Definition at line <a class="el" href="barrier_8h_source.html#l00036">36</a> of file <a class="el" href="barrier_8h_source.html">barrier.h</a>.</p>
+
+</div>
+</div>
+<a id="a8966b18613dfe857da8310ec43356684" name="a8966b18613dfe857da8310ec43356684"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8966b18613dfe857da8310ec43356684">&#9670;&#160;</a></span>spdk_wmb</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define spdk_wmb</td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<b>Value:</b><div class="fragment"><div class="line">_spdk_wmb()</div>
+</div><!-- fragment -->
+<p>Write memory barrier. </p>
+
+<p class="definition">Definition at line <a class="el" href="barrier_8h_source.html#l00027">27</a> of file <a class="el" href="barrier_8h_source.html">barrier.h</a>.</p>
+
+</div>
+</div>
+</div><!-- contents -->
+</div><!-- doc-content -->
+<div id="page-nav" class="page-nav-panel">
+<div id="page-nav-resize-handle"></div>
+<div id="page-nav-tree">
+<div id="page-nav-contents">
+</div><!-- page-nav-contents -->
+</div><!-- page-nav-tree -->
+</div><!-- page-nav -->
+</div><!-- container -->
+<footer class="footer" id="nav-path">
+  <div class="footer-inner">
+    <div class="footer-copy">
+      <small>Copyright &copy; SPDK a Series of LF Projects, LLC. For web site terms of use, trademark policy, and other
+      project policies please see <a href="https://lfprojects.org">lfprojects.org</a>.</small>
+      <br><small>Built from spdk 91893349edff / site e5878500f</small>
+    </div>
+  </div>
+</footer>
+<script type="text/javascript" src="page_outline.js"></script>
+<script type="text/javascript" src="spdk_nav.js"></script>
+</body>
+</html>

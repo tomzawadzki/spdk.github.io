@@ -1,0 +1,415 @@
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.4.1">Jekyll</generator><link href="https://www.spdk.io/spdk.github.io/feed/dev.xml" rel="self" type="application/atom+xml" /><link href="https://www.spdk.io/spdk.github.io/" rel="alternate" type="text/html" /><updated>2026-04-09T14:39:11+02:00</updated><id>https://www.spdk.io/spdk.github.io/feed/dev.xml</id><title type="html">Storage Performance Development Kit | Dev</title><subtitle>The Storage Performance Development Kit (SPDK) provides a set of tools and libraries for writing high performance, scalable, user-mode storage applications. It achieves high performance by moving all of the necessary drivers into userspace and operating in a polled mode instead of relying on interrupts, which avoids kernel context switches and eliminates interrupt handling overhead.
+</subtitle><author><name>Benjamin Walker</name></author><entry><title type="html">SPDK As IPU Firmware - Part 3</title><link href="https://www.spdk.io/spdk.github.io/dev/2023/05/31/memory-domains-3/" rel="alternate" type="text/html" title="SPDK As IPU Firmware - Part 3" /><published>2023-05-31T00:00:00+02:00</published><updated>2023-05-31T00:00:00+02:00</updated><id>https://www.spdk.io/spdk.github.io/dev/2023/05/31/memory-domains-3</id><content type="html" xml:base="https://www.spdk.io/spdk.github.io/dev/2023/05/31/memory-domains-3/"><![CDATA[<p>Welcome to the third and final post in our series on SPDK as IPU firmware! In
+<a href="https://spdk.io/dev/2023/04/20/memory-domains-1/">part 1</a> we discussed the
+addition of memory domains and in
+<a href="https://spdk.io/dev/2023/05/10/memory-domains-2/">part 2</a> we focused on
+avoiding data copies for crypto and on address translation. So let’s pick up
+from there.</p>
+
+<h2 id="chaining">Chaining</h2>
+
+<p>Allow me to throw another wrinkle into the example we’ve been using. Let’s say
+that we want the IPU to perform both data at rest encryption AND calculate T10
+DIF checksums on every block. Additionally, let’s suppose that our IPU has a DMA
+engine that’s capable of performing both these tasks as a single operation. How
+can we make this work?</p>
+
+<p>In the SPDK model we layer bdevs to build our data processing pipeline, and we
+already have a crypto bdev on top of an nvme bdev. Ideally, we’d insert a DIF
+bdev (which does not currently exist, but let’s imagine one) between the crypto
+and the nvme bdevs to add this capability. Let’s write out the steps and see
+where we end up.</p>
+
+<ul>
+  <li>The NVM write command arrives in the custom NVMe-oF transport. This is
+packaged up into a memory descriptor that indicates the data is in a remote
+memory domain and sent to the bdev layer.</li>
+  <li>The crypto bdev receives the request and sets up an encryption operation from
+the source (host memory) to a local buffer. Once complete, it forwards the
+request to the next bdev</li>
+  <li>The dif bdev receives the encrypted data and sets up DIF INSERT operation from
+the local IPU memory to another local buffer. Once complete, it forwards the
+request to the next bdev</li>
+  <li>The nvme bdev gets the data buffer and sends it using NVMe-oF/TCP.</li>
+</ul>
+
+<p>But we weren’t able to leverage our combined crypto+dif hardware offload. That’s
+not what we wanted at all. What can we do?</p>
+
+<p>To solve this, the <code class="language-plaintext highlighter-rouge">accel</code> framework gains a new primitive called an
+<code class="language-plaintext highlighter-rouge">spdk_accel_sequence</code>. Each bdev request can now be associated with a sequence
+object and the sequence can be asked where the data would be if the sequence
+were to execute. Let’s write out the same set of steps but using a sequence
+primitive:</p>
+
+<ul>
+  <li>The NVM write command arrives in the custom NVMe-oF transport. This is
+packaged up into a memory descriptor that indicates the data is in a remote
+memory domain. A sequence object is created that does a data copy from the
+host memory to a local buffer in system memory.</li>
+  <li>The crypto bdev receives the request and appends an encryption operation to
+the sequence from the source (the local buffer at the end of the sequence) to
+a newly allocated local buffer. It then forwards the request to the next bdev.
+Note that the encryption operation has not executed yet.</li>
+  <li>The dif bdev receives the request and appends a DIF INSERT operation to the
+sequence from the source (the local encrypted buffer) to a newly allocated
+local buffer. It then forwards the request to the next bdev. Note that the DIF
+INSERT operation has not executed yet.</li>
+  <li>The nvme bdev receives the request and wants to send it over a TCP socket. To
+do this, the data must be in local memory, so it requests that the sequence
+executes. This triggers the whole chain of 3 steps - copy, encrypt, DIF
+insert. When the sequence completes, the data is in the last buffer in the
+sequence and the nvme bdev sends it.</li>
+</ul>
+
+<p>But that’s actually worse than before - we’ve added an extra data copy and
+allocated more temporary buffers. There’s still two fundamental problems to be
+solved:</p>
+
+<ul>
+  <li>We need some way to look holistically at a sequence and optimize it into
+combined operations.</li>
+  <li>We need to avoid allocating so many temporary buffers, especially if the
+optimizer later removes their use.</li>
+</ul>
+
+<h2 id="adding-an-optimization-pass">Adding An Optimization Pass</h2>
+
+<p>Before a sequence is executed, two optimization passes run. First, a generic
+pass to eliminate unnecessary data copies executes. By modifying source and
+destination addresses, most regular data copy operations can be removed. The
+remaining optimizations often require knowledge of the hardware that we can’t
+bake into a generic framework like SPDK. To deal with this, the <code class="language-plaintext highlighter-rouge">accel</code>
+framework now has the concept of a platform driver that can be registered which
+is responsible for performing the second optimization pass. If no platform
+driver exists, the second pass is simply skipped. In our example, the first pass
+is sufficient to remove the first data copy, resulting in a sequence that does
+an encrypt from the host to a temporary buffer, then does the DIF generation to
+the final memory location.</p>
+
+<p>However, let’s imagine we write a platform driver for our SoC product that
+understands that our DMA engine can do the encryption and DIF INSERT in a single
+operation. This platform driver inspects the sequence, sees that it contains two
+operations that can be combined, and ships it down to the hardware as a single
+operation. Now we’ve really gotten somewhere - this is much more efficient than
+before.</p>
+
+<h2 id="avoiding-unnecessary-scratch-buffers">Avoiding Unnecessary Scratch Buffers</h2>
+
+<p>There were three buffers allocated in local IPU memory for the above scenario -
+one to be the target of the copy from the host and the source of the encryption,
+one for the destination of the encryption and the source of the DIF INSERT, and
+one for the destination of the DIF INSERT. But after the platform driver ran, we
+only needed that final destination buffer. The other two never needed to exist.
+While they’re unused and don’t impact the performance of the software, they do
+require having additional memory allocated and that’s a waste. We should get rid
+of them.</p>
+
+<p>Except, in order to append an operation to a sequence an output location must be
+provided. It could, after all, end up being the last step of the sequence, or
+there may be no chaining available during the optimization pass. To solve this,
+the <code class="language-plaintext highlighter-rouge">accel</code> framework creates a… memory domain! This memory domain is not
+backed by any real memory - it’s just an address space - and users of the
+<code class="language-plaintext highlighter-rouge">accel</code> framework can “allocate” memory from it to be used as the destination of
+operations added to a sequence. So let’s rewrite the sequence of steps above
+using this scratch space:</p>
+
+<ul>
+  <li>The NVM write command arrives in the custom NVMe-oF transport. This is
+packaged up into a memory descriptor that indicates the data is in a remote
+memory domain. A sequence object is created that does a data copy from the
+host memory to a region in this new accel memory domain.</li>
+  <li>The crypto bdev receives the request and appends an encryption operation to
+the sequence from the source (the region in the accel memory domain) to
+another region in the accel memory domain. It then forwards the request to the
+next bdev.</li>
+  <li>The dif bdev receives the request and appends a DIF INSERT operation to the
+sequence from the source (a region in the accel memory domain) to another
+region in the accel memory domain. It then forwards the request to the next
+bdev.</li>
+  <li>The nvme bdev receives the request and wants to send it over a TCP socket. To
+do this, the data must be in local memory, so it appends a copy from the
+region in the accel memory domain to a local buffer and requests that the
+sequence executes. This triggers the whole chain of steps - copy, encrypt, DIF
+insert, copy. When the sequence completes, the data is in the last buffer in
+the sequence and the nvme bdev sends it.</li>
+</ul>
+
+<p>When the sequence executes, the generic copy elision optimization first runs.
+It eliminates the first data copy from the host to the accel region and makes
+the encryption step use the host memory as the source. It also eliminates the
+final data copy by setting the destination of the DIF INSERT to the location
+that copy was targeting. Then the platform driver runs and recognizes that it’s
+two operations - encrypt then dif - and that can be done as a single operation,
+so it does so.</p>
+
+<p>The result of all of this is that there was a single data buffer allocated in
+IPU memory and a single hardware operation to perform the data movement and
+transformation from the host to the IPU memory, but we’ve kept all of SPDK’s
+layering and composability.</p>
+
+<p>To close this out, let’s imagine one more scenario where we don’t have hardware
+that can do this combined encrypt plus DIF INSERT. In that case, we really do
+need a temporary buffer on the IPU between the two steps, but all we have is
+this fake region of memory in the accel memory domain. To deal with this, the
+<code class="language-plaintext highlighter-rouge">accel</code> framework has access to the global SPDK memory pool infrastructure and
+it simply allocates a temporary buffer and frees it on your behalf. That’s
+simple enough, and it promotes good reuse of these temporary buffers to keep
+them in cache. Problem solved.</p>
+
+<h2 id="wrapping-up">Wrapping Up</h2>
+
+<p>We feel this framework is an incredibly expressive, powerful, and clear
+mechanism for writing software on IPUs and we hope to see it put to good use. We
+also acknowledge that for the majority of software developers who are using SPDK
+on a regular server, it’d be great not to deal with this at all. So we’ve taken
+care to make all of this optional and when it’s not used everything nicely falls
+back to assuming data is in local system memory. As always, we’d love to hear
+feedback on how this works on the various platforms and IPU products coming to
+market, so please find us in our Slack channel or on the mailing list!</p>]]></content><author><name>Ben Walker</name></author><category term="dev" /><summary type="html"><![CDATA[Welcome to the third and final post in our series on SPDK as IPU firmware! In part 1 we discussed the addition of memory domains and in part 2 we focused on avoiding data copies for crypto and on address translation. So let’s pick up from there.]]></summary></entry><entry><title type="html">SPDK As IPU Firmware - Part 2</title><link href="https://www.spdk.io/spdk.github.io/dev/2023/05/10/memory-domains-2/" rel="alternate" type="text/html" title="SPDK As IPU Firmware - Part 2" /><published>2023-05-10T00:00:00+02:00</published><updated>2023-05-10T00:00:00+02:00</updated><id>https://www.spdk.io/spdk.github.io/dev/2023/05/10/memory-domains-2</id><content type="html" xml:base="https://www.spdk.io/spdk.github.io/dev/2023/05/10/memory-domains-2/"><![CDATA[<p>Welcome to the second post in our series on SPDK as IPU firmware. The
+<a href="https://spdk.io/dev/2023/04/20/memory-domains-1/">previous post</a> laid the
+groundwork for using SPDK on an IPU. Now we’re going to focus on enabling
+inline, block-level encryption in a more efficient way. If it isn’t fresh in
+your mind, take a moment to review our example scenario from the last post.
+We’ll start from there.</p>
+
+<h2 id="eliminating-data-copies">Eliminating Data Copies</h2>
+
+<p>Now that we have the basic flow working, we make a simple observation. The DMA
+engine does both encryption and copy operations and it’s aware of the two memory
+domains. So, couldn’t we ask the DMA engine to do the encryption as part of the
+copy from the host? Absolutely! But to do so requires a layering violation. The
+custom NVMe-oF transport is responsible for triggering the copy from the host,
+and the encryption bdev module decides that the data needs to be encrypted.
+These are two different layers in SPDK’s architecture, so how can we combine
+them without crossing the boundary?</p>
+
+<p>To tackle this issue, we allowed requests to the bdev layer to be associated
+with memory in a memory domain. The NVMe-oF custom transport simply constructs a
+description of memory in the host memory domain and then forwards the request to
+the bdev layer without triggering a copy. The bdev crypto module gets the
+request and it uses the current memory location (in the host domain) as the
+source of the encryption operation and IPU-local memory as the destination. And
+just like that, we’re good to go!</p>
+
+<p>Except, what would happen if our example flow didn’t have the data at rest
+encryption bdev? The memory would be up on the host and the request would
+traverse the bdev layer, eventually landing in the nvme bdev module where it is going to be
+sent as an NVMe-oF/TCP request. But we’re just using standard Linux sockets for
+networking, so there’s no opportunity to do a special TCP send operation from
+the host memory directly. Barring creative ways to solve that, we need a generic
+way for components in SPDK to trigger a copy between
+two domains. And that’s exactly what we’ve done - every memory domain has <code class="language-plaintext highlighter-rouge">push</code>
+and <code class="language-plaintext highlighter-rouge">pull</code> function pointers that are filled in when the memory domain is
+created at start up. Any software can request memory in a remote domain to be
+pulled to a local buffer, or to push a local buffer to the remote memory domain,
+which triggers these callbacks. For our example, these callbacks would be
+wrapped around calls to our DMA engine hardware.</p>
+
+<p>So our DMA framework lets us do the following things:</p>
+
+<ol>
+  <li>Describe memory in a remote memory domain, using the appropriate addresses in
+that domain.</li>
+  <li>Initiate data transfers between the system memory domain (i.e. regular memory
+for our SoC) and the remote memory domain without knowledge of the hardware
+mechanism that does the transfer.</li>
+  <li>Enumerate the registered memory domains in the system.</li>
+</ol>
+
+<p>This is all upstream and supported in the current SPDK release. The API is defined
+in <code class="language-plaintext highlighter-rouge">include/spdk/dma.h</code>.</p>
+
+<h1 id="address-translation">Address Translation</h1>
+
+<p>For our particular example, the “host” memory domain would have <code class="language-plaintext highlighter-rouge">push</code> and
+<code class="language-plaintext highlighter-rouge">pull</code> function pointers that issue requests to our hardware DMA engine. The API
+supports other simple operations, such as zeroing, which are also obvious enough.
+However, each memory domain supports an additional, somewhat tricky operation -
+<code class="language-plaintext highlighter-rouge">translate</code>.</p>
+
+<p>An IPU may present more than one PCI “function” to the host. In fact, they
+almost all do - network function(s) and NVMe function(s). When the host operating
+system initializes these devices, it very likely configures them to run behind
+the IOMMU. That means that the addresses used by these devices for DMA are I/O
+virtual addresses, not physical addresses. And most importantly, <em>there’s no
+guarantee that two functions are using the same I/O virtual address table</em>. For
+instance, the host could configure the NVMe function such that address 16 maps to physical
+address 64, but configure the NIC function such that address 16 maps to physical address
+1024.</p>
+
+<p>But why does that matter? Well, what if we wanted to avoid copying data to the
+SoC memory at all, and send directly on the network? This is unlikely for TCP,
+but it seems very likely for RDMA fabric backends. Except, in some designs, it’s
+the NIC doing the DMA at that point rather than the NVMe device. So we need to
+translate the addresses from the NVMe function view of host memory, which is
+what we got when the NVMe command arrived, to the NIC view of host memory! The
+<code class="language-plaintext highlighter-rouge">translate</code> function does just that - it translates addresses from one memory
+domain to another, if possible. This is all implemented as callbacks assigned to
+the memory domain, because all of this translation is necessarily platform
+specific.</p>
+
+<h2 id="whats-next">What’s Next?</h2>
+
+<p>That’s all we’ll cover in this post. The next post in the series will handle
+performing “chained” operations - crypto + DIF insert specifically - without
+extra data copies and describe the final form the framework has taken.</p>
+
+<p>Part three <a href="https://spdk.io/dev/2023/05/31/memory-domains-3/">is now available</a>!</p>]]></content><author><name>Ben Walker</name></author><category term="dev" /><summary type="html"><![CDATA[Welcome to the second post in our series on SPDK as IPU firmware. The previous post laid the groundwork for using SPDK on an IPU. Now we’re going to focus on enabling inline, block-level encryption in a more efficient way. If it isn’t fresh in your mind, take a moment to review our example scenario from the last post. We’ll start from there.]]></summary></entry><entry><title type="html">SPDK As IPU Firmware - Part 1</title><link href="https://www.spdk.io/spdk.github.io/dev/2023/04/20/memory-domains-1/" rel="alternate" type="text/html" title="SPDK As IPU Firmware - Part 1" /><published>2023-04-20T00:00:00+02:00</published><updated>2023-04-20T00:00:00+02:00</updated><id>https://www.spdk.io/spdk.github.io/dev/2023/04/20/memory-domains-1</id><content type="html" xml:base="https://www.spdk.io/spdk.github.io/dev/2023/04/20/memory-domains-1/"><![CDATA[<p>Welcome to the first post in a new series on SPDK as IPU firmware. For those not
+familiar with the term Infrastructure Processing Unit (IPU), these are PCIe
+cards attached to a host system that offload “infrastructure” work, usually for
+a cloud or hyper-converged service provider. In terms familiar to SPDK
+developers, these cards typically have some hardware that’s capable of
+presenting what appear to be physical NVMe or virtio-blk/scsi devices to the
+host system, but then may forward any I/O sent to that device over the network.</p>
+
+<p>These IPUs are usually implemented as some hardware or FPGA-based PCI endpoint
+that either has multiple physical functions or supports SR-IOV, combined with an
+SoC. That SoC typically runs Linux or at least some mostly POSIX-like OS. To
+keep these cards very flexible, most of the decision making logic <em>usually</em> is
+done in software (“firmware”) running on that SoC, and only the data movement is
+handled by hardware.</p>
+
+<p>That means that there must be some code running on the SoC that implements the
+“back-end” of these hardware endpoints. That code needs to be able to handle
+register reads and writes to or from the device’s BAR and make the device appear
+as a spec-compliant physical device. For example, if the PCI endpoint claims to
+be an NVMe device, then the host driver is going to set up an admin queue, write
+the EN bit, and wait for the RDY bit to flip to 1. The software running on the
+SoC has to perform all of that emulation - the hardware typically just funnels
+the register accesses between the host and the SoC but has little or no logic of
+its own.</p>
+
+<p>After the NVMe device comes online, the host driver is going to submit admin
+commands which then will create I/O queues. The I/O queues live in host memory
+and the doorbells are registers in the BAR. Some implementations may
+automatically handle doorbell writes in hardware and deliver the incoming
+commands to the SoC via some queue mechanism, but some may simply notify the SoC
+that the doorbell was written to and software kicks off a DMA to tranfser the
+latest entries. But one way or another, the command arrives in the SoC memory
+and software has to parse it and decide what action to take.</p>
+
+<h2 id="ok-but-where-does-spdk-come-in">Ok, but where does SPDK come in?</h2>
+
+<p>Some IPU vendors decided to write their own firmware from scratch.
+But others made an important observation - NVMe-oF targets already emulate most
+of the register reads and writes, and essentially all of the admin and I/O
+commands. With a few simple tweaks, couldn’t an NVMe-oF target be
+adapted to have a “PCIe” transport in front rather than one of the fabrics?</p>
+
+<p>With the introduction of the NVMe 2.0 specification, the terminology around this
+has all become much clearer so allow me to deviate for just a moment. When NVMe
+was first created, there was only PCIe. Then NVMe-oF was added which brought in
+the concept of “transports” - alternatives to PCIe like TCP or RDMA - that could
+move NVMe commands between two systems. But these fabrics transports do behave
+differently than the PCIe transport. To address this, NVMe 2.0 formalized two
+categories of transports - “Memory-based” and “Message-based”. For a clear
+description, see the “Theory of Operation” chapter in the NVMe 2.0
+specification. The two categories have different semantics in a few cases, in
+particular around establishing the admin queue and in register reads and writes,
+but at least it is all formalized and written down.</p>
+
+<p>So back to the question - couldn’t an existing NVMe-oF target designed for
+“message-based” transports be adapted to support a “memory-based” transport? And
+it turns out, this question had already been answered. SPDK added a
+“memory-based” transport that emulates a PCIe device to a virtual machine called
+<code class="language-plaintext highlighter-rouge">vfio-user</code>, and had already done all of the work to generalize the existing
+NVMe-oF target code to handle both categories of transports. And this is exactly
+what several IPU vendors are now leveraging - they simply write a memory-based
+transport that talks to their hardware device from within the IPU, but then use
+the SPDK NVMe-oF target to handle all of the register emulation and command
+processing.</p>
+
+<h2 id="sounds-great-are-we-done">Sounds great! Are we done?</h2>
+
+<p>A device vendor can write a transport plugin to SPDK and have full NVMe device
+emulation working very quickly. But the reality is that we’re far from done. It
+turns out there’s a whole host of cool offloads that SPDK needs to enable to
+move data around efficiently. If we imagine doing a WRITE operation from the
+host system’s NVMe driver, the data starts out in host system memory, and then
+may get transformed in a number of ways before being sent out on the wire to
+whatever backend remote server will really handle it. These transformations
+include things like crypto and compression, but also DIF/DIX, checksumming, and
+more. And often the hardware is capable of doing those transformations inline,
+as the data is being either moved from host to SoC memory, or even as the data
+is being sent directly from the host on the wire. But, how does SPDK even describe and
+operate on memory that’s up on the host? And now we’re getting to what this
+series of posts is really going to deal with.</p>
+
+<h2 id="an-example">An example</h2>
+
+<p>Let’s dive into an example of a device that presents an NVMe device to a host
+server, does data at rest encryption, and forwards to a remote target using
+NVMe-oF/TCP. Imagine the IPU itself is running Linux and contains three separate
+PCI devices - one that presents NVMe devices to the host system (let’s call it
+the NVMe endpoint), one device that can perform both copy and encrypt operations
+on memory in both the host and on the IPU (let’s call it the DMA engine), and a
+NIC.</p>
+
+<p><img src="/assets/img/blog/ipu_diagram.png" alt="IPU Diagram" title="Model IPU Diagram" class="text-center" /></p>
+
+<p>Here’s the basic data flow:</p>
+<ul>
+  <li>The host NVMe driver issues an NVM write command on an NVMe queue pair by
+writing it into the submission queue and ringing the doorbell.</li>
+  <li>The NVMe endpoint hardware notifies the IPU software that a command has
+arrived. The command is an NVM write and it describes memory located on the
+host system.</li>
+  <li>The IPU software programs the DMA engine to transfer the data from the host to
+IPU-local memory.</li>
+  <li>The IPU software then does an encryption operation on that data in IPU-local
+memory using the DMA engine.</li>
+  <li>Finally, the IPU software sends the encrypted data to the remote target using
+NVMe-oF/TCP.</li>
+</ul>
+
+<p>Let’s imagine we implement this data path within the existing SPDK framework.
+Assume the NVMe endpoint hardware is fairly “dumb” and just shuttles commands
+between the host and the IPU. So as discussed above, we add a custom transport
+to send and receive the commands using our NVMe hardware endpoint into the SPDK
+NVMe-oF target to get our register and command handling set up.</p>
+
+<p>We can write an accel module for our DMA engine hardware to fit into SPDK’s
+<code class="language-plaintext highlighter-rouge">accel</code> framework for encryption and copy operations. SPDK layers bdevs to build
+its data processing pipeline, and there is already a crypto bdev we’ll leverage
+to route the requests to the accel framework.</p>
+
+<p>To talk to our NIC, we’ll use the Linux kernel networking stack, assuming the
+NIC has a Linux driver. We’ve then built a pipeline of the NVMe-oF target with a
+custom transport in the front, forwarding to a crypto bdev on top of an nvme
+bdev to do NVMe-oF/TCP. We’ve plugged in drivers for our IPU hardware, and we’re
+otherwise using vanilla SPDK as our full data path. We’ll keep this example in
+mind for the rest of the discussion.</p>
+
+<h2 id="transferring-data-from-the-host">Transferring Data From The Host</h2>
+
+<p>While it was straightforward to plug in drivers to the existing SPDK extension
+points, it’s not clear how we should instruct the DMA engine to copy data from
+the host to our system memory (the third step in the example above). The
+existing <code class="language-plaintext highlighter-rouge">accel</code> framework APIs only take source and destination addresses, but
+in this case, the source address isn’t local. We refer to this as memory
+residing in a different memory domain than the local one - in this case the
+“host” domain. Passing this information through the <code class="language-plaintext highlighter-rouge">accel</code> framework is
+necessary to program the DMA engine to transfer from the correct source
+location.</p>
+
+<p>SPDK now has a framework for declaring and enumerating memory domains and
+defining memory descriptors that reference memory in those domains. The
+interface can be found in <code class="language-plaintext highlighter-rouge">include/spdk/dma.h</code>. I’d like to thank both Alexey
+Marchuk and Konrad Sztyber for all of their work to make this a reality.</p>
+
+<p>In our example, there would be a host memory domain and the local system memory
+domain (which always exists). To make the whole example flow work, our custom
+NVMe-oF transport would parse the incoming NVM write command to extract the host
+addresses, create a memory descriptor indicating it’s in a separate memory
+domain, and pass it down to the accel framework for the data copy operation.
+With that, we can get our whole example flow working.</p>
+
+<h1 id="next-steps">Next Steps</h1>
+
+<p>That gets our basic data flow working and we can handle reads and writes. In the
+next post, we’ll discuss some efficiency improvements around enabling crypto. Then
+we’ll discuss more advanced offloads including multiple chained offloads and the
+final design of the framework in the third post in this series.</p>
+
+<p>Part two <a href="https://spdk.io/dev/2023/05/10/memory-domains-2/">is now available</a>!</p>]]></content><author><name>Ben Walker</name></author><category term="dev" /><summary type="html"><![CDATA[Welcome to the first post in a new series on SPDK as IPU firmware. For those not familiar with the term Infrastructure Processing Unit (IPU), these are PCIe cards attached to a host system that offload “infrastructure” work, usually for a cloud or hyper-converged service provider. In terms familiar to SPDK developers, these cards typically have some hardware that’s capable of presenting what appear to be physical NVMe or virtio-blk/scsi devices to the host system, but then may forward any I/O sent to that device over the network.]]></summary></entry></feed>

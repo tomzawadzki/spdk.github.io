@@ -1,0 +1,856 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<meta name="generator" content="Doxygen 1.16.1">
+	<title>SPDK: fd_group.h File Reference</title>
+	<script type="text/javascript" src="jquery.js"></script>
+	<script type="text/javascript" src="dynsections.js"></script>
+	<script type="text/javascript" src="clipboard.js"></script>
+	<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
+<script type="text/javascript" src="cookie.js"></script>
+	<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<script type="text/javascript">
+  $(function() { init_search(); });
+</script>
+	<link rel="icon" type="image/svg+xml" href="../assets/img/spdk.svg">
+	<link rel="icon" href="../assets/favicon.ico" sizes="32x32">
+	<link href="doxygen.css" rel="stylesheet" type="text/css">
+	<script>(function(){var k='doxygen_width',w,bw=6;if(window.chrome){w=localStorage.getItem(k);if(!w){w='350';localStorage.setItem(k,w)}}else{var m=document.cookie.match(new RegExp(k+'=(\\d+)'));w=m?m[1]:null;if(!w){w='350';document.cookie=k+'=350;SameSite=Lax;path=/'}}document.documentElement.style.setProperty('--sn-w',(parseInt(w)+bw)+'px')})()</script>
+	<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:400,700,900" type="text/css">
+	<link href="spdk.css" rel="stylesheet" type="text/css"/>
+	<link href="../assets/css/spdk.css" rel="stylesheet" type="text/css">
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<nav class="navbar">
+  <a class="navbar-brand" href="../" aria-label="SPDK">
+    <img src="../assets/img/spdk.svg" width="36" height="36" alt="Storage Performance Development Kit">
+  </a>
+  <div class="navbar-nav">
+    <a class="nav-link header-link" href="../doc/releases.html">download</a>
+    <a class="nav-link header-link" href="../doc/">documentation</a>
+    <a class="nav-link header-link" href="../doc/contributing.html">development</a>
+    <a class="nav-link header-link" href="../doc/ci_tools.html">CI status</a>
+    <a class="nav-link header-link" href="../community/">community</a>
+    <a class="nav-link header-link" href="../blog/">Blog</a>
+    <a class="nav-link header-link" href="https://github.com/orgs/spdk/projects/5">Roadmap</a>
+    <a class="nav-link header-link" href="../news/">News</a>
+  </div>
+  <div class="navbar-end">
+    <a class="nav-link header-link" href="https://github.com/spdk/spdk" aria-label="GitHub">
+      <svg xmlns="http://www.w3.org/2000/svg" class="navbar-nav-svg" aria-hidden="true"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
+    </a>
+    <a id="cn_lang_btn" href="../cn/doc/" class="nav-link header-link">中文</a>
+  </div>
+</nav>
+<script>
+(function() {
+    var p = location.pathname, best = null, bLen = 0;
+    document.querySelectorAll('.header-link[href]').forEach(function(a) {
+        var raw = a.getAttribute('href');
+        if (!raw) return;
+        try { var u = new URL(raw, location.href); } catch(e) { return; }
+        if (u.origin !== location.origin) return;
+        var h = u.pathname;
+        if (h === '/') return;
+        var ok = h.endsWith('.html') ? p === h : p.indexOf(h) === 0;
+        if (ok && h.length > bLen) { bLen = h.length; best = a; }
+    });
+    if (best) best.classList.add('active');
+})();
+</script>
+<div id="doxygen-searchbox">        <div id="MSearchBox" class="MSearchBoxInactive">
+        <span class="left">
+          <span id="MSearchSelect" class="search-icon" onmouseover="return searchBox.OnSearchSelectShow()" onmouseout="return searchBox.OnSearchSelectHide()"><span class="search-icon-dropdown"></span></span>
+          <input type="text" id="MSearchField" value="" placeholder="Search" accesskey="S"
+               onfocus="searchBox.OnSearchFieldFocus(true)" 
+               onblur="searchBox.OnSearchFieldFocus(false)" 
+               onkeyup="searchBox.OnSearchFieldChange(event)"/>
+          </span><span class="right">
+            <a id="MSearchClose" href="javascript:searchBox.CloseResultsWindow()"><div id="MSearchCloseImg" class="close-icon"></div></a>
+          </span>
+        </div>
+</div>
+<!-- Generated by Doxygen 1.16.1 -->
+<script type="text/javascript">
+var searchBox = new SearchBox("searchBox", "search/",'.html');
+</script>
+<script type="text/javascript">
+$(function() { codefold.init(); });
+</script>
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+$(function(){initNavTree('fd__group_8h.html','',''); });
+</script>
+<div id="container">
+<div id="doc-content">
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">Loading...</div>
+<div class="SRStatus" id="Searching">Searching...</div>
+<div class="SRStatus" id="NoMatches">No Matches</div>
+</div>
+</div>
+</div>
+</div>
+
+<div class="header">
+  <div class="headertitle"><div class="title">fd_group.h File Reference</div></div>
+</div><!--header-->
+<div class="contents">
+
+<p>File descriptor group utility functions.  
+<a href="#details">More...</a></p>
+
+<p><a href="fd__group_8h_source.html">Go to the source code of this file.</a></p>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 id="header-nested-classes" class="groupheader"><a id="nested-classes" name="nested-classes"></a>
+Data Structures</h2></td></tr>
+<tr class="memitem:spdk_5Fevent_5Fhandler_5Fopts" id="r_spdk_5Fevent_5Fhandler_5Fopts"><td class="memItemLeft">struct &#160;</td><td class="memItemRight"><a class="el" href="structspdk__event__handler__opts.html">spdk_event_handler_opts</a></td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 id="header-define-members" class="groupheader"><a id="define-members" name="define-members"></a>
+Macros</h2></td></tr>
+<tr class="memitem:a3913a1d3a2ee5b9bb6b309b020b888f7" id="r_a3913a1d3a2ee5b9bb6b309b020b888f7"><td class="memItemLeft">#define&#160;</td><td class="memItemRight"><a class="el" href="#a3913a1d3a2ee5b9bb6b309b020b888f7">SPDK_FD_GROUP_ADD</a>(fgrp,  efd,  fn,  arg)</td></tr>
+<tr class="memitem:aec676a977612f1f68bf3551a290dd67d" id="r_aec676a977612f1f68bf3551a290dd67d"><td class="memItemLeft">#define&#160;</td><td class="memItemRight"><a class="el" href="#aec676a977612f1f68bf3551a290dd67d">SPDK_FD_GROUP_ADD_EXT</a>(fgrp,  efd,  fn,  arg,  opts)</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 id="header-typedef-members" class="groupheader"><a id="typedef-members" name="typedef-members"></a>
+Typedefs</h2></td></tr>
+<tr class="memitem:a743712229809e8ec96fcfc866978a08c" id="r_a743712229809e8ec96fcfc866978a08c"><td class="memItemLeft">typedef int(*&#160;</td><td class="memItemRight"><a class="el" href="#a743712229809e8ec96fcfc866978a08c">spdk_fd_fn</a>) (void *ctx)</td></tr>
+<tr class="memdesc:a743712229809e8ec96fcfc866978a08c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Callback function registered for the event source file descriptor.  <br /></td></tr>
+<tr class="memitem:ae31d1bb586f48e9127ccdcc1ace12f1e" id="r_ae31d1bb586f48e9127ccdcc1ace12f1e"><td class="memItemLeft">typedef int(*&#160;</td><td class="memItemRight"><a class="el" href="#ae31d1bb586f48e9127ccdcc1ace12f1e">spdk_fd_group_wrapper_fn</a>) (void *wrapper_ctx, <a class="el" href="#a743712229809e8ec96fcfc866978a08c">spdk_fd_fn</a> cb_fn, void *cb_ctx)</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 id="header-enum-members" class="groupheader"><a id="enum-members" name="enum-members"></a>
+Enumerations</h2></td></tr>
+<tr class="memitem:afbf14814ec9a16eba4929826beefe850" id="r_afbf14814ec9a16eba4929826beefe850"><td class="memItemLeft">enum &#160;</td><td class="memItemRight"><a class="el" href="#afbf14814ec9a16eba4929826beefe850">spdk_fd_type</a> { <b>SPDK_FD_TYPE_DEFAULT</b> = 0x0
+, <a class="el" href="#afbf14814ec9a16eba4929826beefe850a8a6f45baa9e0ae2807e9a434f043b947">SPDK_FD_TYPE_EVENTFD</a> = 0x1
+ }</td></tr>
+<tr class="memdesc:afbf14814ec9a16eba4929826beefe850"><td class="mdescLeft">&#160;</td><td class="mdescRight">File descriptor type.  <a href="#afbf14814ec9a16eba4929826beefe850">More...</a><br /></td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 id="header-func-members" class="groupheader"><a id="func-members" name="func-members"></a>
+Functions</h2></td></tr>
+<tr class="memitem:a691739a928e3b5647c3c1b0c0f1d4f2e" id="r_a691739a928e3b5647c3c1b0c0f1d4f2e"><td class="memItemLeft"><a id="a691739a928e3b5647c3c1b0c0f1d4f2e" name="a691739a928e3b5647c3c1b0c0f1d4f2e"></a>
+&#160;</td><td class="memItemRight"><b>SPDK_STATIC_ASSERT</b> (sizeof(struct <a class="el" href="structspdk__event__handler__opts.html">spdk_event_handler_opts</a>)==16, &quot;Incorrect size&quot;)</td></tr>
+<tr class="memitem:a5a6a17bd7675be0da48f49b8c523093a" id="r_a5a6a17bd7675be0da48f49b8c523093a"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="#a5a6a17bd7675be0da48f49b8c523093a">spdk_fd_group_get_default_event_handler_opts</a> (struct <a class="el" href="structspdk__event__handler__opts.html">spdk_event_handler_opts</a> *opts, size_t opts_size)</td></tr>
+<tr class="memdesc:a5a6a17bd7675be0da48f49b8c523093a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Initialize a <a class="el" href="structspdk__event__handler__opts.html">spdk_event_handler_opts</a> structure to the default values.  <br /></td></tr>
+<tr class="memitem:ad89615da09728bed934cd4e74dee0972" id="r_ad89615da09728bed934cd4e74dee0972"><td class="memItemLeft">int&#160;</td><td class="memItemRight"><a class="el" href="#ad89615da09728bed934cd4e74dee0972">spdk_fd_group_create</a> (struct spdk_fd_group **fgrp)</td></tr>
+<tr class="memdesc:ad89615da09728bed934cd4e74dee0972"><td class="mdescLeft">&#160;</td><td class="mdescRight">Initialize one fd_group.  <br /></td></tr>
+<tr class="memitem:a5608adf454545d5588a0488291dc3968" id="r_a5608adf454545d5588a0488291dc3968"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="#a5608adf454545d5588a0488291dc3968">spdk_fd_group_destroy</a> (struct spdk_fd_group *fgrp)</td></tr>
+<tr class="memdesc:a5608adf454545d5588a0488291dc3968"><td class="mdescLeft">&#160;</td><td class="mdescRight">Release all resources associated with this fgrp.  <br /></td></tr>
+<tr class="memitem:a5855fa2ed6454dcbb48c7fdc834573c0" id="r_a5855fa2ed6454dcbb48c7fdc834573c0"><td class="memItemLeft">int&#160;</td><td class="memItemRight"><a class="el" href="#a5855fa2ed6454dcbb48c7fdc834573c0">spdk_fd_group_wait</a> (struct spdk_fd_group *fgrp, int timeout)</td></tr>
+<tr class="memdesc:a5855fa2ed6454dcbb48c7fdc834573c0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Wait for new events generated inside fgrp, and process them with their registered <a class="el" href="#a743712229809e8ec96fcfc866978a08c" title="Callback function registered for the event source file descriptor.">spdk_fd_fn</a>.  <br /></td></tr>
+<tr class="memitem:a7956923fc280cf4f3a024ef837a634cf" id="r_a7956923fc280cf4f3a024ef837a634cf"><td class="memItemLeft">int&#160;</td><td class="memItemRight"><a class="el" href="#a7956923fc280cf4f3a024ef837a634cf">spdk_fd_group_get_fd</a> (struct spdk_fd_group *fgrp)</td></tr>
+<tr class="memdesc:a7956923fc280cf4f3a024ef837a634cf"><td class="mdescLeft">&#160;</td><td class="mdescRight">Return the internal epoll_fd of specific fd_group.  <br /></td></tr>
+<tr class="memitem:aa827198ccace95dab3b0cb74376b97ae" id="r_aa827198ccace95dab3b0cb74376b97ae"><td class="memItemLeft">int&#160;</td><td class="memItemRight"><a class="el" href="#aa827198ccace95dab3b0cb74376b97ae">spdk_fd_group_nest</a> (struct spdk_fd_group *parent, struct spdk_fd_group *child)</td></tr>
+<tr class="memdesc:aa827198ccace95dab3b0cb74376b97ae"><td class="mdescLeft">&#160;</td><td class="mdescRight">Nest the child fd_group in the parent fd_group.  <br /></td></tr>
+<tr class="memitem:abb306bb67c3bfae868f357fc88fcfbd3" id="r_abb306bb67c3bfae868f357fc88fcfbd3"><td class="memItemLeft">int&#160;</td><td class="memItemRight"><a class="el" href="#abb306bb67c3bfae868f357fc88fcfbd3">spdk_fd_group_unnest</a> (struct spdk_fd_group *parent, struct spdk_fd_group *child)</td></tr>
+<tr class="memdesc:abb306bb67c3bfae868f357fc88fcfbd3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Remove the nested child from the parent.  <br /></td></tr>
+<tr class="memitem:a45e4bfc7b314944bc1b894a80c176e23" id="r_a45e4bfc7b314944bc1b894a80c176e23"><td class="memItemLeft">int&#160;</td><td class="memItemRight"><a class="el" href="#a45e4bfc7b314944bc1b894a80c176e23">spdk_fd_group_add</a> (struct spdk_fd_group *fgrp, int efd, <a class="el" href="#a743712229809e8ec96fcfc866978a08c">spdk_fd_fn</a> fn, void *arg, const char *name)</td></tr>
+<tr class="memdesc:a45e4bfc7b314944bc1b894a80c176e23"><td class="mdescLeft">&#160;</td><td class="mdescRight">Register SPDK_INTERRUPT_EVENT_IN event source to specified fgrp.  <br /></td></tr>
+<tr class="memitem:a9b45cc539e9c2843ec188988b2bf43de" id="r_a9b45cc539e9c2843ec188988b2bf43de"><td class="memItemLeft">int&#160;</td><td class="memItemRight"><a class="el" href="#a9b45cc539e9c2843ec188988b2bf43de">spdk_fd_group_add_for_events</a> (struct spdk_fd_group *fgrp, int efd, uint32_t events, <a class="el" href="#a743712229809e8ec96fcfc866978a08c">spdk_fd_fn</a> fn, void *arg, const char *name)</td></tr>
+<tr class="memdesc:a9b45cc539e9c2843ec188988b2bf43de"><td class="mdescLeft">&#160;</td><td class="mdescRight">Register one event source to specified fgrp with specific event types.  <br /></td></tr>
+<tr class="memitem:a5d5b7e04536875cc68133ddf8f5cd993" id="r_a5d5b7e04536875cc68133ddf8f5cd993"><td class="memItemLeft">int&#160;</td><td class="memItemRight"><a class="el" href="#a5d5b7e04536875cc68133ddf8f5cd993">spdk_fd_group_add_ext</a> (struct spdk_fd_group *fgrp, int efd, <a class="el" href="#a743712229809e8ec96fcfc866978a08c">spdk_fd_fn</a> fn, void *arg, const char *name, struct <a class="el" href="structspdk__event__handler__opts.html">spdk_event_handler_opts</a> *opts)</td></tr>
+<tr class="memdesc:a5d5b7e04536875cc68133ddf8f5cd993"><td class="mdescLeft">&#160;</td><td class="mdescRight">Register one event type stated in <a class="el" href="structspdk__event__handler__opts.html">spdk_event_handler_opts</a> agrument to the specified fgrp.  <br /></td></tr>
+<tr class="memitem:add1e704767a6e1f5b88f00e477e2b003" id="r_add1e704767a6e1f5b88f00e477e2b003"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="#add1e704767a6e1f5b88f00e477e2b003">spdk_fd_group_remove</a> (struct spdk_fd_group *fgrp, int efd)</td></tr>
+<tr class="memdesc:add1e704767a6e1f5b88f00e477e2b003"><td class="mdescLeft">&#160;</td><td class="mdescRight">Unregister one event source from one fgrp.  <br /></td></tr>
+<tr class="memitem:aa9202f833c0b499860baf4d1ae6318ab" id="r_aa9202f833c0b499860baf4d1ae6318ab"><td class="memItemLeft">int&#160;</td><td class="memItemRight"><a class="el" href="#aa9202f833c0b499860baf4d1ae6318ab">spdk_fd_group_event_modify</a> (struct spdk_fd_group *fgrp, int efd, int event_types)</td></tr>
+<tr class="memdesc:aa9202f833c0b499860baf4d1ae6318ab"><td class="mdescLeft">&#160;</td><td class="mdescRight">Change the event notification types associated with the event source.  <br /></td></tr>
+<tr class="memitem:acd63f6ecc32f0ddef82a188d19824f56" id="r_acd63f6ecc32f0ddef82a188d19824f56"><td class="memItemLeft">int&#160;</td><td class="memItemRight"><a class="el" href="#acd63f6ecc32f0ddef82a188d19824f56">spdk_fd_group_get_epoll_event</a> (struct epoll_event *event)</td></tr>
+<tr class="memdesc:acd63f6ecc32f0ddef82a188d19824f56"><td class="mdescLeft">&#160;</td><td class="mdescRight">Copies the epoll(7) event that caused a callback function to execute.  <br /></td></tr>
+<tr class="memitem:a175427496bda23852b704e128712f66b" id="r_a175427496bda23852b704e128712f66b"><td class="memItemLeft">int&#160;</td><td class="memItemRight"><a class="el" href="#a175427496bda23852b704e128712f66b">spdk_fd_group_set_wrapper</a> (struct spdk_fd_group *fgrp, spdk_fd_group_wrapper_fn cb_fn, void *cb_ctx)</td></tr>
+<tr class="memdesc:a175427496bda23852b704e128712f66b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set a wrapper function to be called when an epoll(7) event is received.  <br /></td></tr>
+</table>
+<a name="details" id="details"></a><h2 id="header-details" class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>File descriptor group utility functions. </p>
+
+<p class="definition">Definition in file <a class="el" href="fd__group_8h_source.html">fd_group.h</a>.</p>
+</div><a name="doc-define-members" id="doc-define-members"></a><h2 id="header-doc-define-members" class="groupheader">Macro Definition Documentation</h2>
+<a id="a3913a1d3a2ee5b9bb6b309b020b888f7" name="a3913a1d3a2ee5b9bb6b309b020b888f7"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3913a1d3a2ee5b9bb6b309b020b888f7">&#9670;&#160;</a></span>SPDK_FD_GROUP_ADD</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define SPDK_FD_GROUP_ADD</td>
+          <td>(</td>
+          <td class="paramtype"></td>          <td class="paramname"><span class="paramname"><em>fgrp</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"></td>          <td class="paramname"><span class="paramname"><em>efd</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"></td>          <td class="paramname"><span class="paramname"><em>fn</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"></td>          <td class="paramname"><span class="paramname"><em>arg</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<b>Value:</b><div class="fragment"><div class="line"><a class="code hl_function" href="#a45e4bfc7b314944bc1b894a80c176e23">spdk_fd_group_add</a>(fgrp, efd, fn, arg, #fn)</div>
+<div class="ttc" id="afd__group_8h_html_a45e4bfc7b314944bc1b894a80c176e23"><div class="ttname"><a href="#a45e4bfc7b314944bc1b894a80c176e23">spdk_fd_group_add</a></div><div class="ttdeci">int spdk_fd_group_add(struct spdk_fd_group *fgrp, int efd, spdk_fd_fn fn, void *arg, const char *name)</div><div class="ttdoc">Register SPDK_INTERRUPT_EVENT_IN event source to specified fgrp.</div></div>
+</div><!-- fragment -->
+<p class="definition">Definition at line <a class="el" href="fd__group_8h_source.html#l00200">200</a> of file <a class="el" href="fd__group_8h_source.html">fd_group.h</a>.</p>
+
+</div>
+</div>
+<a id="aec676a977612f1f68bf3551a290dd67d" name="aec676a977612f1f68bf3551a290dd67d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aec676a977612f1f68bf3551a290dd67d">&#9670;&#160;</a></span>SPDK_FD_GROUP_ADD_EXT</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define SPDK_FD_GROUP_ADD_EXT</td>
+          <td>(</td>
+          <td class="paramtype"></td>          <td class="paramname"><span class="paramname"><em>fgrp</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"></td>          <td class="paramname"><span class="paramname"><em>efd</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"></td>          <td class="paramname"><span class="paramname"><em>fn</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"></td>          <td class="paramname"><span class="paramname"><em>arg</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"></td>          <td class="paramname"><span class="paramname"><em>opts</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<b>Value:</b><div class="fragment"><div class="line"><a class="code hl_function" href="#a5d5b7e04536875cc68133ddf8f5cd993">spdk_fd_group_add_ext</a>(fgrp, efd, fn, arg, #fn, opts)</div>
+<div class="ttc" id="afd__group_8h_html_a5d5b7e04536875cc68133ddf8f5cd993"><div class="ttname"><a href="#a5d5b7e04536875cc68133ddf8f5cd993">spdk_fd_group_add_ext</a></div><div class="ttdeci">int spdk_fd_group_add_ext(struct spdk_fd_group *fgrp, int efd, spdk_fd_fn fn, void *arg, const char *name, struct spdk_event_handler_opts *opts)</div><div class="ttdoc">Register one event type stated in spdk_event_handler_opts agrument to the specified fgrp.</div></div>
+</div><!-- fragment -->
+<p class="definition">Definition at line <a class="el" href="fd__group_8h_source.html#l00207">207</a> of file <a class="el" href="fd__group_8h_source.html">fd_group.h</a>.</p>
+
+</div>
+</div>
+<a name="doc-typedef-members" id="doc-typedef-members"></a><h2 id="header-doc-typedef-members" class="groupheader">Typedef Documentation</h2>
+<a id="a743712229809e8ec96fcfc866978a08c" name="a743712229809e8ec96fcfc866978a08c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a743712229809e8ec96fcfc866978a08c">&#9670;&#160;</a></span>spdk_fd_fn</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">typedef int(* spdk_fd_fn) (void *ctx)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Callback function registered for the event source file descriptor. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">ctx</td><td>Context passed as arg to <a class="el" href="#a45e4bfc7b314944bc1b894a80c176e23" title="Register SPDK_INTERRUPT_EVENT_IN event source to specified fgrp.">spdk_fd_group_add()</a>.</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>0 to indicate that event notification took place but no events were found; positive to indicate that event notification took place and some events were processed; negative if no event information is provided. </dd></dl>
+
+<p class="definition">Definition at line <a class="el" href="fd__group_8h_source.html#l00062">62</a> of file <a class="el" href="fd__group_8h_source.html">fd_group.h</a>.</p>
+
+</div>
+</div>
+<a id="ae31d1bb586f48e9127ccdcc1ace12f1e" name="ae31d1bb586f48e9127ccdcc1ace12f1e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae31d1bb586f48e9127ccdcc1ace12f1e">&#9670;&#160;</a></span>spdk_fd_group_wrapper_fn</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">typedef int(* spdk_fd_group_wrapper_fn) (void *wrapper_ctx, <a class="el" href="#a743712229809e8ec96fcfc866978a08c">spdk_fd_fn</a> cb_fn, void *cb_ctx)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="fd__group_8h_source.html#l00248">248</a> of file <a class="el" href="fd__group_8h_source.html">fd_group.h</a>.</p>
+
+</div>
+</div>
+<a name="doc-enum-members" id="doc-enum-members"></a><h2 id="header-doc-enum-members" class="groupheader">Enumeration Type Documentation</h2>
+<a id="afbf14814ec9a16eba4929826beefe850" name="afbf14814ec9a16eba4929826beefe850"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#afbf14814ec9a16eba4929826beefe850">&#9670;&#160;</a></span>spdk_fd_type</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">enum <a class="el" href="#afbf14814ec9a16eba4929826beefe850">spdk_fd_type</a></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>File descriptor type. </p>
+<p>The event handler may have extra checks and can do extra processing based on this. </p>
+<table class="fieldtable">
+<tr><th colspan="2">Enumerator</th></tr><tr><td class="fieldname"><a id="afbf14814ec9a16eba4929826beefe850a8a6f45baa9e0ae2807e9a434f043b947" name="afbf14814ec9a16eba4929826beefe850a8a6f45baa9e0ae2807e9a434f043b947"></a>SPDK_FD_TYPE_EVENTFD&#160;</td><td class="fielddoc"><p>Event file descriptors. </p>
+<p>Once an event is generated on these file descriptors, event handler will perform a read operation on it to reset its internal eventfd object counter value to 0. </p>
+</td></tr>
+</table>
+
+<p class="definition">Definition at line <a class="el" href="fd__group_8h_source.html#l00026">26</a> of file <a class="el" href="fd__group_8h_source.html">fd_group.h</a>.</p>
+
+</div>
+</div>
+<a name="doc-func-members" id="doc-func-members"></a><h2 id="header-doc-func-members" class="groupheader">Function Documentation</h2>
+<a id="a45e4bfc7b314944bc1b894a80c176e23" name="a45e4bfc7b314944bc1b894a80c176e23"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a45e4bfc7b314944bc1b894a80c176e23">&#9670;&#160;</a></span>spdk_fd_group_add()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int spdk_fd_group_add </td>
+          <td>(</td>
+          <td class="paramtype">struct spdk_fd_group *</td>          <td class="paramname"><span class="paramname"><em>fgrp</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int</td>          <td class="paramname"><span class="paramname"><em>efd</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="#a743712229809e8ec96fcfc866978a08c">spdk_fd_fn</a></td>          <td class="paramname"><span class="paramname"><em>fn</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">void *</td>          <td class="paramname"><span class="paramname"><em>arg</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const char *</td>          <td class="paramname"><span class="paramname"><em>name</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Register SPDK_INTERRUPT_EVENT_IN event source to specified fgrp. </p>
+<p>Use <a class="el" href="#a9b45cc539e9c2843ec188988b2bf43de" title="Register one event source to specified fgrp with specific event types.">spdk_fd_group_add_for_events()</a> for other event types.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">fgrp</td><td>The fgrp registered to. </td></tr>
+    <tr><td class="paramname">efd</td><td>File descriptor of the event source. </td></tr>
+    <tr><td class="paramname">fn</td><td>Called each time there are events in event source. </td></tr>
+    <tr><td class="paramname">arg</td><td>Function argument for fn. </td></tr>
+    <tr><td class="paramname">name</td><td>Name of the event source.</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>0 on success, negated errno on failure. </dd></dl>
+
+</div>
+</div>
+<a id="a5d5b7e04536875cc68133ddf8f5cd993" name="a5d5b7e04536875cc68133ddf8f5cd993"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5d5b7e04536875cc68133ddf8f5cd993">&#9670;&#160;</a></span>spdk_fd_group_add_ext()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int spdk_fd_group_add_ext </td>
+          <td>(</td>
+          <td class="paramtype">struct spdk_fd_group *</td>          <td class="paramname"><span class="paramname"><em>fgrp</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int</td>          <td class="paramname"><span class="paramname"><em>efd</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="#a743712229809e8ec96fcfc866978a08c">spdk_fd_fn</a></td>          <td class="paramname"><span class="paramname"><em>fn</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">void *</td>          <td class="paramname"><span class="paramname"><em>arg</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const char *</td>          <td class="paramname"><span class="paramname"><em>name</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">struct <a class="el" href="structspdk__event__handler__opts.html">spdk_event_handler_opts</a> *</td>          <td class="paramname"><span class="paramname"><em>opts</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Register one event type stated in <a class="el" href="structspdk__event__handler__opts.html">spdk_event_handler_opts</a> agrument to the specified fgrp. </p>
+<p><a class="el" href="structspdk__event__handler__opts.html">spdk_event_handler_opts</a> argument consists of event which is a bit mask composed by ORing together enum spdk_interrupt_event_types values. It also consists of fd_type, which can be used by event handler to perform extra checks during the spdk_fd_group_wait call.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">fgrp</td><td>The fgrp registered to. </td></tr>
+    <tr><td class="paramname">efd</td><td>File descriptor of the event source. </td></tr>
+    <tr><td class="paramname">fn</td><td>Called each time there are events in event source. </td></tr>
+    <tr><td class="paramname">arg</td><td>Function argument for fn. </td></tr>
+    <tr><td class="paramname">name</td><td>Name of the event source. </td></tr>
+    <tr><td class="paramname">opts</td><td>Extended event handler option.</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>0 if success or -errno if failed </dd></dl>
+
+</div>
+</div>
+<a id="a9b45cc539e9c2843ec188988b2bf43de" name="a9b45cc539e9c2843ec188988b2bf43de"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9b45cc539e9c2843ec188988b2bf43de">&#9670;&#160;</a></span>spdk_fd_group_add_for_events()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int spdk_fd_group_add_for_events </td>
+          <td>(</td>
+          <td class="paramtype">struct spdk_fd_group *</td>          <td class="paramname"><span class="paramname"><em>fgrp</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int</td>          <td class="paramname"><span class="paramname"><em>efd</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">uint32_t</td>          <td class="paramname"><span class="paramname"><em>events</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="#a743712229809e8ec96fcfc866978a08c">spdk_fd_fn</a></td>          <td class="paramname"><span class="paramname"><em>fn</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">void *</td>          <td class="paramname"><span class="paramname"><em>arg</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const char *</td>          <td class="paramname"><span class="paramname"><em>name</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Register one event source to specified fgrp with specific event types. </p>
+<p>Event types argument is a bit mask composed by ORing together enum spdk_interrupt_event_types values.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">fgrp</td><td>The fgrp registered to. </td></tr>
+    <tr><td class="paramname">efd</td><td>File descriptor of the event source. </td></tr>
+    <tr><td class="paramname">events</td><td>Event notification types. </td></tr>
+    <tr><td class="paramname">fn</td><td>Called each time there are events in event source. </td></tr>
+    <tr><td class="paramname">arg</td><td>Function argument for fn. </td></tr>
+    <tr><td class="paramname">name</td><td>Name of the event source.</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>0 on success, negated errno on failure. </dd></dl>
+
+</div>
+</div>
+<a id="ad89615da09728bed934cd4e74dee0972" name="ad89615da09728bed934cd4e74dee0972"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad89615da09728bed934cd4e74dee0972">&#9670;&#160;</a></span>spdk_fd_group_create()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int spdk_fd_group_create </td>
+          <td>(</td>
+          <td class="paramtype">struct spdk_fd_group **</td>          <td class="paramname"><span class="paramname"><em>fgrp</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Initialize one fd_group. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">fgrp</td><td>A pointer to return the initialized fgrp.</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>0 on success, negated errno on failure. </dd></dl>
+
+</div>
+</div>
+<a id="a5608adf454545d5588a0488291dc3968" name="a5608adf454545d5588a0488291dc3968"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5608adf454545d5588a0488291dc3968">&#9670;&#160;</a></span>spdk_fd_group_destroy()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void spdk_fd_group_destroy </td>
+          <td>(</td>
+          <td class="paramtype">struct spdk_fd_group *</td>          <td class="paramname"><span class="paramname"><em>fgrp</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Release all resources associated with this fgrp. </p>
+<p>Users need to remove all event sources from the fgrp before destroying it.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">fgrp</td><td>The fgrp to destroy. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="aa9202f833c0b499860baf4d1ae6318ab" name="aa9202f833c0b499860baf4d1ae6318ab"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa9202f833c0b499860baf4d1ae6318ab">&#9670;&#160;</a></span>spdk_fd_group_event_modify()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int spdk_fd_group_event_modify </td>
+          <td>(</td>
+          <td class="paramtype">struct spdk_fd_group *</td>          <td class="paramname"><span class="paramname"><em>fgrp</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int</td>          <td class="paramname"><span class="paramname"><em>efd</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int</td>          <td class="paramname"><span class="paramname"><em>event_types</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Change the event notification types associated with the event source. </p>
+<p>Modules like nbd, need this api to add EPOLLOUT when having data to send, and remove EPOLLOUT if no data to send.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">fgrp</td><td>The fgrp registered to. </td></tr>
+    <tr><td class="paramname">efd</td><td>File descriptor of the event source. </td></tr>
+    <tr><td class="paramname">event_types</td><td>The event notification types.</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>0 on success, negated errno on failure. </dd></dl>
+
+</div>
+</div>
+<a id="a5a6a17bd7675be0da48f49b8c523093a" name="a5a6a17bd7675be0da48f49b8c523093a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5a6a17bd7675be0da48f49b8c523093a">&#9670;&#160;</a></span>spdk_fd_group_get_default_event_handler_opts()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void spdk_fd_group_get_default_event_handler_opts </td>
+          <td>(</td>
+          <td class="paramtype">struct <a class="el" href="structspdk__event__handler__opts.html">spdk_event_handler_opts</a> *</td>          <td class="paramname"><span class="paramname"><em>opts</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">size_t</td>          <td class="paramname"><span class="paramname"><em>opts_size</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Initialize a <a class="el" href="structspdk__event__handler__opts.html">spdk_event_handler_opts</a> structure to the default values. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[out]</td><td class="paramname">opts</td><td>Will be filled with default option. </td></tr>
+    <tr><td class="paramdir"></td><td class="paramname">opts_size</td><td>Must be the size of <a class="el" href="structspdk__event__handler__opts.html">spdk_event_handler_opts</a> structure. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="acd63f6ecc32f0ddef82a188d19824f56" name="acd63f6ecc32f0ddef82a188d19824f56"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#acd63f6ecc32f0ddef82a188d19824f56">&#9670;&#160;</a></span>spdk_fd_group_get_epoll_event()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int spdk_fd_group_get_epoll_event </td>
+          <td>(</td>
+          <td class="paramtype">struct epoll_event *</td>          <td class="paramname"><span class="paramname"><em>event</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Copies the epoll(7) event that caused a callback function to execute. </p>
+<p>This function can only be called by the callback function, doing otherwise results in undefined behavior.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">event</td><td>pointer to an epoll(7) event to copy to. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>0 on success, negated errno on failure. </dd></dl>
+
+</div>
+</div>
+<a id="a7956923fc280cf4f3a024ef837a634cf" name="a7956923fc280cf4f3a024ef837a634cf"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7956923fc280cf4f3a024ef837a634cf">&#9670;&#160;</a></span>spdk_fd_group_get_fd()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int spdk_fd_group_get_fd </td>
+          <td>(</td>
+          <td class="paramtype">struct spdk_fd_group *</td>          <td class="paramname"><span class="paramname"><em>fgrp</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Return the internal epoll_fd of specific fd_group. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">fgrp</td><td>The pointer of specified fgrp.</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>The epoll_fd of specific fgrp. </dd></dl>
+
+</div>
+</div>
+<a id="aa827198ccace95dab3b0cb74376b97ae" name="aa827198ccace95dab3b0cb74376b97ae"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa827198ccace95dab3b0cb74376b97ae">&#9670;&#160;</a></span>spdk_fd_group_nest()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int spdk_fd_group_nest </td>
+          <td>(</td>
+          <td class="paramtype">struct spdk_fd_group *</td>          <td class="paramname"><span class="paramname"><em>parent</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">struct spdk_fd_group *</td>          <td class="paramname"><span class="paramname"><em>child</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Nest the child fd_group in the parent fd_group. </p>
+<p>After this operation completes, calling <a class="el" href="#a5855fa2ed6454dcbb48c7fdc834573c0" title="Wait for new events generated inside fgrp, and process them with their registered spdk_fd_fn.">spdk_fd_group_wait()</a> on the parent will include events from the child.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">parent</td><td>The parent fd_group. </td></tr>
+    <tr><td class="paramname">child</td><td>The child fd_group.</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>0 on success. Negated errno on failure. However, on all errno values other than -ENOTRECOVERABLE, the operation has not changed the state of the fd_group. </dd></dl>
+
+</div>
+</div>
+<a id="add1e704767a6e1f5b88f00e477e2b003" name="add1e704767a6e1f5b88f00e477e2b003"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#add1e704767a6e1f5b88f00e477e2b003">&#9670;&#160;</a></span>spdk_fd_group_remove()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void spdk_fd_group_remove </td>
+          <td>(</td>
+          <td class="paramtype">struct spdk_fd_group *</td>          <td class="paramname"><span class="paramname"><em>fgrp</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int</td>          <td class="paramname"><span class="paramname"><em>efd</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Unregister one event source from one fgrp. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">fgrp</td><td>The fgrp registered to. </td></tr>
+    <tr><td class="paramname">efd</td><td>File descriptor of the event source. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a175427496bda23852b704e128712f66b" name="a175427496bda23852b704e128712f66b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a175427496bda23852b704e128712f66b">&#9670;&#160;</a></span>spdk_fd_group_set_wrapper()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int spdk_fd_group_set_wrapper </td>
+          <td>(</td>
+          <td class="paramtype">struct spdk_fd_group *</td>          <td class="paramname"><span class="paramname"><em>fgrp</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">spdk_fd_group_wrapper_fn</td>          <td class="paramname"><span class="paramname"><em>cb_fn</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">void *</td>          <td class="paramname"><span class="paramname"><em>cb_ctx</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Set a wrapper function to be called when an epoll(7) event is received. </p>
+<p>The callback associated with that event is passed to the wrapper, which is responsible for executing it. Only one wrapper can be assigned to an fd_group at a time.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">fgrp</td><td>fd group. </td></tr>
+    <tr><td class="paramname">cb_fn</td><td>Wrapper callback. </td></tr>
+    <tr><td class="paramname">cb_ctx</td><td>Wrapper callback's context.</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>0 on success, negative errno otherwise. </dd></dl>
+
+</div>
+</div>
+<a id="abb306bb67c3bfae868f357fc88fcfbd3" name="abb306bb67c3bfae868f357fc88fcfbd3"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#abb306bb67c3bfae868f357fc88fcfbd3">&#9670;&#160;</a></span>spdk_fd_group_unnest()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int spdk_fd_group_unnest </td>
+          <td>(</td>
+          <td class="paramtype">struct spdk_fd_group *</td>          <td class="paramname"><span class="paramname"><em>parent</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">struct spdk_fd_group *</td>          <td class="paramname"><span class="paramname"><em>child</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Remove the nested child from the parent. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">parent</td><td>The parent fd_group. </td></tr>
+    <tr><td class="paramname">child</td><td>The child fd_group.</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>0 on success. Negated errno on failure. However, on all errno values other than -ENOTRECOVERABLE, the operation has not changed the state of the fd_group. </dd></dl>
+
+</div>
+</div>
+<a id="a5855fa2ed6454dcbb48c7fdc834573c0" name="a5855fa2ed6454dcbb48c7fdc834573c0"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5855fa2ed6454dcbb48c7fdc834573c0">&#9670;&#160;</a></span>spdk_fd_group_wait()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int spdk_fd_group_wait </td>
+          <td>(</td>
+          <td class="paramtype">struct spdk_fd_group *</td>          <td class="paramname"><span class="paramname"><em>fgrp</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int</td>          <td class="paramname"><span class="paramname"><em>timeout</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Wait for new events generated inside fgrp, and process them with their registered <a class="el" href="#a743712229809e8ec96fcfc866978a08c" title="Callback function registered for the event source file descriptor.">spdk_fd_fn</a>. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">fgrp</td><td>The fgrp to wait and process. </td></tr>
+    <tr><td class="paramname">timeout</td><td>Specifies the number of milliseconds that will block. -1 causes indefinitely blocking; 0 causes immediately return.</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>the number of events processed on success, negated errno on failure. </dd></dl>
+
+</div>
+</div>
+</div><!-- contents -->
+</div><!-- doc-content -->
+<div id="page-nav" class="page-nav-panel">
+<div id="page-nav-resize-handle"></div>
+<div id="page-nav-tree">
+<div id="page-nav-contents">
+</div><!-- page-nav-contents -->
+</div><!-- page-nav-tree -->
+</div><!-- page-nav -->
+</div><!-- container -->
+<footer class="footer" id="nav-path">
+  <div class="footer-inner">
+    <div class="footer-copy">
+      <small>Copyright &copy; SPDK a Series of LF Projects, LLC. For web site terms of use, trademark policy, and other
+      project policies please see <a href="https://lfprojects.org">lfprojects.org</a>.</small>
+      <br><small>Built from spdk 91893349edff / site e5878500f</small>
+    </div>
+  </div>
+</footer>
+<script type="text/javascript" src="page_outline.js"></script>
+<script type="text/javascript" src="spdk_nav.js"></script>
+</body>
+</html>

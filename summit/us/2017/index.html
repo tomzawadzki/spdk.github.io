@@ -1,0 +1,172 @@
+<!doctype html>
+<html lang="en">
+  <head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="The Storage Performance Development Kit (SPDK) provides a set of tools and libraries for writing high performance, scalable, user-mode storage applications. It achieves high performance by moving all of the necessary drivers into userspace and operating in a polled mode instead of relying on interrupts, which avoids kernel context switches and eliminates interrupt handling overhead.
+">
+  <meta name="author" content="Benjamin Walker">
+
+  <title>2017 SPDK US Summit</title>
+
+  <link rel="icon" type="image/svg+xml" href="/spdk.github.io/assets/img/spdk.svg">
+  <link rel="icon" href="/spdk.github.io/assets/favicon.ico" sizes="32x32">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:400,700,900" type="text/css">
+  <link rel="stylesheet" href="/spdk.github.io/assets/css/spdk.css">
+
+  <link href="/spdk.github.io/feed.xml" type="application/atom+xml" rel="alternate" title="Atom Feed">
+</head>
+
+
+  <body>
+    <nav class="navbar">
+  <a class="navbar-brand" href="/spdk.github.io/" aria-label="SPDK">
+    <img src="/spdk.github.io/assets/img/spdk.svg" width="36" height="36" alt="Storage Performance Development Kit">
+  </a>
+  <div class="navbar-nav">
+    <a class="nav-link header-link" href="/spdk.github.io/doc/releases.html">download</a>
+    <a class="nav-link header-link" href="/spdk.github.io/doc/">documentation</a>
+    <a class="nav-link header-link" href="/spdk.github.io/doc/contributing.html">development</a>
+    <a class="nav-link header-link" href="/spdk.github.io/doc/ci_tools.html">CI status</a>
+    <a class="nav-link header-link" href="/spdk.github.io/community/">community</a>
+    <a class="nav-link header-link" href="/spdk.github.io/blog/">Blog</a>
+    <a class="nav-link header-link" href="https://github.com/orgs/spdk/projects/5">Roadmap</a>
+    <a class="nav-link header-link" href="/spdk.github.io/news/">News</a>
+  </div>
+  <div class="navbar-end">
+    <a class="nav-link header-link" href="https://github.com/spdk/spdk" aria-label="GitHub">
+      <svg xmlns="http://www.w3.org/2000/svg" class="navbar-nav-svg" aria-hidden="true"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
+    </a>
+    <a id="cn_lang_btn" href="/spdk.github.io/cn/doc/" class="nav-link header-link">中文</a>
+  </div>
+</nav>
+<script>
+(function() {
+    var p = location.pathname, best = null, bLen = 0;
+    document.querySelectorAll('.header-link[href]').forEach(function(a) {
+        var raw = a.getAttribute('href');
+        if (!raw) return;
+        try { var u = new URL(raw, location.href); } catch(e) { return; }
+        if (u.origin !== location.origin) return;
+        var h = u.pathname;
+        if (h === '/') return;
+        var ok = h.endsWith('.html') ? p === h : p.indexOf(h) === 0;
+        if (ok && h.length > bLen) { bLen = h.length; best = a; }
+    });
+    if (best) best.classList.add('active');
+})();
+</script>
+
+
+    
+<div class="page-content">
+  <div class="page-header">
+    <h1>2017 SPDK US Summit</h1>
+  </div>
+  <div class="content"><p>Videos from the Intel Builders Developers Summit featuring SPDK and ISA-L held in Santa Clara on April 19th and 20th are posted <a href="https://www.youtube.com/playlist?list=PLj-81kG3zG5ZIE-4CvqsvlFEHoOoWRIHZ">here</a>.</p>
+
+<p>Please note these presentations are static PDFs, but many of the presentations made extensive use of animations, so something may be lost in translation.</p>
+
+<h1 id="presentations">Presentations</h1>
+
+<p><strong>SPDK: The Future is Now</strong> <br />
+Jim Harris, Intel <br />
+<a href="https://review.spdk.io/download/events/2017-summit/01_-_Day_1_-_Harris_-_Keynote_v9.pdf">Presentation (PDF)</a>,
+<a href="https://www.youtube.com/watch?v=IDv9uohHV5U&amp;index=1&amp;list=PLj-81kG3zG5ZIE-4CvqsvlFEHoOoWRIHZ">Video (YouTube)</a></p>
+
+<p>SPDK is enabling best-of-class performance via a growing list of libraries and applications covering storage networking, virtualization and lightweight filesystems.  There is also an increasing number of companies and projects contributing to and adopting SPDK to take advantage of the advancements in solid state media in hyper converged and disaggregated storage usage models.  In this video, Jim will share his thoughts on the future of SPDK against the backdrop of these trends, including where SPDK is going from both a technical and community perspective.</p>
+
+<p><strong>SPDK Blobstore: A Look Inside the NVM-Optimized Allocator</strong> <br />
+Ben Walker, Intel <br />
+<a href="https://review.spdk.io/download/events/2017-summit/02_-_Day_1_-_Walker_-_Blobstore_v14.pdf">Presentation (PDF)</a>,
+<a href="https://www.youtube.com/watch?v=UK2fgePP804&amp;list=PLj-81kG3zG5ZIE-4CvqsvlFEHoOoWRIHZ&amp;index=2">Video (YouTube)</a></p>
+
+<p>The Blobstore is a local, persistent, power-fail safe block allocator designed to replace filesystem usage in many popular databases. The design is fully asynchronous, polled-mode, and lockless in the I/O path. Most importantly, the Blobstore has been designed for the properties of flash and next-generation media from the start and directly leverages NVMe features. The team has already ported a popular embedded key/value database, RocksDB, to use the Blobstore which demonstrated an improvement in 99th percentile latency for database queries under common workloads of over 350%.</p>
+
+<p><strong>Vhost-scsi: SPDK VM I/O Efficiency</strong> <br />
+Piotr Pelplinski and Changpeng Liu, Intel <br />
+<a href="https://review.spdk.io/download/events/2017-summit/03_-_Day_1_-_Liu_and_Pelplinski_-_SPDK_Vhost_v8_ww16.pptx.pdf">Presentation (PDF)</a>,
+<a href="https://www.youtube.com/watch?v=2XUpjPVxOA4&amp;index=3&amp;list=PLj-81kG3zG5ZIE-4CvqsvlFEHoOoWRIHZ">Video (YouTube)</a></p>
+
+<p>SPDK vhost is a userspace target designed to extend the performance efficiencies of SPDK into QEMU/KVM virtualization environments.  SPDK vhost enables presenting a broad range of SPDK-managed block storage into virtual machines, including local NVMe storage, remote NVMe-oF storage and Ceph RBD.  Compared with existing kernel based vhost solutions, SPDK vhost target provides up to 10x better performance and/or efficiency while enabling significantly lower latency when used with Intel® Optane™ media.   This video covers the performance of SPDK vhost target, design principles for CPU efficiency, usage models and future plans.</p>
+
+<p><strong>Driving to Highest IOPS/$ Using SPDK</strong> <br />
+Paul Von Stamwitz, Fujitsu <br />
+<a href="https://review.spdk.io/download/events/2017-summit/04_-_Day_1_-_Von_Stamwitz_-_Driving_to_Highest_IOPS.pdf">Presentation (PDF)</a>,
+<a href="https://www.youtube.com/watch?v=-4hUBE0BrnM&amp;index=4&amp;list=PLj-81kG3zG5ZIE-4CvqsvlFEHoOoWRIHZ">Video (YouTube)</a></p>
+
+<p>The Enterprise Storage market is rapidly migrating to NVMe-based all-flash configurations. However, CPU processing power is falling behind the performance gains in storage, creating inefficiencies in both performance and cost. To address this, Fujitsu is using SPDK toward the goal of achieving both higher performance and an overall lower cost per IOP for mission-critical workloads.</p>
+
+<p><strong>SPDK: Under the Hood</strong> <br />
+Daniel Verkamp, Intel <br />
+<a href="https://review.spdk.io/download/events/2017-summit/05_-_Day_1_-_Verkamp_-_Under_the_Hood_v10.pdf">Presentation (PDF)</a>,
+<a href="https://www.youtube.com/watch?v=5rfw2n_G92Y&amp;index=5&amp;list=PLj-81kG3zG5ZIE-4CvqsvlFEHoOoWRIHZ&amp;t=1s">Video (YouTube)</a></p>
+
+<p>This presentation discusses the technical underpinnings of SPDK and explores the design choices made by the engineering team to enable high-performance storage applications. Topics include the reactor, event, poller, and I/O channel concepts which form the core of the SPDK libraries and example applications.</p>
+
+<p><strong>SPDK NVMe over Fabrics</strong> <br />
+John Meneghini and Madhu Pai, NetApp <br />
+<a href="https://review.spdk.io/download/events/2017-summit/07_-_Day_2_-_Meneghini_and_Pai_-_SPDK_NVMe_over_Fabrics.pdf">Presentation (PDF)</a>,
+<a href="https://www.youtube.com/watch?v=bddSIUps0Hc&amp;index=7&amp;list=PLj-81kG3zG5ZIE-4CvqsvlFEHoOoWRIHZ">Video (YouTube)</a></p>
+
+<p>SPDK provides libraries and example applications to present block storage over an RDMA fabrics using the NVMe over Fabrics (NVMe-oF) protocol.  This session will focus on NVMe-oF use cases and the current status of the SPDK NVMe-oF target.  Feature gaps and possible improvements will also be presented based on NetApp’s work with SPDK and their experience with building robust storage target software.</p>
+
+<p><strong>Best Practices: Performance Testing &amp; Tuning</strong> <br />
+John Kariuki, Vishal Verma and Roman Sudarikov, Intel <br />
+<a href="https://review.spdk.io/download/events/2017-summit/08_-_Day_2_-_Kariuki_Verma_and_Sudarikov_-_SPDK_Performance_Testing_and_Tuning_rev5_0.pdf">Presentation (PDF)</a>,
+<a href="https://www.youtube.com/watch?v=tkGE3pq5eIU&amp;index=8&amp;list=PLj-81kG3zG5ZIE-4CvqsvlFEHoOoWRIHZ">Video (YouTube)</a></p>
+
+<p>Solid state media in the datacenter is on the rise. However, integration of new media faces one major challenge: because the throughput and latency performance are so much better than spinning disk, storage software now consumes an increasing share of the total transaction time. SPDK provides tools and libraries for writing high performance, scalable, user-mode storage applications, but tuning and testing is not easy. This video will showcase performance testing of using SPDK in various environments like local NVMe, NVMe-oF and iSCSI with significant focus on methods and best practices</p>
+
+<p><strong>Cloud: Intel Hardware Root Of Trust Attestation Solution with One Touch Activation</strong> <br />
+Timothy Knoll and Kamal Natesan, Intel <br />
+<a href="https://review.spdk.io/download/events/2017-summit/09_-_Day_2_-_Knoll_and_Natesan_-_Builders_Dev_Summit_OTA-CIT_Presentation.pdf">Presentation (PDF)</a>,
+<a href="https://www.youtube.com/watch?v=blppWiwnisg&amp;index=9&amp;list=PLj-81kG3zG5ZIE-4CvqsvlFEHoOoWRIHZ">Video (YouTube)</a></p>
+
+<p>Intel® Cloud Integrity Technology (Intel® CIT) extends a hardware-based Root of Trust with Intel Trusted Execution Technology (Intel® TXT) up through the cloud solution stack to ensure the privacy and integrity of cloud platforms and workloads. One Touch Activation is a feature that will be available on an upcoming platform which allows the owner to enable Intel TXT remotely in OOB fashion. Learn how to implement Intel and CIT to help customers meet their security and compliance goals for VMs, containers, High Performance Computing, software-defined storage and networks, and more.</p>
+
+<p><strong>Transport Layer Development Kit: TCP and UDP at the Speed of DPDK</strong> <br />
+Keith Wiles, Intel <br />
+<a href="https://review.spdk.io/download/events/2017-summit/10_-_Day_2_-_Wiles_-_SPDK_Summit-TLDK_Overview_2017.pdf">Presentation (PDF)</a>,
+<a href="https://www.youtube.com/watch?v=2lJX430k4bc&amp;index=10&amp;list=PLj-81kG3zG5ZIE-4CvqsvlFEHoOoWRIHZ">Video (YouTube)</a></p>
+
+<p>TCP and UDP socket based applications are core technologies in the modern data-center. The introduction of Orchestration, SDN controllers, vSwitches and Virtual Dataplane have seen a huge change in how network packets are delivered to data-centre nodes. While the stacks that consume these packets, the socket based applications have evolved much more slowly. Virtual switches like VPP and OVS-DPDK, have benefited from the vector packet processing technology in DPDK to scale process millions of packets per second. TLDK has been developed from the ground up to be a very fast and scalable UDP and TCP implementation at socket layer. This video will provide an overview of TLDK design and implementation, including an overview of the TLDK UDP and TCP API, and how it differs from the BSD Sockets API.</p>
+
+<p><strong>ISA-L: Performance for Software-Defined Storage</strong> <br />
+Jonathan Stern, Intel <br />
+<a href="https://review.spdk.io/download/events/2017-summit/11_-_Day_2_-_Stern_-_ISA-L_Performance_for_Software_Defined.pdf">Presentation (PDF)</a>,
+<a href="https://www.youtube.com/watch?v=XwojKKdiIxM&amp;index=11&amp;list=PLj-81kG3zG5ZIE-4CvqsvlFEHoOoWRIHZ">Video (YouTube)</a></p>
+
+<p>The open-source Intel® Intelligent Storage Acceleration Library (ISA-L) provides highly optimized implementations of the key algorithms for storage applications: CRC, RAID/Erasure Code, Encryption, Hashing and Compression. Using ISA-L can eliminate compute bottlenecks, reduce latency, enable new features, and improve software efficiency.</p>
+
+<p><strong>Intel Cache Acceleration Software (CAS)</strong> <br />
+Andrzej Jakowski and Armoun Forghan, Intel <br />
+<a href="https://review.spdk.io/download/events/2017-summit/12_-_Day_2_-_Intel_Cache_Acceleration_Software_vFinal.pdf">Presentation (PDF)</a>,
+<a href="https://www.youtube.com/watch?v=pTon-zu1gCs&amp;index=12&amp;list=PLj-81kG3zG5ZIE-4CvqsvlFEHoOoWRIHZ&amp;t=3s">Video (YouTube)</a></p>
+
+<p>This video will focus on Intel Cache Acceleration Software, its features, modes of operations and the latest performance data. Andrzej will also cover current plans related to open sourcing the software.</p>
+
+<p><strong>SPDK Community Process Roundtable</strong> <br />
+Led by Jonathan Stern and Ben Walker, Intel <br />
+<a href="https://www.youtube.com/watch?v=4uqCCqGgk9I&amp;index=6&amp;list=PLj-81kG3zG5ZIE-4CvqsvlFEHoOoWRIHZ">Video (YouTube)</a></p>
+
+<p>This video will give a brief overview of Intel’s current development process and how we are moving towards a more transparent and accessible process.  We would like to get feedback from the community on our Release process.</p>
+</div>
+</div>
+
+
+
+    <footer class="footer" id="nav-path">
+  <div class="footer-inner">
+    <div class="footer-copy">
+      <small>Copyright &copy; SPDK a Series of LF Projects, LLC. For web site terms of use, trademark policy, and other
+      project policies please see <a href="https://lfprojects.org">lfprojects.org</a>.</small>
+      <br><small>Built from spdk 91893349edff / site e5878500f</small>
+    </div>
+  </div>
+</footer>
+
+
+    
+  </body>
+</html>

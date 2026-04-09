@@ -1,0 +1,135 @@
+<!doctype html>
+<html lang="en">
+  <head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="The Storage Performance Development Kit (SPDK) provides a set of tools and libraries for writing high performance, scalable, user-mode storage applications. It achieves high performance by moving all of the necessary drivers into userspace and operating in a polled mode instead of relying on interrupts, which avoids kernel context switches and eliminates interrupt handling overhead.
+">
+  <meta name="author" content="Benjamin Walker">
+
+  <title>在线分享</title>
+
+  <link rel="icon" type="image/svg+xml" href="/spdk.github.io/assets/img/spdk.svg">
+  <link rel="icon" href="/spdk.github.io/assets/favicon.ico" sizes="32x32">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:400,700,900" type="text/css">
+  <link rel="stylesheet" href="/spdk.github.io/assets/css/spdk.css">
+
+  <link href="/spdk.github.io/feed.xml" type="application/atom+xml" rel="alternate" title="Atom Feed">
+</head>
+
+
+  <body>
+    <nav class="navbar">
+  <a class="navbar-brand" href="/spdk.github.io/" aria-label="SPDK">
+    <img src="/spdk.github.io/assets/img/spdk.svg" width="36" height="36" alt="Storage Performance Development Kit">
+  </a>
+  <div class="navbar-nav">
+    <a class="nav-link header-link" href="/spdk.github.io/doc/releases.html">download</a>
+    <a class="nav-link header-link" href="/spdk.github.io/doc/">documentation</a>
+    <a class="nav-link header-link" href="/spdk.github.io/doc/contributing.html">development</a>
+    <a class="nav-link header-link" href="/spdk.github.io/doc/ci_tools.html">CI status</a>
+    <a class="nav-link header-link" href="/spdk.github.io/community/">community</a>
+    <a class="nav-link header-link" href="/spdk.github.io/blog/">Blog</a>
+    <a class="nav-link header-link" href="https://github.com/orgs/spdk/projects/5">Roadmap</a>
+    <a class="nav-link header-link" href="/spdk.github.io/news/">News</a>
+  </div>
+  <div class="navbar-end">
+    <a class="nav-link header-link" href="https://github.com/spdk/spdk" aria-label="GitHub">
+      <svg xmlns="http://www.w3.org/2000/svg" class="navbar-nav-svg" aria-hidden="true"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
+    </a>
+    <a id="cn_lang_btn" href="/spdk.github.io/cn/doc/" class="nav-link header-link">中文</a>
+  </div>
+</nav>
+<script>
+(function() {
+    var p = location.pathname, best = null, bLen = 0;
+    document.querySelectorAll('.header-link[href]').forEach(function(a) {
+        var raw = a.getAttribute('href');
+        if (!raw) return;
+        try { var u = new URL(raw, location.href); } catch(e) { return; }
+        if (u.origin !== location.origin) return;
+        var h = u.pathname;
+        if (h === '/') return;
+        var ok = h.endsWith('.html') ? p === h : p.indexOf(h) === 0;
+        if (ok && h.length > bLen) { bLen = h.length; best = a; }
+    });
+    if (best) best.classList.add('active');
+})();
+</script>
+
+
+    
+<div class="page-with-toc">
+  <aside class="site-toc">
+    <ul>
+      
+        <li>
+          <a href="../news/">用户案例</a>
+          
+        </li>
+      
+        <li>
+          <a href="../articles/">技术文章</a>
+          
+        </li>
+      
+        <li>
+          <a href="../whitepaper/">白皮书</a>
+          
+        </li>
+      
+        <li>
+          <a href="../webinar/">在线分享</a>
+          
+        </li>
+      
+    </ul>
+  </aside>
+
+  <div class="page-content">
+    <div class="page-header">
+      <h1>在线分享</h1>
+    </div>
+    <div class="content"><h2 id="20200623-spdk-vhost-user">2020/06/23: SPDK vhost-user</h2>
+<ul>
+  <li><a href="https://mp.weixin.qq.com/s?__biz=MzI3NDA4ODY4MA==&amp;mid=2653337213&amp;idx=1&amp;sn=4fd98cc8cafe3120b933352d84a4752b&amp;chksm=f0cb41fac7bcc8ec8a6ed24932ce5e9b9291c8e7439bb115c86dca7d7cbe42fc32cc20e7af2c&amp;token=1289743184&amp;lang=zh_CN#rd">SPDK虚拟化存储方案介绍和最佳实践</a>
+    <blockquote>
+      <p>“6月23日，在SDNLAB直播活动[一期一会]中，英特尔资深存储工程师——刘长鹏与大家进行了在线交流，介绍Intel SPDK(Storage Performance Development Kit) VHOST虚拟化块设备方案的实现，以及在CSP部署中的实践经验。”</p>
+    </blockquote>
+  </li>
+</ul>
+
+<h2 id="20200715-spdk-nvme-of">2020/07/15: SPDK NVMe-oF</h2>
+<ul>
+  <li><a href="https://mp.weixin.qq.com/s?__biz=MzAxMDA1NjMwMQ==&amp;mid=2651761293&amp;idx=2&amp;sn=36e4d07f8d477019b8947904a52fdcac&amp;chksm=80ac2d8fb7dba49985c68493fa1e2afcc51f1f19051ede46da5edcc588e2f62e6ed77ca15036&amp;mpshare=1&amp;scene=1&amp;srcid=0716az52Vxu3Hc8R3MhDXcaZ&amp;sharer_sharetime=1594892228951&amp;sharer_shareid=bce63ba0449f498eb13c109c5eaef06d&amp;exportkey=A5z8of5ej7aGBGrbhrlEpgA%3D&amp;pass_ticket=e9hUT3O74xR%2B%2F%2BDfkgMhVIUZgaoLgq8rtHiOVeXnqTJ5UF%2BRfAJxYMKHjkM4ziYq&amp;wx_header=0#rd">有关SPDK NVMe-oF解决方案介绍</a>
+    <blockquote>
+      <p>“7月15日，在SDNLAB直播活动[一期一会]中，英特尔资深软件工程师——杨子夜与大家进行了在线交流，分享有关SPDK NVMe-oF解决方案的介绍，介绍了什么情况下需要NVMe-oF方案和SPDK NVMe-oF解决方案的发展历史、架构，以及基于RDMA和TCP两种传输的设计实现细节，同时也分享了一些性能优化的数据。”</p>
+    </blockquote>
+  </li>
+</ul>
+
+<h2 id="20211215-spdk-for-smartnicipu">2021/12/15: SPDK for SmartNIC(IPU)</h2>
+<ul>
+  <li><a href="https://mp.weixin.qq.com/s?__biz=MzI3NDA4ODY4MA==&amp;mid=2653338510&amp;idx=1&amp;sn=315a1f81c8d900c4375192f480c02568&amp;chksm=f0cb4c09c7bcc51f71f04a6299e233b67dd766d4a4bf892d041bd90f2a54ee177de959b9daf3&amp;mpshare=1&amp;scene=1&amp;srcid=0516OVdSr8IF1zpcbfR3lqHE&amp;sharer_sharetime=1652667731178&amp;sharer_shareid=16362cd686fb4155d775401692935830&amp;exportkey=A%2Bq9uzD1%2FQfy8rpt18hLKWg%3D&amp;acctmode=0&amp;pass_ticket=CHRad0UIoz8%2FSPboNOugxVHCcm1xuslbDDvwdEvYLiqRKwiMWxn%2B%2B5UW4IrjUmQ6&amp;wx_header=0#rd">针对BSC智能网卡的存储场景和性能分析</a>&gt; “2021年12月，Intel举办了SPDK, PMDK, Intel® Performance Analyzers Online Forum。今天给大家带来英特尔高级软件工程师Wan Qun在论坛上的技术分享：《针对BSC智能网卡的存储场景和性能分析》，分享内容分为以下六部分：1、背景介绍；2、BSC介绍；3、BSC裸金属应用场景；4、BSC虚拟化应用场景；5、裸金属性能分析；6、总结。”</li>
+</ul>
+</div>
+  </div>
+</div>
+
+
+
+
+    <footer class="footer" id="nav-path">
+  <div class="footer-inner">
+    <div class="footer-copy">
+      <small>Copyright &copy; SPDK a Series of LF Projects, LLC. For web site terms of use, trademark policy, and other
+      project policies please see <a href="https://lfprojects.org">lfprojects.org</a>.</small>
+      <br><small>Built from spdk 91893349edff / site e5878500f</small>
+    </div>
+  </div>
+</footer>
+
+
+    
+  </body>
+</html>

@@ -1,0 +1,120 @@
+<!doctype html>
+<html lang="en">
+  <head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="The Storage Performance Development Kit (SPDK) provides a set of tools and libraries for writing high performance, scalable, user-mode storage applications. It achieves high performance by moving all of the necessary drivers into userspace and operating in a polled mode instead of relying on interrupts, which avoids kernel context switches and eliminates interrupt handling overhead.
+">
+  <meta name="author" content="Benjamin Walker">
+
+  <title>Presentations: SPDK Virtual Forum on Nov 15-16, 2022</title>
+
+  <link rel="icon" type="image/svg+xml" href="/spdk.github.io/assets/img/spdk.svg">
+  <link rel="icon" href="/spdk.github.io/assets/favicon.ico" sizes="32x32">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:400,700,900" type="text/css">
+  <link rel="stylesheet" href="/spdk.github.io/assets/css/spdk.css">
+
+  <link href="/spdk.github.io/feed.xml" type="application/atom+xml" rel="alternate" title="Atom Feed">
+</head>
+
+
+  <body>
+    <nav class="navbar">
+  <a class="navbar-brand" href="/spdk.github.io/" aria-label="SPDK">
+    <img src="/spdk.github.io/assets/img/spdk.svg" width="36" height="36" alt="Storage Performance Development Kit">
+  </a>
+  <div class="navbar-nav">
+    <a class="nav-link header-link" href="/spdk.github.io/doc/releases.html">download</a>
+    <a class="nav-link header-link" href="/spdk.github.io/doc/">documentation</a>
+    <a class="nav-link header-link" href="/spdk.github.io/doc/contributing.html">development</a>
+    <a class="nav-link header-link" href="/spdk.github.io/doc/ci_tools.html">CI status</a>
+    <a class="nav-link header-link" href="/spdk.github.io/community/">community</a>
+    <a class="nav-link header-link" href="/spdk.github.io/blog/">Blog</a>
+    <a class="nav-link header-link" href="https://github.com/orgs/spdk/projects/5">Roadmap</a>
+    <a class="nav-link header-link" href="/spdk.github.io/news/">News</a>
+  </div>
+  <div class="navbar-end">
+    <a class="nav-link header-link" href="https://github.com/spdk/spdk" aria-label="GitHub">
+      <svg xmlns="http://www.w3.org/2000/svg" class="navbar-nav-svg" aria-hidden="true"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
+    </a>
+    <a id="cn_lang_btn" href="/spdk.github.io/cn/doc/" class="nav-link header-link">中文</a>
+  </div>
+</nav>
+<script>
+(function() {
+    var p = location.pathname, best = null, bLen = 0;
+    document.querySelectorAll('.header-link[href]').forEach(function(a) {
+        var raw = a.getAttribute('href');
+        if (!raw) return;
+        try { var u = new URL(raw, location.href); } catch(e) { return; }
+        if (u.origin !== location.origin) return;
+        var h = u.pathname;
+        if (h === '/') return;
+        var ok = h.endsWith('.html') ? p === h : p.indexOf(h) === 0;
+        if (ok && h.length > bLen) { bLen = h.length; best = a; }
+    });
+    if (best) best.classList.add('active');
+})();
+</script>
+
+
+    <div class="page-content">
+  <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+  <header class="post-header">
+
+    <div class="page-header">
+      <h1>Presentations: SPDK Virtual Forum on Nov 15-16, 2022</h1>
+    </div>
+
+    <p class="post-meta">
+      <time datetime="2022-11-21T00:00:00+01:00" itemprop="datePublished">
+        Nov 21, 2022
+      </time>
+      
+      •
+      <span itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <span itemprop="name">John Kariuki</span>
+      </span>
+      
+    </p>
+  </header>
+
+  <div class="content" itemprop="articleBody"><p>Thank you all for attending the SPDK Virtual Forum. We had a very successful Virtual Forum this year with awesome content and presenters. You can download the presentations using the links below. Please note these are static PDFs, but many of the presentations made extensive use of animations, so something may be lost in translation.</p>
+
+<p>The videos are available in our <a href="https://www.youtube.com/playlist?list=PL4eJZ5XvN_LQUpbB3IPUI1OyfC235StZI">YouTube channel</a>.</p>
+
+<h2 id="presentations">Presentations</h2>
+<ol>
+  <li><a href="https://review.spdk.io/download/2022-virtual-forum-us/spdk22-harris-state-of-the-project.pdf">State of the Project</a></li>
+  <li><a href="https://review.spdk.io/download/2022-virtual-forum-us/SPDK22-Mateusz-Kozlowski-Enabling-Performance-and-Capacity-Scaling-for-Big-Data-Using-Intel-Cloud-Storage-Acceleration-Layer.pdf">Enabling Performance and Capacity Scaling for Big Data Using Intel Cloud Storage Acceleration Layer</a></li>
+  <li><a href="https://review.spdk.io/download/2022-virtual-forum-us/SPDK22-Yadong-LI_Jarek_Kogut-+SPDK-based-IPU-storage-solutions.pdf">SPDK based IPU Storage Solutions</a></li>
+  <li><a href="https://review.spdk.io/download/2022-virtual-forum-us/SPDK22-Konrad_Sztyber_Tomasz_Zawadzki_Simplify_your_host_software_with_IPU.pdf">Simplify your host software with IPU</a></li>
+  <li><a href="https://review.spdk.io/download/2022-virtual-forum-us/spdk22-Ben-Walker-TCP-networking-for-storage-developers.pdf">TCP Networking for Storage Software Developers</a></li>
+  <li><a href="https://review.spdk.io/download/2022-virtual-forum-us/spdk22-nutanix-nvmf-vfio-user.pdf">nvmf/vfio-user: Performance Optimizations</a></li>
+  <li><a href="https://review.spdk.io/download/2022-virtual-forum-us/SPDK22-John-Kariuki-Protecting-NVMe-TCP-Data-with-Intel-DSA.pdf">Protecting NVMe/TCP Data PDU at 400 Gbps with Intel® Data Streaming Accelerator (Intel® DSA)</a></li>
+  <li><a href="https://review.spdk.io/download/2022-virtual-forum-us/SPDK22-Jim-Harris-Simon-Lund-xNVMe-and-IO-Uring-NVMe-passthrough.pdf">xNVMe and io_uring NVMe passthrough – What does it mean for the SPDK NVMe driver?</a></li>
+  <li><a href="https://review.spdk.io/download/2022-virtual-forum-us/SPDK22-Paul-Luse-Accel_FW.pdf">What’s faster than a Cheetah and more flexible than a Cirque du Soleil performer?</a></li>
+  <li><a href="https://review.spdk.io/download/2022-virtual-forum-us/SPDK22-Alexey-Marchuk-Accel-Framework-And-NVIDIA-Nightly-CI.pdf">Accel framework and NVIDIA Nightly CI Extensions</a></li>
+  <li><a href="https://review.spdk.io/download/2022-virtual-forum-us/SPDK22-Mike-Gerdts-And-Shuhei-Matsumoto-Contributions+by+NVIDIA+in+SPDK+Project.pdf">Contributions by NVIDIA in SPDK Project - NVMe Multipath and External Snapshots</a></li>
+  <li><a href="https://review.spdk.io/download/2022-virtual-forum-us/SPDK22-Karol-Latecki-Performance-on-SPDK-IO-and-how-the-performance-reports-are-created.pdf">Performance on SPDK.io and How the Performance Reports are created</a></li>
+  <li><a href="https://review.spdk.io/download/2022-virtual-forum-us/spdk22-harris-spdk-tracing.pdf">SPDK Tracing – Building a Framework to keep up with those Millions of IOPs</a></li>
+</ol>
+</div>
+</article>
+</div>
+
+
+    <footer class="footer" id="nav-path">
+  <div class="footer-inner">
+    <div class="footer-copy">
+      <small>Copyright &copy; SPDK a Series of LF Projects, LLC. For web site terms of use, trademark policy, and other
+      project policies please see <a href="https://lfprojects.org">lfprojects.org</a>.</small>
+      <br><small>Built from spdk 91893349edff / site e5878500f</small>
+    </div>
+  </div>
+</footer>
+
+
+    
+  </body>
+</html>

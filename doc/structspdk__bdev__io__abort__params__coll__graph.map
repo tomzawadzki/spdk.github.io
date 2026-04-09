@@ -1,0 +1,19 @@
+<map id="spdk_bdev_io_abort_params" name="spdk_bdev_io_abort_params">
+<area shape="rect" id="Node000001" title=" " alt="" coords="38,28,190,73"/>
+<area shape="rect" id="Node000002" href="$structspdk__bdev__io.html" title=" " alt="" coords="379,181,489,209"/>
+<area shape="poly" id="edge5_Node000002_Node000001" title=" " alt="" coords="205,30,242,28,282,30,320,38,356,54,387,81,409,117,424,152,432,180,427,181,419,154,404,119,383,85,353,58,319,43,281,35,242,33,205,35"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="410,171,385,145,353,121,325,108,283,95,189,70,191,65,285,90,326,103,356,116,388,141,414,167"/>
+<area shape="rect" id="Node000050" href="$structspdk__bdev__io__internal__fields.html" title="Fields that are used internally by the bdev subsystem." alt="" coords="643,172,810,217"/>
+<area shape="poly" id="edge9_Node000050_Node000002" title=" " alt="" coords="505,192,643,192,643,197,505,197"/>
+<area shape="rect" id="Node000003" href="$structspdk__bdev.html" title=" " alt="" coords="68,121,160,149"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="175,137,261,148,355,166,396,178,394,183,354,171,260,153,175,143"/>
+<area shape="rect" id="Node000016" href="$structspdk__bdev__io__block__params.html" title=" " alt="" coords="38,172,190,217"/>
+<area shape="poly" id="edge3_Node000002_Node000016" title=" " alt="" coords="206,192,378,192,378,197,206,197"/>
+<area shape="rect" id="Node000021" href="$structspdk__bdev__io__reset__params.html" title=" " alt="" coords="39,242,189,286"/>
+<area shape="poly" id="edge4_Node000002_Node000021" title=" " alt="" coords="204,251,278,240,354,223,399,207,401,212,355,228,279,245,205,257"/>
+<area shape="rect" id="Node000022" href="$structspdk__bdev__io__nvme__passthru__params.html" title=" " alt="" coords="5,311,223,356"/>
+<area shape="poly" id="edge6_Node000002_Node000022" title=" " alt="" coords="237,316,297,300,353,275,375,260,393,242,421,207,425,210,397,245,378,264,356,279,298,305,238,321"/>
+<area shape="rect" id="Node000049" href="$structspdk__bdev__io__zone__mgmt__params.html" title=" " alt="" coords="17,380,211,425"/>
+<area shape="poly" id="edge7_Node000002_Node000049" title=" " alt="" coords="225,394,292,377,324,363,353,344,383,312,404,274,419,237,427,208,432,210,424,239,409,277,387,316,356,348,327,368,294,382,227,399"/>
+<area shape="poly" id="edge8_Node000002_Node000050" title=" " alt="" coords="628,223,619,224,566,229,513,224,469,212,471,207,513,218,566,223,619,218,627,217"/>
+</map>

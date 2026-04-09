@@ -1,0 +1,183 @@
+<!doctype html>
+<html lang="en">
+  <head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="The Storage Performance Development Kit (SPDK) provides a set of tools and libraries for writing high performance, scalable, user-mode storage applications. It achieves high performance by moving all of the necessary drivers into userspace and operating in a polled mode instead of relying on interrupts, which avoids kernel context switches and eliminates interrupt handling overhead.
+">
+  <meta name="author" content="Benjamin Walker">
+
+  <title>Fuzz testing SPDK</title>
+
+  <link rel="icon" type="image/svg+xml" href="/spdk.github.io/assets/img/spdk.svg">
+  <link rel="icon" href="/spdk.github.io/assets/favicon.ico" sizes="32x32">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:400,700,900" type="text/css">
+  <link rel="stylesheet" href="/spdk.github.io/assets/css/spdk.css">
+
+  <link href="/spdk.github.io/feed.xml" type="application/atom+xml" rel="alternate" title="Atom Feed">
+</head>
+
+
+  <body>
+    <nav class="navbar">
+  <a class="navbar-brand" href="/spdk.github.io/" aria-label="SPDK">
+    <img src="/spdk.github.io/assets/img/spdk.svg" width="36" height="36" alt="Storage Performance Development Kit">
+  </a>
+  <div class="navbar-nav">
+    <a class="nav-link header-link" href="/spdk.github.io/doc/releases.html">download</a>
+    <a class="nav-link header-link" href="/spdk.github.io/doc/">documentation</a>
+    <a class="nav-link header-link" href="/spdk.github.io/doc/contributing.html">development</a>
+    <a class="nav-link header-link" href="/spdk.github.io/doc/ci_tools.html">CI status</a>
+    <a class="nav-link header-link" href="/spdk.github.io/community/">community</a>
+    <a class="nav-link header-link" href="/spdk.github.io/blog/">Blog</a>
+    <a class="nav-link header-link" href="https://github.com/orgs/spdk/projects/5">Roadmap</a>
+    <a class="nav-link header-link" href="/spdk.github.io/news/">News</a>
+  </div>
+  <div class="navbar-end">
+    <a class="nav-link header-link" href="https://github.com/spdk/spdk" aria-label="GitHub">
+      <svg xmlns="http://www.w3.org/2000/svg" class="navbar-nav-svg" aria-hidden="true"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
+    </a>
+    <a id="cn_lang_btn" href="/spdk.github.io/cn/doc/" class="nav-link header-link">中文</a>
+  </div>
+</nav>
+<script>
+(function() {
+    var p = location.pathname, best = null, bLen = 0;
+    document.querySelectorAll('.header-link[href]').forEach(function(a) {
+        var raw = a.getAttribute('href');
+        if (!raw) return;
+        try { var u = new URL(raw, location.href); } catch(e) { return; }
+        if (u.origin !== location.origin) return;
+        var h = u.pathname;
+        if (h === '/') return;
+        var ok = h.endsWith('.html') ? p === h : p.indexOf(h) === 0;
+        if (ok && h.length > bLen) { bLen = h.length; best = a; }
+    });
+    if (best) best.classList.add('active');
+})();
+</script>
+
+
+    <div class="page-content">
+  <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+  <header class="post-header">
+
+    <div class="page-header">
+      <h1>Fuzz testing SPDK</h1>
+    </div>
+
+    <p class="post-meta">
+      <time datetime="2023-04-21T00:00:00+02:00" itemprop="datePublished">
+        Apr 21, 2023
+      </time>
+      
+      •
+      <span itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <span itemprop="name">Sebastian Brzezinka</span>
+      </span>
+      
+    </p>
+  </header>
+
+  <div class="content" itemprop="articleBody"><p>Fuzzing is a software testing technique that incorporates feeding random, unexpected input
+to a computer program to test unexpected paths of software execution. The SPDK project uses
+two approaches to fuzz testing:</p>
+
+<ul>
+  <li>
+    <p>Brute force randomization of inputs</p>
+  </li>
+  <li>
+    <p>LLVM coverage-guided randomization</p>
+  </li>
+</ul>
+
+<h1 id="nvme-fuzz">NVMe fuzz</h1>
+
+<p>The SPDK fuzzer application tries to fuzz the NVMe-oF target or a physical NVMe drive by submitting
+randomized NVMe commands through the SPDK NVMe initiator. To achieve this, NVMe commands are
+sent through the <code class="language-plaintext highlighter-rouge">spdk_nvme_ctrlr_cmd_io_raw</code> interface, or in the case of admin commands
+<code class="language-plaintext highlighter-rouge">spdk_nvme_ctrlr_cmd_admin_raw</code>. The data in those commands is completely random,
+generated using the current time as a seed.</p>
+
+<p>This application saves generated commands in a JSON formatted file that allows for further
+debugging. But using random input has some drawbacks: the fuzzer can spend lots of time testing
+inputs that do not increase coverage and even after a long run, there may still be code paths left
+untested.</p>
+
+<p>For more information take a look at <code class="language-plaintext highlighter-rouge">test/app/fuzz/nvme_fuzz/README.md</code></p>
+
+<h1 id="llvm-libfuzzer">LLVM libfuzzer</h1>
+
+<p>To overcome this issue, another tool to fuzz test SPDK apps is used. LibFuzzer is a coverage guided
+fuzzer that comes from the LLVM project. Every input sent to SPDK is also tested against code
+coverage data to see if it increased. If a random input increases code coverage, it is saved and
+used as the basis for further mutation, allowing to check nodes placed deeper in the execution tree
+and to save time on testing inputs that can be rejected early.</p>
+
+<h2 id="llvm_nvme_fuzz">llvm_nvme_fuzz</h2>
+
+<p>Similar to <code class="language-plaintext highlighter-rouge">nvme_fuzz</code> this application submits NVMe commands through the SPDK NVMe initiator,
+but this time random input is provided by <code class="language-plaintext highlighter-rouge">LLVMFuzzerRunDriver</code> and used to perform the chosen test
+defined in <code class="language-plaintext highlighter-rouge">g_fuzzers</code> array.</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>sudo CC=clang-13 CXX=clang++-13 ./configure --with-fuzzer='/usr/lib/llvm-13/lib/clang/13.0.1/lib/linux/libclang_rt.fuzzer_no_main-x86_64.a'
+sudo ./test/fuzz/llvm/nvmf/run.sh 1
+</code></pre></div></div>
+
+<p>Since LibFuzzer is a part of the LLVM project, to compile this application, it’s necessary
+to set <code class="language-plaintext highlighter-rouge">CC</code> and <code class="language-plaintext highlighter-rouge">CXX</code> variables to clang and provide the path to the fuzzer library.</p>
+
+<h2 id="llvm_vfio_fuzz">llvm_vfio_fuzz</h2>
+
+<p>The LLVM fuzzer is also used to test the <code class="language-plaintext highlighter-rouge">vfio-user</code> transport. This application sends
+unexpected input to mimic misbehaving and/or malicious virtual machines using the
+<code class="language-plaintext highlighter-rouge">spdk_vfio_user_pci_bar_access</code> interface.</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>sudo CC=clang-13 CXX=clang++-13 ./configure --with-fuzzer='/usr/lib/llvm-13/lib/clang/13.0.1/lib/linux/libclang_rt.fuzzer_no_main-x86_64.a' --with-vfio-user
+sudo ./test/fuzz/llvm/vfio/run.sh 1
+</code></pre></div></div>
+
+<h1 id="running-fuzz-tests">Running fuzz tests</h1>
+
+<p>An important advantage of the LLVM fuzzer is the corpus file. Each random input generated
+by the fuzzer that explores a new path is saved, allowing resumption of testing from the point
+where it was stopped and avoiding lost progress.</p>
+
+<p>First existing data from a corpus is processed to check if it is still valid and then fuzzing
+continues from the last random input. It is also possible to provide predetermined data to recreate
+issues found by the fuzzer or to start from valid samples.</p>
+
+<p>The SPDK CI system has two jobs, <code class="language-plaintext highlighter-rouge">long-fuzz-nvmf</code> and <code class="language-plaintext highlighter-rouge">long-fuzz-vfio</code> that utilize persistent
+corpus files.</p>
+
+<p>This way every run is a continuation of the previous one, continually increasing code coverage,
+which can be observed by looking at coverage data expose in the job artifacts.</p>
+
+<p>To try it for yourself just set <code class="language-plaintext highlighter-rouge">SPDK_TEST_FUZZER</code> and all tests should start in parallel.</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>sudo SPDK_TEST_FUZZER=1 ./test/fuzz/llvm/vfio/run.sh 1
+</code></pre></div></div>
+
+<p>For more information about LLVM Fuzzer please visit
+<a href="https://llvm.org/docs/LibFuzzer.html#using-libfuzzer-as-a-library">LibFuzzer</a></p>
+
+<p>Thanks for reading!</p>
+</div>
+</article>
+</div>
+
+
+    <footer class="footer" id="nav-path">
+  <div class="footer-inner">
+    <div class="footer-copy">
+      <small>Copyright &copy; SPDK a Series of LF Projects, LLC. For web site terms of use, trademark policy, and other
+      project policies please see <a href="https://lfprojects.org">lfprojects.org</a>.</small>
+      <br><small>Built from spdk 91893349edff / site e5878500f</small>
+    </div>
+  </div>
+</footer>
+
+
+    
+  </body>
+</html>

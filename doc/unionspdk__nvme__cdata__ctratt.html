@@ -1,0 +1,753 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<meta name="generator" content="Doxygen 1.16.1">
+	<title>SPDK: spdk_nvme_cdata_ctratt Union Reference</title>
+	<script type="text/javascript" src="jquery.js"></script>
+	<script type="text/javascript" src="dynsections.js"></script>
+	<script type="text/javascript" src="clipboard.js"></script>
+	<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
+<script type="text/javascript" src="cookie.js"></script>
+	<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<script type="text/javascript">
+  $(function() { init_search(); });
+</script>
+	<link rel="icon" type="image/svg+xml" href="../assets/img/spdk.svg">
+	<link rel="icon" href="../assets/favicon.ico" sizes="32x32">
+	<link href="doxygen.css" rel="stylesheet" type="text/css">
+	<script>(function(){var k='doxygen_width',w,bw=6;if(window.chrome){w=localStorage.getItem(k);if(!w){w='350';localStorage.setItem(k,w)}}else{var m=document.cookie.match(new RegExp(k+'=(\\d+)'));w=m?m[1]:null;if(!w){w='350';document.cookie=k+'=350;SameSite=Lax;path=/'}}document.documentElement.style.setProperty('--sn-w',(parseInt(w)+bw)+'px')})()</script>
+	<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:400,700,900" type="text/css">
+	<link href="spdk.css" rel="stylesheet" type="text/css"/>
+	<link href="../assets/css/spdk.css" rel="stylesheet" type="text/css">
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<nav class="navbar">
+  <a class="navbar-brand" href="../" aria-label="SPDK">
+    <img src="../assets/img/spdk.svg" width="36" height="36" alt="Storage Performance Development Kit">
+  </a>
+  <div class="navbar-nav">
+    <a class="nav-link header-link" href="../doc/releases.html">download</a>
+    <a class="nav-link header-link" href="../doc/">documentation</a>
+    <a class="nav-link header-link" href="../doc/contributing.html">development</a>
+    <a class="nav-link header-link" href="../doc/ci_tools.html">CI status</a>
+    <a class="nav-link header-link" href="../community/">community</a>
+    <a class="nav-link header-link" href="../blog/">Blog</a>
+    <a class="nav-link header-link" href="https://github.com/orgs/spdk/projects/5">Roadmap</a>
+    <a class="nav-link header-link" href="../news/">News</a>
+  </div>
+  <div class="navbar-end">
+    <a class="nav-link header-link" href="https://github.com/spdk/spdk" aria-label="GitHub">
+      <svg xmlns="http://www.w3.org/2000/svg" class="navbar-nav-svg" aria-hidden="true"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
+    </a>
+    <a id="cn_lang_btn" href="../cn/doc/" class="nav-link header-link">中文</a>
+  </div>
+</nav>
+<script>
+(function() {
+    var p = location.pathname, best = null, bLen = 0;
+    document.querySelectorAll('.header-link[href]').forEach(function(a) {
+        var raw = a.getAttribute('href');
+        if (!raw) return;
+        try { var u = new URL(raw, location.href); } catch(e) { return; }
+        if (u.origin !== location.origin) return;
+        var h = u.pathname;
+        if (h === '/') return;
+        var ok = h.endsWith('.html') ? p === h : p.indexOf(h) === 0;
+        if (ok && h.length > bLen) { bLen = h.length; best = a; }
+    });
+    if (best) best.classList.add('active');
+})();
+</script>
+<div id="doxygen-searchbox">        <div id="MSearchBox" class="MSearchBoxInactive">
+        <span class="left">
+          <span id="MSearchSelect" class="search-icon" onmouseover="return searchBox.OnSearchSelectShow()" onmouseout="return searchBox.OnSearchSelectHide()"><span class="search-icon-dropdown"></span></span>
+          <input type="text" id="MSearchField" value="" placeholder="Search" accesskey="S"
+               onfocus="searchBox.OnSearchFieldFocus(true)" 
+               onblur="searchBox.OnSearchFieldFocus(false)" 
+               onkeyup="searchBox.OnSearchFieldChange(event)"/>
+          </span><span class="right">
+            <a id="MSearchClose" href="javascript:searchBox.CloseResultsWindow()"><div id="MSearchCloseImg" class="close-icon"></div></a>
+          </span>
+        </div>
+</div>
+<!-- Generated by Doxygen 1.16.1 -->
+<script type="text/javascript">
+var searchBox = new SearchBox("searchBox", "search/",'.html');
+</script>
+<script type="text/javascript">
+$(function() { codefold.init(); });
+</script>
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+$(function(){initNavTree('unionspdk__nvme__cdata__ctratt.html','',''); });
+</script>
+<div id="container">
+<div id="doc-content">
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">Loading...</div>
+<div class="SRStatus" id="Searching">Searching...</div>
+<div class="SRStatus" id="NoMatches">No Matches</div>
+</div>
+</div>
+</div>
+</div>
+
+<div class="header">
+  <div class="headertitle"><div class="title">spdk_nvme_cdata_ctratt Union Reference</div></div>
+</div><!--header-->
+<div class="contents">
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 id="header-pub-attribs" class="groupheader"><a id="pub-attribs" name="pub-attribs"></a>
+Data Fields</h2></td></tr>
+<tr class="memitem:ad55f21c090bf678dfd38814359fa9a4d" id="r_ad55f21c090bf678dfd38814359fa9a4d"><td class="memItemLeft">uint32_t&#160;</td><td class="memItemRight"><a class="el" href="#ad55f21c090bf678dfd38814359fa9a4d">raw</a></td></tr>
+<tr class="memitem:"><td class="memItemLeft anon"><a id="ae70e57ed9aeb8eadbe8b9afb8fc6cec5" name="ae70e57ed9aeb8eadbe8b9afb8fc6cec5"></a>
+struct {&#160;</td><td class="memItemRight"></td></tr>
+<tr class="memitem:a317ac1a18cbcd4537f5fd3ea0194aa60" id="r_a317ac1a18cbcd4537f5fd3ea0194aa60"><td class="memItemLeft anon">&#160;&#160;&#160;uint32_t&#160;&#160;&#160;<a class="el" href="#a0468684bda4781311fe4b95b93d7bcac">hids</a>: 1&#160;</td><td class="memItemRight"></td></tr>
+<tr class="memitem:a9ee2863f306ee6a85382c5450ad0fef1" id="r_a9ee2863f306ee6a85382c5450ad0fef1"><td class="memItemLeft anon">&#160;&#160;&#160;uint32_t&#160;&#160;&#160;<a class="el" href="#acef290e1c5aa00f2b5eea4289efbe8c6">nopspm</a>: 1&#160;</td><td class="memItemRight"></td></tr>
+<tr class="memitem:a4bfaeb6b900b09d9f57f248c3ce31042" id="r_a4bfaeb6b900b09d9f57f248c3ce31042"><td class="memItemLeft anon">&#160;&#160;&#160;uint32_t&#160;&#160;&#160;<a class="el" href="#aaf263fba6e7519d063b367e313625bb2">nsets</a>: 1&#160;</td><td class="memItemRight"></td></tr>
+<tr class="memitem:a532016ad434dd3ccd3c4ceb282e61eea" id="r_a532016ad434dd3ccd3c4ceb282e61eea"><td class="memItemLeft anon">&#160;&#160;&#160;uint32_t&#160;&#160;&#160;<a class="el" href="#a2c850a0affa72d12e057b34d863f5175">rrlvls</a>: 1&#160;</td><td class="memItemRight"></td></tr>
+<tr class="memitem:ab041c9581b17ffbb09a1c1775d8a9813" id="r_ab041c9581b17ffbb09a1c1775d8a9813"><td class="memItemLeft anon">&#160;&#160;&#160;uint32_t&#160;&#160;&#160;<a class="el" href="#ae931d4c229047e45dc47cfc59740b1d6">egs</a>: 1&#160;</td><td class="memItemRight"></td></tr>
+<tr class="memitem:a02937b9b3ed7cee1ffa6f9b984edc511" id="r_a02937b9b3ed7cee1ffa6f9b984edc511"><td class="memItemLeft anon">&#160;&#160;&#160;uint32_t&#160;&#160;&#160;<a class="el" href="#a232a4532f93ce526fe67fa95ab67990e">plm</a>: 1&#160;</td><td class="memItemRight"></td></tr>
+<tr class="memitem:a34e9529a2e34f21f35fdb8513c4a020e" id="r_a34e9529a2e34f21f35fdb8513c4a020e"><td class="memItemLeft anon">&#160;&#160;&#160;uint32_t&#160;&#160;&#160;<a class="el" href="#a49f055259b637d8140258058b5c0bf0d">tbkas</a>: 1&#160;</td><td class="memItemRight"></td></tr>
+<tr class="memitem:ac19b8d7249dd007b07babdb95745c5de" id="r_ac19b8d7249dd007b07babdb95745c5de"><td class="memItemLeft anon">&#160;&#160;&#160;uint32_t&#160;&#160;&#160;<a class="el" href="#aaed1875e3e4b6bc05067b794e97af5e2">ng</a>: 1&#160;</td><td class="memItemRight"></td></tr>
+<tr class="memitem:a58987f33d70968759118aced28831ecd" id="r_a58987f33d70968759118aced28831ecd"><td class="memItemLeft anon">&#160;&#160;&#160;uint32_t&#160;&#160;&#160;<a class="el" href="#a1b940c58c22ed85b601d4bcf002a115f">sqa</a>: 1&#160;</td><td class="memItemRight"></td></tr>
+<tr class="memitem:a9a1c9bdb4ec922d9c54675f93d6a6cd1" id="r_a9a1c9bdb4ec922d9c54675f93d6a6cd1"><td class="memItemLeft anon">&#160;&#160;&#160;uint32_t&#160;&#160;&#160;<a class="el" href="#a9d70f04230dec5e0888ba7e9ac1240ec">ulist</a>: 1&#160;</td><td class="memItemRight"></td></tr>
+<tr class="memitem:ab3225f88375944e4334d3a5316709952" id="r_ab3225f88375944e4334d3a5316709952"><td class="memItemLeft anon">&#160;&#160;&#160;uint32_t&#160;&#160;&#160;<a class="el" href="#abe2b5621e3cea2d18058157bf2ca4205">mds</a>: 1&#160;</td><td class="memItemRight"></td></tr>
+<tr class="memitem:a5bb5e8380d902e6ed375e931ecc8c301" id="r_a5bb5e8380d902e6ed375e931ecc8c301"><td class="memItemLeft anon">&#160;&#160;&#160;uint32_t&#160;&#160;&#160;<a class="el" href="#a2358940886ebaa2e268b7da5fec8b42e">fcm</a>: 1&#160;</td><td class="memItemRight"></td></tr>
+<tr class="memitem:a971c87e8ef6bda412e4a7d3b1b836a6d" id="r_a971c87e8ef6bda412e4a7d3b1b836a6d"><td class="memItemLeft anon">&#160;&#160;&#160;uint32_t&#160;&#160;&#160;<a class="el" href="#a60bc3eaecf0f1d22e2cb13b41fcc09b0">vcm</a>: 1&#160;</td><td class="memItemRight"></td></tr>
+<tr class="memitem:aada02eec9bdaebc88b428ed8a616868e" id="r_aada02eec9bdaebc88b428ed8a616868e"><td class="memItemLeft anon">&#160;&#160;&#160;uint32_t&#160;&#160;&#160;<a class="el" href="#a7e2fec322ba08243bdd39d20e38685c3">deg</a>: 1&#160;</td><td class="memItemRight"></td></tr>
+<tr class="memitem:af0221564682de8ea75c57a5ea49d4324" id="r_af0221564682de8ea75c57a5ea49d4324"><td class="memItemLeft anon">&#160;&#160;&#160;uint32_t&#160;&#160;&#160;<a class="el" href="#a15e19e046d8a2d36477a899f2c9fa07b">dnvms</a>: 1&#160;</td><td class="memItemRight"></td></tr>
+<tr class="memitem:adde62b51c0cfcf8af4f55439e4257039" id="r_adde62b51c0cfcf8af4f55439e4257039"><td class="memItemLeft anon">&#160;&#160;&#160;uint32_t&#160;&#160;&#160;<a class="el" href="#a31b118493ebcdac180dd19f51cf7103b">elbas</a>: 1&#160;</td><td class="memItemRight"></td></tr>
+<tr class="memitem:aeb3f130c7b428b3f34f36f969ae7049b" id="r_aeb3f130c7b428b3f34f36f969ae7049b"><td class="memItemLeft anon">&#160;&#160;&#160;uint32_t&#160;&#160;&#160;<a class="el" href="#ae4721cc4a7ee342973dfc71fd1527394">mem</a>: 1&#160;</td><td class="memItemRight"></td></tr>
+<tr class="memitem:a050b5c3c0d823af27b280d54b7437779" id="r_a050b5c3c0d823af27b280d54b7437779"><td class="memItemLeft anon">&#160;&#160;&#160;uint32_t&#160;&#160;&#160;<a class="el" href="#a8dbb5dc28baee613bdb779b7eecc1eeb">reserved1</a>: 2&#160;</td><td class="memItemRight"></td></tr>
+<tr class="memitem:ae50f75bfbb0810889f2b01a62e1ccabf" id="r_ae50f75bfbb0810889f2b01a62e1ccabf"><td class="memItemLeft anon">&#160;&#160;&#160;uint32_t&#160;&#160;&#160;<a class="el" href="#a0878e5601b9bd1c59ef88dea7514963c">fdps</a>: 1&#160;</td><td class="memItemRight"></td></tr>
+<tr class="memitem:a2ad7265f5d7073a17525953ddad49898" id="r_a2ad7265f5d7073a17525953ddad49898"><td class="memItemLeft anon">&#160;&#160;&#160;uint32_t&#160;&#160;&#160;<a class="el" href="#ac47ca5a9b03e4ae4b6162e7c9ce0ac59">reserved2</a>: 12&#160;</td><td class="memItemRight"></td></tr>
+<tr class="memitem:ae70e57ed9aeb8eadbe8b9afb8fc6cec5" id="r_ae70e57ed9aeb8eadbe8b9afb8fc6cec5"><td class="memItemLeft anonEnd">};&#160;</td><td class="memItemRight"></td></tr>
+<tr class="memitem:"><td class="memItemLeft anon"><a id="a7af190f6b2c95c3cc4daf502576f40f2" name="a7af190f6b2c95c3cc4daf502576f40f2"></a>
+struct {&#160;</td><td class="memItemRight"></td></tr>
+<tr class="memitem:a028612596cdf141a22e7c3c1cea8d287" id="r_a028612596cdf141a22e7c3c1cea8d287"><td class="memItemLeft anon">&#160;&#160;&#160;uint32_t&#160;&#160;&#160;<a class="el" href="#a45dbee90211315a2e501973179f3e76f">host_id_exhid_supported</a>: 1&#160;</td><td class="memItemRight"></td></tr>
+<tr class="memitem:a61df80433704b70577cf46b56c3d8c38" id="r_a61df80433704b70577cf46b56c3d8c38"><td class="memItemLeft anon">&#160;&#160;&#160;uint32_t&#160;&#160;&#160;<a class="el" href="#af6e13da07241b4b185e39ef1690f96a2">non_operational_power_state_permissive_mode</a>: 1&#160;</td><td class="memItemRight"></td></tr>
+<tr class="memitem:a001d09a31e3c57f8fd6fddf37be1410d" id="r_a001d09a31e3c57f8fd6fddf37be1410d"><td class="memItemLeft anon">&#160;&#160;&#160;uint32_t&#160;&#160;&#160;<a class="el" href="#a8b49cfe64883c1b10823caad96417161">nvm_sets</a>: 1&#160;</td><td class="memItemRight"></td></tr>
+<tr class="memitem:a1f9bad884bb274525a51dcece6c0b80a" id="r_a1f9bad884bb274525a51dcece6c0b80a"><td class="memItemLeft anon">&#160;&#160;&#160;uint32_t&#160;&#160;&#160;<a class="el" href="#aa61fd8ca067a276178df4b569035ef17">read_recovery_levels</a>: 1&#160;</td><td class="memItemRight"></td></tr>
+<tr class="memitem:ab66227577eed454a33c8dfedbf3371e7" id="r_ab66227577eed454a33c8dfedbf3371e7"><td class="memItemLeft anon">&#160;&#160;&#160;uint32_t&#160;&#160;&#160;<a class="el" href="#a8574972cdc8efccb9b4dcf80e8cfa784">endurance_groups</a>: 1&#160;</td><td class="memItemRight"></td></tr>
+<tr class="memitem:ae2e69f0d4d3bcf3603147c261a587d4b" id="r_ae2e69f0d4d3bcf3603147c261a587d4b"><td class="memItemLeft anon">&#160;&#160;&#160;uint32_t&#160;&#160;&#160;<a class="el" href="#a79e0eceec8d4d778a71e274eb1067d3f">predictable_latency_mode</a>: 1&#160;</td><td class="memItemRight"></td></tr>
+<tr class="memitem:a38b39df401baf6c7a91e92cf19d00411" id="r_a38b39df401baf6c7a91e92cf19d00411"><td class="memItemLeft anon">&#160;&#160;&#160;uint32_t&#160;&#160;&#160;<a class="el" href="#a49f055259b637d8140258058b5c0bf0d">tbkas</a>: 1&#160;</td><td class="memItemRight"></td></tr>
+<tr class="memitem:a2f137e9e00e67195fbf53672fdf06db8" id="r_a2f137e9e00e67195fbf53672fdf06db8"><td class="memItemLeft anon">&#160;&#160;&#160;uint32_t&#160;&#160;&#160;<a class="el" href="#ae5f9aebd0e4a245527a79a287e595b7b">namespace_granularity</a>: 1&#160;</td><td class="memItemRight"></td></tr>
+<tr class="memitem:a23fbc5075d3881e32b740bcda747cf63" id="r_a23fbc5075d3881e32b740bcda747cf63"><td class="memItemLeft anon">&#160;&#160;&#160;uint32_t&#160;&#160;&#160;<a class="el" href="#a2a4c462486d28d653fb187ce947f3704">sq_associations</a>: 1&#160;</td><td class="memItemRight"></td></tr>
+<tr class="memitem:ab1512a10ed7163911d89c55f83683ad5" id="r_ab1512a10ed7163911d89c55f83683ad5"><td class="memItemLeft anon">&#160;&#160;&#160;uint32_t&#160;&#160;&#160;<a class="el" href="#a972c631b4a941460c33fa6f1f682b9b2">uuid_list</a>: 1&#160;</td><td class="memItemRight"></td></tr>
+<tr class="memitem:a0f1cd92fd63621a106ae26385fe67ec9" id="r_a0f1cd92fd63621a106ae26385fe67ec9"><td class="memItemLeft anon">&#160;&#160;&#160;uint32_t&#160;&#160;&#160;<a class="el" href="#abe2b5621e3cea2d18058157bf2ca4205">mds</a>: 1&#160;</td><td class="memItemRight"></td></tr>
+<tr class="memitem:a43abcffb77413505b898e72d0cea241f" id="r_a43abcffb77413505b898e72d0cea241f"><td class="memItemLeft anon">&#160;&#160;&#160;uint32_t&#160;&#160;&#160;<a class="el" href="#a71be866e3845c96643f0ebf606cea375">fixed_capacity_management</a>: 1&#160;</td><td class="memItemRight"></td></tr>
+<tr class="memitem:a5ab14aa9eb4c8d895c635d281ae77fe9" id="r_a5ab14aa9eb4c8d895c635d281ae77fe9"><td class="memItemLeft anon">&#160;&#160;&#160;uint32_t&#160;&#160;&#160;<a class="el" href="#afec837f47b088cf7aebc76b26d3722dd">variable_capacity_management</a>: 1&#160;</td><td class="memItemRight"></td></tr>
+<tr class="memitem:aedef0f6fc9be49f4017de66ce902b00f" id="r_aedef0f6fc9be49f4017de66ce902b00f"><td class="memItemLeft anon">&#160;&#160;&#160;uint32_t&#160;&#160;&#160;<a class="el" href="#aedaf0925c052fdaea3d2db05b9a846a2">delete_endurance_group</a>: 1&#160;</td><td class="memItemRight"></td></tr>
+<tr class="memitem:a6f8eedb4bc6bd7b626ccc014cae1f60c" id="r_a6f8eedb4bc6bd7b626ccc014cae1f60c"><td class="memItemLeft anon">&#160;&#160;&#160;uint32_t&#160;&#160;&#160;<a class="el" href="#a5a60b43ce41dc6ce6a87fd6a9a25aa42">delete_nvm_set</a>: 1&#160;</td><td class="memItemRight"></td></tr>
+<tr class="memitem:adb634a8cb03409f24c3f11adcaf1bacf" id="r_adb634a8cb03409f24c3f11adcaf1bacf"><td class="memItemLeft anon">&#160;&#160;&#160;uint32_t&#160;&#160;&#160;<a class="el" href="#a31b118493ebcdac180dd19f51cf7103b">elbas</a>: 1&#160;</td><td class="memItemRight"></td></tr>
+<tr class="memitem:a5bfbf47f53c8aee9dc319f3a4a1acc8c" id="r_a5bfbf47f53c8aee9dc319f3a4a1acc8c"><td class="memItemLeft anon">&#160;&#160;&#160;uint32_t&#160;&#160;&#160;<a class="el" href="#ae4721cc4a7ee342973dfc71fd1527394">mem</a>: 1&#160;</td><td class="memItemRight"></td></tr>
+<tr class="memitem:a04a12a583f4e042a14ab4f31d46f08f6" id="r_a04a12a583f4e042a14ab4f31d46f08f6"><td class="memItemLeft anon">&#160;&#160;&#160;uint32_t&#160;&#160;&#160;<a class="el" href="#a8dbb5dc28baee613bdb779b7eecc1eeb">reserved1</a>: 2&#160;</td><td class="memItemRight"></td></tr>
+<tr class="memitem:a3a77f85cf5659403adfdbcbb6e4ccc43" id="r_a3a77f85cf5659403adfdbcbb6e4ccc43"><td class="memItemLeft anon">&#160;&#160;&#160;uint32_t&#160;&#160;&#160;<a class="el" href="#a0878e5601b9bd1c59ef88dea7514963c">fdps</a>: 1&#160;</td><td class="memItemRight"></td></tr>
+<tr class="memitem:a4de74b31be473b32db6630c98780ce9c" id="r_a4de74b31be473b32db6630c98780ce9c"><td class="memItemLeft anon">&#160;&#160;&#160;uint32_t&#160;&#160;&#160;<a class="el" href="#ac47ca5a9b03e4ae4b6162e7c9ce0ac59">reserved2</a>: 12&#160;</td><td class="memItemRight"></td></tr>
+<tr class="memitem:a7af190f6b2c95c3cc4daf502576f40f2" id="r_a7af190f6b2c95c3cc4daf502576f40f2"><td class="memItemLeft anonEnd">}&#160;</td><td class="memItemRight"><b>bits</b></td></tr>
+<tr class="memdesc:a7af190f6b2c95c3cc4daf502576f40f2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Old bit names are deprecated and will be removed in 26.09 release. <br /></td></tr>
+</table>
+<a name="details" id="details"></a><h2 id="header-details" class="groupheader">Detailed Description</h2>
+<div class="textblock">
+<p class="definition">Definition at line <a class="el" href="nvme__spec_8h_source.html#l02392">2392</a> of file <a class="el" href="nvme__spec_8h_source.html">nvme_spec.h</a>.</p>
+</div><a name="doc-variable-members" id="doc-variable-members"></a><h2 id="header-doc-variable-members" class="groupheader">Field Documentation</h2>
+<a id="a7e2fec322ba08243bdd39d20e38685c3" name="a7e2fec322ba08243bdd39d20e38685c3"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7e2fec322ba08243bdd39d20e38685c3">&#9670;&#160;</a></span>deg</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">uint32_t spdk_nvme_cdata_ctratt::deg</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="nvme__spec_8h_source.html#l02435">2435</a> of file <a class="el" href="nvme__spec_8h_source.html">nvme_spec.h</a>.</p>
+
+</div>
+</div>
+<a id="aedaf0925c052fdaea3d2db05b9a846a2" name="aedaf0925c052fdaea3d2db05b9a846a2"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aedaf0925c052fdaea3d2db05b9a846a2">&#9670;&#160;</a></span>delete_endurance_group</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">uint32_t spdk_nvme_cdata_ctratt::delete_endurance_group</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="nvme__spec_8h_source.html#l02469">2469</a> of file <a class="el" href="nvme__spec_8h_source.html">nvme_spec.h</a>.</p>
+
+</div>
+</div>
+<a id="a5a60b43ce41dc6ce6a87fd6a9a25aa42" name="a5a60b43ce41dc6ce6a87fd6a9a25aa42"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5a60b43ce41dc6ce6a87fd6a9a25aa42">&#9670;&#160;</a></span>delete_nvm_set</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">uint32_t spdk_nvme_cdata_ctratt::delete_nvm_set</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="nvme__spec_8h_source.html#l02470">2470</a> of file <a class="el" href="nvme__spec_8h_source.html">nvme_spec.h</a>.</p>
+
+</div>
+</div>
+<a id="a15e19e046d8a2d36477a899f2c9fa07b" name="a15e19e046d8a2d36477a899f2c9fa07b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a15e19e046d8a2d36477a899f2c9fa07b">&#9670;&#160;</a></span>dnvms</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">uint32_t spdk_nvme_cdata_ctratt::dnvms</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="nvme__spec_8h_source.html#l02438">2438</a> of file <a class="el" href="nvme__spec_8h_source.html">nvme_spec.h</a>.</p>
+
+</div>
+</div>
+<a id="ae931d4c229047e45dc47cfc59740b1d6" name="ae931d4c229047e45dc47cfc59740b1d6"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae931d4c229047e45dc47cfc59740b1d6">&#9670;&#160;</a></span>egs</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">uint32_t spdk_nvme_cdata_ctratt::egs</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="nvme__spec_8h_source.html#l02408">2408</a> of file <a class="el" href="nvme__spec_8h_source.html">nvme_spec.h</a>.</p>
+
+</div>
+</div>
+<a id="a31b118493ebcdac180dd19f51cf7103b" name="a31b118493ebcdac180dd19f51cf7103b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a31b118493ebcdac180dd19f51cf7103b">&#9670;&#160;</a></span>elbas</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">uint32_t spdk_nvme_cdata_ctratt::elbas</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="nvme__spec_8h_source.html#l02441">2441</a> of file <a class="el" href="nvme__spec_8h_source.html">nvme_spec.h</a>.</p>
+
+</div>
+</div>
+<a id="a8574972cdc8efccb9b4dcf80e8cfa784" name="a8574972cdc8efccb9b4dcf80e8cfa784"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8574972cdc8efccb9b4dcf80e8cfa784">&#9670;&#160;</a></span>endurance_groups</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">uint32_t spdk_nvme_cdata_ctratt::endurance_groups</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="nvme__spec_8h_source.html#l02460">2460</a> of file <a class="el" href="nvme__spec_8h_source.html">nvme_spec.h</a>.</p>
+
+</div>
+</div>
+<a id="a2358940886ebaa2e268b7da5fec8b42e" name="a2358940886ebaa2e268b7da5fec8b42e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2358940886ebaa2e268b7da5fec8b42e">&#9670;&#160;</a></span>fcm</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">uint32_t spdk_nvme_cdata_ctratt::fcm</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="nvme__spec_8h_source.html#l02429">2429</a> of file <a class="el" href="nvme__spec_8h_source.html">nvme_spec.h</a>.</p>
+
+</div>
+</div>
+<a id="a0878e5601b9bd1c59ef88dea7514963c" name="a0878e5601b9bd1c59ef88dea7514963c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0878e5601b9bd1c59ef88dea7514963c">&#9670;&#160;</a></span>fdps</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">uint32_t spdk_nvme_cdata_ctratt::fdps</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="nvme__spec_8h_source.html#l02449">2449</a> of file <a class="el" href="nvme__spec_8h_source.html">nvme_spec.h</a>.</p>
+
+</div>
+</div>
+<a id="a71be866e3845c96643f0ebf606cea375" name="a71be866e3845c96643f0ebf606cea375"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a71be866e3845c96643f0ebf606cea375">&#9670;&#160;</a></span>fixed_capacity_management</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">uint32_t spdk_nvme_cdata_ctratt::fixed_capacity_management</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="nvme__spec_8h_source.html#l02467">2467</a> of file <a class="el" href="nvme__spec_8h_source.html">nvme_spec.h</a>.</p>
+
+</div>
+</div>
+<a id="a0468684bda4781311fe4b95b93d7bcac" name="a0468684bda4781311fe4b95b93d7bcac"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0468684bda4781311fe4b95b93d7bcac">&#9670;&#160;</a></span>hids</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">uint32_t spdk_nvme_cdata_ctratt::hids</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="nvme__spec_8h_source.html#l02396">2396</a> of file <a class="el" href="nvme__spec_8h_source.html">nvme_spec.h</a>.</p>
+
+</div>
+</div>
+<a id="a45dbee90211315a2e501973179f3e76f" name="a45dbee90211315a2e501973179f3e76f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a45dbee90211315a2e501973179f3e76f">&#9670;&#160;</a></span>host_id_exhid_supported</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">uint32_t spdk_nvme_cdata_ctratt::host_id_exhid_supported</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="nvme__spec_8h_source.html#l02456">2456</a> of file <a class="el" href="nvme__spec_8h_source.html">nvme_spec.h</a>.</p>
+
+</div>
+</div>
+<a id="abe2b5621e3cea2d18058157bf2ca4205" name="abe2b5621e3cea2d18058157bf2ca4205"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#abe2b5621e3cea2d18058157bf2ca4205">&#9670;&#160;</a></span>mds</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">uint32_t spdk_nvme_cdata_ctratt::mds</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="nvme__spec_8h_source.html#l02426">2426</a> of file <a class="el" href="nvme__spec_8h_source.html">nvme_spec.h</a>.</p>
+
+</div>
+</div>
+<a id="ae4721cc4a7ee342973dfc71fd1527394" name="ae4721cc4a7ee342973dfc71fd1527394"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae4721cc4a7ee342973dfc71fd1527394">&#9670;&#160;</a></span>mem</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">uint32_t spdk_nvme_cdata_ctratt::mem</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="nvme__spec_8h_source.html#l02444">2444</a> of file <a class="el" href="nvme__spec_8h_source.html">nvme_spec.h</a>.</p>
+
+</div>
+</div>
+<a id="ae5f9aebd0e4a245527a79a287e595b7b" name="ae5f9aebd0e4a245527a79a287e595b7b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae5f9aebd0e4a245527a79a287e595b7b">&#9670;&#160;</a></span>namespace_granularity</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">uint32_t spdk_nvme_cdata_ctratt::namespace_granularity</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="nvme__spec_8h_source.html#l02463">2463</a> of file <a class="el" href="nvme__spec_8h_source.html">nvme_spec.h</a>.</p>
+
+</div>
+</div>
+<a id="aaed1875e3e4b6bc05067b794e97af5e2" name="aaed1875e3e4b6bc05067b794e97af5e2"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aaed1875e3e4b6bc05067b794e97af5e2">&#9670;&#160;</a></span>ng</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">uint32_t spdk_nvme_cdata_ctratt::ng</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="nvme__spec_8h_source.html#l02417">2417</a> of file <a class="el" href="nvme__spec_8h_source.html">nvme_spec.h</a>.</p>
+
+</div>
+</div>
+<a id="af6e13da07241b4b185e39ef1690f96a2" name="af6e13da07241b4b185e39ef1690f96a2"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af6e13da07241b4b185e39ef1690f96a2">&#9670;&#160;</a></span>non_operational_power_state_permissive_mode</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">uint32_t spdk_nvme_cdata_ctratt::non_operational_power_state_permissive_mode</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="nvme__spec_8h_source.html#l02457">2457</a> of file <a class="el" href="nvme__spec_8h_source.html">nvme_spec.h</a>.</p>
+
+</div>
+</div>
+<a id="acef290e1c5aa00f2b5eea4289efbe8c6" name="acef290e1c5aa00f2b5eea4289efbe8c6"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#acef290e1c5aa00f2b5eea4289efbe8c6">&#9670;&#160;</a></span>nopspm</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">uint32_t spdk_nvme_cdata_ctratt::nopspm</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="nvme__spec_8h_source.html#l02399">2399</a> of file <a class="el" href="nvme__spec_8h_source.html">nvme_spec.h</a>.</p>
+
+</div>
+</div>
+<a id="aaf263fba6e7519d063b367e313625bb2" name="aaf263fba6e7519d063b367e313625bb2"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aaf263fba6e7519d063b367e313625bb2">&#9670;&#160;</a></span>nsets</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">uint32_t spdk_nvme_cdata_ctratt::nsets</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="nvme__spec_8h_source.html#l02402">2402</a> of file <a class="el" href="nvme__spec_8h_source.html">nvme_spec.h</a>.</p>
+
+</div>
+</div>
+<a id="a8b49cfe64883c1b10823caad96417161" name="a8b49cfe64883c1b10823caad96417161"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8b49cfe64883c1b10823caad96417161">&#9670;&#160;</a></span>nvm_sets</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">uint32_t spdk_nvme_cdata_ctratt::nvm_sets</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="nvme__spec_8h_source.html#l02458">2458</a> of file <a class="el" href="nvme__spec_8h_source.html">nvme_spec.h</a>.</p>
+
+</div>
+</div>
+<a id="a232a4532f93ce526fe67fa95ab67990e" name="a232a4532f93ce526fe67fa95ab67990e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a232a4532f93ce526fe67fa95ab67990e">&#9670;&#160;</a></span>plm</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">uint32_t spdk_nvme_cdata_ctratt::plm</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="nvme__spec_8h_source.html#l02411">2411</a> of file <a class="el" href="nvme__spec_8h_source.html">nvme_spec.h</a>.</p>
+
+</div>
+</div>
+<a id="a79e0eceec8d4d778a71e274eb1067d3f" name="a79e0eceec8d4d778a71e274eb1067d3f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a79e0eceec8d4d778a71e274eb1067d3f">&#9670;&#160;</a></span>predictable_latency_mode</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">uint32_t spdk_nvme_cdata_ctratt::predictable_latency_mode</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="nvme__spec_8h_source.html#l02461">2461</a> of file <a class="el" href="nvme__spec_8h_source.html">nvme_spec.h</a>.</p>
+
+</div>
+</div>
+<a id="ad55f21c090bf678dfd38814359fa9a4d" name="ad55f21c090bf678dfd38814359fa9a4d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad55f21c090bf678dfd38814359fa9a4d">&#9670;&#160;</a></span>raw</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">uint32_t spdk_nvme_cdata_ctratt::raw</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="nvme__spec_8h_source.html#l02393">2393</a> of file <a class="el" href="nvme__spec_8h_source.html">nvme_spec.h</a>.</p>
+
+</div>
+</div>
+<a id="aa61fd8ca067a276178df4b569035ef17" name="aa61fd8ca067a276178df4b569035ef17"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa61fd8ca067a276178df4b569035ef17">&#9670;&#160;</a></span>read_recovery_levels</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">uint32_t spdk_nvme_cdata_ctratt::read_recovery_levels</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="nvme__spec_8h_source.html#l02459">2459</a> of file <a class="el" href="nvme__spec_8h_source.html">nvme_spec.h</a>.</p>
+
+</div>
+</div>
+<a id="a8dbb5dc28baee613bdb779b7eecc1eeb" name="a8dbb5dc28baee613bdb779b7eecc1eeb"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8dbb5dc28baee613bdb779b7eecc1eeb">&#9670;&#160;</a></span>reserved1</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">uint32_t spdk_nvme_cdata_ctratt::reserved1</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="nvme__spec_8h_source.html#l02446">2446</a> of file <a class="el" href="nvme__spec_8h_source.html">nvme_spec.h</a>.</p>
+
+</div>
+</div>
+<a id="ac47ca5a9b03e4ae4b6162e7c9ce0ac59" name="ac47ca5a9b03e4ae4b6162e7c9ce0ac59"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac47ca5a9b03e4ae4b6162e7c9ce0ac59">&#9670;&#160;</a></span>reserved2</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">uint32_t spdk_nvme_cdata_ctratt::reserved2</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="nvme__spec_8h_source.html#l02451">2451</a> of file <a class="el" href="nvme__spec_8h_source.html">nvme_spec.h</a>.</p>
+
+</div>
+</div>
+<a id="a2c850a0affa72d12e057b34d863f5175" name="a2c850a0affa72d12e057b34d863f5175"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2c850a0affa72d12e057b34d863f5175">&#9670;&#160;</a></span>rrlvls</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">uint32_t spdk_nvme_cdata_ctratt::rrlvls</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="nvme__spec_8h_source.html#l02405">2405</a> of file <a class="el" href="nvme__spec_8h_source.html">nvme_spec.h</a>.</p>
+
+</div>
+</div>
+<a id="a2a4c462486d28d653fb187ce947f3704" name="a2a4c462486d28d653fb187ce947f3704"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2a4c462486d28d653fb187ce947f3704">&#9670;&#160;</a></span>sq_associations</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">uint32_t spdk_nvme_cdata_ctratt::sq_associations</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="nvme__spec_8h_source.html#l02464">2464</a> of file <a class="el" href="nvme__spec_8h_source.html">nvme_spec.h</a>.</p>
+
+</div>
+</div>
+<a id="a1b940c58c22ed85b601d4bcf002a115f" name="a1b940c58c22ed85b601d4bcf002a115f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1b940c58c22ed85b601d4bcf002a115f">&#9670;&#160;</a></span>sqa</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">uint32_t spdk_nvme_cdata_ctratt::sqa</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="nvme__spec_8h_source.html#l02420">2420</a> of file <a class="el" href="nvme__spec_8h_source.html">nvme_spec.h</a>.</p>
+
+</div>
+</div>
+<a id="a49f055259b637d8140258058b5c0bf0d" name="a49f055259b637d8140258058b5c0bf0d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a49f055259b637d8140258058b5c0bf0d">&#9670;&#160;</a></span>tbkas</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">uint32_t spdk_nvme_cdata_ctratt::tbkas</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="nvme__spec_8h_source.html#l02414">2414</a> of file <a class="el" href="nvme__spec_8h_source.html">nvme_spec.h</a>.</p>
+
+</div>
+</div>
+<a id="a9d70f04230dec5e0888ba7e9ac1240ec" name="a9d70f04230dec5e0888ba7e9ac1240ec"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9d70f04230dec5e0888ba7e9ac1240ec">&#9670;&#160;</a></span>ulist</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">uint32_t spdk_nvme_cdata_ctratt::ulist</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="nvme__spec_8h_source.html#l02423">2423</a> of file <a class="el" href="nvme__spec_8h_source.html">nvme_spec.h</a>.</p>
+
+</div>
+</div>
+<a id="a972c631b4a941460c33fa6f1f682b9b2" name="a972c631b4a941460c33fa6f1f682b9b2"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a972c631b4a941460c33fa6f1f682b9b2">&#9670;&#160;</a></span>uuid_list</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">uint32_t spdk_nvme_cdata_ctratt::uuid_list</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="nvme__spec_8h_source.html#l02465">2465</a> of file <a class="el" href="nvme__spec_8h_source.html">nvme_spec.h</a>.</p>
+
+</div>
+</div>
+<a id="afec837f47b088cf7aebc76b26d3722dd" name="afec837f47b088cf7aebc76b26d3722dd"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#afec837f47b088cf7aebc76b26d3722dd">&#9670;&#160;</a></span>variable_capacity_management</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">uint32_t spdk_nvme_cdata_ctratt::variable_capacity_management</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="nvme__spec_8h_source.html#l02468">2468</a> of file <a class="el" href="nvme__spec_8h_source.html">nvme_spec.h</a>.</p>
+
+</div>
+</div>
+<a id="a60bc3eaecf0f1d22e2cb13b41fcc09b0" name="a60bc3eaecf0f1d22e2cb13b41fcc09b0"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a60bc3eaecf0f1d22e2cb13b41fcc09b0">&#9670;&#160;</a></span>vcm</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">uint32_t spdk_nvme_cdata_ctratt::vcm</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="nvme__spec_8h_source.html#l02432">2432</a> of file <a class="el" href="nvme__spec_8h_source.html">nvme_spec.h</a>.</p>
+
+</div>
+</div>
+<hr/>The documentation for this union was generated from the following file:<ul>
+<li><a class="el" href="nvme__spec_8h_source.html">nvme_spec.h</a></li>
+</ul>
+</div><!-- contents -->
+</div><!-- doc-content -->
+<div id="page-nav" class="page-nav-panel">
+<div id="page-nav-resize-handle"></div>
+<div id="page-nav-tree">
+<div id="page-nav-contents">
+</div><!-- page-nav-contents -->
+</div><!-- page-nav-tree -->
+</div><!-- page-nav -->
+</div><!-- container -->
+<footer class="footer" id="nav-path">
+  <div class="footer-inner">
+    <div class="footer-copy">
+      <small>Copyright &copy; SPDK a Series of LF Projects, LLC. For web site terms of use, trademark policy, and other
+      project policies please see <a href="https://lfprojects.org">lfprojects.org</a>.</small>
+      <br><small>Built from spdk 91893349edff / site e5878500f</small>
+    </div>
+  </div>
+</footer>
+<script type="text/javascript" src="page_outline.js"></script>
+<script type="text/javascript" src="spdk_nav.js"></script>
+</body>
+</html>

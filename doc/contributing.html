@@ -1,0 +1,431 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<meta name="generator" content="Doxygen 1.16.1">
+	<title>SPDK: Contributing Guide</title>
+	<script type="text/javascript" src="jquery.js"></script>
+	<script type="text/javascript" src="dynsections.js"></script>
+	<script type="text/javascript" src="clipboard.js"></script>
+	<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
+<script type="text/javascript" src="cookie.js"></script>
+	<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<script type="text/javascript">
+  $(function() { init_search(); });
+</script>
+	<link rel="icon" type="image/svg+xml" href="../assets/img/spdk.svg">
+	<link rel="icon" href="../assets/favicon.ico" sizes="32x32">
+	<link href="doxygen.css" rel="stylesheet" type="text/css">
+	<script>(function(){var k='doxygen_width',w,bw=6;if(window.chrome){w=localStorage.getItem(k);if(!w){w='350';localStorage.setItem(k,w)}}else{var m=document.cookie.match(new RegExp(k+'=(\\d+)'));w=m?m[1]:null;if(!w){w='350';document.cookie=k+'=350;SameSite=Lax;path=/'}}document.documentElement.style.setProperty('--sn-w',(parseInt(w)+bw)+'px')})()</script>
+	<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:400,700,900" type="text/css">
+	<link href="spdk.css" rel="stylesheet" type="text/css"/>
+	<link href="../assets/css/spdk.css" rel="stylesheet" type="text/css">
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<nav class="navbar">
+  <a class="navbar-brand" href="../" aria-label="SPDK">
+    <img src="../assets/img/spdk.svg" width="36" height="36" alt="Storage Performance Development Kit">
+  </a>
+  <div class="navbar-nav">
+    <a class="nav-link header-link" href="../doc/releases.html">download</a>
+    <a class="nav-link header-link" href="../doc/">documentation</a>
+    <a class="nav-link header-link" href="../doc/contributing.html">development</a>
+    <a class="nav-link header-link" href="../doc/ci_tools.html">CI status</a>
+    <a class="nav-link header-link" href="../community/">community</a>
+    <a class="nav-link header-link" href="../blog/">Blog</a>
+    <a class="nav-link header-link" href="https://github.com/orgs/spdk/projects/5">Roadmap</a>
+    <a class="nav-link header-link" href="../news/">News</a>
+  </div>
+  <div class="navbar-end">
+    <a class="nav-link header-link" href="https://github.com/spdk/spdk" aria-label="GitHub">
+      <svg xmlns="http://www.w3.org/2000/svg" class="navbar-nav-svg" aria-hidden="true"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
+    </a>
+    <a id="cn_lang_btn" href="../cn/doc/" class="nav-link header-link">中文</a>
+  </div>
+</nav>
+<script>
+(function() {
+    var p = location.pathname, best = null, bLen = 0;
+    document.querySelectorAll('.header-link[href]').forEach(function(a) {
+        var raw = a.getAttribute('href');
+        if (!raw) return;
+        try { var u = new URL(raw, location.href); } catch(e) { return; }
+        if (u.origin !== location.origin) return;
+        var h = u.pathname;
+        if (h === '/') return;
+        var ok = h.endsWith('.html') ? p === h : p.indexOf(h) === 0;
+        if (ok && h.length > bLen) { bLen = h.length; best = a; }
+    });
+    if (best) best.classList.add('active');
+})();
+</script>
+<div id="doxygen-searchbox">        <div id="MSearchBox" class="MSearchBoxInactive">
+        <span class="left">
+          <span id="MSearchSelect" class="search-icon" onmouseover="return searchBox.OnSearchSelectShow()" onmouseout="return searchBox.OnSearchSelectHide()"><span class="search-icon-dropdown"></span></span>
+          <input type="text" id="MSearchField" value="" placeholder="Search" accesskey="S"
+               onfocus="searchBox.OnSearchFieldFocus(true)" 
+               onblur="searchBox.OnSearchFieldFocus(false)" 
+               onkeyup="searchBox.OnSearchFieldChange(event)"/>
+          </span><span class="right">
+            <a id="MSearchClose" href="javascript:searchBox.CloseResultsWindow()"><div id="MSearchCloseImg" class="close-icon"></div></a>
+          </span>
+        </div>
+</div>
+<!-- Generated by Doxygen 1.16.1 -->
+<script type="text/javascript">
+var searchBox = new SearchBox("searchBox", "search/",'.html');
+</script>
+<script type="text/javascript">
+$(function() { codefold.init(); });
+</script>
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+$(function(){initNavTree('contributing.html','',''); });
+</script>
+<div id="container">
+<div id="doc-content">
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">Loading...</div>
+<div class="SRStatus" id="Searching">Searching...</div>
+<div class="SRStatus" id="NoMatches">No Matches</div>
+</div>
+</div>
+</div>
+</div>
+
+<div><div class="header">
+  <div class="headertitle"><div class="title">Contributing Guide </div></div>
+</div><!--header-->
+<div class="contents">
+<div class="textblock"><p><a class="anchor" id="md_contributing_2contributing"></a></p>
+<p><a class="anchor" id="license"></a> </p>
+<h1 class="doxsection"><a class="anchor" id="autotoc_md15"></a>
+License</h1>
+<p>SPDK is primarily licensed using a <a href="https://opensource.org/licenses/BSD-3-Clause">BSD 3-clause license</a>. Some optional or utility code, such as kernel modules, is licensed using a dual BSD/GPLv2 license. All submitted code must carry the appropriate license.</p>
+<p><a class="anchor" id="source"></a> </p>
+<h1 class="doxsection"><a class="anchor" id="autotoc_md16"></a>
+Source Code</h1>
+<p>SPDK's source code is hosted by <a href="https://github.com/spdk/spdk">GitHub</a> and patch submission and review is done through <a href="https://review.spdk.io/q/projects:spdk+status:open">Gerrit</a>.</p>
+<p>Instructions for building the libraries and examples are located in the <a href="https://github.com/spdk/spdk/blob/master/README.md">README</a>.</p>
+<p><a class="anchor" id="contributing-patches"></a> </p>
+<h1 class="doxsection"><a class="anchor" id="autotoc_md17"></a>
+Contributing</h1>
+<p>Everyone is welcome to contribute! Design pre-work and general discussion occurs via one of the communications channels described on the <a href="https://www.spdk.io/community/">Community</a> page.</p>
+<p>Patch submission is done through Gerrit where patches are voted on by everyone in the community. A patch usually requires a minimum of two +2 votes before it will be merged. +2 votes are reserved for the <a class="el" href="#core" title="core">core maintainers</a> who can be contacted in Slack.</p>
+<p><a class="anchor" id="guidelines"></a> </p>
+<h1 class="doxsection"><a class="anchor" id="autotoc_md18"></a>
+Development Guidelines</h1>
+<p>These general guidelines help ensure that the SPDK development community remains fun, fair, and efficient.</p>
+<ul>
+<li>Developers should strive to be active on Gerrit in order to stay in the loop on upcoming changes.</li>
+<li>Coding and submission guidelines (i.e. being clear and concise in the commit message) should always be respected.</li>
+<li>Developers do not need to add specific reviewers to patches. Instead, the maintainers and everyone else in the community should always be on the lookout for incoming patches. If a developer would like to be added to a review, or would like a specific person added to their patch, they should feel free to do so.</li>
+<li>All comments on code reviews must be addressed prior to the patch being merged. Comments can be addressed by making code changes or by replying to the comment.</li>
+<li>There's no minimum or maximum time for the life cycle of a patch. A patch may be accepted in hours or possibly weeks or longer. How efficiently our community operates is a direct result of how well our community developers interact with each other.</li>
+<li>Patch authors, including core maintainers, may not vote +1 or +2 on their own patches. They may vote -1 on their own patches to signify that the patch should not be committed.</li>
+</ul>
+<p><a class="anchor" id="Gerrit"></a> </p>
+<h1 class="doxsection"><a class="anchor" id="autotoc_md19"></a>
+Gerrit Configuration</h1>
+<p>Log into <a href="https://review.spdk.io">Gerrit</a> using your GitHub account credentials. Once logged in, in the top right corner click your user name and select 'Settings'. You should set up the following:</p>
+<ul>
+<li><span class="tt">Profile</span>: Verify that the information is correct here. This includes registering the e-mail address in your profile. The e-mail address must be registered before generating an HTTP password.</li>
+<li><span class="tt">HTTP Password</span>: Generate a password. You'll use this password when prompted by git (not your GitHub password!).</li>
+<li><p class="startli"><span class="tt">Preferences</span>:</p><ul>
+<li>Set Maximum Page Size to 100 rows per page. Otherwise you'll be hitting 'next' a lot.</li>
+<li>We highly recommend you set your Email Notifications to None. Gerrit can send a lot of emails!</li>
+<li>In the <span class="tt">My Menu</span> section, add the following entry:</li>
+</ul>
+<div class="fragment"><div class="line">Name: SPDK Open Reviews</div>
+<div class="line">URL: #/dashboard/?Outgoing=projects:spdk+o:self+status:open&amp;Needs%20Review=projects:spdk+r:self+-o:self+status:open&amp;Open=projects:spdk+status:open+-r:self+-o:self</div>
+</div><!-- fragment --><p> You can probably also delete the other entries in there. This will add a link at the top of the page under "My" that will show you a nice dashboard of all of the SPDK review activity.</p>
+</li>
+</ul>
+<p>Now that you're configured, you can clone the Gerrit repository locally:</p>
+<div class="fragment"><div class="line">git clone https://review.spdk.io/spdk/spdk</div>
+<div class="line">cd spdk</div>
+<div class="line">git submodule update --init</div>
+</div><!-- fragment --><p>Or if you already cloned directly from GitHub, you can change your repository to point at Gerrit by doing:</p>
+<div class="fragment"><div class="line">git remote set-url origin https://review.spdk.io/spdk/spdk</div>
+</div><!-- fragment --><p>When you later push a patch, you'll be prompted for a password. That password is the one generated in the <span class="tt">HTTP Password</span> section of the Gerrit settings, not your GitHub password. To make it easy, turn on the <a href="https://git-scm.com/docs/git-credential-store">git credential helper</a> to store your password for you. You can enable it for the SPDK repository with:</p>
+<div class="fragment"><div class="line">git config credential.helper store</div>
+</div><!-- fragment --><p>Finally, you'll need to install the Gerrit commit-msg hook. This inserts a unique change ID each time you commit and is <b>required</b> for Gerrit to work.</p>
+<div class="fragment"><div class="line">curl -Lo .git/hooks/commit-msg https://review.spdk.io/tools/hooks/commit-msg</div>
+<div class="line">chmod +x .git/hooks/commit-msg</div>
+</div><!-- fragment --><p>Now open .git/config in a text editor and add these lines: (this will make pushing reviews easier)</p>
+<div class="fragment"><div class="line">[remote &quot;review&quot;]</div>
+<div class="line">  url = https://review.spdk.io/spdk/spdk</div>
+<div class="line">  push = HEAD:refs/for/master</div>
+</div><!-- fragment --><p>You may also enable the git pre-commit and pre-push hooks to automatically check formatting and run the unit tests:</p>
+<div class="fragment"><div class="line">cp .githooks/* .git/hooks/</div>
+</div><!-- fragment --><p>Now you should be all set!</p>
+<p><a class="anchor" id="patch"></a> </p>
+<h1 class="doxsection"><a class="anchor" id="autotoc_md20"></a>
+Submitting a Patch</h1>
+<p>Submission Requirements:</p>
+<ul>
+<li>All commits must be signed off by the developer which indicates that you agree to the <a href="http://developercertificate.org/">Developer Certificate of Origin</a>. This is done using the <span class="tt">-s</span> or <span class="tt">--signoff</span> option when committing your changes.</li>
+<li>All commits must conform to the SPDK style guide. The style guide is defined by the script located in <span class="tt">scripts/check_format.sh</span>, which will programmatically fix coding style issues using the tools <span class="tt">astyle</span> and <span class="tt">pep8</span>. Be sure to run this script prior to submitting a patch.</li>
+<li>All new code must include accompanying unit test code.</li>
+<li>Commits should be rebased and all unit tests should be passing prior to submission.</li>
+<li>Squash commits prior to submitting a review such that each commit has a clear purpose that takes an incremental step toward the goal of the series of commits.</li>
+<li>Provide a clear commit message describing the purpose of the commit. Good commit messages provide a very brief summary of what the commit does in the title followed by a short paragraph providing context for the change. For example, what problem is being solved, how was it discovered and how this patch solves the problem. See <a class="el" href="#integration" title="integration">Continuous Integration</a> for the special case of a Request For Comments (RFC) type of patch.</li>
+<li>The first line of your commit message should be in the form "component: short description of patch". There should be a blank line between this first line and the rest of the commit message. For example: "nvme: add support for NVME_IOCTL_IO_CMD for cuse"</li>
+<li>If your commit fixes a GitHub issue, please include "Fixes #issue number" on a separate line so that GitHub can link the two.</li>
+<li>If your commit adds a public API function, make sure that function begins with the <span class="tt">spdk_</span> prefix, add that function to the corresponding map file found in the same directory as the c file to which it belongs, and add it to a header file in <span class="tt">include/spdk</span> or <span class="tt">include/spdk_internal</span>.</li>
+<li>Any library functions that are not to be exported outside of their parent library should not begin with the <span class="tt">spdk</span> prefix and should instead by properly namespaced by prepending the name of the library to the function name (e.g. nvme_, nvmf_, bdev_).</li>
+</ul>
+<p>Development on SPDK is all done based on the <span class="tt">master</span> branch, so start by making sure you have the latest. The below assumes <span class="tt">origin</span> is pointed at Gerrit.</p>
+<div class="fragment"><div class="line">git checkout master</div>
+<div class="line">git pull</div>
+</div><!-- fragment --><p>Next, create a branch for your development work.</p>
+<div class="fragment"><div class="line">git checkout -b `my_branch`</div>
+</div><!-- fragment --><p>Then, make your changes and commit as you go. You'll build up a branch off of master with a series of commits. Once you are done, pull the latest from master again, rebase your changes on top, and update the submodule pointers that SPDK relies on.</p>
+<div class="fragment"><div class="line">git checkout master</div>
+<div class="line">git pull</div>
+<div class="line">git checkout `my_branch`</div>
+<div class="line">git rebase -i master</div>
+<div class="line">git submodule update</div>
+</div><!-- fragment --><p>Now your branch should be based on the tip of master and you should have the tip of <span class="tt">my_branch</span> checked out. You can push your code to Gerrit for review by doing the following:</p>
+<div class="fragment"><div class="line">git push review</div>
+</div><!-- fragment --><p>If prompted for a password, remember that it is the password from the <span class="tt">HTTP
+Password</span> section of the Gerrit settings. If you enabled the git credential helper, you'll only be prompted once.</p>
+<p><a class="anchor" id="integration"></a> </p>
+<h1 class="doxsection"><a class="anchor" id="autotoc_md21"></a>
+Continuous Integration</h1>
+<p>SPDK employs continuous integration (CI), which means all patches are run through a series of tests <b>before</b> they are even reviewed with the exception:</p>
+<ul>
+<li>Patches containing [RFC] in the git commit message header are treated specially to spur comments only. As such, these RFC patches are <b>not</b> run through the CI system. While a developer may specify reviewers in Gerrit for these patches, it is highly suggested one either sends a message on Slack to bring attention to this type of patch for discussion.</li>
+</ul>
+<p>The SPDK CI system periodically looks at Gerrit, pulls the patches down, and runs them on a pool of multiple machines with real NVMe SSDs. The tests are all checked in to the main SPDK repository (follow <span class="tt">autorun.sh</span> in the root of the repository). That means that users can add tests to the CI system by simply submitting a patch. Tests are required to be added in the same patch as the new code they are testing.</p>
+<p>The <a href="https://github.com/spdk/spdk-ci/actions">status of the CI system</a> includes an overview of the queued patches. Note that patches will not automatically be queued up, but instead require a cursory approval from one of the SPDK maintainers before they run. Patches pending approval for a run through the CI system are listed under the 'Pending Approval' table on the CI status page.</p>
+<p>When the CI system completes, it will post a comment on the Gerrit review with a +/-1 Verified flag, plus a link to the logs of the test run. This is particularly useful if the tests fail. Patches will not be merged without a +1 Verified from the CI system.</p>
+<p><a class="anchor" id="integration_false_positive"></a> </p>
+<h2 class="doxsection"><a class="anchor" id="autotoc_md22"></a>
+False Positives and Retriggering Patches</h2>
+<p>Occasionally, one of the CI tests will fail on a patch for an unrelated reason. We call these intermittent failures. We have a system for reporting these failures to GitHub that allows us to track their frequency and allocate resources for tracking down and eliminating their causes.</p>
+<p>If the CI system gives your patch a -1 but you believe it is in error (not related to your patch), you should match it to an outstanding intermittent failure <a href="https://github.com/spdk/spdk/issues?q=is%3Aopen+is%3Aissue+label%3A%22Intermittent+Failure%22">GitHub Issue</a> or file a <a href="https://github.com/spdk/spdk/issues/new/choose">new issue</a>. If you do create a new issue, be sure to add the "Intermittent Failure" label to it. Once you have obtained an issue number from GitHub, either by matching to an existing latent failure or creating your own, you can simply post a comment to your patch on Gerrit with the following form:</p>
+<div class="fragment"><div class="line"># Replace 555 with your issue number.</div>
+<div class="line">false positive: 555</div>
+</div><!-- fragment --><p>The CI system will then take care of removing the -1 vote from your patch. It will also comment on the GitHub issue you referenced with a link to the latest failure's log. We will prioritize tacking down and fixing these issues based on the number of comments on each one. If the system is unable to match your comment to a valid GitHub issue, it will post back a comment on Gerrit letting you know it was unable to retrigger your patch.</p>
+<h3 class="doxsection"><a class="anchor" id="autotoc_md23"></a>
+Triggering Specific Sub Job</h3>
+<p>When debugging changes, it may be necessary to run a specific sub job without running the entire per-patch job. Especially when uploading 'Work in Progress' and [RFC] patches. To do this, you need to post a comment with the following content:</p>
+<div class="fragment"><div class="line">tests:subjob1,subjob2,subjob3</div>
+</div><!-- fragment --><p>where subjob is a job from the list:</p>
+<ul>
+<li>BlobFS-autotest</li>
+<li>centos7-vg-autotest</li>
+<li>clang-vg-autotest</li>
+<li>crypto-autotest</li>
+<li>freebsd-vg-autotest</li>
+<li>iscsi-vg-autotest</li>
+<li>iscsi-uring-vg-autotest</li>
+<li>lvol-vg-autotest</li>
+<li>nvme-vg-autotest</li>
+<li>nvme-cmb-pmr-vg-autotest</li>
+<li>nvmf-phy-autotest</li>
+<li>nvmf-phy-short-fuzz-autotest</li>
+<li>nvmf-tcp-phy-autotest</li>
+<li>nvmf-tcp-uring-vg-autotest</li>
+<li>nvmf-tcp-vg-autotest</li>
+<li>pmdk-vg-autotest</li>
+<li>rocky8-vg-autotest</li>
+<li>ubuntu18-vg-autotest</li>
+<li>ubuntu20-vg-autotest</li>
+<li>ubuntu22-vg-autotest</li>
+<li>valgrind-vg-autotest</li>
+<li>vfio-user-autotest</li>
+<li>vhost-autotest</li>
+<li>vhost-initiator-vg-autotest</li>
+<li>zns-vg-autotest</li>
+</ul>
+<h3 class="doxsection"><a class="anchor" id="autotoc_md24"></a>
+Triggering on-demand performance regression tests</h3>
+<p>In order to request performance tests of your change post comment with <span class="tt">tests:</span> content as described in previous subchapter. Available identifiers for performance tests:</p>
+<ul>
+<li>nvme-perf/regression-nvme</li>
+<li>vhost-perf/regression-vhost</li>
+<li>nvmf-perf/regression-tcp</li>
+<li>nvmf-perf/regression-rdma</li>
+</ul>
+<p>After posting the comment you should get a "Additional tests accepted." comment from CI bot as confirmation that the build was scheduled. Another comment will be posted from CI bot after test completion.</p>
+<p>You can check the results of requested performance test run on <a href="https://performance.spdk.io">https://performance.spdk.io</a>. Make sure to select appropriate dashboard and enabling <span class="tt">manual_builds</span> and <span class="tt">Build Annotations</span> options at the top of the dashboard pages to quickly locate results related to your test request.</p>
+<p>Please be patient waiting for the test results. Regression tests take considerable amount of time to complete. Each of listed performance tests takes about 2-3 hours. This time might be longer depending on the current build queue in the CI.</p>
+<h3 class="doxsection"><a class="anchor" id="autotoc_md25"></a>
+Mellanox Build Bot</h3>
+<p>If Mellanox Build Bot gives your patch a -1 and you believe that this failure is not related to your patch, you can re-trigger a new build by posting a comment with the following content:</p>
+<div class="fragment"><div class="line">Mellanox:retest</div>
+</div><!-- fragment --><p><a class="anchor" id="local"></a> </p>
+<h1 class="doxsection"><a class="anchor" id="autotoc_md26"></a>
+Local Testing</h1>
+<p>You are also encouraged to run a subset of the Continuous Integration tests locally on your changes before uploading them for review by the automated test pool. Some of the tests have been optimized to run locally with little to no setup beyond running pkgdep. The community is constantly trying to make these tests easier to run locally to give developers a simple way to debug build pool failures offline without having to run the whole suite. Please see below for simplifications and resources for running tests locally.</p>
+<p><a class="anchor" id="local_iscsi"></a> </p>
+<h2 class="doxsection"><a class="anchor" id="autotoc_md27"></a>
+iSCSI Tests</h2>
+<p>Most of the tests under the <span class="tt">test/iscsi_tgt</span> directory in SPDK can also be run in isolation by supplying the iso flag for Example:</p>
+<div class="fragment"><div class="line">sudo ./spdk/test/iscsi_tgt/fio/fio.sh --iso</div>
+</div><!-- fragment --><p>The iSCSI iso flag takes care of setting up hugepages for SPDK applications. It also sets up a virtual network interface to run the tests.</p>
+<p><a class="anchor" id="local_nvmf"></a> </p>
+<h2 class="doxsection"><a class="anchor" id="autotoc_md28"></a>
+NVMe-oF Tests</h2>
+<p>Each of the tests under the <span class="tt">test/nvmf</span> directory in SPDK can be run in isolation by passing the iso flag to them. For example:</p>
+<div class="fragment"><div class="line">sudo ./spdk/test/nvmf/target/fio.sh --iso --transport=rdma</div>
+<div class="line">sudo ./spdk/test/nvmf/target/shutdown.sh --iso --transport=rdma</div>
+</div><!-- fragment --><p>Please also note the use of the transport flag. This flag must be supplied when running a test locally and controls which transport is tested against in the specific test. Valid values for this flag are "rdma" and "tcp".</p>
+<p>When used with the RDMA transport, the NVMe-oF iso flag configures an RDMA interface with the proper IP address and sets up the hugepages for SPDK applications. It will configure the interface on an RDMA capable NIC if available, otherwise it will emulate RDMA using Soft-RoCE. Soft-RoCE requires the presence of the rxe_cfg configuration tool.</p>
+<p><a class="anchor" id="local_unit"></a> </p>
+<h2 class="doxsection"><a class="anchor" id="autotoc_md29"></a>
+Unit Tests</h2>
+<p>The SPDK unittests are located inside of the <span class="tt">test/unit</span> directory of SPDK. There is a top level script located at <span class="tt">test/unit/unittest.sh</span> which will execute all of the unittests. You are encouraged to run this script against your local changes before uploading a patch to the CI infrastructure. Each unit test file can also be executed individually. This enables you to quickly run a single unit test without executing all of unittest.sh. This enables you to run the individual unittest behind a debugger.</p>
+<div class="fragment"><div class="line">sudo ./spdk/test/unit/lib/bdev/bdev.c/bdev_ut</div>
+<div class="line">sudo gdb ./spdk/test/unit/lib/bdev/bdev.c/bdev_ut</div>
+</div><!-- fragment --><p><a class="anchor" id="local_vhost"></a> </p>
+<h2 class="doxsection"><a class="anchor" id="autotoc_md30"></a>
+vhost Tests</h2>
+<p>The vhost tests under <span class="tt">test/vhost</span> require the presence of a virtual machine image on the host machine. Please, see the <a href="https://github.com/spdk/spdk/blob/master/test/common/config/README.md">Virtual Test Configuration</a> for steps to prepare it.</p>
+<p><a class="anchor" id="review"></a> </p>
+<h1 class="doxsection"><a class="anchor" id="autotoc_md31"></a>
+Code Review</h1>
+<p>Everyone is encouraged to review all patches and mark them with a +1 (thumbs up) or -1 (thumbs down). Code review feedback is highly valued, so even if you are a beginner with SPDK, please jump in and start reviewing patches. For a patch to be merged, two maintainers must give it a +2 vote, only maintainers are allowed to use +2.</p>
+<p><a class="anchor" id="hashtags"></a> </p>
+<h1 class="doxsection"><a class="anchor" id="autotoc_md32"></a>
+Review Hashtags</h1>
+<p>SPDK core maintainers use a custom Gerrit dashboard to determine patches they should focus on next for review. In some cases, a core maintainer may request further action before voting on the patch. Further actions may include answering a question about a patch, requesting a rebase for the patch, or requesting that another developer first vote the patch +1.</p>
+<p>In these cases, Core maintainers will use Gerrit hashtags to mark patches where further action has been requested. This will remove the patch from the list of patches that core maintainers should focus on.</p>
+<p>Once the request is met (i.e. the question is answered, the patch is rebased, or another developer voted the patch +1), the hashtag can be removed by the patch owner. Once the hashtag is removed, the patch will immediately go to the top of the list of patches for the core maintainers to review.</p>
+<p>Hashtags for a patch are listed on the patch's main Gerrit review page, in the same area where the owner, reviewer, project and branch are listed. Hashtags can be removed by clicking on the small X next to the name of the hashtag.</p>
+<p>The following hashtags are currently used by core maintainers:</p>
+<ul>
+<li>"waiting for +1" - requests a specific reviewer to provide the +1 or requests help from anyone to review the patch; the core maintainer will provide specifics in a comment on the patch</li>
+<li>"needs rebase" - this requests the submitter to rebase the patch from the latest master branch (or in some cases, newer versions of unmerged patches that the tagged patch depends on)</li>
+<li>"question" - the core maintainer has a question about the patch that needs to be answered before the core maintainer can vote on the patch</li>
+</ul>
+<p><a class="anchor" id="revise"></a> </p>
+<h1 class="doxsection"><a class="anchor" id="autotoc_md33"></a>
+Revising Patches</h1>
+<p>SPDK has fairly high standards for patch approval. We try to strike a balance between maintaining a high velocity and not allowing ourselves to become overwhelmed in technical debt. Given this, you should expect all non-trivial patches to go through at least a few rounds of code review.</p>
+<p>Fortunately, Gerrit makes it very easy to update an outstanding review. You simply update the commits in your git repository to incorporate the new changes and push again. For instance:</p>
+<div class="fragment"><div class="line">git checkout `my_branch`</div>
+<div class="line">  address code review feedback</div>
+<div class="line">git commit -a --amend</div>
+<div class="line">git push review</div>
+</div><!-- fragment --><p><a class="anchor" id="multi"></a> </p>
+<h1 class="doxsection"><a class="anchor" id="autotoc_md34"></a>
+Multi-Commit Patch Series</h1>
+<p>Gerrit has excellent support for creating series of patches, where each commit is reviewable separately but is dependent on the previous one for merging. You can push an entire series of patches to Gerrit using the following steps:</p>
+<div class="fragment"><div class="line">git checkout master</div>
+<div class="line">git pull</div>
+<div class="line">git checkout &lt;my_series&gt;</div>
+<div class="line">    make some changes</div>
+<div class="line">git commit -s -a # Change 1</div>
+<div class="line">    make some changes</div>
+<div class="line">git commit -s -a # Change 2</div>
+<div class="line">    make some changes</div>
+<div class="line">git commit -s -a # Change 3</div>
+<div class="line">git push review</div>
+</div><!-- fragment --><p>Gerrit will create three reviews, each dependent on one another. Inevitably, a reviewer will ask you to make a change during code review on change #2. To address that feedback, you should do the following:</p>
+<div class="fragment"><div class="line">git checkout &lt;sha of change #2&gt;</div>
+<div class="line">git checkout -b tmp # &#39;tmp&#39; or any name you want</div>
+<div class="line">    address code review feedback</div>
+<div class="line">git commit -s -a --amend # The amend modifies change #2 to include your updates</div>
+<div class="line">git checkout &lt;my_series&gt; # Points at change #3</div>
+<div class="line">git rebase -i tmp # Move change #3 on top of the new change #2</div>
+<div class="line">git submodule update</div>
+<div class="line">git push review</div>
+<div class="line">git branch -D tmp # Clean up the &#39;tmp&#39; branch</div>
+</div><!-- fragment --><p> <a class="anchor" id="submodule"></a> </p>
+<h2 class="doxsection"><a class="anchor" id="autotoc_md35"></a>
+Managing Submodule Patches</h2>
+<p>SPDK uses git submodules to incorporate some dependencies such as DPDK and these submodules point to a fork of the relevant upstream repository. This allows the SPDK community to apply SPDK-specific patches to the fork for either critical fixes or to unblock new development. Keeping the SPDK fork in sync with the upstream repository is a manual process. In order to simplify the process, patches for submodules are expected to be made as follows:</p>
+<ul>
+<li>Before proposing your patch to the SPDK fork, propose it in the upstream community first for feedback.</li>
+<li>Incorporate feedback and then propose a patch to the relevant SPDK fork using the same commit message as was used in the upstream.</li>
+<li>Track your upstream patch and notify the SPDK community (any communications channel) when it has been accepted.</li>
+</ul>
+<p>At SPDK major (usually quarterly) release time, the SPDK repo is tagged which implicitly also captures the hashes for each of the respective submodules. Shortly thereafter, by convention a branch is instantiated in the SPDK repo following the naming convention of vYY.MM.x (where YY=last two digits of the year, and MM=month) based on that major release hash in preparation for any future maintenance releases derived from that major release. Any SPDK maintenance releases can only include new bug fixes to existing and currently used branches.</p>
+<p>Work meanwhile continues on SPDK's master branch for the march toward the next quarterly release. During that phase a check is performed upstream corresponding to each forked repo maintained as a git submodule to see if there is a newer release. For each newer release, we fork a copy of that release representing it as a new branch in the respective submodule. By that point hopefully any SPDK-specific patches which were previously submitted to those respective upstream projects will have been incorporated in the newer release and so the release is inspected for them. For those SPDK-specific patches that have not been incorporated in the newer release, they are ported forward atop the newer release branch in the submodule. A commit is then done on the SPDK repo's master branch for each of the updated submodules to capture the hash of their new heads.</p>
+<p><a class="anchor" id="core"></a> </p>
+<h1 class="doxsection"><a class="anchor" id="autotoc_md36"></a>
+Core Maintainers</h1>
+<p>The SPDK core maintainers primary responsibility is to provide technical oversight for the SPDK Project. The current list of SPDK core maintainers includes:</p>
+<ul>
+<li>Jim Harris</li>
+<li>Jacek Kalwas</li>
+<li>Mateusz Kozłowski</li>
+<li>Changpeng Liu</li>
+<li>Alexey Marchuk</li>
+<li>Shuhei Matsumoto</li>
+<li>Konrad Sztyber</li>
+<li>Ben Walker</li>
+<li>Tomek Zawadzki</li>
+</ul>
+<p>The bulk of this technical oversight is achieved through reviewing and approving patches. Patches must receive +2 votes from two core maintainers and a +1 vote from the SPDK automated test pool before it can be committed. Only core maintainers have the ability to add a +2 vote and commit patches. Core maintainers may also vote +1 on patches if they have reviewed the patch but cannot provide an expert opinion in an area of code with which they are not as familiar.</p>
+<p>Under rare circumstances and at the discretion of a core maintainer, a patch may be committed with only one +2 vote.</p>
+<p>Other roles and responsibilities of the core maintainers include:</p>
+<ul>
+<li>Setting code review and development guidelines</li>
+<li>Making decisions on community processes</li>
+<li>Role modeling good development practices</li>
+<li>Fostering a positive, productive community</li>
+<li>Participating in project roadmap definition</li>
+<li>Identifying and organizing development tasks</li>
+</ul>
+<h2 class="doxsection"><a class="anchor" id="autotoc_md37"></a>
+Core Maintainers Emeritus</h2>
+<ul>
+<li>Darek Stojaczyk (2018-2020)</li>
+<li>Daniel Verkamp (2015-2018) </li>
+</ul>
+</div></div><!-- contents -->
+</div><!-- PageDoc -->
+</div><!-- doc-content -->
+<div id="page-nav" class="page-nav-panel">
+<div id="page-nav-resize-handle"></div>
+<div id="page-nav-tree">
+<div id="page-nav-contents">
+</div><!-- page-nav-contents -->
+</div><!-- page-nav-tree -->
+</div><!-- page-nav -->
+</div><!-- container -->
+<footer class="footer" id="nav-path">
+  <div class="footer-inner">
+    <div class="footer-copy">
+      <small>Copyright &copy; SPDK a Series of LF Projects, LLC. For web site terms of use, trademark policy, and other
+      project policies please see <a href="https://lfprojects.org">lfprojects.org</a>.</small>
+      <br><small>Built from spdk 91893349edff / site e5878500f</small>
+    </div>
+  </div>
+</footer>
+<script type="text/javascript" src="page_outline.js"></script>
+<script type="text/javascript" src="spdk_nav.js"></script>
+</body>
+</html>

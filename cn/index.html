@@ -1,0 +1,255 @@
+<!doctype html>
+<html lang="en">
+  <head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="The Storage Performance Development Kit (SPDK) provides a set of tools and libraries for writing high performance, scalable, user-mode storage applications. It achieves high performance by moving all of the necessary drivers into userspace and operating in a polled mode instead of relying on interrupts, which avoids kernel context switches and eliminates interrupt handling overhead.
+">
+  <meta name="author" content="Benjamin Walker">
+
+  <title>SPDK中文网站</title>
+
+  <link rel="icon" type="image/svg+xml" href="/spdk.github.io/assets/img/spdk.svg">
+  <link rel="icon" href="/spdk.github.io/assets/favicon.ico" sizes="32x32">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:400,700,900" type="text/css">
+  <link rel="stylesheet" href="/spdk.github.io/assets/css/spdk.css">
+
+  <link href="/spdk.github.io/feed.xml" type="application/atom+xml" rel="alternate" title="Atom Feed">
+</head>
+
+
+  <body>
+    <nav class="navbar">
+  <a class="navbar-brand" href="/spdk.github.io/" aria-label="SPDK">
+    <img src="/spdk.github.io/assets/img/spdk.svg" width="36" height="36" alt="Storage Performance Development Kit">
+  </a>
+  <div class="navbar-nav">
+    <a class="nav-link header-link" href="/spdk.github.io/doc/releases.html">download</a>
+    <a class="nav-link header-link" href="/spdk.github.io/doc/">documentation</a>
+    <a class="nav-link header-link" href="/spdk.github.io/doc/contributing.html">development</a>
+    <a class="nav-link header-link" href="/spdk.github.io/doc/ci_tools.html">CI status</a>
+    <a class="nav-link header-link" href="/spdk.github.io/community/">community</a>
+    <a class="nav-link header-link" href="/spdk.github.io/blog/">Blog</a>
+    <a class="nav-link header-link" href="https://github.com/orgs/spdk/projects/5">Roadmap</a>
+    <a class="nav-link header-link" href="/spdk.github.io/news/">News</a>
+  </div>
+  <div class="navbar-end">
+    <a class="nav-link header-link" href="https://github.com/spdk/spdk" aria-label="GitHub">
+      <svg xmlns="http://www.w3.org/2000/svg" class="navbar-nav-svg" aria-hidden="true"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
+    </a>
+    <a id="cn_lang_btn" href="/spdk.github.io/cn/doc/" class="nav-link header-link">中文</a>
+  </div>
+</nav>
+<script>
+(function() {
+    var p = location.pathname, best = null, bLen = 0;
+    document.querySelectorAll('.header-link[href]').forEach(function(a) {
+        var raw = a.getAttribute('href');
+        if (!raw) return;
+        try { var u = new URL(raw, location.href); } catch(e) { return; }
+        if (u.origin !== location.origin) return;
+        var h = u.pathname;
+        if (h === '/') return;
+        var ok = h.endsWith('.html') ? p === h : p.indexOf(h) === 0;
+        if (ok && h.length > bLen) { bLen = h.length; best = a; }
+    });
+    if (best) best.classList.add('active');
+})();
+</script>
+
+
+    <div class="masthead" id="content" role="main">
+  <div class="container">
+    <div class="hero">
+      <div class="hero-text">
+        <h1>Build Ultra High-Performance Storage Applications with the Storage Performance Development Kit</h1>
+        <p class="lead">
+          The Storage Performance Development Kit (SPDK) provides a set of tools and libraries for writing high performance, scalable, user-mode storage applications.</p>
+        <div class="hero-buttons">
+          <a href="/spdk.github.io/doc/" class="btn btn-lg btn-dark">Get started</a>
+          <a href="/spdk.github.io/doc/releases.html" class="btn btn-lg btn-outline-dark">Download</a>
+        </div>
+      </div>
+      <div class="hero-image">
+        <img src="/spdk.github.io/assets/img/spdk.svg" alt="Storage Performance Development Kit" />
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="followup">
+  <div class="container">
+    <div class="feature-grid">
+      <div class="feature">
+        <h2>Cutting Edge</h2>
+        <ul>
+          <li>Leverage the latest NVMe features</li>
+          <li>User-mode drivers with minimal Linux version dependencies</li>
+          <li>Poll-mode and event-loop design for maximum performance</li>
+          <li>Lockless, thread-per-core design</li>
+        </ul>
+
+        <div class="feature-buttons">
+          <a href="/spdk.github.io/doc/#md_performance__reports" class="btn btn-lg btn-dark">Performance Reports</a>
+          <a href="/spdk.github.io/blog/" class="btn btn-lg btn-outline-dark">Blog</a>
+        </div>
+      </div>
+
+      <div class="feature">
+        <h2>Open Source Community</h2>
+        <ul>
+          <li>Active, engaged community</li>
+          <li>BSD 3-Clause License</li>
+        </ul>
+
+        <div class="feature-buttons">
+          <a href="/spdk.github.io/community/" class="btn btn-lg btn-dark">Join Us</a>
+          <a href="https://github.com/spdk/spdk" class="btn btn-lg btn-outline-dark">GitHub</a>
+        </div>
+      </div>
+
+      <div class="feature">
+        <h2>Production Ready</h2>
+        <ul>
+          <li>Widely deployed, powering many critical services</li>
+          <li>Automated continuous integration</li>
+        </ul>
+
+        <div class="feature-buttons">
+          <a href="/spdk.github.io/doc/contributing.html" class="btn btn-lg btn-dark">Learn More</a>
+          <a href="https://github.com/spdk/spdk-ci/actions" class="btn btn-lg btn-outline-dark">CI Status</a>
+        </div>
+      </div>
+
+      <div class="feature">
+        <h2>Well Documented</h2>
+        <ul>
+          <li>Extensive documentation</li>
+          <li>Strict, quarterly release process</li>
+          <li>API stability. ABI versioning</li>
+        </ul>
+
+        <div class="feature-buttons">
+          <a href="/spdk.github.io/doc/" class="btn btn-lg btn-dark">Guides</a>
+          <a href="/spdk.github.io/doc/files.html" class="btn btn-lg btn-outline-dark">API Documentation</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="news">
+  <div class="container">
+    <section id="blog" class="blog">
+    
+      <div class="blog-section">
+        <a class="spdk-link" href="/release/2026/01/28/v26.01_release/"><h2 class="blog-heading spdk-link">SPDK v26.01: NVMe 2.0 target support, NVMe target RDMA interrupt support</h2></a>
+        <div class="blog-author">Jan 28, 2026 • Jim Harris</div>
+        <div class="content"><p>On behalf of the SPDK community, I’m proud to announce the release of
+<a href="https://github.com/spdk/spdk/releases/tag/v26.01">SPDK v26.01 LTS</a>!
+This release is a Long Term Support (LTS) version that will be supported for 1 year.</p>
+  <a class="spdk-link" href="/release/2026/01/28/v26.01_release/">Continue...</a></div>
+      </div>
+    
+      <div class="blog-section">
+        <a class="spdk-link" href="/news/2025/11/07/dev_meetup_summary/"><h2 class="blog-heading spdk-link">2025 SPDK Developer Meetup Hosted by Nutanix</h2></a>
+        <div class="blog-author">Nov 7, 2025 • Tomasz Zawadzki</div>
+        <div class="content"><p>This year Nutanix hosted the 5th SPDK Developer Meetup in Cambridge, UK.
+The event was a great success, attracting around 30 attendees from 11 different companies.
+The agenda was packed with a variety of activities, including technical
+presentations, open discussions, and collaborative whiteboard design work.
+Attendees had the opportunity to network, learn, and contribute to the growth of the SPDK community.</p>
+  <a class="spdk-link" href="/news/2025/11/07/dev_meetup_summary/">Continue...</a></div>
+      </div>
+    
+      <div class="blog-section">
+        <a class="spdk-link" href="/release/2025/09/26/v25.09_release/"><h2 class="blog-heading spdk-link">SPDK v25.09: NVMe 1.4 support in NVMe-oF target, NVMe-oF NSSR</h2></a>
+        <div class="blog-author">Sep 26, 2025 • Tomasz Zawadzki</div>
+        <div class="content"><p>On behalf of the SPDK community, I’m proud to announce the release of
+<a href="https://github.com/spdk/spdk/releases/tag/v25.09">SPDK v25.09</a>!</p>
+  <a class="spdk-link" href="/release/2025/09/26/v25.09_release/">Continue...</a></div>
+      </div>
+    
+      <div class="blog-section">
+        <a class="spdk-link" href="/release/2025/09/25/v25.05.1_release/"><h2 class="blog-heading spdk-link">SPDK v25.05.1 Maintenance LTS Release</h2></a>
+        <div class="blog-author">Sep 25, 2025 • Tomasz Zawadzki</div>
+        <div class="content"><p>On behalf of the SPDK community, I’m proud to announce the release of
+<a href="https://github.com/spdk/spdk/releases/tag/v25.05.1">SPDK v25.05.1</a>!</p>
+  <a class="spdk-link" href="/release/2025/09/25/v25.05.1_release/">Continue...</a></div>
+      </div>
+    
+      <div class="blog-section">
+        <a class="spdk-link" href="/news/2025/09/17/new-core-maintainer/"><h2 class="blog-heading spdk-link">New Core Maintainer - Jacek Kalwas</h2></a>
+        <div class="blog-author">Sep 17, 2025 • Jim Harris</div>
+        <div class="content"><p>The SPDK project has a team of core maintainers who are responsible for providing
+technical oversight for the SPDK project, including final review and merging of
+patches into the SPDK code base. The core maintainer team looks to add to its
+team with contributors who are demonstrating technical skill and
+leadership within the project over an extended period of time. So we are
+pleased to announce that we are adding Jacek Kalwas to the core
+maintainer team!</p>
+  <a class="spdk-link" href="/news/2025/09/17/new-core-maintainer/">Continue...</a></div>
+      </div>
+    
+      <div class="blog-section">
+        <a class="spdk-link" href="/news/2025/08/08/dev_meetup/"><h2 class="blog-heading spdk-link">Announcing the 2025 SPDK Developer Meetup Hosted by Nutanix</h2></a>
+        <div class="blog-author">Aug 8, 2025 • Tomasz Zawadzki</div>
+        <div class="content"><p>We are happy to announce the 2025 SPDK Developer Meetup hosted at Nutanix offices in Cambridge, UK! The meetup will be Thursday and Friday, November 6 and 7, 2025.</p>
+  <a class="spdk-link" href="/news/2025/08/08/dev_meetup/">Continue...</a></div>
+      </div>
+    
+      <div class="blog-section">
+        <a class="spdk-link" href="/release/2025/05/29/v25.05_release/"><h2 class="blog-heading spdk-link">SPDK v25.05: NVMe PCIe interrupt mode, DIF insert/strip, mlx5 accel platform driver</h2></a>
+        <div class="blog-author">May 29, 2025 • Tomasz Zawadzki</div>
+        <div class="content"><p>On behalf of the SPDK community, I’m proud to announce the release of
+<a href="https://github.com/spdk/spdk/releases/tag/v25.05">SPDK v25.05 LTS</a>!</p>
+  <a class="spdk-link" href="/release/2025/05/29/v25.05_release/">Continue...</a></div>
+      </div>
+    
+      <div class="blog-section">
+        <a class="spdk-link" href="/news/2024/12/16/transition/"><h2 class="blog-heading spdk-link">Updates on SPDK Linux Foundation Transition</h2></a>
+        <div class="blog-author">Dec 16, 2024 • Jim Harris</div>
+        <div class="content"><p>After Intel’s recent <a href="https://spdk.io/news/2024/12/05/LF/">announcement</a> about
+SPDK’s transition to the Linux Foundation (LF), SPDK needs to have an orderly
+shutdown of the SPDK project resources provided by Intel to facilitate the
+transition.</p>
+  <a class="spdk-link" href="/news/2024/12/16/transition/">Continue...</a></div>
+      </div>
+    
+      <div class="blog-section">
+        <a class="spdk-link" href="/news/2024/12/05/LF/"><h2 class="blog-heading spdk-link">Intel's SPDK Transition to the Linux Foundation</h2></a>
+        <div class="blog-author">Dec 5, 2024 • Bill Pearson, Paul Luse</div>
+        <div class="content"><p>Intel is pleased to announce that the Storage Performance Development Kit (SPDK) project will be
+transitioning to the Linux Foundation in 2025. This move aims to ensure the long-term sustainability
+and growth of SPDK, fostering a vibrant community and driving innovation in storage performance.</p>
+  <a class="spdk-link" href="/news/2024/12/05/LF/">Continue...</a></div>
+      </div>
+    
+      <div class="blog-section">
+        <a class="spdk-link" href="/release/2024/09/27/v24.09_release/"><h2 class="blog-heading spdk-link">SPDK v24.09: fsdev, NVMe-oF TCP interrupt mode</h2></a>
+        <div class="blog-author">Sep 27, 2024 • Konrad Sztyber</div>
+        <div class="content"><p>On behalf of the SPDK community, I’m proud to announce the release of
+<a href="https://github.com/spdk/spdk/releases/tag/v24.09">SPDK v24.09</a>!</p>
+  <a class="spdk-link" href="/release/2024/09/27/v24.09_release/">Continue...</a></div>
+      </div>
+    
+  </section>
+
+  </div>
+</div>
+
+
+    <footer class="footer" id="nav-path">
+  <div class="footer-inner">
+    <div class="footer-copy">
+      <small>Copyright &copy; SPDK a Series of LF Projects, LLC. For web site terms of use, trademark policy, and other
+      project policies please see <a href="https://lfprojects.org">lfprojects.org</a>.</small>
+      <br><small>Built from spdk 91893349edff / site e5878500f</small>
+    </div>
+  </div>
+</footer>
+
+
+    
+  </body>
+</html>

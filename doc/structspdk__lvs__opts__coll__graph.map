@@ -1,0 +1,7 @@
+<map id="spdk_lvs_opts" name="spdk_lvs_opts">
+<area shape="rect" id="Node000001" title="Parameters for lvolstore initialization." alt="" coords="5,207,119,234"/>
+<area shape="rect" id="Node000002" href="$structspdk__bs__dev.html" title=" " alt="" coords="9,106,115,134"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="65,149,65,206,59,206,59,149"/>
+<area shape="rect" id="Node000003" href="$structspdk__bdev.html" title=" " alt="" coords="16,5,108,33"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="65,49,65,105,59,105,59,49"/>
+</map>

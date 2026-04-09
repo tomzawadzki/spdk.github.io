@@ -1,0 +1,399 @@
+<!doctype html>
+<html lang="en">
+  <head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="The Storage Performance Development Kit (SPDK) provides a set of tools and libraries for writing high performance, scalable, user-mode storage applications. It achieves high performance by moving all of the necessary drivers into userspace and operating in a polled mode instead of relying on interrupts, which avoids kernel context switches and eliminates interrupt handling overhead.
+">
+  <meta name="author" content="Benjamin Walker">
+
+  <title>Tracing Framework Guide Part 1</title>
+
+  <link rel="icon" type="image/svg+xml" href="/spdk.github.io/assets/img/spdk.svg">
+  <link rel="icon" href="/spdk.github.io/assets/favicon.ico" sizes="32x32">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:400,700,900" type="text/css">
+  <link rel="stylesheet" href="/spdk.github.io/assets/css/spdk.css">
+
+  <link href="/spdk.github.io/feed.xml" type="application/atom+xml" rel="alternate" title="Atom Feed">
+</head>
+
+
+  <body>
+    <nav class="navbar">
+  <a class="navbar-brand" href="/spdk.github.io/" aria-label="SPDK">
+    <img src="/spdk.github.io/assets/img/spdk.svg" width="36" height="36" alt="Storage Performance Development Kit">
+  </a>
+  <div class="navbar-nav">
+    <a class="nav-link header-link" href="/spdk.github.io/doc/releases.html">download</a>
+    <a class="nav-link header-link" href="/spdk.github.io/doc/">documentation</a>
+    <a class="nav-link header-link" href="/spdk.github.io/doc/contributing.html">development</a>
+    <a class="nav-link header-link" href="/spdk.github.io/doc/ci_tools.html">CI status</a>
+    <a class="nav-link header-link" href="/spdk.github.io/community/">community</a>
+    <a class="nav-link header-link" href="/spdk.github.io/blog/">Blog</a>
+    <a class="nav-link header-link" href="https://github.com/orgs/spdk/projects/5">Roadmap</a>
+    <a class="nav-link header-link" href="/spdk.github.io/news/">News</a>
+  </div>
+  <div class="navbar-end">
+    <a class="nav-link header-link" href="https://github.com/spdk/spdk" aria-label="GitHub">
+      <svg xmlns="http://www.w3.org/2000/svg" class="navbar-nav-svg" aria-hidden="true"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
+    </a>
+    <a id="cn_lang_btn" href="/spdk.github.io/cn/doc/" class="nav-link header-link">中文</a>
+  </div>
+</nav>
+<script>
+(function() {
+    var p = location.pathname, best = null, bLen = 0;
+    document.querySelectorAll('.header-link[href]').forEach(function(a) {
+        var raw = a.getAttribute('href');
+        if (!raw) return;
+        try { var u = new URL(raw, location.href); } catch(e) { return; }
+        if (u.origin !== location.origin) return;
+        var h = u.pathname;
+        if (h === '/') return;
+        var ok = h.endsWith('.html') ? p === h : p.indexOf(h) === 0;
+        if (ok && h.length > bLen) { bLen = h.length; best = a; }
+    });
+    if (best) best.classList.add('active');
+})();
+</script>
+
+
+    <div class="page-content">
+  <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+  <header class="post-header">
+
+    <div class="page-header">
+      <h1>Tracing Framework Guide Part 1</h1>
+    </div>
+
+    <p class="post-meta">
+      <time datetime="2022-09-26T00:00:00+02:00" itemprop="datePublished">
+        Sep 26, 2022
+      </time>
+      
+      •
+      <span itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <span itemprop="name">Krzysztof Karas</span>
+      </span>
+      
+    </p>
+  </header>
+
+  <div class="content" itemprop="articleBody"><h2 id="introduction">Introduction</h2>
+
+<p>Hello again! Some time ago I wrote a post about the <a href="https://spdk.io/spdk_trace/2022/01/17/tracing_library_post/">Tracing Framework in SPDK</a>.
+While that post provided a lot of general information, this time we’re going to go through
+how to add traces to SPDK in detail, with examples. We’ll also look at how to display them
+using spdk_trace application.</p>
+
+<h3 id="a-little-reminder">A little reminder</h3>
+
+<p>As I mentioned before (in the previous post), we use two types of traces in SPDK: our own SPDK
+tracepoints and BPF traces. The former are usually used in performance sensitive places such
+as the I/O path where we want as little overhead as possible. The latter we use where there are
+not time limitations and we can afford higher overhead due to software interrupts.</p>
+
+<h2 id="defining-spdk-tracepoints">Defining SPDK Tracepoints</h2>
+
+<p>I will now start going over what we need to do to properly define and use a tracepoint in SPDK.
+We are going to look at SPDK tracepoints this time. BPF traces are going to be
+explained in the future post.</p>
+
+<h3 id="definition">Definition</h3>
+
+<p>The tracepoint definitions are all kept in one place: in <code class="language-plaintext highlighter-rouge">include/spdk_internal/trace_defs.h</code> file.
+Here we can add definitions of new tracepoint elements. When defining a new value, we need to make
+sure that the name and its value are unique.</p>
+
+<ul>
+  <li>
+    <p>groups - These values are a really important set of values in SPDK tracing. They provide an
+organization mechanism for all of the tracepoints. Grouping tracepoints allows the SPDK to enable
+them in sets, instead of either enabling all of them at once. To get the list of all available
+groups that can be enabled on SPDK startup, we can simply build and run SPDK target application
+(e.g. build/bin/spdk_tgt) with <code class="language-plaintext highlighter-rouge">-h</code> parameter. If we were to choose <code class="language-plaintext highlighter-rouge">thread</code> group for example,
+we would enable <code class="language-plaintext highlighter-rouge">TRACE_THREAD_IOCH_GET</code> and <code class="language-plaintext highlighter-rouge">TRACE_THREAD_IOCH_PUT</code> tracepoints from section
+<code class="language-plaintext highlighter-rouge">/* Thread tracepoint definitions */</code>. Special value <code class="language-plaintext highlighter-rouge">all</code> enables all tracepoints.</p>
+  </li>
+  <li>
+    <p>objects - These names aggregate tracepoints during SPDK runtime. In
+<code class="language-plaintext highlighter-rouge">include/spdk_internal/trace_defs.h</code> we may define new types of objects to differentiate them
+from others. A single tracepoint object may be referenced during multiple events recorded by one
+or more tracepoints. We can treat them as an instance of a data structure. An example here:
+<code class="language-plaintext highlighter-rouge">OBJECT_NVMF_TCP_IO</code> inside <code class="language-plaintext highlighter-rouge">lib/nvmf/tcp.c</code>. This one represents IO data structure
+<code class="language-plaintext highlighter-rouge">struct spdk_nvmf_tcp_req</code> and is tied to the TCP requests inside SPDK. When we record an event
+for an <code class="language-plaintext highlighter-rouge">NVMF_TCP_IO</code> object, it will include the pointer to the <code class="language-plaintext highlighter-rouge">spdk_nvmf_tcp_req</code>. The trace
+object creation is indicated by <code class="language-plaintext highlighter-rouge">TCP_REQ_NEW</code>, which tells SPDK to spawn a new instance of this
+object (this is the only tracepoint with “1” as 5th argument; more about how this works later) and
+then it will be referenced many times by multiple TCP tracepoints until it finally gets destroyed
+during request completion event, which is marked by <code class="language-plaintext highlighter-rouge">TCP_REQ_COMPLETED</code> tracepoint.</p>
+  </li>
+  <li>
+    <p>tracepoints - each group of tracepoints has its own definition section, like
+<code class="language-plaintext highlighter-rouge">/* NVMe-of TCP tracepoint  definitions */</code>. They are the most descriptive values, usually tied
+to a certain event or function call.</p>
+  </li>
+  <li>
+    <p>owners - These are mainly for associating objects with a higher order construct. For example:
+OBJECT_NVME_PCIE_REQ has owner OWNER_NVME_PCIE_QP, indicating on which qpair (QP) the I/O was
+submitted on. In this case the OWNER_NVME_PCIE_QP identifier is its NVMe queue ID. There is also
+special value OWNER_NONE, which is used in cases where no owner association is required (i.e.
+owner value must always be specified, so OWNER_NONE could be read as an “empty” value).</p>
+  </li>
+</ul>
+
+<p>The way we add new definitions in <code class="language-plaintext highlighter-rouge">include/spdk_internal/trace_defs.h</code> is by writing
+<code class="language-plaintext highlighter-rouge">#define TYPE_NAME 0xX</code>, where 0xX is the next available ID in hexadecimal format.
+It is better if the IDs are in increasing order and follow already defined pattern for a section.</p>
+
+<p>Now example:
+We want to add a new tracepoint somewhere in NVMe-of TCP related code. If the owner was not defined
+for our set of tracepoints, we could add it to the<code class="language-plaintext highlighter-rouge">trace_defs.h</code> file:</p>
+
+<pre><code class="language-C">/* Owner definitions */
+...
+#define OWNER_NVMF_TCP       0x30
+</code></pre>
+
+<p>Keep in mind that sometimes Owner for the tracepoint you want to implement is already
+there (like in our case), so there is no need to add a new one.
+Object and Trace group can be added the same way as Owner. New definitions should be placed
+at the bottom of a definitions section and assigned new, highest available value, following
+the pattern of a given section.
+Now we can scroll down to <code class="language-plaintext highlighter-rouge">/* NVMe-of TCP tracepoint definitions */</code> section and
+add a new tracepoint here:</p>
+
+<pre><code class="language-C">/* NVMe-of TCP tracepoint definitions */
+...
+#define TRACE_TCP_TEST_TPOINT       SPDK_TPOINT_ID(TRACE_GROUP_NVMF_TCP, 0x18)
+</code></pre>
+
+<p><code class="language-plaintext highlighter-rouge">SPDK_TPOINT_ID</code> is a macro for assigning a unique ID to each tpoint, using Trace group’s
+own ID. The formal tracepoint registration to a Trace group happens later on.</p>
+
+<p>And this is all when it comes to defining the SPDK tracepoint. In the next section
+I will explain the process of declaring the contents of a trace.</p>
+
+<h3 id="declaration">Declaration</h3>
+
+<p>We declare SPDK tracepoints in <code class="language-plaintext highlighter-rouge">.c</code> files where we want to record some values, using the
+<code class="language-plaintext highlighter-rouge">SPDK_TRACE_REGISTER_FN</code> macro, which defines a constructor function to register tracepoint
+registering functions during SPDK application start time. It also checks that trace groups’
+names do not conflict with each other. The macro also lets us declare multiple tracepoints
+in one place, assigning them the same Owner, Object (it also formally registers both of them)
+and Trace group. We also need to include some header files:</p>
+
+<pre><code class="language-C">#include "spdk/trace.h"
+#include "spdk_internal/trace_defs.h"
+
+</code></pre>
+
+<p>There are two ways we usually go about declaring a trace:</p>
+
+<p>1) For traces watching a single value:</p>
+
+<pre><code class="language-C">SPDK_TRACE_REGISTER_FN(nvmf_tcp_trace, "nvmf_tcp", TRACE_GROUP_NVMF_TCP)
+{
+spdk_trace_register_owner(OWNER_NVMF_TCP, 'r');
+spdk_trace_register_object(OBJECT_NVMF_TCP, 'r');
+spdk_trace_register_description("TCP_TEST_TPOINT",
+                                 TRACE_TCP_TEST_TPOINT,
+                                 OWNER_NVMF_TCP, OWNER_NVMF_TCP, 1,
+                                 SPDK_TRACE_ARG_TYPE_PTR, "arg1");
+}
+</code></pre>
+
+<p>2) Where we need multiple values recorded in a tracepoint:</p>
+
+<pre><code class="language-C">SPDK_TRACE_REGISTER_FN(nvmf_tcp_trace, "nvmf_tcp", TRACE_GROUP_NVMF_TCP)
+{
+        spdk_trace_register_owner(OWNER_NVMF_TCP, 'r');
+        spdk_trace_register_object(OBJECT_NVMF_TCP, 'r');
+
+        struct spdk_trace_tpoint_opts opts[] = {
+                {
+                        "TCP_TEST_TPOINT", TRACE_TCP_TEST_TPOINT,
+                        OWNER_NVMF_TCP, OWNER_NVMF_TCP, 1,
+                        {
+                                { "arg1", SPDK_TRACE_ARG_TYPE_INT, 8 },
+                                { "arg2", SPDK_TRACE_ARG_TYPE_PTR, 8 },
+                                { "arg3", SPDK_TRACE_ARG_TYPE_INT, 8 },
+                                { "arg4", SPDK_TRACE_ARG_TYPE_STR, 8 }
+                        }
+                }
+        };
+}
+</code></pre>
+
+<p>Owner registraction function call arguments should include a value matching one of the entries
+from <code class="language-plaintext highlighter-rouge">/* Owner definitions */</code> section inside <code class="language-plaintext highlighter-rouge">include/spdk_internal/trace_defs.h</code> and a unique
+to all owners letter. Object registration should follow similar rules.</p>
+
+<p>When declaring an actual tracepoint, names like arg1, arg2, should be replaced with
+more descriptive ones: offset, ctx or anything that a value represents - these names
+get emitted by spdk_trace with the corresponding value.
+SPDK tracepoints can take three types of arguments: integers (SPDK_TRACE_ARG_TYPE_INT),
+strings (SPDK_TRACE_ARG_TYPE_STR) and pointers (SPDK_TRACE_ARG_TYPE_PTR) followed by
+size in bytes. The difference between integers and pointers here is that an argument
+SPDK_TRACE_ARG_TYPE_INT will be an integer displayed in decimal format, while
+SPDK_TRACE_ARG_TYPE_PTR will show as a value in hexadecimal form.
+Letters in <code class="language-plaintext highlighter-rouge">spdk_trace_register_owner</code> and <code class="language-plaintext highlighter-rouge">spdk_trace_register_object</code>
+mean ID prefix, so the letter that is going to appear before the ID. A single 1 or 0 as
+5th argument of <code class="language-plaintext highlighter-rouge">spdk_trace_register_description</code> decides whether to create a new object
+or not (some traces are parts of instances of a given object). For example:
+<code class="language-plaintext highlighter-rouge">BDEV_IO_START</code> uses 1, because this event marks the beginning of life of a new bdev_io
+object inside SPDK. When later SPDK application detects <code class="language-plaintext highlighter-rouge">BDEV_IO_DONE</code> event bound
+to the same IO, it will calculate time delta between <code class="language-plaintext highlighter-rouge">BDEV_IO_START</code> and <code class="language-plaintext highlighter-rouge">BDEV_IO_DONE</code>
+and display it inside a trace. Let’s look at a partial output from spdk_trace application:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>...
+ 0: 141193.578 b00 BDEV_IO_START                         <span class="nb">id</span>:    i429      <span class="nb">type</span>:  2                ctx:   0x7ffb7d48b110   offset:12048            len:   2
+...
+ 0: 143030.609 b00 BDEV_IO_DONE                          <span class="nb">id</span>:    i429      <span class="nb">time</span>:  1837.035         ctx:   0x7ffb7d48b110
+...
+</code></pre></div></div>
+
+<p>In case of these two tracepoints we can see from left to right:</p>
+
+<p>1) timestamp - this is the time measured from the start of SPDK application in microseconds
+2) owner ID inside SPDK runtime. This value will be different from what we see in
+<code class="language-plaintext highlighter-rouge">include/spdk_internal/trace_defs.h</code> - the first character is the one passed as the second
+argument of <code class="language-plaintext highlighter-rouge">spdk_trace_register_owner()</code> function mentioned earlier, followed by poller ID
+from which the registration has been called.
+3) tracepoint name
+4) ID of the object instance from which the event was recorded
+5) time, if the recorded event ends some longer process (in this case bdev IO). This value
+is a difference in application time between two events: 143030.609 - 141193.578 = (<em>about</em>) 1837.035
+6) arguments provided in the tracepoint definition (in case of BDEV_IO_START: type, ctx, offset
+and len; in case of BDEV_IO_DONE only ctx; ctx is a pointer to the instance of tracepoint object)</p>
+
+<p><em>about</em> - the real value should be equal to 1837.031, but the rounding of decimal fractions was
+not perfect this time.</p>
+
+<p>There is also a neat feature called relations. We can specify a relation between a
+tracepoint and a certain object, to which other tracepoints belong. Relations are defined inside
+<code class="language-plaintext highlighter-rouge">SPDK_TRACE_REGISTER_FN</code> macro by calling <code class="language-plaintext highlighter-rouge">spdk_trace_tpoint_register_relation</code>. Currently
+SPDK has only two relations defined, so lets look at them as an example. They can be found
+inside <code class="language-plaintext highlighter-rouge">lib/nvmf/tcp.c</code> file.</p>
+
+<pre><code class="language-C">        spdk_trace_tpoint_register_relation(TRACE_BDEV_IO_START, OBJECT_NVMF_TCP_IO, 1);
+        spdk_trace_tpoint_register_relation(TRACE_BDEV_IO_DONE, OBJECT_NVMF_TCP_IO, 0);
+</code></pre>
+
+<p>The first relation binds trace event called <code class="language-plaintext highlighter-rouge">TRACE_BDEV_IO_START</code>, which is defined in
+bdev library <code class="language-plaintext highlighter-rouge">lib/bdev/bdev.c</code>, to the new object <code class="language-plaintext highlighter-rouge">OBJECT_NVMF_TCP_IO</code> registered inside
+TCP library. We can do that by taking unique ID of a tracepoint and ID of registered
+object and matching them later during SPDK runtime. The last argument indicates argument index
+of the related object. It’s the position of the tracepoint context inside a trace entry
+in Trace Parser library. To understand what that means, we should look inside <code class="language-plaintext highlighter-rouge">lib/bdev/bdev.c</code>
+file and jump to the <code class="language-plaintext highlighter-rouge">SPDK_TRACE_REGISTER_FN</code> macro. Structure <code class="language-plaintext highlighter-rouge">spdk_trace_tpoint_opts</code> defines
+tracepoints inside bdev library and both <code class="language-plaintext highlighter-rouge">BDEV_IO_START</code>, and <code class="language-plaintext highlighter-rouge">BDEV_IO_DONE</code> are the
+first two definitions here. The third argument in the <code class="language-plaintext highlighter-rouge">spdk_trace_tpoint_register_relation</code>
+definitions matches the position of <code class="language-plaintext highlighter-rouge">ctx</code> parameter in tracepoint definitions - this is a pointer
+to the related object <code class="language-plaintext highlighter-rouge">OBJECT_NVMF_TCP_IO</code>.</p>
+
+<p>Second relation works similarly, but it binds <code class="language-plaintext highlighter-rouge">TRACE_BDEV_IO_DONE</code> to the same
+object <code class="language-plaintext highlighter-rouge">OBJECT_NVMF_TCP_IO</code>, so it can be used later to do the time calculations.</p>
+
+<p>The partial output from spdk_trace would look like this:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code> 0: 141184.297 t02 TCP_REQ_NEW                           <span class="nb">id</span>:    r520             qpair: 0x618000004080
+ 0: 141185.109 t02 TCP_REQ_NEED_BUFFER                   <span class="nb">id</span>:    r520             <span class="nb">time</span>:  0.810            qpair: 0x618000004080
+</code></pre></div></div>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code> 0: 141186.500 t02 TCP_REQ_TX_H_TO_C                     <span class="nb">id</span>:    r520             <span class="nb">time</span>:  2.199            qpair: 0x618000004080
+</code></pre></div></div>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code> 0: 141189.609 t02 TCP_REQ_RDY_TO_EXECUTE                <span class="nb">id</span>:    r520             <span class="nb">time</span>:  5.321            qpair: 0x618000004080
+ 0: 141193.578 b00 BDEV_IO_START                         <span class="nb">id</span>:    i429 <span class="o">(</span>r520<span class="o">)</span>      <span class="nb">type</span>:  2                ctx:   0x7ffb7d48b110   offset:12048            len:   2
+</code></pre></div></div>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code> 0: 143030.609 b00 BDEV_IO_DONE                          <span class="nb">id</span>:    i429 <span class="o">(</span>r520<span class="o">)</span>      <span class="nb">time</span>:  1837.035         ctx:   0x7ffb7d48b110
+ 0: 143032.734 t02 TCP_REQ_EXECUTED                      <span class="nb">id</span>:    r520             <span class="nb">time</span>:  1848.446         qpair: 0x618000004080
+ 0: 143033.031 t02 TCP_REQ_RDY_TO_COMPLETE               <span class="nb">id</span>:    r520             <span class="nb">time</span>:  1848.728         qpair: 0x618000004080
+ 0: 143034.344 t02 TCP_REQ_TRANSFER_C2H                  <span class="nb">id</span>:    r520             <span class="nb">time</span>:  1850.043         qpair: 0x618000004080
+</code></pre></div></div>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code> 0: 143606.969 t02 TCP_REQ_COMPLETED                     <span class="nb">id</span>:    r520             <span class="nb">time</span>:  2422.666         qpair: 0x618000004080
+
+</code></pre></div></div>
+
+<p>This time we can see that traces describing bdev IO start and finish contain additional value
+in parentheses, right after the object IO. In this case this is the ID of TCP request tracepoint
+object that was initialized during TCP request. Another object was later created for bdev IO
+trace events and SPDK bound them together with trace relation mechanism.</p>
+
+<p>Usage of spdk_trace to record and display the traces will be explained later.</p>
+
+<h3 id="recording-a-trace">Recording a trace</h3>
+
+<p>Now that we have our tracepoint defined and declared, it is time to finally make use of it
+in our code. In the same file as we declared our tracepoint, we may call <code class="language-plaintext highlighter-rouge">spdk_trace_record</code>
+like this:</p>
+
+<pre><code class="language-C">        spdk_trace_record(TRACE_TCP_TEST_TPOINT, 0, 0,
+                         (uintptr_t)object_pointer, arg1);
+
+</code></pre>
+
+<p>where the arguments are:</p>
+
+<p>1) tracepoint ID (the one we assigned in trace_defs.h)
+2) poller ID
+3) size
+4) pointer to trace object instance
+5) first argument</p>
+
+<p>Each time the code execution hits the <code class="language-plaintext highlighter-rouge">spdk_trace_record</code> it will record a value of a given
+argument. Now let’s proceed to the next section, where we’ll be testing our change.</p>
+
+<h3 id="getting-the-recorded-data">Getting the recorded data</h3>
+
+<p>Our code is now ready, we may configure and build the SPDK project. Note that I gave an example
+with TCP library, so we’ll be configuring SPDK with <code class="language-plaintext highlighter-rouge">./configure</code> without any arguments,
+as TCP support is enabled by default.
+After that build the project and launch SPDK application (for example <code class="language-plaintext highlighter-rouge">build/bin/nvmf_tgt</code>)
+with a flag to enable the tracepoint: <code class="language-plaintext highlighter-rouge">-e nvmf_tcp:&lt;new tracepoint ID&gt;</code> or just <code class="language-plaintext highlighter-rouge">-e nvmf_tcp</code>, if you prefer to see all
+traces from TCP group.</p>
+
+<p>After that run <code class="language-plaintext highlighter-rouge">build/bin/spdk_trace</code> with flags provided by SPDK on startup. Look for a lines that looks similar to these:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">[</span>2022-06-13 14:52:04.427428] app.c: 450:app_setup_trace: <span class="k">*</span>NOTICE<span class="k">*</span>: Use <span class="s1">'spdk_trace -s spdk_tgt -p 599051'</span> to capture a snapshot of events at runtime.
+<span class="o">[</span>2022-06-13 14:52:04.427446] app.c: 455:app_setup_trace: <span class="k">*</span>NOTICE<span class="k">*</span>: Or copy /dev/shm/spdk_tgt_trace.pid599051 <span class="k">for </span>offline analysis/debug.
+</code></pre></div></div>
+
+<p>If the code hit your tracepoint, you should see it printed here along with the values’ of arguments
+that you provided.</p>
+
+<h2 id="final-words">Final words</h2>
+
+<h3 id="summary">Summary</h3>
+
+<p>Traces are an important part of SPDK and a way of gathering data during application runtime.
+They are neatly organized into SPDK traces, which were explained in this blogpost, and bpf probes, which are going to be a topic of a future post.</p>
+
+<h3 id="questions">Questions?</h3>
+
+<p>If you have any questions related to this topic, or any other in SPDK do not hesitate to ask on our
+Slack channels or on our GitHub!
+You may also prepare your own patches with traces in SPDK, if you feel like we should have them in
+a certain place.</p>
+</div>
+</article>
+</div>
+
+
+    <footer class="footer" id="nav-path">
+  <div class="footer-inner">
+    <div class="footer-copy">
+      <small>Copyright &copy; SPDK a Series of LF Projects, LLC. For web site terms of use, trademark policy, and other
+      project policies please see <a href="https://lfprojects.org">lfprojects.org</a>.</small>
+      <br><small>Built from spdk 91893349edff / site e5878500f</small>
+    </div>
+  </div>
+</footer>
+
+
+    
+  </body>
+</html>

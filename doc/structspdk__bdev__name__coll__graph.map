@@ -1,0 +1,16 @@
+<map id="spdk_bdev_name" name="spdk_bdev_name">
+<area shape="rect" id="Node000001" title=" " alt="" coords="5,64,141,92"/>
+<area shape="rect" id="Node000009" href="$structspdk__bdev_1_1____bdev__internal__fields.html" title="Fields that are used internally by the bdev subsystem." alt="" coords="273,5,474,50"/>
+<area shape="poly" id="edge7_Node000009_Node000001" title=" " alt="" coords="156,62,272,42,273,47,157,67"/>
+<area shape="rect" id="Node000002" href="$structspdk__bdev.html" title=" " alt="" coords="583,172,674,200"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="596,166,558,146,477,127,364,110,141,86,141,81,365,105,478,122,560,141,598,161"/>
+<area shape="rect" id="Node000003" href="$structspdk__uuid.html" title=" " alt="" coords="330,147,417,175"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="433,164,583,179,582,184,432,169"/>
+<area shape="rect" id="Node000004" href="$unionspdk__bdev__nvme__ctratt.html" title="Controller attributes indicating optional bdev capabilities (e.g." alt="" coords="285,200,462,228"/>
+<area shape="poly" id="edge3_Node000002_Node000004" title=" " alt="" coords="477,214,559,206,589,198,590,203,559,211,478,219"/>
+<area shape="rect" id="Node000005" href="$structspdk__bdev__module.html" title="Block device module." alt="" coords="300,256,447,284"/>
+<area shape="poly" id="edge4_Node000002_Node000005" title=" " alt="" coords="462,267,511,259,558,244,590,222,614,198,618,202,593,227,560,248,512,264,463,272"/>
+<area shape="rect" id="Node000008" href="$structspdk__bdev__fn__table.html" title="Function table for a block device backend." alt="" coords="298,312,449,340"/>
+<area shape="poly" id="edge5_Node000002_Node000008" title=" " alt="" coords="464,323,512,313,558,292,580,271,598,246,620,199,625,202,603,249,584,275,560,296,514,318,465,328"/>
+<area shape="poly" id="edge6_Node000002_Node000009" title=" " alt="" coords="490,45,527,59,561,79,583,100,601,126,624,171,620,173,597,128,579,104,557,83,524,64,488,50"/>
+</map>

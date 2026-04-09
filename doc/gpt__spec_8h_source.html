@@ -1,0 +1,288 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<meta name="generator" content="Doxygen 1.16.1">
+	<title>SPDK: gpt_spec.h Source File</title>
+	<script type="text/javascript" src="jquery.js"></script>
+	<script type="text/javascript" src="dynsections.js"></script>
+	<script type="text/javascript" src="clipboard.js"></script>
+	<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
+<script type="text/javascript" src="cookie.js"></script>
+	<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<script type="text/javascript">
+  $(function() { init_search(); });
+</script>
+	<link rel="icon" type="image/svg+xml" href="../assets/img/spdk.svg">
+	<link rel="icon" href="../assets/favicon.ico" sizes="32x32">
+	<link href="doxygen.css" rel="stylesheet" type="text/css">
+	<script>(function(){var k='doxygen_width',w,bw=6;if(window.chrome){w=localStorage.getItem(k);if(!w){w='350';localStorage.setItem(k,w)}}else{var m=document.cookie.match(new RegExp(k+'=(\\d+)'));w=m?m[1]:null;if(!w){w='350';document.cookie=k+'=350;SameSite=Lax;path=/'}}document.documentElement.style.setProperty('--sn-w',(parseInt(w)+bw)+'px')})()</script>
+	<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:400,700,900" type="text/css">
+	<link href="spdk.css" rel="stylesheet" type="text/css"/>
+	<link href="../assets/css/spdk.css" rel="stylesheet" type="text/css">
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<nav class="navbar">
+  <a class="navbar-brand" href="../" aria-label="SPDK">
+    <img src="../assets/img/spdk.svg" width="36" height="36" alt="Storage Performance Development Kit">
+  </a>
+  <div class="navbar-nav">
+    <a class="nav-link header-link" href="../doc/releases.html">download</a>
+    <a class="nav-link header-link" href="../doc/">documentation</a>
+    <a class="nav-link header-link" href="../doc/contributing.html">development</a>
+    <a class="nav-link header-link" href="../doc/ci_tools.html">CI status</a>
+    <a class="nav-link header-link" href="../community/">community</a>
+    <a class="nav-link header-link" href="../blog/">Blog</a>
+    <a class="nav-link header-link" href="https://github.com/orgs/spdk/projects/5">Roadmap</a>
+    <a class="nav-link header-link" href="../news/">News</a>
+  </div>
+  <div class="navbar-end">
+    <a class="nav-link header-link" href="https://github.com/spdk/spdk" aria-label="GitHub">
+      <svg xmlns="http://www.w3.org/2000/svg" class="navbar-nav-svg" aria-hidden="true"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
+    </a>
+    <a id="cn_lang_btn" href="../cn/doc/" class="nav-link header-link">中文</a>
+  </div>
+</nav>
+<script>
+(function() {
+    var p = location.pathname, best = null, bLen = 0;
+    document.querySelectorAll('.header-link[href]').forEach(function(a) {
+        var raw = a.getAttribute('href');
+        if (!raw) return;
+        try { var u = new URL(raw, location.href); } catch(e) { return; }
+        if (u.origin !== location.origin) return;
+        var h = u.pathname;
+        if (h === '/') return;
+        var ok = h.endsWith('.html') ? p === h : p.indexOf(h) === 0;
+        if (ok && h.length > bLen) { bLen = h.length; best = a; }
+    });
+    if (best) best.classList.add('active');
+})();
+</script>
+<div id="doxygen-searchbox">        <div id="MSearchBox" class="MSearchBoxInactive">
+        <span class="left">
+          <span id="MSearchSelect" class="search-icon" onmouseover="return searchBox.OnSearchSelectShow()" onmouseout="return searchBox.OnSearchSelectHide()"><span class="search-icon-dropdown"></span></span>
+          <input type="text" id="MSearchField" value="" placeholder="Search" accesskey="S"
+               onfocus="searchBox.OnSearchFieldFocus(true)" 
+               onblur="searchBox.OnSearchFieldFocus(false)" 
+               onkeyup="searchBox.OnSearchFieldChange(event)"/>
+          </span><span class="right">
+            <a id="MSearchClose" href="javascript:searchBox.CloseResultsWindow()"><div id="MSearchCloseImg" class="close-icon"></div></a>
+          </span>
+        </div>
+</div>
+<!-- Generated by Doxygen 1.16.1 -->
+<script type="text/javascript">
+var searchBox = new SearchBox("searchBox", "search/",'.html');
+</script>
+<script type="text/javascript">
+$(function() { codefold.init(); });
+</script>
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+$(function(){initNavTree('gpt__spec_8h_source.html','',''); });
+</script>
+<div id="container">
+<div id="doc-content">
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">Loading...</div>
+<div class="SRStatus" id="Searching">Searching...</div>
+<div class="SRStatus" id="NoMatches">No Matches</div>
+</div>
+</div>
+</div>
+</div>
+
+<div class="header">
+  <div class="headertitle"><div class="title">gpt_spec.h</div></div>
+</div><!--header-->
+<div class="contents">
+<a href="gpt__spec_8h.html">Go to the documentation of this file.</a><div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span><span class="comment">/*   SPDX-License-Identifier: BSD-3-Clause</span></div>
+<div class="line"><a id="l00002" name="l00002"></a><span class="lineno">    2</span><span class="comment"> *   Copyright (C) 2016 Intel Corporation.</span></div>
+<div class="line"><a id="l00003" name="l00003"></a><span class="lineno">    3</span><span class="comment"> *   All rights reserved.</span></div>
+<div class="line"><a id="l00004" name="l00004"></a><span class="lineno">    4</span><span class="comment"> */</span></div>
+<div class="line"><a id="l00005" name="l00005"></a><span class="lineno">    5</span><span class="comment"></span> </div>
+<div class="line"><a id="l00006" name="l00006"></a><span class="lineno">    6</span><span class="comment">/**</span></div>
+<div class="line"><a id="l00007" name="l00007"></a><span class="lineno">    7</span><span class="comment"> * \file</span></div>
+<div class="line"><a id="l00008" name="l00008"></a><span class="lineno">    8</span><span class="comment"> * GUID Partition Table (GPT) specification definitions</span></div>
+<div class="line"><a id="l00009" name="l00009"></a><span class="lineno">    9</span><span class="comment"> */</span></div>
+<div class="line"><a id="l00010" name="l00010"></a><span class="lineno">   10</span> </div>
+<div class="line"><a id="l00011" name="l00011"></a><span class="lineno">   11</span><span class="preprocessor">#ifndef SPDK_GPT_SPEC_H</span></div>
+<div class="line"><a id="l00012" name="l00012"></a><span class="lineno">   12</span><span class="preprocessor">#define SPDK_GPT_SPEC_H</span></div>
+<div class="line"><a id="l00013" name="l00013"></a><span class="lineno">   13</span> </div>
+<div class="line"><a id="l00014" name="l00014"></a><span class="lineno">   14</span><span class="preprocessor">#include &quot;<a class="code" href="stdinc_8h.html">spdk/stdinc.h</a>&quot;</span></div>
+<div class="line"><a id="l00015" name="l00015"></a><span class="lineno">   15</span> </div>
+<div class="line"><a id="l00016" name="l00016"></a><span class="lineno">   16</span><span class="preprocessor">#include &quot;<a class="code" href="assert_8h.html">spdk/assert.h</a>&quot;</span></div>
+<div class="line"><a id="l00017" name="l00017"></a><span class="lineno">   17</span> </div>
+<div class="line"><a id="l00018" name="l00018"></a><span class="lineno">   18</span><span class="preprocessor">#ifdef __cplusplus</span></div>
+<div class="line"><a id="l00019" name="l00019"></a><span class="lineno">   19</span><span class="keyword">extern</span> <span class="stringliteral">&quot;C&quot;</span> {</div>
+<div class="line"><a id="l00020" name="l00020"></a><span class="lineno">   20</span><span class="preprocessor">#endif</span></div>
+<div class="line"><a id="l00021" name="l00021"></a><span class="lineno">   21</span> </div>
+<div class="line"><a id="l00022" name="l00022"></a><span class="lineno">   22</span><span class="preprocessor">#pragma pack(push, 1)</span></div>
+<div class="line"><a id="l00023" name="l00023"></a><span class="lineno">   23</span> </div>
+<div class="line"><a id="l00024" name="l00024"></a><span class="lineno">   24</span><span class="preprocessor">#define SPDK_MBR_SIGNATURE 0xAA55</span></div>
+<div class="line"><a id="l00025" name="l00025"></a><span class="lineno">   25</span> </div>
+<div class="line"><a id="l00026" name="l00026"></a><span class="lineno">   26</span><span class="preprocessor">#define SPDK_MBR_OS_TYPE_GPT_PROTECTIVE         0xEE</span></div>
+<div class="line"><a id="l00027" name="l00027"></a><span class="lineno">   27</span><span class="preprocessor">#define SPDK_MBR_OS_TYPE_EFI_SYSTEM_PARTITION   0xEF</span></div>
+<div class="line"><a id="l00028" name="l00028"></a><span class="lineno">   28</span> </div>
+<div class="foldopen" id="foldopen00029" data-start="{" data-end="};">
+<div class="line"><a id="l00029" name="l00029"></a><span class="lineno"><a class="line" href="structspdk__mbr__chs.html">   29</a></span><span class="keyword">struct </span><a class="code hl_struct" href="structspdk__mbr__chs.html">spdk_mbr_chs</a> {</div>
+<div class="line"><a id="l00030" name="l00030"></a><span class="lineno">   30</span>        uint8_t head;</div>
+<div class="line"><a id="l00031" name="l00031"></a><span class="lineno">   31</span>        uint16_t sector : 6;</div>
+<div class="line"><a id="l00032" name="l00032"></a><span class="lineno">   32</span>        uint16_t cylinder : 10;</div>
+<div class="line"><a id="l00033" name="l00033"></a><span class="lineno">   33</span>};</div>
+</div>
+<div class="line"><a id="l00034" name="l00034"></a><span class="lineno">   34</span><a class="code hl_define" href="assert_8h.html#ab961047b92ac1428376ef1ae1e4fa1cf">SPDK_STATIC_ASSERT</a>(<span class="keyword">sizeof</span>(<span class="keyword">struct</span> <a class="code hl_struct" href="structspdk__mbr__chs.html">spdk_mbr_chs</a>) == 3, <span class="stringliteral">&quot;size incorrect&quot;</span>);</div>
+<div class="line"><a id="l00035" name="l00035"></a><span class="lineno">   35</span> </div>
+<div class="foldopen" id="foldopen00036" data-start="{" data-end="};">
+<div class="line"><a id="l00036" name="l00036"></a><span class="lineno"><a class="line" href="structspdk__mbr__partition__entry.html">   36</a></span><span class="keyword">struct </span><a class="code hl_struct" href="structspdk__mbr__partition__entry.html">spdk_mbr_partition_entry</a> {</div>
+<div class="line"><a id="l00037" name="l00037"></a><span class="lineno">   37</span>        uint8_t reserved : 7;</div>
+<div class="line"><a id="l00038" name="l00038"></a><span class="lineno">   38</span>        uint8_t bootable : 1;</div>
+<div class="line"><a id="l00039" name="l00039"></a><span class="lineno">   39</span> </div>
+<div class="line"><a id="l00040" name="l00040"></a><span class="lineno">   40</span>        <span class="keyword">struct </span><a class="code hl_struct" href="structspdk__mbr__chs.html">spdk_mbr_chs</a> start_chs;</div>
+<div class="line"><a id="l00041" name="l00041"></a><span class="lineno">   41</span> </div>
+<div class="line"><a id="l00042" name="l00042"></a><span class="lineno">   42</span>        uint8_t os_type;</div>
+<div class="line"><a id="l00043" name="l00043"></a><span class="lineno">   43</span> </div>
+<div class="line"><a id="l00044" name="l00044"></a><span class="lineno">   44</span>        <span class="keyword">struct </span><a class="code hl_struct" href="structspdk__mbr__chs.html">spdk_mbr_chs</a> end_chs;</div>
+<div class="line"><a id="l00045" name="l00045"></a><span class="lineno">   45</span> </div>
+<div class="line"><a id="l00046" name="l00046"></a><span class="lineno">   46</span>        uint32_t start_lba;</div>
+<div class="line"><a id="l00047" name="l00047"></a><span class="lineno">   47</span>        uint32_t size_lba;</div>
+<div class="line"><a id="l00048" name="l00048"></a><span class="lineno">   48</span>};</div>
+</div>
+<div class="line"><a id="l00049" name="l00049"></a><span class="lineno">   49</span><a class="code hl_define" href="assert_8h.html#ab961047b92ac1428376ef1ae1e4fa1cf">SPDK_STATIC_ASSERT</a>(<span class="keyword">sizeof</span>(<span class="keyword">struct</span> <a class="code hl_struct" href="structspdk__mbr__partition__entry.html">spdk_mbr_partition_entry</a>) == 16, <span class="stringliteral">&quot;size incorrect&quot;</span>);</div>
+<div class="line"><a id="l00050" name="l00050"></a><span class="lineno">   50</span> </div>
+<div class="foldopen" id="foldopen00051" data-start="{" data-end="};">
+<div class="line"><a id="l00051" name="l00051"></a><span class="lineno"><a class="line" href="structspdk__mbr.html">   51</a></span><span class="keyword">struct </span><a class="code hl_struct" href="structspdk__mbr.html">spdk_mbr</a> {</div>
+<div class="line"><a id="l00052" name="l00052"></a><span class="lineno">   52</span>        uint8_t boot_code[440];</div>
+<div class="line"><a id="l00053" name="l00053"></a><span class="lineno">   53</span>        uint32_t disk_signature;</div>
+<div class="line"><a id="l00054" name="l00054"></a><span class="lineno">   54</span>        uint16_t reserved_444;</div>
+<div class="line"><a id="l00055" name="l00055"></a><span class="lineno">   55</span>        <span class="keyword">struct </span><a class="code hl_struct" href="structspdk__mbr__partition__entry.html">spdk_mbr_partition_entry</a> partitions[4];</div>
+<div class="line"><a id="l00056" name="l00056"></a><span class="lineno">   56</span>        uint16_t mbr_signature;</div>
+<div class="line"><a id="l00057" name="l00057"></a><span class="lineno">   57</span>};</div>
+</div>
+<div class="line"><a id="l00058" name="l00058"></a><span class="lineno">   58</span><a class="code hl_define" href="assert_8h.html#ab961047b92ac1428376ef1ae1e4fa1cf">SPDK_STATIC_ASSERT</a>(<span class="keyword">sizeof</span>(<span class="keyword">struct</span> <a class="code hl_struct" href="structspdk__mbr.html">spdk_mbr</a>) == 512, <span class="stringliteral">&quot;size incorrect&quot;</span>);</div>
+<div class="line"><a id="l00059" name="l00059"></a><span class="lineno">   59</span> </div>
+<div class="line"><a id="l00060" name="l00060"></a><span class="lineno">   60</span><span class="preprocessor">#define SPDK_GPT_SIGNATURE &quot;EFI PART&quot;</span></div>
+<div class="line"><a id="l00061" name="l00061"></a><span class="lineno">   61</span> </div>
+<div class="line"><a id="l00062" name="l00062"></a><span class="lineno">   62</span><span class="preprocessor">#define SPDK_GPT_REVISION_1_0 0x00010000u</span></div>
+<div class="line"><a id="l00063" name="l00063"></a><span class="lineno">   63</span> </div>
+<div class="foldopen" id="foldopen00064" data-start="{" data-end="};">
+<div class="line"><a id="l00064" name="l00064"></a><span class="lineno"><a class="line" href="structspdk__gpt__guid.html">   64</a></span><span class="keyword">struct </span><a class="code hl_struct" href="structspdk__gpt__guid.html">spdk_gpt_guid</a> {</div>
+<div class="line"><a id="l00065" name="l00065"></a><span class="lineno">   65</span>        uint8_t raw[16];</div>
+<div class="line"><a id="l00066" name="l00066"></a><span class="lineno">   66</span>};</div>
+</div>
+<div class="line"><a id="l00067" name="l00067"></a><span class="lineno">   67</span><a class="code hl_define" href="assert_8h.html#ab961047b92ac1428376ef1ae1e4fa1cf">SPDK_STATIC_ASSERT</a>(<span class="keyword">sizeof</span>(<span class="keyword">struct</span> <a class="code hl_struct" href="structspdk__gpt__guid.html">spdk_gpt_guid</a>) == 16, <span class="stringliteral">&quot;size incorrect&quot;</span>);</div>
+<div class="line"><a id="l00068" name="l00068"></a><span class="lineno">   68</span> </div>
+<div class="line"><a id="l00069" name="l00069"></a><span class="lineno">   69</span><span class="preprocessor">#define SPDK_GPT_GUID(a, b, c, d, e) \</span></div>
+<div class="line"><a id="l00070" name="l00070"></a><span class="lineno">   70</span><span class="preprocessor">        (struct spdk_gpt_guid){{ \</span></div>
+<div class="line"><a id="l00071" name="l00071"></a><span class="lineno">   71</span><span class="preprocessor">                (uint8_t)(a), (uint8_t)(((uint32_t)a) &gt;&gt; 8), \</span></div>
+<div class="line"><a id="l00072" name="l00072"></a><span class="lineno">   72</span><span class="preprocessor">                (uint8_t)(((uint32_t)a) &gt;&gt; 16), (uint8_t)(((uint32_t)a &gt;&gt; 24)), \</span></div>
+<div class="line"><a id="l00073" name="l00073"></a><span class="lineno">   73</span><span class="preprocessor">                (uint8_t)(b), (uint8_t)(((uint16_t)b) &gt;&gt; 8), \</span></div>
+<div class="line"><a id="l00074" name="l00074"></a><span class="lineno">   74</span><span class="preprocessor">                (uint8_t)(c), (uint8_t)(((uint16_t)c) &gt;&gt; 8), \</span></div>
+<div class="line"><a id="l00075" name="l00075"></a><span class="lineno">   75</span><span class="preprocessor">                (uint8_t)(((uint16_t)d) &gt;&gt; 8), (uint8_t)(d), \</span></div>
+<div class="line"><a id="l00076" name="l00076"></a><span class="lineno">   76</span><span class="preprocessor">                (uint8_t)(((uint64_t)e) &gt;&gt; 40), (uint8_t)(((uint64_t)e) &gt;&gt; 32), (uint8_t)(((uint64_t)e) &gt;&gt; 24), \</span></div>
+<div class="line"><a id="l00077" name="l00077"></a><span class="lineno">   77</span><span class="preprocessor">                (uint8_t)(((uint64_t)e) &gt;&gt; 16), (uint8_t)(((uint64_t)e) &gt;&gt; 8), (uint8_t)(e) \</span></div>
+<div class="line"><a id="l00078" name="l00078"></a><span class="lineno">   78</span><span class="preprocessor">        }}</span></div>
+<div class="line"><a id="l00079" name="l00079"></a><span class="lineno">   79</span> </div>
+<div class="line"><a id="l00080" name="l00080"></a><span class="lineno">   80</span><span class="preprocessor">#define SPDK_GPT_PART_TYPE_UNUSED               SPDK_GPT_GUID(0x00000000, 0x0000, 0x0000, 0x0000, 0x000000000000)</span></div>
+<div class="line"><a id="l00081" name="l00081"></a><span class="lineno">   81</span><span class="preprocessor">#define SPDK_GPT_PART_TYPE_EFI_SYSTEM_PARTITION SPDK_GPT_GUID(0xC12A7328, 0xF81F, 0x11D2, 0xBA4B, 0x00A0C93EC93B)</span></div>
+<div class="line"><a id="l00082" name="l00082"></a><span class="lineno">   82</span><span class="preprocessor">#define SPDK_GPT_PART_TYPE_LEGACY_MBR           SPDK_GPT_GUID(0x024DEE41, 0x33E7, 0x11D3, 0x9D69, 0x0008C781F39F)</span></div>
+<div class="line"><a id="l00083" name="l00083"></a><span class="lineno">   83</span> </div>
+<div class="foldopen" id="foldopen00084" data-start="{" data-end="};">
+<div class="line"><a id="l00084" name="l00084"></a><span class="lineno"><a class="line" href="structspdk__gpt__header.html">   84</a></span><span class="keyword">struct </span><a class="code hl_struct" href="structspdk__gpt__header.html">spdk_gpt_header</a> {</div>
+<div class="line"><a id="l00085" name="l00085"></a><span class="lineno">   85</span>        <span class="keywordtype">char</span> gpt_signature[8];</div>
+<div class="line"><a id="l00086" name="l00086"></a><span class="lineno">   86</span>        uint32_t revision;</div>
+<div class="line"><a id="l00087" name="l00087"></a><span class="lineno">   87</span>        uint32_t header_size;</div>
+<div class="line"><a id="l00088" name="l00088"></a><span class="lineno">   88</span>        uint32_t header_crc32;</div>
+<div class="line"><a id="l00089" name="l00089"></a><span class="lineno">   89</span>        uint32_t reserved;</div>
+<div class="line"><a id="l00090" name="l00090"></a><span class="lineno">   90</span>        uint64_t my_lba;</div>
+<div class="line"><a id="l00091" name="l00091"></a><span class="lineno">   91</span>        uint64_t alternate_lba;</div>
+<div class="line"><a id="l00092" name="l00092"></a><span class="lineno">   92</span>        uint64_t first_usable_lba;</div>
+<div class="line"><a id="l00093" name="l00093"></a><span class="lineno">   93</span>        uint64_t last_usable_lba;</div>
+<div class="line"><a id="l00094" name="l00094"></a><span class="lineno">   94</span>        <span class="keyword">struct </span><a class="code hl_struct" href="structspdk__gpt__guid.html">spdk_gpt_guid</a> disk_guid;</div>
+<div class="line"><a id="l00095" name="l00095"></a><span class="lineno">   95</span>        uint64_t partition_entry_lba;</div>
+<div class="line"><a id="l00096" name="l00096"></a><span class="lineno">   96</span>        uint32_t num_partition_entries;</div>
+<div class="line"><a id="l00097" name="l00097"></a><span class="lineno">   97</span>        uint32_t size_of_partition_entry;</div>
+<div class="line"><a id="l00098" name="l00098"></a><span class="lineno">   98</span>        uint32_t partition_entry_array_crc32;</div>
+<div class="line"><a id="l00099" name="l00099"></a><span class="lineno">   99</span>};</div>
+</div>
+<div class="line"><a id="l00100" name="l00100"></a><span class="lineno">  100</span><a class="code hl_define" href="assert_8h.html#ab961047b92ac1428376ef1ae1e4fa1cf">SPDK_STATIC_ASSERT</a>(<span class="keyword">sizeof</span>(<span class="keyword">struct</span> <a class="code hl_struct" href="structspdk__gpt__header.html">spdk_gpt_header</a>) == 92, <span class="stringliteral">&quot;size incorrect&quot;</span>);</div>
+<div class="line"><a id="l00101" name="l00101"></a><span class="lineno">  101</span> </div>
+<div class="foldopen" id="foldopen00102" data-start="{" data-end="};">
+<div class="line"><a id="l00102" name="l00102"></a><span class="lineno"><a class="line" href="structspdk__gpt__partition__entry.html">  102</a></span><span class="keyword">struct </span><a class="code hl_struct" href="structspdk__gpt__partition__entry.html">spdk_gpt_partition_entry</a> {</div>
+<div class="line"><a id="l00103" name="l00103"></a><span class="lineno">  103</span>        <span class="keyword">struct </span><a class="code hl_struct" href="structspdk__gpt__guid.html">spdk_gpt_guid</a> part_type_guid;</div>
+<div class="line"><a id="l00104" name="l00104"></a><span class="lineno">  104</span>        <span class="keyword">struct </span><a class="code hl_struct" href="structspdk__gpt__guid.html">spdk_gpt_guid</a> unique_partition_guid;</div>
+<div class="line"><a id="l00105" name="l00105"></a><span class="lineno">  105</span>        uint64_t starting_lba;</div>
+<div class="line"><a id="l00106" name="l00106"></a><span class="lineno">  106</span>        uint64_t ending_lba;</div>
+<div class="line"><a id="l00107" name="l00107"></a><span class="lineno">  107</span>        <span class="keyword">struct </span>{</div>
+<div class="line"><a id="l00108" name="l00108"></a><span class="lineno">  108</span>                uint64_t required : 1;</div>
+<div class="line"><a id="l00109" name="l00109"></a><span class="lineno">  109</span>                uint64_t no_block_io_proto : 1;</div>
+<div class="line"><a id="l00110" name="l00110"></a><span class="lineno">  110</span>                uint64_t legacy_bios_bootable : 1;</div>
+<div class="line"><a id="l00111" name="l00111"></a><span class="lineno">  111</span>                uint64_t reserved_uefi : 45;</div>
+<div class="line"><a id="l00112" name="l00112"></a><span class="lineno">  112</span>                uint64_t guid_specific : 16;</div>
+<div class="line"><a id="l00113" name="l00113"></a><span class="lineno">  113</span>        } attr;</div>
+<div class="line"><a id="l00114" name="l00114"></a><span class="lineno">  114</span>        uint16_t partition_name[36];</div>
+<div class="line"><a id="l00115" name="l00115"></a><span class="lineno">  115</span>};</div>
+</div>
+<div class="line"><a id="l00116" name="l00116"></a><span class="lineno">  116</span><a class="code hl_define" href="assert_8h.html#ab961047b92ac1428376ef1ae1e4fa1cf">SPDK_STATIC_ASSERT</a>(<span class="keyword">sizeof</span>(<span class="keyword">struct</span> <a class="code hl_struct" href="structspdk__gpt__partition__entry.html">spdk_gpt_partition_entry</a>) == 128, <span class="stringliteral">&quot;size incorrect&quot;</span>);</div>
+<div class="line"><a id="l00117" name="l00117"></a><span class="lineno">  117</span> </div>
+<div class="line"><a id="l00118" name="l00118"></a><span class="lineno">  118</span><span class="preprocessor">#pragma pack(pop)</span></div>
+<div class="line"><a id="l00119" name="l00119"></a><span class="lineno">  119</span> </div>
+<div class="line"><a id="l00120" name="l00120"></a><span class="lineno">  120</span><span class="preprocessor">#ifdef __cplusplus</span></div>
+<div class="line"><a id="l00121" name="l00121"></a><span class="lineno">  121</span>}</div>
+<div class="line"><a id="l00122" name="l00122"></a><span class="lineno">  122</span><span class="preprocessor">#endif</span></div>
+<div class="line"><a id="l00123" name="l00123"></a><span class="lineno">  123</span> </div>
+<div class="line"><a id="l00124" name="l00124"></a><span class="lineno">  124</span><span class="preprocessor">#endif</span></div>
+<div class="ttc" id="aassert_8h_html"><div class="ttname"><a href="assert_8h.html">assert.h</a></div><div class="ttdoc">Runtime and compile-time assert macros.</div></div>
+<div class="ttc" id="aassert_8h_html_ab961047b92ac1428376ef1ae1e4fa1cf"><div class="ttname"><a href="assert_8h.html#ab961047b92ac1428376ef1ae1e4fa1cf">SPDK_STATIC_ASSERT</a></div><div class="ttdeci">#define SPDK_STATIC_ASSERT(cond, msg)</div><div class="ttdoc">Compatibility wrapper for static_assert.</div><div class="ttdef"><b>Definition</b> <a href="assert_8h_source.html#l00030">assert.h:30</a></div></div>
+<div class="ttc" id="astdinc_8h_html"><div class="ttname"><a href="stdinc_8h.html">stdinc.h</a></div><div class="ttdoc">Standard C headers.</div></div>
+<div class="ttc" id="astructspdk__gpt__guid_html"><div class="ttname"><a href="structspdk__gpt__guid.html">spdk_gpt_guid</a></div><div class="ttdef"><b>Definition</b> <a href="#l00064">gpt_spec.h:64</a></div></div>
+<div class="ttc" id="astructspdk__gpt__header_html"><div class="ttname"><a href="structspdk__gpt__header.html">spdk_gpt_header</a></div><div class="ttdef"><b>Definition</b> <a href="#l00084">gpt_spec.h:84</a></div></div>
+<div class="ttc" id="astructspdk__gpt__partition__entry_html"><div class="ttname"><a href="structspdk__gpt__partition__entry.html">spdk_gpt_partition_entry</a></div><div class="ttdef"><b>Definition</b> <a href="#l00102">gpt_spec.h:102</a></div></div>
+<div class="ttc" id="astructspdk__mbr__chs_html"><div class="ttname"><a href="structspdk__mbr__chs.html">spdk_mbr_chs</a></div><div class="ttdef"><b>Definition</b> <a href="#l00029">gpt_spec.h:29</a></div></div>
+<div class="ttc" id="astructspdk__mbr__partition__entry_html"><div class="ttname"><a href="structspdk__mbr__partition__entry.html">spdk_mbr_partition_entry</a></div><div class="ttdef"><b>Definition</b> <a href="#l00036">gpt_spec.h:36</a></div></div>
+<div class="ttc" id="astructspdk__mbr_html"><div class="ttname"><a href="structspdk__mbr.html">spdk_mbr</a></div><div class="ttdef"><b>Definition</b> <a href="#l00051">gpt_spec.h:51</a></div></div>
+</div><!-- fragment --></div><!-- contents -->
+</div><!-- doc-content -->
+</div><!-- container -->
+<footer class="footer" id="nav-path">
+  <div class="footer-inner">
+    <div class="footer-copy">
+      <small>Copyright &copy; SPDK a Series of LF Projects, LLC. For web site terms of use, trademark policy, and other
+      project policies please see <a href="https://lfprojects.org">lfprojects.org</a>.</small>
+      <br><small>Built from spdk 91893349edff / site e5878500f</small>
+    </div>
+  </div>
+</footer>
+<script type="text/javascript" src="page_outline.js"></script>
+<script type="text/javascript" src="spdk_nav.js"></script>
+</body>
+</html>

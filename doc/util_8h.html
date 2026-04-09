@@ -1,0 +1,1573 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<meta name="generator" content="Doxygen 1.16.1">
+	<title>SPDK: util.h File Reference</title>
+	<script type="text/javascript" src="jquery.js"></script>
+	<script type="text/javascript" src="dynsections.js"></script>
+	<script type="text/javascript" src="clipboard.js"></script>
+	<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
+<script type="text/javascript" src="cookie.js"></script>
+	<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<script type="text/javascript">
+  $(function() { init_search(); });
+</script>
+	<link rel="icon" type="image/svg+xml" href="../assets/img/spdk.svg">
+	<link rel="icon" href="../assets/favicon.ico" sizes="32x32">
+	<link href="doxygen.css" rel="stylesheet" type="text/css">
+	<script>(function(){var k='doxygen_width',w,bw=6;if(window.chrome){w=localStorage.getItem(k);if(!w){w='350';localStorage.setItem(k,w)}}else{var m=document.cookie.match(new RegExp(k+'=(\\d+)'));w=m?m[1]:null;if(!w){w='350';document.cookie=k+'=350;SameSite=Lax;path=/'}}document.documentElement.style.setProperty('--sn-w',(parseInt(w)+bw)+'px')})()</script>
+	<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:400,700,900" type="text/css">
+	<link href="spdk.css" rel="stylesheet" type="text/css"/>
+	<link href="../assets/css/spdk.css" rel="stylesheet" type="text/css">
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<nav class="navbar">
+  <a class="navbar-brand" href="../" aria-label="SPDK">
+    <img src="../assets/img/spdk.svg" width="36" height="36" alt="Storage Performance Development Kit">
+  </a>
+  <div class="navbar-nav">
+    <a class="nav-link header-link" href="../doc/releases.html">download</a>
+    <a class="nav-link header-link" href="../doc/">documentation</a>
+    <a class="nav-link header-link" href="../doc/contributing.html">development</a>
+    <a class="nav-link header-link" href="../doc/ci_tools.html">CI status</a>
+    <a class="nav-link header-link" href="../community/">community</a>
+    <a class="nav-link header-link" href="../blog/">Blog</a>
+    <a class="nav-link header-link" href="https://github.com/orgs/spdk/projects/5">Roadmap</a>
+    <a class="nav-link header-link" href="../news/">News</a>
+  </div>
+  <div class="navbar-end">
+    <a class="nav-link header-link" href="https://github.com/spdk/spdk" aria-label="GitHub">
+      <svg xmlns="http://www.w3.org/2000/svg" class="navbar-nav-svg" aria-hidden="true"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
+    </a>
+    <a id="cn_lang_btn" href="../cn/doc/" class="nav-link header-link">中文</a>
+  </div>
+</nav>
+<script>
+(function() {
+    var p = location.pathname, best = null, bLen = 0;
+    document.querySelectorAll('.header-link[href]').forEach(function(a) {
+        var raw = a.getAttribute('href');
+        if (!raw) return;
+        try { var u = new URL(raw, location.href); } catch(e) { return; }
+        if (u.origin !== location.origin) return;
+        var h = u.pathname;
+        if (h === '/') return;
+        var ok = h.endsWith('.html') ? p === h : p.indexOf(h) === 0;
+        if (ok && h.length > bLen) { bLen = h.length; best = a; }
+    });
+    if (best) best.classList.add('active');
+})();
+</script>
+<div id="doxygen-searchbox">        <div id="MSearchBox" class="MSearchBoxInactive">
+        <span class="left">
+          <span id="MSearchSelect" class="search-icon" onmouseover="return searchBox.OnSearchSelectShow()" onmouseout="return searchBox.OnSearchSelectHide()"><span class="search-icon-dropdown"></span></span>
+          <input type="text" id="MSearchField" value="" placeholder="Search" accesskey="S"
+               onfocus="searchBox.OnSearchFieldFocus(true)" 
+               onblur="searchBox.OnSearchFieldFocus(false)" 
+               onkeyup="searchBox.OnSearchFieldChange(event)"/>
+          </span><span class="right">
+            <a id="MSearchClose" href="javascript:searchBox.CloseResultsWindow()"><div id="MSearchCloseImg" class="close-icon"></div></a>
+          </span>
+        </div>
+</div>
+<!-- Generated by Doxygen 1.16.1 -->
+<script type="text/javascript">
+var searchBox = new SearchBox("searchBox", "search/",'.html');
+</script>
+<script type="text/javascript">
+$(function() { codefold.init(); });
+</script>
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+$(function(){initNavTree('util_8h.html','',''); });
+</script>
+<div id="container">
+<div id="doc-content">
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">Loading...</div>
+<div class="SRStatus" id="Searching">Searching...</div>
+<div class="SRStatus" id="NoMatches">No Matches</div>
+</div>
+</div>
+</div>
+</div>
+
+<div class="header">
+  <div class="headertitle"><div class="title">util.h File Reference</div></div>
+</div><!--header-->
+<div class="contents">
+
+<p>General utility functions.  
+<a href="#details">More...</a></p>
+
+<p><a href="util_8h_source.html">Go to the source code of this file.</a></p>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 id="header-nested-classes" class="groupheader"><a id="nested-classes" name="nested-classes"></a>
+Data Structures</h2></td></tr>
+<tr class="memitem:spdk_5Fsingle_5Fioviter" id="r_spdk_5Fsingle_5Fioviter"><td class="memItemLeft">struct &#160;</td><td class="memItemRight"><a class="el" href="structspdk__single__ioviter.html">spdk_single_ioviter</a></td></tr>
+<tr class="memitem:spdk_5Fioviter" id="r_spdk_5Fioviter"><td class="memItemLeft">struct &#160;</td><td class="memItemRight"><a class="el" href="structspdk__ioviter.html">spdk_ioviter</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">An N-way iovec iterator.  <a href="structspdk__ioviter.html#details">More...</a><br /></td></tr>
+<tr class="memitem:spdk_5Fiov_5Fxfer" id="r_spdk_5Fiov_5Fxfer"><td class="memItemLeft">struct &#160;</td><td class="memItemRight"><a class="el" href="structspdk__iov__xfer.html">spdk_iov_xfer</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Transfer state for iterative copying in or out of an iovec.  <a href="structspdk__iov__xfer.html#details">More...</a><br /></td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 id="header-define-members" class="groupheader"><a id="define-members" name="define-members"></a>
+Macros</h2></td></tr>
+<tr class="memitem:a7a104b2e349617222c6419b36bfd3260" id="r_a7a104b2e349617222c6419b36bfd3260"><td class="memItemLeft">#define&#160;</td><td class="memItemRight"><a class="el" href="#a7a104b2e349617222c6419b36bfd3260">__STDC_WANT_LIB_EXT1__</a>&#160;&#160;&#160;1</td></tr>
+<tr class="memitem:afb0c0f2282517becd79ba3f60768b6c4" id="r_afb0c0f2282517becd79ba3f60768b6c4"><td class="memItemLeft">#define&#160;</td><td class="memItemRight"><a class="el" href="#afb0c0f2282517becd79ba3f60768b6c4">SPDK_CACHE_LINE_SIZE</a>&#160;&#160;&#160;64</td></tr>
+<tr class="memitem:a837456da8a8d13c0f84c1b362acfe482" id="r_a837456da8a8d13c0f84c1b362acfe482"><td class="memItemLeft">#define&#160;</td><td class="memItemRight"><a class="el" href="#a837456da8a8d13c0f84c1b362acfe482">spdk_min</a>(a,  b)</td></tr>
+<tr class="memitem:a4ef0b5332740873cf0414a8b44000128" id="r_a4ef0b5332740873cf0414a8b44000128"><td class="memItemLeft">#define&#160;</td><td class="memItemRight"><a class="el" href="#a4ef0b5332740873cf0414a8b44000128">spdk_max</a>(a,  b)</td></tr>
+<tr class="memitem:a21e1907187f8bf2c4b0c0de12c113ed6" id="r_a21e1907187f8bf2c4b0c0de12c113ed6"><td class="memItemLeft">#define&#160;</td><td class="memItemRight"><a class="el" href="#a21e1907187f8bf2c4b0c0de12c113ed6">SPDK_COUNTOF</a>(arr)</td></tr>
+<tr class="memitem:ace0946954cf4fed6e4f3b7f87180f984" id="r_ace0946954cf4fed6e4f3b7f87180f984"><td class="memItemLeft">#define&#160;</td><td class="memItemRight"><a class="el" href="#ace0946954cf4fed6e4f3b7f87180f984">SPDK_CONTAINEROF</a>(ptr,  type,  member)</td></tr>
+<tr class="memitem:a42fd1c29c4cbe74363973322468bbd33" id="r_a42fd1c29c4cbe74363973322468bbd33"><td class="memItemLeft">#define&#160;</td><td class="memItemRight"><a class="el" href="#a42fd1c29c4cbe74363973322468bbd33">SPDK_SIZEOF</a>(ptr,  member)</td></tr>
+<tr class="memdesc:a42fd1c29c4cbe74363973322468bbd33"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns size of an object pointer by ptr up to and including member.  <br /></td></tr>
+<tr class="memitem:a84582307b17e6428bfdd287c9b8b5e3d" id="r_a84582307b17e6428bfdd287c9b8b5e3d"><td class="memItemLeft">#define&#160;</td><td class="memItemRight"><a class="el" href="#a84582307b17e6428bfdd287c9b8b5e3d">SPDK_SIZEOF_MEMBER</a>(type,  member)</td></tr>
+<tr class="memdesc:a84582307b17e6428bfdd287c9b8b5e3d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the size of a member of a struct.  <br /></td></tr>
+<tr class="memitem:a83209c12813c625453d8bfc934393b20" id="r_a83209c12813c625453d8bfc934393b20"><td class="memItemLeft">#define&#160;</td><td class="memItemRight"><a class="el" href="#a83209c12813c625453d8bfc934393b20">SPDK_COUNTOF_MEMBER</a>(type,  member)</td></tr>
+<tr class="memdesc:a83209c12813c625453d8bfc934393b20"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the number of elements in an array of a struct member.  <br /></td></tr>
+<tr class="memitem:afe8580d16e1b85d64a49869d0a8a7cbd" id="r_afe8580d16e1b85d64a49869d0a8a7cbd"><td class="memItemLeft">#define&#160;</td><td class="memItemRight"><a class="el" href="#afe8580d16e1b85d64a49869d0a8a7cbd">SPDK_SEC_TO_MSEC</a>&#160;&#160;&#160;1000ULL</td></tr>
+<tr class="memitem:aaa368537876ed0aee8ae810a240b2dfb" id="r_aaa368537876ed0aee8ae810a240b2dfb"><td class="memItemLeft">#define&#160;</td><td class="memItemRight"><a class="el" href="#aaa368537876ed0aee8ae810a240b2dfb">SPDK_SEC_TO_USEC</a>&#160;&#160;&#160;1000000ULL</td></tr>
+<tr class="memitem:ac1fbd59e0e9f73e71f416385d606cc52" id="r_ac1fbd59e0e9f73e71f416385d606cc52"><td class="memItemLeft">#define&#160;</td><td class="memItemRight"><a class="el" href="#ac1fbd59e0e9f73e71f416385d606cc52">SPDK_SEC_TO_NSEC</a>&#160;&#160;&#160;1000000000ULL</td></tr>
+<tr class="memitem:a563dbf631f68603d957619304e0ceac4" id="r_a563dbf631f68603d957619304e0ceac4"><td class="memItemLeft">#define&#160;</td><td class="memItemRight"><a class="el" href="#a563dbf631f68603d957619304e0ceac4">SPDK_MSEC_TO_USEC</a>&#160;&#160;&#160;1000ULL</td></tr>
+<tr class="memitem:a58821926bcb68504a97ffa1545029398" id="r_a58821926bcb68504a97ffa1545029398"><td class="memItemLeft">#define&#160;</td><td class="memItemRight"><a class="el" href="#a58821926bcb68504a97ffa1545029398">SPDK_CEIL_DIV</a>(x,  y)</td></tr>
+<tr class="memitem:a4fe89df2bed54dcdc8b0d33c53a694b6" id="r_a4fe89df2bed54dcdc8b0d33c53a694b6"><td class="memItemLeft">#define&#160;</td><td class="memItemRight"><a class="el" href="#a4fe89df2bed54dcdc8b0d33c53a694b6">SPDK_ALIGN_FLOOR</a>(val,  align)</td></tr>
+<tr class="memdesc:a4fe89df2bed54dcdc8b0d33c53a694b6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Macro to align a value to a given power-of-two.  <br /></td></tr>
+<tr class="memitem:a61bd4178f177cf2265279944b0184fcd" id="r_a61bd4178f177cf2265279944b0184fcd"><td class="memItemLeft">#define&#160;</td><td class="memItemRight"><a class="el" href="#a61bd4178f177cf2265279944b0184fcd">SPDK_ALIGN_CEIL</a>(val,  align)</td></tr>
+<tr class="memdesc:a61bd4178f177cf2265279944b0184fcd"><td class="mdescLeft">&#160;</td><td class="mdescRight">Macro to align a value to a given power-of-two.  <br /></td></tr>
+<tr class="memitem:ab22ba76493581094951bb74abb68238d" id="r_ab22ba76493581094951bb74abb68238d"><td class="memItemLeft">#define&#160;</td><td class="memItemRight"><a class="el" href="#ab22ba76493581094951bb74abb68238d">SPDK_BIT</a>(n)</td></tr>
+<tr class="memitem:a20d2934d5aabcb2ea72ca465f33d6ab7" id="r_a20d2934d5aabcb2ea72ca465f33d6ab7"><td class="memItemLeft">#define&#160;</td><td class="memItemRight"><a class="el" href="#a20d2934d5aabcb2ea72ca465f33d6ab7">SPDK_FIELD_VALID</a>(obj,  field, ...)</td></tr>
+<tr class="memdesc:a20d2934d5aabcb2ea72ca465f33d6ab7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Check if a given field is valid in a structure with size tracking.  <br /></td></tr>
+<tr class="memitem:af335b8c4dccbb988f8cce2d9f9e44623" id="r_af335b8c4dccbb988f8cce2d9f9e44623"><td class="memItemLeft">#define&#160;</td><td class="memItemRight"><a class="el" href="#af335b8c4dccbb988f8cce2d9f9e44623">_SPDK_FIELD_VALID</a>(obj,  field,  size, ...)</td></tr>
+<tr class="memitem:af961bfd28ca1daef326d855007546c29" id="r_af961bfd28ca1daef326d855007546c29"><td class="memItemLeft">#define&#160;</td><td class="memItemRight"><a class="el" href="#af961bfd28ca1daef326d855007546c29">SPDK_GET_FIELD</a>(obj,  field,  defval, ...)</td></tr>
+<tr class="memdesc:af961bfd28ca1daef326d855007546c29"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get a field from a structure with size tracking.  <br /></td></tr>
+<tr class="memitem:adcdc75d9ca194fb6be50375167fced65" id="r_adcdc75d9ca194fb6be50375167fced65"><td class="memItemLeft">#define&#160;</td><td class="memItemRight"><a class="el" href="#adcdc75d9ca194fb6be50375167fced65">_SPDK_GET_FIELD</a>(obj,  field,  defval,  size, ...)</td></tr>
+<tr class="memitem:ab68c3f1a4bdedea57f4deb58a011f251" id="r_ab68c3f1a4bdedea57f4deb58a011f251"><td class="memItemLeft">#define&#160;</td><td class="memItemRight"><a class="el" href="#ab68c3f1a4bdedea57f4deb58a011f251">SPDK_IOVITER_SIZE</a>(count)</td></tr>
+<tr class="memitem:a123918f967aa539af3a48a83dcf588c9" id="r_a123918f967aa539af3a48a83dcf588c9"><td class="memItemLeft">#define&#160;</td><td class="memItemRight"><a class="el" href="#a123918f967aa539af3a48a83dcf588c9">SPDK_IOV_ONE</a>(piov,  piovcnt,  buf,  buflen)</td></tr>
+<tr class="memdesc:a123918f967aa539af3a48a83dcf588c9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Initialize an iovec with just the single given buffer.  <br /></td></tr>
+<tr class="memitem:ac14f2b75522d72317def37370adffca1" id="r_ac14f2b75522d72317def37370adffca1"><td class="memItemLeft">#define&#160;</td><td class="memItemRight"><a class="el" href="#ac14f2b75522d72317def37370adffca1">SPDK_CLANG_ANALYZER_PREINIT_PTR_ARRAY</a>(arr,  arr_size,  buf_size)</td></tr>
+<tr class="memdesc:ac14f2b75522d72317def37370adffca1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Scan build is really pessimistic and assumes that mempool functions can dequeue NULL buffers even if they return success.  <br /></td></tr>
+<tr class="memitem:a744d1bf5de56a453f235c5eb58ec4d00" id="r_a744d1bf5de56a453f235c5eb58ec4d00"><td class="memItemLeft">#define&#160;</td><td class="memItemRight"><a class="el" href="#a744d1bf5de56a453f235c5eb58ec4d00">SPDK_SN32_CMPMAX</a>&#160;&#160;&#160;(1U &lt;&lt; (32 - 1))</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 id="header-func-members" class="groupheader"><a id="func-members" name="func-members"></a>
+Functions</h2></td></tr>
+<tr class="memitem:a5212715fed856a30641ba319bad995a7" id="r_a5212715fed856a30641ba319bad995a7"><td class="memItemLeft"><a id="a5212715fed856a30641ba319bad995a7" name="a5212715fed856a30641ba319bad995a7"></a>
+uint32_t&#160;</td><td class="memItemRight"><b>spdk_u32log2</b> (uint32_t x)</td></tr>
+<tr class="memitem:a81f234059f1e2fa2d11dc3d372be8c27" id="r_a81f234059f1e2fa2d11dc3d372be8c27"><td class="memItemLeft">static uint64_t&#160;</td><td class="memItemRight"><a class="el" href="#a81f234059f1e2fa2d11dc3d372be8c27">spdk_rand_xorshift64</a> (uint64_t *state)</td></tr>
+<tr class="memdesc:a81f234059f1e2fa2d11dc3d372be8c27"><td class="mdescLeft">&#160;</td><td class="mdescRight">Generate a 64-bit pseudo-random number using xorshift algorithm.  <br /></td></tr>
+<tr class="memitem:ab62e1f375a34a65d0f2a66c7e71d548d" id="r_ab62e1f375a34a65d0f2a66c7e71d548d"><td class="memItemLeft">static uint64_t&#160;</td><td class="memItemRight"><a class="el" href="#ab62e1f375a34a65d0f2a66c7e71d548d">spdk_rand_xorshift64_seed</a> (void)</td></tr>
+<tr class="memdesc:ab62e1f375a34a65d0f2a66c7e71d548d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Generate a non-zero initial seed for xorshift64.  <br /></td></tr>
+<tr class="memitem:a22383e04171a98834c5f21f0c460e322" id="r_a22383e04171a98834c5f21f0c460e322"><td class="memItemLeft">static uint32_t&#160;</td><td class="memItemRight"><a class="el" href="#a22383e04171a98834c5f21f0c460e322">spdk_align32pow2</a> (uint32_t x)</td></tr>
+<tr class="memitem:ada6ce4c7e52b50a49415fbbaaf2a73f5" id="r_ada6ce4c7e52b50a49415fbbaaf2a73f5"><td class="memItemLeft"><a id="ada6ce4c7e52b50a49415fbbaaf2a73f5" name="ada6ce4c7e52b50a49415fbbaaf2a73f5"></a>
+uint64_t&#160;</td><td class="memItemRight"><b>spdk_u64log2</b> (uint64_t x)</td></tr>
+<tr class="memitem:a23a7b8dc5a8b680176bac1c7bd384406" id="r_a23a7b8dc5a8b680176bac1c7bd384406"><td class="memItemLeft">static uint64_t&#160;</td><td class="memItemRight"><a class="el" href="#a23a7b8dc5a8b680176bac1c7bd384406">spdk_align64pow2</a> (uint64_t x)</td></tr>
+<tr class="memitem:a63e2af9bd97c1250c11a2e585336f377" id="r_a63e2af9bd97c1250c11a2e585336f377"><td class="memItemLeft">static bool&#160;</td><td class="memItemRight"><a class="el" href="#a63e2af9bd97c1250c11a2e585336f377">spdk_u32_is_pow2</a> (uint32_t x)</td></tr>
+<tr class="memdesc:a63e2af9bd97c1250c11a2e585336f377"><td class="mdescLeft">&#160;</td><td class="mdescRight">Check if a uint32_t is a power of 2.  <br /></td></tr>
+<tr class="memitem:ac2b85ac7ccc6fc631cb341ecae073e3e" id="r_ac2b85ac7ccc6fc631cb341ecae073e3e"><td class="memItemLeft">static bool&#160;</td><td class="memItemRight"><a class="el" href="#ac2b85ac7ccc6fc631cb341ecae073e3e">spdk_u64_is_pow2</a> (uint64_t x)</td></tr>
+<tr class="memdesc:ac2b85ac7ccc6fc631cb341ecae073e3e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Check if a uint64_t is a power of 2.  <br /></td></tr>
+<tr class="memitem:a3a1ed8f80bbc8e22d1f778a6615512e7" id="r_a3a1ed8f80bbc8e22d1f778a6615512e7"><td class="memItemLeft">static uint64_t&#160;</td><td class="memItemRight"><a class="el" href="#a3a1ed8f80bbc8e22d1f778a6615512e7">spdk_divide_round_up</a> (uint64_t num, uint64_t divisor)</td></tr>
+<tr class="memitem:a82c3cdd14add82c18ea916e504675f2e" id="r_a82c3cdd14add82c18ea916e504675f2e"><td class="memItemLeft">static uint64_t&#160;</td><td class="memItemRight"><a class="el" href="#a82c3cdd14add82c18ea916e504675f2e">spdk_round_up</a> (uint64_t num, uint64_t divisor)</td></tr>
+<tr class="memitem:ac49e02ee794f8dc5048934504023d6d5" id="r_ac49e02ee794f8dc5048934504023d6d5"><td class="memItemLeft">size_t&#160;</td><td class="memItemRight"><a class="el" href="#ac49e02ee794f8dc5048934504023d6d5">spdk_ioviter_first</a> (struct <a class="el" href="structspdk__ioviter.html">spdk_ioviter</a> *iter, struct iovec *siov, size_t siovcnt, struct iovec *diov, size_t diovcnt, void **src, void **dst)</td></tr>
+<tr class="memdesc:ac49e02ee794f8dc5048934504023d6d5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Initialize and move to the first common segment of the two given iovecs.  <br /></td></tr>
+<tr class="memitem:a3597f82a6203011c6d1e5f21c55e3bf9" id="r_a3597f82a6203011c6d1e5f21c55e3bf9"><td class="memItemLeft">size_t&#160;</td><td class="memItemRight"><a class="el" href="#a3597f82a6203011c6d1e5f21c55e3bf9">spdk_ioviter_firstv</a> (struct <a class="el" href="structspdk__ioviter.html">spdk_ioviter</a> *iter, uint32_t count, struct iovec **iov, size_t *iovcnt, void **out)</td></tr>
+<tr class="memdesc:a3597f82a6203011c6d1e5f21c55e3bf9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Initialize and move to the first common segment of the N given iovecs.  <br /></td></tr>
+<tr class="memitem:a0bbb80ad35ccd2da128fa69acedd2d90" id="r_a0bbb80ad35ccd2da128fa69acedd2d90"><td class="memItemLeft">size_t&#160;</td><td class="memItemRight"><a class="el" href="#a0bbb80ad35ccd2da128fa69acedd2d90">spdk_ioviter_next</a> (struct <a class="el" href="structspdk__ioviter.html">spdk_ioviter</a> *iter, void **src, void **dst)</td></tr>
+<tr class="memdesc:a0bbb80ad35ccd2da128fa69acedd2d90"><td class="mdescLeft">&#160;</td><td class="mdescRight">Move to the next segment in the iterator.  <br /></td></tr>
+<tr class="memitem:a1c02b473289bbf65b2f8f2cba9f65fcc" id="r_a1c02b473289bbf65b2f8f2cba9f65fcc"><td class="memItemLeft">size_t&#160;</td><td class="memItemRight"><a class="el" href="#a1c02b473289bbf65b2f8f2cba9f65fcc">spdk_ioviter_nextv</a> (struct <a class="el" href="structspdk__ioviter.html">spdk_ioviter</a> *iter, void **out)</td></tr>
+<tr class="memdesc:a1c02b473289bbf65b2f8f2cba9f65fcc"><td class="mdescLeft">&#160;</td><td class="mdescRight">Move to the next segment in the iterator.  <br /></td></tr>
+<tr class="memitem:a87d0db9f66fa3fc6763dbbe238c3c179" id="r_a87d0db9f66fa3fc6763dbbe238c3c179"><td class="memItemLeft"><a id="a87d0db9f66fa3fc6763dbbe238c3c179" name="a87d0db9f66fa3fc6763dbbe238c3c179"></a>
+void&#160;</td><td class="memItemRight"><b>spdk_iov_memset</b> (struct iovec *iovs, int iovcnt, int c)</td></tr>
+<tr class="memdesc:a87d0db9f66fa3fc6763dbbe238c3c179"><td class="mdescLeft">&#160;</td><td class="mdescRight">Operate like memset across an iovec. <br /></td></tr>
+<tr class="memitem:a4bf38bbd457a764604d5ba26ed3c8565" id="r_a4bf38bbd457a764604d5ba26ed3c8565"><td class="memItemLeft">size_t&#160;</td><td class="memItemRight"><a class="el" href="#a4bf38bbd457a764604d5ba26ed3c8565">spdk_iovcpy</a> (struct iovec *siov, size_t siovcnt, struct iovec *diov, size_t diovcnt)</td></tr>
+<tr class="memdesc:a4bf38bbd457a764604d5ba26ed3c8565"><td class="mdescLeft">&#160;</td><td class="mdescRight">Copy the data described by the source iovec to the destination iovec.  <br /></td></tr>
+<tr class="memitem:af4c8af78fb85f76425e5472e742921e6" id="r_af4c8af78fb85f76425e5472e742921e6"><td class="memItemLeft">size_t&#160;</td><td class="memItemRight"><a class="el" href="#af4c8af78fb85f76425e5472e742921e6">spdk_iovmove</a> (struct iovec *siov, size_t siovcnt, struct iovec *diov, size_t diovcnt)</td></tr>
+<tr class="memdesc:af4c8af78fb85f76425e5472e742921e6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Same as <a class="el" href="#a4bf38bbd457a764604d5ba26ed3c8565" title="Copy the data described by the source iovec to the destination iovec.">spdk_iovcpy()</a>, but the src/dst buffers might overlap.  <br /></td></tr>
+<tr class="memitem:a5761baf18d549561bfeb58990531bbcd" id="r_a5761baf18d549561bfeb58990531bbcd"><td class="memItemLeft"><a id="a5761baf18d549561bfeb58990531bbcd" name="a5761baf18d549561bfeb58990531bbcd"></a>
+void&#160;</td><td class="memItemRight"><b>spdk_iov_xfer_init</b> (struct <a class="el" href="structspdk__iov__xfer.html">spdk_iov_xfer</a> *ix, struct iovec *iovs, int iovcnt)</td></tr>
+<tr class="memdesc:a5761baf18d549561bfeb58990531bbcd"><td class="mdescLeft">&#160;</td><td class="mdescRight">Initialize a transfer context to point to the given iovec. <br /></td></tr>
+<tr class="memitem:aa6ce82e1521dc2592d35403edc48a35c" id="r_aa6ce82e1521dc2592d35403edc48a35c"><td class="memItemLeft">size_t&#160;</td><td class="memItemRight"><a class="el" href="#aa6ce82e1521dc2592d35403edc48a35c">spdk_iov_xfer_from_buf</a> (struct <a class="el" href="structspdk__iov__xfer.html">spdk_iov_xfer</a> *ix, const void *buf, size_t buf_len)</td></tr>
+<tr class="memdesc:aa6ce82e1521dc2592d35403edc48a35c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Copy from the given buf up to buf_len bytes, into the given ix iovec iterator, advancing the iterator as needed.  <br /></td></tr>
+<tr class="memitem:a1082d39cc6e9b1fb657f3b31ba430454" id="r_a1082d39cc6e9b1fb657f3b31ba430454"><td class="memItemLeft">size_t&#160;</td><td class="memItemRight"><a class="el" href="#a1082d39cc6e9b1fb657f3b31ba430454">spdk_iov_xfer_to_buf</a> (struct <a class="el" href="structspdk__iov__xfer.html">spdk_iov_xfer</a> *ix, const void *buf, size_t buf_len)</td></tr>
+<tr class="memdesc:a1082d39cc6e9b1fb657f3b31ba430454"><td class="mdescLeft">&#160;</td><td class="mdescRight">Copy from the given ix iovec iterator into the given buf up to buf_len bytes, advancing the iterator as needed.  <br /></td></tr>
+<tr class="memitem:a260b1024edd3144707a2286ebf50839e" id="r_a260b1024edd3144707a2286ebf50839e"><td class="memItemLeft"><a id="a260b1024edd3144707a2286ebf50839e" name="a260b1024edd3144707a2286ebf50839e"></a>
+void&#160;</td><td class="memItemRight"><b>spdk_copy_iovs_to_buf</b> (void *buf, size_t buf_len, struct iovec *iovs, int iovcnt)</td></tr>
+<tr class="memdesc:a260b1024edd3144707a2286ebf50839e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Copy iovs contents to buf through memcpy. <br /></td></tr>
+<tr class="memitem:a50613a64c93f060a3a9f6293d64da50d" id="r_a50613a64c93f060a3a9f6293d64da50d"><td class="memItemLeft"><a id="a50613a64c93f060a3a9f6293d64da50d" name="a50613a64c93f060a3a9f6293d64da50d"></a>
+void&#160;</td><td class="memItemRight"><b>spdk_copy_buf_to_iovs</b> (struct iovec *iovs, int iovcnt, void *buf, size_t buf_len)</td></tr>
+<tr class="memdesc:a50613a64c93f060a3a9f6293d64da50d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Copy buf contents to iovs through memcpy. <br /></td></tr>
+<tr class="memitem:a9d8a81dd9f89050cdc2de023d10f1d31" id="r_a9d8a81dd9f89050cdc2de023d10f1d31"><td class="memItemLeft">static uint32_t&#160;</td><td class="memItemRight"><a class="el" href="#a9d8a81dd9f89050cdc2de023d10f1d31">spdk_sn32_add</a> (uint32_t s1, uint32_t s2)</td></tr>
+<tr class="memdesc:a9d8a81dd9f89050cdc2de023d10f1d31"><td class="mdescLeft">&#160;</td><td class="mdescRight">Add two sequence numbers s1 and s2.  <br /></td></tr>
+<tr class="memitem:a731ba4d3d89bf3d1c31c3e6481fc07b7" id="r_a731ba4d3d89bf3d1c31c3e6481fc07b7"><td class="memItemLeft">static bool&#160;</td><td class="memItemRight"><a class="el" href="#a731ba4d3d89bf3d1c31c3e6481fc07b7">spdk_sn32_lt</a> (uint32_t s1, uint32_t s2)</td></tr>
+<tr class="memdesc:a731ba4d3d89bf3d1c31c3e6481fc07b7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Compare if sequence number s1 is less than s2.  <br /></td></tr>
+<tr class="memitem:a3d7841db36c180f3fcac21e2314e2ef2" id="r_a3d7841db36c180f3fcac21e2314e2ef2"><td class="memItemLeft">static bool&#160;</td><td class="memItemRight"><a class="el" href="#a3d7841db36c180f3fcac21e2314e2ef2">spdk_sn32_gt</a> (uint32_t s1, uint32_t s2)</td></tr>
+<tr class="memdesc:a3d7841db36c180f3fcac21e2314e2ef2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Compare if sequence number s1 is greater than s2.  <br /></td></tr>
+<tr class="memitem:ad7ddd177340554080af356c7d1e57d00" id="r_ad7ddd177340554080af356c7d1e57d00"><td class="memItemLeft">static void&#160;</td><td class="memItemRight"><a class="el" href="#ad7ddd177340554080af356c7d1e57d00">spdk_memset_s</a> (void *data, size_t data_size, int ch, size_t count)</td></tr>
+<tr class="memdesc:ad7ddd177340554080af356c7d1e57d00"><td class="mdescLeft">&#160;</td><td class="mdescRight">Copies the value (unsigned char)ch into each of the first <b>count</b> characters of the object pointed to by <b>data</b> <b>data_size</b> is used to check that filling <b>count</b> bytes won't lead to buffer overflow.  <br /></td></tr>
+</table>
+<a name="details" id="details"></a><h2 id="header-details" class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>General utility functions. </p>
+
+<p class="definition">Definition in file <a class="el" href="util_8h_source.html">util.h</a>.</p>
+</div><a name="doc-define-members" id="doc-define-members"></a><h2 id="header-doc-define-members" class="groupheader">Macro Definition Documentation</h2>
+<a id="a7a104b2e349617222c6419b36bfd3260" name="a7a104b2e349617222c6419b36bfd3260"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7a104b2e349617222c6419b36bfd3260">&#9670;&#160;</a></span>__STDC_WANT_LIB_EXT1__</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define __STDC_WANT_LIB_EXT1__&#160;&#160;&#160;1</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="util_8h_source.html#l00014">14</a> of file <a class="el" href="util_8h_source.html">util.h</a>.</p>
+
+</div>
+</div>
+<a id="af335b8c4dccbb988f8cce2d9f9e44623" name="af335b8c4dccbb988f8cce2d9f9e44623"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af335b8c4dccbb988f8cce2d9f9e44623">&#9670;&#160;</a></span>_SPDK_FIELD_VALID</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define _SPDK_FIELD_VALID</td>
+          <td>(</td>
+          <td class="paramtype"></td>          <td class="paramname"><span class="paramname"><em>obj</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"></td>          <td class="paramname"><span class="paramname"><em>field</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"></td>          <td class="paramname"><span class="paramname"><em>size</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"></td>          <td class="paramname"><span class="paramname"><em></em></span>...&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<b>Value:</b><div class="fragment"><div class="line">((size) &gt;= (offsetof(__typeof__(*(obj)), field) + <span class="keyword">sizeof</span>((obj)-&gt;field)))</div>
+</div><!-- fragment -->
+<p class="definition">Definition at line <a class="el" href="util_8h_source.html#l00081">81</a> of file <a class="el" href="util_8h_source.html">util.h</a>.</p>
+
+</div>
+</div>
+<a id="adcdc75d9ca194fb6be50375167fced65" name="adcdc75d9ca194fb6be50375167fced65"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#adcdc75d9ca194fb6be50375167fced65">&#9670;&#160;</a></span>_SPDK_GET_FIELD</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define _SPDK_GET_FIELD</td>
+          <td>(</td>
+          <td class="paramtype"></td>          <td class="paramname"><span class="paramname"><em>obj</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"></td>          <td class="paramname"><span class="paramname"><em>field</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"></td>          <td class="paramname"><span class="paramname"><em>defval</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"></td>          <td class="paramname"><span class="paramname"><em>size</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"></td>          <td class="paramname"><span class="paramname"><em></em></span>...&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<b>Value:</b><div class="fragment"><div class="line">(<a class="code hl_define" href="#a20d2934d5aabcb2ea72ca465f33d6ab7">SPDK_FIELD_VALID</a>(obj, field, size) ? (obj)-&gt;field : (defval))</div>
+<div class="ttc" id="autil_8h_html_a20d2934d5aabcb2ea72ca465f33d6ab7"><div class="ttname"><a href="#a20d2934d5aabcb2ea72ca465f33d6ab7">SPDK_FIELD_VALID</a></div><div class="ttdeci">#define SPDK_FIELD_VALID(obj, field,...)</div><div class="ttdoc">Check if a given field is valid in a structure with size tracking.</div><div class="ttdef"><b>Definition</b> <a href="util_8h_source.html#l00078">util.h:78</a></div></div>
+</div><!-- fragment -->
+<p class="definition">Definition at line <a class="el" href="util_8h_source.html#l00091">91</a> of file <a class="el" href="util_8h_source.html">util.h</a>.</p>
+
+</div>
+</div>
+<a id="a61bd4178f177cf2265279944b0184fcd" name="a61bd4178f177cf2265279944b0184fcd"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a61bd4178f177cf2265279944b0184fcd">&#9670;&#160;</a></span>SPDK_ALIGN_CEIL</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define SPDK_ALIGN_CEIL</td>
+          <td>(</td>
+          <td class="paramtype"></td>          <td class="paramname"><span class="paramname"><em>val</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"></td>          <td class="paramname"><span class="paramname"><em>align</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<b>Value:</b><div class="fragment"><div class="line"><a class="code hl_define" href="#a4fe89df2bed54dcdc8b0d33c53a694b6">SPDK_ALIGN_FLOOR</a>(((val) + ((__typeof__(val)) (align) - 1)), align)</div>
+<div class="ttc" id="autil_8h_html_a4fe89df2bed54dcdc8b0d33c53a694b6"><div class="ttname"><a href="#a4fe89df2bed54dcdc8b0d33c53a694b6">SPDK_ALIGN_FLOOR</a></div><div class="ttdeci">#define SPDK_ALIGN_FLOOR(val, align)</div><div class="ttdoc">Macro to align a value to a given power-of-two.</div><div class="ttdef"><b>Definition</b> <a href="util_8h_source.html#l00060">util.h:60</a></div></div>
+</div><!-- fragment -->
+<p>Macro to align a value to a given power-of-two. </p>
+<p>The resultant value will be of the same type as the first parameter, and will be no lower than the first parameter. Second parameter must be a power-of-two value. </p>
+
+<p class="definition">Definition at line <a class="el" href="util_8h_source.html#l00068">68</a> of file <a class="el" href="util_8h_source.html">util.h</a>.</p>
+
+</div>
+</div>
+<a id="a4fe89df2bed54dcdc8b0d33c53a694b6" name="a4fe89df2bed54dcdc8b0d33c53a694b6"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4fe89df2bed54dcdc8b0d33c53a694b6">&#9670;&#160;</a></span>SPDK_ALIGN_FLOOR</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define SPDK_ALIGN_FLOOR</td>
+          <td>(</td>
+          <td class="paramtype"></td>          <td class="paramname"><span class="paramname"><em>val</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"></td>          <td class="paramname"><span class="paramname"><em>align</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<b>Value:</b><div class="fragment"><div class="line">(__typeof__(val))((val) &amp; (~((__typeof__(val))((align) - 1))))</div>
+</div><!-- fragment -->
+<p>Macro to align a value to a given power-of-two. </p>
+<p>The resultant value will be of the same type as the first parameter, and will be no bigger than the first parameter. Second parameter must be a power-of-two value. </p>
+
+<p class="definition">Definition at line <a class="el" href="util_8h_source.html#l00060">60</a> of file <a class="el" href="util_8h_source.html">util.h</a>.</p>
+
+</div>
+</div>
+<a id="ab22ba76493581094951bb74abb68238d" name="ab22ba76493581094951bb74abb68238d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab22ba76493581094951bb74abb68238d">&#9670;&#160;</a></span>SPDK_BIT</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define SPDK_BIT</td>
+          <td>(</td>
+          <td class="paramtype"></td>          <td class="paramname"><span class="paramname"><em>n</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<b>Value:</b><div class="fragment"><div class="line">(UINT64_C(1) &lt;&lt; (n))</div>
+</div><!-- fragment -->
+<p class="definition">Definition at line <a class="el" href="util_8h_source.html#l00071">71</a> of file <a class="el" href="util_8h_source.html">util.h</a>.</p>
+
+</div>
+</div>
+<a id="afb0c0f2282517becd79ba3f60768b6c4" name="afb0c0f2282517becd79ba3f60768b6c4"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#afb0c0f2282517becd79ba3f60768b6c4">&#9670;&#160;</a></span>SPDK_CACHE_LINE_SIZE</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define SPDK_CACHE_LINE_SIZE&#160;&#160;&#160;64</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="util_8h_source.html#l00023">23</a> of file <a class="el" href="util_8h_source.html">util.h</a>.</p>
+
+</div>
+</div>
+<a id="a58821926bcb68504a97ffa1545029398" name="a58821926bcb68504a97ffa1545029398"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a58821926bcb68504a97ffa1545029398">&#9670;&#160;</a></span>SPDK_CEIL_DIV</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define SPDK_CEIL_DIV</td>
+          <td>(</td>
+          <td class="paramtype"></td>          <td class="paramname"><span class="paramname"><em>x</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"></td>          <td class="paramname"><span class="paramname"><em>y</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<b>Value:</b><div class="fragment"><div class="line">(((x)+(y)-1)/(y))</div>
+</div><!-- fragment -->
+<p class="definition">Definition at line <a class="el" href="util_8h_source.html#l00052">52</a> of file <a class="el" href="util_8h_source.html">util.h</a>.</p>
+
+</div>
+</div>
+<a id="ac14f2b75522d72317def37370adffca1" name="ac14f2b75522d72317def37370adffca1"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac14f2b75522d72317def37370adffca1">&#9670;&#160;</a></span>SPDK_CLANG_ANALYZER_PREINIT_PTR_ARRAY</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define SPDK_CLANG_ANALYZER_PREINIT_PTR_ARRAY</td>
+          <td>(</td>
+          <td class="paramtype"></td>          <td class="paramname"><span class="paramname"><em>arr</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"></td>          <td class="paramname"><span class="paramname"><em>arr_size</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"></td>          <td class="paramname"><span class="paramname"><em>buf_size</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<b>Value:</b><div class="fragment"><div class="line"><span class="keywordflow">do</span> { \</div>
+<div class="line">        <span class="keyword">static</span> <span class="keywordtype">char</span> dummy_buf[buf_size]; \</div>
+<div class="line">        <span class="keywordtype">int</span> i; \</div>
+<div class="line">        for (i = 0; i &lt; arr_size; i++) { \</div>
+<div class="line">                arr[i] = (<span class="keywordtype">void</span> *)dummy_buf; \</div>
+<div class="line">        } \</div>
+<div class="line">} <span class="keywordflow">while</span> (0)</div>
+</div><!-- fragment -->
+<p>Scan build is really pessimistic and assumes that mempool functions can dequeue NULL buffers even if they return success. </p>
+<p>This is obviously a false positive, but the mempool dequeue can be done in a DPDK inline function that we can't decorate with usual assert(buf != NULL). Instead, we'll preinitialize the dequeued buffer array with some dummy objects. </p>
+
+<p class="definition">Definition at line <a class="el" href="util_8h_source.html#l00332">332</a> of file <a class="el" href="util_8h_source.html">util.h</a>.</p>
+
+</div>
+</div>
+<a id="ace0946954cf4fed6e4f3b7f87180f984" name="ace0946954cf4fed6e4f3b7f87180f984"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ace0946954cf4fed6e4f3b7f87180f984">&#9670;&#160;</a></span>SPDK_CONTAINEROF</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define SPDK_CONTAINEROF</td>
+          <td>(</td>
+          <td class="paramtype"></td>          <td class="paramname"><span class="paramname"><em>ptr</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"></td>          <td class="paramname"><span class="paramname"><em>type</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"></td>          <td class="paramname"><span class="paramname"><em>member</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<b>Value:</b><div class="fragment"><div class="line">((type *)((uintptr_t)ptr - offsetof(type, member)))</div>
+</div><!-- fragment -->
+<p class="definition">Definition at line <a class="el" href="util_8h_source.html#l00030">30</a> of file <a class="el" href="util_8h_source.html">util.h</a>.</p>
+
+</div>
+</div>
+<a id="a21e1907187f8bf2c4b0c0de12c113ed6" name="a21e1907187f8bf2c4b0c0de12c113ed6"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a21e1907187f8bf2c4b0c0de12c113ed6">&#9670;&#160;</a></span>SPDK_COUNTOF</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define SPDK_COUNTOF</td>
+          <td>(</td>
+          <td class="paramtype"></td>          <td class="paramname"><span class="paramname"><em>arr</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<b>Value:</b><div class="fragment"><div class="line">(<span class="keyword">sizeof</span>(arr) / <span class="keyword">sizeof</span>((arr)[0]))</div>
+</div><!-- fragment -->
+<p class="definition">Definition at line <a class="el" href="util_8h_source.html#l00028">28</a> of file <a class="el" href="util_8h_source.html">util.h</a>.</p>
+
+</div>
+</div>
+<a id="a83209c12813c625453d8bfc934393b20" name="a83209c12813c625453d8bfc934393b20"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a83209c12813c625453d8bfc934393b20">&#9670;&#160;</a></span>SPDK_COUNTOF_MEMBER</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define SPDK_COUNTOF_MEMBER</td>
+          <td>(</td>
+          <td class="paramtype"></td>          <td class="paramname"><span class="paramname"><em>type</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"></td>          <td class="paramname"><span class="paramname"><em>member</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<b>Value:</b><div class="fragment"><div class="line">(SPDK_COUNTOF(((type *)0)-&gt;member))</div>
+</div><!-- fragment -->
+<p>Get the number of elements in an array of a struct member. </p>
+
+<p class="definition">Definition at line <a class="el" href="util_8h_source.html#l00043">43</a> of file <a class="el" href="util_8h_source.html">util.h</a>.</p>
+
+</div>
+</div>
+<a id="a20d2934d5aabcb2ea72ca465f33d6ab7" name="a20d2934d5aabcb2ea72ca465f33d6ab7"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a20d2934d5aabcb2ea72ca465f33d6ab7">&#9670;&#160;</a></span>SPDK_FIELD_VALID</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define SPDK_FIELD_VALID</td>
+          <td>(</td>
+          <td class="paramtype"></td>          <td class="paramname"><span class="paramname"><em>obj</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"></td>          <td class="paramname"><span class="paramname"><em>field</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"></td>          <td class="paramname"><span class="paramname"><em></em></span>...&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<b>Value:</b><div class="fragment"><div class="line">_SPDK_FIELD_VALID(obj, field, ## __VA_ARGS__, (obj)-&gt;size)</div>
+</div><!-- fragment -->
+<p>Check if a given field is valid in a structure with size tracking. </p>
+<p>The third parameter is optional and can be used to specify the size of the object. If unset, (obj)-&gt;size will be used by default. </p>
+
+<p class="definition">Definition at line <a class="el" href="util_8h_source.html#l00078">78</a> of file <a class="el" href="util_8h_source.html">util.h</a>.</p>
+
+</div>
+</div>
+<a id="af961bfd28ca1daef326d855007546c29" name="af961bfd28ca1daef326d855007546c29"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af961bfd28ca1daef326d855007546c29">&#9670;&#160;</a></span>SPDK_GET_FIELD</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define SPDK_GET_FIELD</td>
+          <td>(</td>
+          <td class="paramtype"></td>          <td class="paramname"><span class="paramname"><em>obj</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"></td>          <td class="paramname"><span class="paramname"><em>field</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"></td>          <td class="paramname"><span class="paramname"><em>defval</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"></td>          <td class="paramname"><span class="paramname"><em></em></span>...&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<b>Value:</b><div class="fragment"><div class="line">_SPDK_GET_FIELD(obj, field, defval, ## __VA_ARGS__, (obj)-&gt;size)</div>
+</div><!-- fragment -->
+<p>Get a field from a structure with size tracking. </p>
+<p>The fourth parameter is optional and can be used to specify the size of the object. If unset, (obj)-&gt;size will be used by default. </p>
+
+<p class="definition">Definition at line <a class="el" href="util_8h_source.html#l00088">88</a> of file <a class="el" href="util_8h_source.html">util.h</a>.</p>
+
+</div>
+</div>
+<a id="a123918f967aa539af3a48a83dcf588c9" name="a123918f967aa539af3a48a83dcf588c9"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a123918f967aa539af3a48a83dcf588c9">&#9670;&#160;</a></span>SPDK_IOV_ONE</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define SPDK_IOV_ONE</td>
+          <td>(</td>
+          <td class="paramtype"></td>          <td class="paramname"><span class="paramname"><em>piov</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"></td>          <td class="paramname"><span class="paramname"><em>piovcnt</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"></td>          <td class="paramname"><span class="paramname"><em>buf</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"></td>          <td class="paramname"><span class="paramname"><em>buflen</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<b>Value:</b><div class="fragment"><div class="line">        <span class="keywordflow">do</span> {    \</div>
+<div class="line">        (piov)-&gt;iov_base = (buf);                       \</div>
+<div class="line">        (piov)-&gt;iov_len = (buflen);                     \</div>
+<div class="line">        *(piovcnt) = 1;                                 \</div>
+<div class="line">} <span class="keywordflow">while</span> (0)</div>
+</div><!-- fragment -->
+<p>Initialize an iovec with just the single given buffer. </p>
+
+<p class="definition">Definition at line <a class="el" href="util_8h_source.html#l00262">262</a> of file <a class="el" href="util_8h_source.html">util.h</a>.</p>
+
+</div>
+</div>
+<a id="ab68c3f1a4bdedea57f4deb58a011f251" name="ab68c3f1a4bdedea57f4deb58a011f251"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab68c3f1a4bdedea57f4deb58a011f251">&#9670;&#160;</a></span>SPDK_IOVITER_SIZE</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define SPDK_IOVITER_SIZE</td>
+          <td>(</td>
+          <td class="paramtype"></td>          <td class="paramname"><span class="paramname"><em>count</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<b>Value:</b><div class="fragment"><div class="line">(<span class="keyword">sizeof</span>(<span class="keyword">struct </span><a class="code hl_struct" href="structspdk__single__ioviter.html">spdk_single_ioviter</a>) * (count - 2) + <span class="keyword">sizeof</span>(<span class="keyword">struct </span><a class="code hl_struct" href="structspdk__ioviter.html">spdk_ioviter</a>))</div>
+<div class="ttc" id="astructspdk__ioviter_html"><div class="ttname"><a href="structspdk__ioviter.html">spdk_ioviter</a></div><div class="ttdoc">An N-way iovec iterator.</div><div class="ttdef"><b>Definition</b> <a href="util_8h_source.html#l00198">util.h:198</a></div></div>
+<div class="ttc" id="astructspdk__single__ioviter_html"><div class="ttname"><a href="structspdk__single__ioviter.html">spdk_single_ioviter</a></div><div class="ttdef"><b>Definition</b> <a href="util_8h_source.html#l00185">util.h:185</a></div></div>
+</div><!-- fragment -->
+<p class="definition">Definition at line <a class="el" href="util_8h_source.html#l00208">208</a> of file <a class="el" href="util_8h_source.html">util.h</a>.</p>
+
+</div>
+</div>
+<a id="a4ef0b5332740873cf0414a8b44000128" name="a4ef0b5332740873cf0414a8b44000128"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4ef0b5332740873cf0414a8b44000128">&#9670;&#160;</a></span>spdk_max</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define spdk_max</td>
+          <td>(</td>
+          <td class="paramtype"></td>          <td class="paramname"><span class="paramname"><em>a</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"></td>          <td class="paramname"><span class="paramname"><em>b</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<b>Value:</b><div class="fragment"><div class="line">(((a)&gt;(b))?(a):(b))</div>
+</div><!-- fragment -->
+<p class="definition">Definition at line <a class="el" href="util_8h_source.html#l00026">26</a> of file <a class="el" href="util_8h_source.html">util.h</a>.</p>
+
+</div>
+</div>
+<a id="a837456da8a8d13c0f84c1b362acfe482" name="a837456da8a8d13c0f84c1b362acfe482"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a837456da8a8d13c0f84c1b362acfe482">&#9670;&#160;</a></span>spdk_min</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define spdk_min</td>
+          <td>(</td>
+          <td class="paramtype"></td>          <td class="paramname"><span class="paramname"><em>a</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"></td>          <td class="paramname"><span class="paramname"><em>b</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<b>Value:</b><div class="fragment"><div class="line">(((a)&lt;(b))?(a):(b))</div>
+</div><!-- fragment -->
+<p class="definition">Definition at line <a class="el" href="util_8h_source.html#l00025">25</a> of file <a class="el" href="util_8h_source.html">util.h</a>.</p>
+
+</div>
+</div>
+<a id="a563dbf631f68603d957619304e0ceac4" name="a563dbf631f68603d957619304e0ceac4"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a563dbf631f68603d957619304e0ceac4">&#9670;&#160;</a></span>SPDK_MSEC_TO_USEC</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define SPDK_MSEC_TO_USEC&#160;&#160;&#160;1000ULL</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="util_8h_source.html#l00049">49</a> of file <a class="el" href="util_8h_source.html">util.h</a>.</p>
+
+</div>
+</div>
+<a id="afe8580d16e1b85d64a49869d0a8a7cbd" name="afe8580d16e1b85d64a49869d0a8a7cbd"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#afe8580d16e1b85d64a49869d0a8a7cbd">&#9670;&#160;</a></span>SPDK_SEC_TO_MSEC</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define SPDK_SEC_TO_MSEC&#160;&#160;&#160;1000ULL</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="util_8h_source.html#l00045">45</a> of file <a class="el" href="util_8h_source.html">util.h</a>.</p>
+
+</div>
+</div>
+<a id="ac1fbd59e0e9f73e71f416385d606cc52" name="ac1fbd59e0e9f73e71f416385d606cc52"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac1fbd59e0e9f73e71f416385d606cc52">&#9670;&#160;</a></span>SPDK_SEC_TO_NSEC</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define SPDK_SEC_TO_NSEC&#160;&#160;&#160;1000000000ULL</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="util_8h_source.html#l00047">47</a> of file <a class="el" href="util_8h_source.html">util.h</a>.</p>
+
+</div>
+</div>
+<a id="aaa368537876ed0aee8ae810a240b2dfb" name="aaa368537876ed0aee8ae810a240b2dfb"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aaa368537876ed0aee8ae810a240b2dfb">&#9670;&#160;</a></span>SPDK_SEC_TO_USEC</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define SPDK_SEC_TO_USEC&#160;&#160;&#160;1000000ULL</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="util_8h_source.html#l00046">46</a> of file <a class="el" href="util_8h_source.html">util.h</a>.</p>
+
+</div>
+</div>
+<a id="a42fd1c29c4cbe74363973322468bbd33" name="a42fd1c29c4cbe74363973322468bbd33"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a42fd1c29c4cbe74363973322468bbd33">&#9670;&#160;</a></span>SPDK_SIZEOF</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define SPDK_SIZEOF</td>
+          <td>(</td>
+          <td class="paramtype"></td>          <td class="paramname"><span class="paramname"><em>ptr</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"></td>          <td class="paramname"><span class="paramname"><em>member</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<b>Value:</b><div class="fragment"><div class="line">(offsetof(__typeof__(*(ptr)), member) + <span class="keyword">sizeof</span>((ptr)-&gt;member))</div>
+</div><!-- fragment -->
+<p>Returns size of an object pointer by ptr up to and including member. </p>
+
+<p class="definition">Definition at line <a class="el" href="util_8h_source.html#l00033">33</a> of file <a class="el" href="util_8h_source.html">util.h</a>.</p>
+
+</div>
+</div>
+<a id="a84582307b17e6428bfdd287c9b8b5e3d" name="a84582307b17e6428bfdd287c9b8b5e3d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a84582307b17e6428bfdd287c9b8b5e3d">&#9670;&#160;</a></span>SPDK_SIZEOF_MEMBER</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define SPDK_SIZEOF_MEMBER</td>
+          <td>(</td>
+          <td class="paramtype"></td>          <td class="paramname"><span class="paramname"><em>type</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"></td>          <td class="paramname"><span class="paramname"><em>member</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<b>Value:</b><div class="fragment"><div class="line">(<span class="keyword">sizeof</span>(((type *)0)-&gt;member))</div>
+</div><!-- fragment -->
+<p>Get the size of a member of a struct. </p>
+
+<p class="definition">Definition at line <a class="el" href="util_8h_source.html#l00038">38</a> of file <a class="el" href="util_8h_source.html">util.h</a>.</p>
+
+</div>
+</div>
+<a id="a744d1bf5de56a453f235c5eb58ec4d00" name="a744d1bf5de56a453f235c5eb58ec4d00"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a744d1bf5de56a453f235c5eb58ec4d00">&#9670;&#160;</a></span>SPDK_SN32_CMPMAX</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define SPDK_SN32_CMPMAX&#160;&#160;&#160;(1U &lt;&lt; (32 - 1))</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="util_8h_source.html#l00355">355</a> of file <a class="el" href="util_8h_source.html">util.h</a>.</p>
+
+</div>
+</div>
+<a name="doc-func-members" id="doc-func-members"></a><h2 id="header-doc-func-members" class="groupheader">Function Documentation</h2>
+<a id="a22383e04171a98834c5f21f0c460e322" name="a22383e04171a98834c5f21f0c460e322"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a22383e04171a98834c5f21f0c460e322">&#9670;&#160;</a></span>spdk_align32pow2()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">uint32_t spdk_align32pow2 </td>
+          <td>(</td>
+          <td class="paramtype">uint32_t</td>          <td class="paramname"><span class="paramname"><em>x</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span><span class="mlabel static">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="util_8h_source.html#l00134">134</a> of file <a class="el" href="util_8h_source.html">util.h</a>.</p>
+
+</div>
+</div>
+<a id="a23a7b8dc5a8b680176bac1c7bd384406" name="a23a7b8dc5a8b680176bac1c7bd384406"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a23a7b8dc5a8b680176bac1c7bd384406">&#9670;&#160;</a></span>spdk_align64pow2()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">uint64_t spdk_align64pow2 </td>
+          <td>(</td>
+          <td class="paramtype">uint64_t</td>          <td class="paramname"><span class="paramname"><em>x</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span><span class="mlabel static">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="util_8h_source.html#l00142">142</a> of file <a class="el" href="util_8h_source.html">util.h</a>.</p>
+
+</div>
+</div>
+<a id="a3a1ed8f80bbc8e22d1f778a6615512e7" name="a3a1ed8f80bbc8e22d1f778a6615512e7"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3a1ed8f80bbc8e22d1f778a6615512e7">&#9670;&#160;</a></span>spdk_divide_round_up()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">uint64_t spdk_divide_round_up </td>
+          <td>(</td>
+          <td class="paramtype">uint64_t</td>          <td class="paramname"><span class="paramname"><em>num</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">uint64_t</td>          <td class="paramname"><span class="paramname"><em>divisor</em></span>&#160;)</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span><span class="mlabel static">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="util_8h_source.html#l00174">174</a> of file <a class="el" href="util_8h_source.html">util.h</a>.</p>
+
+</div>
+</div>
+<a id="aa6ce82e1521dc2592d35403edc48a35c" name="aa6ce82e1521dc2592d35403edc48a35c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa6ce82e1521dc2592d35403edc48a35c">&#9670;&#160;</a></span>spdk_iov_xfer_from_buf()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">size_t spdk_iov_xfer_from_buf </td>
+          <td>(</td>
+          <td class="paramtype">struct <a class="el" href="structspdk__iov__xfer.html">spdk_iov_xfer</a> *</td>          <td class="paramname"><span class="paramname"><em>ix</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const void *</td>          <td class="paramname"><span class="paramname"><em>buf</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">size_t</td>          <td class="paramname"><span class="paramname"><em>buf_len</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Copy from the given buf up to buf_len bytes, into the given ix iovec iterator, advancing the iterator as needed. </p>
+<p>. Returns the number of bytes copied. </p>
+
+</div>
+</div>
+<a id="a1082d39cc6e9b1fb657f3b31ba430454" name="a1082d39cc6e9b1fb657f3b31ba430454"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1082d39cc6e9b1fb657f3b31ba430454">&#9670;&#160;</a></span>spdk_iov_xfer_to_buf()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">size_t spdk_iov_xfer_to_buf </td>
+          <td>(</td>
+          <td class="paramtype">struct <a class="el" href="structspdk__iov__xfer.html">spdk_iov_xfer</a> *</td>          <td class="paramname"><span class="paramname"><em>ix</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const void *</td>          <td class="paramname"><span class="paramname"><em>buf</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">size_t</td>          <td class="paramname"><span class="paramname"><em>buf_len</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Copy from the given ix iovec iterator into the given buf up to buf_len bytes, advancing the iterator as needed. </p>
+<p>Returns the number of bytes copied. </p>
+
+</div>
+</div>
+<a id="a4bf38bbd457a764604d5ba26ed3c8565" name="a4bf38bbd457a764604d5ba26ed3c8565"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4bf38bbd457a764604d5ba26ed3c8565">&#9670;&#160;</a></span>spdk_iovcpy()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">size_t spdk_iovcpy </td>
+          <td>(</td>
+          <td class="paramtype">struct iovec *</td>          <td class="paramname"><span class="paramname"><em>siov</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">size_t</td>          <td class="paramname"><span class="paramname"><em>siovcnt</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">struct iovec *</td>          <td class="paramname"><span class="paramname"><em>diov</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">size_t</td>          <td class="paramname"><span class="paramname"><em>diovcnt</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Copy the data described by the source iovec to the destination iovec. </p>
+<dl class="section return"><dt>Returns</dt><dd>The number of bytes copied. </dd></dl>
+
+</div>
+</div>
+<a id="ac49e02ee794f8dc5048934504023d6d5" name="ac49e02ee794f8dc5048934504023d6d5"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac49e02ee794f8dc5048934504023d6d5">&#9670;&#160;</a></span>spdk_ioviter_first()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">size_t spdk_ioviter_first </td>
+          <td>(</td>
+          <td class="paramtype">struct <a class="el" href="structspdk__ioviter.html">spdk_ioviter</a> *</td>          <td class="paramname"><span class="paramname"><em>iter</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">struct iovec *</td>          <td class="paramname"><span class="paramname"><em>siov</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">size_t</td>          <td class="paramname"><span class="paramname"><em>siovcnt</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">struct iovec *</td>          <td class="paramname"><span class="paramname"><em>diov</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">size_t</td>          <td class="paramname"><span class="paramname"><em>diovcnt</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">void **</td>          <td class="paramname"><span class="paramname"><em>src</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">void **</td>          <td class="paramname"><span class="paramname"><em>dst</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Initialize and move to the first common segment of the two given iovecs. </p>
+<p>See <a class="el" href="#a0bbb80ad35ccd2da128fa69acedd2d90" title="Move to the next segment in the iterator.">spdk_ioviter_next()</a>. </p>
+
+</div>
+</div>
+<a id="a3597f82a6203011c6d1e5f21c55e3bf9" name="a3597f82a6203011c6d1e5f21c55e3bf9"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3597f82a6203011c6d1e5f21c55e3bf9">&#9670;&#160;</a></span>spdk_ioviter_firstv()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">size_t spdk_ioviter_firstv </td>
+          <td>(</td>
+          <td class="paramtype">struct <a class="el" href="structspdk__ioviter.html">spdk_ioviter</a> *</td>          <td class="paramname"><span class="paramname"><em>iter</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">uint32_t</td>          <td class="paramname"><span class="paramname"><em>count</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">struct iovec **</td>          <td class="paramname"><span class="paramname"><em>iov</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">size_t *</td>          <td class="paramname"><span class="paramname"><em>iovcnt</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">void **</td>          <td class="paramname"><span class="paramname"><em>out</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Initialize and move to the first common segment of the N given iovecs. </p>
+<p>See <a class="el" href="#a1c02b473289bbf65b2f8f2cba9f65fcc" title="Move to the next segment in the iterator.">spdk_ioviter_nextv()</a>. </p>
+
+</div>
+</div>
+<a id="a0bbb80ad35ccd2da128fa69acedd2d90" name="a0bbb80ad35ccd2da128fa69acedd2d90"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0bbb80ad35ccd2da128fa69acedd2d90">&#9670;&#160;</a></span>spdk_ioviter_next()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">size_t spdk_ioviter_next </td>
+          <td>(</td>
+          <td class="paramtype">struct <a class="el" href="structspdk__ioviter.html">spdk_ioviter</a> *</td>          <td class="paramname"><span class="paramname"><em>iter</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">void **</td>          <td class="paramname"><span class="paramname"><em>src</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">void **</td>          <td class="paramname"><span class="paramname"><em>dst</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Move to the next segment in the iterator. </p>
+<p>This will iterate through the segments of the source and destination and return the individual segments, one by one. For example, if the source consists of one element of length 4k and the destination consists of 4 elements each of length 1k, this function will return 4 1k src+dst pairs of buffers, and then return 0 bytes to indicate the iteration is complete on the fifth call. </p>
+
+</div>
+</div>
+<a id="a1c02b473289bbf65b2f8f2cba9f65fcc" name="a1c02b473289bbf65b2f8f2cba9f65fcc"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1c02b473289bbf65b2f8f2cba9f65fcc">&#9670;&#160;</a></span>spdk_ioviter_nextv()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">size_t spdk_ioviter_nextv </td>
+          <td>(</td>
+          <td class="paramtype">struct <a class="el" href="structspdk__ioviter.html">spdk_ioviter</a> *</td>          <td class="paramname"><span class="paramname"><em>iter</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">void **</td>          <td class="paramname"><span class="paramname"><em>out</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Move to the next segment in the iterator. </p>
+<p>This will iterate through the segments of the iovecs in the iterator and return the individual segments, one by one. For example, if the set consists one iovec of one element of length 4k and another iovec of 4 elements each of length 1k, this function will return 4 1k pairs of buffers, and then return 0 bytes to indicate the iteration is complete on the fifth call. </p>
+
+</div>
+</div>
+<a id="af4c8af78fb85f76425e5472e742921e6" name="af4c8af78fb85f76425e5472e742921e6"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af4c8af78fb85f76425e5472e742921e6">&#9670;&#160;</a></span>spdk_iovmove()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">size_t spdk_iovmove </td>
+          <td>(</td>
+          <td class="paramtype">struct iovec *</td>          <td class="paramname"><span class="paramname"><em>siov</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">size_t</td>          <td class="paramname"><span class="paramname"><em>siovcnt</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">struct iovec *</td>          <td class="paramname"><span class="paramname"><em>diov</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">size_t</td>          <td class="paramname"><span class="paramname"><em>diovcnt</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Same as <a class="el" href="#a4bf38bbd457a764604d5ba26ed3c8565" title="Copy the data described by the source iovec to the destination iovec.">spdk_iovcpy()</a>, but the src/dst buffers might overlap. </p>
+<dl class="section return"><dt>Returns</dt><dd>The number of bytes copied. </dd></dl>
+
+</div>
+</div>
+<a id="ad7ddd177340554080af356c7d1e57d00" name="ad7ddd177340554080af356c7d1e57d00"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad7ddd177340554080af356c7d1e57d00">&#9670;&#160;</a></span>spdk_memset_s()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void spdk_memset_s </td>
+          <td>(</td>
+          <td class="paramtype">void *</td>          <td class="paramname"><span class="paramname"><em>data</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">size_t</td>          <td class="paramname"><span class="paramname"><em>data_size</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int</td>          <td class="paramname"><span class="paramname"><em>ch</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">size_t</td>          <td class="paramname"><span class="paramname"><em>count</em></span>&#160;)</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span><span class="mlabel static">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Copies the value (unsigned char)ch into each of the first <b>count</b> characters of the object pointed to by <b>data</b> <b>data_size</b> is used to check that filling <b>count</b> bytes won't lead to buffer overflow. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">data</td><td>Buffer to fill </td></tr>
+    <tr><td class="paramname">data_size</td><td>Size of the buffer </td></tr>
+    <tr><td class="paramname">ch</td><td>Fill byte </td></tr>
+    <tr><td class="paramname">count</td><td>Number of bytes to fill </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p class="definition">Definition at line <a class="el" href="util_8h_source.html#l00399">399</a> of file <a class="el" href="util_8h_source.html">util.h</a>.</p>
+
+</div>
+</div>
+<a id="a81f234059f1e2fa2d11dc3d372be8c27" name="a81f234059f1e2fa2d11dc3d372be8c27"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a81f234059f1e2fa2d11dc3d372be8c27">&#9670;&#160;</a></span>spdk_rand_xorshift64()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">uint64_t spdk_rand_xorshift64 </td>
+          <td>(</td>
+          <td class="paramtype">uint64_t *</td>          <td class="paramname"><span class="paramname"><em>state</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span><span class="mlabel static">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Generate a 64-bit pseudo-random number using xorshift algorithm. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">state</td><td>the current seed value. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>a new pseudo-random 64-bit number. </dd></dl>
+
+<p class="definition">Definition at line <a class="el" href="util_8h_source.html#l00103">103</a> of file <a class="el" href="util_8h_source.html">util.h</a>.</p>
+
+</div>
+</div>
+<a id="ab62e1f375a34a65d0f2a66c7e71d548d" name="ab62e1f375a34a65d0f2a66c7e71d548d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab62e1f375a34a65d0f2a66c7e71d548d">&#9670;&#160;</a></span>spdk_rand_xorshift64_seed()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">uint64_t spdk_rand_xorshift64_seed </td>
+          <td>(</td>
+          <td class="paramtype">void</td>          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span><span class="mlabel static">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Generate a non-zero initial seed for xorshift64. </p>
+<dl class="section return"><dt>Returns</dt><dd>a random 64-bit seed value(non-zero). </dd></dl>
+
+<p class="definition">Definition at line <a class="el" href="util_8h_source.html#l00121">121</a> of file <a class="el" href="util_8h_source.html">util.h</a>.</p>
+
+</div>
+</div>
+<a id="a82c3cdd14add82c18ea916e504675f2e" name="a82c3cdd14add82c18ea916e504675f2e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a82c3cdd14add82c18ea916e504675f2e">&#9670;&#160;</a></span>spdk_round_up()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">uint64_t spdk_round_up </td>
+          <td>(</td>
+          <td class="paramtype">uint64_t</td>          <td class="paramname"><span class="paramname"><em>num</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">uint64_t</td>          <td class="paramname"><span class="paramname"><em>divisor</em></span>&#160;)</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span><span class="mlabel static">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="util_8h_source.html#l00180">180</a> of file <a class="el" href="util_8h_source.html">util.h</a>.</p>
+
+</div>
+</div>
+<a id="a9d8a81dd9f89050cdc2de023d10f1d31" name="a9d8a81dd9f89050cdc2de023d10f1d31"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9d8a81dd9f89050cdc2de023d10f1d31">&#9670;&#160;</a></span>spdk_sn32_add()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">uint32_t spdk_sn32_add </td>
+          <td>(</td>
+          <td class="paramtype">uint32_t</td>          <td class="paramname"><span class="paramname"><em>s1</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">uint32_t</td>          <td class="paramname"><span class="paramname"><em>s2</em></span>&#160;)</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span><span class="mlabel static">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Add two sequence numbers s1 and s2. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">s1</td><td>First sequence number </td></tr>
+    <tr><td class="paramname">s2</td><td>Second sequence number</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>Sum of s1 and s2 based on serial number arithmetic. </dd></dl>
+
+<p class="definition">Definition at line <a class="el" href="util_8h_source.html#l00350">350</a> of file <a class="el" href="util_8h_source.html">util.h</a>.</p>
+
+</div>
+</div>
+<a id="a3d7841db36c180f3fcac21e2314e2ef2" name="a3d7841db36c180f3fcac21e2314e2ef2"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3d7841db36c180f3fcac21e2314e2ef2">&#9670;&#160;</a></span>spdk_sn32_gt()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool spdk_sn32_gt </td>
+          <td>(</td>
+          <td class="paramtype">uint32_t</td>          <td class="paramname"><span class="paramname"><em>s1</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">uint32_t</td>          <td class="paramname"><span class="paramname"><em>s2</em></span>&#160;)</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span><span class="mlabel static">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Compare if sequence number s1 is greater than s2. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">s1</td><td>First sequence number </td></tr>
+    <tr><td class="paramname">s2</td><td>Second sequence number</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>true if s1 is greater than s2, or false otherwise. </dd></dl>
+
+<p class="definition">Definition at line <a class="el" href="util_8h_source.html#l00382">382</a> of file <a class="el" href="util_8h_source.html">util.h</a>.</p>
+
+</div>
+</div>
+<a id="a731ba4d3d89bf3d1c31c3e6481fc07b7" name="a731ba4d3d89bf3d1c31c3e6481fc07b7"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a731ba4d3d89bf3d1c31c3e6481fc07b7">&#9670;&#160;</a></span>spdk_sn32_lt()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool spdk_sn32_lt </td>
+          <td>(</td>
+          <td class="paramtype">uint32_t</td>          <td class="paramname"><span class="paramname"><em>s1</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">uint32_t</td>          <td class="paramname"><span class="paramname"><em>s2</em></span>&#160;)</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span><span class="mlabel static">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Compare if sequence number s1 is less than s2. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">s1</td><td>First sequence number </td></tr>
+    <tr><td class="paramname">s2</td><td>Second sequence number</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>true if s1 is less than s2, or false otherwise. </dd></dl>
+
+<p class="definition">Definition at line <a class="el" href="util_8h_source.html#l00366">366</a> of file <a class="el" href="util_8h_source.html">util.h</a>.</p>
+
+</div>
+</div>
+<a id="a63e2af9bd97c1250c11a2e585336f377" name="a63e2af9bd97c1250c11a2e585336f377"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a63e2af9bd97c1250c11a2e585336f377">&#9670;&#160;</a></span>spdk_u32_is_pow2()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool spdk_u32_is_pow2 </td>
+          <td>(</td>
+          <td class="paramtype">uint32_t</td>          <td class="paramname"><span class="paramname"><em>x</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span><span class="mlabel static">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Check if a uint32_t is a power of 2. </p>
+
+<p class="definition">Definition at line <a class="el" href="util_8h_source.html#l00151">151</a> of file <a class="el" href="util_8h_source.html">util.h</a>.</p>
+
+</div>
+</div>
+<a id="ac2b85ac7ccc6fc631cb341ecae073e3e" name="ac2b85ac7ccc6fc631cb341ecae073e3e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac2b85ac7ccc6fc631cb341ecae073e3e">&#9670;&#160;</a></span>spdk_u64_is_pow2()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool spdk_u64_is_pow2 </td>
+          <td>(</td>
+          <td class="paramtype">uint64_t</td>          <td class="paramname"><span class="paramname"><em>x</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span><span class="mlabel static">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Check if a uint64_t is a power of 2. </p>
+
+<p class="definition">Definition at line <a class="el" href="util_8h_source.html#l00164">164</a> of file <a class="el" href="util_8h_source.html">util.h</a>.</p>
+
+</div>
+</div>
+</div><!-- contents -->
+</div><!-- doc-content -->
+<div id="page-nav" class="page-nav-panel">
+<div id="page-nav-resize-handle"></div>
+<div id="page-nav-tree">
+<div id="page-nav-contents">
+</div><!-- page-nav-contents -->
+</div><!-- page-nav-tree -->
+</div><!-- page-nav -->
+</div><!-- container -->
+<footer class="footer" id="nav-path">
+  <div class="footer-inner">
+    <div class="footer-copy">
+      <small>Copyright &copy; SPDK a Series of LF Projects, LLC. For web site terms of use, trademark policy, and other
+      project policies please see <a href="https://lfprojects.org">lfprojects.org</a>.</small>
+      <br><small>Built from spdk 91893349edff / site e5878500f</small>
+    </div>
+  </div>
+</footer>
+<script type="text/javascript" src="page_outline.js"></script>
+<script type="text/javascript" src="spdk_nav.js"></script>
+</body>
+</html>

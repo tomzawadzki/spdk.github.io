@@ -1,0 +1,146 @@
+<!doctype html>
+<html lang="en">
+  <head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="The Storage Performance Development Kit (SPDK) provides a set of tools and libraries for writing high performance, scalable, user-mode storage applications. It achieves high performance by moving all of the necessary drivers into userspace and operating in a polled mode instead of relying on interrupts, which avoids kernel context switches and eliminates interrupt handling overhead.
+">
+  <meta name="author" content="Benjamin Walker">
+
+  <title>Presentations: SPDK, PMDK and Intel® VTune™ Amplifier Summit on April 16-17, 2019</title>
+
+  <link rel="icon" type="image/svg+xml" href="/spdk.github.io/assets/img/spdk.svg">
+  <link rel="icon" href="/spdk.github.io/assets/favicon.ico" sizes="32x32">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:400,700,900" type="text/css">
+  <link rel="stylesheet" href="/spdk.github.io/assets/css/spdk.css">
+
+  <link href="/spdk.github.io/feed.xml" type="application/atom+xml" rel="alternate" title="Atom Feed">
+</head>
+
+
+  <body>
+    <nav class="navbar">
+  <a class="navbar-brand" href="/spdk.github.io/" aria-label="SPDK">
+    <img src="/spdk.github.io/assets/img/spdk.svg" width="36" height="36" alt="Storage Performance Development Kit">
+  </a>
+  <div class="navbar-nav">
+    <a class="nav-link header-link" href="/spdk.github.io/doc/releases.html">download</a>
+    <a class="nav-link header-link" href="/spdk.github.io/doc/">documentation</a>
+    <a class="nav-link header-link" href="/spdk.github.io/doc/contributing.html">development</a>
+    <a class="nav-link header-link" href="/spdk.github.io/doc/ci_tools.html">CI status</a>
+    <a class="nav-link header-link" href="/spdk.github.io/community/">community</a>
+    <a class="nav-link header-link" href="/spdk.github.io/blog/">Blog</a>
+    <a class="nav-link header-link" href="https://github.com/orgs/spdk/projects/5">Roadmap</a>
+    <a class="nav-link header-link" href="/spdk.github.io/news/">News</a>
+  </div>
+  <div class="navbar-end">
+    <a class="nav-link header-link" href="https://github.com/spdk/spdk" aria-label="GitHub">
+      <svg xmlns="http://www.w3.org/2000/svg" class="navbar-nav-svg" aria-hidden="true"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
+    </a>
+    <a id="cn_lang_btn" href="/spdk.github.io/cn/doc/" class="nav-link header-link">中文</a>
+  </div>
+</nav>
+<script>
+(function() {
+    var p = location.pathname, best = null, bLen = 0;
+    document.querySelectorAll('.header-link[href]').forEach(function(a) {
+        var raw = a.getAttribute('href');
+        if (!raw) return;
+        try { var u = new URL(raw, location.href); } catch(e) { return; }
+        if (u.origin !== location.origin) return;
+        var h = u.pathname;
+        if (h === '/') return;
+        var ok = h.endsWith('.html') ? p === h : p.indexOf(h) === 0;
+        if (ok && h.length > bLen) { bLen = h.length; best = a; }
+    });
+    if (best) best.classList.add('active');
+})();
+</script>
+
+
+    <div class="page-content">
+  <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+  <header class="post-header">
+
+    <div class="page-header">
+      <h1>Presentations: SPDK, PMDK and Intel® VTune™ Amplifier Summit on April 16-17, 2019</h1>
+    </div>
+
+    <p class="post-meta">
+      <time datetime="2019-04-24T00:00:00+02:00" itemprop="datePublished">
+        Apr 24, 2019
+      </time>
+      
+      •
+      <span itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <span itemprop="name">John Kariuki</span>
+      </span>
+      
+    </p>
+  </header>
+
+  <div class="content" itemprop="articleBody"><p>Thank you all for attending the SPDK, PMDK and Intel® VTune™ Amplifier Summit. We had a very successful SPDK summit this year with awesome content and presenters. You can download the presentations using the links below. Please note these are static PDFs, but many of the presentations made extensive use of animations, so something may be lost in translation.</p>
+
+<p>There will be video available soon; links will be added in a separate post.</p>
+
+<h2 id="spdk-presentations">SPDK Presentations</h2>
+<ol>
+  <li><a href="https://review.spdk.io/download/events/2019-summit/7+Keynote+Software+innovation+in+the+age+of+memory+and+storage+transformation+-+Jennifer+Huffstetler.pdf">Keynote: Software Innovation in the age of Memory and Storage transformation</a></li>
+  <li><a href="https://review.spdk.io/download/events/2019-summit/35+SPDK+State+of+the+Project+-+Jim+Harris.pdf">SPDK: State of the Project</a></li>
+  <li><a href="https://review.spdk.io/download/events/2019-summit/10+SPDK+-+(Mellanox)+Hardware+offloads+for+SPDK.pdf">SPDK: (Mellanox) Hardware Offloads for SPDK</a></li>
+  <li><a href="https://review.spdk.io/download/events/2019-summit/13+SPDK+-+(Hitachi)+End-to-End+Data+Protection+with+SPDK.pdf">SPDK: (Hitachi) End-to-End Data Protection with SPDK</a></li>
+  <li><a href="https://review.spdk.io/download/events/2019-summit/25+SPDK+-+(CircuitBlvd-Marvell)+SPDK+FTL+and+Marvell+OCSSD+for+Noisy+Neighbor+Problem.pdf">SPDK: (Circuit Blvd &amp; Marvell) SPDK FTL &amp; Marvell Open Channel SSD for Noisy Neighbor Problem</a></li>
+  <li><a href="https://review.spdk.io/download/events/2019-summit/19+SPDK+-+(Oracle)+Integrating+SPDK+with+Oracle+RDBMS.pdf">SPDK: (Oracle) Integrating SPDK with Oracle RDBMS</a></li>
+  <li><a href="https://review.spdk.io/download/events/2019-summit/28+SPDK+-+(Fujitsu)+RMI+High+performance+user-level+multi-threading+on+SPDK-DPDK.pdf">SPDK: (Fujitsu) RMI High Performance User-level Multi-threading on SPDK/DPDK</a></li>
+  <li><a href="https://review.spdk.io/download/events/2019-summit/29+SPDK+-+OpenStack%2C+NVMe-over-Fabrics+and+SPDK+%E2%80%93+High+Performance+Pooled+Block+Storage+with+Cinder.pdf">SPDK: OpenStack, NVMe-oF and SPDK – High Performance Pooled Block Storage with Cinder</a></li>
+  <li><a href="https://review.spdk.io/download/events/2019-summit/11+SPDK+-+Open+Source+Caching+Solutions+Powered+by+CAS.pdf">SPDK: Open Source Caching Solutions Powered by CAS</a></li>
+  <li><a href="https://review.spdk.io/download/events/2019-summit/High+Performance+Pooled+Storage+for+RSD+Architectures.pdf">SPDK: High Performance Pooled Storage for RSD Architectures</a></li>
+  <li><a href="https://review.spdk.io/download/events/2019-summit/2+SPDK+-+SPDK+Software+Quality.pdf">SPDK: Maintaining Software Quality in a Rapidly Expanding Open-Source Community</a></li>
+  <li><a href="https://review.spdk.io/download/events/2019-summit/4+SPDK+-+Flexible+and+Dynamic+Resource+Use+with+SPDK.pdf">SPDK: Flexible and Dynamic Resource Use with SPDK</a></li>
+  <li><a href="https://review.spdk.io/download/events/2019-summit/14+SPDK+-+Translate+in+a+flash+with+SPDK+Flash+Translation+Layer+library.pdf">SPDK: Translate in a Flash with SPDK Flash Translation Layer Library</a></li>
+  <li><a href="https://review.spdk.io/download/events/2019-summit/24+SPDK+-+It's+a+Bird+It's+a+Plane+It's+NVMe+over+TCP+and+more.pdf">SPDK: It’s a Bird…It’s a Plane… It’s NVMe over TCP and More!!!</a></li>
+  <li><a href="https://review.spdk.io/download/events/2019-summit/(Solareflare)+NVMe+over+TCP+Storage+with+SPDK.pdf">SPDK: (Solarflare) NVMe over TCP Storage with SPDK</a></li>
+  <li><a href="https://review.spdk.io/download/events/2019-summit/32+SPDK+-+Squeezing+Compression+into+SPDK.pdf">SPDK: Squeezing Compression into SPDK</a></li>
+</ol>
+
+<h2 id="vtune-presentations">Vtune Presentations</h2>
+<ol>
+  <li><a href="https://review.spdk.io/download/events/2019-summit/9+Keynote+VTune+-+Sri+Doddapaneni.pdf">Keynote: Intel® VTune™ Amplifier Performance Profiler</a></li>
+  <li><a href="https://review.spdk.io/download/events/2019-summit/31+VTune+-+(Twitter)+Pachyzoom+for+VTune+Summit.pdf">VTune: (Twitter) Understanding &amp; Optimizing Hadoop Servers with Intel® VTune™ Amplifier’s Platform Profiler</a></li>
+  <li><a href="https://review.spdk.io/download/events/2019-summit/23+VTune+-+Experience+tuning+big+data+workloads+and+applications+-+Milind+Damle.pdf">Vtune: My Experience Tuning Big-Data Workloads and Applications</a></li>
+  <li><a href="https://review.spdk.io/download/events/2019-summit/30+VTune+-+Performance+characterization+of+SPDK+using+Intel%C2%AE++VTune%E2%84%A2+Amplifier+-+Abhinav+Singh.pdf">Vtune: Oops! Most Profilers can’t analyze SPDK Polled I/O. Learn how Intel® VTune™ Amplifier can.</a></li>
+  <li><a href="https://review.spdk.io/download/events/2019-summit/3+VTune+-+Prepare+for+the+next+generation+of+memory+-+Kevin+OLeary.pdf">VTune: Prepare for the Next Generation of Memory</a></li>
+  <li><a href="https://review.spdk.io/download/events/2019-summit/17+20+VTune+-+Persistent+Memory+-+which+mode+do+I+want+Where+are+the+gotchas+hidden+-+Sudha+Udanapalli+Thiagarajan.pdf">VTune: Persistent Memory – Which Mode do I want? Where are the “Gotchas” Hidden?</a></li>
+  <li><a href="https://review.spdk.io/download/events/2019-summit/26+VTune+-+Optimize+your+PMDK+application%E2%80%99s+performance+-+Dmitry+Ryabtsev%2C+Sergey+Vinogradov.pdf">Vtune: Optimize your PMDK Application’s Performance</a></li>
+  <li><a href="https://review.spdk.io/download/events/2019-summit/34+VTune+-+Optimize+system+configurations+and+workloads+for+Intel%C2%AE+Optane%E2%84%A2+DC+persistent+memory+by+Singh+and+Yaffe.pdf">VTune: Optimize System Configurations and Workloads for Intel® Optane™ DC Persistent Memory</a></li>
+  <li><a href="https://review.spdk.io/download/events/2019-summit/5+VTune+-+Is+your+data+really+persistent+Or+did+you+forget+to+flush+-+Kevin+OLeary.pdf">VTune: Is Your Data Really Persistent? Or Did You Forget to Flush?</a></li>
+</ol>
+
+<h2 id="pmdk-presentations">PMDK Presentations</h2>
+<ol>
+  <li><a href="https://review.spdk.io/download/events/2019-summit/1+PMDK+-+Andy_and_Pawel_Essentials.pdf">PMDK: PMDK Essentials</a></li>
+  <li><a href="https://review.spdk.io/download/events/2019-summit/6+PMDK+-+Java_and_PersistentMemory.pdf">PMDK: Java and Persistent Memory</a></li>
+  <li><a href="https://review.spdk.io/download/events/2019-summit/8+PMDK+Disrupting+the+Storage-Memory+Hierarchy+-+Ken+Gibson.pdf">PMDK: Disrupting the Storage/Memory Hierarchy</a></li>
+  <li><a href="https://review.spdk.io/download/events/2019-summit/12+PMDK+-+Steve+Scargall+-+Intel+-+Provisioning+PMEM+in+Linux.pdf">PMDK: Provisioning PMEM in Linux</a></li>
+  <li><a href="https://review.spdk.io/download/events/2019-summit/15+PMDK+-+RobDickinson-intro-to-pmemkv.pdf">PMDK: Introduction to PMEMKV</a></li>
+  <li><a href="https://review.spdk.io/download/events/2019-summit/21+PMDK+-+C%2B%2B+libpmemobj-cpp-API.pdf">PMDK: C++ LIBPMEMOBJ API</a></li>
+</ol>
+</div>
+</article>
+</div>
+
+
+    <footer class="footer" id="nav-path">
+  <div class="footer-inner">
+    <div class="footer-copy">
+      <small>Copyright &copy; SPDK a Series of LF Projects, LLC. For web site terms of use, trademark policy, and other
+      project policies please see <a href="https://lfprojects.org">lfprojects.org</a>.</small>
+      <br><small>Built from spdk 91893349edff / site e5878500f</small>
+    </div>
+  </div>
+</footer>
+
+
+    
+  </body>
+</html>
