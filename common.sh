@@ -44,7 +44,7 @@ title: Storage Performance Development Kit
 	cp "$rootdir/_config.yml" "$doc_header_dir"
 	adjust_paths "$doc_header_dir/_config.yml"
 	# Use Jekyll to generate a header for docs using _config.yml
-	(cd "$doc_header_dir"; jekyll build)
+	(cd "$doc_header_dir"; bundle exec jekyll build)
 
 	# Clean empty and blank lines
 	sed -ri '/^\s*$/d' "$doc_header_dir/_site/doc/index.html"
