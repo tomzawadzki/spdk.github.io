@@ -7,17 +7,17 @@
 
     <div class="masthead" id="content" role="main">
       <div class="container">
-        <div class="row">
-          <div class="col-md-6 order-md-1 mt-3">
-            <h1 class="mb-3">Build Ultra High-Performance Storage Applications with the Storage Performance Development Kit</h1>
-            <p class="lead mb-4">
+        <div class="hero">
+          <div class="hero-text">
+            <h1>Build Ultra High-Performance Storage Applications with the Storage Performance Development Kit</h1>
+            <p class="lead">
               The Storage Performance Development Kit (SPDK) provides a set of tools and libraries for writing high performance, scalable, user-mode storage applications.</p>
-            <div>
-              <a href="/doc/" class="btn btn-lg btn-dark mb-3 me-md-3">Get started</a>
-              <a href="/releases/" class="btn btn-lg btn-outline-dark mb-3">Download</a>
+            <div class="hero-buttons">
+              <a href="{{ baseurl_rel }}/doc/" class="btn btn-lg btn-dark">Get started</a>
+              <a href="{{ baseurl_rel }}/releases/" class="btn btn-lg btn-outline-dark">Download</a>
             </div>
           </div>
-          <div class="col-md-6 order-md-2 mt-3">
+          <div class="hero-image">
             <img src="{{ baseurl_rel }}/img/spdk.svg" alt="Storage Performance Development Kit" />
           </div>
         </div>
@@ -26,9 +26,8 @@
 
     <div class="followup">
       <div class="container">
-        <div class="row">
-          <!-- Put NVMe logo on left?-->
-          <div class="col-md-6 p-3">
+        <div class="feature-grid">
+          <div class="feature">
             <h2>Cutting Edge</h2>
             <ul>
               <li>Leverage the latest NVMe features</li>
@@ -37,41 +36,39 @@
               <li>Lockless, thread-per-core design</li>
             </ul>
 
-            <div>
-              <a href="/doc/#md_performance__reports" class="btn btn-lg btn-dark mb-3 me-md-3">Performance Reports</a>
-              <a href="/blog/" class="btn btn-lg btn-outline-dark mb-3">Blog</a>
+            <div class="feature-buttons">
+              <a href="{{ baseurl_rel }}/doc/#md_performance__reports" class="btn btn-lg btn-dark">Performance Reports</a>
+              <a href="{{ baseurl_rel }}/blog/" class="btn btn-lg btn-outline-dark">Blog</a>
             </div>
           </div>
 
-          <div class="col-md-6 p-3">
+          <div class="feature">
             <h2>Open Source Community</h2>
             <ul>
               <li>Active, engaged community</li>
               <li>BSD 3-Clause License</li>
             </ul>
 
-            <div>
-              <a href="/community/" class="btn btn-lg btn-dark mb-3 me-md-3">Join Us</a>
-              <a href="https://github.com/spdk/spdk" class="btn btn-lg btn-outline-dark mb-3">GitHub</a>
+            <div class="feature-buttons">
+              <a href="{{ baseurl_rel }}/community/" class="btn btn-lg btn-dark">Join Us</a>
+              <a href="https://github.com/spdk/spdk" class="btn btn-lg btn-outline-dark">GitHub</a>
             </div>
           </div>
-        </div>
 
-        <div class="row">
-          <div class="col-md-6 p-3">
+          <div class="feature">
             <h2>Production Ready</h2>
             <ul>
               <li>Widely deployed, powering many critical services</li>
               <li>Automated continuous integration</li>
             </ul>
 
-            <div>
-              <a href="/development/" class="btn btn-lg btn-dark mb-3 me-md-3">Learn More</a>
-              <a href="https://ci.spdk.io/" class="btn btn-lg btn-outline-dark mb-3">CI Status</a>
+            <div class="feature-buttons">
+              <a href="{{ baseurl_rel }}/development/" class="btn btn-lg btn-dark">Learn More</a>
+              <a href="https://github.com/spdk/spdk-ci/actions" class="btn btn-lg btn-outline-dark">CI Status</a>
             </div>
           </div>
 
-          <div class="col-md-6 p-3">
+          <div class="feature">
             <h2>Well Documented</h2>
             <ul>
               <li>Extensive documentation</li>
@@ -79,9 +76,9 @@
               <li>API stability. ABI versioning</li>
             </ul>
 
-            <div>
-              <a href="/doc/" class="btn btn-lg btn-dark mb-3 me-md-3">Guides</a>
-              <a href="https://spdk.io/doc/files.html" class="btn btn-lg btn-outline-dark mb-3">API Documentation</a>
+            <div class="feature-buttons">
+              <a href="{{ baseurl_rel }}/doc/" class="btn btn-lg btn-dark">Guides</a>
+              <a href="{{ baseurl_rel }}/doc/files.html" class="btn btn-lg btn-outline-dark">API Documentation</a>
             </div>
           </div>
         </div>
@@ -90,21 +87,15 @@
 
     <div class="news">
       <div class="container">
-        <div class="row">
-          <div class="col">
-
-            <section id="blog" class="blog">
-              {% for post in site.posts limit:10 %}
-                <div class="blog-section">
-                  <a class="text-primary" href="{{ baseurl_rel }}{{ post.url }}"><h2 class="blog-heading text-primary">{{ post.title }}</h2></a>
-                  <div class="blog-author">{{ post.date | date: "%b %-d, %Y" }} • {{ post.author }}</div>
-                  <div class="content">{{ post.excerpt }}  <a class="text-primary" href="{{ baseurl_rel }}{{ post.url }}">Continue...</a></div>
-                </div>
-              {% endfor %}
-            </section>
-
-          </div>
-        </div>
+        <section id="blog" class="blog">
+          {% for post in site.posts limit:10 %}
+            <div class="blog-section">
+              <a class="text-primary" href="{{ baseurl_rel }}{{ post.url }}"><h2 class="blog-heading text-primary">{{ post.title }}</h2></a>
+              <div class="blog-author">{{ post.date | date: "%b %-d, %Y" }} • {{ post.author }}</div>
+              <div class="content">{{ post.excerpt }}  <a class="text-primary" href="{{ baseurl_rel }}{{ post.url }}">Continue...</a></div>
+            </div>
+          {% endfor %}
+        </section>
       </div>
     </div>
 
