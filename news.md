@@ -2,15 +2,7 @@
 layout: default
 title:  "SPDK In The News"
 
-toc:
-  - title: News
-    url: ../news/
-  - title: Technical Articles
-    url: ../articles/
-  - title: Whitepapers
-    url: ../whitepaper/
-  - title: Webinars
-    url: ../webinar/
+sidebar: news
 ---
 
 ## 2021 19th USENIX Conference on File and Storage Technologies, February 23–25, 2021

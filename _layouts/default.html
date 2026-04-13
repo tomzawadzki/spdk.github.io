@@ -1,11 +1,12 @@
 ---
 layout: base
 ---
-{% if page.toc.size > 0 %}
+{% assign toc = page.toc | default: site.data.sidebars[page.sidebar] %}
+{% if toc.size > 0 %}
 <div class="page-with-toc">
   <aside class="site-toc">
     <ul>
-      {% for entry in page.toc %}
+      {% for entry in toc %}
         <li>
           <a href="{{ entry.url }}">{{ entry.title }}</a>
           {% if entry.items %}

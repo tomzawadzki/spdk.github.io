@@ -3,15 +3,7 @@ layout: default
 title:  "SPDK用户案例"
 lang: cn
 
-toc:
-  - title: 用户案例
-    url: ../news/
-  - title: 技术文章
-    url: ../articles/
-  - title: 白皮书
-    url: ../whitepaper/
-  - title: 在线分享
-    url: ../webinar/
+sidebar: news_cn
 ---
 
 ## 阿里云

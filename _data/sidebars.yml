@@ -1,0 +1,57 @@
+news:
+  - title: News
+    url: ../news/
+  - title: Technical Articles
+    url: ../articles/
+  - title: Whitepapers
+    url: ../whitepaper/
+  - title: Webinars
+    url: ../webinar/
+  - title: Summits
+    url: ../summit/
+
+news_cn:
+  - title: 用户案例
+    url: ../news/
+  - title: 技术文章
+    url: ../articles/
+  - title: 白皮书
+    url: ../whitepaper/
+  - title: 在线分享
+    url: ../webinar/
+
+community:
+  - title: Slack
+    url: "#slack"
+  - title: Enhancement Requests
+    url: "#enhancements"
+  - title: Community Meetings
+    url: "#meetings"
+  - title: Become a Contributor
+    url: "#contributing"
+  - title: Branding
+    url: "../branding/"
+  - title: Holidays
+    url: "#holidays"
+
+summit:
+  - title: US Summits
+    url: us/
+  - title: PRC Summits
+    url: cn/
+
+summit_us:
+  - title: All Summits
+    url: ../
+  - title: "2019"
+    url: 2019/
+  - title: "2018"
+    url: 2018/
+  - title: "2017"
+    url: 2017/
+
+summit_cn:
+  - title: All Summits
+    url: ../
+  - title: "2018"
+    url: 2018/

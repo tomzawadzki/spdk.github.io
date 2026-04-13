@@ -2,15 +2,7 @@
 layout: default
 title:  "SPDK Whitepapers"
 
-toc:
-  - title: News
-    url: ../news/
-  - title: Technical Articles
-    url: ../articles/
-  - title: Whitepapers
-    url: ../whitepaper/
-  - title: Webinars
-    url: ../webinar/
+sidebar: news
 ---
 
 * [Intel® Ethernet 800 Series NVMe-oF Performance Report: Comparing iWARP, RoCEv2, TCP, and TCP with ADQ using SPDK NVMe-oF Target and Initiator](https://review.spdk.io/download/papers/Intel_E810CQDA2_ADQ-TCP-RDMA-NVMF_SPDK_Performance_Report.pdf)
