@@ -1,6 +1,7 @@
 <footer class="footer" id="nav-path">
   <div class="footer-inner">
     <div class="footer-copy">
+      {% if site.data.versions %}<small>Built from spdk({{ site.data.versions.spdk_sha }}) and spdk.github.io({{ site.data.versions.site_sha }})</small><br>{% endif %}
       <small>Copyright &copy; SPDK a Series of LF Projects, LLC. For web site terms of use, trademark policy, and other
       project policies please see <a href="https://lfprojects.org">lfprojects.org</a>.</small>
     </div>

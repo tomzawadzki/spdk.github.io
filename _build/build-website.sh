@@ -98,6 +98,9 @@ installed_doxygen=${installed_doxygen%% *}
 [[ $installed_doxygen == "$REQUIRED_DOXYGEN_VERSION" ]] ||
 	die "Doxygen $REQUIRED_DOXYGEN_VERSION is required (found $installed_doxygen)"
 
+doc_version=$(git -C "$repo" rev-parse --short=9 HEAD)
+site_version=$(git -C "$rootdir" rev-parse --short=9 HEAD)
+
 {
 	sed 's|{{ site.baseurl }}|..|g' "$rootdir/_doxygen/doc_head.html"
 	printf '<body>\n<div id="top"><!-- do not remove this div, it is closed by doxygen! -->\n'
@@ -107,7 +110,12 @@ installed_doxygen=${installed_doxygen%% *}
 } > "$tmpdir/header.html"
 
 {
-	sed 's|{{ site.baseurl }}|..|g' "$rootdir/_includes/footer.html"
+	sed -e 's|{{ site.baseurl }}|..|g' \
+		-e "s|{% if site.data.versions %}||" \
+		-e "s|{{ site.data.versions.spdk_sha }}|$doc_version|" \
+		-e "s|{{ site.data.versions.site_sha }}|$site_version|" \
+		-e "s|{% endif %}||" \
+		"$rootdir/_includes/footer.html"
 	printf '</body>\n</html>\n'
 } > "$tmpdir/footer.html"
 
@@ -127,6 +135,12 @@ mkdir -p "$rootdir/doc"
 cp -a "$repo/doc/output/html/." "$rootdir/doc/"
 make -C "$repo/doc" clean
 doc_build_started=false
+
+mkdir -p "$rootdir/_data"
+cat > "$rootdir/_data/versions.yml" <<-EOF
+	spdk_sha: "$doc_version"
+	site_sha: "$site_version"
+EOF
 
 jekyll_args=()
 if [[ -n $baseurl || -n $site_url ]]; then
