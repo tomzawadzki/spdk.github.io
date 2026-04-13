@@ -5,15 +5,11 @@ author: John Kariuki
 categories: news
 ---
 
-# Save The Date
-
-<div class="well">
-<p>
-2021 Storage Performance Development Kit (SPDK), Persistent Memory Development
-Kit (PMDK) and Intel® Performance Analyzers Virtual Forum<br/>
-June 22nd-24th<br/>
-</p>
-</div>
+> ### Save The Date
+>
+> 2021 Storage Performance Development Kit (SPDK), Persistent Memory Development
+> Kit (PMDK) and Intel® Performance Analyzers Virtual Forum
+> June 22nd-24th
 
 Join us for a 3-day virtual experience with technical presentations, engaging demos,
 and interactive sessions with industry leaders, experts, developers, and user communities.

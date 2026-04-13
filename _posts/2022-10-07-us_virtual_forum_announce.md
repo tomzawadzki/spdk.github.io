@@ -5,14 +5,10 @@ author: John Kariuki
 categories: news
 ---
 
-# Save The Date
-
-<div class="well">
-<p>
-2022 US Storage Performance Development Kit (SPDK) Virtual Forum<br/>
-November 15th-16th<br/>
-</p>
-</div>
+> ### Save The Date
+>
+> 2022 US Storage Performance Development Kit (SPDK) Virtual Forum
+> November 15th-16th
 
 Join us for a 2-day virtual experience with technical presentations, usage models,
 and demos with industry leaders, experts, developers, and user communities.

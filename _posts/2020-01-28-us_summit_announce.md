@@ -5,17 +5,14 @@ author: John Kariuki
 categories: news
 ---
 
-<div class="well">
-<h3>Save The Date</h3>
-<p>
-2020 Storage Performance Development Kit (SPDK), Persistent Memory Development
-Kit (PMDK) and Intel® Vtune Amplifier Summit<br/>
-April 21st-22nd<br/>
-Dolce Hayes Mansion, San Jose<br/>
-<a href="https://goo.gl/maps/mj9sYL9Un232">200 Edenvale Ave, San Jose, CA 95136</a><br/>
-<a href="http://www.hayesmansion.com">http://www.hayesmansion.com</a>
-</p>
-</div>
+> ### Save The Date
+>
+> 2020 Storage Performance Development Kit (SPDK), Persistent Memory Development
+> Kit (PMDK) and Intel® Vtune Amplifier Summit
+> April 21st-22nd
+> Dolce Hayes Mansion, San Jose
+> [200 Edenvale Ave, San Jose, CA 95136](https://goo.gl/maps/mj9sYL9Un232)
+> <http://www.hayesmansion.com>
 
 This will be a great opportunity to meet with the SPDK, PMDK, and VTune user communities
 and listen to a new series of talks from early adopters and long term users.

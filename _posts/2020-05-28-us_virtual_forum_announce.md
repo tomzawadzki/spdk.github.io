@@ -5,14 +5,11 @@ author: John Kariuki
 categories: news
 ---
 
-<div class="well">
-<h3>Save The Date</h3>
-<p>
-2020 Storage Performance Development Kit (SPDK), Persistent Memory Development
-Kit (PMDK) and Intel® Vtune Amplifier Virtual Forum<br/>
-June 23rd-25th<br/>
-</p>
-</div>
+> ### Save The Date
+>
+> 2020 Storage Performance Development Kit (SPDK), Persistent Memory Development
+> Kit (PMDK) and Intel® Vtune Amplifier Virtual Forum
+> June 23rd-25th
 
 Join us for a 3-day virtual experience with technical presentations, engaging demos,
 and interactive sessions with industry leaders, experts, developers, and user communities.
