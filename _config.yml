@@ -14,6 +14,10 @@ markdown: kramdown
 highlighter: rouge  # codespell-ignore
 permalink: pretty
 exclude: [spdk, vendor, Gemfile, Gemfile.lock]
+collections:
+  redirects:
+    output: true
+
 plugins:
   - jekyll-feed
 
