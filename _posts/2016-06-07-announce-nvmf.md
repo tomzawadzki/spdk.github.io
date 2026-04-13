@@ -1,7 +1,6 @@
 ---
 layout: post
 title:  "Announcing the SPDK NVMf Target"
-img: SPDK_text_2.png
 author: Jonathan Stern
 categories: feature
 ---
