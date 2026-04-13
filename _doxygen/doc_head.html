@@ -1,0 +1,122 @@
+<!-- Doxygen 1.17.0 HTML header customized for the shared SPDK chrome. -->
+<!doctype html>
+<html lang="$langISO">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta name="generator" content="Doxygen $doxygenversion">
+	<title>$projectname: $title</title>
+	<link href="$relpath^tabs.css" rel="stylesheet" type="text/css">
+<!--BEGIN HTML_DYNAMIC_SECTIONS-->
+	<script type="text/javascript" src="$relpath^dynsections.js"></script>
+<!--END HTML_DYNAMIC_SECTIONS-->
+<!--BEGIN HTML_CODE_FOLDING-->
+	<script type="text/javascript" src="$relpath^codefolding.js"></script>
+<!--END HTML_CODE_FOLDING-->
+<!--BEGIN COPY_CLIPBOARD-->
+	<script type="text/javascript" src="$relpath^clipboard.js"></script>
+<!--END COPY_CLIPBOARD-->
+	<script>
+	var sideNavWidthMatch = document.cookie.match(/(?:^|; )doxygen_width=([^;]+)/);
+	var sideNavWidth = sideNavWidthMatch ? parseInt(sideNavWidthMatch[1], 10) : 350;
+	var pageNavWidthMatch = document.cookie.match(/(?:^|; )doxygen_pagenav=([^;]+)/);
+	var pageNavWidth = pageNavWidthMatch ? parseInt(pageNavWidthMatch[1], 10) : 250;
+	sideNavWidth = sideNavWidth >= 100 ? sideNavWidth : 350;
+	pageNavWidth = pageNavWidth >= 100 ? pageNavWidth : 250;
+
+	document.addEventListener('DOMContentLoaded', function() {
+		/* TREEVIEW_WIDTH controls both panels; keep the outline at its stock width. */
+		if (!(parseInt(Cookie.readSetting('pagenav', ''), 10) >= 100)) {
+			Cookie.writeSetting('pagenav', pageNavWidth);
+		}
+
+		/* Doxygen 1.17's outline assumes anonymous member rows have IDs. */
+		document.querySelectorAll("tr[class^='memitem:']:not([id])").forEach(function(row, index) {
+			var anchor = row.querySelector('a[id]');
+			row.id = anchor ? anchor.id : 'spdk-anonymous-member-' + index;
+		});
+
+		/* Doxygen's disclosure spans are mouse-only; retain native toggling for keys. */
+		setTimeout(function() {
+			/* The shared border-box model needs the visible width persisted directly. */
+			var sideNav = document.getElementById('side-nav');
+			if (sideNav) {
+				function persistSideNavWidth() {
+					var width = Math.round(sideNav.getBoundingClientRect().width);
+					if (getComputedStyle(sideNav).display !== 'none' && width >= 100) {
+						sideNavWidth = width;
+					}
+					/* Native resize events report zero while mobile CSS hides the panel. */
+					Cookie.writeSetting('width', sideNavWidth);
+				}
+				new MutationObserver(persistSideNavWidth).observe(sideNav, {
+					attributeFilter: ['style'],
+					attributes: true
+				});
+				persistSideNavWidth();
+			}
+
+			var pageNav = document.getElementById('page-nav');
+			if (pageNav) {
+				function persistPageNavWidth() {
+					var width = Math.round(pageNav.getBoundingClientRect().width);
+					if (getComputedStyle(pageNav).display !== 'none' && width >= 100) {
+						pageNavWidth = width;
+					}
+					Cookie.writeSetting('pagenav', pageNavWidth);
+				}
+				new MutationObserver(persistPageNavWidth).observe(pageNav, {
+					attributeFilter: ['style'],
+					attributes: true
+				});
+				persistPageNavWidth();
+			}
+
+			document.querySelectorAll('#nav-tree, #page-nav').forEach(function(container) {
+				function updateDisclosures() {
+					container.querySelectorAll('.arrow').forEach(function(arrow) {
+						var arrowhead = arrow.querySelector('.arrowhead');
+						if (!arrowhead) {
+							return;
+						}
+						var item = arrow.closest('.item');
+						var label = item ? item.querySelector('.label') : null;
+						label = label || (item ? item.querySelector('a') : null);
+						arrow.setAttribute('role', 'button');
+						arrow.setAttribute('tabindex', '0');
+						arrow.setAttribute('aria-expanded', arrowhead.classList.contains('opened'));
+						arrow.setAttribute('aria-label', 'Toggle ' + (label ? label.textContent.trim() : 'section'));
+					});
+				}
+
+				container.addEventListener('keydown', function(event) {
+					var arrow = event.target.closest('.arrow');
+					if (!arrow || !arrow.querySelector('.arrowhead') ||
+					    (event.key !== 'Enter' && event.key !== ' ')) {
+						return;
+					}
+					event.preventDefault();
+					arrow.click();
+				});
+				new MutationObserver(updateDisclosures).observe(container, {
+					attributeFilter: ['class'],
+					attributes: true,
+					childList: true,
+					subtree: true
+				});
+				updateDisclosures();
+			});
+		}, 0);
+	});
+	</script>
+	$treeview
+	$search
+	$mathjax
+	$darkmode
+	$mermaidjs
+	<link href="$relpath^$stylesheet" rel="stylesheet" type="text/css">
+	$extrastylesheet
+	<link rel="icon" type="image/svg+xml" href="{{ site.baseurl }}/img/spdk.svg">
+	<link rel="icon" href="{{ site.baseurl }}/favicon.ico" sizes="32x32">
+	<link href="{{ site.baseurl }}/css/spdk.css" rel="stylesheet" type="text/css">
+</head>
