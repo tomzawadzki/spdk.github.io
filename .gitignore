@@ -1,4 +1,5 @@
 _site
+_data/versions.yml
 .sass-cache
 .jekyll
 .jekyll*

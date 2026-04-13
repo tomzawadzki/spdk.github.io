@@ -32,6 +32,9 @@ else
 fi
 
 # Build Doxygen docs
+doc_version=$(cd "$repo"; git rev-parse --short=9 HEAD)
+site_version=$(cd "$rootdir"; git rev-parse --short=9 HEAD)
+
 tmpdir=$(mktemp -d)
 trap 'rm -rf "$tmpdir"' EXIT
 
@@ -43,7 +46,12 @@ trap 'rm -rf "$tmpdir"' EXIT
 } > "$tmpdir/header.html"
 
 {
-	sed 's|{{ site.baseurl }}|..|g' "$rootdir/_includes/footer.html"
+	sed -e 's|{{ site.baseurl }}|..|g' \
+		-e "s|{% if site.data.versions %}||" \
+		-e "s|{{ site.data.versions.spdk_sha }}|$doc_version|" \
+		-e "s|{{ site.data.versions.site_sha }}|$site_version|" \
+		-e "s|{% endif %}||" \
+		"$rootdir/_includes/footer.html"
 	grep '<script' "$repo/doc/theme/footer.html"
 	printf '</body>\n</html>\n'
 } > "$tmpdir/footer.html"
@@ -63,6 +71,13 @@ cp -R "$repo/doc/output/html"/* "$rootdir"/doc/
 (cd "$repo/doc"; make clean)
 
 [[ -z "$spdk_path" ]] && rm -rf "$repo"
+
+# Write version stamps for Jekyll (footer reads _data/versions.yml)
+mkdir -p "$rootdir/_data"
+cat > "$rootdir/_data/versions.yml" <<-EOF
+	spdk_sha: "$doc_version"
+	site_sha: "$site_version"
+EOF
 
 # Build Jekyll website
 case "$mode" in
