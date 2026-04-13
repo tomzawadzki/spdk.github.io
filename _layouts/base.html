@@ -1,0 +1,16 @@
+<!doctype html>
+<html lang="en">
+  {% include head.html %}
+
+  <body>
+    {% include navbar.html %}
+
+    {{ content }}
+
+    {% include footer.html %}
+
+    {% for js in page.jsfiles %}
+    <script type="text/javascript" src="{{ site.baseurl }}/assets/{{ js }}"></script>
+    {% endfor %}
+  </body>
+</html>

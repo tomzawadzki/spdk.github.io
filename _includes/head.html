@@ -1,22 +1,4 @@
 <head>
-  {% assign url_slash_count = page.url | split: '/' | size %}
-
-  {% if url_slash_count <= 1 %}
-    {% assign baseurl_rel = '.' %}
-  {% elsif url_slash_count == 2 %}
-    {% assign baseurl_rel = '..' %}
-  {% elsif url_slash_count == 3 %}
-    {% assign baseurl_rel = '../..' %}
-  {% elsif url_slash_count == 4 %}
-    {% assign baseurl_rel = '../../..' %}
-  {% elsif url_slash_count == 5 %}
-    {% assign baseurl_rel = '../../../..' %}
-  {% elsif url_slash_count == 6 %}
-    {% assign baseurl_rel = '../../../../..' %}
-  {% else %}
-    {% assign baseurl_rel = site.baseurl %}
-  {% endif %}
-
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <meta name="description" content="{{ site.description }}">
@@ -24,11 +6,10 @@
 
   <title>{% if page.title %}{{ page.title }}{% else %}{{ site.title }}{% endif %}</title>
 
-  <link rel="icon" type="image/svg+xml" href="{{ baseurl_rel }}/img/spdk.svg">
-  <link rel="icon" href="{{ baseurl_rel }}/favicon.ico" sizes="32x32">
-  <link rel="stylesheet" href='https://fonts.googleapis.com/css?family=Roboto:400,700,900' type='text/css'>
-  <link rel="stylesheet" href="{{ baseurl_rel }}/css/spdk.css">
-  <link rel="stylesheet" href="{{ baseurl_rel }}/css/syntax.css">
+  <link rel="icon" type="image/svg+xml" href="{{ site.baseurl }}/assets/img/spdk.svg">
+  <link rel="icon" href="{{ site.baseurl }}/assets/favicon.ico" sizes="32x32">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:400,700,900" type="text/css">
+  <link rel="stylesheet" href="{{ site.baseurl }}/assets/css/spdk.css">
 
-  <link href="{{ baseurl_rel }}/feed.xml" type="application/atom+xml" rel="alternate" title="Atom Feed">
+  <link href="{{ site.baseurl }}/feed.xml" type="application/atom+xml" rel="alternate" title="Atom Feed">
 </head>

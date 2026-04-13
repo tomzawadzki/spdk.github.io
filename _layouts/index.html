@@ -1,105 +1,88 @@
-<!doctype html>
-<html lang="en">
-  {% include head.html %}
+---
+layout: base
+---
+<div class="masthead" id="content" role="main">
+  <div class="container">
+    <div class="hero">
+      <div class="hero-text">
+        <h1>Build Ultra High-Performance Storage Applications with the Storage Performance Development Kit</h1>
+        <p class="lead">
+          The Storage Performance Development Kit (SPDK) provides a set of tools and libraries for writing high performance, scalable, user-mode storage applications.</p>
+        <div class="hero-buttons">
+          <a href="{{ site.baseurl }}/doc/" class="btn btn-lg btn-dark">Get started</a>
+          <a href="{{ site.baseurl }}/doc/releases.html" class="btn btn-lg btn-outline-dark">Download</a>
+        </div>
+      </div>
+      <div class="hero-image">
+        <img src="{{ site.baseurl }}/assets/img/spdk.svg" alt="Storage Performance Development Kit" />
+      </div>
+    </div>
+  </div>
+</div>
 
-  <body>
-    {% include header.html %}
+<div class="followup">
+  <div class="container">
+    <div class="feature-grid">
+      <div class="feature">
+        <h2>Cutting Edge</h2>
+        <ul>
+          <li>Leverage the latest NVMe features</li>
+          <li>User-mode drivers with minimal Linux version dependencies</li>
+          <li>Poll-mode and event-loop design for maximum performance</li>
+          <li>Lockless, thread-per-core design</li>
+        </ul>
 
-    <div class="masthead" id="content" role="main">
-      <div class="container">
-        <div class="hero">
-          <div class="hero-text">
-            <h1>Build Ultra High-Performance Storage Applications with the Storage Performance Development Kit</h1>
-            <p class="lead">
-              The Storage Performance Development Kit (SPDK) provides a set of tools and libraries for writing high performance, scalable, user-mode storage applications.</p>
-            <div class="hero-buttons">
-              <a href="{{ baseurl_rel }}/doc/" class="btn btn-lg btn-dark">Get started</a>
-              <a href="{{ baseurl_rel }}/releases/" class="btn btn-lg btn-outline-dark">Download</a>
-            </div>
-          </div>
-          <div class="hero-image">
-            <img src="{{ baseurl_rel }}/img/spdk.svg" alt="Storage Performance Development Kit" />
-          </div>
+        <div class="feature-buttons">
+          <a href="{{ site.baseurl }}/doc/performance_reports.html" class="btn btn-lg btn-dark">Performance Reports</a>
+          <a href="{{ site.baseurl }}/blog/" class="btn btn-lg btn-outline-dark">Blog</a>
+        </div>
+      </div>
+
+      <div class="feature">
+        <h2>Open Source Community</h2>
+        <ul>
+          <li>Active, engaged community</li>
+          <li>BSD 3-Clause License</li>
+        </ul>
+
+        <div class="feature-buttons">
+          <a href="{{ site.baseurl }}/community/" class="btn btn-lg btn-dark">Join Us</a>
+          <a href="https://github.com/spdk/spdk" class="btn btn-lg btn-outline-dark">GitHub</a>
+        </div>
+      </div>
+
+      <div class="feature">
+        <h2>Production Ready</h2>
+        <ul>
+          <li>Widely deployed, powering many critical services</li>
+          <li>Automated continuous integration</li>
+        </ul>
+
+        <div class="feature-buttons">
+          <a href="{{ site.baseurl }}/doc/contributing.html" class="btn btn-lg btn-dark">Learn More</a>
+          <a href="https://github.com/spdk/spdk-ci/actions" class="btn btn-lg btn-outline-dark">CI Status</a>
+        </div>
+      </div>
+
+      <div class="feature">
+        <h2>Well Documented</h2>
+        <ul>
+          <li>Extensive documentation</li>
+          <li>Strict, quarterly release process</li>
+          <li>API stability. ABI versioning</li>
+        </ul>
+
+        <div class="feature-buttons">
+          <a href="{{ site.baseurl }}/doc/" class="btn btn-lg btn-dark">Guides</a>
+          <a href="{{ site.baseurl }}/doc/files.html" class="btn btn-lg btn-outline-dark">API Documentation</a>
         </div>
       </div>
     </div>
+  </div>
+</div>
 
-    <div class="followup">
-      <div class="container">
-        <div class="feature-grid">
-          <div class="feature">
-            <h2>Cutting Edge</h2>
-            <ul>
-              <li>Leverage the latest NVMe features</li>
-              <li>User-mode drivers with minimal Linux version dependencies</li>
-              <li>Poll-mode and event-loop design for maximum performance</li>
-              <li>Lockless, thread-per-core design</li>
-            </ul>
-
-            <div class="feature-buttons">
-              <a href="{{ baseurl_rel }}/doc/#md_performance__reports" class="btn btn-lg btn-dark">Performance Reports</a>
-              <a href="{{ baseurl_rel }}/blog/" class="btn btn-lg btn-outline-dark">Blog</a>
-            </div>
-          </div>
-
-          <div class="feature">
-            <h2>Open Source Community</h2>
-            <ul>
-              <li>Active, engaged community</li>
-              <li>BSD 3-Clause License</li>
-            </ul>
-
-            <div class="feature-buttons">
-              <a href="{{ baseurl_rel }}/community/" class="btn btn-lg btn-dark">Join Us</a>
-              <a href="https://github.com/spdk/spdk" class="btn btn-lg btn-outline-dark">GitHub</a>
-            </div>
-          </div>
-
-          <div class="feature">
-            <h2>Production Ready</h2>
-            <ul>
-              <li>Widely deployed, powering many critical services</li>
-              <li>Automated continuous integration</li>
-            </ul>
-
-            <div class="feature-buttons">
-              <a href="{{ baseurl_rel }}/development/" class="btn btn-lg btn-dark">Learn More</a>
-              <a href="https://github.com/spdk/spdk-ci/actions" class="btn btn-lg btn-outline-dark">CI Status</a>
-            </div>
-          </div>
-
-          <div class="feature">
-            <h2>Well Documented</h2>
-            <ul>
-              <li>Extensive documentation</li>
-              <li>Strict, quarterly release process</li>
-              <li>API stability. ABI versioning</li>
-            </ul>
-
-            <div class="feature-buttons">
-              <a href="{{ baseurl_rel }}/doc/" class="btn btn-lg btn-dark">Guides</a>
-              <a href="{{ baseurl_rel }}/doc/files.html" class="btn btn-lg btn-outline-dark">API Documentation</a>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <div class="news">
-      <div class="container">
-        <section id="blog" class="blog">
-          {% for post in site.posts limit:10 %}
-            <div class="blog-section">
-              <a class="text-primary" href="{{ baseurl_rel }}{{ post.url }}"><h2 class="blog-heading text-primary">{{ post.title }}</h2></a>
-              <div class="blog-author">{{ post.date | date: "%b %-d, %Y" }} • {{ post.author }}</div>
-              <div class="content">{{ post.excerpt }}  <a class="text-primary" href="{{ baseurl_rel }}{{ post.url }}">Continue...</a></div>
-            </div>
-          {% endfor %}
-        </section>
-      </div>
-    </div>
-
-    {% include footer.html %}
-
-  </body>
-</html>
+<div class="news">
+  <div class="container">
+    {% include blog.html limit=10 %}
+  </div>
+</div>
