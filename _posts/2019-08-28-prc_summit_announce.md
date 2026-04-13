@@ -5,16 +5,13 @@ author: Gang Cao
 categories: news
 ---
 
-<div class="well">
-<h3>Save The Date</h3>
-<p>
-2019 Storage Performance Development Kit (SPDK) PRC Summit<br/>
-September 5th-6th<br/>
-Crowne Plaza Zhongguancun, Beijing<br/>
-<a href="https://binged.it/2Zh9pL0">No.106 Zhichun Road, Haidian District, Beijing</a><br/>
-<a href="https://www.ihg.com.cn/crowneplaza/hotels/cn/zh/beijing/pegzg/hoteldetail?fromRedirect=true&qSrt=sBR&qIta=99602392&icdv=99602392&glat=SEAR_mdpr-_-Baidu-_-PC-_-Search-_-GC-_-B-GC-CHN-Beijing-PEGZG-_-CHN-Beijing-N-M-_-%E5%8C%97%E4%BA%AC%E4%B8%AD%E5%85%B3%E6%9D%91%E7%9A%87%E5%86%A0%E5%81%87%E6%97%A5&qSlH=PEGZG&setPMCookies=true&qDest=No.%20106%20Zhi%20Chun%20Road,%20Hai%20Dian%20District,%20Beijing,%20BJ,%20CN&cm_mmc=mdpr-_-Baidu-_-PC-_-Search-_-GC-_-B-GC-CHN-Beijing-PEGZG-_-CHN-Beijing-N-M-_-?????????&srb_u=1">Crowne Plaza Zhongguancun</a>
-</p>
-</div>
+> ### Save The Date
+>
+> 2019 Storage Performance Development Kit (SPDK) PRC Summit
+> September 5th-6th
+> Crowne Plaza Zhongguancun, Beijing
+> [No.106 Zhichun Road, Haidian District, Beijing](https://binged.it/2Zh9pL0)
+> [Crowne Plaza Zhongguancun](https://www.ihg.com.cn/crowneplaza/hotels/cn/zh/beijing/pegzg/hoteldetail)
 
 The 2019 Storage Performance Development Kit PRC Summit is a great
 opportunity to meet SPDK community members and listen to a new series of talks

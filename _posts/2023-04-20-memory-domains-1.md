@@ -96,8 +96,7 @@ the NVMe endpoint), one device that can perform both copy and encrypt operations
 on memory in both the host and on the IPU (let's call it the DMA engine), and a
 NIC.
 
-![IPU Diagram](/assets/img/blog/ipu_diagram.png "Model IPU Diagram"){: .text-center }
-
+![IPU Diagram](/assets/img/blog/ipu_diagram.png "Model IPU Diagram")
 Here's the basic data flow:
 * The host NVMe driver issues an NVM write command on an NVMe queue pair by
   writing it into the submission queue and ringing the doorbell.

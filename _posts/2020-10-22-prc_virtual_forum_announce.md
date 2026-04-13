@@ -5,13 +5,10 @@ author: Gang Cao
 categories: news
 ---
 
-<div class="well">
-<h3>Save The Date</h3>
-<p>
-2020 Storage Performance Development Kit (SPDK), Persistent Memory Development Kit (PMDK) and Intel® Vtune Amplifier Virtual Forum<br/>
-November 14th<br/>
-</p>
-</div>
+> ### Save The Date
+>
+> 2020 Storage Performance Development Kit (SPDK), Persistent Memory Development Kit (PMDK) and Intel® Vtune Amplifier Virtual Forum
+> November 14th
 
 Join us for a one whole day virtual experience with technical presentations and interactive sessions with industry leaders, experts, developers, and user communities.
 
