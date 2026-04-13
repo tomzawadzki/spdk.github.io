@@ -14,7 +14,6 @@ fi
 
 if [[ $(tail -c1 "$f") ]]; then
 	echo "$f: No newline at end of file"
-	echo '' >> "$f"
 	exit 1
 fi
 
@@ -25,7 +24,6 @@ fi
 
 if grep -q $'\r' "$f"; then
 	echo "$f: DOS-style newlines"
-	dos2unix "$f" &> /dev/null
 	exit 1
 fi
 
