@@ -14,7 +14,7 @@ toc:
 ---
 
 * [Intel® Ethernet 800 Series NVMe-oF Performance Report: Comparing iWARP, RoCEv2, TCP, and TCP with ADQ using SPDK NVMe-oF Target and Initiator](https://review.spdk.io/download/papers/Intel_E810CQDA2_ADQ-TCP-RDMA-NVMF_SPDK_Performance_Report.pdf)
-* [QingCloud Uses Intel’s Futuristic Storage Technologies to Accelerate High-performance Storage Systems for Mission Critical](../files/QingCloud.pdf)
+* [QingCloud Uses Intel’s Futuristic Storage Technologies to Accelerate High-performance Storage Systems for Mission Critical](/assets/files/QingCloud.pdf)
 * [Introduction of Baidu Chitu Storage with SPDK NVMe-oF](https://review.spdk.io/download/papers/Introduction_of_Baidu_Chitu_Storage_with_SPDK_NVMe-oF_EN.pdf)
 * [Intel® Optane™ Persistent Memory and SPDK Power Baidu’s Next-generation User-mode Storage Engine](https://review.spdk.io/download/papers/202105_Baidu_PMem_SPDK_Storage_Engine_EN.pdf)
 * [UCloud: All in One and One for All Cloud Hosting](https://review.spdk.io/download/papers/All_in_One_and_One_for_All_Technical_Advancing_of_Kuaijie_Cloud_Hosting.pdf)

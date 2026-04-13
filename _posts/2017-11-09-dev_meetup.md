@@ -10,10 +10,10 @@ from Massachusetts, Arizona, California, Washington, China, Japan and the United
 in Chandler, AZ, to meet for 2 days of discussions on everything from NVMe to vhost to the community test
 strategy, roadmap and upcoming improvements.
 
-![Meetup](../../../../../img/blog/work1.jpg "Work Time")
-![Meetup](../../../../../img/blog/work2.jpg "Break Time")
+![Meetup](/assets/img/blog/work1.jpg "Work Time")
+![Meetup](/assets/img/blog/work2.jpg "Break Time")
 
 We enjoyed a great time out at [Rustler’s Rooste]( http://www.rustlersrooste.com/) and are already looking
 forward to more events like this one in 2018, thanks everyone for coming and making it such a great meetup!
 
-![Meetup](../../../../../img/blog/dinner.jpg "Fun Time")
+![Meetup](/assets/img/blog/dinner.jpg "Fun Time")

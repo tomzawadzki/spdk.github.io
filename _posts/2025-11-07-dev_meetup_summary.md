@@ -11,9 +11,9 @@ The agenda was packed with a variety of activities, including technical
 presentations, open discussions, and collaborative whiteboard design work.
 Attendees had the opportunity to network, learn, and contribute to the growth of the SPDK community.
 
-<img src="../../../../../img/blog/spdk_devmeetup_2025_1.jpg" alt="Hard at work" width="100%">
+<img src="/assets/img/blog/spdk_devmeetup_2025_1.jpg" alt="Hard at work" width="100%">
 
-<img src="../../../../../img/blog/spdk_devmeetup_2025_2.jpg" alt="Group shot" width="100%">
+<img src="/assets/img/blog/spdk_devmeetup_2025_2.jpg" alt="Group shot" width="100%">
 
 Presentations from some of the topics discussed this year can be found [here](https://review.spdk.io/download/2025-dev-meetup/).
 
