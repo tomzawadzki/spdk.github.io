@@ -1,0 +1,133 @@
+---
+name: Build SPDK Website
+
+"on":
+  workflow_call:
+    inputs:
+      site_gerrit_ref:
+        description: 'Gerrit refspec for spdk.github.io (for example refs/changes/XX/12345/5)'
+        required: false
+        type: string
+        default: ''
+      site_repo:
+        description: 'GitHub owner/repo for spdk.github.io'
+        required: false
+        type: string
+        default: 'spdk/spdk.github.io'
+      spdk_repo:
+        description: 'GitHub owner/repo for spdk'
+        required: false
+        type: string
+        default: 'spdk/spdk'
+      baseurl:
+        description: 'Jekyll baseurl override (for example /spdk.github.io for forks)'
+        required: false
+        type: string
+        default: ''
+      url:
+        description: 'Canonical site URL'
+        required: false
+        type: string
+        default: 'https://www.spdk.io'
+
+permissions:
+  contents: read
+
+defaults:
+  run:
+    shell: bash
+
+jobs:
+  build:
+    name: Build website
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    container:
+      image: ghcr.io/spdk/spdk-ci:fedora_43
+    env:
+      BUNDLE_FROZEN: 'true'
+      JEKYLL_BASEURL: ${{ inputs.baseurl }}
+      JEKYLL_URL: ${{ inputs.url }}
+      SITE_GERRIT_REF: ${{ inputs.site_gerrit_ref }}
+      SITE_REPO: ${{ inputs.site_repo }}
+      SPDK_REPO: ${{ inputs.spdk_repo }}
+    steps:
+      - name: Validate repository inputs
+        shell: bash
+        run: |
+          [[ "$SITE_REPO" =~ ^[A-Za-z0-9_.-]+/[A-Za-z0-9_.-]+$ ]]
+          [[ "$SPDK_REPO" =~ ^[A-Za-z0-9_.-]+/[A-Za-z0-9_.-]+$ ]]
+
+      - name: Checkout spdk.github.io
+        run: git clone "https://github.com/$SITE_REPO" spdk.github.io
+
+      - name: Fetch site patch from Gerrit
+        if: inputs.site_gerrit_ref != ''
+        working-directory: spdk.github.io
+        run: |
+          [[ "$SITE_GERRIT_REF" =~ ^refs/changes/[0-9]{2}/[0-9]+/[0-9]+$ ]]
+          git fetch -- https://review.spdk.io/spdk/spdk.github.io "$SITE_GERRIT_REF"
+          git checkout --detach FETCH_HEAD
+
+      - name: Install format tools
+        shell: bash
+        run: |
+          python3 -m pip install --no-cache-dir codespell==2.4.2 yamllint==1.38.0
+          version=1.7.12
+          case "$(uname -m)" in
+            x86_64)
+              archive="actionlint_${version}_linux_amd64.tar.gz"
+              checksum=8aca8db96f1b94770f1b0d72b6dddcb1ebb8123cb3712530b08cc387b349a3d8
+              ;;
+            aarch64)
+              archive="actionlint_${version}_linux_arm64.tar.gz"
+              checksum=325e971b6ba9bfa504672e29be93c24981eeb1c07576d730e9f7c8805afff0c6
+              ;;
+            *)
+              echo "Unsupported actionlint architecture: $(uname -m)" >&2
+              exit 1
+              ;;
+          esac
+          curl -fsSLo "/tmp/$archive" \
+            "https://github.com/rhysd/actionlint/releases/download/v${version}/$archive"
+          echo "$checksum  /tmp/$archive" | sha256sum --check -
+          tar -xzf "/tmp/$archive" -C /usr/local/bin actionlint
+
+      - name: Run format checks
+        working-directory: spdk.github.io
+        run: _build/check_format.sh
+
+      - name: Checkout spdk
+        run: git clone --depth 1 "https://github.com/$SPDK_REPO" spdk
+
+      - name: Ensure Doxygen 1.17
+        shell: bash
+        run: |
+          if [[ $(doxygen --version) != 1.17.0* ]]; then
+            export GIT_REPOS=/tmp/git_repos
+            mkdir -p "$GIT_REPOS"
+            source spdk/test/common/config/pkgdep/git
+            install_doxygen
+          fi
+          [[ $(doxygen --version) == 1.17.0* ]]
+
+      - name: Install locked Jekyll dependencies
+        working-directory: spdk.github.io
+        run: |
+          gem install bundler --version 2.6.9 --no-document
+          bundle install --jobs "$(nproc)"
+
+      - name: Build full site
+        working-directory: spdk.github.io
+        run: |
+          args=(--spdk-path "$GITHUB_WORKSPACE/spdk" --url "$JEKYLL_URL")
+          if [[ -n "$JEKYLL_BASEURL" ]]; then
+            args+=(--baseurl "$JEKYLL_BASEURL")
+          fi
+          _build/build-website.sh "${args[@]}"
+
+      - name: Upload site artifact
+        uses: actions/upload-artifact@v7
+        with:
+          name: site
+          path: spdk.github.io/_site/
