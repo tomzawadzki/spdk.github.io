@@ -50,7 +50,7 @@ posted topics before the end of the meeting we can use the time to discuss addit
 <a id="contributing"></a>
 # Contributing
 
-See the [Development](/development/) page for more information on how to contribute to SPDK.
+See the [Development](../development/) page for more information on how to contribute to SPDK.
 
 # Technical Steering Committee (TSC)
 

@@ -1,7 +1,6 @@
 ---
 layout: default
 title:  "开发"
-jsfiles: /js/meetings.js
 lang: cn
 ---
 # 本文内容包括:
@@ -43,7 +42,7 @@ SPDK的源代码由 [GitHub](https://github.com/spdk/spdk)托管，补丁提交�
 <a id="contributing"></a>
 ## 贡献代码
 
-欢迎大家踊跃贡献代码！通过[社区](/cn/community/) 页面提供的任意一种的交流方式，可以参与设计前期工作和广泛的讨论。
+欢迎大家踊跃贡献代码！通过[社区](../community/) 页面提供的任意一种的交流方式，可以参与设计前期工作和广泛的讨论。
 
 补丁通过Gerrit提交，并且社区中的每个人会为补丁进行投票。通常，一个补丁需要至少两个+2票才能被合入。+2票权限保留给[核心维护人员](#core)，可以在收件人列表或Slack中联系他们。
 

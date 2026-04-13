@@ -23,5 +23,5 @@ Thanks,
 
 Jim Harris (representing the core maintainer team)
 
-Please visit [Core Maintainers](http://www.spdk.io/development/#core) for further
+Please visit [Core Maintainers](https://www.spdk.io/development/#core) for further
 details on the core maintainer team and their responsibilities.
