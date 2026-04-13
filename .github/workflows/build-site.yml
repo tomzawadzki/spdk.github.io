@@ -1,0 +1,74 @@
+---
+name: Build SPDK Website
+
+"on":
+  workflow_call:
+    inputs:
+      site_gerrit_ref:
+        description: 'Gerrit refspec for spdk.github.io (e.g. refs/changes/XX/12345/5)'
+        required: false
+        type: string
+        default: ''
+      site_repo:
+        description: 'GitHub owner/repo for spdk.github.io'
+        required: false
+        type: string
+        default: 'spdk/spdk.github.io'
+      spdk_repo:
+        description: 'GitHub owner/repo for spdk'
+        required: false
+        type: string
+        default: 'spdk/spdk'
+      baseurl:
+        description: 'Jekyll baseurl override (e.g. /spdk.github.io for forks)'
+        required: false
+        type: string
+        default: ''
+
+jobs:
+
+  build:
+    name: Build website
+    runs-on: ubuntu-latest
+    container:
+      image: ghcr.io/${{ github.repository_owner }}/spdk-ci:fedora_43
+    steps:
+      - name: Checkout spdk.github.io
+        run: git clone https://github.com/${{ inputs.site_repo }} spdk.github.io
+
+      - name: Fetch site patch from Gerrit
+        if: inputs.site_gerrit_ref != ''
+        working-directory: spdk.github.io
+        run: |
+          git fetch https://review.spdk.io/spdk/spdk.github.io "${{ inputs.site_gerrit_ref }}"
+          git checkout FETCH_HEAD
+
+      - name: Run format checks
+        working-directory: spdk.github.io
+        run: |
+          pip install codespell yamllint
+          _build/check_format.sh
+
+      - name: Checkout spdk
+        run: git clone --depth 1 https://github.com/${{ inputs.spdk_repo }} spdk
+
+      - name: Install Jekyll and plugins
+        working-directory: spdk.github.io
+        run: |
+          gem install bundler
+          bundle install
+
+      - name: Build full site
+        working-directory: spdk.github.io
+        run: |
+          args=(--spdk-path "$GITHUB_WORKSPACE/spdk")
+          if [[ -n "${{ inputs.baseurl }}" ]]; then
+            args+=(--baseurl "${{ inputs.baseurl }}")
+          fi
+          _build/build-website.sh "${args[@]}"
+
+      - name: Upload site artifact
+        uses: actions/upload-artifact@v7
+        with:
+          name: site
+          path: spdk.github.io/_site/
