@@ -4,8 +4,8 @@ title: 持续集成
 lang: cn
 
 toc:
-  - title: SPDK Jenkins集成测试状态
-    url: "https://ci.spdk.io/"
+  - title: SPDK CI Github Actions
+    url: "https://github.com/spdk/spdk-ci/actions"
 
 ---
 
