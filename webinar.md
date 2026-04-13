@@ -4,13 +4,13 @@ title:  "SPDK Webinars"
 
 toc:
   - title: News
-    url: ../news
+    url: ../news/
   - title: Technical Articles
-    url: ../articles
+    url: ../articles/
   - title: Whitepapers
-    url: ../whitepaper
+    url: ../whitepaper/
   - title: Webinars
-    url: ../webinar
+    url: ../webinar/
 ---
 
 ## [SPDK on YouTube](https://www.youtube.com/channel/UCBJymdv0AXCcnbLtEw7jvBQ)

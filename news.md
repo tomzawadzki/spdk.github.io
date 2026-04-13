@@ -4,13 +4,13 @@ title:  "SPDK In The News"
 
 toc:
   - title: News
-    url: ../news
+    url: ../news/
   - title: Technical Articles
-    url: ../articles
+    url: ../articles/
   - title: Whitepapers
-    url: ../whitepaper
+    url: ../whitepaper/
   - title: Webinars
-    url: ../webinar
+    url: ../webinar/
 ---
 
 ## 2021 19th USENIX Conference on File and Storage Technologies, February 23–25, 2021
@@ -90,10 +90,10 @@ toc:
 
 ## The Nutanix Bible
 
-### [User vs. Kernel Space](http://nutanixbible.com/#anchor-user-vs.-kernel-space-15)
+### [User vs. Kernel Space](https://nutanixbible.com/#anchor-user-vs.-kernel-space-15)
 > Explains the pros/cons of User vs. Kernel Space.
 
-### [The Move to User Space / Polling](http://nutanixbible.com/#anchor-the-move-to-user-space-/-polling-17)
+### [The Move to User Space / Polling](https://nutanixbible.com/#anchor-the-move-to-user-space-/-polling-17)
 > As devices have become faster (e.g. NVMe, Intel® Optane™, pMEM), the kernel and device interaction has become a bottleneck. To eliminate these bottlenecks, a lot of vendors are moving things out of the kernel to user space with polling and seeing much better results. Great examples of this are the Storage Performance Development Kit (SPDK) and Data Plane Development Kit (DPDK). These projects are geared at maximizing the performance and reducing latency as much as possible, and have shown great success.
 
 ## AliCloud - High Performance Local SSD
@@ -113,7 +113,7 @@ toc:
 
 ## August 2018 44th International Conference on Very Large Data Bases
 
-### [PolarFS: An Ultra-low Latency and Failure Resilient Distributed File System for Shared Storage Cloud Database](http://www.vldb.org/pvldb/vol11/p1849-cao.pdf)
+### [PolarFS: An Ultra-low Latency and Failure Resilient Distributed File System for Shared Storage Cloud Database](https://www.vldb.org/pvldb/vol11/p1849-cao.pdf)
 > This paper describes how PolarFS uses emerging techniques like RDMA, NVMe SSDs and SPDK to reduce the end-to-end latency. The write latency of PolarFS is close to a local file system on SSD.
 
 ## June 11 2018 14th International Workshop on Data Management
@@ -123,7 +123,7 @@ toc:
 
 ## May 15 2018 SPDK Summit
 
-### [SPDK US Summit](http://spdk.io/news/2018/06/13/summit-recap/)
+### [SPDK US Summit](https://spdk.io/news/2018/06/13/summit-recap/)
 > Over 170 attendees from 51 different companies attended the 2018 SPDK US Summit at Dolce Hayes Mansion, San Jose on May 15th and 16th.
 
 ## March 20 2018 OCP Summit 2018
@@ -138,12 +138,12 @@ toc:
 
 ## July 12 2017 DigiTimes
 
-### [Intel unveils new Intel Xeon scalable processors](http://www.digitimes.com/newregister/join.asp?view=Article&DATEPUBLISH=2017/07/12&PAGES=PR&SEQ=200)
+### [Intel unveils new Intel Xeon scalable processors](https://www.digitimes.com/newregister/join.asp?view=Article&DATEPUBLISH=2017/07/12&PAGES=PR&SEQ=200)
 > Intel has launched its new Intel Xeon scalable processors, providing ... with Intel Optane SSDs and Storage Performance Development Kit (SPDK), ...
 
 ## July 12 2017 ETCIO.com
 
-### [With new Xeon scalable processors, Intel eyes data center market in India](http://cio.economictimes.indiatimes.com/news/data-center/with-new-xeon-scalable-processors-intel-eyes-data-center-market-in-india/59561320)
+### [With new Xeon scalable processors, Intel eyes data center market in India](https://cio.economictimes.indiatimes.com/news/data-center/with-new-xeon-scalable-processors-intel-eyes-data-center-market-in-india/59561320)
 > Bangalore: Intel India today launched its new Intel Xeon Scalable ... with Intel Optane SSDs and Storage Performance Development Kit (SPDK), ...
 
 ##  July 11 2017 Forbes

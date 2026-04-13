@@ -5,13 +5,13 @@ lang: cn
 
 toc:
   - title: 用户案例
-    url: ../news
+    url: ../news/
   - title: 技术文章
-    url: ../articles
+    url: ../articles/
   - title: 白皮书
-    url: ../whitepaper
+    url: ../whitepaper/
   - title: 在线分享
-    url: ../webinar
+    url: ../webinar/
 ---
 
 ## 阿里云
@@ -84,4 +84,4 @@ toc:
 ### [软硬件结合，分布式数据库ZNBase存储架构优化实践软硬件结合，分布式数据库ZNBase存储架构优化实践](https://baijiahao.baidu.com/s?id=1708408682720278227&wfr=spider&for=pc)
 > “由于RocksDB采用LSM-Tree架构，同样也存在一定的问题。比如在大数据量下有比较高的读放大、写放大、空间放大，性能衰减也比较厉害。为了提高ZNBase在海量数据下的性能表现，ZNBase团队结合浪潮的硬件优势，开发了使用SPDK驱动在专用硬件ZNS SSD上进行软硬件融合的存储引擎......”
 
-## 更多SPDK使用案例，请参考[news]({{ baseurl_rel }}/news)页面
+## 更多SPDK使用案例，请参考[news]({{ site.baseurl }}/news)页面
