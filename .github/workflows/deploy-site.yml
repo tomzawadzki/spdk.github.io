@@ -1,0 +1,57 @@
+---
+name: Deploy SPDK Website
+
+"on":
+  push:
+    branches: [master]
+  repository_dispatch:
+    types:
+      - spdk-site-deploy
+  workflow_dispatch:
+  schedule:
+    - cron: "0 0 * * *"
+
+concurrency:
+  group: site-deploy
+  cancel-in-progress: true
+
+permissions:
+  contents: read
+
+jobs:
+
+  build:
+    name: Build website
+    uses: ./.github/workflows/build-site.yml
+    with:
+      site_repo: ${{ format('{0}/spdk.github.io', github.repository_owner) }}
+      spdk_repo: ${{ format('{0}/spdk', github.repository_owner) }}
+      baseurl: ${{ github.repository_owner != 'spdk' && '/spdk.github.io' || '' }}
+      url: ${{ github.repository_owner == 'spdk' && 'https://www.spdk.io' || format('https://{0}.github.io', github.repository_owner) }}
+
+  deploy:
+    name: Deploy to GitHub Pages
+    needs: [build]
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    permissions:
+      pages: write
+      id-token: write
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Download site artifact
+        uses: actions/download-artifact@v8
+        with:
+          name: site
+          path: _site
+
+      - name: Upload Pages artifact
+        uses: actions/upload-pages-artifact@v4
+        with:
+          path: _site
+
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v5
