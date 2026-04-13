@@ -32,18 +32,9 @@ doc_version=$(cd $repo; git rev-parse HEAD)
 regenerate_docs "$repo"
 
 if [ "$TEST_MODE" -eq 0 ]; then
-	git add "$rootdir/doc"
 	remove_repo "$repo"
 fi
 
-if [ -n "$(git status --porcelain --untracked-files=no)" ]; then
-	echo "$doc_version" > _doc_version.txt
-	git add "$rootdir/_doc_version.txt"
-
-	echo
-	echo "New docs generated"
-	echo
-	git status
-else
-	exit 0
-fi
+echo
+echo "Docs generated from spdk commit $doc_version"
+echo
