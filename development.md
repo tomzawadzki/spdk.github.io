@@ -276,65 +276,6 @@ to the latest failure's log. We will prioritize tacking down and fixing these is
 is unable to match your comment to a valid GitHub issue, it will post back a comment on Gerrit letting you know it was unable to retrigger
 your patch.
 
-#### Triggering Specific Sub Job
-
-When debugging changes, it may be necessary to run a specific sub job without running the entire per-patch job. Especially when uploading 'Work in Progress'
-and [RFC] patches. To do this, you need to post a comment with the following content:
-
-~~~{.sh}
-tests:subjob1,subjob2,subjob3
-~~~
-
-where subjob is a job from the list:
-
-* BlobFS-autotest
-* centos7-vg-autotest
-* clang-vg-autotest
-* crypto-autotest
-* freebsd-vg-autotest
-* iscsi-vg-autotest
-* iscsi-uring-vg-autotest
-* lvol-vg-autotest
-* nvme-vg-autotest
-* nvme-cmb-pmr-vg-autotest
-* nvmf-phy-autotest
-* nvmf-phy-short-fuzz-autotest
-* nvmf-tcp-phy-autotest
-* nvmf-tcp-uring-vg-autotest
-* nvmf-tcp-vg-autotest
-* pmdk-vg-autotest
-* rocky8-vg-autotest
-* ubuntu18-vg-autotest
-* ubuntu20-vg-autotest
-* ubuntu22-vg-autotest
-* valgrind-vg-autotest
-* vfio-user-autotest
-* vhost-autotest
-* vhost-initiator-vg-autotest
-* zns-vg-autotest
-
-#### Triggering on-demand performance regression tests
-
-In order to request performance tests of your change post comment with `tests:` content as described
-in previous subchapter. Available identifiers for performance tests:
-
-* nvme-perf/regression-nvme
-* vhost-perf/regression-vhost
-* nvmf-perf/regression-tcp
-* nvmf-perf/regression-rdma
-
-After posting the comment you should get a "Additional tests accepted." comment from CI bot as
-confirmation that the build was scheduled. Another comment will be posted from CI bot after test
-completion.
-
-You can check the results of requested performance test run on https://performance.spdk.io. Make sure
-to select appropriate dashboard and enabling `manual_builds` and `Build Annotations` options at the top
-of the dashboard pages to quickly locate results related to your test request.
-
-Please be patient waiting for the test results. Regression tests take considerable amount of
-time to complete. Each of listed performance tests takes about 2-3 hours. This time might be
-longer depending on the current build queue in the CI.
-
 <a id="local"></a>
 ## Local Testing
 
