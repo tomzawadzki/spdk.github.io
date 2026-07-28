@@ -247,9 +247,7 @@ real NVMe SSDs. The tests are all checked in to the main SPDK repository (follow
 That means that users can add tests to the CI system by simply submitting a patch. Tests are required to be added in the
 same patch as the new code they are testing.
 
-The [status of the CI system](https://ci.spdk.io/) includes an overview of the queued patches. Note that patches will not
-automatically be queued up, but instead require a cursory approval from one of the SPDK maintainers before they run. Patches
-pending approval for a run through the CI system are listed under the 'Pending Approval' table on the CI status page.
+The [status of the CI system](https://spdk.io/ci/) includes an overview of the queued patches.
 
 When the CI system completes, it will post a comment on the Gerrit review with a +/-1 Verified flag, plus a link to the logs
 of the test run. This is particularly useful if the tests fail. Patches will not be merged without a +1 Verified from the CI system.
