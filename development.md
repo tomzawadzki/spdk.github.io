@@ -181,8 +181,8 @@ the goal of the series of commits.
 
 * Provide a clear commit message describing the purpose of the commit. Good commit messages provide a very brief summary of
 what the commit does in the title followed by a short paragraph providing context for the change. For example, what problem is
-being solved, how was it discovered and how this patch solves the problem.  See [Continuous Integration](#integration) for the special case of a
-Request For Comments (RFC) type of patch.
+being solved, how was it discovered and how this patch solves the problem. If a patch is not ready for CI or review, mark it as
+Work in Progress (WIP) in Gerrit -- see [Continuous Integration](#integration) for details.
 
 * The first line of your commit message should be in the form "component: short description of patch".
 There should be a blank line between this first line and the rest of the commit message. For example:
@@ -238,9 +238,9 @@ helper, you'll only be prompted once.
 SPDK employs continuous integration (CI), which means all patches are run through a series of tests **before** they are even reviewed
 with the exception:
 
-* Patches containing [RFC] in the git commit message header are treated specially to spur comments only.  As such, these RFC patches
-are **not** run through the CI system.  While a developer may specify reviewers in Gerrit for these patches, it
-is highly suggested one either sends a message on Slack to bring attention to this type of patch for discussion.
+* Patches marked as **Work in Progress (WIP)** in Gerrit are **not** run through the CI system. To mark a patch as WIP, use the
+"Mark as Work in Progress" action in the Gerrit UI or push with the `%wip` option (e.g. `git push review HEAD:refs/for/master%wip`).
+When the patch is ready for CI and review, mark it as "Active" again.
 
 The SPDK CI system periodically looks at Gerrit, pulls the patches down, and runs them on a pool of multiple machines with
 real NVMe SSDs. The tests are all checked in to the main SPDK repository (follow `autorun.sh` in the root of the repository).
