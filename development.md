@@ -335,15 +335,6 @@ Please be patient waiting for the test results. Regression tests take considerab
 time to complete. Each of listed performance tests takes about 2-3 hours. This time might be
 longer depending on the current build queue in the CI.
 
-#### Mellanox Build Bot
-
-If Mellanox Build Bot gives your patch a -1 and you believe that this failure is not related to your patch, you can re-trigger a new
-build by posting a comment with the following content:
-
-~~~{.sh}
-Mellanox:retest
-~~~
-
 <a id="local"></a>
 ## Local Testing
 
