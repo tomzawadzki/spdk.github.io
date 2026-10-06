@@ -88,7 +88,7 @@ jobs:
 
       - name: Run format checks
         working-directory: spdk.github.io
-        run: _build/check_format.sh -e doc
+        run: _build/check_format.sh
 
       - name: Checkout spdk
         run: git clone --depth 1 "https://github.com/$SPDK_REPO" spdk
