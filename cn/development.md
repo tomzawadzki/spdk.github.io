@@ -125,7 +125,7 @@ git config core.hooksPath .githooks
 
 提交要求：
 
-* 所有的提交都必须由开发人员签名，表明签署同意了 [开发者原创证书](http://developercertificate.org/).
+* 所有的提交都必须由开发人员签名，表明签署同意了 [开发者原创证书](https://developercertificate.org/).
 这是在提交更改时使用 `-s` 或 `--signoff` 选项完成的。
 
 * 所有的提交必须符合SPDK样式指南。样式指南由`script/check_format.sh`中的脚本定义，它将使用工具astyle和pep8以编程方式修复编码样式问题。确保在提交补丁前运行此脚本。
@@ -187,7 +187,7 @@ SPDK采用了持续集成（CI, Continuous Integration），这意味着所有�
 
 SPDK CI系统定期查看Gerrit，将补丁拉下，并将它们运行在具有物理NVMe SSD的多台计算机池中。所有测试都被检入到主SPDK存储库（遵循库根目录的`autorun.sh`文件）。这意味着用户只需提交一个补丁就可以向CI系统添加测试。
 
-[CI系统状态](https://ci.spdk.io/) 涵盖了对排队的补丁的概述。请注意，补丁不会自动排队，而是需要SPDK维护人员在测试之前粗略地批准。CI状态页面上的“待批准”表格中列出了待批准通过CI系统测试的补丁。
+[CI系统状态](https://github.com/spdk/spdk-ci/actions) 涵盖了对排队的补丁的概述。请注意，补丁不会自动排队，而是需要SPDK维护人员在测试之前粗略地批准。CI状态页面上的"待批准"表格中列出了待批准通过CI系统测试的补丁。
 
 当CI系统完成测试时，它将使用+/-1验证标志对Gerrit的review发表评论，并添加链接到测试运行日志 。在测试不通过时，这一点将十分有用。如果没有从CI系统测试得到+1，则不会合并补丁。
 

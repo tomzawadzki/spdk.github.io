@@ -5,11 +5,11 @@ title: "SPDK Branding Guidelines"
 
 Members of our community are encouraged to use SPDK symbol in resources and collaterals.
 
-![SPDK Symbol]({{ site.baseurl }}/img/spdk.svg){: width="300" }
+![SPDK Symbol]({{ site.baseurl }}/assets/img/spdk.svg){: width="300" }
 
 The symbol is available in multiple formats:
-* png: [Symbol with text]({{ site.baseurl }}/img/spdk-text.png) and [without]({{ site.baseurl }}/img/spdk.png).
-* svg: [Symbol with text]({{ site.baseurl }}/img/spdk-text.svg) and [without]({{ site.baseurl }}/img/spdk.svg).
+* png: [Symbol with text]({{ site.baseurl }}/assets/img/spdk-text.png) and [without]({{ site.baseurl }}/assets/img/spdk.png).
+* svg: [Symbol with text]({{ site.baseurl }}/assets/img/spdk-text.svg) and [without]({{ site.baseurl }}/assets/img/spdk.svg).
 
 ### Usage
 

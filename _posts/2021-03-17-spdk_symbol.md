@@ -7,17 +7,17 @@ categories: news
 
 We're excited to announce that SPDK has its very own symbol:
 
-![SPDK Symbol]({{ site.baseurl }}/img/spdk.svg){: width="300" }
+![SPDK Symbol]({{ site.baseurl }}/assets/img/spdk.svg){: width="300" }
 
 The symbol is available with no text, as above, or with SPDK below it:
 
-![SPDK Symbol]({{ site.baseurl }}/img/spdk-text.svg){: width="300" }
+![SPDK Symbol]({{ site.baseurl }}/assets/img/spdk-text.svg){: width="300" }
 
 Members of our community are encouraged to use the symbol in SPDK resources and collaterals.
 
 The symbol is available in multiple formats:
-* png: [Symbol with text]({{ site.baseurl }}/img/spdk-text.png) and [without]({{ site.baseurl }}/img/spdk.png).
-* svg: [Symbol with text]({{ site.baseurl }}/img/spdk-text.svg) and [without]({{ site.baseurl }}/img/spdk.svg).
+* png: [Symbol with text]({{ site.baseurl }}/assets/img/spdk-text.png) and [without]({{ site.baseurl }}/assets/img/spdk.png).
+* svg: [Symbol with text]({{ site.baseurl }}/assets/img/spdk-text.svg) and [without]({{ site.baseurl }}/assets/img/spdk.svg).
 
 Please adhere to the following usage guidelines:
 * Do not modify the symbol (colors, proportions, alignment of elements) or add new design elements.
