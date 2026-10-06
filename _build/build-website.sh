@@ -124,10 +124,6 @@ cat > "$tmpdir/Doxyfile.website" <<-EOF
 	DISABLE_INDEX = YES
 	HTML_HEADER = "$tmpdir/header.html"
 	HTML_FOOTER = "$tmpdir/footer.html"
-	TOC_INCLUDE_HEADINGS = 6
-	HTML_COLORSTYLE = LIGHT
-	OBFUSCATE_EMAILS = NO
-	HTML_EXTRA_STYLESHEET = "$repo/doc/theme/spdk.css"
 EOF
 
 doc_build_started=true
