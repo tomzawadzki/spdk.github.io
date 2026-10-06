@@ -2,11 +2,7 @@
 layout: default
 title: 持续集成
 lang: cn
-
-toc:
-  - title: SPDK CI Github Actions
-    url: "https://github.com/spdk/spdk-ci/actions"
-
+sidebar: cn_ci
 ---
 
 SPDK持续集成(CI)测试池是一个不断扩展的机器组，包括虚拟和物理机器，用于验证提交给SPDK代码库中每个补丁的功能。这个测试池目前由12台运行多种Linux (CentOS, Ubuntu,Fedora)操作系统和FreeBSD的机器组成。其中一些机器有硬件NVMe控制器(Intel P3700)和RDMA NICs (Mellanox ConnectX-4)，而其他机器使用模拟的NVMe驱动器和Soft-RoCE NICs。
