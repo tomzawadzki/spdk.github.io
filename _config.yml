@@ -13,7 +13,7 @@ description: >
 markdown: kramdown
 highlighter: rouge  # codespell-ignore
 permalink: pretty
-exclude: [spdk, vendor, Gemfile, Gemfile.lock]
+exclude: [spdk, vendor, Gemfile, Gemfile.lock, README.md]
 collections:
   redirects:
     output: true
