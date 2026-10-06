@@ -98,6 +98,9 @@ installed_doxygen=${installed_doxygen%% *}
 [[ $installed_doxygen == "$REQUIRED_DOXYGEN_VERSION" ]] ||
 	die "Doxygen $REQUIRED_DOXYGEN_VERSION is required (found $installed_doxygen)"
 
+doc_version=$(git -C "$repo" rev-parse --short=9 HEAD)
+site_version=$(git -C "$rootdir" rev-parse --short=9 HEAD)
+
 {
 	sed 's|{{ site.baseurl }}|..|g' "$rootdir/_doxygen/doc_head.html"
 	printf '<body>\n<div id="top"><!-- do not remove this div, it is closed by doxygen! -->\n'
@@ -107,7 +110,12 @@ installed_doxygen=${installed_doxygen%% *}
 } > "$tmpdir/header.html"
 
 {
-	sed 's|{{ site.baseurl }}|..|g' "$rootdir/_includes/footer.html"
+	sed -e 's|{{ site.baseurl }}|..|g' \
+		-e "s|{% if site.spdk_sha %}||" \
+		-e "s|{{ site.spdk_sha }}|$doc_version|" \
+		-e "s|{{ site.site_sha }}|$site_version|" \
+		-e "s|{% endif %}||" \
+		"$rootdir/_includes/footer.html"
 	printf '</body>\n</html>\n'
 } > "$tmpdir/footer.html"
 
@@ -132,14 +140,12 @@ cp -a "$repo/doc/output/html/." "$rootdir/doc/"
 make -C "$repo/doc" clean
 doc_build_started=false
 
-jekyll_args=()
-if [[ -n $baseurl || -n $site_url ]]; then
-	{
-		[[ -z $baseurl ]] || printf 'baseurl: "%s"\n' "$baseurl"
-		[[ -z $site_url ]] || printf 'url: "%s"\n' "$site_url"
-	} > "$tmpdir/jekyll-overrides.yml"
-	jekyll_args+=(--config "$rootdir/_config.yml,$tmpdir/jekyll-overrides.yml")
-fi
+{
+	printf 'spdk_sha: "%s"\nsite_sha: "%s"\n' "$doc_version" "$site_version"
+	[[ -z $baseurl ]] || printf 'baseurl: "%s"\n' "$baseurl"
+	[[ -z $site_url ]] || printf 'url: "%s"\n' "$site_url"
+} > "$tmpdir/jekyll-overrides.yml"
+jekyll_args=(--config "$rootdir/_config.yml,$tmpdir/jekyll-overrides.yml")
 
 if [[ $mode == serve ]]; then
 	(cd "$rootdir"; bundle exec jekyll serve --livereload "${jekyll_args[@]}")
