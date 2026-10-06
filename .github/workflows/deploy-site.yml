@@ -1,0 +1,48 @@
+---
+name: Deploy SPDK Website
+
+"on":
+  push:
+    branches: [master]
+  repository_dispatch:
+    types:
+      - spdk-site-deploy
+  workflow_dispatch:
+  schedule:
+    - cron: "0 0 * * *"
+
+concurrency:
+  group: site-deploy
+  cancel-in-progress: false
+
+permissions:
+  contents: read
+
+jobs:
+
+  build:
+    name: Build website
+    # The daily rebuild only matters upstream. Forks deploy on push or by hand.
+    if: github.event_name != 'schedule' || github.repository_owner == 'spdk'
+    uses: ./.github/workflows/build-site.yml
+    with:
+      site_repo: ${{ format('{0}/spdk.github.io', github.repository_owner) }}
+      spdk_repo: ${{ format('{0}/spdk', github.repository_owner) }}
+      baseurl: ${{ github.repository_owner != 'spdk' && '/spdk.github.io' || '' }}
+      url: ${{ github.repository_owner == 'spdk' && 'https://www.spdk.io' || format('https://{0}.github.io', github.repository_owner) }}
+
+  deploy:
+    name: Deploy to GitHub Pages
+    needs: [build]
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    permissions:
+      pages: write
+      id-token: write
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v5
