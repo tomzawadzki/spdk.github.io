@@ -22,6 +22,6 @@ extending SPDK vhost support for virtio-blk.
 To Shuhei and Changpeng, thank you for all of your focus and
 insight – and congratulations!
 
-Please visit the [Core Maintainers](http://www.spdk.io/development/#core)
+Please visit the [Core Maintainers](https://www.spdk.io/development/#core)
 section of the development page for further details on the core
 maintainer team and their responsibilities.

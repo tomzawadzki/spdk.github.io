@@ -5,9 +5,9 @@ jsfiles: js/meetings.js
 lang: cn
 ---
 
-# IRC即时通信
+# 即时通信
 
-加入我们[#spdk](irc://irc.freenode.net/%23spdk) ([归档](https://ci.spdk.io/irclog/index.html))频道的[freenode](https://freenode.net/) IRC网络。
+加入我们 [SPDK Slack](https://spdk-team.slack.com/) 进行实时讨论。
 
 # 新功能开发
 
@@ -27,11 +27,9 @@ SPDK社区会议对所有人开放，并鼓励所有人参与。社区会议的�
 
 所有的会议，包括Bug讨论会议，使用相同的会议信息。为了避免机器人抓取信息登入会议，请参考下面图示的会议信息。方便起见，可以将会议的链接作为书签保存方便下次登陆。
 
-![SPDK](../../img/spdk_free.jpg "SPDK")
-
 ## 下一次欧洲会议时间
-<div id="euro-mtg"></div>
+<div id="community-mtg"></div>
 
 # 贡献代码
 
-有关如何为SPDK做出贡献的更多信息，请参见[开发页面](/cn/development/)。
+有关如何为SPDK做出贡献的更多信息，请参见[开发页面](../development/)。
