@@ -98,10 +98,24 @@ installed_doxygen=${installed_doxygen%% *}
 [[ $installed_doxygen == "$REQUIRED_DOXYGEN_VERSION" ]] ||
 	die "Doxygen $REQUIRED_DOXYGEN_VERSION is required (found $installed_doxygen)"
 
+{
+	sed 's|{{ site.baseurl }}|..|g' "$rootdir/_doxygen/doc_head.html"
+	printf '<body>\n<div id="top"><!-- do not remove this div, it is closed by doxygen! -->\n'
+	sed -e 's|{{ site.baseurl }}|..|g' \
+		-e "s|<!-- DOXYGEN_SEARCH -->|<div id=\"doxygen-searchbox\">\$searchbox</div>|" \
+		"$rootdir/_includes/navbar.html"
+} > "$tmpdir/header.html"
+
+{
+	sed 's|{{ site.baseurl }}|..|g' "$rootdir/_includes/footer.html"
+	printf '</body>\n</html>\n'
+} > "$tmpdir/footer.html"
+
 cat > "$tmpdir/Doxyfile.website" <<-EOF
 	@INCLUDE = "$repo/doc/Doxyfile"
-	HTML_HEADER =
-	HTML_FOOTER =
+	DISABLE_INDEX = YES
+	HTML_HEADER = "$tmpdir/header.html"
+	HTML_FOOTER = "$tmpdir/footer.html"
 	TOC_INCLUDE_HEADINGS = 6
 	HTML_COLORSTYLE = LIGHT
 	OBFUSCATE_EMAILS = NO

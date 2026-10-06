@@ -1,0 +1,43 @@
+<!-- Doxygen 1.18.0 HTML header customized for the shared SPDK chrome. -->
+<!doctype html>
+<html lang="$langISO">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta name="generator" content="Doxygen $doxygenversion">
+	<title>$projectname: $title</title>
+	<link href="$relpath^tabs.css" rel="stylesheet" type="text/css">
+<!--BEGIN HTML_DYNAMIC_SECTIONS-->
+	<script type="text/javascript" src="$relpath^dynsections.js"></script>
+<!--END HTML_DYNAMIC_SECTIONS-->
+<!--BEGIN HTML_CODE_FOLDING-->
+	<script type="text/javascript" src="$relpath^codefolding.js"></script>
+<!--END HTML_CODE_FOLDING-->
+<!--BEGIN COPY_CLIPBOARD-->
+	<script type="text/javascript" src="$relpath^clipboard.js"></script>
+<!--END COPY_CLIPBOARD-->
+	$treeview
+	$search
+	<script>
+	/* Doxygen 1.18 skips search setup when DISABLE_INDEX=YES. */
+	document.addEventListener('DOMContentLoaded', function() {
+		if (!document.getElementById('doxygen-config')) {
+			init_search();
+		}
+	});
+	/* The mobile layout hides both panels and Doxygen then saves their width as 0. */
+	['width', 'pagenav'].forEach(function(name) {
+		if (!(parseInt(Cookie.readSetting(name, 0), 10) >= 100)) {
+			Cookie.writeSetting(name, 250);
+		}
+	});
+	</script>
+	$mathjax
+	$darkmode
+	$mermaidjs
+	<link href="$relpath^$stylesheet" rel="stylesheet" type="text/css">
+	$extrastylesheet
+	<link rel="icon" type="image/svg+xml" href="{{ site.baseurl }}/img/spdk.svg">
+	<link rel="icon" href="{{ site.baseurl }}/favicon.ico" sizes="32x32">
+	<link href="{{ site.baseurl }}/css/spdk.css" rel="stylesheet" type="text/css">
+</head>
