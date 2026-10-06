@@ -1,0 +1,13 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  {% assign destination = page.redirect_to | relative_url %}
+  <script>location.replace({{ destination | jsonify }} + location.hash);</script>
+  <meta http-equiv="refresh" content="0; url={{ destination }}">
+  <title>Redirecting to SPDK documentation</title>
+</head>
+<body>
+  <p>This page has moved to <a href="{{ destination }}">{{ destination }}</a>.</p>
+</body>
+</html>
