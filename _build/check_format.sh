@@ -26,6 +26,7 @@ function cleanup() {
 function verify_installed_tool() {
 	if ! hash "$1" &>/dev/null; then
 		echo "WARNING: please install $1!" >&2
+		return 1
 	fi
 }
 
@@ -49,7 +50,7 @@ function check_eof() {
 	echo -n "Checking blank lines at end of file... "
 
 	if ! git_grep -I -l -z -e . -- './*' ':!./**/*.min.*' ':!./**/*.svg' | \
-		xargs -0 -P0 -n1 "$BASEDIR/scripts/eofnl" > eofnl.log; then
+		xargs -0 -P0 -n1 "$BASEDIR/_build/eofnl" > eofnl.log; then
 		echo "Incorrect end-of-file formatting detected"
 		cat eofnl.log
 		rc=1
@@ -68,7 +69,7 @@ function check_shellcheck() {
 		return 1
 	fi
 
-	mapfile -t bash_files < <(git_grep -lE '^#!(/bin/(ash|bash|sh)|/usr/bin/env bash)' | grep -vE ".yaml")
+	mapfile -t bash_files < <(git_grep -lE '^#!(/bin/(ash|bash|sh)|/usr/bin/env bash)' -- | grep -vE ".yaml")
 
 	if ((${#bash_files[@]} == 0)); then
 		echo "No Bash files to check"
@@ -124,7 +125,7 @@ function check_misspell() {
 
 	files+=($(git_ls_files "${suffixes[@]}"))
 
-	if out=$(codespell --builtin clear,informal,rare -s "${files[@]}" --ignore-regex "$ignore" 2>&1); then
+	if out=$(codespell --builtin clear,informal,rare --ignore-words-list aer -s "${files[@]}" --ignore-regex "$ignore" 2>&1); then
 		echo "OK"
 		return 0
 	fi
@@ -150,7 +151,7 @@ function check_yaml_style() {
 		return 0
 	fi
 
-	if ! out=$(yamllint -c $BASEDIR/scripts/yamllint.config --no-warnings "${yamls[@]}" 2>/dev/null); then
+	if ! out=$(yamllint -c "$BASEDIR/_build/yamllint.config" --no-warnings "${yamls[@]}" 2>/dev/null); then
 		echo "NOT OK"
 		echo -e "\n$out"
 		return 1
@@ -164,7 +165,7 @@ function check_yaml_style() {
 BASEDIR=$(readlink -f "$(dirname "$0")")/..
 EXCLUDED_PATHS=()
 
-while getopts ":p:se:h" opt; do
+while getopts ":e:h" opt; do
 	case $opt in
 		h) help; exit 0 ;;
 		e) get_exclude_args $OPTARG ;;
@@ -173,7 +174,7 @@ while getopts ":p:se:h" opt; do
 	esac
 done
 
-cd $BASEDIR
+cd "$BASEDIR"
 
 check_eof || rc=1
 check_shellcheck || rc=1
