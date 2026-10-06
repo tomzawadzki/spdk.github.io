@@ -5,16 +5,13 @@ author: Anu Rao
 categories: news
 ---
 
-<div class="well">
-<h3>Save The Date</h3>
-<p>
-2018 Storage Performance Development Kit (SPDK) Summit<br/>
-May 15th -16th<br/>
-Dolce Hayes Mansion, San Jose<br/>
-<a href="https://goo.gl/maps/mj9sYL9Un232">200 Edenvale Ave, San Jose, CA 95136</a><br/>
-<a href="http://www.hayesmansion.com">http://www.hayesmansion.com</a>
-</p>
-</div>
+> ### Save The Date
+>
+> 2018 Storage Performance Development Kit (SPDK) Summit
+> May 15th -16th
+> Dolce Hayes Mansion, San Jose
+> [200 Edenvale Ave, San Jose, CA 95136](https://goo.gl/maps/mj9sYL9Un232)
+> <http://www.hayesmansion.com>
 
 The 2018 annual Storage Performance Development Kit US Summit is a great
 opportunity to meet with other SPDK community members and listen to a series
