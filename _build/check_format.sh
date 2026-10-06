@@ -162,6 +162,29 @@ function check_yaml_style() {
 	return 0
 }
 
+function check_actions() {
+	local workflows=()
+
+	echo -n "Checking GitHub Actions workflows... "
+	if ! verify_installed_tool actionlint; then
+		return 1
+	fi
+
+	mapfile -t workflows < <(git_ls_files '.github/workflows/*.yml' '.github/workflows/*.yaml')
+	if ((${#workflows[@]} == 0)); then
+		echo "No workflow files to check"
+		return 0
+	fi
+
+	if actionlint "${workflows[@]}"; then
+		echo "OK"
+		return 0
+	fi
+
+	echo "NOT OK"
+	return 1
+}
+
 BASEDIR=$(readlink -f "$(dirname "$0")")/..
 EXCLUDED_PATHS=()
 
@@ -180,5 +203,6 @@ check_eof || rc=1
 check_shellcheck || rc=1
 check_misspell || rc=1
 check_yaml_style || rc=1
+check_actions || rc=1
 
 exit $rc
