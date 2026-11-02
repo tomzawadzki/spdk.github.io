@@ -1,0 +1,96 @@
+---
+name: Build SPDK Website
+
+"on":
+  workflow_call:
+    inputs:
+      site_gerrit_ref:
+        description: 'Gerrit refspec for spdk.github.io (for example refs/changes/XX/12345/5)'
+        required: false
+        type: string
+        default: ''
+      spdk_gerrit_ref:
+        description: 'Gerrit refspec for spdk (for example refs/changes/XX/12345/5)'
+        required: false
+        type: string
+        default: ''
+
+permissions:
+  contents: read
+
+defaults:
+  run:
+    shell: bash
+
+jobs:
+  build:
+    name: Build website
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    container:
+      image: ghcr.io/spdk/spdk-ci:fedora_43@sha256:1bd6cbacc3d091b8180b09a1d3818ef376414e831121d97ffaaab7f8f1367c81
+    env:
+      BUNDLE_FROZEN: 'true'
+      # The github context is the caller's, so forks build their own repositories.
+      OWNER: ${{ github.repository_owner }}
+      SITE_GERRIT_REF: ${{ inputs.site_gerrit_ref }}
+      SPDK_GERRIT_REF: ${{ inputs.spdk_gerrit_ref }}
+    steps:
+      - name: Checkout spdk.github.io
+        uses: actions/checkout@v7
+        with:
+          repository: ${{ github.repository_owner }}/spdk.github.io
+          path: spdk.github.io
+
+      - name: Fetch site patch from Gerrit
+        if: inputs.site_gerrit_ref != ''
+        working-directory: spdk.github.io
+        run: |
+          [[ "$SITE_GERRIT_REF" =~ ^refs/changes/[0-9]{2}/[0-9]+/[0-9]+$ ]]
+          git fetch --depth 1 -- https://review.spdk.io/spdk/spdk.github.io "$SITE_GERRIT_REF"
+          git checkout --detach FETCH_HEAD
+
+      - name: Install format tools
+        run: |
+          python3 -m pip install --no-cache-dir codespell==2.4.3 yamllint==1.38.0
+
+      - name: Run format checks
+        working-directory: spdk.github.io
+        run: _build/check_format.sh -e doc
+
+      - name: Checkout spdk
+        uses: actions/checkout@v7
+        with:
+          repository: ${{ github.repository_owner }}/spdk
+          path: spdk
+
+      - name: Fetch SPDK patch from Gerrit
+        if: inputs.spdk_gerrit_ref != ''
+        working-directory: spdk
+        run: |
+          [[ "$SPDK_GERRIT_REF" =~ ^refs/changes/[0-9]{2}/[0-9]+/[0-9]+$ ]]
+          git fetch --depth 1 -- https://review.spdk.io/spdk/spdk "$SPDK_GERRIT_REF"
+          git checkout --detach FETCH_HEAD
+
+      - name: Install pinned Doxygen 1.18
+        working-directory: spdk.github.io
+        run: _build/install-doxygen.sh /usr/local
+
+      - name: Install locked Jekyll dependencies
+        working-directory: spdk.github.io
+        run: bundle install --jobs "$(nproc)"
+
+      - name: Build full site
+        working-directory: spdk.github.io
+        run: |
+          args=()
+          # Forks publish on their own GitHub Pages, under the repository name.
+          if [[ "$OWNER" != spdk ]]; then
+            args+=(--url "https://$OWNER.github.io/spdk.github.io")
+          fi
+          _build/build-website.sh "${args[@]}" "$GITHUB_WORKSPACE/spdk"
+
+      - name: Upload site artifact
+        uses: actions/upload-pages-artifact@v5
+        with:
+          path: spdk.github.io/_site/
