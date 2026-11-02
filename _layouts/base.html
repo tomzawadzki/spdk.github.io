@@ -3,7 +3,11 @@
   {% include head.html %}
 
   <body>
-    {% include header.html %}
+    <a class="skip-link" href="#content">Skip to content</a>
+    {%- capture cn_url %}/cn{{ page.url }}{% endcapture %}
+    {%- assign cn_page = site.pages | where: "url", cn_url | first %}
+    {%- if cn_page %}{% assign cn_path = page.url %}{% else %}{% assign cn_path = "/" %}{% endif %}
+    {% if page.lang == 'cn' %}{% include navbar-cn.html %}{% else %}{% include navbar.html cn_path=cn_path %}{% endif %}
 
     <main id="content">
       {{ content }}
