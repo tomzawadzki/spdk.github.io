@@ -4,9 +4,9 @@ title:  "社区"
 lang: cn
 ---
 
-# IRC即时通信
+# 即时通信
 
-加入我们[#spdk](irc://irc.freenode.net/%23spdk) ([归档](https://ci.spdk.io/irclog/index.html))频道的[freenode](https://freenode.net/) IRC网络。
+加入我们 [SPDK Slack](https://join.slack.com/t/spdk-team/shared_invite/enQtNzg2NTgxNTgzNzEyLWQ2Y2NmOGFkN2FlYjczMWY1ZDZiMzFjZTI4ZGIyZDc0YTA3ZjE5YWQ3MGVjYzI1MTg0OGYzMjFhZDczZDYwZmY) 进行实时讨论。
 
 # 新功能开发
 
@@ -24,9 +24,7 @@ SPDK社区会议对所有人开放，并鼓励所有人参与。社区会议的�
 
 除了社区会议，还有个专门的Bug讨论会议，每两周在亚太友好的时间。请注意Bug在[SPDK GitHub issue tracker](https://github.com/spdk/spdk/issues)上记录。
 
-所有的会议，包括Bug讨论会议，使用相同的会议信息。为了避免机器人抓取信息登入会议，请参考下面图示的会议信息。方便起见，可以将会议的链接作为书签保存方便下次登陆。
-
-![SPDK](../../img/spdk_free.jpg "SPDK")
+所有的会议，包括Bug讨论会议，使用相同的会议信息。会议链接请见[英文社区页面](../../community/#meetings)。
 
 ## 下一次欧洲会议时间
 <div id="community-mtg"></div>
