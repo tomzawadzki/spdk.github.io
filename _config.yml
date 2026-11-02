@@ -1,8 +1,6 @@
 url: "https://spdk.io"
 baseurl: ""
 title: Storage Performance Development Kit
-title-cn: Storage Performance Development Kit
-email: benjamin.walker@intel.com
 author: Benjamin Walker
 description: >
   The Storage Performance Development Kit (SPDK) provides a set of tools and libraries

@@ -1,7 +1,6 @@
 ---
 layout: post
 title: "NVMe API Changes"
-img: p3600-u2-iso.png
 author: Ben Walker
 category: feature
 ---
