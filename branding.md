@@ -11,7 +11,7 @@ The symbol is available in multiple formats:
 * png: [Symbol with text](https://review.spdk.io/download/spdk_symbol/spdk_symbol_text.png) and [without](https://review.spdk.io/download/spdk_symbol/spdk_symbol.png).
 * svg: [Symbol with text](https://review.spdk.io/download/spdk_symbol/spdk_symbol_text.svg) and [without](https://review.spdk.io/download/spdk_symbol/spdk_symbol.svg).
 
-### Usage
+## Usage
 
 * Do not modify the symbol (colors, proportions, alignment of elements) or add new design elements.
 * Do not use the symbol in a manner that would disparage SPDK (e.g., untruthful advertising, false/misleading promotional materials, etc.).
@@ -20,6 +20,6 @@ The symbol is available in multiple formats:
 * Do not attempt to claim ownership rights on the symbol.
 * Do not add ©, ®, or ™ characters to the symbol.
 
-### Support
+## Support
 
 If you have any questions about using the symbol, please reach out to the SPDK community via the mailing list or Slack.
