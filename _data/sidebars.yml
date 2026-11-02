@@ -1,0 +1,31 @@
+news:
+  - title: News
+    url: /news/
+  - title: Technical Articles
+    url: /articles/
+  - title: Whitepapers
+    url: /whitepaper/
+  - title: Webinars
+    url: /webinar/
+
+news_cn:
+  - title: 用户案例
+    url: /cn/news/
+  - title: 技术文章
+    url: /cn/articles/
+  - title: 白皮书
+    url: /cn/whitepaper/
+  - title: 在线分享
+    url: /cn/webinar/
+
+community:
+  - title: Slack
+    url: "#slack"
+  - title: Enhancement Requests
+    url: "#enhancements"
+  - title: Community Meetings
+    url: "#meetings"
+  - title: Become a Contributor
+    url: "#contributing"
+  - title: Holidays
+    url: "#holidays"

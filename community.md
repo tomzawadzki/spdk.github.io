@@ -2,17 +2,7 @@
 layout: default
 title:  "SPDK Community"
 
-toc:
-  - title: Slack
-    url: "#slack"
-  - title: Enhancement Requests
-    url: "#enhancements"
-  - title: Community Meetings
-    url: "#meetings"
-  - title: Become a Contributor
-    url: "#contributing"
-  - title: Holidays
-    url: "#holidays"
+sidebar: community
 ---
 
 <a id="slack"></a>
