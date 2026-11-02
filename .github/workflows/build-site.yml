@@ -53,6 +53,13 @@ jobs:
       - name: Install format tools
         run: |
           python3 -m pip install --no-cache-dir codespell==2.4.3 yamllint==1.38.0
+          version=1.7.12
+          archive="actionlint_${version}_linux_amd64.tar.gz"
+          checksum=8aca8db96f1b94770f1b0d72b6dddcb1ebb8123cb3712530b08cc387b349a3d8
+          curl -fsSLo "/tmp/$archive" \
+            "https://github.com/rhysd/actionlint/releases/download/v${version}/$archive"
+          echo "$checksum  /tmp/$archive" | sha256sum --check -
+          tar -xzf "/tmp/$archive" -C /usr/local/bin actionlint
 
       - name: Run format checks
         working-directory: spdk.github.io

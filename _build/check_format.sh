@@ -162,6 +162,24 @@ function check_yaml_style() {
 	return 0
 }
 
+function check_actions() {
+	local out
+
+	echo -n "Checking GitHub Actions workflows... "
+	if ! verify_installed_tool actionlint; then
+		return 1
+	fi
+
+	if out=$(actionlint 2>&1); then
+		echo "OK"
+		return 0
+	fi
+
+	echo "NOT OK"
+	echo -e "\n$out\n"
+	return 1
+}
+
 BASEDIR=$(readlink -f "$(dirname "$0")")/..
 EXCLUDED_PATHS=()
 
@@ -180,5 +198,6 @@ check_eof || rc=1
 check_shellcheck || rc=1
 check_misspell || rc=1
 check_yaml_style || rc=1
+check_actions || rc=1
 
 exit $rc
