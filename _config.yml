@@ -12,6 +12,7 @@ markdown: kramdown
 highlighter: rouge  # codespell-ignore
 permalink: pretty
 timezone: UTC
+exclude: [README.md]
 collections:
   redirects:
     output: true
