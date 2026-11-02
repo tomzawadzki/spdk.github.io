@@ -1,7 +1,6 @@
 ---
 layout: default
 title:  "SPDK Community"
-jsfiles: js/meetings.js
 
 toc:
   - title: Slack
@@ -46,6 +45,7 @@ posted topics before the end of the meeting we can use the time to discuss addit
 
 ## Next SPDK Community Meeting
 <div id="community-mtg"></div>
+<script src="{{ site.baseurl }}/assets/js/meetings.js"></script>
 
 <a id="contributing"></a>
 # Contributing

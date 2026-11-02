@@ -1,7 +1,6 @@
 ---
 layout: default
 title:  "开发"
-jsfiles: /js/meetings.js
 lang: cn
 ---
 # 本文内容包括:

@@ -63,11 +63,5 @@
     </div>
 
     {% include footer.html %}
-
-    {% for js in page.jsfiles %}
-     <script type="text/javascript">
-     {% include {{ js }} %}
-     </script>
-    {% endfor %}
   </body>
 </html>

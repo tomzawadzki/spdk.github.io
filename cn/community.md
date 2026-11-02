@@ -1,7 +1,6 @@
 ---
 layout: default
 title:  "社区"
-jsfiles: js/meetings.js
 lang: cn
 ---
 
@@ -31,6 +30,7 @@ SPDK社区会议对所有人开放，并鼓励所有人参与。社区会议的�
 
 ## 下一次欧洲会议时间
 <div id="community-mtg"></div>
+<script src="{{ site.baseurl }}/assets/js/meetings.js"></script>
 
 # 贡献代码
 
