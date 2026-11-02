@@ -63,7 +63,7 @@ jobs:
 
       - name: Run format checks
         working-directory: spdk.github.io
-        run: _build/check_format.sh -e doc
+        run: _build/check_format.sh
 
       - name: Checkout spdk
         uses: actions/checkout@v7

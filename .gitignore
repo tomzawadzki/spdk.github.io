@@ -2,3 +2,4 @@ _site
 .jekyll
 .jekyll*
 .vscode
+doc/
