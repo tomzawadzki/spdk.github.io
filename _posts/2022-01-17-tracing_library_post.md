@@ -49,7 +49,7 @@ SPDK application and allow other applications, e.g. `trace.py`, to make use of r
 ## How to
 
 You can find information about how to run spdk tracepoints and BPF dtrace probes in our
-documentation pages [here](https://spdk.io/doc/nvmf_tgt_tracepoints.html) and
+documentation pages [here](https://spdk.io/doc/tracepoints.html) and
 [here](https://spdk.io/doc/usdt.html). For detailed description of BPF tracing please
 check out our previous blogpost
 [BPF tracing with SPDK](https://spdk.io/news/2021/09/28/bpf_tracing_with_spdk/).
