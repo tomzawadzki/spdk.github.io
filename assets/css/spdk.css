@@ -1,5 +1,6 @@
-/* SPDK website styles. The content rules only apply inside main, so pages
-   that style their own content can load this file too. */
+/* SPDK website styles, loaded on every site page and on Doxygen pages.
+   doc/theme/spdk.css in SPDK styles the Doxygen content itself, so the
+   content rules here only apply inside main, which Doxygen pages lack. */
 
 :root {
     --spdk-brand: #2b497d;
@@ -135,6 +136,20 @@ main blockquote {
     height: 32px;
     width: 32px;
     display: block;
+}
+
+/* Doxygen's search box, which the website build puts into the navbar. */
+.navbar-nav > #doxygen-searchbox {
+    align-items: center;
+    display: flex;
+    min-height: 38px;
+    padding: 0 8px;
+}
+
+.navbar-nav > #doxygen-searchbox #MSearchBox {
+    margin: 0;
+    position: relative;
+    right: auto;
 }
 
 /* ----------------------------------------------------------------
@@ -389,6 +404,10 @@ main blockquote {
         letter-spacing: 0;
         padding: 4px 6px;
         white-space: nowrap;
+    }
+
+    .navbar-nav > #doxygen-searchbox {
+        padding: 5px 8px;
     }
 
     .hero h1 {

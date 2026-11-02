@@ -1,0 +1,45 @@
+<!-- Doxygen 1.18.0 HTML header. build-website.sh appends the site navbar. -->
+<!doctype html>
+<html lang="$langISO">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta name="generator" content="Doxygen $doxygenversion">
+	<title>$projectname: $title</title>
+	<link href="$relpath^tabs.css" rel="stylesheet" type="text/css">
+<!--BEGIN HTML_DYNAMIC_SECTIONS-->
+	<script type="text/javascript" src="$relpath^dynsections.js"></script>
+<!--END HTML_DYNAMIC_SECTIONS-->
+<!--BEGIN HTML_CODE_FOLDING-->
+	<script type="text/javascript" src="$relpath^codefolding.js"></script>
+<!--END HTML_CODE_FOLDING-->
+<!--BEGIN COPY_CLIPBOARD-->
+	<script type="text/javascript" src="$relpath^clipboard.js"></script>
+<!--END COPY_CLIPBOARD-->
+	$treeview
+	$search
+	<script>
+	/* Doxygen 1.18 skips search setup when DISABLE_INDEX=YES. */
+	document.addEventListener('DOMContentLoaded', function() {
+		if (!document.getElementById('doxygen-config')) {
+			init_search();
+		}
+	});
+	/* Doxygen saves the panel widths it shrinks to fit a narrow window, so
+	   reset a saved width below 100px. */
+	['width', 'pagenav'].forEach(function(name) {
+		if (!(parseInt(Cookie.readSetting(name, 0), 10) >= 100)) {
+			Cookie.writeSetting(name, 250);
+		}
+	});
+	</script>
+	$mathjax
+	$darkmode
+	$mermaidjs
+	<link href="$relpath^$stylesheet" rel="stylesheet" type="text/css">
+	$extrastylesheet
+	<link href="../assets/css/spdk.css" rel="stylesheet" type="text/css">
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<a class="skip-link" href="#doc-content">Skip to content</a>

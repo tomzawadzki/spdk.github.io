@@ -76,11 +76,30 @@ installed_doxygen=${installed_doxygen%% *}
 tmpdir=$(mktemp -d)
 trap 'rm -rf "$tmpdir"' EXIT
 
+{
+	cat "$rootdir/_doxygen/doc_head.html"
+	sed -e 's|{{ site.baseurl }}|..|g' \
+		-e 's|{{ include.cn_path }}|/|' \
+		-e "s|<!-- DOXYGEN_SEARCH -->|<div id=\"doxygen-searchbox\">\$searchbox</div>|" \
+		"$rootdir/_includes/navbar.html"
+} > "$tmpdir/header.html"
+
+{
+	sed 's|{{ site.baseurl }}|..|g' "$rootdir/_includes/footer.html"
+	printf '</body>\n</html>\n'
+} > "$tmpdir/footer.html"
+
+! grep -q -e '{{' -e '{%' "$tmpdir/header.html" "$tmpdir/footer.html" ||
+	die "navbar.html or footer.html uses Liquid that the Doxygen header and footer do not handle"
+
 outdir=$tmpdir/output
 cat > "$tmpdir/Doxyfile.website" <<-EOF
 	@INCLUDE = "$repo/doc/Doxyfile"
 	OUTPUT_DIRECTORY = "$outdir"
 	WARN_AS_ERROR = FAIL_ON_WARNINGS
+	DISABLE_INDEX = YES
+	HTML_HEADER = "$tmpdir/header.html"
+	HTML_FOOTER = "$tmpdir/footer.html"
 EOF
 
 # Doxygen writes to the tmpdir, so the doc/output of a standalone build
