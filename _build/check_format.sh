@@ -125,7 +125,7 @@ function check_misspell() {
 
 	files+=($(git_ls_files "${suffixes[@]}"))
 
-	if out=$(codespell --builtin clear,informal,rare -s "${files[@]}" --ignore-regex "$ignore" 2>&1); then
+	if out=$(codespell --builtin clear,informal,rare -I "$BASEDIR/_build/codespell-ignore-words.txt" -s "${files[@]}" --ignore-regex "$ignore" 2>&1); then
 		echo "OK"
 		return 0
 	fi
