@@ -76,6 +76,9 @@ installed_doxygen=${installed_doxygen%% *}
 tmpdir=$(mktemp -d)
 trap 'rm -rf "$tmpdir"' EXIT
 
+doc_version=$(git -C "$repo" rev-parse --short=9 HEAD)
+site_version=$(git -C "$rootdir" rev-parse --short=9 HEAD)
+
 {
 	cat "$rootdir/_doxygen/doc_head.html"
 	sed -e 's|{{ site.baseurl }}|..|g' \
@@ -85,7 +88,12 @@ trap 'rm -rf "$tmpdir"' EXIT
 } > "$tmpdir/header.html"
 
 {
-	sed 's|{{ site.baseurl }}|..|g' "$rootdir/_includes/footer.html"
+	sed -e 's|{{ site.baseurl }}|..|g' \
+		-e "s|{% if site.spdk_sha %}||" \
+		-e "s|{{ site.spdk_sha }}|$doc_version|" \
+		-e "s|{{ site.site_sha }}|$site_version|" \
+		-e "s|{% endif %}||" \
+		"$rootdir/_includes/footer.html"
 	printf '</body>\n</html>\n'
 } > "$tmpdir/footer.html"
 
@@ -113,11 +121,11 @@ rm -rf "$rootdir/doc"
 mkdir -p "$rootdir/doc"
 cp -a "$outdir/html/." "$rootdir/doc/"
 
-jekyll_args=()
-if [[ -n $url ]]; then
-	printf 'url: "%s"\nbaseurl: "%s"\n' "$url" "$baseurl" > "$tmpdir/jekyll-overrides.yml"
-	jekyll_args+=(--config "$rootdir/_config.yml,$tmpdir/jekyll-overrides.yml")
-fi
+{
+	printf 'spdk_sha: "%s"\nsite_sha: "%s"\n' "$doc_version" "$site_version"
+	[[ -z $url ]] || printf 'url: "%s"\nbaseurl: "%s"\n' "$url" "$baseurl"
+} > "$tmpdir/jekyll-overrides.yml"
+jekyll_args=(--config "$rootdir/_config.yml,$tmpdir/jekyll-overrides.yml")
 
 if [[ $mode == serve ]]; then
 	(cd "$rootdir"; bundle exec jekyll serve --livereload --host "$host" "${jekyll_args[@]}")
