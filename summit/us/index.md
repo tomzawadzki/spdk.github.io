@@ -1,6 +1,7 @@
 ---
 layout: default
 title: "SPDK US Summits"
+sidebar: summit_us
 ---
 
 - [SPDK 2017 US Summit](2017/)

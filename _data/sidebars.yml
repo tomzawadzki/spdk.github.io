@@ -7,6 +7,8 @@ news:
     url: /whitepaper/
   - title: Webinars
     url: /webinar/
+  - title: Summits
+    url: /summit/
 
 news_cn:
   - title: 用户案例
@@ -27,5 +29,29 @@ community:
     url: "#meetings"
   - title: Become a Contributor
     url: "#contributing"
+  - title: Branding
+    url: /branding/
   - title: Holidays
     url: "#holidays"
+
+summit:
+  - title: US Summits
+    url: /summit/us/
+  - title: PRC Summits
+    url: /summit/cn/
+
+summit_us:
+  - title: All Summits
+    url: /summit/us/
+  - title: "2019"
+    url: /summit/us/2019/
+  - title: "2018"
+    url: /summit/us/2018/
+  - title: "2017"
+    url: /summit/us/2017/
+
+summit_cn:
+  - title: All Summits
+    url: /summit/cn/
+  - title: "2018"
+    url: /summit/cn/2018/
