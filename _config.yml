@@ -13,6 +13,7 @@ description: >
 markdown: kramdown
 highlighter: rouge  # codespell-ignore
 permalink: pretty
+timezone: UTC
 include: [.well-known]
 plugins:
   - jekyll-feed
